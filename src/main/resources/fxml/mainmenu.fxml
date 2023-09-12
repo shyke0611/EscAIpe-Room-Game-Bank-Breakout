@@ -38,17 +38,17 @@
          <children>
             <VBox fx:id="buttonsContainer" layoutX="29.0" layoutY="270.0" prefHeight="89.0" prefWidth="258.0" spacing="10.0">
                <children>
-                  <Button fx:id="newGameBtn" lineSpacing="10.0" minWidth="100.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="258.0" text="New Game" textAlignment="CENTER" textFill="#b59e1d">
+                  <Button fx:id="newGameBtn" lineSpacing="10.0" minWidth="100.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="258.0" stylesheets="@../css/mainmenu.css" text="New Game" textAlignment="CENTER" textFill="#b59e1d">
                      <font>
                         <Font name="Tsukushi B Round Gothic Regula" size="45.0" />
                      </font>
                   </Button>
-                  <Button fx:id="instructionsBtn" minWidth="100.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="258.0" text="Instructions" textFill="#b59e1d">
+                  <Button fx:id="instructionsBtn" minWidth="100.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="258.0" stylesheets="@../css/mainmenu.css" text="Instructions" textFill="#b59e1d">
                      <font>
                         <Font name="Kannada MN" size="45.0" />
                      </font>
                   </Button>
-                  <Button fx:id="quitBtn" minWidth="100.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="258.0" text="Quit" textFill="#b59e1d">
+                  <Button fx:id="quitBtn" minWidth="100.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="258.0" stylesheets="@../css/mainmenu.css" text="Quit" textFill="#b59e1d">
                      <font>
                         <Font name="Kannada MN" size="45.0" />
                      </font>
