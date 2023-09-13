@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox layoutX="27.0" layoutY="30.0" prefHeight="128.0" prefWidth="300.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 10;">
+         <children>
+            <VBox alignment="CENTER" prefHeight="129.0" prefWidth="100.0">
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/robber1.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Lobby">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="110.0" prefWidth="100.0">
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/robber2.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Vault">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ImageView fitHeight="111.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/robber3.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Security">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox layoutX="15.0" layoutY="539.0" prefHeight="150.0" prefWidth="665.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 70 0 0 70;">
+               <children>
+                  <ImageView fitHeight="141.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/walkietalkie.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox prefHeight="150.0" prefWidth="512.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="528.0">
+                     <children>
+                        <TextArea prefHeight="100.0" prefWidth="533.0" style="-fx-background-color: green;" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="51.0" prefWidth="512.0">
+                     <children>
+                        <TextField prefHeight="50.0" prefWidth="512.0" promptText="Bzzz... type here" style="-fx-background-color: black; -fx-background-radius: 0 0 20 0;">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
