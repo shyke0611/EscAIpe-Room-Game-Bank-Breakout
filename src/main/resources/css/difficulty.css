@@ -1,0 +1,26 @@
+.container {
+    -fx-background-color :   #727680;
+    -fx-background-radius : 20;
+
+}
+
+.container:hover {
+    -fx-background-color :  #8ac1f5;
+    -fx-cursor: hand;
+    -fx-background-radius : 20;
+}
+
+.container:hover Label {
+    -fx-text-fill :  #305dae;
+}
+
+.clicked-container {
+    -fx-text-fill :  #305dae;
+    -fx-background-color :  #8ac1f5;
+    -fx-background-radius : 20;
+}
+
+.clicked-container Label {
+    -fx-text-fill :  #305dae;
+}
+

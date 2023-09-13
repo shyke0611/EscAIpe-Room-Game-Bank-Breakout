@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.DifficultyController">
+   <children>
+      <AnchorPane layoutX="305.0" prefHeight="729.0" prefWidth="697.0">
+         <children>
+            <ImageView fitHeight="721.0" fitWidth="721.0" layoutX="-22.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/titlepage.png" />
+               </image>
+               <effect>
+                  <GaussianBlur radius="0.0" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="433.0" fitWidth="456.0" layoutX="138.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/cash.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="100.0" layoutY="4.0" opacity="0.69" prefHeight="169.0" prefWidth="536.0" text="Money Heist" textFill="#1c56dd">
+               <font>
+                  <Font name="Serif Bold" size="96.0" />
+               </font>
+            </Label>
+            <Label layoutX="318.0" layoutY="102.0" opacity="0.5" text="escape room" textFill="#e10606">
+               <font>
+                  <Font name="Silom" size="51.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <GaussianBlur />
+         </effect>
+      </AnchorPane>
+      <AnchorPane layoutY="7.0" prefHeight="701.0" prefWidth="302.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="-1.0">
+         <children>
+            <VBox fx:id="buttonsContainer" layoutX="29.0" layoutY="270.0" prefHeight="89.0" prefWidth="258.0" spacing="10.0" />
+         </children>
+      </AnchorPane>
+      <HBox layoutX="160.0" layoutY="157.0" prefHeight="350.0" prefWidth="800.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="193.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="157.0">
+         <children>
+            <VBox fx:id="easyVbox" alignment="TOP_CENTER" prefHeight="305.0" prefWidth="225.0" styleClass="container" stylesheets="@../css/difficulty.css">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="69.0" prefWidth="225.0">
+                     <children>
+                        <Label text="Easy" textFill="#4d4f54">
+                           <font>
+                              <Font name="BM KIRANGHAERANG OTF" size="53.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="easyAlarmImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                           <image>
+                              <Image url="@../images/EasyAlarm.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/emptyAlarm.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+                  <HBox alignment="CENTER" prefHeight="42.0" prefWidth="225.0" spacing="10.0">
+                     <children>
+                        <Label prefHeight="4.0" prefWidth="133.0" text="Hints Allowed:" textFill="#4d4f54">
+                           <font>
+                              <Font name="BM KIRANGHAERANG OTF" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="24.0" prefWidth="225.0" spacing="10.0">
+                     <children>
+                        <Label text="unlimited" textFill="#4d4f54">
+                           <font>
+                              <Font name="BM KIRANGHAERANG OTF" size="21.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+               <HBox.margin>
+                  <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
+               </HBox.margin>
+               <effect>
+                  <InnerShadow height="41.64" radius="20.32" width="41.64">
+                     <color>
+                        <Color red="0.28947368264198303" green="0.21040448546409607" blue="0.21040448546409607" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </VBox>
+            <VBox fx:id="mediumVbox" alignment="TOP_CENTER" prefHeight="305.0" prefWidth="225.0" styleClass="container" stylesheets="@../css/difficulty.css">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="69.0" prefWidth="225.0">
+                     <children>
+                        <Label text="Medium" textFill="#4d4f54">
+                           <font>
+                              <Font name="BM KIRANGHAERANG OTF" size="53.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="mediumAlarmImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                           <image>
+                              <Image url="@../images/MediumAlarm.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/emptyAlarm.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+                  <HBox alignment="CENTER" prefHeight="42.0" prefWidth="225.0" spacing="10.0">
+                     <children>
+                        <Label prefHeight="4.0" prefWidth="133.0" text="Hints Allowed:" textFill="#4d4f54">
+                           <font>
+                              <Font name="BM KIRANGHAERANG OTF" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="24.0" prefWidth="225.0" spacing="10.0">
+                     <children>
+                        <Label text="5" textFill="#4d4f54">
+                           <font>
+                              <Font name="BM KIRANGHAERANG OTF" size="21.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+               <effect>
+                  <InnerShadow height="41.64" radius="20.32" width="41.64">
+                     <color>
+                        <Color red="0.28947368264198303" green="0.21040448546409607" blue="0.21040448546409607" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+               <HBox.margin>
+                  <Insets bottom="20.0" right="30.0" top="20.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox fx:id="hardVbox" alignment="TOP_CENTER" prefHeight="305.0" prefWidth="225.0" styleClass="container" stylesheets="@../css/difficulty.css">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="69.0" prefWidth="225.0">
+                     <children>
+                        <Label text="Hard" textFill="#4d4f54">
+                           <font>
+                              <Font name="BM KIRANGHAERANG OTF" size="53.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="hardAlarmImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                           <image>
+                              <Image url="@../images/HardAlarm.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/emptyAlarm.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+                  <HBox alignment="CENTER" prefHeight="42.0" prefWidth="225.0" spacing="10.0">
+                     <children>
+                        <Label prefHeight="4.0" prefWidth="133.0" text="Hints Allowed:" textFill="#4d4f54">
+                           <font>
+                              <Font name="BM KIRANGHAERANG OTF" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="24.0" prefWidth="225.0" spacing="10.0">
+                     <children>
+                        <Label text="none" textFill="#4d4f54">
+                           <font>
+                              <Font name="BM KIRANGHAERANG OTF" size="21.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+               <effect>
+                  <InnerShadow height="41.64" radius="20.32" width="41.64">
+                     <color>
+                        <Color red="0.28947368264198303" green="0.21040448546409607" blue="0.21040448546409607" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+               <HBox.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="252.0" layoutY="60.0" prefHeight="72.0" prefWidth="480.0" style="-fx-background-color: white; -fx-background-radius: 50;">
+         <children>
+            <Label prefHeight="57.0" prefWidth="238.0" text="Difficulty Chosen:" textFill="#305dae">
+               <font>
+                  <Font name="BM KIRANGHAERANG OTF" size="36.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="difficultyLabel" alignment="CENTER" prefHeight="59.0" prefWidth="184.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 30;" text="None" textFill="#305dae">
+               <font>
+                  <Font name="BM KIRANGHAERANG OTF" size="48.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow height="9.2" radius="4.84" spread="0.03" width="12.16">
+               <input>
+                  <InnerShadow height="53.43" radius="31.372500000000002" width="74.06" />
+               </input>
+            </DropShadow>
+         </effect>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="142.0" layoutY="519.0" prefHeight="80.0" prefWidth="719.0" style="-fx-background-color: white; -fx-background-radius: 50;">
+         <children>
+            <Label prefHeight="75.0" prefWidth="140.0" text="Timer:" textFill="#305dae">
+               <font>
+                  <Font name="BM KIRANGHAERANG OTF" size="62.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
+            <Slider fx:id="timerSlider" blockIncrement="2.0" majorTickUnit="2.0" max="6.0" min="2.0" minorTickCount="0" prefHeight="38.0" prefWidth="270.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-background-color: #8ac1f5; -fx-background-radius: 20;">
+               <HBox.margin>
+                  <Insets left="40.0" right="40.0" />
+               </HBox.margin>
+            </Slider>
+            <Label fx:id="timerLabel" alignment="CENTER" prefHeight="59.0" prefWidth="198.0" text="2 Minutes" textFill="#305dae">
+               <font>
+                  <Font name="BM KIRANGHAERANG OTF" size="48.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow height="9.2" radius="4.84" spread="0.03" width="12.16">
+               <input>
+                  <InnerShadow height="53.43" radius="31.372500000000002" width="74.06" />
+               </input>
+            </DropShadow>
+         </effect>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="372.0" layoutY="618.0" prefHeight="71.0" prefWidth="247.0" style="-fx-background-color: white; -fx-background-radius: 50;">
+         <effect>
+            <DropShadow height="9.2" radius="4.84" spread="0.03" width="12.16">
+               <input>
+                  <InnerShadow height="53.43" radius="31.372500000000002" width="74.06" />
+               </input>
+            </DropShadow>
+         </effect>
+         <children>
+            <Button fx:id="playBtn" mnemonicParsing="false" prefHeight="56.0" prefWidth="220.0" style="-fx-background-radius: 30;" text="Start Heist">
+               <font>
+                  <Font name="BM KIRANGHAERANG OTF" size="30.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
