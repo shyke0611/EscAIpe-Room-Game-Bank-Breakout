@@ -38,6 +38,7 @@ public class App extends Application {
 
   public static void setUI(Scenes newUI) {
     scene.setRoot(SceneManager.getUiRoot(newUI));
+    SceneManager.setActiveController(SceneManager.getController(newUI));
   }
 
   /**
