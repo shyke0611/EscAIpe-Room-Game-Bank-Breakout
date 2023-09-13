@@ -12,7 +12,8 @@ public class SceneManager {
     VAULT,
     LOBBY,
     SECURITY,
-    MAIN_MENU
+    MAIN_MENU,
+    DIFFICULTYPAGE
   }
 
   private static Controller activeController;

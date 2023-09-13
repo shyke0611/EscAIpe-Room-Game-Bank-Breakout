@@ -1,5 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -7,8 +9,10 @@ import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.SceneManager.Scenes;
 
-public class DifficultyController {
+public class DifficultyController extends Controller {
 
   @FXML private VBox buttonsContainer;
 
@@ -33,6 +37,8 @@ public class DifficultyController {
   @FXML private Label timerLabel;
 
   @FXML private Button startBtn;
+
+  @FXML private Button playBtn;
 
   @FXML private Slider timerSlider;
 
@@ -105,5 +111,10 @@ public class DifficultyController {
   void onSliderChanged(MouseEvent event) {
     int timerValue = (int) timerSlider.getValue();
     timerLabel.setText(Integer.toString(timerValue) + " Minutes");
+  }
+
+  @FXML
+  public void startHeist(ActionEvent event) throws IOException {
+    App.setUI(Scenes.LOBBY);
   }
 }

@@ -4,8 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.SceneManager.Scenes;
 
-public class MainMenuController {
+public class MainMenuController extends Controller {
 
   @FXML private Label titleLabel1;
   @FXML private Label titleLabel2;
@@ -14,6 +16,9 @@ public class MainMenuController {
   @FXML private Button newGameBtn;
   @FXML private Button instructionsBtn;
 
-  
+  public void initialize() {}
 
+  public void onNewGameBtnClicked() {
+    App.setUI(Scenes.DIFFICULTYPAGE);
+  }
 }

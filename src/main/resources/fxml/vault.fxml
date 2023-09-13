@@ -9,14 +9,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="VaultPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.VaultController">
    <children>
       <HBox layoutX="27.0" layoutY="30.0" prefHeight="128.0" prefWidth="300.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 10;">
          <children>
             <VBox alignment="CENTER" prefHeight="129.0" prefWidth="100.0">
                <children>
-                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="Lobby" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#switchToLobby" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/robber1.png" />
                      </image>
@@ -44,7 +45,7 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <ImageView fitHeight="111.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="Security" fitHeight="111.0" fitWidth="100.0" onMouseClicked="#switchToSecurity" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/robber3.png" />
                      </image>
@@ -89,5 +90,10 @@
             </VBox>
          </children>
       </HBox>
+      <Text layoutX="417.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VAULT">
+         <font>
+            <Font size="58.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
