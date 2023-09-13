@@ -9,17 +9,36 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 public class DifficultyController {
+
   @FXML private VBox buttonsContainer;
-  @FXML private Label difficultyLabel;
+
   @FXML private ImageView easyAlarmImage;
-  @FXML private VBox easyVbox;
+
   @FXML private ImageView hardAlarmImage;
+
+  @FXML private VBox easyVbox;
+
   @FXML private VBox hardVbox;
+
   @FXML private ImageView mediumAlarmImage;
+
   @FXML private VBox mediumVbox;
-  @FXML private Button playBtn;
+
+  @FXML private Label titleLabel1;
+
+  @FXML private Label titleLabel2;
+
+  @FXML private Label difficultyLabel;
+
   @FXML private Label timerLabel;
+
+  @FXML private Button startBtn;
+
   @FXML private Slider timerSlider;
+
+  private boolean easyVboxClicked = false;
+  private boolean mediumVboxClicked = false;
+  private boolean hardVboxClicked = false;
 
   // Handling mouse hovering event over each difficulty
 
@@ -37,11 +56,47 @@ public class DifficultyController {
   // when mouse exits the difficulty boxes turn image visibility off
   @FXML
   void onDifficultyExited(MouseEvent event) {
-    if (event.getSource() == easyVbox) easyAlarmImage.setVisible(false);
-    else if (event.getSource() == mediumVbox) {
+    if (event.getSource() == easyVbox && !easyVboxClicked) easyAlarmImage.setVisible(false);
+    else if (event.getSource() == mediumVbox && !mediumVboxClicked) {
       mediumAlarmImage.setVisible(false);
-    } else if (event.getSource() == hardVbox) {
+    } else if (event.getSource() == hardVbox && !hardVboxClicked) {
       hardAlarmImage.setVisible(false);
+    }
+  }
+
+  // Handling mouse click events over each difficulty
+
+  @FXML
+  void onDifficultyClicked(MouseEvent event) {
+    easyVboxClicked = false;
+    mediumVboxClicked = false;
+    hardVboxClicked = false;
+
+    // Remove the style class (css) from all VBox elements
+    easyVbox.getStyleClass().remove("clicked-container");
+    mediumVbox.getStyleClass().remove("clicked-container");
+    hardVbox.getStyleClass().remove("clicked-container");
+
+    easyAlarmImage.setVisible(false);
+    mediumAlarmImage.setVisible(false);
+    hardAlarmImage.setVisible(false);
+
+    // Add the style class (css) to the clicked VBox (difficulty)
+    if (event.getSource() == easyVbox) {
+      difficultyLabel.setText("Easy");
+      easyVbox.getStyleClass().add("clicked-container");
+      easyAlarmImage.setVisible(true);
+      easyVboxClicked = true;
+    } else if (event.getSource() == mediumVbox) {
+      difficultyLabel.setText("Medium");
+      mediumVbox.getStyleClass().add("clicked-container");
+      mediumAlarmImage.setVisible(true);
+      mediumVboxClicked = true;
+    } else {
+      difficultyLabel.setText("Hard");
+      hardVbox.getStyleClass().add("clicked-container");
+      hardAlarmImage.setVisible(true);
+      hardVboxClicked = true;
     }
   }
 
