@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.controllers.*;
 
 /**
  * This is the entry point of the JavaFX application, while you can change this class, it should
@@ -35,6 +37,10 @@ public class App extends Application {
     return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
   }
 
+  public static void setUI(Scenes newUI) {
+    scene.setRoot(SceneManager.getUiRoot(newUI));
+  }
+
   /**
    * This method is invoked when the application starts. It loads and shows the "Canvas" scene.
    *
@@ -43,11 +49,32 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    Parent root = loadFxml("lobby");
+
+    // Initialize controllers
+    VaultController vaultController = new VaultController();
+    LobbyController lobbyController = new LobbyController();
+    SecurityController securityController = new SecurityController();
+    MainMenuController mainMenuController = new MainMenuController();
+    DifficultyController DifficultyController = new DifficultyController();
+
+    // Add controllers to SceneManager
+    SceneManager.addController(SceneManager.Scenes.VAULT, vaultController);
+    SceneManager.addController(SceneManager.Scenes.LOBBY, lobbyController);
+    SceneManager.addController(SceneManager.Scenes.SECURITY, securityController);
+    SceneManager.addController(SceneManager.Scenes.MAIN_MENU, mainMenuController);
+    SceneManager.addController(SceneManager.Scenes.DIFFICULTYPAGE, DifficultyController);
+
+    SceneManager.addUi(SceneManager.Scenes.VAULT, loadFxml("vault"));
+    SceneManager.addUi(SceneManager.Scenes.LOBBY, loadFxml("lobby"));
+    SceneManager.addUi(SceneManager.Scenes.SECURITY, loadFxml("securityroom"));
+    SceneManager.addUi(SceneManager.Scenes.MAIN_MENU, loadFxml("mainmenu"));
+    SceneManager.addUi(SceneManager.Scenes.DIFFICULTYPAGE, loadFxml("difficultypage"));
+
+    Parent root = loadFxml("mainmenu");
+
     scene = new Scene(root, 1000, 700);
     stage.setScene(scene);
     stage.show();
     root.requestFocus();
   }
-
 }
