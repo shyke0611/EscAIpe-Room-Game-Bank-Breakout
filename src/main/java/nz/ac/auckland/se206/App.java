@@ -43,7 +43,7 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    Parent root = loadFxml("difficultypage");
+    Parent root = loadFxml("lobby");
     scene = new Scene(root, 1000, 700);
     stage.setScene(scene);
     stage.show();

@@ -69,11 +69,11 @@
                   </ImageView>
                </children>
             </VBox>
-            <VBox prefHeight="150.0" prefWidth="512.0">
+            <VBox prefHeight="150.0" prefWidth="512.0" visible="false">
                <children>
                   <HBox prefHeight="100.0" prefWidth="528.0">
                      <children>
-                        <TextArea prefHeight="100.0" prefWidth="533.0" style="-fx-background-color: green;" />
+                        <TextArea editable="false" prefHeight="100.0" prefWidth="533.0" style="-fx-background-color: green;" />
                      </children>
                   </HBox>
                   <HBox prefHeight="51.0" prefWidth="512.0">
