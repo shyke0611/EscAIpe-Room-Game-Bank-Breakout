@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MainMenuController">
+   <children>
+      <AnchorPane layoutX="305.0" prefHeight="729.0" prefWidth="697.0">
+         <children>
+            <ImageView fitHeight="702.0" fitWidth="713.0" layoutX="-3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/titlepage.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="433.0" fitWidth="456.0" layoutX="138.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/cash.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="titleLabel1" layoutX="100.0" layoutY="4.0" opacity="0.69" prefHeight="169.0" prefWidth="536.0" text="Money Heist" textFill="#1c56dd">
+               <font>
+                  <Font name="Serif Bold" size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="titleLabel2" layoutX="318.0" layoutY="102.0" opacity="0.5" text="escape room" textFill="#e10606">
+               <font>
+                  <Font name="Silom" size="51.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="7.0" prefHeight="701.0" prefWidth="302.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="-1.0">
+         <children>
+            <VBox fx:id="buttonsContainer" layoutX="29.0" layoutY="270.0" prefHeight="89.0" prefWidth="258.0" spacing="10.0">
+               <children>
+                  <Button fx:id="newGameBtn" lineSpacing="10.0" minWidth="100.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="258.0" stylesheets="@../css/mainmenu.css" text="New Game" textAlignment="CENTER" textFill="#b59e1d">
+                     <font>
+                        <Font name="Tsukushi B Round Gothic Regula" size="45.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="instructionsBtn" minWidth="100.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="258.0" stylesheets="@../css/mainmenu.css" text="Instructions" textFill="#b59e1d">
+                     <font>
+                        <Font name="Kannada MN" size="45.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="quitBtn" minWidth="100.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="258.0" stylesheets="@../css/mainmenu.css" text="Quit" textFill="#b59e1d">
+                     <font>
+                        <Font name="Kannada MN" size="45.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

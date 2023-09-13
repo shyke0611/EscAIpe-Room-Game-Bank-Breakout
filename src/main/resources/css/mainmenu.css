@@ -1,0 +1,27 @@
+.button {
+    -fx-background-color: #000000;
+    -fx-text-fill: #b59e1d;
+    -fx-font-size: 35px;
+    -fx-font-family: 'Weibei SC';
+
+}
+
+.button:hover {
+    -fx-background-color: #000000;
+    -fx-border-radius: 20;
+    -fx-border-color: #eccb0f;
+    -fx-text-fill: #eccb0f;
+    -fx-font-size: 34px;
+    -fx-font-family: 'Weibei SC';
+    -fx-cursor: hand;
+}
+
+.button:pressed {
+    -fx-background-color: #000000;
+    -fx-border-radius: 20;
+    -fx-border-color: #b59e1d;
+    -fx-text-fill: #b59e1d;
+    -fx-font-size: 35px;
+    -fx-font-family: 'Weibei SC';
+    -fx-cursor: hand;
+}
