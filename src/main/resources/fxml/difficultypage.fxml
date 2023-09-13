@@ -55,7 +55,7 @@
       </AnchorPane>
       <HBox layoutX="160.0" layoutY="157.0" prefHeight="350.0" prefWidth="800.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="193.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="157.0">
          <children>
-            <VBox fx:id="easyVbox" alignment="TOP_CENTER" prefHeight="305.0" prefWidth="225.0" styleClass="container" stylesheets="@../css/difficulty.css">
+            <VBox fx:id="easyVbox" alignment="TOP_CENTER" onMouseEntered="#onDifficultyEntered" onMouseExited="#onDifficultyExited" onMousePressed="#onDifficultyClicked" prefHeight="305.0" prefWidth="225.0" styleClass="container" stylesheets="@../css/difficulty.css">
                <children>
                   <HBox alignment="CENTER" prefHeight="69.0" prefWidth="225.0">
                      <children>
@@ -110,7 +110,7 @@
                   </InnerShadow>
                </effect>
             </VBox>
-            <VBox fx:id="mediumVbox" alignment="TOP_CENTER" prefHeight="305.0" prefWidth="225.0" styleClass="container" stylesheets="@../css/difficulty.css">
+            <VBox fx:id="mediumVbox" alignment="TOP_CENTER" onMouseEntered="#onDifficultyEntered" onMouseExited="#onDifficultyExited" onMousePressed="#onDifficultyClicked" prefHeight="305.0" prefWidth="225.0" styleClass="container" stylesheets="@../css/difficulty.css">
                <children>
                   <HBox alignment="CENTER" prefHeight="69.0" prefWidth="225.0">
                      <children>
@@ -165,7 +165,7 @@
                   <Insets bottom="20.0" right="30.0" top="20.0" />
                </HBox.margin>
             </VBox>
-            <VBox fx:id="hardVbox" alignment="TOP_CENTER" prefHeight="305.0" prefWidth="225.0" styleClass="container" stylesheets="@../css/difficulty.css">
+            <VBox fx:id="hardVbox" alignment="TOP_CENTER" onMouseEntered="#onDifficultyEntered" onMouseExited="#onDifficultyExited" onMousePressed="#onDifficultyClicked" prefHeight="305.0" prefWidth="225.0" styleClass="container" stylesheets="@../css/difficulty.css">
                <children>
                   <HBox alignment="CENTER" prefHeight="69.0" prefWidth="225.0">
                      <children>
@@ -259,7 +259,7 @@
                   <Insets left="10.0" />
                </HBox.margin>
             </Label>
-            <Slider fx:id="timerSlider" blockIncrement="2.0" majorTickUnit="2.0" max="6.0" min="2.0" minorTickCount="0" prefHeight="38.0" prefWidth="270.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-background-color: #8ac1f5; -fx-background-radius: 20;">
+            <Slider fx:id="timerSlider" blockIncrement="2.0" majorTickUnit="2.0" max="6.0" min="2.0" minorTickCount="0" onMouseReleased="#onSliderChanged" prefHeight="38.0" prefWidth="270.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-background-color: #8ac1f5; -fx-background-radius: 20;">
                <HBox.margin>
                   <Insets left="40.0" right="40.0" />
                </HBox.margin>
