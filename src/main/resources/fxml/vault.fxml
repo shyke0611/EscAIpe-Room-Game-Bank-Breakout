@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.VaultController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LobbyController">
    <children>
       <HBox layoutX="27.0" layoutY="30.0" prefHeight="128.0" prefWidth="300.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 10;">
          <children>
@@ -61,7 +61,7 @@
       </HBox>
       <HBox layoutX="15.0" layoutY="539.0" prefHeight="150.0" prefWidth="665.0">
          <children>
-            <VBox fx:id="walkietalkie" onMousePressed="#onWalkieTalkie" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 70 0 0 70;">
+            <VBox fx:id="walkietalkie" onMousePressed="#onWalkieTalkie" prefHeight="200.0" prefWidth="100.0" styleClass="walkietalkie" stylesheets="@../css/rooms.css">
                <children>
                   <ImageView fitHeight="141.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
                      <image>
