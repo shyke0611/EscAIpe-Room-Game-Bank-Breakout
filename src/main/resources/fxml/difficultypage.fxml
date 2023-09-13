@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
@@ -217,6 +220,78 @@
                   <Insets bottom="20.0" top="20.0" />
                </HBox.margin>
             </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="252.0" layoutY="60.0" prefHeight="72.0" prefWidth="480.0" style="-fx-background-color: white; -fx-background-radius: 50;">
+         <children>
+            <Label prefHeight="57.0" prefWidth="238.0" text="Difficulty Chosen:" textFill="#305dae">
+               <font>
+                  <Font name="BM KIRANGHAERANG OTF" size="36.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="difficultyLabel" alignment="CENTER" prefHeight="59.0" prefWidth="184.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 30;" text="None" textFill="#305dae">
+               <font>
+                  <Font name="BM KIRANGHAERANG OTF" size="48.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow height="9.2" radius="4.84" spread="0.03" width="12.16">
+               <input>
+                  <InnerShadow height="53.43" radius="31.372500000000002" width="74.06" />
+               </input>
+            </DropShadow>
+         </effect>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="142.0" layoutY="519.0" prefHeight="80.0" prefWidth="719.0" style="-fx-background-color: white; -fx-background-radius: 50;">
+         <children>
+            <Label prefHeight="75.0" prefWidth="140.0" text="Timer:" textFill="#305dae">
+               <font>
+                  <Font name="BM KIRANGHAERANG OTF" size="62.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
+            <Slider fx:id="timerSlider" blockIncrement="2.0" majorTickUnit="2.0" max="6.0" min="2.0" minorTickCount="0" prefHeight="38.0" prefWidth="270.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-background-color: #8ac1f5; -fx-background-radius: 20;">
+               <HBox.margin>
+                  <Insets left="40.0" right="40.0" />
+               </HBox.margin>
+            </Slider>
+            <Label fx:id="timerLabel" alignment="CENTER" prefHeight="59.0" prefWidth="198.0" text="2 Minutes" textFill="#305dae">
+               <font>
+                  <Font name="BM KIRANGHAERANG OTF" size="48.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow height="9.2" radius="4.84" spread="0.03" width="12.16">
+               <input>
+                  <InnerShadow height="53.43" radius="31.372500000000002" width="74.06" />
+               </input>
+            </DropShadow>
+         </effect>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="372.0" layoutY="618.0" prefHeight="71.0" prefWidth="247.0" style="-fx-background-color: white; -fx-background-radius: 50;">
+         <effect>
+            <DropShadow height="9.2" radius="4.84" spread="0.03" width="12.16">
+               <input>
+                  <InnerShadow height="53.43" radius="31.372500000000002" width="74.06" />
+               </input>
+            </DropShadow>
+         </effect>
+         <children>
+            <Button fx:id="playBtn" mnemonicParsing="false" prefHeight="56.0" prefWidth="220.0" style="-fx-background-radius: 30;" text="Start Heist">
+               <font>
+                  <Font name="BM KIRANGHAERANG OTF" size="30.0" />
+               </font>
+            </Button>
          </children>
       </HBox>
    </children>
