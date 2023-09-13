@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -15,7 +16,7 @@
    <children>
       <HBox layoutX="27.0" layoutY="30.0" prefHeight="128.0" prefWidth="300.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 10;">
          <children>
-            <VBox alignment="CENTER" prefHeight="129.0" prefWidth="100.0">
+            <VBox fx:id="lobbyRoomSwitch" alignment="CENTER" prefHeight="129.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
                <children>
                   <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -29,7 +30,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="110.0" prefWidth="100.0">
+            <VBox fx:id="VaultRoomSwitch" alignment="CENTER" prefHeight="110.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
                <children>
                   <ImageView fx:id="Vault" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#switchToVault" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -43,7 +44,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+            <VBox fx:id="SecurityRoomSwitch" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
                <children>
                   <ImageView fx:id="Security" fitHeight="111.0" fitWidth="100.0" onMouseClicked="#switchToSecurity" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -61,7 +62,7 @@
       </HBox>
       <HBox layoutX="15.0" layoutY="539.0" prefHeight="150.0" prefWidth="665.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 70 0 0 70;">
+            <VBox fx:id="walkietalkie" onMousePressed="#onWalkieTalkie" prefHeight="200.0" prefWidth="100.0" styleClass="walkietalkie" stylesheets="@../css/rooms.css">
                <children>
                   <ImageView fitHeight="141.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -70,11 +71,11 @@
                   </ImageView>
                </children>
             </VBox>
-            <VBox prefHeight="150.0" prefWidth="512.0">
+            <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0" visible="false">
                <children>
                   <HBox prefHeight="100.0" prefWidth="528.0">
                      <children>
-                        <TextArea prefHeight="100.0" prefWidth="533.0" style="-fx-background-color: green;" />
+                        <TextArea editable="false" prefHeight="100.0" prefWidth="533.0" style="-fx-background-color: green;" />
                      </children>
                   </HBox>
                   <HBox prefHeight="51.0" prefWidth="512.0">
@@ -87,6 +88,23 @@
                      </children>
                   </HBox>
                </children></VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="343.0" layoutY="27.0" prefHeight="60.0" prefWidth="216.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 0 20 20 0;">
+         <children>
+            <Label prefHeight="39.0" prefWidth="100.0" style="-fx-background-color: #9fd7ff; -fx-background-radius: 0 20 20 0;" text="Timer:" textFill="#051a28">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+            <Label prefHeight="37.0" prefWidth="81.0" text="Count">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Label>
          </children>
       </HBox>
       <Text layoutX="401.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOBBY">

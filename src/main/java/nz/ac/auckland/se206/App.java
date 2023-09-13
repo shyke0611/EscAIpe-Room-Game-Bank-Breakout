@@ -49,6 +49,7 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
+
     // Initialize controllers
     VaultController vaultController = new VaultController();
     LobbyController lobbyController = new LobbyController();
@@ -70,6 +71,7 @@ public class App extends Application {
     SceneManager.addUi(SceneManager.Scenes.DIFFICULTYPAGE, loadFxml("difficultypage"));
 
     Parent root = loadFxml("mainmenu");
+
     scene = new Scene(root, 1000, 700);
     stage.setScene(scene);
     stage.show();
