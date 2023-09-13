@@ -5,6 +5,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
 public class LobbyController extends Controller {
@@ -17,7 +18,9 @@ public class LobbyController extends Controller {
 
   private boolean isWalkieTalkieOpened = false;
 
-  public void initialize() {}
+  public void initialize() {
+    SceneManager.setController(Scenes.LOBBY, this);
+  }
 
   // handling mouse events on walkie talkie
   // open and closes when walkie talkie is clicked
