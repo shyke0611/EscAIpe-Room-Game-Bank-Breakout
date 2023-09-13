@@ -21,7 +21,6 @@ public class DifficultyController {
   @FXML private Label timerLabel;
   @FXML private Slider timerSlider;
 
-
   // Handling mouse hovering event over each difficulty
 
   // when mouse enters the difficulty boxes turn image visibility on
@@ -46,4 +45,10 @@ public class DifficultyController {
     }
   }
 
+  // when slider changes values to set timer, timer value is shown in the text label
+  @FXML
+  void onSliderChanged(MouseEvent event) {
+    int timerValue = (int) timerSlider.getValue();
+    timerLabel.setText(Integer.toString(timerValue) + " Minutes");
+  }
 }

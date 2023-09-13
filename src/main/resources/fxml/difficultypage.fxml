@@ -259,7 +259,7 @@
                   <Insets left="10.0" />
                </HBox.margin>
             </Label>
-            <Slider fx:id="timerSlider" blockIncrement="2.0" majorTickUnit="2.0" max="6.0" min="2.0" minorTickCount="0" prefHeight="38.0" prefWidth="270.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-background-color: #8ac1f5; -fx-background-radius: 20;">
+            <Slider fx:id="timerSlider" blockIncrement="2.0" majorTickUnit="2.0" max="6.0" min="2.0" minorTickCount="0" onMouseReleased="#onSliderChanged" prefHeight="38.0" prefWidth="270.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-background-color: #8ac1f5; -fx-background-radius: 20;">
                <HBox.margin>
                   <Insets left="40.0" right="40.0" />
                </HBox.margin>
