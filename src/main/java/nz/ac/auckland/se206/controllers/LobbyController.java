@@ -1,10 +1,11 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox; 
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
 public class LobbyController extends Controller {
@@ -16,8 +17,10 @@ public class LobbyController extends Controller {
   @FXML private VBox walkietalkieText;
 
   private boolean isWalkieTalkieOpened = false;
-  
-  public void initialize() {}
+
+  public void initialize() {
+    SceneManager.setController(Scenes.LOBBY, this);
+  }
 
   // handling mouse events on walkie talkie
   // open and closes when walkie talkie is clicked
@@ -25,7 +28,7 @@ public class LobbyController extends Controller {
   void onWalkieTalkie(MouseEvent event) {
     isWalkieTalkieOpened = !isWalkieTalkieOpened;
     walkietalkieText.setVisible(isWalkieTalkieOpened);
-
+  }
 
   public void switchToSecurity() {
     App.setUI(Scenes.SECURITY);

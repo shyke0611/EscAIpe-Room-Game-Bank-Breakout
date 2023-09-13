@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
 public class MainMenuController extends Controller {
@@ -16,7 +17,9 @@ public class MainMenuController extends Controller {
   @FXML private Button newGameBtn;
   @FXML private Button instructionsBtn;
 
-  public void initialize() {}
+  public void initialize() {
+    SceneManager.setController(Scenes.MAIN_MENU, this);
+  }
 
   public void onNewGameBtnClicked() {
     App.setUI(Scenes.DIFFICULTYPAGE);

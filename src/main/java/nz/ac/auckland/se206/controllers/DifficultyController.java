@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
 public class DifficultyController extends Controller {
@@ -46,8 +47,11 @@ public class DifficultyController extends Controller {
   private boolean mediumVboxClicked = false;
   private boolean hardVboxClicked = false;
 
-  // Handling mouse hovering event over each difficulty
+  public void initialize() {
+    SceneManager.setController(Scenes.DIFFICULTYPAGE, this);
+  }
 
+  // Handling mouse hovering event over each difficulty
   // when mouse enters the difficulty boxes turn image visibility on
   @FXML
   void onDifficultyEntered(MouseEvent event) {
