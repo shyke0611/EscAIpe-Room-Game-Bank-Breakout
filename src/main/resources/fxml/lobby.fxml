@@ -61,7 +61,7 @@
       </HBox>
       <HBox layoutX="15.0" layoutY="539.0" prefHeight="150.0" prefWidth="665.0">
          <children>
-            <VBox onMousePressed="#onWalkieTalkie" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 70 0 0 70;">
+            <VBox fx:id="walkietalkie" onMousePressed="#onWalkieTalkie" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 70 0 0 70;">
                <children>
                   <ImageView fitHeight="141.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -70,7 +70,7 @@
                   </ImageView>
                </children>
             </VBox>
-            <VBox prefHeight="150.0" prefWidth="512.0" visible="false">
+            <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0" visible="false">
                <children>
                   <HBox prefHeight="100.0" prefWidth="528.0">
                      <children>
