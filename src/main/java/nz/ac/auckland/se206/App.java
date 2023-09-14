@@ -56,6 +56,8 @@ public class App extends Application {
     SceneManager.addController(SceneManager.Scenes.SECURITY, null);
     SceneManager.addController(SceneManager.Scenes.MAIN_MENU, null);
     SceneManager.addController(SceneManager.Scenes.DIFFICULTYPAGE, null);
+    SceneManager.addController(SceneManager.Scenes.COMPUTER, null);
+    SceneManager.addController(SceneManager.Scenes.HACKERVAN, null);
 
     // Add scenes to SceneManager
     SceneManager.addUi(SceneManager.Scenes.VAULT, loadFxml("vault"));
@@ -63,6 +65,8 @@ public class App extends Application {
     SceneManager.addUi(SceneManager.Scenes.SECURITY, loadFxml("securityroom"));
     SceneManager.addUi(SceneManager.Scenes.MAIN_MENU, loadFxml("mainmenu"));
     SceneManager.addUi(SceneManager.Scenes.DIFFICULTYPAGE, loadFxml("difficultypage"));
+    SceneManager.addUi(SceneManager.Scenes.COMPUTER, loadFxml("computer"));
+    SceneManager.addUi(SceneManager.Scenes.HACKERVAN, loadFxml("hackervan"));
 
     Parent root = SceneManager.getUiRoot(Scenes.MAIN_MENU);
 

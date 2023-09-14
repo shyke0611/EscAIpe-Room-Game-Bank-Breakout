@@ -73,14 +73,14 @@ public class SecurityController extends Controller {
     logInScreen.setVisible(true);
   }
 
-  // method that checks log in
+  // method that checks log in credentials
   private void checkLogin() {
     // correct credentials
     if (usernameField.getText().toLowerCase().equals("random username")
         && passwordField.getText().equals("random password")) {
       loginMsgLbl.setText("Success");
-      // switch view here on this line
-    //empty input
+      App.setUI(Scenes.COMPUTER);
+      // empty input
     } else if (usernameField.getText().isEmpty() && passwordField.getText().isEmpty()) {
       loginMsgLbl.setText("Enter your credentials");
     } else {
