@@ -19,8 +19,8 @@ public class VaultController extends Controller {
     SceneManager.setController(Scenes.VAULT, this);
   }
 
-  // handling mouse events on walkie talkie
-  // open and closes when walkie talkie is clicked
+  //   handling mouse events on walkie talkie
+  //   open and closes when walkie talkie is clicked
   @FXML
   void onWalkieTalkie(MouseEvent event) {
     SceneManager.toggleWalkieTalkieOpen();
@@ -36,5 +36,10 @@ public class VaultController extends Controller {
 
   public void switchToSecurity() {
     App.setUI(Scenes.SECURITY);
+  }
+
+  public void onSwitchToHacker() {
+    SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.VAULT);
+    App.setUI(Scenes.HACKERVAN);
   }
 }

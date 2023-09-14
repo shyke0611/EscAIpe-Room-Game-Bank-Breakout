@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -37,8 +36,8 @@ public class SecurityController extends Controller {
     SceneManager.setController(Scenes.SECURITY, this);
   }
 
-  // handling mouse events on walkie talkie
-  // open and closes when walkie talkie is clicked
+//   handling mouse events on walkie talkie
+//   open and closes when walkie talkie is clicked
   @FXML
   void onWalkieTalkie(MouseEvent event) {
     SceneManager.toggleWalkieTalkieOpen();
@@ -56,15 +55,20 @@ public class SecurityController extends Controller {
     App.setUI(Scenes.VAULT);
   }
 
+  public void onSwitchToHacker() {
+    SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.SECURITY);
+    App.setUI(Scenes.HACKERVAN);
+  }
+
   // set visibility og log in screen off (log off computer)
   @FXML
-  public void OnLogOff(ActionEvent event) {
+  public void OnLogOff() {
     logInScreen.setVisible(false);
   }
 
   // check log in details before logging in
   @FXML
-  public void onLogIn(ActionEvent event) {
+  public void onLogIn() {
     checkLogin();
   }
 

@@ -63,7 +63,7 @@
                         </ImageView>
                      </children>
                   </StackPane>
-                  <Button fx:id="goBackBtn" mnemonicParsing="false" prefHeight="37.0" prefWidth="98.0" text="Go Back">
+                  <Button fx:id="goBackBtn" mnemonicParsing="false" onAction="#onGoBack" prefHeight="37.0" prefWidth="98.0" text="Go Back">
                      <font>
                         <Font size="19.0" />
                      </font>
