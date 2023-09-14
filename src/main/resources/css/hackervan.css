@@ -1,3 +1,11 @@
+#tabpane {
+    -fx-control-inner-border: green;
+    -fx-control-inner-background:black;
+    -fx-border-color: green;
+    -fx-text-fill: green;
+}
+
+
 .text-area {
     -fx-control-inner-border: green;
     -fx-control-inner-background:black;
@@ -17,4 +25,26 @@
 
 .tab-pane .tab:first-child {
     -fx-background-color: black;
+}
+
+.tab {
+    -fx-background-color: black;
+    -fx-border-color: green;
+
+}
+
+.tab:selected {
+    -fx-background-color: rgb(33, 95, 2);
+    -fx-border-color: rgb(21, 199, 21);
+    -fx-border-width: 2 2 2 2;
+
+}
+
+.tab:selected .tab-label{
+    -fx-text-fill: rgb(8, 255, 8);
+    
+}
+
+.tab .tab-label {
+    -fx-text-fill: green;
 }
