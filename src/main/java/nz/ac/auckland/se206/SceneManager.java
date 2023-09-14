@@ -13,7 +13,9 @@ public class SceneManager {
     LOBBY,
     SECURITY,
     MAIN_MENU,
-    DIFFICULTYPAGE
+    DIFFICULTYPAGE,
+    COMPUTER,
+    HACKERVAN,
   }
 
   private static Controller activeController;
