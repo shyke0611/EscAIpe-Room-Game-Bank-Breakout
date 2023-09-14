@@ -1,0 +1,20 @@
+.text-area {
+    -fx-control-inner-border: green;
+    -fx-control-inner-background:black;
+    -fx-border-color: green;
+    -fx-background-color: green;
+    -fx-text-fill: green;
+    /* Optional: Change text color to white for visibility */
+}
+
+.text-field {
+    -fx-background-color: black;
+    -fx-border-color: green;
+    -fx-text-fill: green;
+    -fx-prompt-text-fill: green;
+    /* Optional: Change text color to white for visibility */
+}
+
+.tab-pane .tab:first-child {
+    -fx-background-color: black;
+}
