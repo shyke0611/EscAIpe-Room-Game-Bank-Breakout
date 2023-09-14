@@ -6,9 +6,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
-public class ComputerController {
+public class ComputerController extends Controller {
 
   @FXML private Button goBackBtn;
 
@@ -18,6 +19,11 @@ public class ComputerController {
 
   @FXML private Button sendBtn;
 
+  public void initialize() {
+    SceneManager.setController(Scenes.COMPUTER,this);
+  }
+
+  // exit computer view back to security room
   @FXML
   void onGoBack(ActionEvent event) {
     App.setUI(Scenes.SECURITY);
