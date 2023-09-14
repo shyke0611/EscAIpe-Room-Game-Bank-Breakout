@@ -3,10 +3,12 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
@@ -16,11 +18,11 @@
             <Image url="@../images/background.jpg" />
          </image>
       </ImageView>
-      <HBox layoutX="92.0" layoutY="77.0" prefHeight="558.0" prefWidth="780.0">
+      <HBox layoutX="92.0" layoutY="77.0" prefHeight="544.0" prefWidth="884.0">
          <children>
             <VBox prefHeight="537.0" prefWidth="479.0">
                <children>
-                  <TabPane prefHeight="583.0" prefWidth="435.0" tabClosingPolicy="UNAVAILABLE">
+                  <TabPane prefHeight="516.0" prefWidth="479.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
                       <Tab text="History">
                         <content>
@@ -41,6 +43,20 @@
                       </Tab>
                     </tabs>
                   </TabPane>
+                  <TextField prefHeight="48.0" prefWidth="479.0" />
+               </children>
+            </VBox>
+            <VBox prefHeight="558.0" prefWidth="314.0">
+               <children>
+                  <StackPane prefHeight="542.0" prefWidth="415.0">
+                     <children>
+                        <ImageView fitHeight="471.0" fitWidth="376.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/hacker.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
                </children>
             </VBox>
          </children>
