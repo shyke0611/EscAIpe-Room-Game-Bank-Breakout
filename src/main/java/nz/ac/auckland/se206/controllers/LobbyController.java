@@ -16,8 +16,6 @@ public class LobbyController extends Controller {
 
   @FXML private VBox walkietalkieText;
 
-  private boolean isWalkieTalkieOpened = false;
-
   public void initialize() {
     SceneManager.setController(Scenes.LOBBY, this);
   }
@@ -26,8 +24,11 @@ public class LobbyController extends Controller {
   // open and closes when walkie talkie is clicked
   @FXML
   void onWalkieTalkie(MouseEvent event) {
-    isWalkieTalkieOpened = !isWalkieTalkieOpened;
-    walkietalkieText.setVisible(isWalkieTalkieOpened);
+    SceneManager.toggleWalkieTalkieOpen();
+  }
+
+  public void synchWalkieTalkie(boolean isOpen) {
+    walkietalkieText.setVisible(isOpen);
   }
 
   public void switchToSecurity() {

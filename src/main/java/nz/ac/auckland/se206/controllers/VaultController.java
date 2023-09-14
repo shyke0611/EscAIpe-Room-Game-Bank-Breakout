@@ -15,8 +15,6 @@ public class VaultController extends Controller {
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
 
-  private boolean isWalkieTalkieOpened = false;
-
   public void initialize() {
     SceneManager.setController(Scenes.VAULT, this);
   }
@@ -25,8 +23,11 @@ public class VaultController extends Controller {
   // open and closes when walkie talkie is clicked
   @FXML
   void onWalkieTalkie(MouseEvent event) {
-    isWalkieTalkieOpened = !isWalkieTalkieOpened;
-    walkietalkieText.setVisible(isWalkieTalkieOpened);
+    SceneManager.toggleWalkieTalkieOpen();
+  }
+
+  public void synchWalkieTalkie(boolean isOpen) {
+    walkietalkieText.setVisible(isOpen);
   }
 
   public void switchToLobby() {
