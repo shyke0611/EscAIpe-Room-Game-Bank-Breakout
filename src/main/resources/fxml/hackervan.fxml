@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="822.0" fitWidth="1411.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/background.jpg" />
+         </image>
+      </ImageView>
+      <HBox layoutX="92.0" layoutY="77.0" prefHeight="558.0" prefWidth="780.0">
+         <children>
+            <VBox prefHeight="537.0" prefWidth="479.0">
+               <children>
+                  <TabPane prefHeight="583.0" prefWidth="435.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="History">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TextArea layoutX="-86.0" layoutY="-39.0" prefHeight="353.0" prefWidth="567.0" />
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                           <content>
+                              <TextArea prefHeight="379.0" prefWidth="435.0" />
+                           </content>
+                      </Tab>
+                      <Tab text="Hints">
+                           <content>
+                              <TextArea prefHeight="200.0" prefWidth="200.0" />
+                           </content>
+                      </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
