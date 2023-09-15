@@ -33,12 +33,18 @@ public class SecurityController extends Controller {
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
 
+  private String randomUsername;
+  private String randomPassword;
+
   public void initialize() {
     SceneManager.setController(Scenes.SECURITY, this);
+    // Get a random username and password from the generator
+    randomUsername = RandomCredentialsGenerator.getUsername();
+    randomPassword = RandomCredentialsGenerator.getPasscode();
   }
 
-//   handling mouse events on walkie talkie
-//   open and closes when walkie talkie is clicked
+  //   handling mouse events on walkie talkie
+  //   open and closes when walkie talkie is clicked
   @FXML
   void onWalkieTalkie(MouseEvent event) {
     SceneManager.toggleWalkieTalkieOpen();
@@ -61,7 +67,7 @@ public class SecurityController extends Controller {
     App.setUI(Scenes.HACKERVAN);
   }
 
-  // set visibility og log in screen off (log off computer)
+  // set visibility of log in screen off (log off computer)
   @FXML
   public void OnLogOff() {
     logInScreen.setVisible(false);
@@ -84,9 +90,6 @@ public class SecurityController extends Controller {
     String enteredUsername = usernameField.getText().toLowerCase();
     String enteredPassword = passwordField.getText();
 
-    // Get a random username and password from the generator
-    String randomUsername = RandomCredentialsGenerator.getUsername();
-    String randomPassword = RandomCredentialsGenerator.getPasscode();
     // for testing purposes
     System.out.println(randomUsername);
     System.out.println(randomPassword);
