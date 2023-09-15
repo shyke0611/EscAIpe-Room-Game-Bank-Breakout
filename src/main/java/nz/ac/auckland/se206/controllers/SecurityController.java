@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomCredentialsGenerator;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
@@ -76,14 +77,22 @@ public class SecurityController extends Controller {
   // opening computer log in screen
   @FXML
   void onClickComputer(MouseEvent event) {
-    logInScreen.setVisible(true);
+    // if already logged in, skip log in stage
+    if (GameState.isSecurityComputerLoggedIn == false) {
+      logInScreen.setVisible(true);
+    } else {
+      logInScreen.setVisible(false);
+      App.setUI(Scenes.COMPUTER);
+    }
   }
 
   // method that checks log in credentials
   private void checkLogin() {
+    // get user input credentials
     String enteredUsername = usernameField.getText().toLowerCase();
     String enteredPassword = passwordField.getText();
 
+    // get generated credentials
     String randomUsername = RandomCredentialsGenerator.getUsername();
     String randomPassword = RandomCredentialsGenerator.getPasscode();
 
@@ -94,6 +103,8 @@ public class SecurityController extends Controller {
     // correct credentials
     if (enteredUsername.equals(randomUsername) && enteredPassword.equals(randomPassword)) {
       loginMsgLbl.setText("Success");
+      GameState.isSecurityComputerLoggedIn = true;
+      logInScreen.setVisible(false);
       App.setUI(Scenes.COMPUTER);
       // empty input
     } else if (usernameField.getText().isEmpty() && passwordField.getText().isEmpty()) {
