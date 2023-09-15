@@ -49,7 +49,7 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-
+    RandomCredentialsGenerator.generateRandomCredentials();
     // Initialise controllers hashmap to SceneManager
     SceneManager.addController(SceneManager.Scenes.VAULT, null);
     SceneManager.addController(SceneManager.Scenes.LOBBY, null);

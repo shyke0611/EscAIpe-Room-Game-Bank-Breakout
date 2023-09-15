@@ -1,31 +1,35 @@
 package nz.ac.auckland.se206;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class RandomCredentialsGenerator {
+    private static List<String> passcodeList;
+    private static List<String> usernameList;
+    private static Random random = new Random();
+    private static String randomUsername;
+    private static String randomPassword;
 
-  // create Arraylist of passcodes and usernames
-  private static List<String> passcodeList = new ArrayList<>();
-  private static List<String> usernameList = new ArrayList<>();
-  private static Random random = new Random();
+    static {
+        // Initialize the lists when the class is loaded
+        passcodeList = Arrays.asList("206", "281", "282", "284", "274");
+        usernameList = Arrays.asList("username1", "username2", "username3", "username4");
+    }
 
-  static { // creating list of passcodes and usernames and storing them
-    List<String> passcodes = Arrays.asList("206", "281", "282", "284", "274");
-    List<String> usernames = Arrays.asList("username1", "username2", "username3", "username4");
-    passcodeList.addAll(passcodes);
-    usernameList.addAll(usernames);
-  }
+    public static void generateRandomCredentials() {
+        int randomPasswordIndex = random.nextInt(passcodeList.size());
+        int randomUsernameIndex = random.nextInt(usernameList.size());
 
-  public static String getPasscode() {
-    int randomIndex = random.nextInt(passcodeList.size());
-    return passcodeList.get(randomIndex);
-  }
+        randomUsername = usernameList.get(randomUsernameIndex);
+        randomPassword = passcodeList.get(randomPasswordIndex);
+    }
 
-  public static String getUsername() {
-    int randomIndex = random.nextInt(usernameList.size());
-    return usernameList.get(randomIndex);
-  }
+    public static String getPasscode() {
+        return randomPassword;
+    }
+
+    public static String getUsername() {
+        return randomUsername;
+    }
 }

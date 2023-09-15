@@ -33,14 +33,8 @@ public class SecurityController extends Controller {
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
 
-  private String randomUsername;
-  private String randomPassword;
-
   public void initialize() {
     SceneManager.setController(Scenes.SECURITY, this);
-    // Get a random username and password from the generator
-    randomUsername = RandomCredentialsGenerator.getUsername();
-    randomPassword = RandomCredentialsGenerator.getPasscode();
   }
 
   //   handling mouse events on walkie talkie
@@ -89,6 +83,9 @@ public class SecurityController extends Controller {
   private void checkLogin() {
     String enteredUsername = usernameField.getText().toLowerCase();
     String enteredPassword = passwordField.getText();
+
+    String randomUsername = RandomCredentialsGenerator.getUsername();
+    String randomPassword = RandomCredentialsGenerator.getPasscode();
 
     // for testing purposes
     System.out.println(randomUsername);
