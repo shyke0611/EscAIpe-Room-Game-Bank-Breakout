@@ -154,4 +154,56 @@ public class GameManager {
     GameManager.selectedDoor = selectedDoor;
   }
 
+  public static String getObjectiveString(){
+    switch (activeObjective) {
+      case START_GAME:
+        return "Start Game";
+      case GET_KEYS:
+        return "Find Keys";
+
+      case FIND_PASSCODE:
+        return "Find Passcode";
+
+      case LOGIN:
+        return "Login";
+
+      case DISABLE_FIREWALL:
+        return "Disable Firewall";
+
+      case EXTRA_SECURITY_LAYER:
+        return "complete Extra Security Layer";
+
+      case SELECT_VAULT_DOOR:
+        return "Select Vault Door";
+
+      case DOOR_OBJECTIVES:
+        if(activeDoorObjective == DoorObjectives.FIND_EXTRA_PASSCODE){
+          return "Find Extra Passcode";
+        } else if(activeDoorObjective == DoorObjectives.CHEMICAL_MIXING){
+          return "Mix Chemicals";
+        } else if(activeDoorObjective == DoorObjectives.LAZER_CUTTING){
+          return "Cut Through Lasers";
+        } else if(activeDoorObjective == DoorObjectives.EYE_SCANNER){
+          return "Scan Eye";
+        }
+
+      case ALARM_TRIPPED:
+        return "Alarm Tripped";
+
+      case DISABLE_LASERTRAP:
+        return "Disable Laser Trap";
+
+      case FIND_ESCAPE:
+        return "Find Escape";
+
+      case ESCAPE:
+        return "Escape";
+
+      case GAME_OVER:
+        return null;
+
+      default:
+        return null;
+    }
+  }
 }
