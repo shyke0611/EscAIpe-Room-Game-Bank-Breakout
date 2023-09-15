@@ -3,6 +3,7 @@ package nz.ac.auckland.se206;
 import java.util.HashMap;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import nz.ac.auckland.se206.controllers.ComputerController;
 import nz.ac.auckland.se206.controllers.Controller;
 import nz.ac.auckland.se206.controllers.LobbyController;
 import nz.ac.auckland.se206.controllers.SecurityController;
@@ -97,5 +98,6 @@ public class SceneManager {
     ((LobbyController) controllerMap.get(Scenes.LOBBY)).synchWalkieTalkie(walkieTalkieOpen);
     ((SecurityController) controllerMap.get(Scenes.SECURITY)).synchWalkieTalkie(walkieTalkieOpen);
     ((VaultController) controllerMap.get(Scenes.VAULT)).synchWalkieTalkie(walkieTalkieOpen);
+    ((ComputerController) controllerMap.get(Scenes.COMPUTER)).synchWalkieTalkie(walkieTalkieOpen);
   }
 }
