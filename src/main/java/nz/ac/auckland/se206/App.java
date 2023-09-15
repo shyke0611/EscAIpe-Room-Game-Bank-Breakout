@@ -49,7 +49,8 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    RandomCredentialsGenerator.generateRandomCredentials();
+    //initialise the randomiser for all random components
+    RandomnessGenerate.generateRandomGameComponents();
     // Initialise controllers hashmap to SceneManager
     SceneManager.addController(SceneManager.Scenes.VAULT, null);
     SceneManager.addController(SceneManager.Scenes.LOBBY, null);

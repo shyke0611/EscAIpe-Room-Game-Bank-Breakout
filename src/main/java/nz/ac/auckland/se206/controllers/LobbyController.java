@@ -8,7 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.RandomCredentialsGenerator;
+import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
@@ -28,15 +28,21 @@ public class LobbyController extends Controller {
   @FXML private Button viewHistoryBtn;
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
+  @FXML private HBox key1;
+  @FXML private HBox key2;
+  @FXML private HBox key3;
 
   private String randomUsername;
   private String randomPassword;
 
   public void initialize() {
     SceneManager.setController(Scenes.LOBBY, this);
-    // Use credentialsManager to obtain random credentials
-    randomUsername = RandomCredentialsGenerator.getUsername();
-    randomPassword = RandomCredentialsGenerator.getPasscode();
+    // obtain random credentials
+    randomUsername = RandomnessGenerate.getUsername();
+    randomPassword = RandomnessGenerate.getPasscode();
+    // add the hboxs into arraylist and generate random
+    RandomnessGenerate.addKeyLocation(key1, key2, key3);
+    RandomnessGenerate.generateRandomKeyLocation();
   }
 
   //   handling mouse events on walkie talkie
@@ -73,7 +79,18 @@ public class LobbyController extends Controller {
   @FXML
   void onDrawerClicked(MouseEvent event) {
     credentialsNote.setVisible(true);
+    // set note text to the randomly generated credentials
     passwordLbl.setText(randomPassword);
     usernameLbl.setText(randomUsername);
+  }
+
+  // pressing any location of the keys
+  // if key found it turns invisible (we can change mehanics later)
+  @FXML
+  void onkeyPressed(MouseEvent event) {
+    HBox clickedHBox = (HBox) event.getSource();
+    if (clickedHBox == RandomnessGenerate.getkeyLocation()) {
+      clickedHBox.setVisible(false);
+    }
   }
 }

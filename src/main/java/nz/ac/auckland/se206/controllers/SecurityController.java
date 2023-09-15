@@ -12,7 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.RandomCredentialsGenerator;
+import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
@@ -93,8 +93,8 @@ public class SecurityController extends Controller {
     String enteredPassword = passwordField.getText();
 
     // get generated credentials
-    String randomUsername = RandomCredentialsGenerator.getUsername();
-    String randomPassword = RandomCredentialsGenerator.getPasscode();
+    String randomUsername = RandomnessGenerate.getUsername();
+    String randomPassword = RandomnessGenerate.getPasscode();
 
     // for testing purposes
     System.out.println(randomUsername);
