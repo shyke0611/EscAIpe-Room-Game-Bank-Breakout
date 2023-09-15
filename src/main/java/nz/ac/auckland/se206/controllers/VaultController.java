@@ -9,14 +9,6 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
 public class VaultController extends Controller {
-  
-  public enum Doors{
-    EASY,
-    MEDIUM,
-    HARD
-  }
-
-  private Doors selectedDoor;
 
   @FXML private ImageView Lobby;
   @FXML private ImageView Security;
@@ -54,7 +46,4 @@ public class VaultController extends Controller {
     App.setUI(Scenes.HACKERVAN);
   }
 
-  public Doors getSelectedDoor() {
-    return selectedDoor;
-  }
 }

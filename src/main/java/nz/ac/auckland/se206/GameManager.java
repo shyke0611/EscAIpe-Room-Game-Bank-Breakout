@@ -1,10 +1,5 @@
 package nz.ac.auckland.se206;
 
-import nz.ac.auckland.se206.SceneManager.Scenes;
-import nz.ac.auckland.se206.controllers.SecurityController;
-import nz.ac.auckland.se206.controllers.VaultController;
-import nz.ac.auckland.se206.controllers.VaultController.Doors;
-
 public class GameManager {
 
   // The different objectives
@@ -24,6 +19,7 @@ public class GameManager {
     GAME_OVER,
   }
 
+  // The different objectives for the doors
   public enum DoorObjectives {
     FIND_EXTRA_PASSCODE,
     CHEMICAL_MIXING,
@@ -31,13 +27,20 @@ public class GameManager {
     EYE_SCANNER,
   }
 
+  // The different doors
+  public enum Doors {
+    EASY,
+    MEDIUM,
+    HARD
+  }
+
+  private static int questionsCorrect = 0;
+  private static Doors selectedDoor;
+
   private static Objectives activeObjective = Objectives.START_GAME;
   private static DoorObjectives activeDoorObjective = null;
 
   public static void completeObjective() {
-    int questionsCorrect;
-    Doors selectedDoor;
-
     switch (activeObjective) {
       case START_GAME:
         activeObjective = Objectives.GET_KEYS;
@@ -56,7 +59,6 @@ public class GameManager {
         break;
 
       case DISABLE_FIREWALL:
-        questionsCorrect = ((SecurityController) SceneManager.getController(Scenes.SECURITY)).getQuestionsCorrect();
 
         // no questions right, they will have to do the extra security layer
         if (questionsCorrect != 0) {
@@ -76,8 +78,6 @@ public class GameManager {
         break;
 
       case DOOR_OBJECTIVES:
-        selectedDoor = ((VaultController) SceneManager.getController(Scenes.VAULT)).getSelectedDoor();
-        questionsCorrect = ((SecurityController) SceneManager.getController(Scenes.SECURITY)).getQuestionsCorrect();
 
         // If they are already going through the extra security layer
         if (activeDoorObjective == DoorObjectives.FIND_EXTRA_PASSCODE) {
@@ -137,4 +137,21 @@ public class GameManager {
         break;
     }
   }
+
+  public static int getQuestionsCorrect() {
+    return questionsCorrect;
+  }
+
+  public static void setQuestionsCorrect(int questionsCorrect) {
+    GameManager.questionsCorrect = questionsCorrect;
+  }
+
+  public static Doors getSelectedDoor() {
+    return selectedDoor;
+  }
+
+  public static void setSelectedDoor(Doors selectedDoor) {
+    GameManager.selectedDoor = selectedDoor;
+  }
+
 }

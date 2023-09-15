@@ -35,7 +35,6 @@ public class SecurityController extends Controller {
 
   private String randomUsername;
   private String randomPassword;
-  private int questionsCorrect = 0;
 
   public void initialize() {
     SceneManager.setController(Scenes.SECURITY, this);
@@ -108,7 +107,4 @@ public class SecurityController extends Controller {
     }
   }
 
-  public int getQuestionsCorrect() {
-    return questionsCorrect;
-  }
 }
