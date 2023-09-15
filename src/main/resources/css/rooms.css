@@ -17,3 +17,26 @@
     -fx-effect: innershadow(gaussian, rgba(13, 70, 148, 0.3), 10, 0.5, 0, 0);
     -fx-background-radius: 70 70 70 70;
 }
+
+.component2 {
+    -fx-background-color: black;
+    -fx-background-radius: 0 20 0 0;
+
+}
+
+.text-area {
+    -fx-control-inner-background: black;
+    -fx-control-inner-border: black;
+    -fx-border-color: black;
+    -fx-background-color: black;
+    -fx-text-fill: green;
+}
+
+.text-field {
+    -fx-background-color: black;
+    -fx-border-color: green;
+    -fx-border-radius: 0 0 20 0;
+    -fx-text-fill: green;
+    -fx-prompt-text-fill: green;
+    -fx-background-radius: 0 0 20 0;
+}

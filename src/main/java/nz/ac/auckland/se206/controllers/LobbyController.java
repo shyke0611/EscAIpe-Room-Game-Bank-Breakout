@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
@@ -13,15 +15,16 @@ public class LobbyController extends Controller {
   @FXML private ImageView Vault;
   @FXML private ImageView Security;
   @FXML private VBox walkietalkie;
-
   @FXML private VBox walkietalkieText;
+  @FXML private Button quickHintBtn;
+  @FXML private Button viewHistoryBtn;
 
   public void initialize() {
     SceneManager.setController(Scenes.LOBBY, this);
   }
 
-  // handling mouse events on walkie talkie
-  // open and closes when walkie talkie is clicked
+//   handling mouse events on walkie talkie
+//   open and closes when walkie talkie is clicked
   @FXML
   void onWalkieTalkie(MouseEvent event) {
     SceneManager.toggleWalkieTalkieOpen();
@@ -38,4 +41,11 @@ public class LobbyController extends Controller {
   public void switchToVault() {
     App.setUI(Scenes.VAULT);
   }
+
+  public void onSwitchToHacker() {
+    SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.LOBBY);
+    App.setUI(Scenes.HACKERVAN);
+  }
+
+
 }

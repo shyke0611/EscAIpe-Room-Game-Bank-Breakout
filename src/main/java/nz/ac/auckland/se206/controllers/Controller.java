@@ -11,5 +11,5 @@ public abstract class Controller {
 
   public Label getTimerLabel() {
     return timerLabel;
-  }
+  } 
 }
