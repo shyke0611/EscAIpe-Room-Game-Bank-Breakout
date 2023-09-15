@@ -10,4 +10,5 @@ public class GameState {
   public static boolean isKeyFound = false;
 
   public static boolean isSecurityComputerLoggedIn = false;
+
 }

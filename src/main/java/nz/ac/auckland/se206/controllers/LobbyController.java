@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
@@ -78,10 +79,13 @@ public class LobbyController extends Controller {
   // opening drawer to get credential notes
   @FXML
   void onDrawerClicked(MouseEvent event) {
+    // opens only when key is found to the drawer
+    if (GameState.isKeyFound == true) {
     credentialsNote.setVisible(true);
     // set note text to the randomly generated credentials
     passwordLbl.setText(randomPassword);
     usernameLbl.setText(randomUsername);
+    }
   }
 
   // pressing any location of the keys
@@ -91,6 +95,8 @@ public class LobbyController extends Controller {
     HBox clickedHBox = (HBox) event.getSource();
     if (clickedHBox == RandomnessGenerate.getkeyLocation()) {
       clickedHBox.setVisible(false);
+      // set key found to true
+      GameState.isKeyFound = true;
     }
   }
 }
