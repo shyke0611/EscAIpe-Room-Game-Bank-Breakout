@@ -46,7 +46,8 @@ public class GameManager {
   private static DoorObjectives activeDoorObjective = null;
 
    public static void createGame(Difficulties difficulty, int minutes) {
-    
+    resetGame();
+
     // Create the difficulty
     switch (difficulty) {
       case EASY:
@@ -68,6 +69,13 @@ public class GameManager {
     TimerControl.setCount(minutes);
 
 
+  }
+
+  public static void resetGame() {
+    questionsCorrect = 0;
+    selectedDoor = null;
+    activeObjective = Objectives.START_GAME;
+    activeDoorObjective = null;
   }
  
   public static int getQuestionsCorrect() {
