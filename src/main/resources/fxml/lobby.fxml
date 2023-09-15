@@ -9,12 +9,18 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="LobbyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LobbyController">
    <children>
+      <ImageView fitHeight="726.0" fitWidth="1049.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/bankInterior.jpg" />
+         </image>
+      </ImageView>
       <HBox layoutX="27.0" layoutY="30.0" prefHeight="128.0" prefWidth="300.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 10;">
          <children>
             <VBox fx:id="lobbyRoomSwitch" alignment="CENTER" prefHeight="129.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
@@ -72,7 +78,7 @@
                   </ImageView>
                </children>
             </VBox>
-            <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0">
+            <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0" visible="false">
                <children>
                   <HBox prefHeight="100.0" prefWidth="528.0">
                      <children>
@@ -123,5 +129,73 @@
             <Font size="58.0" />
          </font>
       </Text>
+      <HBox fx:id="drawer" alignment="CENTER" layoutX="327.0" layoutY="392.0" onMousePressed="#onDrawerClicked" prefHeight="82.0" prefWidth="200.0">
+         <children>
+            <Label prefHeight="60.0" prefWidth="171.0" text="Drawer">
+               <font>
+                  <Font name="Arial Black" size="38.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <VBox fx:id="credentialsNote" layoutX="282.0" layoutY="274.0" prefHeight="179.0" prefWidth="306.0" visible="false">
+         <children>
+            <StackPane alignment="TOP_LEFT" prefHeight="330.0" prefWidth="272.0">
+               <children>
+                  <ImageView fitHeight="203.0" fitWidth="306.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/passcodeNote.jpg" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Security Room Computer Log In">
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="usernameLbl" text="username">
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="passwordLbl" text="password" />
+                     </children>
+                  </VBox>
+                  <Button fx:id="closeNoteBtn" mnemonicParsing="false" onAction="#onCloseNote" prefHeight="29.0" prefWidth="33.0" text="X" textFill="#ff0404">
+                     <StackPane.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </StackPane.margin>
+                  </Button>
+               </children>
+            </StackPane>
+         </children></VBox>
+      <HBox fx:id="key1" alignment="CENTER" layoutX="185.0" layoutY="517.0" onMousePressed="#onkeyPressed" prefHeight="82.0" prefWidth="285.0">
+         <children>
+            <Label prefHeight="60.0" prefWidth="448.0" text="key location1">
+               <font>
+                  <Font name="Arial Black" size="38.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox fx:id="key2" alignment="CENTER" layoutX="643.0" layoutY="150.0" onMousePressed="#onkeyPressed" prefHeight="82.0" prefWidth="285.0">
+         <children>
+            <Label prefHeight="60.0" prefWidth="448.0" text="key location2">
+               <font>
+                  <Font name="Arial Black" size="38.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox fx:id="key3" alignment="CENTER" layoutX="58.0" layoutY="230.0" onMousePressed="#onkeyPressed" prefHeight="82.0" prefWidth="285.0">
+         <children>
+            <Label prefHeight="60.0" prefWidth="448.0" text="key location3">
+               <font>
+                  <Font name="Arial Black" size="38.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

@@ -11,7 +11,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.RandomCredentialsGenerator;
+import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
@@ -33,14 +34,8 @@ public class SecurityController extends Controller {
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
 
-  private String randomUsername;
-  private String randomPassword;
-
   public void initialize() {
     SceneManager.setController(Scenes.SECURITY, this);
-    // Get a random username and password from the generator
-    randomUsername = RandomCredentialsGenerator.getUsername();
-    randomPassword = RandomCredentialsGenerator.getPasscode();
   }
 
   //   handling mouse events on walkie talkie
@@ -82,13 +77,24 @@ public class SecurityController extends Controller {
   // opening computer log in screen
   @FXML
   void onClickComputer(MouseEvent event) {
-    logInScreen.setVisible(true);
+    // if already logged in, skip log in stage
+    if (GameState.isSecurityComputerLoggedIn == false) {
+      logInScreen.setVisible(true);
+    } else {
+      logInScreen.setVisible(false);
+      App.setUI(Scenes.COMPUTER);
+    }
   }
 
   // method that checks log in credentials
   private void checkLogin() {
+    // get user input credentials
     String enteredUsername = usernameField.getText().toLowerCase();
     String enteredPassword = passwordField.getText();
+
+    // get generated credentials
+    String randomUsername = RandomnessGenerate.getUsername();
+    String randomPassword = RandomnessGenerate.getPasscode();
 
     // for testing purposes
     System.out.println(randomUsername);
@@ -97,6 +103,8 @@ public class SecurityController extends Controller {
     // correct credentials
     if (enteredUsername.equals(randomUsername) && enteredPassword.equals(randomPassword)) {
       loginMsgLbl.setText("Success");
+      GameState.isSecurityComputerLoggedIn = true;
+      logInScreen.setVisible(false);
       App.setUI(Scenes.COMPUTER);
       // empty input
     } else if (usernameField.getText().isEmpty() && passwordField.getText().isEmpty()) {
