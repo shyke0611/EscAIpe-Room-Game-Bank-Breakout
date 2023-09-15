@@ -35,6 +35,7 @@ public class SecurityController extends Controller {
 
   private String randomUsername;
   private String randomPassword;
+  private int questionsCorrect = 0;
 
   public void initialize() {
     SceneManager.setController(Scenes.SECURITY, this);
@@ -105,5 +106,9 @@ public class SecurityController extends Controller {
       // wrong credentials
       loginMsgLbl.setText("Wrong username or password");
     }
+  }
+
+  public int getQuestionsCorrect() {
+    return questionsCorrect;
   }
 }

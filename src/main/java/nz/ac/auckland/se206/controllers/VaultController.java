@@ -9,11 +9,22 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
 public class VaultController extends Controller {
+  
+  public enum Doors{
+    EASY,
+    MEDIUM,
+    HARD
+  }
+
+  private Doors selectedDoor;
+
   @FXML private ImageView Lobby;
   @FXML private ImageView Security;
 
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
+
+  
 
   public void initialize() {
     SceneManager.setController(Scenes.VAULT, this);
@@ -41,5 +52,9 @@ public class VaultController extends Controller {
   public void onSwitchToHacker() {
     SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.VAULT);
     App.setUI(Scenes.HACKERVAN);
+  }
+
+  public Doors getSelectedDoor() {
+    return selectedDoor;
   }
 }
