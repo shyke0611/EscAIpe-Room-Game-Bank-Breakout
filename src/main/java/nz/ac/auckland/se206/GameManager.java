@@ -1,5 +1,8 @@
 package nz.ac.auckland.se206;
 
+import nz.ac.auckland.se206.difficulties.*;
+import nz.ac.auckland.se206.difficulties.Difficulty.Difficulties;
+
 public class GameManager {
 
   // The different objectives
@@ -34,12 +37,59 @@ public class GameManager {
     HARD
   }
 
+  private static Difficulty difficulty;
+
   private static int questionsCorrect = 0;
   private static Doors selectedDoor;
 
   private static Objectives activeObjective = Objectives.START_GAME;
   private static DoorObjectives activeDoorObjective = null;
 
+   public static void createGame(Difficulties difficulty, int minutes) {
+    
+    // Create the difficulty
+    switch (difficulty) {
+      case EASY:
+        GameManager.difficulty = new EasyDifficulty();
+        break;
+
+      case MEDIUM:
+        GameManager.difficulty = new MediumDifficulty();
+        break;
+
+      case HARD:
+        GameManager.difficulty = new HardDifficulty();
+        break;
+
+      default:
+        break;
+    }
+    
+    TimerControl.setCount(minutes);
+
+
+  }
+ 
+  public static int getQuestionsCorrect() {
+    return questionsCorrect;
+  }
+
+  public static void setQuestionsCorrect(int questionsCorrect) {
+    GameManager.questionsCorrect = questionsCorrect;
+  }
+
+  public static Doors getSelectedDoor() {
+    return selectedDoor;
+  }
+
+  public static void setSelectedDoor(Doors selectedDoor) {
+    GameManager.selectedDoor = selectedDoor;
+  }
+
+  public static Difficulty getDifficulty() {
+    return difficulty;
+  }
+  
   public static void completeObjective() {
     switch (activeObjective) {
       case START_GAME:
@@ -138,23 +188,7 @@ public class GameManager {
     }
   }
 
-  public static int getQuestionsCorrect() {
-    return questionsCorrect;
-  }
-
-  public static void setQuestionsCorrect(int questionsCorrect) {
-    GameManager.questionsCorrect = questionsCorrect;
-  }
-
-  public static Doors getSelectedDoor() {
-    return selectedDoor;
-  }
-
-  public static void setSelectedDoor(Doors selectedDoor) {
-    GameManager.selectedDoor = selectedDoor;
-  }
-
-  public static String getObjectiveString(){
+  public static String getObjectiveString() {
     switch (activeObjective) {
       case START_GAME:
         return "Start Game";
@@ -177,13 +211,13 @@ public class GameManager {
         return "Select Vault Door";
 
       case DOOR_OBJECTIVES:
-        if(activeDoorObjective == DoorObjectives.FIND_EXTRA_PASSCODE){
+        if (activeDoorObjective == DoorObjectives.FIND_EXTRA_PASSCODE) {
           return "Find Extra Passcode";
-        } else if(activeDoorObjective == DoorObjectives.CHEMICAL_MIXING){
+        } else if (activeDoorObjective == DoorObjectives.CHEMICAL_MIXING) {
           return "Mix Chemicals";
-        } else if(activeDoorObjective == DoorObjectives.LAZER_CUTTING){
+        } else if (activeDoorObjective == DoorObjectives.LAZER_CUTTING) {
           return "Cut Through Lasers";
-        } else if(activeDoorObjective == DoorObjectives.EYE_SCANNER){
+        } else if (activeDoorObjective == DoorObjectives.EYE_SCANNER) {
           return "Scan Eye";
         }
 
@@ -206,4 +240,5 @@ public class GameManager {
         return null;
     }
   }
+
 }
