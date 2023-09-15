@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.RandomCredentialsGenerator;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
@@ -76,9 +77,18 @@ public class SecurityController extends Controller {
 
   // method that checks log in credentials
   private void checkLogin() {
+    String enteredUsername = usernameField.getText().toLowerCase();
+    String enteredPassword = passwordField.getText();
+
+    // Get a random username and password from the generator
+    String randomUsername = RandomCredentialsGenerator.getUsername();
+    String randomPassword = RandomCredentialsGenerator.getPasscode();
+    // for testing purposes
+    System.out.println(randomUsername);
+    System.out.println(randomPassword);
+
     // correct credentials
-    if (usernameField.getText().toLowerCase().equals("random username")
-        && passwordField.getText().equals("random password")) {
+    if (enteredUsername.equals(randomUsername) && enteredPassword.equals(randomPassword)) {
       loginMsgLbl.setText("Success");
       App.setUI(Scenes.COMPUTER);
       // empty input
