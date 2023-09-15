@@ -2,6 +2,7 @@ package nz.ac.auckland.se206;
 
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.controllers.SecurityController;
+import nz.ac.auckland.se206.controllers.VaultController;
 import nz.ac.auckland.se206.controllers.VaultController.Doors;
 
 public class GameManager {
@@ -23,7 +24,15 @@ public class GameManager {
     GAME_OVER,
   }
 
+  public enum DoorObjectives {
+    FIND_EXTRA_PASSCODE,
+    CHEMICAL_MIXING,
+    LAZER_CUTTING,
+    EYE_SCANNER,
+  }
+
   private static Objectives activeObjective = Objectives.START_GAME;
+  private static DoorObjectives activeDoorObjective = null;
 
   public static void completeObjective() {
     int questionsCorrect;
@@ -46,10 +55,10 @@ public class GameManager {
         activeObjective = Objectives.DISABLE_FIREWALL;
         break;
 
-      // if the user gets no questions right, they will have to do the extra security layer
       case DISABLE_FIREWALL:
         questionsCorrect = ((SecurityController) SceneManager.getController(Scenes.SECURITY)).getQuestionsCorrect();
 
+        // no questions right, they will have to do the extra security layer
         if (questionsCorrect != 0) {
           activeObjective = Objectives.SELECT_VAULT_DOOR;
         } else {
@@ -67,6 +76,41 @@ public class GameManager {
         break;
 
       case DOOR_OBJECTIVES:
+        selectedDoor = ((VaultController) SceneManager.getController(Scenes.VAULT)).getSelectedDoor();
+        questionsCorrect = ((SecurityController) SceneManager.getController(Scenes.SECURITY)).getQuestionsCorrect();
+
+        // If they are already going through the extra security layer
+        if (activeDoorObjective == DoorObjectives.FIND_EXTRA_PASSCODE) {
+          if (selectedDoor == Doors.EASY) {
+            activeDoorObjective = DoorObjectives.LAZER_CUTTING;
+          } else if (selectedDoor == Doors.MEDIUM) {
+            activeDoorObjective = DoorObjectives.CHEMICAL_MIXING;
+          } else if (selectedDoor == Doors.HARD) {
+            activeDoorObjective = DoorObjectives.EYE_SCANNER;
+          }
+          break;
+        }
+
+        // If they complete the door
+        if (activeDoorObjective != null) {
+          activeObjective = Objectives.ALARM_TRIPPED;
+          break;
+        }
+
+        // If they are not going through the extra security layer
+        if (selectedDoor == Doors.HARD) {
+          if (questionsCorrect == 2 && activeDoorObjective == null) {
+            activeDoorObjective = DoorObjectives.FIND_EXTRA_PASSCODE;
+          } else {
+            activeDoorObjective = DoorObjectives.EYE_SCANNER;
+          }
+
+        } else if (selectedDoor == Doors.MEDIUM) {
+          activeDoorObjective = DoorObjectives.CHEMICAL_MIXING;
+
+        } else if (selectedDoor == Doors.EASY) {
+          activeDoorObjective = DoorObjectives.LAZER_CUTTING;
+        }
 
         break;
 
