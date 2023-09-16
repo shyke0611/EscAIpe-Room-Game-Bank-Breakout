@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -17,6 +18,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 
@@ -151,15 +153,16 @@ public class LobbyController extends Controller {
     key1.setDisable(true);
     key2.setDisable(true);
     key3.setDisable(true);
-    key3.setDisable(true);
+    key4.setDisable(true);
   }
 
 
   @FXML
   void onGuardPressed(MouseEvent event) {
-    sleepingAnmiation();
     GameState.isGuardDistracted = true;
+    sleepingAnmiation();
     guard.setDisable(true);
+    StyleManager.setItemsState(34,255,0,key1,key2,key3,key4);
   }
 
   private boolean isZzz1Visible = false;
@@ -177,9 +180,9 @@ public class LobbyController extends Controller {
   }
 
   public void sleepingAnmiation() {
-
     Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), e -> toggleImageViews()));
     timeline.setCycleCount(Timeline.INDEFINITE);
     timeline.play();
   }
+
 }
