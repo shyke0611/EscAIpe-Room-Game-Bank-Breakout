@@ -1,6 +1,8 @@
 .walkietalkie {
     -fx-background-color: #8ac1f5;
     -fx-background-radius: 70 0 0 70;
+    -fx-border-color: #328add;
+    -fx-border-radius: 70 0 0 70;
 
 }
 
@@ -24,6 +26,14 @@
 
 }
 
+.roomswitchback {
+    -fx-background-color: #9fd7ff;
+    -fx-background-radius: 10;
+    -fx-border-color: #328add;
+    -fx-border-radius: 10;
+
+}
+
 .text-area {
     -fx-control-inner-background: black;
     -fx-control-inner-border: black;
@@ -39,4 +49,9 @@
     -fx-text-fill: green;
     -fx-prompt-text-fill: green;
     -fx-background-radius: 0 0 20 0;
+}
+
+.vase:hover {
+    -fx-effect: dropshadow(gaussian, rgba(32, 32, 34, 0.7), 0, 0, 0, 5);
+    -fx-cursor: hand;
 }

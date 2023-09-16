@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -11,8 +13,8 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
-import nz.ac.auckland.se206.WalkieTalkieManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.WalkieTalkieManager;
 
 public class LobbyController extends Controller {
 
@@ -33,6 +35,8 @@ public class LobbyController extends Controller {
   @FXML private HBox key1;
   @FXML private HBox key2;
   @FXML private HBox key3;
+  @FXML private ImageView vase;
+  @FXML private ImageView key;
 
   private String randomUsername;
   private String randomPassword;
@@ -79,22 +83,37 @@ public class LobbyController extends Controller {
   void onDrawerClicked(MouseEvent event) {
     // opens only when key is found to the drawer
     if (GameState.isKeyFound == true) {
-    credentialsNote.setVisible(true);
-    // set note text to the randomly generated credentials
-    passwordLbl.setText(randomPassword);
-    usernameLbl.setText(randomUsername);
+      credentialsNote.setVisible(true);
+      // set note text to the randomly generated credentials
+      passwordLbl.setText(randomPassword);
+      usernameLbl.setText(randomUsername);
     }
   }
 
   // pressing any location of the keys
   // if key found it turns invisible (we can change mehanics later)
   @FXML
-  void onkeyPressed(MouseEvent event) {
+  void onkeyLocationPressed(MouseEvent event) {
     HBox clickedHBox = (HBox) event.getSource();
     if (clickedHBox == RandomnessGenerate.getkeyLocation()) {
-      clickedHBox.setVisible(false);
-      // set key found to true
+      moveVaseAnimation(clickedHBox);
       GameState.isKeyFound = true;
     }
   }
+
+  public void moveVaseAnimation(Node node) {
+    if (!GameState.isKeyFound) {
+      TranslateTransition translate = new TranslateTransition();
+      translate.setNode(node);
+      translate.setByX(-100);
+      translate.play();
+    }
+  }
+
+  @FXML
+  void onKeyPressed(MouseEvent event) {
+  GameState.isKeyFound = true;
+  key.setVisible(false);
+  }
+
 }

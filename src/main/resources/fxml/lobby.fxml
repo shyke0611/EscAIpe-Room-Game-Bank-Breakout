@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,16 +13,15 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="LobbyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LobbyController">
    <children>
-      <ImageView fitHeight="726.0" fitWidth="1049.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="702.0" fitWidth="1442.0" layoutX="-236.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/bankInterior.jpg" />
          </image>
       </ImageView>
-      <HBox layoutX="27.0" layoutY="30.0" prefHeight="128.0" prefWidth="300.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 10;">
+      <HBox layoutX="27.0" layoutY="30.0" prefHeight="128.0" prefWidth="300.0" styleClass="roomswitchback" stylesheets="@../css/rooms.css">
          <children>
             <VBox fx:id="lobbyRoomSwitch" alignment="CENTER" prefHeight="129.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
                <children>
@@ -124,11 +124,6 @@
             </Label>
          </children>
       </HBox>
-      <Text layoutX="401.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOBBY">
-         <font>
-            <Font size="58.0" />
-         </font>
-      </Text>
       <HBox fx:id="drawer" alignment="CENTER" layoutX="327.0" layoutY="392.0" onMousePressed="#onDrawerClicked" prefHeight="82.0" prefWidth="200.0">
          <children>
             <Label prefHeight="60.0" prefWidth="171.0" text="Drawer">
@@ -170,16 +165,24 @@
                </children>
             </StackPane>
          </children></VBox>
-      <HBox fx:id="key1" alignment="CENTER" layoutX="185.0" layoutY="578.0" onMousePressed="#onkeyPressed" prefHeight="63.0" prefWidth="285.0">
+      <ImageView fx:id="key" fitHeight="59.0" fitWidth="53.0" layoutX="835.0" layoutY="600.0" onMousePressed="#onKeyPressed" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/key.png" />
+         </image>
+      </ImageView>
+      <HBox fx:id="key1" alignment="BOTTOM_LEFT" layoutX="800.0" layoutY="491.0" onMousePressed="#onkeyLocationPressed" prefHeight="182.0" prefWidth="132.0" styleClass="vase" stylesheets="@../css/rooms.css">
          <children>
-            <Label prefHeight="126.0" prefWidth="285.0" text="key location1">
-               <font>
-                  <Font name="Arial Black" size="38.0" />
-               </font>
-            </Label>
+            <ImageView fitHeight="209.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/vase.png" />
+               </image>
+            </ImageView>
          </children>
+         <effect>
+            <Glow level="0.0" />
+         </effect>
       </HBox>
-      <HBox fx:id="key2" alignment="CENTER" layoutX="643.0" layoutY="150.0" onMousePressed="#onkeyPressed" prefHeight="82.0" prefWidth="285.0">
+      <HBox fx:id="key2" alignment="CENTER" layoutX="643.0" layoutY="150.0" onMousePressed="#onkeyLocationPressed" prefHeight="82.0" prefWidth="285.0">
          <children>
             <Label prefHeight="60.0" prefWidth="448.0" text="key location2">
                <font>
@@ -188,7 +191,7 @@
             </Label>
          </children>
       </HBox>
-      <HBox fx:id="key3" alignment="CENTER" layoutX="35.0" layoutY="173.0" onMousePressed="#onkeyPressed" prefHeight="82.0" prefWidth="285.0">
+      <HBox fx:id="key3" alignment="CENTER" layoutX="35.0" layoutY="173.0" onMousePressed="#onkeyLocationPressed" prefHeight="82.0" prefWidth="285.0">
          <children>
             <Label prefHeight="60.0" prefWidth="448.0" text="key location3">
                <font>
