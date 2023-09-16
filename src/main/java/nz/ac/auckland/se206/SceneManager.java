@@ -3,11 +3,7 @@ package nz.ac.auckland.se206;
 import java.util.HashMap;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
-import nz.ac.auckland.se206.controllers.ComputerController;
 import nz.ac.auckland.se206.controllers.Controller;
-import nz.ac.auckland.se206.controllers.LobbyController;
-import nz.ac.auckland.se206.controllers.SecurityController;
-import nz.ac.auckland.se206.controllers.VaultController;
 
 public class SceneManager {
 
