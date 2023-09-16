@@ -51,7 +51,12 @@
     -fx-background-radius: 0 0 20 0;
 }
 
-.vase:hover {
-    -fx-effect: dropshadow(gaussian, rgba(32, 32, 34, 0.7), 0, 0, 0, 5);
+.items:hover {
+    -fx-effect: dropshadow(gaussian, rgba(255, 0, 0, 0.7), 5, 5, 0, 0);
     -fx-cursor: hand;
+}
+
+.close-button:hover {
+    -fx-cursor: hand;
+    -fx-background-color: rgb(158, 156, 156);
 }

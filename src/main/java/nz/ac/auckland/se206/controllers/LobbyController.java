@@ -1,5 +1,8 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -9,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
@@ -24,7 +28,7 @@ public class LobbyController extends Controller {
   @FXML private VBox VaultRoomSwitch;
   @FXML private Button closeNoteBtn;
   @FXML private VBox credentialsNote;
-  @FXML private HBox drawer;
+  @FXML private HBox drawerHolder;
   @FXML private VBox lobbyRoomSwitch;
   @FXML private Label passwordLbl;
   @FXML private Button quickHintBtn;
@@ -32,11 +36,18 @@ public class LobbyController extends Controller {
   @FXML private Button viewHistoryBtn;
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
+  // key locations:
   @FXML private HBox key1;
   @FXML private HBox key2;
   @FXML private HBox key3;
-  @FXML private ImageView vase;
+  @FXML private HBox key4;
   @FXML private ImageView key;
+  @FXML private HBox guard;
+  @FXML private ImageView zzz1;
+  @FXML private ImageView zzz2;
+  @FXML private ImageView drawer;
+  @FXML private ImageView openDrawer;
+  @FXML private HBox credentialsBook;
 
   private String randomUsername;
   private String randomPassword;
@@ -47,7 +58,7 @@ public class LobbyController extends Controller {
     randomUsername = RandomnessGenerate.getUsername();
     randomPassword = RandomnessGenerate.getPasscode();
     // add the hboxs into arraylist and generate random
-    RandomnessGenerate.addKeyLocation(key1, key2, key3);
+    RandomnessGenerate.addKeyLocation(key1, key2, key3, key4);
     RandomnessGenerate.generateRandomKeyLocation();
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
   }
@@ -80,40 +91,95 @@ public class LobbyController extends Controller {
 
   // opening drawer to get credential notes
   @FXML
-  void onDrawerClicked(MouseEvent event) {
+  void onDrawerPressed(MouseEvent event) {
     // opens only when key is found to the drawer
-    if (GameState.isKeyFound == true) {
-      credentialsNote.setVisible(true);
-      // set note text to the randomly generated credentials
-      passwordLbl.setText(randomPassword);
-      usernameLbl.setText(randomUsername);
+    if (GameState.isKeyFound) {
+      drawer.setVisible(false);
+      openDrawer.setVisible(true);
+      credentialsBook.setVisible(true);
+      drawerHolder.setDisable(true);
     }
+  }
+
+  // pressing book in drawer
+  @FXML
+  void onCredentialsBookPressed(MouseEvent event) {
+    credentialsNote.setVisible(true);
+    // set note text to the randomly generated credentials
+    passwordLbl.setText("Password: " + randomPassword);
+    usernameLbl.setText("Username: " + randomUsername);
   }
 
   // pressing any location of the keys
   // if key found it turns invisible (we can change mehanics later)
   @FXML
   void onkeyLocationPressed(MouseEvent event) {
-    HBox clickedHBox = (HBox) event.getSource();
-    if (clickedHBox == RandomnessGenerate.getkeyLocation()) {
-      moveVaseAnimation(clickedHBox);
-      GameState.isKeyFound = true;
+    if (GameState.isGuardDistracted) {
+      HBox clickedHBox = (HBox) event.getSource();
+      if (clickedHBox == RandomnessGenerate.getkeyLocation()) {
+        GameState.isKeyLocationFound = true;
+        showKeyAnimation(key);
+        disableKeyLocations();
+      }
     }
   }
 
-  public void moveVaseAnimation(Node node) {
+  // shoing animation of key moving up
+  public void showKeyAnimation(Node node) {
     if (!GameState.isKeyFound) {
-      TranslateTransition translate = new TranslateTransition();
-      translate.setNode(node);
-      translate.setByX(-100);
-      translate.play();
+        // Disable mouse click events on the node
+        FadeTransition fadeIn = new FadeTransition(Duration.seconds(2), key);
+        fadeIn.setFromValue(0.0); // Start from fully transparent
+        fadeIn.setToValue(1.0);   // Fade in to fully opaque
+        // Play the FadeTransition
+        fadeIn.play();
     }
-  }
+}
 
+
+// pressing the key
   @FXML
   void onKeyPressed(MouseEvent event) {
-  GameState.isKeyFound = true;
-  key.setVisible(false);
+    if (GameState.isKeyLocationFound) {
+      GameState.isKeyFound = true;
+      key.setVisible(false);
+    }
   }
 
+  // diabling key locations
+  private void disableKeyLocations() {
+    key1.setDisable(true);
+    key2.setDisable(true);
+    key3.setDisable(true);
+    key3.setDisable(true);
+  }
+
+
+  @FXML
+  void onGuardPressed(MouseEvent event) {
+    sleepingAnmiation();
+    GameState.isGuardDistracted = true;
+    guard.setDisable(true);
+  }
+
+  private boolean isZzz1Visible = false;
+
+  public void toggleImageViews() {
+    if (isZzz1Visible) {
+      zzz1.setVisible(false);
+      zzz2.setVisible(true);
+      isZzz1Visible = false;
+    } else {
+      zzz1.setVisible(true);
+      zzz2.setVisible(false);
+      isZzz1Visible = true;
+    }
+  }
+
+  public void sleepingAnmiation() {
+
+    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), e -> toggleImageViews()));
+    timeline.setCycleCount(Timeline.INDEFINITE);
+    timeline.play();
+  }
 }
