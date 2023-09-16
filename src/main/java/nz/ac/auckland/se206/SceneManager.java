@@ -29,8 +29,6 @@ public class SceneManager {
 
   private static HashMap<Scenes, Scenes> previousSceneMap = new HashMap<>();
 
-  private static boolean walkieTalkieOpen = false;
-
    // Method to set the previous scene for a given current scene
    public static void setPreviousScene(Scenes currentScene, Scenes previousScene) {
     previousSceneMap.put(currentScene, previousScene);
@@ -87,17 +85,4 @@ public class SceneManager {
     return activeController.getTimerLabel();
   }
 
-  // Get the walkie talkie open boolean
-  public static boolean isWalkieTalkieOpen() {
-    return walkieTalkieOpen;
-  }
-
-  // Toggle the walkie talkie open boolean
-  public static void toggleWalkieTalkieOpen() {
-    walkieTalkieOpen = !walkieTalkieOpen;
-    ((LobbyController) controllerMap.get(Scenes.LOBBY)).synchWalkieTalkie(walkieTalkieOpen);
-    ((SecurityController) controllerMap.get(Scenes.SECURITY)).synchWalkieTalkie(walkieTalkieOpen);
-    ((VaultController) controllerMap.get(Scenes.VAULT)).synchWalkieTalkie(walkieTalkieOpen);
-    ((ComputerController) controllerMap.get(Scenes.COMPUTER)).synchWalkieTalkie(walkieTalkieOpen);
-  }
 }
