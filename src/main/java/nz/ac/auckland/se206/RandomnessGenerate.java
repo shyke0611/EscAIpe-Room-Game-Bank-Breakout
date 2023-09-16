@@ -33,7 +33,7 @@ public class RandomnessGenerate {
   public static void generateRandomCredentials() {
     int randomPasswordIndex = random.nextInt(passcodeList.size());
     int randomUsernameIndex = random.nextInt(usernameList.size());
-
+     
     randomUsername = usernameList.get(randomUsernameIndex);
     randomPassword = passcodeList.get(randomPasswordIndex);
   }
