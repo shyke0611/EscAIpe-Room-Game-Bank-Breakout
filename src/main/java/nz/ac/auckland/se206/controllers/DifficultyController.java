@@ -78,34 +78,14 @@ public class DifficultyController extends Controller {
 
   @FXML
   void onDifficultyClicked(MouseEvent event) {
-    easyVboxClicked = false;
-    mediumVboxClicked = false;
-    hardVboxClicked = false;
-
-    // Remove the style class (css) from all VBox elements
-    easyVbox.getStyleClass().remove("clicked-container");
-    mediumVbox.getStyleClass().remove("clicked-container");
-    hardVbox.getStyleClass().remove("clicked-container");
-
-    easyAlarmImage.setVisible(false);
-    mediumAlarmImage.setVisible(false);
-    hardAlarmImage.setVisible(false);
-
-    // Add the style class (css) to the clicked VBox (difficulty)
     if (event.getSource() == easyVbox) {
-      difficultyLabel.setText("Easy");
-      easyVbox.getStyleClass().add("clicked-container");
-      easyAlarmImage.setVisible(true);
+      handleDifficultySelection(easyVbox, easyAlarmImage, "Easy");
       easyVboxClicked = true;
     } else if (event.getSource() == mediumVbox) {
-      difficultyLabel.setText("Medium");
-      mediumVbox.getStyleClass().add("clicked-container");
-      mediumAlarmImage.setVisible(true);
+      handleDifficultySelection(mediumVbox, mediumAlarmImage, "Medium");
       mediumVboxClicked = true;
     } else {
-      difficultyLabel.setText("Hard");
-      hardVbox.getStyleClass().add("clicked-container");
-      hardAlarmImage.setVisible(true);
+      handleDifficultySelection(hardVbox, hardAlarmImage, "Hard");
       hardVboxClicked = true;
     }
   }
@@ -120,5 +100,23 @@ public class DifficultyController extends Controller {
   @FXML
   public void startHeist(ActionEvent event) throws IOException {
     App.setUI(Scenes.LOBBY);
+  }
+
+  private void handleDifficultySelection(VBox vbox, ImageView alarmImage, String label) {
+    easyVboxClicked = false;
+    mediumVboxClicked = false;
+    hardVboxClicked = false;
+
+    easyVbox.getStyleClass().remove("clicked-container");
+    mediumVbox.getStyleClass().remove("clicked-container");
+    hardVbox.getStyleClass().remove("clicked-container");
+
+    easyAlarmImage.setVisible(false);
+    mediumAlarmImage.setVisible(false);
+    hardAlarmImage.setVisible(false);
+
+    difficultyLabel.setText(label);
+    vbox.getStyleClass().add("clicked-container");
+    alarmImage.setVisible(true);
   }
 }

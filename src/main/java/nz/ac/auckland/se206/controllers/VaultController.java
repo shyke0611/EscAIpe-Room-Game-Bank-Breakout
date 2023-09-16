@@ -6,6 +6,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.WalkieTalkieManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
 public class VaultController extends Controller {
@@ -20,17 +21,14 @@ public class VaultController extends Controller {
 
   public void initialize() {
     SceneManager.setController(Scenes.VAULT, this);
+    WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
   }
 
   //   handling mouse events on walkie talkie
   //   open and closes when walkie talkie is clicked
   @FXML
   void onWalkieTalkie(MouseEvent event) {
-    SceneManager.toggleWalkieTalkieOpen();
-  }
-
-  public void synchWalkieTalkie(boolean isOpen) {
-    walkietalkieText.setVisible(isOpen);
+    WalkieTalkieManager.toggleWalkieTalkie();
   }
 
   public void switchToLobby() {

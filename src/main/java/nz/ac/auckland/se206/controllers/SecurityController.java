@@ -14,6 +14,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.WalkieTalkieManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
 public class SecurityController extends Controller {
@@ -36,17 +37,14 @@ public class SecurityController extends Controller {
 
   public void initialize() {
     SceneManager.setController(Scenes.SECURITY, this);
+    WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
   }
 
   //   handling mouse events on walkie talkie
   //   open and closes when walkie talkie is clicked
   @FXML
   void onWalkieTalkie(MouseEvent event) {
-    SceneManager.toggleWalkieTalkieOpen();
-  }
-
-  public void synchWalkieTalkie(boolean isOpen) {
-    walkietalkieText.setVisible(isOpen);
+    WalkieTalkieManager.toggleWalkieTalkie();
   }
 
   public void switchToLobby() {
@@ -63,13 +61,11 @@ public class SecurityController extends Controller {
   }
 
   // set visibility of log in screen off (log off computer)
-  @FXML
   public void OnLogOff() {
     logInScreen.setVisible(false);
   }
 
   // check log in details before logging in
-  @FXML
   public void onLogIn() {
     checkLogin();
   }
@@ -86,33 +82,53 @@ public class SecurityController extends Controller {
     }
   }
 
-  // method that checks log in credentials
+  // method that handles overall login mechanics
   private void checkLogin() {
     // get user input credentials
     String enteredUsername = usernameField.getText().toLowerCase();
     String enteredPassword = passwordField.getText();
-
     // get generated credentials
     String randomUsername = RandomnessGenerate.getUsername();
     String randomPassword = RandomnessGenerate.getPasscode();
 
-    // for testing purposes
-    System.out.println(randomUsername);
-    System.out.println(randomPassword);
-
-    // correct credentials
-    if (enteredUsername.equals(randomUsername) && enteredPassword.equals(randomPassword)) {
-      loginMsgLbl.setText("Success");
-      GameState.isSecurityComputerLoggedIn = true;
-      logInScreen.setVisible(false);
-      App.setUI(Scenes.COMPUTER);
-      // empty input
-    } else if (usernameField.getText().isEmpty() && passwordField.getText().isEmpty()) {
-      loginMsgLbl.setText("Enter your credentials");
+    if (areCredentialsValid(enteredUsername, enteredPassword, randomUsername, randomPassword)) {
+      handleSuccessfulLogin();
+    } else if (areCredentialsEmpty()) {
+      handleEmptyCredentials();
     } else {
-      // wrong credentials
-      loginMsgLbl.setText("Wrong username or password");
+      handleFailedLogin();
     }
   }
 
+  // check credentials
+  private boolean areCredentialsValid(
+      String enteredUsername,
+      String enteredPassword,
+      String randomUsername,
+      String randomPassword) {
+    return enteredUsername.equals(randomUsername) && enteredPassword.equals(randomPassword);
+  }
+
+  // check if credentials are empty
+  private boolean areCredentialsEmpty() {
+    return usernameField.getText().isEmpty() && passwordField.getText().isEmpty();
+  }
+
+  // mechanics for when login is successful
+  private void handleSuccessfulLogin() {
+    loginMsgLbl.setText("Success");
+    GameState.isSecurityComputerLoggedIn = true;
+    logInScreen.setVisible(false);
+    App.setUI(Scenes.COMPUTER);
+  }
+
+  // mechanics for empty credential input
+  private void handleEmptyCredentials() {
+    loginMsgLbl.setText("Enter your credentials");
+  }
+
+  // mechanics for when login fails
+  private void handleFailedLogin() {
+    loginMsgLbl.setText("Wrong username or password");
+  }
 }

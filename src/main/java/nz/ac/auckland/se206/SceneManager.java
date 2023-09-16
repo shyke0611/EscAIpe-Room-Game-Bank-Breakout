@@ -3,11 +3,7 @@ package nz.ac.auckland.se206;
 import java.util.HashMap;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
-import nz.ac.auckland.se206.controllers.ComputerController;
 import nz.ac.auckland.se206.controllers.Controller;
-import nz.ac.auckland.se206.controllers.LobbyController;
-import nz.ac.auckland.se206.controllers.SecurityController;
-import nz.ac.auckland.se206.controllers.VaultController;
 
 public class SceneManager {
 
@@ -28,8 +24,6 @@ public class SceneManager {
   private static HashMap<Scenes, Parent> sceneMap = new HashMap<>();
 
   private static HashMap<Scenes, Scenes> previousSceneMap = new HashMap<>();
-
-  private static boolean walkieTalkieOpen = false;
 
    // Method to set the previous scene for a given current scene
    public static void setPreviousScene(Scenes currentScene, Scenes previousScene) {
@@ -87,17 +81,4 @@ public class SceneManager {
     return activeController.getTimerLabel();
   }
 
-  // Get the walkie talkie open boolean
-  public static boolean isWalkieTalkieOpen() {
-    return walkieTalkieOpen;
-  }
-
-  // Toggle the walkie talkie open boolean
-  public static void toggleWalkieTalkieOpen() {
-    walkieTalkieOpen = !walkieTalkieOpen;
-    ((LobbyController) controllerMap.get(Scenes.LOBBY)).synchWalkieTalkie(walkieTalkieOpen);
-    ((SecurityController) controllerMap.get(Scenes.SECURITY)).synchWalkieTalkie(walkieTalkieOpen);
-    ((VaultController) controllerMap.get(Scenes.VAULT)).synchWalkieTalkie(walkieTalkieOpen);
-    ((ComputerController) controllerMap.get(Scenes.COMPUTER)).synchWalkieTalkie(walkieTalkieOpen);
-  }
 }

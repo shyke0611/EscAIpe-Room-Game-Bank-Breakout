@@ -11,6 +11,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.WalkieTalkieManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
 public class LobbyController extends Controller {
@@ -44,17 +45,14 @@ public class LobbyController extends Controller {
     // add the hboxs into arraylist and generate random
     RandomnessGenerate.addKeyLocation(key1, key2, key3);
     RandomnessGenerate.generateRandomKeyLocation();
+    WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
   }
 
   //   handling mouse events on walkie talkie
   //   open and closes when walkie talkie is clicked
   @FXML
   void onWalkieTalkie(MouseEvent event) {
-    SceneManager.toggleWalkieTalkieOpen();
-  }
-
-  public void synchWalkieTalkie(boolean isOpen) {
-    walkietalkieText.setVisible(isOpen);
+    WalkieTalkieManager.toggleWalkieTalkie();
   }
 
   public void switchToSecurity() {
