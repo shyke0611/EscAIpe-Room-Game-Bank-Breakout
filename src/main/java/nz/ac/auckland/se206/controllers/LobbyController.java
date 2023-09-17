@@ -138,6 +138,7 @@ public class LobbyController extends Controller {
       GameState.isKeyFound = true;
       key.setVisible(false);
       StyleManager.setItemsHoverState(34, 255, 0, drawerHolder);
+      StyleManager.setItemsMessage("The key fits...",drawerHolder);
   }
 
   // diabling key locations

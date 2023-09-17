@@ -34,8 +34,9 @@ private static Tooltip tooltip;
    
     for (HBox item : items) {
      tooltip = new Tooltip(message);
-        tooltip.setShowDelay(Duration.seconds(0));
-        Tooltip.install(item, tooltip);
+      Tooltip.install(item, tooltip);
+      tooltip.setShowDelay(Duration.seconds(0));
+      //       tooltip.hideDelayProperty();
 
         // item.setOnMouseClicked(
         //     event -> {
@@ -65,7 +66,6 @@ private static Tooltip tooltip;
     for (HBox item : items) {
       
             Tooltip.uninstall(item, tooltip);
-            
         
     }
 }
