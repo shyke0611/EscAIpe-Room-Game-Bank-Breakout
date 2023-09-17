@@ -49,21 +49,55 @@ public class EyeScannerController  extends Controller{
     blueValue.textProperty().bind(blueSlider.valueProperty().asString("%.0f"));
 
 
-    // Adjust the colour of the artificial eye based on the sliders
+    // Adjust the colour of the artificial eye based on the sliders and adjust slider colour
 
     redSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
       red = newValue.intValue();
       artificialEye.setFill(Paint.valueOf("rgb(" + red + "," + green + "," + blue + ")"));
+
+      // From Stack Overflow: https://stackoverflow.com/questions/51343759/how-to-change-fill-color-of-slider-in-javafx
+      double percentage = 100.0 * newValue.doubleValue() / redSlider.getMax();
+      String style = String.format(
+              "-track-color: linear-gradient(to right, " +
+                      "red, " +
+                      "red, " +
+                      "-default-track-color %1$.1f%%, " +
+                      "-default-track-color 100%%);",
+              percentage);
+      redSlider.setStyle(style);
+  
     });
 
     greenSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
       green = newValue.intValue();
       artificialEye.setFill(Paint.valueOf("rgb(" + red + "," + green + "," + blue + ")"));
+
+      // From Stack Overflow: https://stackoverflow.com/questions/51343759/how-to-change-fill-color-of-slider-in-javafx
+      double percentage = 100.0 * newValue.doubleValue() / redSlider.getMax();
+      String style = String.format(
+              "-track-color: linear-gradient(to right, " +
+                      "green, " +
+                      "green, " +
+                      "-default-track-color %1$.1f%%, " +
+                      "-default-track-color 100%%);",
+              percentage);
+      greenSlider.setStyle(style);
     });
 
     blueSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
       blue = newValue.intValue();
       artificialEye.setFill(Paint.valueOf("rgb(" + red + "," + green + "," + blue + ")"));
+
+      // From Stack Overflow: https://stackoverflow.com/questions/51343759/how-to-change-fill-color-of-slider-in-javafx
+      double percentage = 100.0 * newValue.doubleValue() / redSlider.getMax();
+      String style = String.format(
+              "-track-color: linear-gradient(to right, " +
+                      "blue, " +
+                      "blue, " +
+                      "-default-track-color %1$.1f%%, " +
+                      "-default-track-color 100%%);",
+              percentage);
+      blueSlider.setStyle(style);
     });
 
   }

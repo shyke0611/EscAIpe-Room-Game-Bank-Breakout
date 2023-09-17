@@ -104,26 +104,26 @@
                         </StackPane>
                      </children>
                   </StackPane>
-                  <VBox prefHeight="198.0" prefWidth="380.0" translateX="10.0" translateY="35.0">
+                  <VBox prefHeight="198.0" prefWidth="380.0" stylesheets="@../css/eyescanner.css" translateX="10.0" translateY="35.0">
                      <children>
                         <HBox prefHeight="50.0" prefWidth="200.0">
                            <children>
-                              <Label prefHeight="17.0" prefWidth="50.0" text="Red:" />
-                              <Slider fx:id="redSlider" blockIncrement="5.0" majorTickUnit="255.0" max="255.0" minorTickCount="50" prefHeight="38.0" prefWidth="275.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                              <Label prefHeight="17.0" prefWidth="50.0" text="Red:" textFill="RED" />
+                              <Slider fx:id="redSlider" blockIncrement="5.0" majorTickUnit="255.0" max="255.0" minorTickCount="50" prefHeight="38.0" prefWidth="275.0" showTickLabels="true" snapToTicks="true" />
                               <Label fx:id="redValue" prefHeight="17.0" prefWidth="29.0" text="0" translateX="20.0" translateY="2.0" />
                            </children>
                         </HBox>
                         <HBox prefHeight="50.0" prefWidth="200.0">
                            <children>
-                              <Label prefHeight="17.0" prefWidth="50.0" text="Green:" />
-                              <Slider fx:id="greenSlider" blockIncrement="5.0" majorTickUnit="255.0" max="255.0" minorTickCount="50" prefHeight="38.0" prefWidth="275.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                              <Label prefHeight="17.0" prefWidth="50.0" text="Green:" textFill="GREEN" />
+                              <Slider fx:id="greenSlider" blockIncrement="5.0" majorTickUnit="255.0" max="255.0" minorTickCount="50" prefHeight="38.0" prefWidth="275.0" showTickLabels="true" snapToTicks="true" />
                               <Label fx:id="greenValue" prefHeight="17.0" prefWidth="29.0" text="0" translateX="20.0" translateY="2.0" />
                            </children>
                         </HBox>
                         <HBox prefHeight="50.0" prefWidth="200.0">
                            <children>
-                              <Label prefHeight="17.0" prefWidth="50.0" text="Blue:" />
-                              <Slider fx:id="blueSlider" blockIncrement="5.0" majorTickUnit="255.0" max="255.0" minorTickCount="50" prefHeight="38.0" prefWidth="275.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                              <Label prefHeight="17.0" prefWidth="50.0" text="Blue:" textFill="BLUE" />
+                              <Slider fx:id="blueSlider" blockIncrement="5.0" majorTickUnit="255.0" max="255.0" minorTickCount="50" prefHeight="38.0" prefWidth="275.0" showTickLabels="true" snapToTicks="true" />
                               <Label fx:id="blueValue" prefHeight="17.0" prefWidth="29.0" text="0" translateX="20.0" translateY="2.0" />
                            </children>
                         </HBox>
