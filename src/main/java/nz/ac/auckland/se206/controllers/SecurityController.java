@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
@@ -17,6 +18,8 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.StyleManager.HoverColour;
+import nz.ac.auckland.se206.StyleManager.ItemAction;
 
 public class SecurityController extends Controller {
 
@@ -36,10 +39,13 @@ public class SecurityController extends Controller {
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
 
+  StyleManager styleManager = StyleManager.getInstance();
+
   public void initialize() {
+    styleManager.addItems(computer,logInScreen);
     SceneManager.setController(Scenes.SECURITY, this);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
-    StyleManager.setItemsMessage("A computer...?",computer);
+    styleManager.setItemsMessage("A computer...?",computer);
   }
 
   //   handling mouse events on walkie talkie
@@ -64,7 +70,7 @@ public class SecurityController extends Controller {
 
   // set visibility of log in screen off (log off computer)
   public void OnLogOff() {
-    logInScreen.setVisible(false);
+    styleManager.handleItems(ItemAction.INVISIBLE,computer);
   }
 
   // check log in details before logging in
@@ -76,12 +82,12 @@ public class SecurityController extends Controller {
   @FXML
   void onClickComputer(MouseEvent event) {
     // if already logged in, skip log in stage
-    if (GameState.isSecurityComputerLoggedIn == false) {
-      logInScreen.setVisible(true);
+    if (!GameState.isSecurityComputerLoggedIn) {
+      styleManager.handleItems(ItemAction.VISIBLE,logInScreen);
     } else {
-      logInScreen.setVisible(false);
+      styleManager.handleItems(ItemAction.INVISIBLE,logInScreen);
       App.setUI(Scenes.COMPUTER);
-      StyleManager.removeItemsMessage(computer);
+      // StyleManager.removeItemsMessage(computer);
     }
   }
 
@@ -96,6 +102,7 @@ public class SecurityController extends Controller {
 
     if (areCredentialsValid(enteredUsername, enteredPassword, randomUsername, randomPassword)) {
       handleSuccessfulLogin();
+      styleManager.setItemsHoverState(HoverColour.GREEN, computer);
     } else if (areCredentialsEmpty()) {
       handleEmptyCredentials();
     } else {
@@ -121,10 +128,10 @@ public class SecurityController extends Controller {
   private void handleSuccessfulLogin() {
     loginMsgLbl.setText("Success");
     GameState.isSecurityComputerLoggedIn = true;
-    logInScreen.setVisible(false);
     App.setUI(Scenes.COMPUTER);
-    StyleManager.setItemsHoverState(34, 255, 0, computer);
+    styleManager.handleItems(ItemAction.INVISIBLE,logInScreen);
   }
+
 
   // mechanics for empty credential input
   private void handleEmptyCredentials() {
