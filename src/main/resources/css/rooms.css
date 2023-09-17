@@ -83,3 +83,8 @@
     -fx-border-color: rgb(255, 5, 5);
     -fx-border-radius: 40;
 }
+
+.goldDoor:hover {
+    -fx-effect: dropshadow(gaussian, rgba(255, 50, 0, 0.7), 5, 5, 0, 0);
+    -fx-cursor: hand;
+}
