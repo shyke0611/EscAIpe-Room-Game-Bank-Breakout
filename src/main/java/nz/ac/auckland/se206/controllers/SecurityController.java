@@ -10,7 +10,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
@@ -19,7 +18,6 @@ import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager.HoverColour;
-import nz.ac.auckland.se206.StyleManager.ItemAction;
 
 public class SecurityController extends Controller {
 
@@ -42,7 +40,6 @@ public class SecurityController extends Controller {
   StyleManager styleManager = StyleManager.getInstance();
 
   public void initialize() {
-    styleManager.addItems(computer,logInScreen);
     SceneManager.setController(Scenes.SECURITY, this);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     styleManager.setItemsMessage("A computer...?",computer);
@@ -70,7 +67,7 @@ public class SecurityController extends Controller {
 
   // set visibility of log in screen off (log off computer)
   public void OnLogOff() {
-    styleManager.handleItems(ItemAction.INVISIBLE,computer);
+   logInScreen.setVisible(false);
   }
 
   // check log in details before logging in
@@ -83,9 +80,9 @@ public class SecurityController extends Controller {
   void onClickComputer(MouseEvent event) {
     // if already logged in, skip log in stage
     if (!GameState.isSecurityComputerLoggedIn) {
-      styleManager.handleItems(ItemAction.VISIBLE,logInScreen);
+      logInScreen.setVisible(true);
     } else {
-      styleManager.handleItems(ItemAction.INVISIBLE,logInScreen);
+      logInScreen.setVisible(false);
       App.setUI(Scenes.COMPUTER);
       // StyleManager.removeItemsMessage(computer);
     }
@@ -129,7 +126,7 @@ public class SecurityController extends Controller {
     loginMsgLbl.setText("Success");
     GameState.isSecurityComputerLoggedIn = true;
     App.setUI(Scenes.COMPUTER);
-    styleManager.handleItems(ItemAction.INVISIBLE,logInScreen);
+    logInScreen.setVisible(false);
   }
 
 

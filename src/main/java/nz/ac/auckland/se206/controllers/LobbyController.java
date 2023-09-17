@@ -23,7 +23,6 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager.HoverColour;
-import nz.ac.auckland.se206.StyleManager.ItemAction;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 
 public class LobbyController extends Controller {
@@ -61,7 +60,6 @@ public class LobbyController extends Controller {
 
   public void initialize() {
     SceneManager.setController(Scenes.LOBBY, this);
-    styleManager.addItems(key1,key2,key3,key4,drawerHolder,guard,credentialsBook,credentialsNote);
     // obtain random credentials
     randomUsername = RandomnessGenerate.getUsername();
     randomPassword = RandomnessGenerate.getPasscode();
@@ -132,7 +130,10 @@ public class LobbyController extends Controller {
       if (clickedHBox == RandomnessGenerate.getkeyLocation()) {
         GameState.isKeyLocationFound = true;
         AnimationManager.fadeTransition(key,2);
-        styleManager.handleItems(ItemAction.DISABLE,key1,key2,key3,key4);
+        key1.setDisable(true);
+        key2.setDisable(true);
+        key3.setDisable(true);
+        key4.setDisable(true);
       }
     }
   }
@@ -152,7 +153,7 @@ public class LobbyController extends Controller {
   void onGuardPressed(MouseEvent event) {
     GameState.isGuardDistracted = true;
     sleepingAnmiation();
-    styleManager.handleItems(ItemAction.DISABLE,guard);
+    guard.setDisable(true);
     styleManager.setItemsHoverState(HoverColour.GREEN,key1,key2,key3,key4);
     styleManager.setItemsMessage("Something seems odd here...",key1,key2,key3,key4);
   }
