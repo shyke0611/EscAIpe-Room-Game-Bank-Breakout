@@ -40,6 +40,7 @@ public class ChemicalMixingController extends Controller {
   @FXML private Rectangle secondPour;
   @FXML private Rectangle thirdPour;
   @FXML private Rectangle fourthPour;
+  @FXML private Rectangle whiteRectangle;
 
   private String randomYellow;
   private String randomRed;
@@ -141,6 +142,14 @@ public class ChemicalMixingController extends Controller {
             greenVile.setOpacity(0.5);
           } else {
             retryButton.setDisable(false);
+            yellowVile.setDisable(true);
+            redVile.setDisable(true);
+            blueVile.setDisable(true);
+            greenVile.setDisable(true);
+            yellowVile.setOpacity(0.5);
+            redVile.setOpacity(0.5);
+            blueVile.setOpacity(0.5);
+            greenVile.setOpacity(0.5);
           }
         });
   }
@@ -163,6 +172,7 @@ public class ChemicalMixingController extends Controller {
     if (pourCount == 1) {
       firstPour.setVisible(true);
       firstPour.setFill(currentColour);
+      whiteRectangle.setVisible(true);
     } else if (pourCount == 2) {
       secondPour.setVisible(true);
       secondPour.setFill(currentColour);
@@ -201,6 +211,16 @@ public class ChemicalMixingController extends Controller {
     secondPour.setVisible(false);
     thirdPour.setVisible(false);
     fourthPour.setVisible(false);
+
+    // Reset all the viles
+    yellowVile.setDisable(false);
+    yellowVile.setOpacity(1);
+    redVile.setDisable(false);
+    redVile.setOpacity(1);
+    blueVile.setDisable(false);
+    blueVile.setOpacity(1);
+    greenVile.setDisable(false);
+    greenVile.setOpacity(1);
 
     // Clear the vileColour
     vileColour = null;
