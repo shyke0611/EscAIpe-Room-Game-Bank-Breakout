@@ -69,7 +69,7 @@ public class App extends Application {
     SceneManager.addUi(SceneManager.Scenes.COMPUTER, loadFxml("computer"));
     SceneManager.addUi(SceneManager.Scenes.HACKERVAN, loadFxml("hackervan"));
 
-    Parent root = SceneManager.getUiRoot(Scenes.MAIN_MENU);
+    Parent root = SceneManager.getUiRoot(Scenes.LOBBY);
 
     scene = new Scene(root, 1000, 700);
     stage.setScene(scene);

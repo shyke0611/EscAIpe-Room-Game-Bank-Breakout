@@ -1,6 +1,8 @@
 .walkietalkie {
     -fx-background-color: #8ac1f5;
     -fx-background-radius: 70 0 0 70;
+    -fx-border-color: #328add;
+    -fx-border-radius: 70 0 0 70;
 
 }
 
@@ -24,6 +26,14 @@
 
 }
 
+.roomswitchback {
+    -fx-background-color: #9fd7ff;
+    -fx-background-radius: 10;
+    -fx-border-color: #328add;
+    -fx-border-radius: 10;
+
+}
+
 .text-area {
     -fx-control-inner-background: black;
     -fx-control-inner-border: black;
@@ -39,4 +49,37 @@
     -fx-text-fill: green;
     -fx-prompt-text-fill: green;
     -fx-background-radius: 0 0 20 0;
+}
+
+.keylocations:hover {
+    -fx-effect: dropshadow(gaussian, rgba(255, 183, 0, 0.7), 5, 5, 0, 0);
+    -fx-cursor: hand;
+}
+
+
+.guard:hover {
+    -fx-effect: dropshadow(gaussian, rgba(34, 255, 0, 0.7), 5, 5, 0, 0);
+    -fx-cursor: hand;
+
+}
+
+.drawer:hover {
+    -fx-effect: dropshadow(gaussian, rgba(255, 0, 0, 0.7), 5, 5, 0, 0);
+    -fx-cursor: hand;
+}
+
+.credentials:hover {
+    -fx-effect: dropshadow(gaussian, rgba(34, 255, 0, 0.7), 5, 5, 0, 0);
+    -fx-cursor: hand;
+}
+
+.close-button {
+    -fx-background-color: white;
+    -fx-background-radius: 40;
+}
+
+.close-button:hover {
+    -fx-cursor: hand;
+    -fx-border-color: rgb(255, 5, 5);
+    -fx-border-radius: 40;
 }
