@@ -1,9 +1,12 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
@@ -13,9 +16,21 @@ public class VaultController extends Controller {
 
   @FXML private ImageView Lobby;
   @FXML private ImageView Security;
+  @FXML private ImageView goldDoor;
+  @FXML private ImageView silverDoor;
+  @FXML private ImageView bronzeDoor;
+
+  @FXML private Rectangle dialogueBox;
+  @FXML private Label moneyValue;
+  @FXML private Label difficultyValue;
+
+  @FXML private HBox doorHolder;
 
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
+  @FXML private Rectangle AIAccess;
+
+  private Boolean AIAccessGranted = false;
 
   public void initialize() {
     SceneManager.setController(Scenes.VAULT, this);
@@ -50,6 +65,71 @@ public class VaultController extends Controller {
 
   public void onSwitchToChemicalMixing() {
     App.setUI(Scenes.CHEMICALMIXING);
+  }
+
+  public void grantAccess() {
+    AIAccessGranted = true;
+  }
+
+  @FXML
+  public void showInfo(MouseEvent event) {
+    String door = event.getSource().toString();
+
+    if (AIAccessGranted) {
+      String style = "-fx-effect: dropshadow(gaussian, #00bf00, 5, 5, 0, 0);";
+      String moneyText = "Money: $";
+      String difficultyText = "Difficulty: ";
+
+      if (door.contains("goldDoor")) {
+        setDoorStyle(goldDoor, style);
+        setInfoText(moneyText + "20,000,000", difficultyText + "★★★★★");
+      } else if (door.contains("silverDoor")) {
+        setDoorStyle(silverDoor, style);
+        setInfoText(moneyText + "10,000,000", difficultyText + "★★★☆☆");
+      } else if (door.contains("bronzeDoor")) {
+        setDoorStyle(bronzeDoor, style);
+        setInfoText(moneyText + "5,000,000", difficultyText + "★☆☆☆☆");
+      }
+    } else {
+      String style = "-fx-effect: dropshadow(gaussian, #ff0000, 5, 5, 0, 0);";
+      setDoorStyle(getDoorByEvent(event), style);
+      setInfoText("Money: ???????", "Difficulty: ???????");
+    }
+  }
+
+  @FXML
+  public void clearInfo(MouseEvent event) {
+    dialogueBox.setVisible(false);
+    moneyValue.setText(null);
+    difficultyValue.setText(null);
+    setDoorStyle(goldDoor, "");
+    setDoorStyle(bronzeDoor, "");
+    setDoorStyle(silverDoor, "");
+  }
+
+  private void setDoorStyle(ImageView door, String style) {
+    if (door != null) {
+      door.setStyle(style);
+    }
+  }
+
+  private void setInfoText(String moneyText, String difficultyText) {
+    dialogueBox.setVisible(true);
+    moneyValue.setVisible(true);
+    difficultyValue.setVisible(true);
+    moneyValue.setText(moneyText);
+    difficultyValue.setText(difficultyText);
+  }
+
+  private ImageView getDoorByEvent(MouseEvent event) {
+    if (event.getSource().toString().contains("goldDoor")) {
+      return goldDoor;
+    } else if (event.getSource().toString().contains("silverDoor")) {
+      return silverDoor;
+    } else if (event.getSource().toString().contains("bronzeDoor")) {
+      return bronzeDoor;
+    }
+    return null;
   }
 
 }
