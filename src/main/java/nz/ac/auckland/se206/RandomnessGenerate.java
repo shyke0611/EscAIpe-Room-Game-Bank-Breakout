@@ -70,6 +70,7 @@ public class RandomnessGenerate {
 
   public static int getRandomColourValue(){
     return random.nextInt(255);
+  }
 
   public String getRandomChemialAmount() {
     int randomChemialAmountIndex = random.nextInt(partsAmount.size());
@@ -78,3 +79,4 @@ public class RandomnessGenerate {
 
   }
 }
+
