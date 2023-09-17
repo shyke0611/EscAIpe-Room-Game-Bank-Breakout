@@ -14,6 +14,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
@@ -30,7 +31,7 @@ public class SecurityController extends Controller {
   @FXML private HBox logInScreen;
   @FXML private Label loginMsgLbl;
   @FXML private PasswordField passwordField;
-  @FXML private HBox temporaryComputer;
+  @FXML private HBox computer;
   @FXML private TextField usernameField;
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
@@ -38,6 +39,7 @@ public class SecurityController extends Controller {
   public void initialize() {
     SceneManager.setController(Scenes.SECURITY, this);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
+    StyleManager.setItemsMessage("A computer...?",computer);
   }
 
   //   handling mouse events on walkie talkie
@@ -79,6 +81,7 @@ public class SecurityController extends Controller {
     } else {
       logInScreen.setVisible(false);
       App.setUI(Scenes.COMPUTER);
+      StyleManager.removeItemsMessage(computer);
     }
   }
 
@@ -120,6 +123,7 @@ public class SecurityController extends Controller {
     GameState.isSecurityComputerLoggedIn = true;
     logInScreen.setVisible(false);
     App.setUI(Scenes.COMPUTER);
+    StyleManager.setItemsHoverState(34, 255, 0, computer);
   }
 
   // mechanics for empty credential input
