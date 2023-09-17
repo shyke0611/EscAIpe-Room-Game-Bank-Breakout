@@ -16,7 +16,11 @@ public class SceneManager {
     DIFFICULTYPAGE,
     COMPUTER,
     HACKERVAN,
+
+    EYESCANNER,
+
     CHEMICALMIXING,
+
   }
 
   private static Controller activeController;
