@@ -46,7 +46,6 @@ public class ChemicalMixingController extends Controller {
 
   private int pourCount;
 
-  private Timeline sliderTimeline;
   private Timeline sliderAnimation;
   private ScaleTransition scaleTransitionGreen;
   private ScaleTransition scaleTransitionYellow;
@@ -57,44 +56,34 @@ public class ChemicalMixingController extends Controller {
   public void initialize() {
     SceneManager.setController(Scenes.CHEMICALMIXING, this);
 
+    // Setting up hover animations
     setupListeners();
+
+    // Intialsing recipe and saving for later reference
+    initializeRecipe();
+
+    // Setting up scene
     stopButton.setDisable(true);
     retryButton.setDisable(true);
-    pourCount = 0;
     currentVile.setText("Pick a vile");
+    pourCount = 0;
 
-    RandomnessGenerate random = new RandomnessGenerate();
-    randomYellow = random.getRandomChemialAmount();
-    randomRed = random.getRandomChemialAmount();
-    randomBlue = random.getRandomChemialAmount();
-    randomGreen = random.getRandomChemialAmount();
-
-    yellowParts.setText("Yellow: " + randomYellow);
-    redParts.setText("Red: " + randomRed);
-    blueParts.setText("Blue: " + randomBlue);
-    greenParts.setText("Green: " + randomGreen);
-
+    // Creating slider animation
     sliderAnimation =
         new Timeline(
-            new KeyFrame(Duration.seconds(1), new KeyValue(slider.valueProperty(), slider.getMax()))
-            // new KeyFrame(
-            //     Duration.seconds(3),
-            //     new KeyValue(slider.valueProperty(), 0)) // Go back to the minimum value
-            );
+            new KeyFrame(
+                Duration.seconds(1), new KeyValue(slider.valueProperty(), slider.getMax())));
 
     sliderAnimation.setAutoReverse(true); // Enable auto-reverse
     sliderAnimation.setCycleCount(Timeline.INDEFINITE); // Repeat indefinitely
-
-    // Start the animation
-    // sliderAnimation.play();
   }
 
   @FXML
   public void pourChemical(MouseEvent event) {
+
     ImageView image = (ImageView) event.getSource();
 
-    System.out.println(image.getId());
-
+    // Setting the current vile label and saving current clicked colour
     if (image.getId().equals("yellowVile")) {
       currentVile.setText("Yellow Vile");
       vileColour = "yellow";
@@ -112,22 +101,25 @@ public class ChemicalMixingController extends Controller {
     sliderAnimation.play();
     stopButton.setDisable(false);
 
+    // Pour button was clicked
     stopButton.setOnAction(
         e -> {
           stopSlider();
           stopButton.setDisable(true);
           currentVile.setText("Pick a vile");
+
           int value = (int) Math.floor(slider.getValue());
+
+          // Ugly code to determine if user was correct, please help refactor if you know a better
+          // wayy
           if (vileColour == "yellow" && value == Integer.parseInt(randomYellow)) {
             value = 1;
             pourCount++;
             fillBeaker(value, pourCount);
-
           } else if (vileColour == "red" && value == Integer.parseInt(randomRed)) {
             value = 2;
             pourCount++;
             fillBeaker(value, pourCount);
-
           } else if (vileColour == "blue" && value == Integer.parseInt(randomBlue)) {
             value = 3;
             pourCount++;
@@ -144,6 +136,8 @@ public class ChemicalMixingController extends Controller {
 
   @FXML
   public void fillBeaker(int value, int pourCount) {
+
+    // More ugly code to determine which rectangle to fill and what colour
     Paint currentColour;
     if (value == 1) {
       currentColour = Paint.valueOf("#ffd45e");
@@ -177,10 +171,10 @@ public class ChemicalMixingController extends Controller {
   @FXML
   public void retryButtonClicked() {
     // Reset all necessary variables and elements
-    slider.setValue(0); // Reset the slider position
-    currentVile.setText(""); // Clear the currentVile label
-    stopButton.setDisable(true); // Disable the stop button
-    pourCount = 0; // Reset the pour count
+    slider.setValue(0);
+    currentVile.setText("");
+    stopButton.setDisable(true);
+    pourCount = 0;
     firstPour.setVisible(false); // Hide pour rectangles
     secondPour.setVisible(false);
     thirdPour.setVisible(false);
@@ -243,5 +237,19 @@ public class ChemicalMixingController extends Controller {
     yellowVile.setOnMouseExited(event -> playAnimationReverse(scaleTransitionYellow));
     blueVile.setOnMouseEntered(event -> playAnimationForward(scaleTransitionBlue));
     blueVile.setOnMouseExited(event -> playAnimationReverse(scaleTransitionBlue));
+  }
+
+  @FXML
+  public void initializeRecipe() {
+    RandomnessGenerate random = new RandomnessGenerate();
+    randomYellow = random.getRandomChemialAmount();
+    randomRed = random.getRandomChemialAmount();
+    randomBlue = random.getRandomChemialAmount();
+    randomGreen = random.getRandomChemialAmount();
+
+    yellowParts.setText("Yellow: " + randomYellow);
+    redParts.setText("Red: " + randomRed);
+    blueParts.setText("Blue: " + randomBlue);
+    greenParts.setText("Green: " + randomGreen);
   }
 }
