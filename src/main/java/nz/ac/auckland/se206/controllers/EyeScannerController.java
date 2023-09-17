@@ -10,6 +10,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.WalkieTalkieManager;
 
 public class EyeScannerController  extends Controller{
   
@@ -28,6 +29,8 @@ public class EyeScannerController  extends Controller{
     @FXML private Label redValue;
     @FXML private Label greenValue;
     @FXML private Label blueValue;
+
+    @FXML private VBox walkietalkieText;
 
     private int red;
     private int green;
@@ -101,6 +104,8 @@ public class EyeScannerController  extends Controller{
       blueSlider.setStyle(style);
     });
 
+    // Sync Background walkie talkie
+    WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
   }
 
   
