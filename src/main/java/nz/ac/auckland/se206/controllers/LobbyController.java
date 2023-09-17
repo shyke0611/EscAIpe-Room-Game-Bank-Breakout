@@ -14,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
@@ -63,6 +64,9 @@ public class LobbyController extends Controller {
     RandomnessGenerate.addKeyLocation(key1, key2, key3, key4);
     RandomnessGenerate.generateRandomKeyLocation();
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
+    StyleManager.setItemsMessage("Guard is watching...",key1,key2,key3,key4);
+    StyleManager.setItemsMessage("It's locked...",drawerHolder);
+    StyleManager.setItemsMessage("A note?",credentialsBook);
   }
 
   //   handling mouse events on walkie talkie
@@ -110,6 +114,7 @@ public class LobbyController extends Controller {
     // set note text to the randomly generated credentials
     passwordLbl.setText("Password: " + randomPassword);
     usernameLbl.setText("Username: " + randomUsername);
+    StyleManager.removeItemsMessage(credentialsBook);
   }
 
   // pressing any location of the keys
@@ -118,34 +123,21 @@ public class LobbyController extends Controller {
   void onkeyLocationPressed(MouseEvent event) {
     if (GameState.isGuardDistracted) {
       HBox clickedHBox = (HBox) event.getSource();
+      StyleManager.setItemsMessage("Already looked here...",clickedHBox);
       if (clickedHBox == RandomnessGenerate.getkeyLocation()) {
         GameState.isKeyLocationFound = true;
-        showKeyAnimation(key);
+        AnimationManager.fadeTransition(key,2);
         disableKeyLocations();
       }
     }
   }
 
-  // shoing animation of key moving up
-  public void showKeyAnimation(Node node) {
-    if (!GameState.isKeyFound) {
-        // Disable mouse click events on the node
-        FadeTransition fadeIn = new FadeTransition(Duration.seconds(2), key);
-        fadeIn.setFromValue(0.0); // Start from fully transparent
-        fadeIn.setToValue(1.0);   // Fade in to fully opaque
-        // Play the FadeTransition
-        fadeIn.play();
-    }
-}
-
-
 // pressing the key
   @FXML
   void onKeyPressed(MouseEvent event) {
-    if (GameState.isKeyLocationFound) {
       GameState.isKeyFound = true;
       key.setVisible(false);
-    }
+      StyleManager.setItemsHoverState(34, 255, 0, drawerHolder);
   }
 
   // diabling key locations
@@ -162,7 +154,8 @@ public class LobbyController extends Controller {
     GameState.isGuardDistracted = true;
     sleepingAnmiation();
     guard.setDisable(true);
-    StyleManager.setItemsState(34,255,0,key1,key2,key3,key4);
+    StyleManager.setItemsHoverState(34,255,0,key1,key2,key3,key4);
+    StyleManager.setItemsMessage("Something seems odd here...",key1,key2,key3,key4);
   }
 
   private boolean isZzz1Visible = false;
