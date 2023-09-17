@@ -6,6 +6,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
@@ -49,12 +50,12 @@ public class EyeScannerController  extends Controller{
     blueValue.textProperty().bind(blueSlider.valueProperty().asString("%.0f"));
 
 
-    // Adjust the colour of the artificial eye based on the sliders and adjust slider colour
+    // Adjust the colour of the artificial eye and adjust slider colour based on the sliders 
 
+    //Red Slider
     redSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
       red = newValue.intValue();
       artificialEye.setFill(Paint.valueOf("rgb(" + red + "," + green + "," + blue + ")"));
-
       // From Stack Overflow: https://stackoverflow.com/questions/51343759/how-to-change-fill-color-of-slider-in-javafx
       double percentage = 100.0 * newValue.doubleValue() / redSlider.getMax();
       String style = String.format(
@@ -68,10 +69,10 @@ public class EyeScannerController  extends Controller{
   
     });
 
+    //Green Slider
     greenSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
       green = newValue.intValue();
       artificialEye.setFill(Paint.valueOf("rgb(" + red + "," + green + "," + blue + ")"));
-
       // From Stack Overflow: https://stackoverflow.com/questions/51343759/how-to-change-fill-color-of-slider-in-javafx
       double percentage = 100.0 * newValue.doubleValue() / redSlider.getMax();
       String style = String.format(
@@ -84,10 +85,10 @@ public class EyeScannerController  extends Controller{
       greenSlider.setStyle(style);
     });
 
+    //Blue Slider
     blueSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
       blue = newValue.intValue();
       artificialEye.setFill(Paint.valueOf("rgb(" + red + "," + green + "," + blue + ")"));
-
       // From Stack Overflow: https://stackoverflow.com/questions/51343759/how-to-change-fill-color-of-slider-in-javafx
       double percentage = 100.0 * newValue.doubleValue() / redSlider.getMax();
       String style = String.format(
@@ -131,6 +132,10 @@ public class EyeScannerController  extends Controller{
      error.setVisible(false);
     guardEye.setFill(Paint.valueOf("rgb(" + guardRed + "," + guardGreen + "," + guardBlue + ")"));
     System.out.println("Guard eye colour: " + guardRed + " " + guardGreen + " " + guardBlue);
+  }
+
+  public void switchToVault(){
+    App.setUI(Scenes.VAULT);
   }
 
   

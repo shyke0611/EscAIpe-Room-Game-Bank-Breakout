@@ -44,4 +44,8 @@ public class VaultController extends Controller {
     App.setUI(Scenes.HACKERVAN);
   }
 
+  public void switchToEyeScanner(){
+    App.setUI(Scenes.EYESCANNER);
+  }
+
 }
