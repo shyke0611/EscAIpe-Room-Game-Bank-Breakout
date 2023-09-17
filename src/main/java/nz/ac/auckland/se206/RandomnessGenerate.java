@@ -63,4 +63,8 @@ public class RandomnessGenerate {
   public static HBox getkeyLocation() {
     return randomKeyLocation;
   }
+
+  public static int getRandomColourValue(){
+    return random.nextInt(255);
+  }
 }

@@ -167,7 +167,7 @@
             </VBox>
             <StackPane alignment="TOP_RIGHT" layoutX="-2.0" layoutY="1.0" prefHeight="27.0" prefWidth="862.0">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d3d3" height="30.0" stroke="BLACK" strokeType="INSIDE" translateY="-1.0" width="861.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d3d3" height="30.0" onMouseClicked="#updateGuardEye" stroke="BLACK" strokeType="INSIDE" translateY="-1.0" width="861.0" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" stroke="BLACK" strokeType="INSIDE" translateX="1.0" translateY="-1.0" width="40.0" />
                   <Label alignment="CENTER" prefHeight="25.0" prefWidth="40.0" text="X">
                      <font>

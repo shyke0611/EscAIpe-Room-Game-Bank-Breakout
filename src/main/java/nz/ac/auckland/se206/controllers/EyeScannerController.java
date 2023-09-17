@@ -6,6 +6,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
@@ -27,13 +28,17 @@ public class EyeScannerController  extends Controller{
     @FXML private Label greenValue;
     @FXML private Label blueValue;
 
-    private Integer red;
+    private int red;
     private int green;
     private int blue;
 
+    private int guardRed;
+    private int guardGreen;
+    private int guardBlue;
+
 
   public void initialize() {
-    
+
     SceneManager.setController(Scenes.EYESCANNER, this);
     accessGranted.setVisible(false);
     accessDenied.setVisible(false);
@@ -65,7 +70,34 @@ public class EyeScannerController  extends Controller{
 
   
 
-  public void compareSample(){}
+  public void compareSample(){
+    if (isColourMatch(red, guardRed) && isColourMatch(green, guardGreen) && isColourMatch(blue, guardBlue)){
+      accessGranted.setVisible(true);
+      accessDenied.setVisible(false);
+    } else {
+      accessGranted.setVisible(false);
+      accessDenied.setVisible(true);
+    }
+
+  }
+
+  private boolean isColourMatch(int colour, int guardColour){
+    
+    if (colour >= guardColour - 35 && colour <= guardColour + 35){
+        return true;
+    };
+    return false;
+  }
+
+  public void updateGuardEye(){
+     guardRed = RandomnessGenerate.getRandomColourValue();
+     guardGreen = RandomnessGenerate.getRandomColourValue();
+     guardBlue = RandomnessGenerate.getRandomColourValue();
+     mystery.setVisible(false);
+     error.setVisible(false);
+    guardEye.setFill(Paint.valueOf("rgb(" + guardRed + "," + guardGreen + "," + guardBlue + ")"));
+    System.out.println("Guard eye colour: " + guardRed + " " + guardGreen + " " + guardBlue);
+  }
 
   
 }
