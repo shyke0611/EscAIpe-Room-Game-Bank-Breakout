@@ -27,15 +27,39 @@ public class EyeScannerController  extends Controller{
     @FXML private Label greenValue;
     @FXML private Label blueValue;
 
+    private Integer red;
+    private int green;
+    private int blue;
+
 
   public void initialize() {
+    
     SceneManager.setController(Scenes.EYESCANNER, this);
     accessGranted.setVisible(false);
     accessDenied.setVisible(false);
     
+    // Bind the label and the slider
     redValue.textProperty().bind(redSlider.valueProperty().asString("%.0f"));
     greenValue.textProperty().bind(greenSlider.valueProperty().asString("%.0f"));
     blueValue.textProperty().bind(blueSlider.valueProperty().asString("%.0f"));
+
+
+    // Adjust the colour of the artificial eye based on the sliders
+
+    redSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+      red = newValue.intValue();
+      artificialEye.setFill(Paint.valueOf("rgb(" + red + "," + green + "," + blue + ")"));
+    });
+
+    greenSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+      green = newValue.intValue();
+      artificialEye.setFill(Paint.valueOf("rgb(" + red + "," + green + "," + blue + ")"));
+    });
+
+    blueSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+      blue = newValue.intValue();
+      artificialEye.setFill(Paint.valueOf("rgb(" + red + "," + green + "," + blue + ")"));
+    });
 
   }
 
