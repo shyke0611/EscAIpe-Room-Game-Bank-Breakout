@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
@@ -21,6 +22,7 @@ import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 
 public class LobbyController extends Controller {
@@ -30,7 +32,7 @@ public class LobbyController extends Controller {
   @FXML private ImageView Vault;
   @FXML private VBox VaultRoomSwitch;
   @FXML private Button closeNoteBtn;
-  @FXML private VBox credentialsNote;
+  @FXML private HBox credentialsNote;
   @FXML private HBox drawerHolder;
   @FXML private VBox lobbyRoomSwitch;
   @FXML private Label passwordLbl;
@@ -54,6 +56,7 @@ public class LobbyController extends Controller {
 
   private String randomUsername;
   private String randomPassword;
+  StyleManager styleManager = StyleManager.getInstance();
 
   public void initialize() {
     SceneManager.setController(Scenes.LOBBY, this);
@@ -64,9 +67,9 @@ public class LobbyController extends Controller {
     RandomnessGenerate.addKeyLocation(key1, key2, key3, key4);
     RandomnessGenerate.generateRandomKeyLocation();
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
-    StyleManager.setItemsMessage("Guard is watching...",key1,key2,key3,key4);
-    StyleManager.setItemsMessage("It's locked...",drawerHolder);
-    StyleManager.setItemsMessage("A note?",credentialsBook);
+    styleManager.setItemsMessage("Guard is watching...",key1,key2,key3,key4);
+    styleManager.setItemsMessage("It's locked...",drawerHolder);
+    styleManager.setItemsMessage("A note?",credentialsBook);
   }
 
   //   handling mouse events on walkie talkie
@@ -114,7 +117,7 @@ public class LobbyController extends Controller {
     // set note text to the randomly generated credentials
     passwordLbl.setText("Password: " + randomPassword);
     usernameLbl.setText("Username: " + randomUsername);
-    StyleManager.removeItemsMessage(credentialsBook);
+    styleManager.removeItemsTooltip(credentialsBook);
   }
 
   // pressing any location of the keys
@@ -123,11 +126,14 @@ public class LobbyController extends Controller {
   void onkeyLocationPressed(MouseEvent event) {
     if (GameState.isGuardDistracted) {
       HBox clickedHBox = (HBox) event.getSource();
-      StyleManager.setItemsMessage("Already looked here...",clickedHBox);
+      styleManager.setItemsMessage("Already looked here...",clickedHBox);
       if (clickedHBox == RandomnessGenerate.getkeyLocation()) {
         GameState.isKeyLocationFound = true;
         AnimationManager.fadeTransition(key,2);
-        disableKeyLocations();
+        key1.setDisable(true);
+        key2.setDisable(true);
+        key3.setDisable(true);
+        key4.setDisable(true);
       }
     }
   }
@@ -137,17 +143,10 @@ public class LobbyController extends Controller {
   void onKeyPressed(MouseEvent event) {
       GameState.isKeyFound = true;
       key.setVisible(false);
-      StyleManager.setItemsHoverState(34, 255, 0, drawerHolder);
-      StyleManager.setItemsMessage("The key fits...",drawerHolder);
+      styleManager.setItemsHoverState(HoverColour.GREEN, drawerHolder);
+      styleManager.setItemsMessage("The key fits...",drawerHolder);
   }
 
-  // diabling key locations
-  private void disableKeyLocations() {
-    key1.setDisable(true);
-    key2.setDisable(true);
-    key3.setDisable(true);
-    key4.setDisable(true);
-  }
 
 
   @FXML
@@ -155,8 +154,8 @@ public class LobbyController extends Controller {
     GameState.isGuardDistracted = true;
     sleepingAnmiation();
     guard.setDisable(true);
-    StyleManager.setItemsHoverState(34,255,0,key1,key2,key3,key4);
-    StyleManager.setItemsMessage("Something seems odd here...",key1,key2,key3,key4);
+    styleManager.setItemsHoverState(HoverColour.GREEN,key1,key2,key3,key4);
+    styleManager.setItemsMessage("Something seems odd here...",key1,key2,key3,key4);
   }
 
   private boolean isZzz1Visible = false;

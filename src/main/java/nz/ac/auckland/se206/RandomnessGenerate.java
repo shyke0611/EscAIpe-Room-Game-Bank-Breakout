@@ -10,17 +10,20 @@ public class RandomnessGenerate {
   private static List<String> passcodeList = new ArrayList<>();
   private static List<String> usernameList = new ArrayList<>();
   private static List<HBox> keyLocationList = new ArrayList<>();
+  private static List<String> partsAmount = new ArrayList<>();
 
   private static Random random = new Random();
   private static String randomUsername;
   private static String randomPassword;
   private static HBox randomKeyLocation;
+  private static String randomChemialAmount;
 
   static {
     // Initialize the lists when the class is loaded and stores all the possible passwords and
     // usernames to choose from
     passcodeList = Arrays.asList("206", "281", "282", "284", "274");
     usernameList = Arrays.asList("username1", "username2", "username3", "username4");
+    partsAmount = Arrays.asList("1", "2", "3", "4");
   }
 
   // calling all the generate random stuff into one method
@@ -33,12 +36,12 @@ public class RandomnessGenerate {
   public static void generateRandomCredentials() {
     int randomPasswordIndex = random.nextInt(passcodeList.size());
     int randomUsernameIndex = random.nextInt(usernameList.size());
-     
+
     randomUsername = usernameList.get(randomUsernameIndex);
     randomPassword = passcodeList.get(randomPasswordIndex);
   }
 
-  // generating random HBox (key location) 
+  // generating random HBox (key location)
   public static void generateRandomKeyLocation() {
     int randomHBoxIndex = random.nextInt(keyLocationList.size());
     randomKeyLocation = keyLocationList.get(randomHBoxIndex);
@@ -64,7 +67,14 @@ public class RandomnessGenerate {
     return randomKeyLocation;
   }
 
+
   public static int getRandomColourValue(){
     return random.nextInt(255);
+
+  public String getRandomChemialAmount() {
+    int randomChemialAmountIndex = random.nextInt(partsAmount.size());
+    randomChemialAmount = partsAmount.get(randomChemialAmountIndex);
+    return randomChemialAmount;
+
   }
 }

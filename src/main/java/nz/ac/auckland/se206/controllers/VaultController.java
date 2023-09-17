@@ -6,8 +6,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager;
-import nz.ac.auckland.se206.WalkieTalkieManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.WalkieTalkieManager;
 
 public class VaultController extends Controller {
 
@@ -16,8 +16,6 @@ public class VaultController extends Controller {
 
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
-
-  
 
   public void initialize() {
     SceneManager.setController(Scenes.VAULT, this);
@@ -44,8 +42,14 @@ public class VaultController extends Controller {
     App.setUI(Scenes.HACKERVAN);
   }
 
+
   public void switchToEyeScanner(){
     App.setUI(Scenes.EYESCANNER);
+  }
+
+
+  public void onSwitchToChemicalMixing() {
+    App.setUI(Scenes.CHEMICALMIXING);
   }
 
 }

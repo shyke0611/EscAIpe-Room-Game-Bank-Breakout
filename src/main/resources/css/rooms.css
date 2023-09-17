@@ -83,3 +83,34 @@
     -fx-border-color: rgb(255, 5, 5);
     -fx-border-radius: 40;
 }
+
+.computer-button {
+    -fx-background-color: #000000;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: #b59e1d;
+    -fx-text-fill: #b59e1d;
+    -fx-font-size: 15px;
+    -fx-font-family: 'Weibei SC';
+
+}
+
+.computer-button:hover {
+    -fx-border-color: #eccb0f;
+    -fx-text-fill: #eccb0f;
+    -fx-cursor: hand;
+}
+
+.computer-button:pressed {
+    -fx-border-color: #b59e1d;
+    -fx-text-fill: #b59e1d;
+    -fx-cursor: hand;
+}
+
+.text {
+    -fx-background-color: #000000;
+    -fx-border-color: #eccb0f;
+    -fx-text-fill: #eccb0f;
+    -fx-prompt-text-fill: #eccb0f;
+
+}

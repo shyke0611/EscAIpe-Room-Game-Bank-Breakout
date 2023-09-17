@@ -16,7 +16,11 @@ public class SceneManager {
     DIFFICULTYPAGE,
     COMPUTER,
     HACKERVAN,
+
     EYESCANNER,
+
+    CHEMICALMIXING,
+
   }
 
   private static Controller activeController;
@@ -26,15 +30,15 @@ public class SceneManager {
 
   private static HashMap<Scenes, Scenes> previousSceneMap = new HashMap<>();
 
-   // Method to set the previous scene for a given current scene
-   public static void setPreviousScene(Scenes currentScene, Scenes previousScene) {
+  // Method to set the previous scene for a given current scene
+  public static void setPreviousScene(Scenes currentScene, Scenes previousScene) {
     previousSceneMap.put(currentScene, previousScene);
   }
 
-    // Method to get the previous scene for a given current scene
-    public static Scenes getPreviousScene(Scenes currentScenesPrev) {
-      return previousSceneMap.get(currentScenesPrev);
-    }
+  // Method to get the previous scene for a given current scene
+  public static Scenes getPreviousScene(Scenes currentScenesPrev) {
+    return previousSceneMap.get(currentScenesPrev);
+  }
 
   // Add a scene to the scene map
   public static void addUi(Scenes appUi, Parent uiRoot) {
@@ -81,5 +85,4 @@ public class SceneManager {
   public static Label getTimerLabel() {
     return activeController.getTimerLabel();
   }
-
 }

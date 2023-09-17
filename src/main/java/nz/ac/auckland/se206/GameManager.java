@@ -45,7 +45,7 @@ public class GameManager {
   private static Objectives activeObjective = Objectives.START_GAME;
   private static DoorObjectives activeDoorObjective = null;
 
-   public static void createGame(Difficulties difficulty, int minutes) {
+  public static void createGame(Difficulties difficulty, int minutes) {
     resetGame();
 
     // Create the difficulty
@@ -65,10 +65,8 @@ public class GameManager {
       default:
         break;
     }
-    
+
     TimerControl.setCount(minutes);
-
-
   }
 
   public static void resetGame() {
@@ -77,7 +75,7 @@ public class GameManager {
     activeObjective = Objectives.START_GAME;
     activeDoorObjective = null;
   }
- 
+
   public static int getQuestionsCorrect() {
     return questionsCorrect;
   }
@@ -97,7 +95,7 @@ public class GameManager {
   public static Difficulty getDifficulty() {
     return difficulty;
   }
-  
+
   public static void completeObjective() {
     switch (activeObjective) {
       case START_GAME:
@@ -248,5 +246,4 @@ public class GameManager {
         return null;
     }
   }
-
 }

@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -124,5 +125,7 @@
             <Font size="58.0" />
          </font>
       </Text>
+      <Rectangle fx:id="chemicalMixingScene" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="79.0" layoutX="103.0" layoutY="249.0" onMouseClicked="#onSwitchToChemicalMixing" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <Text layoutX="157.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chemical mixing " />
    </children>
 </AnchorPane>
