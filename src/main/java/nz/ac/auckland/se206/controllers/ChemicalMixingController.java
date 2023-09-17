@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
@@ -22,6 +23,7 @@ public class ChemicalMixingController extends Controller {
   @FXML private Slider slider;
   @FXML private Button stopButton;
   @FXML private Button retryButton;
+  @FXML private Button continueBtn;
   @FXML private ImageView greenVile;
   @FXML private ImageView redVile;
   @FXML private ImageView blueVile;
@@ -32,6 +34,7 @@ public class ChemicalMixingController extends Controller {
   @FXML private Label yellowParts;
   @FXML private Label greenParts;
   @FXML private Label currentVile;
+  @FXML private Label winLabel;
 
   @FXML private Rectangle firstPour;
   @FXML private Rectangle secondPour;
@@ -116,18 +119,26 @@ public class ChemicalMixingController extends Controller {
             value = 1;
             pourCount++;
             fillBeaker(value, pourCount);
+            yellowVile.setDisable(true);
+            yellowVile.setOpacity(0.5);
           } else if (vileColour == "red" && value == Integer.parseInt(randomRed)) {
             value = 2;
             pourCount++;
             fillBeaker(value, pourCount);
+            redVile.setDisable(true);
+            redVile.setOpacity(0.5);
           } else if (vileColour == "blue" && value == Integer.parseInt(randomBlue)) {
             value = 3;
             pourCount++;
             fillBeaker(value, pourCount);
+            blueVile.setDisable(true);
+            blueVile.setOpacity(0.5);
           } else if (vileColour == "green" && value == Integer.parseInt(randomGreen)) {
             value = 4;
             pourCount++;
             fillBeaker(value, pourCount);
+            greenVile.setDisable(true);
+            greenVile.setOpacity(0.5);
           } else {
             retryButton.setDisable(false);
           }
@@ -166,7 +177,18 @@ public class ChemicalMixingController extends Controller {
   }
 
   @FXML
-  public void checkWin() {}
+  public void checkWin() {
+    retryButton.setVisible(false);
+    stopButton.setVisible(false);
+
+    continueBtn.setVisible(true);
+    winLabel.setVisible(true);
+  }
+
+  @FXML
+  public void setVault() {
+    App.setUI(Scenes.VAULT);
+  }
 
   @FXML
   public void retryButtonClicked() {
