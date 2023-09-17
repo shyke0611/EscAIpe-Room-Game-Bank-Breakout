@@ -49,7 +49,7 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    //initialise the randomiser for all random components
+    // initialise the randomiser for all random components
     RandomnessGenerate.generateRandomGameComponents();
     // Initialise controllers hashmap to SceneManager
     SceneManager.addController(SceneManager.Scenes.VAULT, null);
@@ -59,6 +59,7 @@ public class App extends Application {
     SceneManager.addController(SceneManager.Scenes.DIFFICULTYPAGE, null);
     SceneManager.addController(SceneManager.Scenes.COMPUTER, null);
     SceneManager.addController(SceneManager.Scenes.HACKERVAN, null);
+    SceneManager.addController(SceneManager.Scenes.CHEMICALMIXING, null);
 
     // Add scenes to SceneManager
     SceneManager.addUi(SceneManager.Scenes.VAULT, loadFxml("vault"));
@@ -68,6 +69,7 @@ public class App extends Application {
     SceneManager.addUi(SceneManager.Scenes.DIFFICULTYPAGE, loadFxml("difficultypage"));
     SceneManager.addUi(SceneManager.Scenes.COMPUTER, loadFxml("computer"));
     SceneManager.addUi(SceneManager.Scenes.HACKERVAN, loadFxml("hackervan"));
+    SceneManager.addUi(SceneManager.Scenes.CHEMICALMIXING, loadFxml("chemicalmixing"));
 
     Parent root = SceneManager.getUiRoot(Scenes.MAIN_MENU);
 
