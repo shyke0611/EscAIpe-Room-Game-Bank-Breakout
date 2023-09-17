@@ -57,6 +57,12 @@ public class VaultController extends Controller {
     App.setUI(Scenes.HACKERVAN);
   }
 
+
+  public void switchToEyeScanner(){
+    App.setUI(Scenes.EYESCANNER);
+  }
+
+
   public void onSwitchToChemicalMixing() {
     App.setUI(Scenes.CHEMICALMIXING);
   }
@@ -125,4 +131,5 @@ public class VaultController extends Controller {
     }
     return null;
   }
+
 }
