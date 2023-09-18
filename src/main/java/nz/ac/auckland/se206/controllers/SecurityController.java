@@ -14,11 +14,11 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
-import nz.ac.auckland.se206.StyleManager;
-import nz.ac.auckland.se206.WalkieTalkieManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.StyleManager.State;
+import nz.ac.auckland.se206.WalkieTalkieManager;
 
 public class SecurityController extends Controller {
 
@@ -38,13 +38,15 @@ public class SecurityController extends Controller {
   @FXML private TextField usernameField;
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
+  @FXML private ImageView securitybackground;
 
   StyleManager styleManager = StyleManager.getInstance();
 
   public void initialize() {
     SceneManager.setController(Scenes.SECURITY, this);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
-    styleManager.setItemsMessage("A computer...?",computer);
+    styleManager.addItems(computer, electricityBox,securitybackground);
+    styleManager.setItemsMessage("A computer...?", computer);
     styleManager.setItemsMessage("it requires credentials?", logInBtn);
     styleManager.setItemsMessage("no need to open this right now", electricityBox);
   }
@@ -71,15 +73,18 @@ public class SecurityController extends Controller {
 
   @FXML
   void onWireCutting(MouseEvent event) {
-    if (!GameState.isWiresCut /** && GameState.isAlarmTripped */) {
+    if (!GameState.isWiresCut
+    /** && GameState.isAlarmTripped */
+    ) {
       App.setUI(Scenes.WIRECUTTING);
-    } else if (GameState.isWiresCut){
+    } else if (GameState.isWiresCut) {
       electricityBox.setDisable(true);
     }
   }
+
   // set visibility of log in screen off (log off computer)
   public void OnLogOff() {
-   logInScreen.setVisible(false);
+    logInScreen.setVisible(false);
   }
 
   // check log in details before logging in
@@ -140,7 +145,6 @@ public class SecurityController extends Controller {
     GameState.isSecurityComputerLoggedIn = true;
     App.setUI(Scenes.COMPUTER);
   }
-
 
   // mechanics for empty credential input
   private void handleEmptyCredentials() {

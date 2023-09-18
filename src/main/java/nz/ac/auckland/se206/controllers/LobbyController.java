@@ -1,29 +1,23 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.util.List;
-
-import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
-import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.StyleManager.State;
 import nz.ac.auckland.se206.WalkieTalkieManager;
@@ -31,6 +25,7 @@ import nz.ac.auckland.se206.WalkieTalkieManager;
 public class LobbyController extends Controller {
 
   @FXML private ImageView Security;
+  @FXML private ImageView lobbybackground;
   @FXML private VBox SecurityRoomSwitch;
   @FXML private ImageView Vault;
   @FXML private VBox VaultRoomSwitch;
@@ -72,9 +67,10 @@ public class LobbyController extends Controller {
     RandomnessGenerate.addKeyLocation(key1, key3, key4);
     RandomnessGenerate.generateRandomKeyLocation();
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
-    styleManager.setItemsMessage("Guard is watching...",key1,key3,key4,guardpocket);
-    styleManager.setItemsMessage("It's locked...",drawerHolder);
-    styleManager.setItemsMessage("A note?",credentialsBook);
+    styleManager.addItems(key1,key3,key4,credentialsBook,credentialsNote,guard,guardpocket,drawerHolder,lobbybackground);
+    styleManager.setItemsMessage("Guard is watching...", key1, key3, key4, guardpocket);
+    styleManager.setItemsMessage("It's locked...", drawerHolder);
+    styleManager.setItemsMessage("A note?", credentialsBook);
   }
 
   //   handling mouse events on walkie talkie
@@ -103,8 +99,6 @@ public class LobbyController extends Controller {
     credentialsNote.setVisible(false);
   }
 
-  
-
   // opening drawer to get credential notes
   @FXML
   void onDrawerPressed(MouseEvent event) {
@@ -120,27 +114,25 @@ public class LobbyController extends Controller {
   @FXML
   void onGuardPocket(MouseEvent event) {
     // if (GameState.isAlarmTripped) {
-      styleManager.setItemsMessage("Wire cutting..?",guardpocket);
-      List<HBox> wires = RandomnessGenerate.getRandomWires();
-      StringBuilder wireNames = new StringBuilder(); 
-  
-      for (HBox wire : wires) {
-          String name = wire.getId();
-          wireNames.append(name).append(", "); 
-      }
-      if (wireNames.length() > 0) {
-          wireNames.setLength(wireNames.length() - 2);
-      }
-  
-      credentialsNote.setVisible(true);
-      usernameLbl.setText(wireNames.toString());
-      passwordLbl.setText(null);
-      titleLbl.setText("Wire Cutting Order");
-    // }
-    styleManager.setItemsMessage("Already looked here",guardpocket);
-  }
-  
+    styleManager.setItemsMessage("Wire cutting..?", guardpocket);
+    List<HBox> wires = RandomnessGenerate.getRandomWires();
+    StringBuilder wireNames = new StringBuilder();
 
+    for (HBox wire : wires) {
+      String name = wire.getId();
+      wireNames.append(name).append(", ");
+    }
+    if (wireNames.length() > 0) {
+      wireNames.setLength(wireNames.length() - 2);
+    }
+
+    credentialsNote.setVisible(true);
+    usernameLbl.setText(wireNames.toString());
+    passwordLbl.setText(null);
+    titleLbl.setText("Wire Cutting Order");
+    // }
+    styleManager.setItemsMessage("Already looked here", guardpocket);
+  }
 
   // pressing book in drawer
   @FXML
@@ -159,10 +151,10 @@ public class LobbyController extends Controller {
   void onkeyLocationPressed(MouseEvent event) {
     if (GameState.isGuardDistracted) {
       HBox clickedHBox = (HBox) event.getSource();
-      styleManager.setItemsMessage("Already looked here...",clickedHBox);
+      styleManager.setItemsMessage("Already looked here...", clickedHBox);
       if (clickedHBox == RandomnessGenerate.getkeyLocation()) {
         GameState.isKeyLocationFound = true;
-        AnimationManager.fadeTransition(key,2);
+        AnimationManager.fadeTransition(key, 2);
         key.setDisable(false);
         key1.setDisable(true);
         key3.setDisable(true);
@@ -171,24 +163,24 @@ public class LobbyController extends Controller {
     }
   }
 
-// pressing the key
+  // pressing the key
   @FXML
   void onKeyPressed(MouseEvent event) {
-      GameState.isKeyFound = true;
-      key.setVisible(false);
-      styleManager.setItemsState(HoverColour.GREEN,State.HOVER, drawerHolder);
-      styleManager.setItemsMessage("The key fits...",drawerHolder);
+    GameState.isKeyFound = true;
+    key.setVisible(false);
+    styleManager.setItemsState(HoverColour.GREEN, State.HOVER, drawerHolder);
+    styleManager.setItemsMessage("The key fits...", drawerHolder);
   }
-
 
   @FXML
   void onGuardPressed(MouseEvent event) {
     GameState.isGuardDistracted = true;
     sleepingAnmiation();
     guard.setDisable(true);
-    styleManager.setItemsState(HoverColour.GREEN,State.HOVER,key1,key3,key4);
-    styleManager.setItemsMessage("Something seems odd here...",key1,key3,key4);
-    styleManager.setItemsMessage("Something seems odd here",guardpocket);
+    styleManager.setItemsState(HoverColour.GREEN, State.HOVER, key1, key3, key4);
+    styleManager.setItemsMessage("Something seems odd here...", key1, key3, key4);
+    styleManager.setItemsMessage("Something seems odd here", guardpocket);
+    styleManager.setAlarmStyleOn();
   }
 
   private boolean isZzz1Visible = false;
@@ -210,5 +202,4 @@ public class LobbyController extends Controller {
     timeline.setCycleCount(Timeline.INDEFINITE);
     timeline.play();
   }
-
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import nz.ac.auckland.se206.App;
@@ -27,13 +28,14 @@ public class WireCuttingController extends Controller {
   @FXML private HBox yellowwire;
 
   @FXML private Label taskLbl;
+  @FXML private ImageView wirecuttingbackground;
 
   private boolean isWireCutterSelected = false;
 
   public void initialize() {
     SceneManager.setController(Scenes.WIRECUTTING, this);
-    // styleManager.setItemsState(HoverColour.GREEN, State.CLICK, wirecutter);
     wiresCut = new ArrayList<>();
+    styleManager.addItems(wirecuttingbackground);
     RandomnessGenerate.addWires(bluewire, yellowwire, greenwire, redwire);
     styleManager.setItemsMessage("use the wirecutter", bluewire, yellowwire, greenwire, redwire);
   }

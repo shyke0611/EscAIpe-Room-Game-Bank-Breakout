@@ -16,12 +16,12 @@
 
 <AnchorPane fx:id="SecurityPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SecurityController">
    <children>
-      <ImageView fitHeight="705.0" fitWidth="1129.0" layoutX="-107.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="securitybackground" fitHeight="707.0" fitWidth="1012.0" layoutX="-2.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/secuirty%20room.png" />
          </image>
       </ImageView>
-      <HBox fx:id="electricityBox" layoutX="685.0" layoutY="371.0" onMousePressed="#onWireCutting" prefHeight="175.0" prefWidth="179.0" styleClass="drawer" stylesheets="@../css/rooms.css">
+      <HBox fx:id="electricityBox" layoutX="665.0" layoutY="368.0" onMousePressed="#onWireCutting" prefHeight="175.0" prefWidth="179.0" styleClass="drawer" stylesheets="@../css/rooms.css">
          <children>
             <ImageView fitHeight="189.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true" rotate="4.0">
                <image>
@@ -30,7 +30,7 @@
             </ImageView>
          </children>
       </HBox>
-      <HBox fx:id="computer" alignment="CENTER" layoutX="154.0" layoutY="300.0" onMousePressed="#onClickComputer" prefHeight="256.0" prefWidth="280.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
+      <HBox fx:id="computer" alignment="CENTER" layoutX="132.0" layoutY="299.0" onMousePressed="#onClickComputer" prefHeight="256.0" prefWidth="280.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
          <children>
             <ImageView fitHeight="280.0" fitWidth="434.0" pickOnBounds="true" preserveRatio="true">
                <image>

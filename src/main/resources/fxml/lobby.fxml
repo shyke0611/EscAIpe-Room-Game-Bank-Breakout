@@ -18,7 +18,7 @@
 
 <AnchorPane fx:id="LobbyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LobbyController">
    <children>
-      <ImageView fitHeight="701.0" fitWidth="1075.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="lobbybackground" fitHeight="701.0" fitWidth="1010.0" layoutX="-6.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/bankInterior.jpg" />
          </image>
@@ -280,7 +280,7 @@
             </VBox>
          </children>
       </HBox>
-      <HBox fx:id="key" disable="true" layoutX="466.0" layoutY="384.0" onMousePressed="#onKeyPressed" opacity="0.0" prefHeight="116.0" prefWidth="116.0" styleClass="guard" stylesheets="@../css/rooms.css">
+      <HBox fx:id="key" disable="true" layoutX="466.0" layoutY="384.0" onMousePressed="#onKeyPressed" opacity="0.0" prefHeight="116.0" prefWidth="116.0">
          <children>
             <ImageView fitHeight="166.0" fitWidth="131.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -295,6 +295,13 @@
                </effect>
             </ImageView>
          </children>
+         <effect>
+            <DropShadow spread="0.39">
+               <color>
+                  <Color red="0.13657407462596893" green="0.7763158082962036" blue="0.30717185139656067" />
+               </color>
+            </DropShadow>
+         </effect>
       </HBox>
    </children>
 </AnchorPane>

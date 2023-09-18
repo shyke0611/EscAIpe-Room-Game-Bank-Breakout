@@ -10,6 +10,7 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 
 public class VaultController extends Controller {
@@ -19,6 +20,7 @@ public class VaultController extends Controller {
   @FXML private ImageView goldDoor;
   @FXML private ImageView silverDoor;
   @FXML private ImageView bronzeDoor;
+  @FXML private ImageView vaultbackground;
 
   @FXML private Rectangle dialogueBox;
   @FXML private Label moneyValue;
@@ -30,10 +32,13 @@ public class VaultController extends Controller {
   @FXML private VBox walkietalkieText;
   @FXML private Rectangle AIAccess;
 
+
   private Boolean AIAccessGranted = false;
+  StyleManager styleManager = StyleManager.getInstance();
 
   public void initialize() {
     SceneManager.setController(Scenes.VAULT, this);
+    styleManager.addItems(goldDoor, silverDoor, bronzeDoor,vaultbackground);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
   }
 
@@ -57,11 +62,9 @@ public class VaultController extends Controller {
     App.setUI(Scenes.HACKERVAN);
   }
 
-
-  public void switchToEyeScanner(){
+  public void switchToEyeScanner() {
     App.setUI(Scenes.EYESCANNER);
   }
-
 
   public void onSwitchToChemicalMixing() {
     App.setUI(Scenes.CHEMICALMIXING);
@@ -131,5 +134,4 @@ public class VaultController extends Controller {
     }
     return null;
   }
-
 }
