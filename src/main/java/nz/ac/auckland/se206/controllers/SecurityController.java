@@ -45,6 +45,7 @@ public class SecurityController extends Controller {
     SceneManager.setController(Scenes.SECURITY, this);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     styleManager.setItemsMessage("A computer...?",computer);
+    styleManager.setItemsMessage("it requires credentials?", logInBtn);
   }
 
   //   handling mouse events on walkie talkie

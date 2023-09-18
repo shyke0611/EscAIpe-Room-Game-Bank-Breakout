@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javafx.scene.Node;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
@@ -11,7 +13,7 @@ import javafx.util.Duration;
 public class StyleManager {
 
   private static StyleManager instance = new StyleManager();
-  private Map<HBox, Tooltip> tooltipMap = new HashMap<>();
+  private Map<Node, Tooltip> tooltipMap = new HashMap<>();
   private Map<HBox, HoverColour> hoverStyleMap = new HashMap<>();
 
 
@@ -33,8 +35,8 @@ public class StyleManager {
   }
 
   // Set and apply tooltips for multiple items
-  public void setItemsMessage(String message, HBox... items) {
-    for (HBox item : items) {
+  public void setItemsMessage(String message, Node... items) {
+    for (Node item : items) {
       Tooltip tooltip = tooltipMap.get(item);
       if (tooltip == null) {
         tooltip = new Tooltip();
