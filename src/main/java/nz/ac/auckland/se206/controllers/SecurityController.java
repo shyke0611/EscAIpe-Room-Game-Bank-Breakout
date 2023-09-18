@@ -30,6 +30,7 @@ public class SecurityController extends Controller {
   @FXML private VBox lobbyRoomSwitch;
   @FXML private Button logInBtn;
   @FXML private HBox logInScreen;
+  @FXML private HBox electricityBox;
   @FXML private Label loginMsgLbl;
   @FXML private PasswordField passwordField;
   @FXML private HBox computer;
@@ -65,6 +66,10 @@ public class SecurityController extends Controller {
     App.setUI(Scenes.HACKERVAN);
   }
 
+  @FXML
+  void onWireCutting(MouseEvent event) {
+    App.setUI(Scenes.WIRECUTTING);;
+  }
   // set visibility of log in screen off (log off computer)
   public void OnLogOff() {
    logInScreen.setVisible(false);
