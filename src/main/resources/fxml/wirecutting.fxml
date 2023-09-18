@@ -2,13 +2,17 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="VaultPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.WireCuttingController">
@@ -59,6 +63,152 @@
             </VBox>
          </children>
       </HBox>
-      <HBox layoutX="155.0" layoutY="148.0" prefHeight="425.0" prefWidth="699.0" style="-fx-background-color: black;" />
+      <HBox layoutX="155.0" layoutY="148.0" prefHeight="425.0" prefWidth="699.0" style="-fx-background-color: grey; -fx-background-radius: 70; -fx-border-color: black; -fx-border-radius: 70;">
+         <children>
+            <StackPane prefHeight="425.0" prefWidth="244.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="425.0" prefWidth="424.0" style="-fx-background-color: black;">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="8.0" prefWidth="425.0">
+                           <children>
+                              <Rectangle fx:id="redwire11" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="19.0" onMousePressed="#onWireClicked" stroke="BLACK" strokeType="INSIDE" width="200.0">
+                                 <effect>
+                                    <InnerShadow choke="0.45" height="28.37" radius="15.5275" width="35.74" />
+                                 </effect>
+                                 <HBox.margin>
+                                    <Insets right="30.0" />
+                                 </HBox.margin>
+                              </Rectangle>
+                              <Rectangle fx:id="redwire111" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="19.0" onMousePressed="#onWireClicked" stroke="BLACK" strokeType="INSIDE" width="200.0">
+                                 <effect>
+                                    <InnerShadow choke="0.45" height="28.37" radius="15.5275" width="35.74" />
+                                 </effect>
+                              </Rectangle>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="40.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="8.0" prefWidth="425.0">
+                           <children>
+                              <Rectangle fx:id="redwire111" arcHeight="5.0" arcWidth="5.0" fill="#42ff21" height="19.0" onMousePressed="#onWireClicked" stroke="BLACK" strokeType="INSIDE" width="200.0">
+                                 <effect>
+                                    <InnerShadow choke="0.45" height="28.37" radius="15.5275" width="35.74" />
+                                 </effect>
+                                 <HBox.margin>
+                                    <Insets right="30.0" />
+                                 </HBox.margin>
+                              </Rectangle>
+                              <Rectangle fx:id="redwire1111" arcHeight="5.0" arcWidth="5.0" fill="#42ff21" height="19.0" onMousePressed="#onWireClicked" stroke="BLACK" strokeType="INSIDE" width="200.0">
+                                 <effect>
+                                    <InnerShadow choke="0.45" height="28.37" radius="15.5275" width="35.74" />
+                                 </effect>
+                              </Rectangle>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="40.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="8.0" prefWidth="425.0">
+                           <children>
+                              <Rectangle fx:id="redwire111" arcHeight="5.0" arcWidth="5.0" fill="#e7ff21" height="19.0" onMousePressed="#onWireClicked" stroke="BLACK" strokeType="INSIDE" width="200.0">
+                                 <effect>
+                                    <InnerShadow choke="0.45" height="28.37" radius="15.5275" width="35.74" />
+                                 </effect>
+                                 <HBox.margin>
+                                    <Insets right="30.0" />
+                                 </HBox.margin>
+                              </Rectangle>
+                              <Rectangle fx:id="redwire1112" arcHeight="5.0" arcWidth="5.0" fill="#e7ff21" height="19.0" onMousePressed="#onWireClicked" stroke="BLACK" strokeType="INSIDE" width="200.0">
+                                 <effect>
+                                    <InnerShadow choke="0.45" height="28.37" radius="15.5275" width="35.74" />
+                                 </effect>
+                              </Rectangle>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="40.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="8.0" prefWidth="425.0">
+                           <children>
+                              <Rectangle fx:id="redwire111" arcHeight="5.0" arcWidth="5.0" fill="#2170ff" height="19.0" onMousePressed="#onWireClicked" stroke="BLACK" strokeType="INSIDE" width="200.0">
+                                 <effect>
+                                    <InnerShadow choke="0.45" height="28.37" radius="15.5275" width="35.74" />
+                                 </effect>
+                                 <HBox.margin>
+                                    <Insets right="30.0" />
+                                 </HBox.margin>
+                              </Rectangle>
+                              <Rectangle fx:id="redwire1113" arcHeight="5.0" arcWidth="5.0" fill="#2170ff" height="19.0" onMousePressed="#onWireClicked" stroke="BLACK" strokeType="INSIDE" width="200.0">
+                                 <effect>
+                                    <InnerShadow choke="0.45" height="28.37" radius="15.5275" width="35.74" />
+                                 </effect>
+                              </Rectangle>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="425.0" prefWidth="335.0">
+                     <children>
+                        <Rectangle fx:id="redwire" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="19.0" onMousePressed="#onWireClicked" stroke="BLACK" strokeType="INSIDE" width="426.0">
+                           <VBox.margin>
+                              <Insets bottom="40.0" top="120.0" />
+                           </VBox.margin>
+                           <effect>
+                              <InnerShadow choke="0.45" height="28.37" radius="15.5275" width="35.74" />
+                           </effect>
+                        </Rectangle>
+                        <Rectangle fx:id="greenwire" arcHeight="5.0" arcWidth="5.0" fill="#42ff21" height="19.0" onMousePressed="#onWireClicked" stroke="BLACK" strokeType="INSIDE" width="426.0">
+                           <effect>
+                              <InnerShadow choke="0.45" radius="13.685" width="35.74" />
+                           </effect>
+                           <VBox.margin>
+                              <Insets bottom="40.0" />
+                           </VBox.margin>
+                        </Rectangle>
+                        <Rectangle fx:id="yellowwire" arcHeight="5.0" arcWidth="5.0" fill="#e7ff21" height="19.0" onMousePressed="#onWireClicked" stroke="BLACK" strokeType="INSIDE" width="426.0">
+                           <effect>
+                              <InnerShadow choke="0.45" radius="13.685" width="35.74" />
+                           </effect>
+                           <VBox.margin>
+                              <Insets bottom="40.0" />
+                           </VBox.margin>
+                        </Rectangle>
+                        <Rectangle fx:id="bluewire" arcHeight="5.0" arcWidth="5.0" fill="#2170ff" height="19.0" onMousePressed="#onWireClicked" stroke="BLACK" strokeType="INSIDE" width="426.0">
+                           <effect>
+                              <InnerShadow choke="0.45" radius="13.685" width="35.74" />
+                           </effect>
+                        </Rectangle>
+                     </children>
+                  </VBox>
+               </children>
+            </StackPane>
+            <VBox alignment="CENTER" prefHeight="425.0" prefWidth="456.0">
+               <children>
+                  <HBox fx:id="wirecutter" alignment="CENTER" onMousePressed="#onWireCutterClicked" prefHeight="101.0" prefWidth="127.0" styleClass="guard" stylesheets="@../css/rooms.css">
+                     <children>
+                        <ImageView fitHeight="101.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/wirecutter.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="100.0" right="100.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Label fx:id="taskLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="226.0" textFill="#ffebeb">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="retryBtn" mnemonicParsing="false" onAction="#onRetry" styleClass="computer-button" stylesheets="@../css/rooms.css" text="retry" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children></HBox>
    </children>
 </AnchorPane>

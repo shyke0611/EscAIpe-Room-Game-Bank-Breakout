@@ -21,6 +21,11 @@ public class StyleManager {
     ORANGE,
   }
 
+  public enum State {
+    HOVER,
+    CLICK,
+  }
+
   private StyleManager() {}
 
   public static StyleManager getInstance() {
@@ -52,7 +57,7 @@ public class StyleManager {
     }
   }
 
-  public void setItemsHoverState(HoverColour colour, HBox... items) {
+  public void setItemsState(HoverColour colour,State state, HBox... items) {
     String rgba = getRgbaForHoverColour(colour);
 
     for (HBox item : items) {
@@ -65,7 +70,13 @@ public class StyleManager {
           event ->
               item.setStyle(
                   "-fx-effect: dropshadow(gaussian, " + rgba + ", 5, 5, 0, 0); -fx-cursor: hand;"));
+      if (state == State.HOVER) {
       item.setOnMouseExited(event -> item.setStyle(""));
+      } else {
+        item.setOnMousePressed(event ->
+              item.setStyle(
+                  "-fx-effect: dropshadow(gaussian, " + rgba + ", 5, 5, 0, 0); -fx-cursor: hand;"));
+      }
     }
   }
 

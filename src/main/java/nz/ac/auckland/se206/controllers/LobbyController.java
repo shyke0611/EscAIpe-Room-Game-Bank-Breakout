@@ -23,6 +23,7 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager.HoverColour;
+import nz.ac.auckland.se206.StyleManager.State;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 
 public class LobbyController extends Controller {
@@ -143,7 +144,7 @@ public class LobbyController extends Controller {
   void onKeyPressed(MouseEvent event) {
       GameState.isKeyFound = true;
       key.setVisible(false);
-      styleManager.setItemsHoverState(HoverColour.GREEN, drawerHolder);
+      styleManager.setItemsState(HoverColour.GREEN,State.HOVER, drawerHolder);
       styleManager.setItemsMessage("The key fits...",drawerHolder);
   }
 
@@ -153,7 +154,7 @@ public class LobbyController extends Controller {
     GameState.isGuardDistracted = true;
     sleepingAnmiation();
     guard.setDisable(true);
-    styleManager.setItemsHoverState(HoverColour.GREEN,key1,key2,key3,key4);
+    styleManager.setItemsState(HoverColour.GREEN,State.HOVER,key1,key2,key3,key4);
     styleManager.setItemsMessage("Something seems odd here...",key1,key2,key3,key4);
   }
 

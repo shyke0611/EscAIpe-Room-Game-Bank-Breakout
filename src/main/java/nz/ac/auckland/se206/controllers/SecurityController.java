@@ -18,6 +18,7 @@ import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager.HoverColour;
+import nz.ac.auckland.se206.StyleManager.State;
 
 public class SecurityController extends Controller {
 
@@ -105,7 +106,7 @@ public class SecurityController extends Controller {
     if (areCredentialsValid(enteredUsername, enteredPassword, randomUsername, randomPassword)) {
       handleSuccessfulLogin();
       logInScreen.setVisible(false);
-      styleManager.setItemsHoverState(HoverColour.GREEN, computer);
+      styleManager.setItemsState(HoverColour.GREEN, State.HOVER, computer);
     } else if (areCredentialsEmpty()) {
       handleEmptyCredentials();
     } else {
