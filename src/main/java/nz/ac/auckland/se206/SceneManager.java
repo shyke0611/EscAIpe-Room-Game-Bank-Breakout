@@ -19,6 +19,7 @@ public class SceneManager {
     DIFFICULTYPAGE,
     COMPUTER,
     HACKERVAN,
+    LASERCUTTING
   }
 
   private static Controller activeController;

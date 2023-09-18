@@ -58,6 +58,7 @@ public class App extends Application {
     SceneManager.addController(SceneManager.Scenes.DIFFICULTYPAGE, null);
     SceneManager.addController(SceneManager.Scenes.COMPUTER, null);
     SceneManager.addController(SceneManager.Scenes.HACKERVAN, null);
+    SceneManager.addController(SceneManager.Scenes.LASERCUTTING, null);
 
     // Add scenes to SceneManager
     SceneManager.addUi(SceneManager.Scenes.VAULT, loadFxml("vault"));
@@ -67,8 +68,9 @@ public class App extends Application {
     SceneManager.addUi(SceneManager.Scenes.DIFFICULTYPAGE, loadFxml("difficultypage"));
     SceneManager.addUi(SceneManager.Scenes.COMPUTER, loadFxml("computer"));
     SceneManager.addUi(SceneManager.Scenes.HACKERVAN, loadFxml("hackervan"));
+    SceneManager.addUi(SceneManager.Scenes.LASERCUTTING, loadFxml("laserCutting"));
 
-    Parent root = SceneManager.getUiRoot(Scenes.MAIN_MENU);
+    Parent root = SceneManager.getUiRoot(Scenes.VAULT);
 
     scene = new Scene(root, 1000, 700);
     stage.setScene(scene);

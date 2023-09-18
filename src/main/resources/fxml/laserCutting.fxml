@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#draw" onMousePressed="#mousePressed" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LaserCuttingController">
+   <children>
+      <ImageView fitHeight="700.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" scaleX="1.01">
+         <image>
+            <Image url="@../../../../../../../../../Desktop/backgroundVault.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="582.0" layoutX="54.0" layoutY="44.0" stroke="WHITE" strokeType="INSIDE" width="896.0" />
+      <ImageView fitHeight="500.0" fitWidth="500.0" layoutX="250.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/vaultDoor.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="305.0" layoutY="83.0" text="Cut through the door" underline="true">
+         <font>
+            <Font name="American Typewriter" size="40.0" />
+         </font>
+      </Label>
+      <Circle fx:id="innerCircle" centerX="500.0" centerY="350.0" fill="#1f93ff00" radius="106.0" stroke="BLACK" strokeDashOffset="10.0" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="3.0" style="-fx-stroke-dash-array: 5;" />
+      <Circle fx:id="outerCircle" centerX="500.0" centerY="350.0" fill="#1f93ff00" radius="121.0" stroke="BLACK" strokeDashOffset="10.0" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="3.0" style="-fx-stroke-dash-array: 5;" />
+      <Canvas fx:id="canvas" height="707.0" onMouseDragged="#draw" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" width="1000.0" />
+      <Label fx:id="winningLabel" layoutX="144.0" layoutY="203.0">
+         <font>
+            <Font name="American Typewriter" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
