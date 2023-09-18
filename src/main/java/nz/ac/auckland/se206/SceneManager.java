@@ -16,10 +16,9 @@ public class SceneManager {
     DIFFICULTYPAGE,
     COMPUTER,
     HACKERVAN,
-
     EYESCANNER,
-
     CHEMICALMIXING,
+    WIRECUTTING
 
   }
 

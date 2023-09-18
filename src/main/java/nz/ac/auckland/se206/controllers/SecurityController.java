@@ -84,7 +84,7 @@ public class SecurityController extends Controller {
     } else {
       logInScreen.setVisible(false);
       App.setUI(Scenes.COMPUTER);
-      // StyleManager.removeItemsMessage(computer);
+      styleManager.removeItemsMessage(computer);
     }
   }
 
@@ -99,6 +99,7 @@ public class SecurityController extends Controller {
 
     if (areCredentialsValid(enteredUsername, enteredPassword, randomUsername, randomPassword)) {
       handleSuccessfulLogin();
+      logInScreen.setVisible(false);
       styleManager.setItemsHoverState(HoverColour.GREEN, computer);
     } else if (areCredentialsEmpty()) {
       handleEmptyCredentials();
@@ -126,7 +127,6 @@ public class SecurityController extends Controller {
     loginMsgLbl.setText("Success");
     GameState.isSecurityComputerLoggedIn = true;
     App.setUI(Scenes.COMPUTER);
-    logInScreen.setVisible(false);
   }
 
 

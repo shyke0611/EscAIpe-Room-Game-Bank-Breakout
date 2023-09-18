@@ -42,7 +42,7 @@ public class StyleManager {
   }
 
   // Remove tooltips for multiple items
-  public void removeItemsTooltip(HBox... items) {
+  public void removeItemsMessage(HBox... items) {
     for (HBox item : items) {
       Tooltip tooltip = tooltipMap.get(item);
       if (tooltip != null) {

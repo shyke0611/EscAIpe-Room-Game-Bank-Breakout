@@ -211,5 +211,14 @@
             </Label>
          </children>
       </HBox>
+      <HBox layoutX="685.0" layoutY="371.0" prefHeight="175.0" prefWidth="179.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
+         <children>
+            <ImageView fx:id="electricityBox" fitHeight="189.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true" rotate="4.0">
+               <image>
+                  <Image url="@../images/electricityBox.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

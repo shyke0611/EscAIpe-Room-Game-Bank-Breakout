@@ -117,7 +117,7 @@ public class LobbyController extends Controller {
     // set note text to the randomly generated credentials
     passwordLbl.setText("Password: " + randomPassword);
     usernameLbl.setText("Username: " + randomUsername);
-    styleManager.removeItemsTooltip(credentialsBook);
+    styleManager.removeItemsMessage(credentialsBook);
   }
 
   // pressing any location of the keys
@@ -146,7 +146,6 @@ public class LobbyController extends Controller {
       styleManager.setItemsHoverState(HoverColour.GREEN, drawerHolder);
       styleManager.setItemsMessage("The key fits...",drawerHolder);
   }
-
 
 
   @FXML
