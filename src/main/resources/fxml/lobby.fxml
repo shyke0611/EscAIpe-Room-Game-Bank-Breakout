@@ -86,22 +86,6 @@
             </Label>
          </children>
       </HBox>
-      <HBox fx:id="key" disable="true" layoutX="466.0" layoutY="384.0" onMousePressed="#onKeyPressed" opacity="0.0" prefHeight="116.0" prefWidth="116.0" styleClass="guard" stylesheets="@../css/rooms.css">
-         <children>
-            <ImageView fitHeight="166.0" fitWidth="131.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/key.png" />
-               </image>
-               <effect>
-                  <DropShadow height="174.29500000000002" radius="79.27625" spread="0.72" width="144.81">
-                     <color>
-                        <Color red="1.0" green="0.9833333492279053" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </ImageView>
-         </children>
-      </HBox>
       <VBox layoutX="756.0" layoutY="211.0" prefHeight="472.0" prefWidth="189.0">
          <children>
             <HBox prefHeight="164.0" prefWidth="171.0">
@@ -294,6 +278,22 @@
                   </StackPane>
                </children>
             </VBox>
+         </children>
+      </HBox>
+      <HBox fx:id="key" disable="true" layoutX="466.0" layoutY="384.0" onMousePressed="#onKeyPressed" opacity="0.0" prefHeight="116.0" prefWidth="116.0" styleClass="guard" stylesheets="@../css/rooms.css">
+         <children>
+            <ImageView fitHeight="166.0" fitWidth="131.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/key.png" />
+               </image>
+               <effect>
+                  <DropShadow height="174.29500000000002" radius="79.27625" spread="0.72" width="144.81">
+                     <color>
+                        <Color red="1.0" green="0.9833333492279053" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </ImageView>
          </children>
       </HBox>
    </children>

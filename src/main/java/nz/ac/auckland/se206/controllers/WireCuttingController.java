@@ -7,12 +7,13 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.StyleManager.State;
-import nz.ac.auckland.se206.StyleManager;
 
 public class WireCuttingController extends Controller {
   StyleManager styleManager = StyleManager.getInstance();
@@ -34,7 +35,7 @@ public class WireCuttingController extends Controller {
     // styleManager.setItemsState(HoverColour.GREEN, State.CLICK, wirecutter);
     wiresCut = new ArrayList<>();
     RandomnessGenerate.addWires(bluewire, yellowwire, greenwire, redwire);
-    styleManager.setItemsMessage("use the wirecutter", bluewire,yellowwire,greenwire,redwire);
+    styleManager.setItemsMessage("use the wirecutter", bluewire, yellowwire, greenwire, redwire);
   }
 
   @FXML
@@ -50,20 +51,20 @@ public class WireCuttingController extends Controller {
 
   @FXML
   void onWireCutterClicked(MouseEvent event) {
-      isWireCutterSelected = true;
-      styleManager.removeItemsMessage(redwire,greenwire,bluewire,yellowwire);
-      styleManager.setItemsState(HoverColour.GREEN,State.HOVER,redwire,greenwire,bluewire,yellowwire);
+    isWireCutterSelected = true;
+    styleManager.removeItemsMessage(redwire, greenwire, bluewire, yellowwire);
+    styleManager.setItemsState(
+        HoverColour.GREEN, State.HOVER, redwire, greenwire, bluewire, yellowwire);
   }
-
 
   @FXML
   void onRetry() {
-   wiresCut.clear();
-   yellowwire.setVisible(true);
-   redwire.setVisible(true);
-   greenwire.setVisible(true);
-   bluewire.setVisible(true);
-   taskLbl.setText(null);
+    wiresCut.clear();
+    yellowwire.setVisible(true);
+    redwire.setVisible(true);
+    greenwire.setVisible(true);
+    bluewire.setVisible(true);
+    taskLbl.setText(null);
   }
 
   @FXML
@@ -73,15 +74,24 @@ public class WireCuttingController extends Controller {
 
   public void checkWireCombination() {
     if (wiresCut.size() == RandomnessGenerate.getRandomWires().size()) {
+      boolean allWiresCorrect = true;
+
       for (int i = 0; i < wiresCut.size(); i++) {
         HBox clickedWire = wiresCut.get(i);
         HBox expectedWire = RandomnessGenerate.getRandomWires().get(i);
 
-        if (clickedWire != expectedWire) {
-          handleIncorrectCombination();
+        if (!clickedWire.getId().equals(expectedWire.getId())) {
+
+          allWiresCorrect = false;
           break;
         }
+      }
+
+      if (allWiresCorrect) {
         handleCorrectCombination();
+        GameState.isWiresCut = true;
+      } else {
+        handleIncorrectCombination();
       }
     }
   }

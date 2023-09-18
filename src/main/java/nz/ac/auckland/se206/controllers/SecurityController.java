@@ -46,6 +46,7 @@ public class SecurityController extends Controller {
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     styleManager.setItemsMessage("A computer...?",computer);
     styleManager.setItemsMessage("it requires credentials?", logInBtn);
+    styleManager.setItemsMessage("no need to open this right now", electricityBox);
   }
 
   //   handling mouse events on walkie talkie
@@ -70,7 +71,11 @@ public class SecurityController extends Controller {
 
   @FXML
   void onWireCutting(MouseEvent event) {
-    App.setUI(Scenes.WIRECUTTING);;
+    if (!GameState.isWiresCut /** && GameState.isAlarmTripped */) {
+      App.setUI(Scenes.WIRECUTTING);
+    } else if (GameState.isWiresCut){
+      electricityBox.setDisable(true);
+    }
   }
   // set visibility of log in screen off (log off computer)
   public void OnLogOff() {
