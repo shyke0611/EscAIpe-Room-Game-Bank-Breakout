@@ -137,7 +137,7 @@
             </ImageView>
          </children>
       </HBox>
-      <HBox fx:id="key2" alignment="CENTER" layoutX="879.0" layoutY="478.0" onMousePressed="#onkeyLocationPressed" prefHeight="28.0" prefWidth="17.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
+      <HBox fx:id="guardpocket" alignment="CENTER" layoutX="879.0" layoutY="478.0" onMousePressed="#onGuardPocket" prefHeight="28.0" prefWidth="17.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
          <children>
             <ImageView fx:id="guardpocket2" fitHeight="24.0" fitWidth="11.0" pickOnBounds="true" preserveRatio="true">
                <image>

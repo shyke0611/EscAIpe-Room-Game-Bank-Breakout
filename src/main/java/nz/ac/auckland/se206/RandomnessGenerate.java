@@ -13,7 +13,7 @@ public class RandomnessGenerate {
   private static List<String> usernameList = new ArrayList<>();
   private static List<HBox> keyLocationList = new ArrayList<>();
   private static List<String> partsAmount = new ArrayList<>();
-  private static List<Rectangle> wiresList = new ArrayList<>();
+  private static List<HBox> wiresList = new ArrayList<>();
 
   private static Random random = new Random();
   private static String randomUsername;
@@ -50,7 +50,7 @@ public class RandomnessGenerate {
   }
 
   // method to get random wires list
-  public static List<Rectangle> getRandomWires() {
+  public static List<HBox> getRandomWires() {
     return wiresList;
   } 
 
@@ -60,8 +60,8 @@ public class RandomnessGenerate {
   }
 
   //Method to add wires to wireslist
-  public static void addWires(Rectangle... wires) {
-    List<Rectangle> shuffledWires = Arrays.asList(wires);
+  public static void addWires(HBox... wires) {
+    List<HBox> shuffledWires = Arrays.asList(wires);
     Collections.shuffle(shuffledWires);
     wiresList.addAll(shuffledWires);
   }

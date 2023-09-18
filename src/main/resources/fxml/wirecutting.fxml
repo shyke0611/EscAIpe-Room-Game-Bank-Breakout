@@ -148,37 +148,62 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox prefHeight="425.0" prefWidth="335.0">
+                  <VBox alignment="CENTER" prefHeight="425.0" prefWidth="424.0">
                      <children>
-                        <Rectangle fx:id="redwire" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="19.0" onMousePressed="#onWireClicked" stroke="BLACK" strokeType="INSIDE" width="426.0">
+                        <HBox fx:id="redwire" onMousePressed="#onWireClicked" prefHeight="8.0" prefWidth="425.0" styleClass="drawer" stylesheets="@../css/rooms.css">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="19.0" stroke="BLACK" strokeType="INSIDE" width="430.0">
+                                 <effect>
+                                    <InnerShadow choke="0.45" height="28.37" radius="15.5275" width="35.74" />
+                                 </effect>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Rectangle>
+                           </children>
                            <VBox.margin>
-                              <Insets bottom="40.0" top="120.0" />
+                              <Insets bottom="40.0" top="10.0" />
                            </VBox.margin>
-                           <effect>
-                              <InnerShadow choke="0.45" height="28.37" radius="15.5275" width="35.74" />
-                           </effect>
-                        </Rectangle>
-                        <Rectangle fx:id="greenwire" arcHeight="5.0" arcWidth="5.0" fill="#42ff21" height="19.0" onMousePressed="#onWireClicked" stroke="BLACK" strokeType="INSIDE" width="426.0">
-                           <effect>
-                              <InnerShadow choke="0.45" radius="13.685" width="35.74" />
-                           </effect>
+                        </HBox>
+                        <HBox fx:id="greenwire" alignment="CENTER" onMousePressed="#onWireClicked" prefHeight="8.0" prefWidth="425.0" styleClass="drawer" stylesheets="@../css/rooms.css">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#42ff21" height="19.0" stroke="BLACK" strokeType="INSIDE" width="428.0">
+                                 <effect>
+                                    <InnerShadow choke="0.45" height="28.37" radius="15.5275" width="35.74" />
+                                 </effect>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Rectangle>
+                           </children>
                            <VBox.margin>
                               <Insets bottom="40.0" />
                            </VBox.margin>
-                        </Rectangle>
-                        <Rectangle fx:id="yellowwire" arcHeight="5.0" arcWidth="5.0" fill="#e7ff21" height="19.0" onMousePressed="#onWireClicked" stroke="BLACK" strokeType="INSIDE" width="426.0">
-                           <effect>
-                              <InnerShadow choke="0.45" radius="13.685" width="35.74" />
-                           </effect>
+                        </HBox>
+                        <HBox fx:id="yellowwire" alignment="CENTER" onMousePressed="#onWireClicked" prefHeight="8.0" prefWidth="425.0" styleClass="drawer" stylesheets="@../css/rooms.css">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e7ff21" height="19.0" stroke="BLACK" strokeType="INSIDE" width="429.0">
+                                 <effect>
+                                    <InnerShadow choke="0.45" height="28.37" radius="15.5275" width="35.74" />
+                                 </effect>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Rectangle>
+                           </children>
                            <VBox.margin>
                               <Insets bottom="40.0" />
                            </VBox.margin>
-                        </Rectangle>
-                        <Rectangle fx:id="bluewire" arcHeight="5.0" arcWidth="5.0" fill="#2170ff" height="19.0" onMousePressed="#onWireClicked" stroke="BLACK" strokeType="INSIDE" width="426.0">
-                           <effect>
-                              <InnerShadow choke="0.45" radius="13.685" width="35.74" />
-                           </effect>
-                        </Rectangle>
+                        </HBox>
+                        <HBox fx:id="bluewire" alignment="CENTER" onMousePressed="#onWireClicked" prefHeight="8.0" prefWidth="425.0" styleClass="drawer" stylesheets="@../css/rooms.css">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2170ff" height="19.0" stroke="BLACK" strokeType="INSIDE" width="429.0">
+                                 <effect>
+                                    <InnerShadow choke="0.45" height="28.37" radius="15.5275" width="35.74" />
+                                 </effect>
+                              </Rectangle>
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                </children>
