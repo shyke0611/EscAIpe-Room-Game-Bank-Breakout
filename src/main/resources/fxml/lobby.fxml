@@ -18,7 +18,7 @@
 
 <AnchorPane fx:id="LobbyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LobbyController">
    <children>
-      <ImageView fitHeight="701.0" fitWidth="1075.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="lobbybackground" fitHeight="701.0" fitWidth="1010.0" layoutX="-6.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/bankInterior.jpg" />
          </image>
@@ -86,18 +86,6 @@
             </Label>
          </children>
       </HBox>
-      <ImageView fx:id="key" fitHeight="166.0" fitWidth="131.0" layoutX="382.0" layoutY="343.0" onMousePressed="#onKeyPressed" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/key.png" />
-         </image>
-         <effect>
-            <DropShadow height="174.29500000000002" radius="79.27625" spread="0.72" width="144.81">
-               <color>
-                  <Color red="1.0" green="0.9833333492279053" />
-               </color>
-            </DropShadow>
-         </effect>
-      </ImageView>
       <VBox layoutX="756.0" layoutY="211.0" prefHeight="472.0" prefWidth="189.0">
          <children>
             <HBox prefHeight="164.0" prefWidth="171.0">
@@ -137,7 +125,7 @@
             </ImageView>
          </children>
       </HBox>
-      <HBox fx:id="key2" alignment="CENTER" layoutX="879.0" layoutY="478.0" onMousePressed="#onkeyLocationPressed" prefHeight="28.0" prefWidth="17.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
+      <HBox fx:id="guardpocket" alignment="CENTER" layoutX="879.0" layoutY="478.0" onMousePressed="#onGuardPocket" prefHeight="28.0" prefWidth="17.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
          <children>
             <ImageView fx:id="guardpocket2" fitHeight="24.0" fitWidth="11.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -261,22 +249,22 @@
                                     <Font name="Apple LiGothic Medium" size="22.0" />
                                  </font>
                               </Label>
-                              <Label text="Security Room Computer Log In">
+                              <Label fx:id="titleLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="258.0" text="title">
                                  <font>
                                     <Font name="Apple LiGothic Medium" size="23.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="usernameLbl" text="username">
+                              <Label fx:id="usernameLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="12.0" prefWidth="252.0">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                                  <font>
-                                    <Font name="HanziPen SC Regular" size="19.0" />
+                                    <Font name="HanziPen SC Regular" size="15.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="passwordLbl" text="password">
+                              <Label fx:id="passwordLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="13.0" prefWidth="259.0">
                                  <font>
-                                    <Font name="HanziPen SC Regular" size="20.0" />
+                                    <Font name="HanziPen SC Regular" size="15.0" />
                                  </font>
                               </Label>
                            </children>
@@ -291,6 +279,29 @@
                </children>
             </VBox>
          </children>
+      </HBox>
+      <HBox fx:id="key" disable="true" layoutX="466.0" layoutY="384.0" onMousePressed="#onKeyPressed" opacity="0.0" prefHeight="116.0" prefWidth="116.0">
+         <children>
+            <ImageView fitHeight="166.0" fitWidth="131.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/key.png" />
+               </image>
+               <effect>
+                  <DropShadow height="174.29500000000002" radius="79.27625" spread="0.72" width="144.81">
+                     <color>
+                        <Color red="1.0" green="0.9833333492279053" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </ImageView>
+         </children>
+         <effect>
+            <DropShadow spread="0.39">
+               <color>
+                  <Color red="0.13657407462596893" green="0.7763158082962036" blue="0.30717185139656067" />
+               </color>
+            </DropShadow>
+         </effect>
       </HBox>
    </children>
 </AnchorPane>

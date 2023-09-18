@@ -15,4 +15,8 @@ public class GameState {
 
   public static boolean isKeyLocationFound = false;
 
+  public static boolean isWiresCut = false;
+
+  public static boolean isAlarmTripped = false;
+
 }

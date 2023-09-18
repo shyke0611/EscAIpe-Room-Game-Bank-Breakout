@@ -59,9 +59,8 @@ public class App extends Application {
     SceneManager.addController(SceneManager.Scenes.DIFFICULTYPAGE, null);
     SceneManager.addController(SceneManager.Scenes.COMPUTER, null);
     SceneManager.addController(SceneManager.Scenes.HACKERVAN, null);
-
     SceneManager.addController(SceneManager.Scenes.EYESCANNER, null);
-
+    SceneManager.addController(SceneManager.Scenes.WIRECUTTING, null);
     SceneManager.addController(SceneManager.Scenes.CHEMICALMIXING, null);
 
 
@@ -73,13 +72,12 @@ public class App extends Application {
     SceneManager.addUi(SceneManager.Scenes.DIFFICULTYPAGE, loadFxml("difficultypage"));
     SceneManager.addUi(SceneManager.Scenes.COMPUTER, loadFxml("computer"));
     SceneManager.addUi(SceneManager.Scenes.HACKERVAN, loadFxml("hackervan"));
-
+    SceneManager.addUi(SceneManager.Scenes.WIRECUTTING, loadFxml("wirecutting"));
     SceneManager.addUi(SceneManager.Scenes.EYESCANNER, loadFxml("eyescanner"));
-
     SceneManager.addUi(SceneManager.Scenes.CHEMICALMIXING, loadFxml("chemicalmixing"));
 
 
-    Parent root = SceneManager.getUiRoot(Scenes.EYESCANNER);
+    Parent root = SceneManager.getUiRoot(Scenes.LOBBY);
 
     scene = new Scene(root, 1000, 700);
     stage.setScene(scene);
