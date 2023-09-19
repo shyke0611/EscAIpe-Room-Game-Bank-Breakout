@@ -19,5 +19,6 @@ public class GameState {
 
   public static boolean isAlarmTripped = false;
   public static boolean isAlarmDisabled = false;
+  public static boolean isFirewallDisabled = false;
 
 }

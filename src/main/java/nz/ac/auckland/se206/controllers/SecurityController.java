@@ -68,13 +68,13 @@ public class SecurityController extends Controller {
 
   @FXML
   public void switchToVault() {
-    if (GameState.isAlarmDisabled) {
+    // if (GameState.isAlarmDisabled) {
        AnimationManager.slideDoorsAnimation(styleManager.getItem("doorHolder"));
        AnimationManager.slideDoorsAnimation(styleManager.getItem("vaultbackground"));
        App.setUI(Scenes.VAULT);
-    } else {
-      App.setUI(Scenes.VAULT);
-    }
+    // } else {
+    //   App.setUI(Scenes.VAULT);
+    
   }
 
 

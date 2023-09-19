@@ -57,6 +57,7 @@ public class VaultController extends Controller {
   @FXML
   void onWalkieTalkie(MouseEvent event) {
     WalkieTalkieManager.toggleWalkieTalkie();
+    boolean hi = AnimationManager.isSlideAnimationPlayed;
   }
 
   @FXML
@@ -85,7 +86,7 @@ public class VaultController extends Controller {
   }
 
   public void grantAccess() {
-    AIAccessGranted = true;
+    GameState.isFirewallDisabled = true;
   }
 
   @FXML

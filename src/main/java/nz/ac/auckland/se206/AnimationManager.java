@@ -11,7 +11,7 @@ import javafx.util.Duration;
 
 public class AnimationManager {
   private static boolean isShadowOn = false;
-  private static boolean isSlideAnimationPlayed = false; 
+  public static boolean isSlideAnimationPlayed = false; 
   private static List<Timeline> timelineList = new ArrayList<>();
 
   public static void fadeTransition(Node node, int seconds) {
