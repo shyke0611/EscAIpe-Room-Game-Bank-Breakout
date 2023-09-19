@@ -110,6 +110,12 @@ public class VaultController extends Controller {
   }
 
   @FXML
+  public void laserCuttingScene() {
+
+    App.setUI(Scenes.LASERCUTTING);
+  }
+
+  @FXML
   public void clearInfo(MouseEvent event) {
     dialogueBox.setVisible(false);
     moneyValue.setText(null);

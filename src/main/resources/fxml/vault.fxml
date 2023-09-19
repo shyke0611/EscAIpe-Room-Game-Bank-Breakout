@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -162,12 +161,13 @@
       <Text layoutX="109.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AI Acess granted" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="52.0" layoutX="400.0" layoutY="470.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
       <Label alignment="CENTER" layoutX="400.0" layoutY="471.0" onMouseClicked="#switchToEyeScanner" prefHeight="51.0" prefWidth="200.0" text="Eye Scanner" />
-      <Rectangle fx:id="laserCuttingScene" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="705.0" layoutY="312.0" onMouseClicked="#laserCuttingScene" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <Rectangle fx:id="laserCuttingScene" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="56.0" layoutX="736.0" layoutY="122.0" onMouseClicked="#laserCuttingScene" stroke="BLACK" strokeType="INSIDE" width="177.0" />
       <Rectangle fx:id="whiteBackground" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="710.0" layoutX="-7.0" layoutY="-7.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="1009.0" />
       <ImageView fx:id="VaultDoor" fitHeight="495.0" fitWidth="512.0" layoutX="244.0" layoutY="101.0" opacity="0.0">
          <image>
             <Image url="@../../../../../../../../../Downloads/metallic-bank-vault-door-isolated-white/vaultDoor.jpg" />
          </image>
       </ImageView>
+      <Text layoutX="783.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="laserCutting scene " />
    </children>
 </AnchorPane>

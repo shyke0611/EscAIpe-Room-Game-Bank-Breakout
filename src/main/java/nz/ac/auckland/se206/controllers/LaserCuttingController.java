@@ -2,47 +2,56 @@ package nz.ac.auckland.se206.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Blend;
 import javafx.scene.effect.BlendMode;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.GaussianBlur;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.RadialGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.util.Duration;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
 public class LaserCuttingController extends Controller {
 
   @FXML private AnchorPane root;
+
   @FXML private Circle outerCircle;
   @FXML private Circle innerCircle;
-  @FXML private Label winningLabel;
+  @FXML private Circle blackCircle;
+
+  @FXML private Button takeLootBtn;
+
+  @FXML private ImageView insideVault;
+  @FXML private ImageView laserGun;
+
+  @FXML private Label equipLaserGun;
 
   @FXML private Canvas canvas;
   @FXML private GraphicsContext gc;
 
-  private Line cursorLine = new Line();
-  private double angleDifference = 0;
-  double lastAngle = 0;
-
-  private double prevX, prevY, startX, startY;
-  private boolean cutting = false;
-  private int count = 0;
+  private ScaleTransition scaleTransitionGun;
+  private Boolean gunEquppied = false;
+  private double prevX, prevY;
   private double totalAngle = 0.0;
 
-  private List<Line> lines = new ArrayList<>();
-  List<Double> angles = new ArrayList<>();
+  private Line cursorLine = new Line();
+  private List<Double> angles = new ArrayList<>();
   private List<Point2D> points = new ArrayList<>();
 
   public void initialize() {
@@ -53,78 +62,44 @@ public class LaserCuttingController extends Controller {
 
     cursorLine.setStartX(500);
     cursorLine.setStartY(700);
-
+    cursorLine.setEndX(500);
+    cursorLine.setEndY(700);
     cursorLine.setStrokeWidth(3);
     cursorLine.setStroke(Color.RED);
 
     applyGlowEffect(cursorLine);
-
-    System.out.println(innerCircle.getCenterX());
-
-    Scene scene = (Scene) root.getScene();
-
-    // For local images use
-    // image = new Image(getClass().getResource(#Path#).openStream());
-
-    // Clear away portions as the user drags the mouse
-
+    setupListeners();
+    formatBlackCirlce();
   }
 
-  public void applyGlowEffect(Line line) {
-
-    // Create a GaussianBlur effect
-    GaussianBlur blur = new GaussianBlur(15);
-
-    // Create a Blend effect with the ADD blend mode
-    Blend blend = new Blend();
-    blend.setMode(BlendMode.ADD);
-
-    // Add the GaussianBlur effect to the blend
-    blend.setTopInput(blur);
-
-    // Apply the blend effect to the line
-    line.setEffect(blend);
-  }
-
-  public void applyMeltingHotAppearance(Line line) {
-    // Create a linear gradient from red to yellow (adjust colors as desired)
-    LinearGradient gradient =
-        new LinearGradient(
-            0,
-            0,
-            1,
-            0,
-            true,
-            CycleMethod.NO_CYCLE,
-            new Stop(0, Color.RED),
-            new Stop(1, Color.YELLOW));
-
-    // Apply the gradient fill to the line's stroke
-    line.setStroke(gradient);
-    line.setStrokeWidth(3);
+  public void laserGunClicked() {
+    gunEquppied = true;
+    canvas.setVisible(true);
+    laserGun.setVisible(false);
+    equipLaserGun.setVisible(false);
   }
 
   public void mouseReleased(MouseEvent event) {
-    cutting = false;
     clearCursorLine();
     gc.clearRect(0, 0, 1000, 700);
   }
 
   public void draw(MouseEvent event) {
 
-    cutting = true;
     double x = event.getX();
     double y = event.getY();
 
     gc.setStroke(Color.RED);
     gc.setLineWidth(3);
-
     gc.strokeLine(prevX, prevY, x, y);
 
-    cursorLine.setEndX(x);
-    cursorLine.setEndY(y);
-
     Point2D mousePosition = new Point2D(x, y);
+
+    if (gunEquppied
+        && isMouseInsideLargerCircleOutsideSmallerCircle(mousePosition, outerCircle, innerCircle)) {
+      cursorLine.setEndX(x);
+      cursorLine.setEndY(y);
+    }
 
     if (!isMouseInsideLargerCircleOutsideSmallerCircle(mousePosition, outerCircle, innerCircle)) {
       gc.clearRect(0, 0, 1000, 700);
@@ -133,17 +108,12 @@ public class LaserCuttingController extends Controller {
     }
 
     if (whileUserisDrawing(mousePosition)) {
-      winningLabel.setText("you win");
+      blackCircle.setVisible(true);
+      insideVault.setVisible(true);
+      outerCircle.setVisible(false);
+      innerCircle.setVisible(false);
       gc.clearRect(0, 0, 1000, 700);
     }
-
-    // if (isInRangeFirstMarker((int) x, (int) y)) {
-    //   System.out.println("X is in range");
-    // }
-
-    // if (count >= 1 && isInRangeSecondMarker((int) x, (int) y)) {
-    //   System.out.println("User has completed circle");
-    // }
 
     prevX = x;
     prevY = y;
@@ -158,33 +128,8 @@ public class LaserCuttingController extends Controller {
   public void mousePressed(MouseEvent event) {
     prevX = event.getX();
     prevY = event.getY();
-    startX = event.getX();
-    startY = event.getY();
     points.clear();
     angles.clear();
-  }
-
-  public Boolean isInRangeFirstMarker(int x, int y) {
-
-    if (x > innerCircle.getCenterX() + innerCircle.getRadius()
-        && x < outerCircle.getCenterX() + outerCircle.getRadius()) {
-      if (startY == y) {
-        count++;
-        return true;
-      }
-    }
-
-    return false;
-  }
-
-  public Boolean isInRangeSecondMarker(int x, int y) {
-    if (x < startX + 20 && x > startX - 20) {
-      if (y < startY + 20 && y > startY - 20) {
-
-        return true;
-      }
-    }
-    return false;
   }
 
   public boolean isMouseInsideLargerCircleOutsideSmallerCircle(
@@ -200,11 +145,6 @@ public class LaserCuttingController extends Controller {
     // Check if the mouse position is inside the larger circle and outside the smaller circle
     return (distanceToLargerCircle <= largerCircle.getRadius())
         && (distanceToSmallerCircle > smallerCircle.getRadius());
-  }
-
-  public boolean hasUserCompletedCircle() {
-
-    return false;
   }
 
   public boolean whileUserisDrawing(Point2D mousePosition) {
@@ -224,14 +164,11 @@ public class LaserCuttingController extends Controller {
         totalAngle += angle;
       }
 
-      // Ensure the total angle is positive (between 0 and 2*PI)
-
-      System.out.println(totalAngle);
-
       // Check if the total angle exceeds a threshold for a completed circle
       if (totalAngle > 2 * Math.PI
           || totalAngle < -(2 * Math.PI)) { // Adjust the threshold as needed
         // Reset the points and angles for the next circle
+        takeLootBtn.setVisible(true);
         points.clear();
         angles.clear();
         return true;
@@ -265,5 +202,84 @@ public class LaserCuttingController extends Controller {
     }
 
     return angleDifference;
+  }
+
+  private void setupListeners() {
+    scaleTransitionGun = createScaleTransition(laserGun);
+
+    // Add hover listeners to start and stop the animation
+    laserGun.setOnMouseEntered(event -> playAnimationForward(scaleTransitionGun));
+    laserGun.setOnMouseExited(event -> playAnimationReverse(scaleTransitionGun));
+  }
+
+  private ScaleTransition createScaleTransition(ImageView imageView) {
+    ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), imageView);
+    scaleTransition.setFromX(1.0); // Initial scale X
+    scaleTransition.setFromY(1.0); // Initial scale Y
+    scaleTransition.setToX(1.2); // Enlarged scale X
+    scaleTransition.setToY(1.2); // Enlarged scale Y
+    return scaleTransition;
+  }
+
+  private void playAnimationForward(ScaleTransition scaleTransition) {
+    scaleTransition.setRate(1); // Play forward
+    scaleTransition.play();
+  }
+
+  private void playAnimationReverse(ScaleTransition scaleTransition) {
+    scaleTransition.setRate(-1); // Play in reverse
+    scaleTransition.play();
+  }
+
+  @FXML
+  private void formatBlackCirlce() {
+    RadialGradient gradientOutside =
+        new RadialGradient(
+            0,
+            0,
+            0.5,
+            0.5,
+            0.98,
+            true,
+            CycleMethod.NO_CYCLE,
+            new Stop(0, Color.ORANGERED),
+            new Stop(1, Color.BLACK));
+
+    // Apply a drop shadow effect for added depth
+    DropShadow dropShadow = new DropShadow();
+    dropShadow.setRadius(20);
+    dropShadow.setSpread(0.2);
+    dropShadow.setColor(Color.DARKRED);
+
+    Stop[] stops = {
+      new Stop(0, Color.TRANSPARENT), // Center color (transparent)
+      new Stop(0.9, Color.TRANSPARENT), // Hot color
+      new Stop(1, Color.RED) // Molten color
+    };
+
+    // Create a radial gradient fill
+    RadialGradient gradient =
+        new RadialGradient(0, 0, 0.5, 0.5, 1, true, CycleMethod.NO_CYCLE, stops);
+
+    // Set the gradient fill as the circle's fill
+    blackCircle.setFill(gradient);
+
+    blackCircle.setEffect(dropShadow);
+    blackCircle.setStroke(gradientOutside);
+    blackCircle.setStrokeWidth(10);
+  }
+
+  public void setVault() {
+    App.setUI(Scenes.VAULT);
+  }
+
+  public void applyGlowEffect(Line line) {
+
+    // Create a GaussianBlur effect
+    GaussianBlur blur = new GaussianBlur(15);
+    Blend blend = new Blend();
+    blend.setMode(BlendMode.ADD);
+    blend.setTopInput(blur);
+    line.setEffect(blend);
   }
 }
