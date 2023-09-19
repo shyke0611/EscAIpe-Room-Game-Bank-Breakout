@@ -89,8 +89,8 @@ public class ConnectDotsController extends Controller {
           int finalColumn = getIndex(e.getX(), false);
           int finalRow = getIndex(e.getY(), true);
 
-          if (grid[finalRow][finalColumn] == nodeValue) {
-            if (isCellValid(finalColumn, finalRow)) {
+          if (isCellValid(finalColumn, finalRow)) {
+            if (grid[finalRow][finalColumn] == nodeValue) {
               columnPath.add(finalColumn);
               rowPath.add(finalRow);
             }
@@ -179,6 +179,11 @@ public class ConnectDotsController extends Controller {
   private boolean isCellValid(int currentColumn, int currentRow) {
     int columnPathSize = columnPath.size();
     int rowPathSize = rowPath.size();
+
+    // If the current cell is out of bounds return false;
+    if (currentColumn > 5 || currentRow > 5 || currentColumn < 0 || currentRow < 0) {
+      return false;
+    }
 
     // If the current cell is different to previous check if it is valid
     if (currentColumn != columnPath.get(columnPathSize - 1)
