@@ -5,10 +5,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -21,7 +24,7 @@
             <Image url="@../images/baseVaultImage.png" />
          </image>
       </ImageView>
-      <HBox layoutX="27.0" layoutY="30.0" prefHeight="128.0" prefWidth="300.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 10;">
+      <HBox fx:id="switchHolder" layoutX="27.0" layoutY="30.0" prefHeight="128.0" prefWidth="300.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 10;">
          <children>
             <VBox fx:id="lobbyRoomSwitch" alignment="CENTER" prefHeight="129.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
                <children>
@@ -67,7 +70,7 @@
             </VBox>
          </children>
       </HBox>
-      <HBox layoutX="15.0" layoutY="539.0" prefHeight="150.0" prefWidth="665.0">
+      <HBox fx:id="walkietalkieHolder" layoutX="15.0" layoutY="539.0" prefHeight="150.0" prefWidth="665.0">
          <children>
             <VBox fx:id="walkietalkie" onMousePressed="#onWalkieTalkie" prefHeight="200.0" prefWidth="100.0" styleClass="walkietalkie" stylesheets="@../css/rooms.css">
                <children>
@@ -158,5 +161,114 @@
       <Rectangle fx:id="AIAccess" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="52.0" layoutX="48.0" layoutY="458.0" onMouseClicked="#grantAccess" stroke="BLACK" strokeType="INSIDE" width="200.0" />
       <Text layoutX="109.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AI Acess granted" />
       <Rectangle fx:id="whiteBackground" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="710.0" layoutX="-7.0" layoutY="-7.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="1009.0" />
+      <HBox fx:id="bombHolder" alignment="CENTER" layoutX="777.0" layoutY="539.0" onMousePressed="#onBombPressed" prefHeight="153.0" prefWidth="201.0" styleClass="bomb" stylesheets="@../css/rooms.css" visible="false">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="guard" stylesheets="@../css/rooms.css">
+               <children>
+                  <ImageView fx:id="bomblogo" fitHeight="101.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/bomb.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <Pane fx:id="slidePane" layoutX="1176.0" layoutY="45.0" prefHeight="494.0" prefWidth="865.0">
+         <children>
+            <HBox fx:id="exitHolder" layoutX="316.0" layoutY="189.0" onMousePressed="#onBombPlaced" prefHeight="120.0" prefWidth="233.0" styleClass="guard" stylesheets="@../css/rooms.css">
+               <children>
+                  <ImageView fitHeight="128.0" fitWidth="2214.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/bomb.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <effect>
+                  <DropShadow height="130.08" radius="60.855000000000004" width="115.34" />
+               </effect>
+            </HBox>
+            <HBox fx:id="escapebackground" layoutX="287.0" layoutY="94.0" onMousePressed="#onEscape" prefHeight="303.0" prefWidth="308.0" styleClass="guard" stylesheets="@../css/rooms.css" visible="false">
+               <children>
+                  <ImageView fitHeight="325.0" fitWidth="311.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/escapebackground.png" />
+                     </image>
+                     <effect>
+                        <DropShadow height="77.01" radius="34.32" width="62.27" />
+                     </effect>
+                  </ImageView>
+               </children>
+            </HBox>
+            <VBox fx:id="bombPuzzle" layoutX="94.0" layoutY="84.0" prefHeight="404.0" prefWidth="681.0" visible="false">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="112.0" prefWidth="610.0">
+                     <children>
+                        <Label fx:id="givencode" text="code to input" textFill="#3aff4a">
+                           <font>
+                              <Font size="48.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <StackPane alignment="CENTER_LEFT" prefHeight="308.0" prefWidth="697.0">
+                     <children>
+                        <ImageView fitHeight="344.0" fitWidth="690.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/bomb.png" />
+                           </image>
+                        </ImageView>
+                        <VBox prefHeight="344.0" prefWidth="720.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="134.0" prefWidth="680.0">
+                                 <children>
+                                    <Label fx:id="statusLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="171.0" textFill="#092ae1">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="inputLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="160.0" text="Enter Code">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <HBox alignment="CENTER" prefHeight="110.0" prefWidth="787.0">
+                                 <children>
+                                    <Pane prefHeight="128.0" prefWidth="202.0">
+                                       <children>
+                                          <Button fx:id="button" layoutX="10.0" layoutY="15.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" text="1" />
+                                          <Button fx:id="button" layoutX="155.0" layoutY="52.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" text="0" />
+                                          <Button fx:id="button" layoutX="48.0" layoutY="15.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" text="2" />
+                                          <Button fx:id="button" layoutX="48.0" layoutY="52.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" text="7" />
+                                          <Button fx:id="button" layoutX="10.0" layoutY="52.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" text="6" />
+                                          <Button fx:id="button" layoutX="84.0" layoutY="52.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" text="8" />
+                                          <Button fx:id="button" layoutX="120.0" layoutY="52.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" text="9" />
+                                          <Button fx:id="button" layoutX="84.0" layoutY="15.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" text="3" />
+                                          <Button fx:id="button" layoutX="155.0" layoutY="15.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" text="5" />
+                                          <Button fx:id="button" layoutX="120.0" layoutY="15.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" text="4" />
+                                          <Button fx:id="checkBtn" layoutX="72.0" layoutY="84.0" mnemonicParsing="false" onAction="#onCheckCode" prefHeight="19.0" prefWidth="55.0" text="Check">
+                                             <font>
+                                                <Font size="9.0" />
+                                             </font>
+                                          </Button>
+                                          <Button layoutX="180.0" layoutY="85.0" mnemonicParsing="false" onAction="#onExitBomb" prefHeight="15.0" prefWidth="17.0" text="X">
+                                             <font>
+                                                <Font size="8.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

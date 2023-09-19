@@ -100,10 +100,10 @@ public class StyleManager {
   // Remove hover state
   public void removeItemsHoverState(Node... items) {
     for (Node item : items) {
-      hoverStyleMap.remove(item);
       item.setOnMouseEntered(null);
       item.setOnMouseExited(null);
       item.setStyle("");
+      hoverStyleMap.remove(item);
     }
   }
 
