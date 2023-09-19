@@ -6,15 +6,14 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
 public class ConnectDotsController extends Controller {
 
-  @FXML private VBox walkietalkieText;
   @FXML private GridPane gridPane;
   @FXML private StackPane disableSecurity;
 
@@ -97,8 +96,6 @@ public class ConnectDotsController extends Controller {
             }
           }
 
-          System.out.println("Released");
-
           int lastIndex = columnPath.size() - 1;
 
           // If end cell is not same type as start node then clear path
@@ -124,6 +121,10 @@ public class ConnectDotsController extends Controller {
           initialRow = -1;
           rowPath.clear();
           columnPath.clear();
+
+          if (isGameComplete()) {
+            disableSecurity.setVisible(true);
+          }
         });
   }
 
@@ -232,12 +233,20 @@ public class ConnectDotsController extends Controller {
   private boolean isGameComplete() {
     for (int r = 0; r < 6; r++) {
       for (int c = 0; c < 6; c++) {
-        if (grid[r][c] != solution[r][c] && grid[r][c] != 0) {
+
+        if (solution[r][c] <= 0) {
+          continue;
+        }
+
+        if (grid[r][c] != solution[r][c]) {
           return false;
         }
       }
     }
-    disableSecurity.setVisible(true);
     return true;
+  }
+
+  public void switchToSecurity() {
+    App.setUI(Scenes.SECURITY);
   }
 }
