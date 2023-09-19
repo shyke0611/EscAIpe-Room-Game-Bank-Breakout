@@ -36,7 +36,7 @@
                   </ImageView>
                </children>
             </VBox>
-            <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0">
+            <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0" visible="false">
                <children>
                   <HBox prefHeight="100.0" prefWidth="528.0">
                      <children>

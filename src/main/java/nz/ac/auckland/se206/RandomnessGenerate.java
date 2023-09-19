@@ -2,15 +2,18 @@ package nz.ac.auckland.se206;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Rectangle;
 
 public class RandomnessGenerate {
   private static List<String> passcodeList = new ArrayList<>();
   private static List<String> usernameList = new ArrayList<>();
   private static List<HBox> keyLocationList = new ArrayList<>();
   private static List<String> partsAmount = new ArrayList<>();
+  private static List<HBox> wiresList = new ArrayList<>();
 
   private static Random random = new Random();
   private static String randomUsername;
@@ -36,7 +39,6 @@ public class RandomnessGenerate {
   public static void generateRandomCredentials() {
     int randomPasswordIndex = random.nextInt(passcodeList.size());
     int randomUsernameIndex = random.nextInt(usernameList.size());
-
     randomUsername = usernameList.get(randomUsernameIndex);
     randomPassword = passcodeList.get(randomPasswordIndex);
   }
@@ -47,9 +49,21 @@ public class RandomnessGenerate {
     randomKeyLocation = keyLocationList.get(randomHBoxIndex);
   }
 
+  // method to get random wires list
+  public static List<HBox> getRandomWires() {
+    return wiresList;
+  } 
+
   // Method to add HBox elements to the keyLocationList
   public static void addKeyLocation(HBox... hboxes) {
     keyLocationList.addAll(Arrays.asList(hboxes));
+  }
+
+  //Method to add wires to wireslist
+  public static void addWires(HBox... wires) {
+    List<HBox> shuffledWires = Arrays.asList(wires);
+    Collections.shuffle(shuffledWires);
+    wiresList.addAll(shuffledWires);
   }
 
   // getter for passcode

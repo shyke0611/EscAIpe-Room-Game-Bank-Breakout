@@ -9,30 +9,22 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager;
-import nz.ac.auckland.se206.WalkieTalkieManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.WalkieTalkieManager;
 
 public class ComputerController extends Controller {
 
-  @FXML
-  private Button goBackBtn;
-  @FXML
-  private TextField inputTextField;
-  @FXML
-  private Button quickHintBtn;
-  @FXML
-  private TextArea securityTextArea;
-  @FXML
-  private Button sendBtn;
-  @FXML
-  private Button viewHistoryBtn;
-  @FXML
-  private VBox walkietalkie;
-  @FXML
-  private VBox walkietalkieText;
+  @FXML private Button goBackBtn;
+  @FXML private TextField inputTextField;
+  @FXML private Button quickHintBtn;
+  @FXML private TextArea securityTextArea;
+  @FXML private Button sendBtn;
+  @FXML private Button viewHistoryBtn;
+  @FXML private VBox walkietalkie;
+  @FXML private VBox walkietalkieText;
 
   public void initialize() {
-    SceneManager.setController(Scenes.COMPUTER,this);
+    SceneManager.setController(Scenes.COMPUTER, this);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
   }
 

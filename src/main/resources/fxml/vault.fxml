@@ -16,7 +16,7 @@
 
 <AnchorPane fx:id="VaultPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.VaultController">
    <children>
-      <ImageView fitHeight="700.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" scaleX="1.01">
+      <ImageView fx:id="vaultbackground" fitHeight="700.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" scaleX="1.01">
          <image>
             <Image url="@../images/baseVaultImage.png" />
          </image>
@@ -161,5 +161,13 @@
       <Text layoutX="109.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AI Acess granted" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="52.0" layoutX="400.0" layoutY="470.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
       <Label alignment="CENTER" layoutX="400.0" layoutY="471.0" onMouseClicked="#switchToEyeScanner" prefHeight="51.0" prefWidth="200.0" text="Eye Scanner" />
+      <Rectangle fx:id="laserCuttingScene" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="56.0" layoutX="736.0" layoutY="122.0" onMouseClicked="#laserCuttingScene" stroke="BLACK" strokeType="INSIDE" width="177.0" />
+      <Rectangle fx:id="whiteBackground" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="710.0" layoutX="-7.0" layoutY="-7.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="1009.0" />
+      <ImageView fx:id="VaultDoor" fitHeight="495.0" fitWidth="512.0" layoutX="244.0" layoutY="101.0" opacity="0.0">
+         <image>
+            <Image url="@../../../../../../../../../Downloads/metallic-bank-vault-door-isolated-white/vaultDoor.jpg" />
+         </image>
+      </ImageView>
+      <Text layoutX="783.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="laserCutting scene " />
    </children>
 </AnchorPane>

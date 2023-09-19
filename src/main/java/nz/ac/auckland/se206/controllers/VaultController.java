@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -10,15 +12,20 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 
 public class VaultController extends Controller {
 
   @FXML private ImageView Lobby;
   @FXML private ImageView Security;
+  @FXML private Rectangle whiteBackground;
+  @FXML private Rectangle laserCuttingScene;
+  @FXML private ImageView VaultDoor;
   @FXML private ImageView goldDoor;
   @FXML private ImageView silverDoor;
   @FXML private ImageView bronzeDoor;
+  @FXML private ImageView vaultbackground;
 
   @FXML private Rectangle dialogueBox;
   @FXML private Label moneyValue;
@@ -28,12 +35,19 @@ public class VaultController extends Controller {
 
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
+
+  private Canvas canvas;
+  private GraphicsContext gc;
+  private double prevX, prevY;
+  private boolean cutting = false;
   @FXML private Rectangle AIAccess;
 
   private Boolean AIAccessGranted = false;
+  StyleManager styleManager = StyleManager.getInstance();
 
   public void initialize() {
     SceneManager.setController(Scenes.VAULT, this);
+    styleManager.addItems(goldDoor, silverDoor, bronzeDoor, vaultbackground);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
   }
 
@@ -57,11 +71,9 @@ public class VaultController extends Controller {
     App.setUI(Scenes.HACKERVAN);
   }
 
-
-  public void switchToEyeScanner(){
+  public void switchToEyeScanner() {
     App.setUI(Scenes.EYESCANNER);
   }
-
 
   public void onSwitchToChemicalMixing() {
     App.setUI(Scenes.CHEMICALMIXING);
@@ -98,6 +110,12 @@ public class VaultController extends Controller {
   }
 
   @FXML
+  public void laserCuttingScene() {
+
+    App.setUI(Scenes.LASERCUTTING);
+  }
+
+  @FXML
   public void clearInfo(MouseEvent event) {
     dialogueBox.setVisible(false);
     moneyValue.setText(null);
@@ -131,5 +149,4 @@ public class VaultController extends Controller {
     }
     return null;
   }
-
 }

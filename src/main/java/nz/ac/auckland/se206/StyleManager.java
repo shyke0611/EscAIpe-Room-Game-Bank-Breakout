@@ -1,9 +1,12 @@
 package nz.ac.auckland.se206;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javafx.scene.Node;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
@@ -11,14 +14,20 @@ import javafx.util.Duration;
 public class StyleManager {
 
   private static StyleManager instance = new StyleManager();
-  private Map<HBox, Tooltip> tooltipMap = new HashMap<>();
-  private Map<HBox, HoverColour> hoverStyleMap = new HashMap<>();
+  private Map<Node, Tooltip> tooltipMap = new HashMap<>();
+  private Map<Node, HoverColour> hoverStyleMap = new HashMap<>();
+  private List<Node> itemsList = new ArrayList<>();
 
 
   public enum HoverColour {
     RED,
     GREEN,
     ORANGE,
+  }
+
+  public enum State {
+    HOVER,
+    CLICK,
   }
 
   private StyleManager() {}
@@ -28,8 +37,8 @@ public class StyleManager {
   }
 
   // Set and apply tooltips for multiple items
-  public void setItemsMessage(String message, HBox... items) {
-    for (HBox item : items) {
+  public void setItemsMessage(String message, Node... items) {
+    for (Node item : items) {
       Tooltip tooltip = tooltipMap.get(item);
       if (tooltip == null) {
         tooltip = new Tooltip();
@@ -42,7 +51,7 @@ public class StyleManager {
   }
 
   // Remove tooltips for multiple items
-  public void removeItemsTooltip(HBox... items) {
+  public void removeItemsMessage(HBox... items) {
     for (HBox item : items) {
       Tooltip tooltip = tooltipMap.get(item);
       if (tooltip != null) {
@@ -52,10 +61,10 @@ public class StyleManager {
     }
   }
 
-  public void setItemsHoverState(HoverColour colour, HBox... items) {
+  public void setItemsState(HoverColour colour,State state, Node... items) {
     String rgba = getRgbaForHoverColour(colour);
 
-    for (HBox item : items) {
+    for (Node item : items) {
       HoverColour hover = hoverStyleMap.get(item);
       if (hover == null) {
         hoverStyleMap.put(item, colour);
@@ -65,7 +74,13 @@ public class StyleManager {
           event ->
               item.setStyle(
                   "-fx-effect: dropshadow(gaussian, " + rgba + ", 5, 5, 0, 0); -fx-cursor: hand;"));
+      if (state == State.HOVER) {
       item.setOnMouseExited(event -> item.setStyle(""));
+      } else {
+        item.setOnMousePressed(event ->
+              item.setStyle(
+                  "-fx-effect: dropshadow(gaussian, " + rgba + ", 5, 5, 0, 0); -fx-cursor: hand;"));
+      }
     }
   }
 
@@ -83,13 +98,41 @@ public class StyleManager {
 }
 
   // Remove hover state
-  public void removeItemsHoverState(HBox... items) {
-    for (HBox item : items) {
+  public void removeItemsHoverState(Node... items) {
+    for (Node item : items) {
       hoverStyleMap.remove(item);
       item.setOnMouseEntered(null);
       item.setOnMouseExited(null);
       item.setStyle("");
     }
   }
+
+  // adds Items into arraylist
+  public void addItems(Node... items) {
+    itemsList.addAll(Arrays.asList(items));
+  }
+
+  public void setAlarmStyleOn() {
+    for (Node item : itemsList) {
+      if (!item.getId().toString().equals("electricityBox"))
+      item.setDisable(true);
+      if (item.getId().endsWith("background")) {
+        AnimationManager.toggleAlarmAnimation(item);
+      }
+    }
+  }
+
+  public void setDisable(boolean value,Node... items) {
+    for (Node item : items) {
+      item.setDisable(value);
+    }
+  }
+
+  public void setVisible(boolean value,Node... items) {
+    for (Node item : items) {
+      item.setVisible(value);
+    }
+  }
+
 
 }
