@@ -51,7 +51,6 @@ public class WireCuttingController extends Controller {
       HBox clickedWire = (HBox) event.getSource();
       clickedWire.setVisible(false);
       wiresCut.add(clickedWire);
-
       checkWireCombination();
     }
   }

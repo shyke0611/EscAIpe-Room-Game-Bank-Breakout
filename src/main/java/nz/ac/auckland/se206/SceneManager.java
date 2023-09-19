@@ -19,8 +19,8 @@ public class SceneManager {
     EYESCANNER,
     CHEMICALMIXING,
     WIRECUTTING,
-
-    LASERCUTTING
+    LASERCUTTING,
+    GAMEFINISH
   }
 
   private static Controller activeController;

@@ -62,7 +62,7 @@ public class App extends Application {
     SceneManager.addController(SceneManager.Scenes.HACKERVAN, null);
     SceneManager.addController(SceneManager.Scenes.EYESCANNER, null);
     SceneManager.addController(SceneManager.Scenes.CHEMICALMIXING, null);
-
+    SceneManager.addController(SceneManager.Scenes.GAMEFINISH, null);
     SceneManager.addController(SceneManager.Scenes.LASERCUTTING, null);
 
     // Add scenes to SceneManager
@@ -76,7 +76,7 @@ public class App extends Application {
     SceneManager.addUi(SceneManager.Scenes.HACKERVAN, loadFxml("hackervan"));
     SceneManager.addUi(SceneManager.Scenes.EYESCANNER, loadFxml("eyescanner"));
     SceneManager.addUi(SceneManager.Scenes.CHEMICALMIXING, loadFxml("chemicalmixing"));
-
+    SceneManager.addUi(SceneManager.Scenes.GAMEFINISH, loadFxml("gamefinish"));
     SceneManager.addUi(SceneManager.Scenes.LASERCUTTING, loadFxml("laserCutting"));
 
     Parent root = SceneManager.getUiRoot(Scenes.LOBBY);

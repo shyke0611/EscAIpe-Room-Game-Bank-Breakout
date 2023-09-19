@@ -119,13 +119,15 @@ public class VaultController extends Controller {
   }
 
   public void switchToEyeScanner() {
+    if (GameState.isFirewallDisabled) {
     App.setUI(Scenes.EYESCANNER);
-    styleManager.setAlarm(true);
-    GameState.isAlarmTripped = true;
+    }
   }
 
   public void onSwitchToChemicalMixing() {
+    if (GameState.isFirewallDisabled) {
     App.setUI(Scenes.CHEMICALMIXING);
+    }
   }
 
   public void grantAccess() {
@@ -133,8 +135,16 @@ public class VaultController extends Controller {
   }
 
   @FXML
+  void onLootCollected(MouseEvent event) {
+    styleManager.setAlarm(true);
+    GameState.isAlarmTripped = true;
+  }
+
+  @FXML
   public void laserCuttingScene() {
+    if (GameState.isFirewallDisabled) {
     App.setUI(Scenes.LASERCUTTING);
+    }
   }
 
   @FXML
@@ -173,7 +183,9 @@ public class VaultController extends Controller {
     }
   }
 
-  public void onEscape() {}
+  public void onEscape() {
+    App.setUI(Scenes.GAMEFINISH);
+  }
 
   @FXML
   public void showInfo(MouseEvent event) {

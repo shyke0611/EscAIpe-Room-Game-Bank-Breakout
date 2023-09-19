@@ -68,12 +68,12 @@ public class SecurityController extends Controller {
 
   @FXML
   public void switchToVault() {
-    // if (GameState.isAlarmDisabled) {
+    if (GameState.isAlarmDisabled) {
        styleManager.getItem("bombHolder").setVisible(true);
        App.setUI(Scenes.VAULT);
-    // } else {
-    //   App.setUI(Scenes.VAULT);
-    
+    } else {
+      App.setUI(Scenes.VAULT);
+    }
   }
 
 
