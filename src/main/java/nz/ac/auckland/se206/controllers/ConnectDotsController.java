@@ -1,13 +1,13 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
 import javafx.fxml.FXML;
-import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
-import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
@@ -20,19 +20,121 @@ public class ConnectDotsController extends Controller {
   private int[][] grid = new int[6][6];
   private int[][] solution = new int[6][6];
 
-  private Point2D lastPoint = null;
+  private int initialColumn = -1;
+  private int initialRow = -1;
+
+  private List<Integer> columnPath = new ArrayList<>();
+  private List<Integer> rowPath = new ArrayList<>();
+
+  private boolean nodeSelected = false;
+  private int nodeValue = 0;
 
   public void initialize() {
 
     SceneManager.setController(Scenes.EYESCANNER, this);
     setSolution();
 
+    // Instant drag start event
+    gridPane.setOnMousePressed(
+        e -> {
+          double x = e.getX();
+          double y = e.getY();
+
+          initialColumn = getIndex(x, false);
+          initialRow = getIndex(y, true);
+
+          nodeSelected = grid[initialRow][initialColumn] < 0;
+
+          if (nodeSelected) {
+            nodeValue = grid[initialRow][initialColumn];
+            columnPath.add(initialColumn);
+            rowPath.add(initialRow);
+          }
+
+          System.out.println("X: " + initialColumn + " Y: " + initialRow);
+        });
+
+    // Event while dragging
+    gridPane.setOnMouseDragged(
+        e -> {
+          if (!nodeSelected) {
+            return;
+          }
+
+          double x = e.getX();
+          double y = e.getY();
+
+          int currentColumn = getIndex(x, false);
+          int currentRow = getIndex(y, true);
+
+          System.out.println("Dragging: " + "X: " + currentColumn + " Y: " + currentRow);
+
+          // If the current cell is not valid return
+          if (!isCellValid(currentColumn, currentRow)) {
+            return;
+          }
+
+          // If the current cell is not empty return;
+          if (grid[currentRow][currentColumn] != 0) {
+            return;
+          }
+
+          // Continue path
+          columnPath.add(currentColumn);
+          rowPath.add(currentRow);
+          grid[currentRow][currentColumn] = Math.abs(nodeValue);
+          Rectangle node = getNodeFromGridPane(gridPane, currentRow, currentColumn);
+          node.setFill(getColour(nodeValue));
+        });
+
+    // Event when mouse is released
+    gridPane.setOnMouseReleased(
+        e -> {
+          if (!nodeSelected) {
+            return;
+          }
+
+          int finalColumn = getIndex(e.getX(), false);
+          int finalRow = getIndex(e.getY(), true);
+
+          if (grid[finalRow][finalColumn] == nodeValue) {
+            if (isCellValid(finalColumn, finalRow)) {
+              columnPath.add(finalColumn);
+              rowPath.add(finalRow);
+            }
+          }
+
+          System.out.println("Released");
+
+          int lastIndex = columnPath.size() - 1;
+
+          // If end cell is not same type as start node then clear path
+          if (grid[rowPath.get(lastIndex)][columnPath.get(lastIndex)] != nodeValue) {
+            for (int i = 0; i < columnPath.size(); i++) {
+              int column = columnPath.get(i);
+              int row = rowPath.get(i);
+
+              // If the current cell is a node continue;
+              if (grid[row][column] < 0) {
+                continue;
+              }
+              grid[row][column] = 0;
+              Rectangle node = getNodeFromGridPane(gridPane, row, column);
+              node.setFill(Paint.valueOf("white"));
+            }
+          }
+
+          // Reset variables
+          nodeSelected = false;
+          nodeValue = 0;
+          initialColumn = -1;
+          initialRow = -1;
+          rowPath.clear();
+          columnPath.clear();
+        });
+
     // Sync Background walkie talkie
     // WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
-  }
-
-  public void switchToVault() {
-    App.setUI(Scenes.VAULT);
   }
 
   private void setSolution() {
@@ -46,28 +148,81 @@ public class ConnectDotsController extends Controller {
     };
 
     this.solution = solution;
+    copyStartEndNodes();
+  }
 
-    // Copy nodes
+  private void copyStartEndNodes() {
+    // Copy start/end nodes and colour them
     for (int i = 0; i < 6; i++) {
       for (int j = 0; j < 6; j++) {
 
         if (solution[i][j] < 0) {
           grid[i][j] = solution[i][j];
-          Rectangle node = (Rectangle) getNodeFromGridPane(gridPane, i, j);
-          node.setFill(Paint.valueOf("red"));
+          Rectangle node = getNodeFromGridPane(gridPane, i, j);
+          node.setFill(getColour(grid[i][j]));
         }
       }
     }
   }
 
-  private Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
+  private int getIndex(double coordinate, boolean isRow) {
+    if (isRow) {
+      // 80 is the cell height
+      return (int) Math.floor(coordinate / 80);
+    }
+    // 90 is the cell width
+    return (int) Math.floor(coordinate / 90);
+  }
+
+  private Rectangle getNodeFromGridPane(GridPane gridPane, int row, int col) {
     for (Node node : gridPane.getChildren()) {
       int columnIndex = GridPane.getColumnIndex(node) == null ? 0 : GridPane.getColumnIndex(node);
       int rowIndex = GridPane.getRowIndex(node) == null ? 0 : GridPane.getRowIndex(node);
       if (columnIndex == col && rowIndex == row) {
-        return node;
+        return (Rectangle) node;
       }
     }
     return null;
+  }
+
+  private boolean isCellValid(int currentColumn, int currentRow) {
+    int columnPathSize = columnPath.size();
+    int rowPathSize = rowPath.size();
+
+    // If the current cell is different to previous check if it is valid
+    if (currentColumn != columnPath.get(columnPathSize - 1)
+        || currentRow != rowPath.get(rowPathSize - 1)) {
+
+      // If the current cell is not adjacent to the previous cell return false;
+      if (Math.abs(currentColumn - columnPath.get(columnPathSize - 1)) > 1
+          || Math.abs(currentRow - rowPath.get(rowPathSize - 1)) > 1) {
+        return false;
+      }
+
+      // If the current cell is the diagonal to the previous cell return false;
+      if (Math.abs(currentColumn - columnPath.get(columnPathSize - 1))
+          == Math.abs(currentRow - rowPath.get(rowPathSize - 1))) {
+        return false;
+      }
+
+      return true;
+    }
+    return false;
+  }
+
+  private Paint getColour(int value) {
+    value = Math.abs(value);
+    switch (value) {
+      case 1:
+        return Paint.valueOf("red");
+      case 2:
+        return Paint.valueOf("blue");
+      case 3:
+        return Paint.valueOf("green");
+      case 4:
+        return Paint.valueOf("purple");
+      default:
+        return Paint.valueOf("white");
+    }
   }
 }
