@@ -5,6 +5,7 @@ import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
@@ -15,6 +16,7 @@ public class ConnectDotsController extends Controller {
 
   @FXML private VBox walkietalkieText;
   @FXML private GridPane gridPane;
+  @FXML private StackPane disableSecurity;
 
   // 0 = empty, 1 = red, 2 = blue, 3 = green, 4 = purple, negative = node
   private int[][] grid = new int[6][6];
@@ -32,6 +34,7 @@ public class ConnectDotsController extends Controller {
   public void initialize() {
 
     SceneManager.setController(Scenes.EYESCANNER, this);
+    disableSecurity.setVisible(false);
     setSolution();
 
     // Instant drag start event
@@ -224,5 +227,17 @@ public class ConnectDotsController extends Controller {
         node.setFill(Paint.valueOf("white"));
       }
     }
+  }
+
+  private boolean isGameComplete() {
+    for (int r = 0; r < 6; r++) {
+      for (int c = 0; c < 6; c++) {
+        if (grid[r][c] != solution[r][c] && grid[r][c] != 0) {
+          return false;
+        }
+      }
+    }
+    disableSecurity.setVisible(true);
+    return true;
   }
 }

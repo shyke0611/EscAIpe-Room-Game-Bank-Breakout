@@ -142,6 +142,26 @@
                   <Font size="18.0" />
                </font>
             </Button>
+            <StackPane fx:id="disableSecurity" layoutX="225.0" layoutY="225.0" prefHeight="137.0" prefWidth="419.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="200.0" stroke="RED" strokeType="INSIDE" strokeWidth="5.0" width="419.0" />
+                  <Label alignment="CENTER" prefHeight="70.0" prefWidth="380.0" text="SECURITY DISABLED" textFill="GREEN" translateY="-50.0">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="70.0" prefWidth="380.0" text="Vault Access Granted" textFill="GREEN">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="75.0" text="Close" translateY="50.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </StackPane>
          </children>
       </Pane>
    </children>
