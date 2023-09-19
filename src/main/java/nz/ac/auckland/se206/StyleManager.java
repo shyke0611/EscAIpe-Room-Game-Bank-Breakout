@@ -112,15 +112,28 @@ public class StyleManager {
     itemsList.addAll(Arrays.asList(items));
   }
 
-  public void setAlarmStyleOn() {
+
+  public void setAlarm(boolean on) {
     for (Node item : itemsList) {
-      if (!item.getId().toString().equals("electricityBox"))
-      item.setDisable(true);
-      if (item.getId().endsWith("background")) {
-        AnimationManager.toggleAlarmAnimation(item);
-      }
+        if (item == null) {
+            continue; // Skip null items
+        }
+        String itemId = item.getId();
+        System.out.println("Item ID: " + itemId);
+
+        if (itemId != null) {
+            if (!itemId.equals("electricityBox") && !itemId.equals("guardpocket")) {
+                item.setDisable(on);
+            }
+
+            if (itemId.endsWith("background")) {
+                AnimationManager.toggleAlarmAnimation(item,on);
+            }
+        }
     }
-  }
+}
+
+
 
   public void setDisable(boolean value,Node... items) {
     for (Node item : items) {

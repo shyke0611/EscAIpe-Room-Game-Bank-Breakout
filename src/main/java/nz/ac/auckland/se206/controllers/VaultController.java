@@ -10,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
@@ -73,6 +74,8 @@ public class VaultController extends Controller {
 
   public void switchToEyeScanner() {
     App.setUI(Scenes.EYESCANNER);
+    styleManager.setAlarm(true);
+    GameState.isAlarmTripped = true;
   }
 
   public void onSwitchToChemicalMixing() {

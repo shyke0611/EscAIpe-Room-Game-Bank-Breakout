@@ -91,7 +91,7 @@ public class WireCuttingController extends Controller {
 
       if (allWiresCorrect) {
         handleCorrectCombination();
-        GameState.isWiresCut = true;
+
       } else {
         handleIncorrectCombination();
       }
@@ -100,6 +100,9 @@ public class WireCuttingController extends Controller {
 
   private void handleCorrectCombination() {
     taskLbl.setText("Success");
+    GameState.isWiresCut = true;
+    styleManager.setAlarm(false);
+    GameState.isAlarmTripped = false;
   }
 
   private void handleIncorrectCombination() {

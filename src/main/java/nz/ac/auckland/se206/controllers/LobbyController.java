@@ -113,7 +113,9 @@ public class LobbyController extends Controller {
 
   @FXML
   void onGuardPocket(MouseEvent event) {
-    // if (GameState.isAlarmTripped) {
+    if (GameState.isAlarmTripped) {
+      credentialsNote.setVisible(true);
+      credentialsNote.setDisable(false);
     styleManager.setItemsMessage("Wire cutting..?", guardpocket);
     List<HBox> wires = RandomnessGenerate.getRandomWires();
     StringBuilder wireNames = new StringBuilder();
@@ -126,11 +128,10 @@ public class LobbyController extends Controller {
       wireNames.setLength(wireNames.length() - 2);
     }
 
-    credentialsNote.setVisible(true);
     usernameLbl.setText(wireNames.toString());
     passwordLbl.setText(null);
     titleLbl.setText("Wire Cutting Order");
-    // }
+    }
     styleManager.setItemsMessage("Already looked here", guardpocket);
   }
 
@@ -180,7 +181,6 @@ public class LobbyController extends Controller {
     styleManager.setItemsState(HoverColour.GREEN, State.HOVER, key1, key3, key4);
     styleManager.setItemsMessage("Something seems odd here...", key1, key3, key4);
     styleManager.setItemsMessage("Something seems odd here", guardpocket);
-    styleManager.setAlarmStyleOn();
   }
 
   private boolean isZzz1Visible = false;

@@ -45,7 +45,7 @@ public class SecurityController extends Controller {
   public void initialize() {
     SceneManager.setController(Scenes.SECURITY, this);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
-    styleManager.addItems(computer, electricityBox,securitybackground);
+    styleManager.addItems(computer, electricityBox, securitybackground);
     styleManager.setItemsMessage("A computer...?", computer);
     styleManager.setItemsMessage("it requires credentials?", logInBtn);
     styleManager.setItemsMessage("no need to open this right now", electricityBox);
@@ -73,9 +73,7 @@ public class SecurityController extends Controller {
 
   @FXML
   void onWireCutting(MouseEvent event) {
-    if (!GameState.isWiresCut
-    /** && GameState.isAlarmTripped */
-    ) {
+    if (!GameState.isWiresCut && GameState.isAlarmTripped) {
       App.setUI(Scenes.WIRECUTTING);
     } else if (GameState.isWiresCut) {
       electricityBox.setDisable(true);
