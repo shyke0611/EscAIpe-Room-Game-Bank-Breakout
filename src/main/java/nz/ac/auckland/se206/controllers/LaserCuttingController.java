@@ -8,9 +8,15 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.effect.Blend;
+import javafx.scene.effect.BlendMode;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import nz.ac.auckland.se206.SceneManager;
@@ -25,6 +31,11 @@ public class LaserCuttingController extends Controller {
 
   @FXML private Canvas canvas;
   @FXML private GraphicsContext gc;
+
+  private Line cursorLine = new Line();
+  private double angleDifference = 0;
+  double lastAngle = 0;
+
   private double prevX, prevY, startX, startY;
   private boolean cutting = false;
   private int count = 0;
@@ -38,6 +49,16 @@ public class LaserCuttingController extends Controller {
     SceneManager.setController(Scenes.LASERCUTTING, this);
     gc = canvas.getGraphicsContext2D();
 
+    root.getChildren().add(cursorLine);
+
+    cursorLine.setStartX(500);
+    cursorLine.setStartY(700);
+
+    cursorLine.setStrokeWidth(3);
+    cursorLine.setStroke(Color.RED);
+
+    applyGlowEffect(cursorLine);
+
     System.out.println(innerCircle.getCenterX());
 
     Scene scene = (Scene) root.getScene();
@@ -47,6 +68,46 @@ public class LaserCuttingController extends Controller {
 
     // Clear away portions as the user drags the mouse
 
+  }
+
+  public void applyGlowEffect(Line line) {
+
+    // Create a GaussianBlur effect
+    GaussianBlur blur = new GaussianBlur(15);
+
+    // Create a Blend effect with the ADD blend mode
+    Blend blend = new Blend();
+    blend.setMode(BlendMode.ADD);
+
+    // Add the GaussianBlur effect to the blend
+    blend.setTopInput(blur);
+
+    // Apply the blend effect to the line
+    line.setEffect(blend);
+  }
+
+  public void applyMeltingHotAppearance(Line line) {
+    // Create a linear gradient from red to yellow (adjust colors as desired)
+    LinearGradient gradient =
+        new LinearGradient(
+            0,
+            0,
+            1,
+            0,
+            true,
+            CycleMethod.NO_CYCLE,
+            new Stop(0, Color.RED),
+            new Stop(1, Color.YELLOW));
+
+    // Apply the gradient fill to the line's stroke
+    line.setStroke(gradient);
+    line.setStrokeWidth(3);
+  }
+
+  public void mouseReleased(MouseEvent event) {
+    cutting = false;
+    clearCursorLine();
+    gc.clearRect(0, 0, 1000, 700);
   }
 
   public void draw(MouseEvent event) {
@@ -59,6 +120,9 @@ public class LaserCuttingController extends Controller {
     gc.setLineWidth(3);
 
     gc.strokeLine(prevX, prevY, x, y);
+
+    cursorLine.setEndX(x);
+    cursorLine.setEndY(y);
 
     Point2D mousePosition = new Point2D(x, y);
 
@@ -85,6 +149,12 @@ public class LaserCuttingController extends Controller {
     prevY = y;
   }
 
+  public void clearCursorLine() {
+    // Clear the cursor line by setting its end point to its start point
+    cursorLine.setEndX(cursorLine.getStartX());
+    cursorLine.setEndY(cursorLine.getStartY());
+  }
+
   public void mousePressed(MouseEvent event) {
     prevX = event.getX();
     prevY = event.getY();
@@ -92,10 +162,6 @@ public class LaserCuttingController extends Controller {
     startY = event.getY();
     points.clear();
     angles.clear();
-  }
-
-  public void mouseReleased() {
-    gc.clearRect(0, 0, 1000, 700);
   }
 
   public Boolean isInRangeFirstMarker(int x, int y) {
@@ -159,12 +225,12 @@ public class LaserCuttingController extends Controller {
       }
 
       // Ensure the total angle is positive (between 0 and 2*PI)
-      if (totalAngle < 0) {
-        totalAngle += 2 * Math.PI;
-      }
+
+      System.out.println(totalAngle);
 
       // Check if the total angle exceeds a threshold for a completed circle
-      if (totalAngle > 6.2) { // Adjust the threshold as needed
+      if (totalAngle > 2 * Math.PI
+          || totalAngle < -(2 * Math.PI)) { // Adjust the threshold as needed
         // Reset the points and angles for the next circle
         points.clear();
         angles.clear();
@@ -174,8 +240,6 @@ public class LaserCuttingController extends Controller {
 
     return false;
   }
-
-  // ... (other code)
 
   public double calculateAngle(Point2D point1, Point2D point2, Circle circle) {
     double centerX = circle.getCenterX();
@@ -188,7 +252,17 @@ public class LaserCuttingController extends Controller {
     // Calculate the angle difference between the two angles
     double angleDifference = angle2 - angle1;
 
-    // Ensure the angle difference is positive (between 0 and 2*PI)
+    // If the angle has decreased significantly, assume the user has moved backward
+    // and reset it to 0 to continue counting forward
+    if (Math.abs(angleDifference) > Math.PI) {
+      if (angleDifference < 0) {
+        // User has crossed from -PI to PI
+        angleDifference += 2 * Math.PI;
+      } else {
+        // User has crossed from PI to -PI
+        angleDifference -= 2 * Math.PI;
+      }
+    }
 
     return angleDifference;
   }
