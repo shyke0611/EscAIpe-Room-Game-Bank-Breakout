@@ -18,7 +18,7 @@ public class ConnectDotsController extends Controller {
 
   // 0 = empty, 1 = red, 2 = blue, 3 = green, 4 = purple, negative = node
   private int[][] grid = new int[6][6];
-  private int[][] solution = new int[6][6];
+  private int[][] solution;
 
   private int initialColumn = -1;
   private int initialRow = -1;
@@ -37,11 +37,8 @@ public class ConnectDotsController extends Controller {
     // Instant drag start event
     gridPane.setOnMousePressed(
         e -> {
-          double x = e.getX();
-          double y = e.getY();
-
-          initialColumn = getIndex(x, false);
-          initialRow = getIndex(y, true);
+          initialColumn = getIndex(e.getX(), false);
+          initialRow = getIndex(e.getY(), true);
 
           nodeSelected = grid[initialRow][initialColumn] < 0;
 
@@ -50,8 +47,6 @@ public class ConnectDotsController extends Controller {
             columnPath.add(initialColumn);
             rowPath.add(initialRow);
           }
-
-          System.out.println("X: " + initialColumn + " Y: " + initialRow);
         });
 
     // Event while dragging
@@ -61,13 +56,8 @@ public class ConnectDotsController extends Controller {
             return;
           }
 
-          double x = e.getX();
-          double y = e.getY();
-
-          int currentColumn = getIndex(x, false);
-          int currentRow = getIndex(y, true);
-
-          System.out.println("Dragging: " + "X: " + currentColumn + " Y: " + currentRow);
+          int currentColumn = getIndex(e.getX(), false);
+          int currentRow = getIndex(e.getY(), true);
 
           // If the current cell is not valid return
           if (!isCellValid(currentColumn, currentRow)) {
@@ -132,9 +122,6 @@ public class ConnectDotsController extends Controller {
           rowPath.clear();
           columnPath.clear();
         });
-
-    // Sync Background walkie talkie
-    // WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
   }
 
   private void setSolution() {
@@ -223,6 +210,19 @@ public class ConnectDotsController extends Controller {
         return Paint.valueOf("purple");
       default:
         return Paint.valueOf("white");
+    }
+  }
+
+  public void resetGame() {
+    for (int i = 0; i < 6; i++) {
+      for (int j = 0; j < 6; j++) {
+        if (grid[i][j] < 0) {
+          continue;
+        }
+        grid[i][j] = 0;
+        Rectangle node = getNodeFromGridPane(gridPane, i, j);
+        node.setFill(Paint.valueOf("white"));
+      }
     }
   }
 }

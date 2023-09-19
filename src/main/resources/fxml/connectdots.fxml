@@ -137,6 +137,11 @@
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="80.0" stroke="BLACK" strokeType="INSIDE" width="90.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
                </children>
             </GridPane>
+            <Button layoutX="730.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#resetGame" prefHeight="50.0" prefWidth="75.0" text="Reset">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
    </children>
