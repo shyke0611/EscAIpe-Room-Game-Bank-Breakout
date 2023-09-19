@@ -49,7 +49,8 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-
+    // initialise the randomiser for all random components
+    RandomnessGenerate.generateRandomGameComponents();
     // Initialise controllers hashmap to SceneManager
     SceneManager.addController(SceneManager.Scenes.VAULT, null);
     SceneManager.addController(SceneManager.Scenes.LOBBY, null);
@@ -58,6 +59,10 @@ public class App extends Application {
     SceneManager.addController(SceneManager.Scenes.DIFFICULTYPAGE, null);
     SceneManager.addController(SceneManager.Scenes.COMPUTER, null);
     SceneManager.addController(SceneManager.Scenes.HACKERVAN, null);
+    SceneManager.addController(SceneManager.Scenes.EYESCANNER, null);
+    SceneManager.addController(SceneManager.Scenes.WIRECUTTING, null);
+    SceneManager.addController(SceneManager.Scenes.CHEMICALMIXING, null);
+
     SceneManager.addController(SceneManager.Scenes.LASERCUTTING, null);
 
     // Add scenes to SceneManager
@@ -68,9 +73,13 @@ public class App extends Application {
     SceneManager.addUi(SceneManager.Scenes.DIFFICULTYPAGE, loadFxml("difficultypage"));
     SceneManager.addUi(SceneManager.Scenes.COMPUTER, loadFxml("computer"));
     SceneManager.addUi(SceneManager.Scenes.HACKERVAN, loadFxml("hackervan"));
+    SceneManager.addUi(SceneManager.Scenes.WIRECUTTING, loadFxml("wirecutting"));
+    SceneManager.addUi(SceneManager.Scenes.EYESCANNER, loadFxml("eyescanner"));
+    SceneManager.addUi(SceneManager.Scenes.CHEMICALMIXING, loadFxml("chemicalmixing"));
+
     SceneManager.addUi(SceneManager.Scenes.LASERCUTTING, loadFxml("laserCutting"));
 
-    Parent root = SceneManager.getUiRoot(Scenes.VAULT);
+    Parent root = SceneManager.getUiRoot(Scenes.LOBBY);
 
     scene = new Scene(root, 1000, 700);
     stage.setScene(scene);

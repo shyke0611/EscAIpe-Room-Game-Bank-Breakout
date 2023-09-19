@@ -1,6 +1,8 @@
 .walkietalkie {
     -fx-background-color: #8ac1f5;
     -fx-background-radius: 70 0 0 70;
+    -fx-border-color: #328add;
+    -fx-border-radius: 70 0 0 70;
 
 }
 
@@ -16,4 +18,124 @@
     -fx-background-color: #9fd7ff;
     -fx-effect: innershadow(gaussian, rgba(13, 70, 148, 0.3), 10, 0.5, 0, 0);
     -fx-background-radius: 70 70 70 70;
+}
+
+.component2 {
+    -fx-background-color: black;
+    -fx-background-radius: 0 20 0 0;
+
+}
+
+.roomswitchback {
+    -fx-background-color: #9fd7ff;
+    -fx-background-radius: 10;
+    -fx-border-color: #328add;
+    -fx-border-radius: 10;
+
+}
+
+.text-area {
+    -fx-control-inner-background: black;
+    -fx-control-inner-border: black;
+    -fx-border-color: black;
+    -fx-background-color: black;
+    -fx-text-fill: green;
+}
+
+.text-field {
+    -fx-background-color: black;
+    -fx-border-color: green;
+    -fx-border-radius: 0 0 20 0;
+    -fx-text-fill: green;
+    -fx-prompt-text-fill: green;
+    -fx-background-radius: 0 0 20 0;
+}
+
+.keylocations:hover {
+    -fx-effect: dropshadow(gaussian, rgba(255, 183, 0, 0.7), 5, 5, 0, 0);
+    -fx-cursor: hand;
+}
+
+
+.guard:hover {
+    -fx-effect: dropshadow(gaussian, rgba(34, 255, 0, 0.7), 5, 5, 0, 0);
+    -fx-cursor: hand;
+
+}
+
+.drawer:hover {
+    -fx-effect: dropshadow(gaussian, rgba(255, 0, 0, 0.7), 5, 5, 0, 0);
+    -fx-cursor: hand;
+}
+
+.credentials:hover {
+    -fx-effect: dropshadow(gaussian, rgba(34, 255, 0, 0.7), 5, 5, 0, 0);
+    -fx-cursor: hand;
+}
+
+.close-button {
+    -fx-background-color: white;
+    -fx-background-radius: 40;
+}
+
+.close-button:hover {
+    -fx-cursor: hand;
+    -fx-border-color: rgb(255, 5, 5);
+    -fx-border-radius: 40;
+}
+
+.computer-button {
+    -fx-background-color: #000000;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: #b59e1d;
+    -fx-text-fill: #b59e1d;
+    -fx-font-size: 15px;
+    -fx-font-family: 'Weibei SC';
+
+}
+
+.computer-button:hover {
+    -fx-border-color: #eccb0f;
+    -fx-text-fill: #eccb0f;
+    -fx-cursor: hand;
+}
+
+.computer-button:pressed {
+    -fx-border-color: #b59e1d;
+    -fx-text-fill: #b59e1d;
+    -fx-cursor: hand;
+}
+
+.text {
+    -fx-background-color: #000000;
+    -fx-border-color: #eccb0f;
+    -fx-text-fill: #eccb0f;
+    -fx-prompt-text-fill: #eccb0f;
+
+}
+
+.goldDoor:hover {
+    -fx-effect: dropshadow(gaussian, rgba(255, 50, 0, 0.7), 5, 5, 0, 0);
+    -fx-cursor: hand;
+}
+
+
+.pourBtn{
+    -fx-background-color: 
+        #090a0c,
+        linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+        linear-gradient(#20262b, #191d22),
+        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 5,4,3,5;
+    -fx-background-insets: 0,1,2,0;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "Arial";
+    -fx-text-fill: linear-gradient(white, #d0d0d0);
+    -fx-font-size: 12px;
+    -fx-padding: 10 20 10 20;
+}
+.pourBtn Text {
+    -fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.9) , 1, 0.0 , 0 , 1 );
 }

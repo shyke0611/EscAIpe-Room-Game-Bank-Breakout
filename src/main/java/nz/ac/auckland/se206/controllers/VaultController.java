@@ -3,20 +3,35 @@ package nz.ac.auckland.se206.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.StyleManager;
+import nz.ac.auckland.se206.WalkieTalkieManager;
 
 public class VaultController extends Controller {
+
   @FXML private ImageView Lobby;
   @FXML private ImageView Security;
   @FXML private Rectangle whiteBackground;
   @FXML private Rectangle laserCuttingScene;
   @FXML private ImageView VaultDoor;
+  @FXML private ImageView goldDoor;
+  @FXML private ImageView silverDoor;
+  @FXML private ImageView bronzeDoor;
+  @FXML private ImageView vaultbackground;
+
+  @FXML private Rectangle dialogueBox;
+  @FXML private Label moneyValue;
+  @FXML private Label difficultyValue;
+
+  @FXML private HBox doorHolder;
 
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
@@ -25,20 +40,22 @@ public class VaultController extends Controller {
   private GraphicsContext gc;
   private double prevX, prevY;
   private boolean cutting = false;
+  @FXML private Rectangle AIAccess;
+
+  private Boolean AIAccessGranted = false;
+  StyleManager styleManager = StyleManager.getInstance();
 
   public void initialize() {
     SceneManager.setController(Scenes.VAULT, this);
+    styleManager.addItems(goldDoor, silverDoor, bronzeDoor, vaultbackground);
+    WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
   }
 
-  // handling mouse events on walkie talkie
-  // open and closes when walkie talkie is clicked
+  //   handling mouse events on walkie talkie
+  //   open and closes when walkie talkie is clicked
   @FXML
   void onWalkieTalkie(MouseEvent event) {
-    SceneManager.toggleWalkieTalkieOpen();
-  }
-
-  public void synchWalkieTalkie(boolean isOpen) {
-    walkietalkieText.setVisible(isOpen);
+    WalkieTalkieManager.toggleWalkieTalkie();
   }
 
   public void switchToLobby() {
@@ -49,68 +66,81 @@ public class VaultController extends Controller {
     App.setUI(Scenes.SECURITY);
   }
 
-  public void laserCuttingScene(MouseEvent click) {
-    App.setUI(Scenes.LASERCUTTING);
-    // // whiteBackground.setVisible(true);
-    // // whiteBackground.setOpacity(1);
-    // // VaultDoor.setOpacity(1);
+  public void onSwitchToHacker() {
+    SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.VAULT);
+    App.setUI(Scenes.HACKERVAN);
+  }
 
-    // Stage primaryStage = (Stage) whiteBackground.getScene().getWindow();
+  public void switchToEyeScanner() {
+    App.setUI(Scenes.EYESCANNER);
+  }
 
-    // canvas = new Canvas(1200, 700);
-    // gc = canvas.getGraphicsContext2D();
-    // StackPane root = new StackPane();
-    // Scene scene = new Scene(root, 1200, 700);
+  public void onSwitchToChemicalMixing() {
+    App.setUI(Scenes.CHEMICALMIXING);
+  }
 
-    // String imagePath =
-    //
-    // "https://img.freepik.com/free-vector/metallic-bank-vault-door-isolated-white_1284-51692.jpg?w=1380&t=st=1694744809~exp=1694745409~hmac=1a3a63231f4b2ee660e5999f9ca6f19173e4bc9ee0d2c3555a7a068d5373567d";
-    // String imagePath2 = "https://www.pngegg.com/en/png-dxxbv";
-    // Image image = new Image(imagePath);
-    // Image image2 = new Image(imagePath2);
-    // gc.drawImage(image, 100, 0, 750, 650);
-    // gc.drawImage(image2, 200, 150, 750, 650);
+  public void grantAccess() {
+    AIAccessGranted = true;
+  }
 
-    // root.getChildren().addAll(canvas);
+  @FXML
+  public void showInfo(MouseEvent event) {
+    String door = event.getSource().toString();
 
-    // scene.setOnMouseDragged(
-    //     event -> {
-    //       double x = event.getX();
-    //       double y = event.getY();
-    //       int counter = 0;
+    if (AIAccessGranted) {
+      String style = "-fx-effect: dropshadow(gaussian, #00bf00, 5, 5, 0, 0);";
+      String moneyText = "Money: $";
+      String difficultyText = "Difficulty: ";
 
-    //       // Clear the canvas and draw the red line from (0,0) to the mouse cursor's position
-    //       //   if (counter % 500000 == 0) {
-    //       //     gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-    //       //   }
+      if (door.contains("goldDoor")) {
+        setDoorStyle(goldDoor, style);
+        setInfoText(moneyText + "20,000,000", difficultyText + "★★★★★");
+      } else if (door.contains("silverDoor")) {
+        setDoorStyle(silverDoor, style);
+        setInfoText(moneyText + "10,000,000", difficultyText + "★★★☆☆");
+      } else if (door.contains("bronzeDoor")) {
+        setDoorStyle(bronzeDoor, style);
+        setInfoText(moneyText + "5,000,000", difficultyText + "★☆☆☆☆");
+      }
+    } else {
+      String style = "-fx-effect: dropshadow(gaussian, #ff0000, 5, 5, 0, 0);";
+      setDoorStyle(getDoorByEvent(event), style);
+      setInfoText("Money: ???????", "Difficulty: ???????");
+    }
+  }
 
-    //       gc.setStroke(Color.RED);
-    //       gc.setLineWidth(3); // Set line width as desired
-    //       // gc.strokeLine(300, 450, x, y);
+  @FXML
+  public void clearInfo(MouseEvent event) {
+    dialogueBox.setVisible(false);
+    moneyValue.setText(null);
+    difficultyValue.setText(null);
+    setDoorStyle(goldDoor, "");
+    setDoorStyle(bronzeDoor, "");
+    setDoorStyle(silverDoor, "");
+  }
 
-    //       gc.strokeLine(prevX, prevY, x, y);
+  private void setDoorStyle(ImageView door, String style) {
+    if (door != null) {
+      door.setStyle(style);
+    }
+  }
 
-    //       prevX = x;
-    //       prevY = y;
-    //       counter++;
-    //     });
+  private void setInfoText(String moneyText, String difficultyText) {
+    dialogueBox.setVisible(true);
+    moneyValue.setVisible(true);
+    difficultyValue.setVisible(true);
+    moneyValue.setText(moneyText);
+    difficultyValue.setText(difficultyText);
+  }
 
-    // scene.setOnMousePressed(
-    //     event -> {
-    //       prevX = event.getX();
-    //       prevY = event.getY();
-    //     });
-
-    // // scene.setOnMouseDragged(
-    // //     event -> {
-    // //       double x = event.getX();
-    // //       double y = event.getY();
-
-    // //       gc.setStroke(Color.RED);
-    // //       gc.setLineWidth(2);
-    // //     });
-
-    // primaryStage.setScene(scene);
-    // primaryStage.show();
+  private ImageView getDoorByEvent(MouseEvent event) {
+    if (event.getSource().toString().contains("goldDoor")) {
+      return goldDoor;
+    } else if (event.getSource().toString().contains("silverDoor")) {
+      return silverDoor;
+    } else if (event.getSource().toString().contains("bronzeDoor")) {
+      return bronzeDoor;
+    }
+    return null;
   }
 }

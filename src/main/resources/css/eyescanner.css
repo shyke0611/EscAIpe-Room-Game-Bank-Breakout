@@ -1,0 +1,24 @@
+#redSlider .thumb {
+    -fx-background-color: red;
+}
+
+#greenSlider .thumb {
+    -fx-background-color: green;
+}
+
+#blueSlider .thumb {
+    -fx-background-color: blue;
+}
+
+/*Code from Stack Overflow: https://stackoverflow.com/questions/51343759/how-to-change-fill-color-of-slider-in-javafx*/
+.slider {
+    -default-track-color: -fx-control-inner-background;
+    -track-color: -default-track-color ;
+}
+
+.slider .track {
+    -fx-background-color: -fx-shadow-highlight-color,
+          linear-gradient(to bottom, derive(-fx-text-box-border, -10%), -fx-text-box-border),
+          -track-color;
+}
+

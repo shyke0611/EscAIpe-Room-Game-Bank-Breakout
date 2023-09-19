@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,8 +11,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.StyleManager;
+import nz.ac.auckland.se206.StyleManager.HoverColour;
+import nz.ac.auckland.se206.StyleManager.State;
+import nz.ac.auckland.se206.WalkieTalkieManager;
 
 public class SecurityController extends Controller {
 
@@ -26,26 +31,31 @@ public class SecurityController extends Controller {
   @FXML private VBox lobbyRoomSwitch;
   @FXML private Button logInBtn;
   @FXML private HBox logInScreen;
+  @FXML private HBox electricityBox;
   @FXML private Label loginMsgLbl;
   @FXML private PasswordField passwordField;
-  @FXML private HBox temporaryComputer;
+  @FXML private HBox computer;
   @FXML private TextField usernameField;
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
+  @FXML private ImageView securitybackground;
+
+  StyleManager styleManager = StyleManager.getInstance();
 
   public void initialize() {
     SceneManager.setController(Scenes.SECURITY, this);
+    WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
+    styleManager.addItems(computer, electricityBox,securitybackground);
+    styleManager.setItemsMessage("A computer...?", computer);
+    styleManager.setItemsMessage("it requires credentials?", logInBtn);
+    styleManager.setItemsMessage("no need to open this right now", electricityBox);
   }
 
-  // handling mouse events on walkie talkie
-  // open and closes when walkie talkie is clicked
+  //   handling mouse events on walkie talkie
+  //   open and closes when walkie talkie is clicked
   @FXML
   void onWalkieTalkie(MouseEvent event) {
-    SceneManager.toggleWalkieTalkieOpen();
-  }
-
-  public void synchWalkieTalkie(boolean isOpen) {
-    walkietalkieText.setVisible(isOpen);
+    WalkieTalkieManager.toggleWalkieTalkie();
   }
 
   public void switchToLobby() {
@@ -56,37 +66,93 @@ public class SecurityController extends Controller {
     App.setUI(Scenes.VAULT);
   }
 
-  // set visibility og log in screen off (log off computer)
+  public void onSwitchToHacker() {
+    SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.SECURITY);
+    App.setUI(Scenes.HACKERVAN);
+  }
+
   @FXML
-  public void OnLogOff(ActionEvent event) {
+  void onWireCutting(MouseEvent event) {
+    if (!GameState.isWiresCut
+    /** && GameState.isAlarmTripped */
+    ) {
+      App.setUI(Scenes.WIRECUTTING);
+    } else if (GameState.isWiresCut) {
+      electricityBox.setDisable(true);
+    }
+  }
+
+  // set visibility of log in screen off (log off computer)
+  public void OnLogOff() {
     logInScreen.setVisible(false);
   }
 
   // check log in details before logging in
-  @FXML
-  public void onLogIn(ActionEvent event) {
+  public void onLogIn() {
     checkLogin();
   }
 
   // opening computer log in screen
   @FXML
   void onClickComputer(MouseEvent event) {
-    logInScreen.setVisible(true);
+    // if already logged in, skip log in stage
+    if (!GameState.isSecurityComputerLoggedIn) {
+      logInScreen.setVisible(true);
+    } else {
+      logInScreen.setVisible(false);
+      App.setUI(Scenes.COMPUTER);
+      styleManager.removeItemsMessage(computer);
+    }
   }
 
-  // method that checks log in credentials
+  // method that handles overall login mechanics
   private void checkLogin() {
-    // correct credentials
-    if (usernameField.getText().toLowerCase().equals("random username")
-        && passwordField.getText().equals("random password")) {
-      loginMsgLbl.setText("Success");
-      App.setUI(Scenes.COMPUTER);
-      // empty input
-    } else if (usernameField.getText().isEmpty() && passwordField.getText().isEmpty()) {
-      loginMsgLbl.setText("Enter your credentials");
+    // get user input credentials
+    String enteredUsername = usernameField.getText().toLowerCase();
+    String enteredPassword = passwordField.getText();
+    // get generated credentials
+    String randomUsername = RandomnessGenerate.getUsername();
+    String randomPassword = RandomnessGenerate.getPasscode();
+
+    if (areCredentialsValid(enteredUsername, enteredPassword, randomUsername, randomPassword)) {
+      handleSuccessfulLogin();
+      logInScreen.setVisible(false);
+      styleManager.setItemsState(HoverColour.GREEN, State.HOVER, computer);
+    } else if (areCredentialsEmpty()) {
+      handleEmptyCredentials();
     } else {
-      // wrong credentials
-      loginMsgLbl.setText("Wrong username or password");
+      handleFailedLogin();
     }
+  }
+
+  // check credentials
+  private boolean areCredentialsValid(
+      String enteredUsername,
+      String enteredPassword,
+      String randomUsername,
+      String randomPassword) {
+    return enteredUsername.equals(randomUsername) && enteredPassword.equals(randomPassword);
+  }
+
+  // check if credentials are empty
+  private boolean areCredentialsEmpty() {
+    return usernameField.getText().isEmpty() && passwordField.getText().isEmpty();
+  }
+
+  // mechanics for when login is successful
+  private void handleSuccessfulLogin() {
+    loginMsgLbl.setText("Success");
+    GameState.isSecurityComputerLoggedIn = true;
+    App.setUI(Scenes.COMPUTER);
+  }
+
+  // mechanics for empty credential input
+  private void handleEmptyCredentials() {
+    loginMsgLbl.setText("Enter your credentials");
+  }
+
+  // mechanics for when login fails
+  private void handleFailedLogin() {
+    loginMsgLbl.setText("Wrong username or password");
   }
 }

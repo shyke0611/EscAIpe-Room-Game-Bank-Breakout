@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ComputerController">
    <children>
       <HBox layoutX="29.0" layoutY="55.0" prefHeight="602.0" prefWidth="817.0">
@@ -45,6 +44,47 @@
                   </VBox>
                </children>
             </AnchorPane>
+         </children>
+      </HBox>
+      <HBox layoutX="15.0" layoutY="539.0" prefHeight="150.0" prefWidth="665.0">
+         <children>
+            <VBox fx:id="walkietalkie" onMousePressed="#onWalkieTalkie" prefHeight="200.0" prefWidth="100.0" styleClass="walkietalkie" stylesheets="@../css/rooms.css">
+               <children>
+                  <ImageView fitHeight="141.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/walkietalkie.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0" visible="false">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="528.0">
+                     <children>
+                        <TextArea editable="false" prefHeight="100.0" prefWidth="425.0" stylesheets="@../css/rooms.css" />
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="component2" stylesheets="@../css/rooms.css">
+                           <children>
+                              <Button fx:id="viewHistoryBtn" mnemonicParsing="false" onAction="#onSwitchToHacker" text="View History">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button fx:id="quickHintBtn" mnemonicParsing="false" text="Quick Hint" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="51.0" prefWidth="512.0">
+                     <children>
+                        <TextField prefHeight="58.0" prefWidth="512.0" promptText="Bzzz... type here" stylesheets="@../css/rooms.css">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
       </HBox>
    </children>

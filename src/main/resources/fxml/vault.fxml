@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -10,11 +11,17 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="VaultPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.VaultController">
    <children>
+      <ImageView fx:id="vaultbackground" fitHeight="700.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" scaleX="1.01">
+         <image>
+            <Image url="@../images/baseVaultImage.png" />
+         </image>
+      </ImageView>
       <HBox layoutX="27.0" layoutY="30.0" prefHeight="128.0" prefWidth="300.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 10;">
          <children>
             <VBox fx:id="lobbyRoomSwitch" alignment="CENTER" prefHeight="129.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
@@ -72,16 +79,26 @@
                   </ImageView>
                </children>
             </VBox>
-            <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0" visible="false">
+            <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0">
                <children>
                   <HBox prefHeight="100.0" prefWidth="528.0">
                      <children>
-                        <TextArea editable="false" prefHeight="100.0" prefWidth="533.0" style="-fx-background-color: green;" />
+                        <TextArea editable="false" prefHeight="100.0" prefWidth="425.0" stylesheets="@../css/rooms.css" />
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="component2" stylesheets="@../css/rooms.css">
+                           <children>
+                              <Button fx:id="viewHistoryBtn" mnemonicParsing="false" onAction="#onSwitchToHacker" text="View History">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button fx:id="quickHintBtn" mnemonicParsing="false" text="Quick Hint" />
+                           </children>
+                        </VBox>
                      </children>
                   </HBox>
                   <HBox prefHeight="51.0" prefWidth="512.0">
                      <children>
-                        <TextField prefHeight="50.0" prefWidth="512.0" promptText="Bzzz... type here" style="-fx-background-color: black; -fx-background-radius: 0 0 20 0;">
+                        <TextField prefHeight="58.0" prefWidth="512.0" promptText="Bzzz... type here" stylesheets="@../css/rooms.css">
                            <font>
                               <Font size="22.0" />
                            </font>
@@ -109,11 +126,42 @@
             </Label>
          </children>
       </HBox>
-      <Text layoutX="417.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VAULT">
+      <Rectangle fx:id="chemicalMixingScene" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="79.0" layoutX="730.0" layoutY="491.0" onMouseClicked="#onSwitchToChemicalMixing" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <Text layoutX="782.0" layoutY="535.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chemical mixing " />
+      <HBox fx:id="doorHolder" layoutX="51.0" layoutY="185.0" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+         <children>
+            <ImageView fx:id="silverDoor" fitHeight="266.0" fitWidth="265.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/silverDoor.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="goldDoor" fitHeight="266.0" fitWidth="265.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/goldDoor.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="bronzeDoor" fitHeight="299.0" fitWidth="299.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/bronzeDoor.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <Rectangle fx:id="dialogueBox" arcHeight="40.0" arcWidth="40.0" fill="#000000ac" height="88.0" layoutX="726.0" layoutY="28.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="260.0" />
+      <Label fx:id="moneyValue" layoutX="742.0" layoutY="43.0" text="Money: $20,000,000" textFill="WHITE" visible="false">
          <font>
-            <Font size="58.0" />
+            <Font name="American Typewriter" size="23.0" />
          </font>
-      </Text>
+      </Label>
+      <Label fx:id="difficultyValue" layoutX="741.0" layoutY="73.0" text="Difficulty: ★★★☆☆" textFill="WHITE" visible="false">
+         <font>
+            <Font name="American Typewriter" size="23.0" />
+         </font>
+      </Label>
+      <Rectangle fx:id="AIAccess" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="52.0" layoutX="48.0" layoutY="458.0" onMouseClicked="#grantAccess" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <Text layoutX="109.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AI Acess granted" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="52.0" layoutX="400.0" layoutY="470.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <Label alignment="CENTER" layoutX="400.0" layoutY="471.0" onMouseClicked="#switchToEyeScanner" prefHeight="51.0" prefWidth="200.0" text="Eye Scanner" />
       <Rectangle fx:id="laserCuttingScene" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="705.0" layoutY="312.0" onMouseClicked="#laserCuttingScene" stroke="BLACK" strokeType="INSIDE" width="200.0" />
       <Rectangle fx:id="whiteBackground" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="710.0" layoutX="-7.0" layoutY="-7.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="1009.0" />
       <ImageView fx:id="VaultDoor" fitHeight="495.0" fitWidth="512.0" layoutX="244.0" layoutY="101.0" opacity="0.0">
