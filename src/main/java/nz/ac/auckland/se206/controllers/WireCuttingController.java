@@ -99,7 +99,7 @@ public class WireCuttingController extends Controller {
     taskLbl.setText("Success");
     GameState.isWiresCut = true;
     styleManager.setAlarm(false);
-    GameState.isAlarmTripped = false;
+    GameState.isAlarmDisabled = true;
   }
 
   private void handleIncorrectCombination() {

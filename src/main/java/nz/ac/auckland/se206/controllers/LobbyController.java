@@ -89,10 +89,12 @@ public class LobbyController extends Controller {
     WalkieTalkieManager.toggleWalkieTalkie();
   }
 
+  @FXML
   public void switchToSecurity() {
     App.setUI(Scenes.SECURITY);
   }
 
+  @FXML
   public void switchToVault() {
     App.setUI(Scenes.VAULT);
   }

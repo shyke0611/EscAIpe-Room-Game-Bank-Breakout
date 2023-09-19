@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
+import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
@@ -33,7 +34,6 @@ public class VaultController extends Controller {
   @FXML private Label difficultyValue;
 
   @FXML private HBox doorHolder;
-
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
 
@@ -48,7 +48,7 @@ public class VaultController extends Controller {
 
   public void initialize() {
     SceneManager.setController(Scenes.VAULT, this);
-    styleManager.addItems(goldDoor, silverDoor, bronzeDoor, vaultbackground);
+    styleManager.addItems(goldDoor, silverDoor, bronzeDoor, vaultbackground,doorHolder);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
   }
 
@@ -59,10 +59,12 @@ public class VaultController extends Controller {
     WalkieTalkieManager.toggleWalkieTalkie();
   }
 
+  @FXML
   public void switchToLobby() {
     App.setUI(Scenes.LOBBY);
   }
 
+  @FXML
   public void switchToSecurity() {
     App.setUI(Scenes.SECURITY);
   }
@@ -85,6 +87,17 @@ public class VaultController extends Controller {
   public void grantAccess() {
     AIAccessGranted = true;
   }
+
+  @FXML
+  public void laserCuttingScene() {
+    App.setUI(Scenes.LASERCUTTING);
+  }
+
+
+
+
+
+
 
   @FXML
   public void showInfo(MouseEvent event) {
@@ -112,11 +125,6 @@ public class VaultController extends Controller {
     }
   }
 
-  @FXML
-  public void laserCuttingScene() {
-
-    App.setUI(Scenes.LASERCUTTING);
-  }
 
   @FXML
   public void clearInfo(MouseEvent event) {
@@ -152,4 +160,6 @@ public class VaultController extends Controller {
     }
     return null;
   }
+
+
 }

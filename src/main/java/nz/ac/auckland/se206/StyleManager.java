@@ -109,7 +109,9 @@ public class StyleManager {
 
   // adds Items into arraylist
   public void addItems(Node... items) {
-    itemsList.addAll(Arrays.asList(items));
+    for (Node item : items) {
+       itemsList.add(item);
+    }
   }
 
 
@@ -148,7 +150,7 @@ public class StyleManager {
 
   public Node getItem(String node) {
     for (Node item : itemsList) {
-      if (item.toString().equals(node)) {
+      if (item.getId().toString().equals(node)) {
         return item;
       }
     }

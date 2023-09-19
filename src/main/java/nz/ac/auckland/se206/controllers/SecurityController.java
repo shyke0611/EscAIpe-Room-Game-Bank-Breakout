@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -10,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
@@ -39,13 +41,14 @@ public class SecurityController extends Controller {
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
   @FXML private ImageView securitybackground;
+  @FXML private ImageView tempbackground;
 
   StyleManager styleManager = StyleManager.getInstance();
 
   public void initialize() {
     SceneManager.setController(Scenes.SECURITY, this);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
-    styleManager.addItems(computer, electricityBox, securitybackground);
+    styleManager.addItems(computer, electricityBox, securitybackground,tempbackground);
     styleManager.setItemsMessage("A computer...?", computer);
     styleManager.setItemsMessage("it requires credentials?", logInBtn);
     styleManager.setItemsMessage("no need to open this right now", electricityBox);
@@ -58,13 +61,22 @@ public class SecurityController extends Controller {
     WalkieTalkieManager.toggleWalkieTalkie();
   }
 
+  @FXML
   public void switchToLobby() {
     App.setUI(Scenes.LOBBY);
   }
 
+  @FXML
   public void switchToVault() {
-    App.setUI(Scenes.VAULT);
+    if (GameState.isAlarmDisabled) {
+       AnimationManager.slideDoorsAnimation(styleManager.getItem("doorHolder"));
+       AnimationManager.slideDoorsAnimation(styleManager.getItem("vaultbackground"));
+       App.setUI(Scenes.VAULT);
+    } else {
+      App.setUI(Scenes.VAULT);
+    }
   }
+
 
   public void onSwitchToHacker() {
     SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.SECURITY);

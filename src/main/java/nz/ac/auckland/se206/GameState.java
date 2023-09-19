@@ -18,5 +18,6 @@ public class GameState {
   public static boolean isWiresCut = false;
 
   public static boolean isAlarmTripped = false;
+  public static boolean isAlarmDisabled = false;
 
 }

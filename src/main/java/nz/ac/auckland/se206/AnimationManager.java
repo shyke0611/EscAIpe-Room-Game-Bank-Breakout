@@ -2,15 +2,16 @@ package nz.ac.auckland.se206;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
 import javafx.util.Duration;
 
 public class AnimationManager {
   private static boolean isShadowOn = false;
+  private static boolean isSlideAnimationPlayed = false; 
   private static List<Timeline> timelineList = new ArrayList<>();
 
   public static void fadeTransition(Node node, int seconds) {
@@ -24,13 +25,12 @@ public class AnimationManager {
 
   public static void toggleAlarmAnimation(Node node, boolean isOn) {
     if (isOn) {
-        startAlarmAnimation(node);
-      } else {
-        for (Timeline timeline : timelineList) {
-          timeline.stop();
-          node.setStyle(null);
-        }
-
+      startAlarmAnimation(node);
+    } else {
+      for (Timeline timeline : timelineList) {
+        timeline.stop();
+        node.setStyle(null);
+      }
     }
   }
 
@@ -52,8 +52,22 @@ public class AnimationManager {
     Timeline alarmTimeline = new Timeline(keyFrame);
     alarmTimeline.setCycleCount(Timeline.INDEFINITE);
     alarmTimeline.play();
-    
+
     timelineList.add(alarmTimeline);
   }
 
+  public static void slideDoorsAnimation(Node node) {
+    if (!isSlideAnimationPlayed) {
+    TranslateTransition transition = new TranslateTransition();
+    transition.setDuration(Duration.seconds(2));
+    transition.setNode(node);
+    transition.setByX(-1052);
+    transition.play(); 
+
+    transition.setOnFinished(event -> {
+      isSlideAnimationPlayed = true; // Animation has finished
+  });
+  transition.play();
+  }
+}
 }
