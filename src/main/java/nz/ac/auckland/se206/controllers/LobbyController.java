@@ -67,7 +67,16 @@ public class LobbyController extends Controller {
     RandomnessGenerate.addKeyLocation(key1, key3, key4);
     RandomnessGenerate.generateRandomKeyLocation();
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
-    styleManager.addItems(key1,key3,key4,credentialsBook,credentialsNote,guard,guardpocket,drawerHolder,lobbybackground);
+    styleManager.addItems(
+        key1,
+        key3,
+        key4,
+        credentialsBook,
+        credentialsNote,
+        guard,
+        guardpocket,
+        drawerHolder,
+        lobbybackground);
     styleManager.setItemsMessage("Guard is watching...", key1, key3, key4, guardpocket);
     styleManager.setItemsMessage("It's locked...", drawerHolder);
     styleManager.setItemsMessage("A note?", credentialsBook);
@@ -104,10 +113,9 @@ public class LobbyController extends Controller {
   void onDrawerPressed(MouseEvent event) {
     // opens only when key is found to the drawer
     if (GameState.isKeyFound) {
-      drawer.setVisible(false);
-      openDrawer.setVisible(true);
-      credentialsBook.setVisible(true);
-      drawerHolder.setDisable(true);
+      styleManager.setVisible(false, drawer);
+      styleManager.setVisible(true, openDrawer, credentialsBook);
+      styleManager.setDisable(true, drawerHolder);
     }
   }
 
@@ -116,21 +124,21 @@ public class LobbyController extends Controller {
     if (GameState.isAlarmTripped) {
       credentialsNote.setVisible(true);
       credentialsNote.setDisable(false);
-    styleManager.setItemsMessage("Wire cutting..?", guardpocket);
-    List<HBox> wires = RandomnessGenerate.getRandomWires();
-    StringBuilder wireNames = new StringBuilder();
+      styleManager.setItemsMessage("Wire cutting..?", guardpocket);
+      List<HBox> wires = RandomnessGenerate.getRandomWires();
+      StringBuilder wireNames = new StringBuilder();
 
-    for (HBox wire : wires) {
-      String name = wire.getId();
-      wireNames.append(name).append(", ");
-    }
-    if (wireNames.length() > 0) {
-      wireNames.setLength(wireNames.length() - 2);
-    }
+      for (HBox wire : wires) {
+        String name = wire.getId();
+        wireNames.append(name).append(", ");
+      }
+      if (wireNames.length() > 0) {
+        wireNames.setLength(wireNames.length() - 2);
+      }
 
-    usernameLbl.setText(wireNames.toString());
-    passwordLbl.setText(null);
-    titleLbl.setText("Wire Cutting Order");
+      usernameLbl.setText(wireNames.toString());
+      passwordLbl.setText(null);
+      titleLbl.setText("Wire Cutting Order");
     }
     styleManager.setItemsMessage("Already looked here", guardpocket);
   }
@@ -156,10 +164,8 @@ public class LobbyController extends Controller {
       if (clickedHBox == RandomnessGenerate.getkeyLocation()) {
         GameState.isKeyLocationFound = true;
         AnimationManager.fadeTransition(key, 2);
-        key.setDisable(false);
-        key1.setDisable(true);
-        key3.setDisable(true);
-        key4.setDisable(true);
+        styleManager.setDisable(false, key);
+        styleManager.setDisable(true, key1, key3, key4);
       }
     }
   }
@@ -176,30 +182,25 @@ public class LobbyController extends Controller {
   @FXML
   void onGuardPressed(MouseEvent event) {
     GameState.isGuardDistracted = true;
-    sleepingAnmiation();
+    sleepingAnimation();
     guard.setDisable(true);
     styleManager.setItemsState(HoverColour.GREEN, State.HOVER, key1, key3, key4);
     styleManager.setItemsMessage("Something seems odd here...", key1, key3, key4);
     styleManager.setItemsMessage("Something seems odd here", guardpocket);
   }
 
-  private boolean isZzz1Visible = false;
+  boolean isZzz1Visible = false;
 
   public void toggleImageViews() {
-    if (isZzz1Visible) {
-      zzz1.setVisible(false);
-      zzz2.setVisible(true);
-      isZzz1Visible = false;
-    } else {
-      zzz1.setVisible(true);
-      zzz2.setVisible(false);
-      isZzz1Visible = true;
-    }
+    zzz1.setVisible(isZzz1Visible);
+    zzz2.setVisible(!isZzz1Visible);
+    isZzz1Visible = !isZzz1Visible;
   }
 
-  public void sleepingAnmiation() {
+  public void sleepingAnimation() {
     Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), e -> toggleImageViews()));
     timeline.setCycleCount(Timeline.INDEFINITE);
     timeline.play();
   }
+
 }

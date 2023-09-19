@@ -15,7 +15,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.WireCuttingController">
    <children>
-      <ImageView fx:id="wirecuttingbackground" fitHeight="714.0" fitWidth="996.0" layoutX="3.0" onMousePressed="#switchToSecurity" pickOnBounds="true" preserveRatio="true" scaleX="1.01">
+      <ImageView fx:id="wirecuttingbackground" fitHeight="714.0" fitWidth="996.0" layoutX="3.0" pickOnBounds="true" preserveRatio="true" scaleX="1.01">
          <image>
             <Image url="@../images/wirecutterbackground.png" />
          </image>
@@ -167,6 +167,11 @@
             </StackPane>
             <VBox alignment="CENTER" prefHeight="425.0" prefWidth="456.0">
                <children>
+                  <Label text="Use this wirecutter" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
                   <HBox fx:id="wirecutter" alignment="CENTER" onMousePressed="#onWireCutterClicked" prefHeight="101.0" prefWidth="127.0" styleClass="guard" stylesheets="@../css/rooms.css">
                      <children>
                         <ImageView fitHeight="101.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
@@ -187,6 +192,11 @@
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <Button fx:id="retryBtn" mnemonicParsing="false" onAction="#onRetry" styleClass="computer-button" stylesheets="@../css/rooms.css" text="retry" />
+                        <Button fx:id="goBackBtn" mnemonicParsing="false" onAction="#onGoBack" styleClass="computer-button" stylesheets="@../css/rooms.css" text="Exit">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Button>
                      </children>
                   </HBox>
                </children>

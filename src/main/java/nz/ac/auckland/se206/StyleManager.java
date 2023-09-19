@@ -134,7 +134,6 @@ public class StyleManager {
 }
 
 
-
   public void setDisable(boolean value,Node... items) {
     for (Node item : items) {
       item.setDisable(value);
@@ -145,6 +144,15 @@ public class StyleManager {
     for (Node item : items) {
       item.setVisible(value);
     }
+  }
+
+  public Node getItem(String node) {
+    for (Node item : itemsList) {
+      if (item.toString().equals(node)) {
+        return item;
+      }
+    }
+    return null;
   }
 
 

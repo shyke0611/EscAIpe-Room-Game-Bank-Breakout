@@ -55,4 +55,5 @@ public class AnimationManager {
     
     timelineList.add(alarmTimeline);
   }
+
 }

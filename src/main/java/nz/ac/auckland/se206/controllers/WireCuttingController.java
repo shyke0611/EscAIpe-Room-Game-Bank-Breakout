@@ -17,7 +17,6 @@ import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.StyleManager.State;
 
 public class WireCuttingController extends Controller {
-  StyleManager styleManager = StyleManager.getInstance();
   private List<HBox> wiresCut; // To store the order of clicked wires
 
   @FXML private HBox wirecutter;
@@ -31,6 +30,7 @@ public class WireCuttingController extends Controller {
   @FXML private ImageView wirecuttingbackground;
 
   private boolean isWireCutterSelected = false;
+  StyleManager styleManager = StyleManager.getInstance();
 
   public void initialize() {
     SceneManager.setController(Scenes.WIRECUTTING, this);
@@ -38,6 +38,11 @@ public class WireCuttingController extends Controller {
     styleManager.addItems(wirecuttingbackground);
     RandomnessGenerate.addWires(bluewire, yellowwire, greenwire, redwire);
     styleManager.setItemsMessage("use the wirecutter", bluewire, yellowwire, greenwire, redwire);
+  }
+
+  @FXML 
+  void onGoBack() {
+    App.setUI(Scenes.SECURITY);
   }
 
   @FXML
@@ -62,16 +67,8 @@ public class WireCuttingController extends Controller {
   @FXML
   void onRetry() {
     wiresCut.clear();
-    yellowwire.setVisible(true);
-    redwire.setVisible(true);
-    greenwire.setVisible(true);
-    bluewire.setVisible(true);
+    styleManager.setVisible(true, yellowwire,redwire,bluewire,greenwire);
     taskLbl.setText(null);
-  }
-
-  @FXML
-  void switchToSecurity(MouseEvent event) {
-    App.setUI(Scenes.SECURITY);
   }
 
   public void checkWireCombination() {
