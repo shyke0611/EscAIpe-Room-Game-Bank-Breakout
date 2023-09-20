@@ -10,8 +10,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.TimerControl;
+import nz.ac.auckland.se206.difficulties.Difficulty.Difficulties;
 
 public class DifficultyController extends Controller {
 
@@ -46,6 +49,8 @@ public class DifficultyController extends Controller {
   private boolean easyVboxClicked = false;
   private boolean mediumVboxClicked = false;
   private boolean hardVboxClicked = false;
+  private Difficulties difficulty;
+  private boolean difficultySelected = false;
 
   public void initialize() {
     SceneManager.setController(Scenes.DIFFICULTYPAGE, this);
@@ -78,15 +83,23 @@ public class DifficultyController extends Controller {
 
   @FXML
   void onDifficultyClicked(MouseEvent event) {
+    if (!difficultySelected) {
+      difficultySelected = true;
+      playBtn.setDisable(false);
+    }
+
     if (event.getSource() == easyVbox) {
       handleDifficultySelection(easyVbox, easyAlarmImage, "Easy");
       easyVboxClicked = true;
+      difficulty = Difficulties.EASY;
     } else if (event.getSource() == mediumVbox) {
       handleDifficultySelection(mediumVbox, mediumAlarmImage, "Medium");
       mediumVboxClicked = true;
+      difficulty = Difficulties.MEDIUM;
     } else {
       handleDifficultySelection(hardVbox, hardAlarmImage, "Hard");
       hardVboxClicked = true;
+      difficulty = Difficulties.HARD;
     }
   }
 
@@ -99,6 +112,9 @@ public class DifficultyController extends Controller {
 
   @FXML
   public void startHeist(ActionEvent event) throws IOException {
+    int timerValue = (int) timerSlider.getValue();
+    GameManager.createGame(difficulty, timerValue);
+    TimerControl.runTimer();
     App.setUI(Scenes.LOBBY);
   }
 

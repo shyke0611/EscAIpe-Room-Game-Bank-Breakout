@@ -3,10 +3,11 @@ package nz.ac.auckland.se206;
 import java.util.Timer;
 import java.util.TimerTask;
 import javafx.application.Platform;
+import nz.ac.auckland.se206.SceneManager.Scenes;
 
 public class TimerControl {
 
-  private static int initialCount = 0;
+  private static int initialCount = 10;
   private static int count;
 
   private static Timer timer;
@@ -37,7 +38,7 @@ public class TimerControl {
   }
 
   // method to set timer count
-  public static void setCount(int minutes) {
+  public static void setTimer(int minutes) {
     switch (minutes) {
       case 2:
         initialCount = 120;
@@ -73,6 +74,7 @@ public class TimerControl {
                   });
               // if time is up, reset game
             } else {
+              App.setUI(Scenes.GAMEFINISH);
               cancelTimer();
             }
           }
