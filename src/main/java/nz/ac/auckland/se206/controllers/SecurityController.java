@@ -45,7 +45,7 @@ public class SecurityController extends Controller {
 
   public void initialize() {
     SceneManager.setController(Scenes.SECURITY, this);
-    super.setTimerLabel(timerLabel);
+    super.setTimerLabel(timerLabel, 1);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     styleManager.addItems(computer, electricityBox, securitybackground, tempbackground);
     styleManager.setItemsMessage("A computer...?", "computer");

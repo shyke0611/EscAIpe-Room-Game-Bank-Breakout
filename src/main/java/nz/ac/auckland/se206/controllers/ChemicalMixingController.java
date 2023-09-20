@@ -64,7 +64,7 @@ public class ChemicalMixingController extends Controller {
 
   public void initialize() {
     SceneManager.setController(Scenes.CHEMICALMIXING, this);
-    super.setTimerLabel(timerLabel);
+    super.setTimerLabel(timerLabel, 3);
 
     // Setting up hover animations
     setupListeners();

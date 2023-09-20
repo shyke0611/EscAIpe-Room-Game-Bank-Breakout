@@ -36,7 +36,7 @@ public class WireCuttingController extends Controller {
 
   public void initialize() {
     SceneManager.setController(Scenes.WIRECUTTING, this);
-    super.setTimerLabel(timerLabel);
+    super.setTimerLabel(timerLabel, 2);
     wiresCut = new ArrayList<>();
     styleManager.addItems(redwire, greenwire, bluewire, yellowwire, wirecuttingbackground);
     RandomnessGenerate.addWires(bluewire, yellowwire, greenwire, redwire);

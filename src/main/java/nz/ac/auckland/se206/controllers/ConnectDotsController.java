@@ -35,7 +35,7 @@ public class ConnectDotsController extends Controller {
   public void initialize() {
 
     SceneManager.setController(Scenes.EYESCANNER, this);
-    super.setTimerLabel(timerLabel);
+    super.setTimerLabel(timerLabel, 3);
     disableSecurity.setVisible(false);
     setSolution();
 

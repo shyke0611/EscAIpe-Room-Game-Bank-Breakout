@@ -70,7 +70,7 @@ public class VaultController extends Controller {
 
   public void initialize() {
     SceneManager.setController(Scenes.VAULT, this);
-    super.setTimerLabel(timerLabel);
+    super.setTimerLabel(timerLabel, 1);
     styleManager.addItems(
         goldDoor,
         silverDoor,

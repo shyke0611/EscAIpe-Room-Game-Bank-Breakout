@@ -48,7 +48,7 @@ public class EyeScannerController extends Controller {
   public void initialize() {
 
     SceneManager.setController(Scenes.EYESCANNER, this);
-    super.setTimerLabel(timerLabel);
+    super.setTimerLabel(timerLabel, 3);
     accessGranted.setVisible(false);
     accessDenied.setVisible(false);
 

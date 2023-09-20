@@ -60,7 +60,7 @@ public class LobbyController extends Controller {
 
   public void initialize() {
     SceneManager.setController(Scenes.LOBBY, this);
-    super.setTimerLabel(timerLabel);
+    super.setTimerLabel(timerLabel, 1);
     // obtain random credentials
     randomUsername = RandomnessGenerate.getUsername();
     randomPassword = RandomnessGenerate.getPasscode();

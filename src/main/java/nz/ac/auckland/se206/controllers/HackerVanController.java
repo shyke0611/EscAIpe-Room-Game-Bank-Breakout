@@ -19,7 +19,7 @@ public class HackerVanController extends Controller {
 
   public void initialize() {
     SceneManager.setController(Scenes.HACKERVAN, this);
-    super.setTimerLabel(timerLabel);
+    super.setTimerLabel(timerLabel, 3);
   }
 
   public void onGoBack() {

@@ -61,7 +61,7 @@ public class LaserCuttingController extends Controller {
 
   public void initialize() {
     SceneManager.setController(Scenes.LASERCUTTING, this);
-    super.setTimerLabel(timerLabel);
+    super.setTimerLabel(timerLabel, 3);
     gc = canvas.getGraphicsContext2D();
 
     root.getChildren().add(cursorLine);

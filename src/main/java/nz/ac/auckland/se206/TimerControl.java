@@ -12,10 +12,18 @@ public class TimerControl {
   private static Timer timer;
   private static TimerTask task;
 
-  public static String getTime() {
+  public static String getTime(int format) {
     int minutes = count / 60;
-    String time = "" + minutes + ":" + getSecondsString();
-    return time;
+    switch (format) {
+      case 1:
+        return "" + minutes + ":" + getSecondsString();
+      case 2:
+        return "" + minutes + ":" + getSecondsString() + " Seconds";
+      case 3:
+        return "Time Remaining: " + minutes + "Minutes and " + getSecondsString() + " Seconds";
+      default:
+        return "" + minutes + ":" + getSecondsString();
+    }
   }
 
   private static String getSecondsString() {
@@ -61,7 +69,7 @@ public class TimerControl {
               count--;
               Platform.runLater(
                   () -> {
-                    SceneManager.getTimerLabel().setText(getTime());
+                    SceneManager.getTimerLabel().setText(getTime(1));
                   });
               // if time is up, reset game
             } else {
