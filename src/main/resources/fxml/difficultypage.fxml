@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.DifficultyController">
@@ -59,7 +60,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="69.0" prefWidth="225.0">
                      <children>
-                        <Label text="Easy" textFill="#4d4f54">
+                        <Label alignment="CENTER" text="Easy" textFill="#4d4f54">
                            <font>
                               <Font name="BM KIRANGHAERANG OTF" size="53.0" />
                            </font>
@@ -82,7 +83,7 @@
                   </StackPane>
                   <HBox alignment="CENTER" prefHeight="42.0" prefWidth="225.0" spacing="10.0">
                      <children>
-                        <Label prefHeight="4.0" prefWidth="133.0" text="Hints Allowed:" textFill="#4d4f54">
+                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="200.0" text="Hints Allowed:" textFill="#4d4f54">
                            <font>
                               <Font name="BM KIRANGHAERANG OTF" size="24.0" />
                            </font>
@@ -91,9 +92,9 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="24.0" prefWidth="225.0" spacing="10.0">
                      <children>
-                        <Label text="unlimited" textFill="#4d4f54">
+                        <Label alignment="TOP_CENTER" prefHeight="38.0" prefWidth="30.0" text="∞" textFill="#4d4f54" translateY="-10.0">
                            <font>
-                              <Font name="BM KIRANGHAERANG OTF" size="21.0" />
+                              <Font size="34.0" />
                            </font>
                         </Label>
                      </children>
@@ -114,7 +115,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="69.0" prefWidth="225.0">
                      <children>
-                        <Label text="Medium" textFill="#4d4f54">
+                        <Label alignment="CENTER" text="Medium" textFill="#4d4f54">
                            <font>
                               <Font name="BM KIRANGHAERANG OTF" size="53.0" />
                            </font>
@@ -137,7 +138,7 @@
                   </StackPane>
                   <HBox alignment="CENTER" prefHeight="42.0" prefWidth="225.0" spacing="10.0">
                      <children>
-                        <Label prefHeight="4.0" prefWidth="133.0" text="Hints Allowed:" textFill="#4d4f54">
+                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="189.0" text="Hints Allowed:" textFill="#4d4f54">
                            <font>
                               <Font name="BM KIRANGHAERANG OTF" size="24.0" />
                            </font>
@@ -169,7 +170,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="69.0" prefWidth="225.0">
                      <children>
-                        <Label text="Hard" textFill="#4d4f54">
+                        <Label alignment="CENTER" text="Hard" textFill="#4d4f54">
                            <font>
                               <Font name="BM KIRANGHAERANG OTF" size="53.0" />
                            </font>
@@ -192,7 +193,7 @@
                   </StackPane>
                   <HBox alignment="CENTER" prefHeight="42.0" prefWidth="225.0" spacing="10.0">
                      <children>
-                        <Label prefHeight="4.0" prefWidth="133.0" text="Hints Allowed:" textFill="#4d4f54">
+                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="180.0" text="Hints Allowed:" textFill="#4d4f54">
                            <font>
                               <Font name="BM KIRANGHAERANG OTF" size="24.0" />
                            </font>
@@ -201,7 +202,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="24.0" prefWidth="225.0" spacing="10.0">
                      <children>
-                        <Label text="none" textFill="#4d4f54">
+                        <Label text="0" textFill="#4d4f54">
                            <font>
                               <Font name="BM KIRANGHAERANG OTF" size="21.0" />
                            </font>
@@ -226,7 +227,7 @@
          <children>
             <Label prefHeight="57.0" prefWidth="238.0" text="Difficulty Chosen:" textFill="#305dae">
                <font>
-                  <Font name="BM KIRANGHAERANG OTF" size="36.0" />
+                  <Font size="30.0" />
                </font>
                <HBox.margin>
                   <Insets left="10.0" />
@@ -251,20 +252,35 @@
       </HBox>
       <HBox alignment="CENTER" layoutX="142.0" layoutY="519.0" prefHeight="80.0" prefWidth="719.0" style="-fx-background-color: white; -fx-background-radius: 50;">
          <children>
-            <Label prefHeight="75.0" prefWidth="140.0" text="Timer:" textFill="#305dae">
+            <Label prefHeight="80.0" prefWidth="150.0" text="Timer:" textFill="#305dae">
                <font>
-                  <Font name="BM KIRANGHAERANG OTF" size="62.0" />
+                  <Font size="48.0" />
                </font>
-               <HBox.margin>
-                  <Insets left="10.0" />
-               </HBox.margin>
             </Label>
-            <Slider fx:id="timerSlider" blockIncrement="2.0" majorTickUnit="2.0" max="6.0" min="2.0" minorTickCount="0" onMouseReleased="#onSliderChanged" prefHeight="38.0" prefWidth="270.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-background-color: #8ac1f5; -fx-background-radius: 20;">
-               <HBox.margin>
-                  <Insets left="40.0" right="40.0" />
-               </HBox.margin>
-            </Slider>
-            <Label fx:id="timerLabel" alignment="CENTER" prefHeight="59.0" prefWidth="198.0" text="2 Minutes" textFill="#305dae">
+            <StackPane prefHeight="80.0" prefWidth="281.0">
+               <children>
+                  <Line endY="560.0" startY="540.0" stroke="#305dae" strokeWidth="4.0" translateX="-135.0" translateY="5.0" />
+                  <Line endY="560.0" startY="540.0" stroke="#305dae" strokeWidth="4.0" translateY="5.0" />
+                  <Line endY="560.0" startY="540.0" stroke="#305dae" strokeWidth="4.0" translateX="135.0" translateY="5.0" />
+                  <Slider fx:id="timerSlider" blockIncrement="2.0" majorTickUnit="2.0" max="6.0" min="2.0" minorTickCount="0" onMouseReleased="#onSliderChanged" prefHeight="38.0" prefWidth="335.0" snapToTicks="true" style="-fx-control-inner-background: #305dae;" styleClass="-" translateY="5.0" />
+                  <Label prefHeight="35.0" prefWidth="311.0" text="2" textFill="#305dae" translateY="-20.0">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="35.0" prefWidth="311.0" text="4" textFill="#305dae" translateY="-20.0">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="311.0" text="6" textFill="#305dae" translateY="-20.0">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+            <Label fx:id="timerLabel" alignment="CENTER" prefHeight="70.0" prefWidth="227.0" text="2 Minutes" textFill="#305dae">
                <font>
                   <Font name="BM KIRANGHAERANG OTF" size="48.0" />
                </font>
