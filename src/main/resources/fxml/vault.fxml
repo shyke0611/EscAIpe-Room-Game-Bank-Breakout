@@ -306,7 +306,7 @@
          </children>
       </Pane>
       <Button fx:id="lootBtn" layoutX="583.0" layoutY="106.0" mnemonicParsing="false" onAction="#onLootCollected" prefHeight="26.0" prefWidth="120.0" text="temp collect loot" />
-      <StackPane layoutX="454.0" layoutY="119.0" prefHeight="52.0" prefWidth="99.0">
+      <StackPane layoutX="460.0" layoutY="119.0" prefHeight="52.0" prefWidth="99.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#888d7d" height="64.0" stroke="BLACK" strokeType="INSIDE" width="99.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a7ab3d" height="47.0" stroke="BLACK" strokeType="INSIDE" width="79.0" />
