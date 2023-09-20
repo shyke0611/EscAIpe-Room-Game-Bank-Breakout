@@ -189,7 +189,7 @@
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="267.0" translateY="-25.0">
                      <children>
                         <Button fx:id="retryBtn" mnemonicParsing="false" onAction="#onRetry" styleClass="computer-button" stylesheets="@../css/rooms.css" text="retry" />
                         <Button fx:id="goBackBtn" mnemonicParsing="false" onAction="#onGoBack" styleClass="computer-button" stylesheets="@../css/rooms.css" text="Exit">
@@ -202,5 +202,15 @@
                </children>
             </VBox>
          </children></HBox>
+      <Label alignment="CENTER" layoutX="590.0" layoutY="440.0" prefHeight="65.0" prefWidth="269.0" text="Time Remaining:" textAlignment="CENTER" textFill="#404040">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="584.0" layoutY="480.0" prefHeight="17.0" prefWidth="268.0" text="0 Minutes and 0 Seconds" textFill="#404040">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
