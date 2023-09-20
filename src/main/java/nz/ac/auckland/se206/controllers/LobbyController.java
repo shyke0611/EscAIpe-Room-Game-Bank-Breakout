@@ -6,7 +6,11 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -20,6 +24,8 @@ import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.WalkieTalkieManager;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class LobbyController extends Controller {
 
@@ -36,6 +42,8 @@ public class LobbyController extends Controller {
   @FXML private Button viewHistoryBtn;
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
+  @FXML private TextField lobbyTextInput;
+  @FXML private TextArea lobbyTextArea;
   // key locations:
   @FXML private HBox key1;
   @FXML private HBox key3;
@@ -56,6 +64,7 @@ public class LobbyController extends Controller {
   private String randomUsername;
   private String randomPassword;
   StyleManager styleManager = StyleManager.getInstance();
+  WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
 
   public void initialize() {
     SceneManager.setController(Scenes.LOBBY, this);
@@ -67,7 +76,7 @@ public class LobbyController extends Controller {
     RandomnessGenerate.generateRandomKeyLocation();
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     styleManager.addItems(
-      key,
+        key,
         key1,
         key3,
         key4,
@@ -76,7 +85,12 @@ public class LobbyController extends Controller {
         guard,
         guardpocket,
         drawerHolder,
-        lobbybackground, drawerHolder,credentialsBook,credentialsNote,drawer,openDrawer);
+        lobbybackground,
+        drawerHolder,
+        credentialsBook,
+        credentialsNote,
+        drawer,
+        openDrawer);
     styleManager.setItemsMessage("Guard is watching...", "key1", "key3", "key4", "guardpocket");
     styleManager.setItemsMessage("It's locked...", "drawerHolder");
     styleManager.setItemsMessage("A note?", "credentialsBook");
@@ -153,7 +167,6 @@ public class LobbyController extends Controller {
     titleLbl.setText("Security Room Computer Log In");
     styleManager.removeItemsMessage("credentialsBook");
     styleManager.removeItemsMessage("computer");
-    
   }
 
   // pressing any location of the keys
@@ -206,4 +219,19 @@ public class LobbyController extends Controller {
     timeline.play();
   }
 
+  @FXML
+  public void invokeHackerAI(KeyEvent event) {
+    if (event.getCode() == KeyCode.ENTER) {
+      ChatMessage msg = new ChatMessage("user", lobbyTextInput.getText());
+      walkieTalkieManager.clearWalkieTalkie();
+      try {
+        ChatMessage response = walkieTalkieManager.runGpt(msg);
+        walkieTalkieManager.setWalkieTalkieText(response);
+
+      } catch (ApiProxyException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+    }
+  }
 }

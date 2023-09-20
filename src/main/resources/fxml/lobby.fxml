@@ -16,7 +16,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="LobbyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LobbyController">
+<AnchorPane fx:id="LobbyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#invokeHackerAI" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LobbyController">
    <children>
       <ImageView fx:id="lobbybackground" fitHeight="701.0" fitWidth="1010.0" layoutX="-6.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -155,9 +155,9 @@
             </VBox>
             <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0" visible="false">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="528.0">
+                  <HBox fx:id="textAreaBox" prefHeight="100.0" prefWidth="528.0">
                      <children>
-                        <TextArea editable="false" prefHeight="100.0" prefWidth="425.0" stylesheets="@../css/rooms.css" />
+                        <TextArea fx:id="lobbyTextArea" editable="false" onKeyPressed="#invokeHackerAI" prefHeight="100.0" prefWidth="425.0" stylesheets="@../css/rooms.css" />
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="component2" stylesheets="@../css/rooms.css">
                            <children>
                               <Button fx:id="viewHistoryBtn" mnemonicParsing="false" onAction="#onSwitchToHacker" text="View History">
@@ -172,7 +172,7 @@
                   </HBox>
                   <HBox prefHeight="51.0" prefWidth="512.0">
                      <children>
-                        <TextField prefHeight="58.0" prefWidth="512.0" promptText="Bzzz... type here" stylesheets="@../css/rooms.css">
+                        <TextField fx:id="lobbyTextInput" prefHeight="58.0" prefWidth="512.0" promptText="Bzzz... type here" stylesheets="@../css/rooms.css">
                            <font>
                               <Font size="22.0" />
                            </font>

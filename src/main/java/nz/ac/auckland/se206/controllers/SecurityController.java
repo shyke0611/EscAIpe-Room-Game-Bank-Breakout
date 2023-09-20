@@ -17,7 +17,6 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.StyleManager.HoverColour;
-import nz.ac.auckland.se206.StyleManager.State;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 
 public class SecurityController extends Controller {
@@ -46,10 +45,10 @@ public class SecurityController extends Controller {
   public void initialize() {
     SceneManager.setController(Scenes.SECURITY, this);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
-    styleManager.addItems(computer, electricityBox,securitybackground);
-    styleManager.setItemsMessage("A computer...?", computer);
-    styleManager.setItemsMessage("it requires credentials?", logInBtn);
-    styleManager.setItemsMessage("no need to open this right now", electricityBox);
+    styleManager.addItems(computer, electricityBox, securitybackground);
+    // styleManager.setItemsMessage("A computer...?", computer);
+    // styleManager.setItemsMessage("it requires credentials?", logInBtn);
+    // styleManager.setItemsMessage("no need to open this right now", electricityBox);
   }
 
   //   handling mouse events on walkie talkie
