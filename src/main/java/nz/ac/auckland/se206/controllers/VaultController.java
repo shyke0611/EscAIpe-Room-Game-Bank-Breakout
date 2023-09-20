@@ -18,8 +18,8 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
-import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.StyleManager;
+import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 
 public class VaultController extends Controller {
@@ -34,6 +34,7 @@ public class VaultController extends Controller {
   @FXML private ImageView bronzeDoor;
   @FXML private ImageView vaultbackground;
   @FXML private ImageView bomblogo;
+  @FXML private Label timerLabel;
 
   @FXML private Rectangle dialogueBox;
   @FXML private Label moneyValue;
@@ -69,6 +70,7 @@ public class VaultController extends Controller {
 
   public void initialize() {
     SceneManager.setController(Scenes.VAULT, this);
+    super.setTimerLabel(timerLabel);
     styleManager.addItems(
         goldDoor,
         silverDoor,
@@ -77,7 +79,11 @@ public class VaultController extends Controller {
         doorHolder,
         exitHolder,
         bombHolder,
-        bombPuzzle,walkietalkie,walkietalkieHolder,switchHolder,escapeDoor);
+        bombPuzzle,
+        walkietalkie,
+        walkietalkieHolder,
+        switchHolder,
+        escapeDoor);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     givencode.setText("Code: " + RandomnessGenerate.getPasscode());
     styleManager.setItemsMessage("set bomb down", "exitHolder");
@@ -126,13 +132,13 @@ public class VaultController extends Controller {
 
   public void switchToEyeScanner() {
     if (GameState.isFirewallDisabled) {
-    App.setUI(Scenes.EYESCANNER);
+      App.setUI(Scenes.EYESCANNER);
     }
   }
 
   public void onSwitchToChemicalMixing() {
     if (GameState.isFirewallDisabled) {
-    App.setUI(Scenes.CHEMICALMIXING);
+      App.setUI(Scenes.CHEMICALMIXING);
     }
   }
 
@@ -144,20 +150,20 @@ public class VaultController extends Controller {
   @FXML
   void onLootCollected(ActionEvent event) {
     if (GameState.isFirewallDisabled && GameState.isAnyDoorOpen) {
-    styleManager.setAlarm(true);
-    GameState.isAlarmTripped = true;
-    styleManager.setItemsState(HoverColour.GREEN, "electricityBox");
-    styleManager.setItemsState(HoverColour.GREEN, "guardpocket");
-    styleManager.setItemsMessage("Something seems odd?", "guardpocket");
-    styleManager.setItemsMessage("Alarm Wires...?", "electricityBox");
-    lootBtn.setDisable(true);
-  }
+      styleManager.setAlarm(true);
+      GameState.isAlarmTripped = true;
+      styleManager.setItemsState(HoverColour.GREEN, "electricityBox");
+      styleManager.setItemsState(HoverColour.GREEN, "guardpocket");
+      styleManager.setItemsMessage("Something seems odd?", "guardpocket");
+      styleManager.setItemsMessage("Alarm Wires...?", "electricityBox");
+      lootBtn.setDisable(true);
+    }
   }
 
   @FXML
   public void laserCuttingScene() {
     if (GameState.isFirewallDisabled) {
-    App.setUI(Scenes.LASERCUTTING);
+      App.setUI(Scenes.LASERCUTTING);
     }
   }
 
@@ -190,7 +196,8 @@ public class VaultController extends Controller {
   public void onExitBomb() {
     bombPuzzle.setVisible(false);
     if (GameState.isBombActivated) {
-      styleManager.setVisible(false, "walkietalkie", "switchHolder","walkietalkieHolder", "bombHolder");
+      styleManager.setVisible(
+          false, "walkietalkie", "switchHolder", "walkietalkieHolder", "bombHolder");
       AnimationManager.startBombAnimation(exitHolder);
       AnimationManager.delayAnimation(exitHolder, escapeDoor);
       exitHolder.setDisable(true);
@@ -200,12 +207,6 @@ public class VaultController extends Controller {
   public void onEscape() {
     App.setUI(Scenes.GAMEFINISH);
   }
-
-
-
-
-
-  
 
   @FXML
   public void showInfo(MouseEvent event) {
