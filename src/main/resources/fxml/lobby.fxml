@@ -266,7 +266,7 @@
                                     <Font name="Apple LiGothic Medium" size="22.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="titleLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="258.0" text="title">
+                              <Label fx:id="titleLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="71.0" prefWidth="258.0" style="-fx-text-alignment: center;" text="Security Room Computer Log In:" wrapText="true">
                                  <font>
                                     <Font name="Apple LiGothic Medium" size="23.0" />
                                  </font>
