@@ -22,6 +22,7 @@ import nz.ac.auckland.se206.WalkieTalkieManager;
 public class SecurityController extends Controller {
 
   @FXML private ImageView Lobby;
+  @FXML private Label timerLabel;
   @FXML private Button LogOffBtn;
   @FXML private AnchorPane SecurityPane;
   @FXML private VBox SecurityRoomSwitch;
@@ -44,6 +45,7 @@ public class SecurityController extends Controller {
 
   public void initialize() {
     SceneManager.setController(Scenes.SECURITY, this);
+    super.setTimerLabel(timerLabel);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     styleManager.addItems(computer, electricityBox, securitybackground, tempbackground);
     styleManager.setItemsMessage("A computer...?", "computer");
