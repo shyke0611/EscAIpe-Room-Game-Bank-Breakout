@@ -19,7 +19,6 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.StyleManager.HoverColour;
-import nz.ac.auckland.se206.StyleManager.State;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 
 public class LobbyController extends Controller {
@@ -68,6 +67,7 @@ public class LobbyController extends Controller {
     RandomnessGenerate.generateRandomKeyLocation();
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     styleManager.addItems(
+      key,
         key1,
         key3,
         key4,
@@ -76,7 +76,7 @@ public class LobbyController extends Controller {
         guard,
         guardpocket,
         drawerHolder,
-        lobbybackground);
+        lobbybackground, drawerHolder,credentialsBook,credentialsNote,drawer,openDrawer);
     styleManager.setItemsMessage("Guard is watching...", key1, key3, key4, guardpocket);
     styleManager.setItemsMessage("It's locked...", drawerHolder);
     styleManager.setItemsMessage("A note?", credentialsBook);
@@ -115,9 +115,9 @@ public class LobbyController extends Controller {
   void onDrawerPressed(MouseEvent event) {
     // opens only when key is found to the drawer
     if (GameState.isKeyFound) {
-      styleManager.setVisible(false, drawer);
-      styleManager.setVisible(true, openDrawer, credentialsBook);
-      styleManager.setDisable(true, drawerHolder);
+      styleManager.setVisible(false, "drawer");
+      styleManager.setVisible(true, "openDrawer", "credentialsBook");
+      styleManager.setDisable(true, "drawerHolder");
     }
   }
 
@@ -166,8 +166,8 @@ public class LobbyController extends Controller {
       if (clickedHBox == RandomnessGenerate.getkeyLocation()) {
         GameState.isKeyLocationFound = true;
         AnimationManager.fadeTransition(key, 2);
-        styleManager.setDisable(false, key);
-        styleManager.setDisable(true, key1, key3, key4);
+        styleManager.setDisable(false, "key");
+        styleManager.setDisable(true, "key1", "key3", "key4");
       }
     }
   }
@@ -177,7 +177,7 @@ public class LobbyController extends Controller {
   void onKeyPressed(MouseEvent event) {
     GameState.isKeyFound = true;
     key.setVisible(false);
-    styleManager.setItemsState(HoverColour.GREEN, State.HOVER, drawerHolder);
+    styleManager.setItemsState(HoverColour.GREEN, "drawerHolder");
     styleManager.setItemsMessage("The key fits...", drawerHolder);
   }
 
@@ -186,7 +186,7 @@ public class LobbyController extends Controller {
     GameState.isGuardDistracted = true;
     sleepingAnimation();
     guard.setDisable(true);
-    styleManager.setItemsState(HoverColour.GREEN, State.HOVER, key1, key3, key4);
+    styleManager.setItemsState(HoverColour.GREEN, "key1", "key3", "key4");
     styleManager.setItemsMessage("Something seems odd here...", key1, key3, key4);
     styleManager.setItemsMessage("Something seems odd here", guardpocket);
   }

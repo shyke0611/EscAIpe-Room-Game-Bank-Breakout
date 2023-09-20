@@ -7,8 +7,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 
@@ -39,6 +41,8 @@ public class EyeScannerController extends Controller {
   private int guardRed;
   private int guardGreen;
   private int guardBlue;
+  
+  StyleManager styleManager = StyleManager.getInstance();
 
   public void initialize() {
 
@@ -126,6 +130,7 @@ public class EyeScannerController extends Controller {
         && isColourMatch(blue, guardBlue)) {
       accessGranted.setVisible(true);
       accessDenied.setVisible(false);
+      GameState.isEyeScannerBypassed = true;
     } else {
       accessGranted.setVisible(false);
       accessDenied.setVisible(true);
@@ -152,6 +157,10 @@ public class EyeScannerController extends Controller {
   }
 
   public void switchToVault() {
-    App.setUI(Scenes.VAULT);
+   if (GameState.isEyeScannerBypassed) {
+    styleManager.getItem("silverDoor").setVisible(false);
+    GameState.isAnyDoorOpen = true;
+   }
+     App.setUI(Scenes.VAULT);
   }
 }

@@ -14,9 +14,11 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.StyleManager;
 
 public class ChemicalMixingController extends Controller {
 
@@ -56,6 +58,8 @@ public class ChemicalMixingController extends Controller {
   private ScaleTransition scaleTransitionRed;
   private ScaleTransition scaleTransitionBlue;
   private boolean sliderMoving = false;
+
+  StyleManager styleManager = StyleManager.getInstance();
 
   public void initialize() {
     SceneManager.setController(Scenes.CHEMICALMIXING, this);
@@ -183,6 +187,7 @@ public class ChemicalMixingController extends Controller {
       fourthPour.setVisible(true);
       fourthPour.setFill(currentColour);
       checkWin();
+      GameState.isChemicalMixingBypassed = true;
     }
   }
 
@@ -197,6 +202,10 @@ public class ChemicalMixingController extends Controller {
 
   @FXML
   public void setVault() {
+    if (GameState.isChemicalMixingBypassed) {
+      styleManager.getItem("goldDoor").setVisible(false);
+      GameState.isAnyDoorOpen = true;
+    }
     App.setUI(Scenes.VAULT);
   }
 

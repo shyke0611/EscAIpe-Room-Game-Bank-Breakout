@@ -322,5 +322,6 @@
             </VBox>
          </children>
       </Pane>
+      <Button fx:id="lootBtn" layoutX="583.0" layoutY="106.0" mnemonicParsing="false" onAction="#onLootCollected" prefHeight="26.0" prefWidth="120.0" text="temp collect loot" />
    </children>
 </AnchorPane>

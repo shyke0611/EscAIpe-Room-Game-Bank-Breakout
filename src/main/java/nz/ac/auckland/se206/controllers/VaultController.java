@@ -18,6 +18,7 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 
@@ -51,6 +52,7 @@ public class VaultController extends Controller {
   @FXML private Label givencode;
   @FXML private HBox escapebackground;
   @FXML private Pane slidePane;
+  @FXML private Button lootBtn;
 
   @FXML private HBox switchHolder;
   @FXML private HBox walkietalkieHolder;
@@ -75,7 +77,7 @@ public class VaultController extends Controller {
         doorHolder,
         exitHolder,
         bombHolder,
-        bombPuzzle);
+        bombPuzzle,walkietalkie,walkietalkieHolder,switchHolder);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     givencode.setText("Code: " + RandomnessGenerate.getPasscode());
   }
@@ -132,12 +134,18 @@ public class VaultController extends Controller {
 
   public void grantAccess() {
     GameState.isFirewallDisabled = true;
+    styleManager.setDisable(true, "computer");
   }
 
   @FXML
-  void onLootCollected(MouseEvent event) {
+  void onLootCollected(ActionEvent event) {
+    if (GameState.isFirewallDisabled && GameState.isAnyDoorOpen) {
     styleManager.setAlarm(true);
     GameState.isAlarmTripped = true;
+    styleManager.setItemsState(HoverColour.GREEN, "electricityBox");
+    styleManager.setItemsState(HoverColour.GREEN, "guardpocket");
+    lootBtn.setDisable(true);
+  }
   }
 
   @FXML
@@ -176,7 +184,7 @@ public class VaultController extends Controller {
   public void onExitBomb() {
     bombPuzzle.setVisible(false);
     if (GameState.isBombActivated) {
-      styleManager.setVisible(false, walkietalkie, switchHolder, walkietalkieHolder, bombHolder);
+      styleManager.setVisible(false, "walkietalkie", "switchHolder","walkietalkieHolder", "bombHolder");
       AnimationManager.startBombAnimation(exitHolder);
       AnimationManager.delayAnimation(exitHolder, escapebackground);
       exitHolder.setDisable(true);
@@ -186,6 +194,12 @@ public class VaultController extends Controller {
   public void onEscape() {
     App.setUI(Scenes.GAMEFINISH);
   }
+
+
+
+
+
+  
 
   @FXML
   public void showInfo(MouseEvent event) {
