@@ -122,7 +122,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" onMouseClicked="#switchToSecurity" prefHeight="35.0" prefWidth="75.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="Close" textFill="GREEN" translateY="50.0">
+                  <Button mnemonicParsing="false" onMouseClicked="#grantAccess" prefHeight="35.0" prefWidth="75.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="Close" textFill="GREEN" translateY="50.0">
                      <font>
                         <Font size="18.0" />
                      </font>

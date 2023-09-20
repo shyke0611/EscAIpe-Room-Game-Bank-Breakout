@@ -15,7 +15,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="VaultPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.VaultController">
    <children>
@@ -210,8 +209,6 @@
             <Font name="American Typewriter" size="23.0" />
          </font>
       </Label>
-      <Rectangle fx:id="AIAccess" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="52.0" layoutX="48.0" layoutY="458.0" onMouseClicked="#grantAccess" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-      <Text layoutX="109.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="disables firewall" />
       <Rectangle fx:id="whiteBackground" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="710.0" layoutX="-7.0" layoutY="-7.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="1009.0" />
       <HBox fx:id="bombHolder" alignment="CENTER" layoutX="777.0" layoutY="539.0" onMousePressed="#onBombPressed" prefHeight="153.0" prefWidth="201.0" styleClass="bomb" stylesheets="@../css/rooms.css" visible="false">
          <children>
@@ -252,7 +249,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <VBox fx:id="bombPuzzle" layoutX="94.0" layoutY="84.0" prefHeight="404.0" prefWidth="681.0" visible="false">
+            <VBox fx:id="bombPuzzle" layoutX="94.0" layoutY="84.0" prefHeight="404.0" prefWidth="681.0">
                <children>
                   <HBox alignment="CENTER" prefHeight="112.0" prefWidth="610.0">
                      <children>
@@ -274,11 +271,7 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="134.0" prefWidth="680.0">
                                  <children>
-                                    <Label fx:id="statusLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="171.0" textFill="#0be059">
-                                       <font>
-                                          <Font size="8.0" />
-                                       </font>
-                                    </Label>
+                                    <Label fx:id="statusLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="171.0" textFill="#0be059" />
                                     <Label fx:id="inputLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="160.0" text="Enter Code">
                                        <font>
                                           <Font size="18.0" />

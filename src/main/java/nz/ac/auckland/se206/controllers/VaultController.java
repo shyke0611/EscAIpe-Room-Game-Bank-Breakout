@@ -140,25 +140,17 @@ public class VaultController extends Controller {
   }
 
   public void switchToEyeScanner() {
-    if (GameState.isFirewallDisabled) {
+    if (GameState.isFirewallDisabled /* && GameState.isSecondRiddleSolved*/) {
       App.setUI(Scenes.EYESCANNER);
     }
   }
 
   public void onSwitchToChemicalMixing() {
-    if (GameState.isFirewallDisabled) {
+    if (GameState.isFirewallDisabled /* && GameState.isThirdRiddleSolved*/) {
       App.setUI(Scenes.CHEMICALMIXING);
     }
   }
 
-  // move this code somewhere else (temporary firewall diable method (click rectangle))
-  public void grantAccess() {
-    GameState.isFirewallDisabled = true;
-    styleManager.setDisable(true, "computer");
-    styleManager.setItemsState(
-        HoverColour.GREEN, "bronzeDoorHolder", "silverDoorHolder", "goldDoorHolder");
-        styleManager.setItemsMessage("We can go in", "bronzeDoorHolder", "silverDoorHolder", "goldDoorHolder");
-  }
 
   @FXML
   void onLootCollected(ActionEvent event) {
@@ -176,7 +168,7 @@ public class VaultController extends Controller {
 
   @FXML
   public void laserCuttingScene() {
-    if (GameState.isFirewallDisabled) {
+    if (GameState.isFirewallDisabled /*&& GameState.isFirstRiddleSolved*/) {
       App.setUI(Scenes.LASERCUTTING);
     }
   }

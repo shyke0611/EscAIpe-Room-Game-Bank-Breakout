@@ -11,6 +11,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.StyleManager.HoverColour;
 
 public abstract class Controller {
   private Label timerLabel;
@@ -47,6 +48,17 @@ public abstract class Controller {
         label.setText("Collect it all the loot and escape");
     }
     App.setUI(Scenes.VAULT);
+}
+
+// move this code somewhere else (temporary firewall diable method (click rectangle))
+@FXML
+public void grantAccess() {
+  GameState.isFirewallDisabled = true;
+  styleManager.setDisable(true, "computer");
+  styleManager.setItemsState(
+  HoverColour.GREEN, "bronzeDoorHolder", "silverDoorHolder", "goldDoorHolder");
+  styleManager.setItemsMessage("We can go in", "bronzeDoorHolder", "silverDoorHolder", "goldDoorHolder");
+  App.setUI(Scenes.SECURITY);
 }
 
 
