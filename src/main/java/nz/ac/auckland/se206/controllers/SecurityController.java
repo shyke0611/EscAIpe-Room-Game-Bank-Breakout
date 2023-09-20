@@ -18,7 +18,6 @@ import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.StyleManager.State;
-
 import nz.ac.auckland.se206.WalkieTalkieManager;
 
 public class SecurityController extends Controller {
@@ -40,20 +39,17 @@ public class SecurityController extends Controller {
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
   @FXML private ImageView securitybackground;
+  @FXML private ImageView tempbackground;
 
   StyleManager styleManager = StyleManager.getInstance();
 
   public void initialize() {
     SceneManager.setController(Scenes.SECURITY, this);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
-
-    styleManager.setItemsMessage("A computer...?", computer);
-
     styleManager.addItems(computer, electricityBox,securitybackground);
     styleManager.setItemsMessage("A computer...?", computer);
     styleManager.setItemsMessage("it requires credentials?", logInBtn);
     styleManager.setItemsMessage("no need to open this right now", electricityBox);
-
   }
 
   //   handling mouse events on walkie talkie
@@ -63,11 +59,17 @@ public class SecurityController extends Controller {
     WalkieTalkieManager.toggleWalkieTalkie();
   }
 
+  @FXML
   public void switchToLobby() {
     App.setUI(Scenes.LOBBY);
   }
 
+  @FXML
   public void switchToVault() {
+    if (GameState.isAlarmDisabled) {
+      styleManager.getItem("bombHolder").setVisible(true);
+      styleManager.setDisable(true, "bronzeDoor", "silverDoor", "goldDoor");
+    }
     App.setUI(Scenes.VAULT);
   }
 
@@ -82,9 +84,7 @@ public class SecurityController extends Controller {
 
   @FXML
   void onWireCutting(MouseEvent event) {
-    if (!GameState.isWiresCut
-    /** && GameState.isAlarmTripped */
-    ) {
+    if (!GameState.isWiresCut && GameState.isAlarmTripped) {
       App.setUI(Scenes.WIRECUTTING);
     } else if (GameState.isWiresCut) {
       electricityBox.setDisable(true);
@@ -110,7 +110,7 @@ public class SecurityController extends Controller {
     } else {
       logInScreen.setVisible(false);
       App.setUI(Scenes.COMPUTER);
-      styleManager.removeItemsMessage(computer);
+      styleManager.removeItemsMessage("computer");
     }
   }
 
@@ -126,7 +126,7 @@ public class SecurityController extends Controller {
     if (areCredentialsValid(enteredUsername, enteredPassword, randomUsername, randomPassword)) {
       handleSuccessfulLogin();
       logInScreen.setVisible(false);
-      styleManager.setItemsState(HoverColour.GREEN, State.HOVER, computer);
+      styleManager.setItemsState(HoverColour.GREEN, "computer");
     } else if (areCredentialsEmpty()) {
       handleEmptyCredentials();
     } else {
@@ -153,6 +153,8 @@ public class SecurityController extends Controller {
     loginMsgLbl.setText("Success");
     GameState.isSecurityComputerLoggedIn = true;
     App.setUI(Scenes.COMPUTER);
+    styleManager.setDisable(true, "credentialsBook");
+    styleManager.setVisible(false, "credentialsNote");
   }
 
   // mechanics for empty credential input

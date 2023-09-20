@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import javafx.scene.layout.HBox;
-import javafx.scene.shape.Rectangle;
 
 public class RandomnessGenerate {
   private static List<String> passcodeList = new ArrayList<>();

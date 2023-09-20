@@ -5,10 +5,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -16,12 +19,12 @@
 
 <AnchorPane fx:id="VaultPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.VaultController">
    <children>
-      <ImageView fx:id="vaultbackground" fitHeight="700.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" scaleX="1.01">
+      <ImageView fx:id="vaultbackground" fitHeight="719.0" fitWidth="2243.0" layoutX="-36.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true" scaleX="1.01">
          <image>
             <Image url="@../images/baseVaultImage.png" />
          </image>
       </ImageView>
-      <HBox layoutX="27.0" layoutY="30.0" prefHeight="128.0" prefWidth="300.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 10;">
+      <HBox fx:id="switchHolder" layoutX="27.0" layoutY="30.0" prefHeight="128.0" prefWidth="300.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 10;">
          <children>
             <VBox fx:id="lobbyRoomSwitch" alignment="CENTER" prefHeight="129.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
                <children>
@@ -67,7 +70,7 @@
             </VBox>
          </children>
       </HBox>
-      <HBox layoutX="15.0" layoutY="539.0" prefHeight="150.0" prefWidth="665.0">
+      <HBox fx:id="walkietalkieHolder" layoutX="15.0" layoutY="539.0" prefHeight="150.0" prefWidth="665.0">
          <children>
             <VBox fx:id="walkietalkie" onMousePressed="#onWalkieTalkie" prefHeight="200.0" prefWidth="100.0" styleClass="walkietalkie" stylesheets="@../css/rooms.css">
                <children>
@@ -78,7 +81,7 @@
                   </ImageView>
                </children>
             </VBox>
-            <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0">
+            <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0" visible="false">
                <children>
                   <HBox prefHeight="100.0" prefWidth="528.0">
                      <children>
@@ -125,25 +128,75 @@
             </Label>
          </children>
       </HBox>
-      <Rectangle fx:id="chemicalMixingScene" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="79.0" layoutX="730.0" layoutY="491.0" onMouseClicked="#onSwitchToChemicalMixing" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-      <Text layoutX="782.0" layoutY="535.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chemical mixing " />
       <HBox fx:id="doorHolder" layoutX="51.0" layoutY="185.0" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
          <children>
-            <ImageView fx:id="silverDoor" fitHeight="266.0" fitWidth="265.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/silverDoor.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="goldDoor" fitHeight="266.0" fitWidth="265.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/goldDoor.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="bronzeDoor" fitHeight="299.0" fitWidth="299.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/bronzeDoor.png" />
-               </image>
-            </ImageView>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="251.0" fitWidth="282.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/moneybackground.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="268.0" fitWidth="243.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/opensilverdoor.png" />
+                           </image></ImageView>
+                        <ImageView fx:id="silverDoor" fitHeight="266.0" fitWidth="265.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#switchToEyeScanner" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/silverDoor.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="257.0" fitWidth="297.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/moneybackground.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="255.0" fitWidth="269.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/opengolddoor.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="goldDoor" fitHeight="266.0" fitWidth="265.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onSwitchToChemicalMixing" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/goldDoor.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="249.0" fitWidth="248.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/moneybackground.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="252.0" fitWidth="261.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/openbronzedoor.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="bronzeDoor" fitHeight="299.0" fitWidth="299.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#laserCuttingScene" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/bronzeDoor.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+               </children></HBox>
          </children>
       </HBox>
       <Rectangle fx:id="dialogueBox" arcHeight="40.0" arcWidth="40.0" fill="#000000ac" height="88.0" layoutX="726.0" layoutY="28.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="260.0" />
@@ -158,16 +211,117 @@
          </font>
       </Label>
       <Rectangle fx:id="AIAccess" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="52.0" layoutX="48.0" layoutY="458.0" onMouseClicked="#grantAccess" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-      <Text layoutX="109.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AI Acess granted" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="52.0" layoutX="400.0" layoutY="470.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-      <Label alignment="CENTER" layoutX="400.0" layoutY="471.0" onMouseClicked="#switchToEyeScanner" prefHeight="51.0" prefWidth="200.0" text="Eye Scanner" />
-      <Rectangle fx:id="laserCuttingScene" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="56.0" layoutX="736.0" layoutY="122.0" onMouseClicked="#laserCuttingScene" stroke="BLACK" strokeType="INSIDE" width="177.0" />
+      <Text layoutX="109.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="disables firewall" />
       <Rectangle fx:id="whiteBackground" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="710.0" layoutX="-7.0" layoutY="-7.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="1009.0" />
-      <ImageView fx:id="VaultDoor" fitHeight="495.0" fitWidth="512.0" layoutX="244.0" layoutY="101.0" opacity="0.0">
-         <image>
-            <Image url="@../../../../../../../../../Downloads/metallic-bank-vault-door-isolated-white/vaultDoor.jpg" />
-         </image>
-      </ImageView>
-      <Text layoutX="783.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="laserCutting scene " />
+      <HBox fx:id="bombHolder" alignment="CENTER" layoutX="777.0" layoutY="539.0" onMousePressed="#onBombPressed" prefHeight="153.0" prefWidth="201.0" styleClass="bomb" stylesheets="@../css/rooms.css" visible="false">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="guard" stylesheets="@../css/rooms.css">
+               <children>
+                  <ImageView fx:id="bomblogo" fitHeight="101.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/bomb.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <Pane fx:id="slidePane" layoutX="1176.0" layoutY="45.0" prefHeight="494.0" prefWidth="865.0">
+         <children>
+            <HBox fx:id="exitHolder" layoutX="316.0" layoutY="189.0" onMousePressed="#onBombPlaced" prefHeight="120.0" prefWidth="233.0" styleClass="guard" stylesheets="@../css/rooms.css">
+               <children>
+                  <ImageView fitHeight="128.0" fitWidth="2214.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/bomb.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <effect>
+                  <DropShadow height="130.08" radius="60.855000000000004" width="115.34" />
+               </effect>
+            </HBox>
+            <HBox fx:id="escapeDoor" layoutX="287.0" layoutY="94.0" onMousePressed="#onEscape" prefHeight="303.0" prefWidth="308.0" styleClass="guard" stylesheets="@../css/rooms.css" visible="false">
+               <children>
+                  <ImageView fitHeight="325.0" fitWidth="311.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/escapebackground.png" />
+                     </image>
+                     <effect>
+                        <DropShadow height="77.01" radius="34.32" width="62.27" />
+                     </effect>
+                  </ImageView>
+               </children>
+            </HBox>
+            <VBox fx:id="bombPuzzle" layoutX="94.0" layoutY="84.0" prefHeight="404.0" prefWidth="681.0" visible="false">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="112.0" prefWidth="610.0">
+                     <children>
+                        <Label fx:id="givencode" text="code to input" textFill="#3aff4a">
+                           <font>
+                              <Font size="48.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <StackPane alignment="CENTER_LEFT" prefHeight="308.0" prefWidth="697.0">
+                     <children>
+                        <ImageView fitHeight="344.0" fitWidth="690.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/bomb.png" />
+                           </image>
+                        </ImageView>
+                        <VBox prefHeight="344.0" prefWidth="720.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="134.0" prefWidth="680.0">
+                                 <children>
+                                    <Label fx:id="statusLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="171.0" textFill="#092ae1">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="inputLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="160.0" text="Enter Code">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <HBox alignment="CENTER" prefHeight="110.0" prefWidth="787.0">
+                                 <children>
+                                    <Pane prefHeight="128.0" prefWidth="202.0">
+                                       <children>
+                                          <Button fx:id="button" layoutX="10.0" layoutY="15.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" text="1" />
+                                          <Button fx:id="button" layoutX="155.0" layoutY="52.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" text="0" />
+                                          <Button fx:id="button" layoutX="48.0" layoutY="15.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" text="2" />
+                                          <Button fx:id="button" layoutX="48.0" layoutY="52.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" text="7" />
+                                          <Button fx:id="button" layoutX="10.0" layoutY="52.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" text="6" />
+                                          <Button fx:id="button" layoutX="84.0" layoutY="52.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" text="8" />
+                                          <Button fx:id="button" layoutX="120.0" layoutY="52.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" text="9" />
+                                          <Button fx:id="button" layoutX="84.0" layoutY="15.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" text="3" />
+                                          <Button fx:id="button" layoutX="155.0" layoutY="15.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" text="5" />
+                                          <Button fx:id="button" layoutX="120.0" layoutY="15.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" text="4" />
+                                          <Button fx:id="checkBtn" layoutX="72.0" layoutY="84.0" mnemonicParsing="false" onAction="#onCheckCode" prefHeight="19.0" prefWidth="55.0" text="Check">
+                                             <font>
+                                                <Font size="9.0" />
+                                             </font>
+                                          </Button>
+                                          <Button layoutX="180.0" layoutY="85.0" mnemonicParsing="false" onAction="#onExitBomb" prefHeight="15.0" prefWidth="17.0" text="X">
+                                             <font>
+                                                <Font size="8.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+      <Button fx:id="lootBtn" layoutX="583.0" layoutY="106.0" mnemonicParsing="false" onAction="#onLootCollected" prefHeight="26.0" prefWidth="120.0" text="temp collect loot" />
    </children>
 </AnchorPane>

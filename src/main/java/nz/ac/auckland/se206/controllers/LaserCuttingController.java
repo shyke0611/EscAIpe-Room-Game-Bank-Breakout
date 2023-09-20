@@ -24,8 +24,10 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.StyleManager;
 
 public class LaserCuttingController extends Controller {
 
@@ -53,6 +55,8 @@ public class LaserCuttingController extends Controller {
   private Line cursorLine = new Line();
   private List<Double> angles = new ArrayList<>();
   private List<Point2D> points = new ArrayList<>();
+
+  StyleManager styleManager = StyleManager.getInstance();
 
   public void initialize() {
     SceneManager.setController(Scenes.LASERCUTTING, this);
@@ -169,6 +173,7 @@ public class LaserCuttingController extends Controller {
           || totalAngle < -(2 * Math.PI)) { // Adjust the threshold as needed
         // Reset the points and angles for the next circle
         takeLootBtn.setVisible(true);
+        GameState.isLaserCuttingBypassed = true;
         points.clear();
         angles.clear();
         return true;
@@ -270,6 +275,10 @@ public class LaserCuttingController extends Controller {
   }
 
   public void setVault() {
+    if (GameState.isLaserCuttingBypassed) {
+      styleManager.getItem("bronzeDoor").setVisible(false);
+      GameState.isAnyDoorOpen = true;
+    }
     App.setUI(Scenes.VAULT);
   }
 

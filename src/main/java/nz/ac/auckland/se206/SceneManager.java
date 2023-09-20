@@ -18,13 +18,10 @@ public class SceneManager {
     HACKERVAN,
     EYESCANNER,
     CHEMICALMIXING,
-
     CONNECTDOTS,
-
     WIRECUTTING,
-
-    LASERCUTTING
-
+    LASERCUTTING,
+    GAMEFINISH
   }
 
   private static Controller activeController;

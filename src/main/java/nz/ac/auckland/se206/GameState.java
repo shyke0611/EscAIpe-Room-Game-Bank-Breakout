@@ -18,5 +18,12 @@ public class GameState {
   public static boolean isWiresCut = false;
 
   public static boolean isAlarmTripped = false;
+  public static boolean isAlarmDisabled = false;
+  public static boolean isFirewallDisabled = false;
+  public static boolean isBombActivated = false;
+  public static boolean isEyeScannerBypassed = false;
+  public static boolean isChemicalMixingBypassed = false;
+  public static boolean isLaserCuttingBypassed = false;
+  public static boolean isAnyDoorOpen = false;
 
 }
