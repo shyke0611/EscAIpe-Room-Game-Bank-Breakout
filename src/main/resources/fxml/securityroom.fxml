@@ -69,7 +69,7 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="466.0" prefWidth="234.0" style="-fx-background-color: black;">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="107.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/lock.jpg" />
                      </image>
@@ -77,9 +77,9 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Label fx:id="loginMsgLbl" prefHeight="35.0" prefWidth="205.0" textFill="#f20808">
+                  <Label fx:id="loginMsgLbl" alignment="CENTER" prefHeight="35.0" prefWidth="205.0" textFill="#f20808">
                      <font>
-                        <Font name="Avenir Next Condensed Bold" size="19.0" />
+                        <Font name="Avenir Next Condensed Bold" size="13.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="5.0" />

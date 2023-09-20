@@ -28,6 +28,7 @@ public class WireCuttingController extends Controller {
   @FXML private Button retryBtn;
 
   @FXML private Label taskLbl;
+  @FXML private Label wirecutterLbl;
   @FXML private ImageView wirecuttingbackground;
 
   private boolean isWireCutterSelected = false;
@@ -59,6 +60,7 @@ public class WireCuttingController extends Controller {
   @FXML
   void onWireCutterClicked(MouseEvent event) {
     wirecutter.setVisible(false);
+    wirecutterLbl.setVisible(false);
     isWireCutterSelected = true;
     styleManager.removeItemsMessage("redwire", "greenwire", "bluewire", "yellowwire");
     styleManager.setItemsState(
