@@ -225,5 +225,6 @@
             </Label>
          </children>
       </HBox>
+      <Button layoutX="546.0" layoutY="323.0" mnemonicParsing="false" onMouseClicked="#switchToDots" text="Connect Dots" />
    </children>
 </AnchorPane>

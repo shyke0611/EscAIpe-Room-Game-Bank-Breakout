@@ -18,6 +18,7 @@ public class SceneManager {
     HACKERVAN,
     EYESCANNER,
     CHEMICALMIXING,
+    CONNECTDOTS,
     WIRECUTTING,
     LASERCUTTING,
     GAMEFINISH
