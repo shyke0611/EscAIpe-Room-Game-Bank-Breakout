@@ -71,10 +71,6 @@ public class SecurityController extends Controller {
     App.setUI(Scenes.VAULT);
   }
 
-  public void switchToDots() {
-    App.setUI(Scenes.CONNECTDOTS);
-  }
-
   public void onSwitchToHacker() {
     SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.SECURITY);
     App.setUI(Scenes.HACKERVAN);

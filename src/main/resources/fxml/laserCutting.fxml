@@ -59,7 +59,7 @@
             </Label>
          </children>
       </StackPane>
-      <Button fx:id="takeLootBtn" layoutX="436.0" layoutY="554.0" mnemonicParsing="false" onAction="#setVault" text="TAKE LOOT" visible="false">
+      <Button fx:id="takeLootBtn" layoutX="436.0" layoutY="554.0" mnemonicParsing="false" onAction="#setVault" text="Go Back" visible="false">
          <font>
             <Font size="20.0" />
          </font>

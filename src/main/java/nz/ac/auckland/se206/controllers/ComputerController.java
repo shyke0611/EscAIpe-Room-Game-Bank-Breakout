@@ -22,6 +22,7 @@ public class ComputerController extends Controller {
   @FXML private Button viewHistoryBtn;
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
+  @FXML private Button dotGameBtn;
 
   public void initialize() {
     SceneManager.setController(Scenes.COMPUTER, this);
@@ -40,6 +41,10 @@ public class ComputerController extends Controller {
   public void onSwitchToHacker() {
     SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.COMPUTER);
     App.setUI(Scenes.HACKERVAN);
+  }
+
+  public void switchToDots() {
+    App.setUI(Scenes.CONNECTDOTS);
   }
 
   //   handling mouse events on walkie talkie

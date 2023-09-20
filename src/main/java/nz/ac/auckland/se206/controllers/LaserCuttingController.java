@@ -5,6 +5,7 @@ import java.util.List;
 import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
+import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -274,13 +275,17 @@ public class LaserCuttingController extends Controller {
     blackCircle.setStrokeWidth(10);
   }
 
-  public void setVault() {
-    if (GameState.isLaserCuttingBypassed) {
-      styleManager.getItem("bronzeDoor").setVisible(false);
-      GameState.isAnyDoorOpen = true;
-    }
-    App.setUI(Scenes.VAULT);
-  }
+  // public void setVault() {
+  //   if (GameState.isLaserCuttingBypassed) {
+  //     styleManager.getItem("bronzeDoor").setVisible(false); 
+  //     styleManager.getItem("lootBtnHolder").setVisible(true);
+  //     GameState.isAnyDoorOpen = true;
+  //   } else if (GameState.isLaserCuttingBypassed && GameState.isChemicalMixingBypassed && GameState.isEyeScannerBypassed) {
+  //     Label label = (Label) styleManager.getItem("lootBtnHolder");
+  //     label.setText("Collect all the loot and Escape");
+  //   }
+  //   App.setUI(Scenes.VAULT);
+  // }
 
   public void applyGlowEffect(Line line) {
 

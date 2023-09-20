@@ -156,11 +156,12 @@ public class EyeScannerController extends Controller {
     System.out.println("Guard eye colour: " + guardRed + " " + guardGreen + " " + guardBlue);
   }
 
-  public void switchToVault() {
-   if (GameState.isEyeScannerBypassed) {
-    styleManager.getItem("silverDoor").setVisible(false);
-    GameState.isAnyDoorOpen = true;
-   }
-     App.setUI(Scenes.VAULT);
-  }
+  // public void setVault() {
+  //  if (GameState.isEyeScannerBypassed) {
+  //   styleManager.getItem("silverDoor").setVisible(false);
+  //   styleManager.getItem("lootBtnHolder").setVisible(true);
+  //   GameState.isAnyDoorOpen = true;
+  //  }
+  //    App.setUI(Scenes.VAULT);
+  // }
 }

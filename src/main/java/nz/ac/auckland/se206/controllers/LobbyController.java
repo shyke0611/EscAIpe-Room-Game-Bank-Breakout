@@ -80,6 +80,7 @@ public class LobbyController extends Controller {
     styleManager.setItemsMessage("Guard is watching...", "key1", "key3", "key4", "guardpocket");
     styleManager.setItemsMessage("It's locked...", "drawerHolder");
     styleManager.setItemsMessage("A note?", "credentialsBook");
+    styleManager.setItemsMessage("put him to sleep", "guard");
   }
 
   //   handling mouse events on walkie talkie
@@ -152,7 +153,7 @@ public class LobbyController extends Controller {
     usernameLbl.setText("Username: " + randomUsername);
     titleLbl.setText("Security Room Computer Log In");
     styleManager.removeItemsMessage("credentialsBook");
-    styleManager.removeItemsMessage("computer");
+    // styleManager.removeItemsMessage("computer");
     
   }
 

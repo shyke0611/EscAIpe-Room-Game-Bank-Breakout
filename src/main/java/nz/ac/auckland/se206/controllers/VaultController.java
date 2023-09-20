@@ -18,8 +18,8 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
-import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.StyleManager;
+import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 
 public class VaultController extends Controller {
@@ -37,16 +37,21 @@ public class VaultController extends Controller {
 
   @FXML private Rectangle dialogueBox;
   @FXML private Label moneyValue;
+  @FXML private Label lootLbl;
   @FXML private Label difficultyValue;
   @FXML private HBox exitHolder;
 
   @FXML private HBox doorHolder;
+  @FXML private HBox goldDoorHolder;
+  @FXML private HBox silverDoorHolder;
+  @FXML private HBox bronzeDoorHolder;
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
   @FXML private HBox bombHolder;
   @FXML private VBox bombPuzzle;
   @FXML private Button button;
   @FXML private Button checkBtn;
+  @FXML private VBox lootBtnHolder;
   @FXML private Label inputLbl;
   @FXML private Label statusLbl;
   @FXML private Label givencode;
@@ -63,7 +68,6 @@ public class VaultController extends Controller {
   private boolean cutting = false;
   @FXML private Rectangle AIAccess;
 
-  private Boolean AIAccessGranted = false;
   StyleManager styleManager = StyleManager.getInstance();
   private StringBuilder labelText = new StringBuilder();
 
@@ -77,12 +81,23 @@ public class VaultController extends Controller {
         doorHolder,
         exitHolder,
         bombHolder,
-        bombPuzzle,walkietalkie,walkietalkieHolder,switchHolder,escapeDoor);
+        bombPuzzle,
+        walkietalkie,
+        walkietalkieHolder,
+        switchHolder,
+        escapeDoor,
+        lootBtnHolder,
+        lootLbl,
+        bronzeDoorHolder,
+        silverDoorHolder,
+        goldDoorHolder);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     givencode.setText("Code: " + RandomnessGenerate.getPasscode());
     styleManager.setItemsMessage("set bomb down", "exitHolder");
     styleManager.setItemsMessage("escape", "escapeDoor");
     styleManager.setItemsMessage("activate bomb", "bombHolder");
+    styleManager.setItemsMessage(
+        "Need to disable firewall block", "bronzeDoorHolder", "silverDoorHolder", "goldDoorHolder");
   }
 
   //   handling mouse events on walkie talkie
@@ -126,38 +141,43 @@ public class VaultController extends Controller {
 
   public void switchToEyeScanner() {
     if (GameState.isFirewallDisabled) {
-    App.setUI(Scenes.EYESCANNER);
+      App.setUI(Scenes.EYESCANNER);
     }
   }
 
   public void onSwitchToChemicalMixing() {
     if (GameState.isFirewallDisabled) {
-    App.setUI(Scenes.CHEMICALMIXING);
+      App.setUI(Scenes.CHEMICALMIXING);
     }
   }
 
+  // move this code somewhere else (temporary firewall diable method (click rectangle))
   public void grantAccess() {
     GameState.isFirewallDisabled = true;
     styleManager.setDisable(true, "computer");
+    styleManager.setItemsState(
+        HoverColour.GREEN, "bronzeDoorHolder", "silverDoorHolder", "goldDoorHolder");
+        styleManager.setItemsMessage("We can go in", "bronzeDoorHolder", "silverDoorHolder", "goldDoorHolder");
   }
 
   @FXML
   void onLootCollected(ActionEvent event) {
     if (GameState.isFirewallDisabled && GameState.isAnyDoorOpen) {
-    styleManager.setAlarm(true);
-    GameState.isAlarmTripped = true;
-    styleManager.setItemsState(HoverColour.GREEN, "electricityBox");
-    styleManager.setItemsState(HoverColour.GREEN, "guardpocket");
-    styleManager.setItemsMessage("Something seems odd?", "guardpocket");
-    styleManager.setItemsMessage("Alarm Wires...?", "electricityBox");
-    lootBtn.setDisable(true);
-  }
+      styleManager.setAlarm(true);
+      GameState.isAlarmTripped = true;
+      styleManager.setItemsState(HoverColour.GREEN, "electricityBox");
+      styleManager.setItemsState(HoverColour.GREEN, "guardpocket");
+      styleManager.setItemsMessage("Something seems odd?", "guardpocket");
+      styleManager.setItemsMessage("Alarm Wires...?", "electricityBox");
+      lootBtnHolder.setDisable(true);
+      lootBtnHolder.setVisible(false);
+    }
   }
 
   @FXML
   public void laserCuttingScene() {
     if (GameState.isFirewallDisabled) {
-    App.setUI(Scenes.LASERCUTTING);
+      App.setUI(Scenes.LASERCUTTING);
     }
   }
 
@@ -190,7 +210,8 @@ public class VaultController extends Controller {
   public void onExitBomb() {
     bombPuzzle.setVisible(false);
     if (GameState.isBombActivated) {
-      styleManager.setVisible(false, "walkietalkie", "switchHolder","walkietalkieHolder", "bombHolder");
+      styleManager.setVisible(
+          false, "walkietalkie", "switchHolder", "walkietalkieHolder", "bombHolder");
       AnimationManager.startBombAnimation(exitHolder);
       AnimationManager.delayAnimation(exitHolder, escapeDoor);
       exitHolder.setDisable(true);
@@ -201,34 +222,23 @@ public class VaultController extends Controller {
     App.setUI(Scenes.GAMEFINISH);
   }
 
-
-
-
-
-  
-
   @FXML
   public void showInfo(MouseEvent event) {
     String door = event.getSource().toString();
 
     if (GameState.isFirewallDisabled) {
-      String style = "-fx-effect: dropshadow(gaussian, #00bf00, 5, 5, 0, 0);";
+
       String moneyText = "Money: $";
       String difficultyText = "Difficulty: ";
 
       if (door.contains("goldDoor")) {
-        setDoorStyle(goldDoor, style);
         setInfoText(moneyText + "20,000,000", difficultyText + "★★★★★");
       } else if (door.contains("silverDoor")) {
-        setDoorStyle(silverDoor, style);
         setInfoText(moneyText + "10,000,000", difficultyText + "★★★☆☆");
       } else if (door.contains("bronzeDoor")) {
-        setDoorStyle(bronzeDoor, style);
         setInfoText(moneyText + "5,000,000", difficultyText + "★☆☆☆☆");
       }
     } else {
-      String style = "-fx-effect: dropshadow(gaussian, #ff0000, 5, 5, 0, 0);";
-      setDoorStyle(getDoorByEvent(event), style);
       setInfoText("Money: ???????", "Difficulty: ???????");
     }
   }

@@ -130,7 +130,7 @@
       </HBox>
       <HBox fx:id="doorHolder" layoutX="51.0" layoutY="185.0" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox fx:id="silverDoorHolder" prefHeight="100.0" prefWidth="200.0" styleClass="drawer" stylesheets="@../css/rooms.css">
                <children>
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
@@ -152,7 +152,7 @@
                   </StackPane>
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox fx:id="goldDoorHolder" prefHeight="100.0" prefWidth="200.0" styleClass="drawer" stylesheets="@../css/rooms.css">
                <children>
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
@@ -175,7 +175,7 @@
                   </StackPane>
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox fx:id="bronzeDoorHolder" prefHeight="100.0" prefWidth="200.0" styleClass="drawer" stylesheets="@../css/rooms.css">
                <children>
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
@@ -322,6 +322,22 @@
             </VBox>
          </children>
       </Pane>
-      <Button fx:id="lootBtn" layoutX="583.0" layoutY="106.0" mnemonicParsing="false" onAction="#onLootCollected" prefHeight="26.0" prefWidth="120.0" text="temp collect loot" />
+      <VBox fx:id="lootBtnHolder" alignment="CENTER" layoutX="341.0" layoutY="128.0" prefHeight="80.0" prefWidth="315.0" visible="false">
+         <children>
+            <Label fx:id="lootLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="303.0" text="Collect Loot or Try more vaults" textFill="#1fff12">
+               <font>
+                  <Font name="Chalkboard" size="21.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="lootBtn" mnemonicParsing="false" onAction="#onLootCollected" prefHeight="26.0" prefWidth="117.0" styleClass="computer-button" stylesheets="@../css/rooms.css" text="Collect Loot">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

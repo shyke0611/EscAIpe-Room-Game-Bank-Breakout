@@ -200,14 +200,15 @@ public class ChemicalMixingController extends Controller {
     winLabel.setVisible(true);
   }
 
-  @FXML
-  public void setVault() {
-    if (GameState.isChemicalMixingBypassed) {
-      styleManager.getItem("goldDoor").setVisible(false);
-      GameState.isAnyDoorOpen = true;
-    }
-    App.setUI(Scenes.VAULT);
-  }
+  // @FXML
+  // public void setVault() {
+  //   if (GameState.isChemicalMixingBypassed) {
+  //     styleManager.getItem("goldDoor").setVisible(false);
+  //     styleManager.getItem("lootBtnHolder").setVisible(true);
+  //     GameState.isAnyDoorOpen = true;
+  //   }
+  //   App.setUI(Scenes.VAULT);
+  // }
 
   @FXML
   public void retryButtonClicked() {
