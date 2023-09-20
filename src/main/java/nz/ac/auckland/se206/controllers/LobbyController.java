@@ -117,8 +117,10 @@ public class LobbyController extends Controller {
     App.setUI(Scenes.VAULT);
   }
 
+  @FXML
   public void onSwitchToHacker() {
     SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.LOBBY);
+
     App.setUI(Scenes.HACKERVAN);
   }
 
@@ -230,9 +232,11 @@ public class LobbyController extends Controller {
 
     if (event.getCode() == KeyCode.ENTER) {
       ChatMessage msg = new ChatMessage("user", lobbyTextInput.getText());
+      hackerAiManager.addChatHistory(msg.getContent());
       walkieTalkieManager.clearWalkieTalkie();
 
       ChatMessage responce = hackerAiManager.processInput(msg);
+      hackerAiManager.addChatHistory(responce.getContent());
 
       walkieTalkieManager.setWalkieTalkieText(responce);
     }

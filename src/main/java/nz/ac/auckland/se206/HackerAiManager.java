@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
@@ -10,19 +12,24 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 public class HackerAiManager {
-  // Map to store hints for different game stages
+
   private int hintLimit;
   private int hintCounter = 0;
   private static HackerAiManager instance = new HackerAiManager();
+
+  // Map to store hints for different game stages
   private Map<String, String> hintMappings = new HashMap<>();
-  private Map<Integer, String> hintStorage = new HashMap<>();
+  private List<String> chatHistory = new ArrayList<>();
+  private List<String> hintHistory = new ArrayList<>();
+
+  private int hintNumber = 1; // Hint number for hint history
   private ChatMessage response;
   private ChatMessage tellAI;
   private String currentStage;
   private String hint;
 
   private ChatCompletionRequest chatCompletionRequest;
-  private Difficulties currentDifficulty = Difficulties.EASY;
+  private Difficulties currentDifficulty;
 
   public enum Difficulties {
     EASY,
@@ -32,7 +39,6 @@ public class HackerAiManager {
 
   public HackerAiManager() {
     // Initialize the hint mappings
-
     hintMappings.put(
         "Find Keys", "You must distract the guard to look in the places where the keys may be.");
     hintMappings.put(
@@ -109,11 +115,29 @@ public class HackerAiManager {
   }
 
   public void storeQuickHint() {
-    hintStorage.put(hintCounter, GetQuickHint());
+
+    String hint = GetQuickHint();
+
+    // Check if the hint is unique
+    if (!hintHistory.contains(hint)) {
+
+      String formattedHint = hintNumber + ". " + hint;
+      hintHistory.add(formattedHint);
+      hintNumber++;
+    }
   }
 
-  public ChatMessage processInput(ChatMessage msg) throws ApiProxyException {
+  public void addChatHistory(String chat) {
+    chatHistory.add(chat);
+  }
 
+  public List<String> getChatHistory() {
+    return chatHistory;
+  }
+
+  // Method gets gets the current stages hint and feeds that to the ai before feeding the ai the
+  // users message
+  public ChatMessage processInput(ChatMessage msg) throws ApiProxyException {
     if (currentDifficulty == Difficulties.MEDIUM && hintCounter < hintLimit) {
       incrementHintCounter();
       currentStage = GameManager.getObjectiveString();
@@ -142,6 +166,26 @@ public class HackerAiManager {
     }
 
     return response;
+  }
+
+  public String getFormattedChatHistory() {
+    // Initialize chat history text area
+    StringBuilder chatHistoryText = new StringBuilder();
+    for (String message : chatHistory) {
+      chatHistoryText.append(message).append("\n");
+    }
+
+    return chatHistoryText.toString();
+  }
+
+  public String getFormattedHintHistory() {
+    // Initialize chat history text area
+    StringBuilder hintHistoryText = new StringBuilder();
+    for (String message : hintHistory) {
+      hintHistoryText.append(message).append("\n");
+    }
+
+    return hintHistoryText.toString();
   }
 
   public ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {

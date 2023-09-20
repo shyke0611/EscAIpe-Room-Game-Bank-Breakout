@@ -26,7 +26,7 @@
                <children>
                   <TabPane fx:id="tabpane" prefHeight="516.0" prefWidth="479.0" stylesheets="@../css/hackervan.css" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
-                      <Tab text="History">
+                      <Tab onSelectionChanged="#printChatHistory" text="History">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
@@ -35,17 +35,23 @@
                               </AnchorPane>
                         </content>
                            <content>
-                              <TextArea fx:id="historyTextArea" editable="false" prefHeight="812.0" prefWidth="479.0" stylesheets="@../css/hackervan.css" />
+                              <TextArea fx:id="historyTextArea" editable="false" prefHeight="812.0" prefWidth="479.0" stylesheets="@../css/hackervan.css" wrapText="true">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font></TextArea>
                            </content>
                       </Tab>
-                      <Tab text="Hints">
+                      <Tab onSelectionChanged="#loadQuickHints" text="Hints">
                            <content>
-                              <TextArea fx:id="hintTextArea" editable="false" prefHeight="792.0" prefWidth="479.0" styleClass="text-area" stylesheets="@../css/hackervan.css" />
+                              <TextArea fx:id="hintTextArea" editable="false" onMouseClicked="#loadQuickHints" prefHeight="792.0" prefWidth="479.0" styleClass="text-area" stylesheets="@../css/hackervan.css" wrapText="true">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font></TextArea>
                            </content>
                       </Tab>
                     </tabs>
                   </TabPane>
-                  <TextField prefHeight="48.0" prefWidth="479.0" promptText="ask hacker friend something" styleClass="text-field" stylesheets="@../css/hackervan.css">
+                  <TextField fx:id="hackerVanInput" onKeyPressed="#invokeHackerAI" prefHeight="48.0" prefWidth="479.0" promptText="ask hacker friend something" styleClass="text-field" stylesheets="@../css/hackervan.css">
                      <font>
                         <Font size="14.0" />
                      </font>

@@ -280,10 +280,11 @@ public class VaultController extends Controller {
   public void invokeHackerAI(KeyEvent event) throws ApiProxyException {
     if (event.getCode() == KeyCode.ENTER) {
       ChatMessage msg = new ChatMessage("user", vaultTextArea.getText());
+      hackerAiManager.addChatHistory(msg.getContent());
       walkieTalkieManager.clearWalkieTalkie();
 
       ChatMessage responce = hackerAiManager.processInput(msg);
-
+      hackerAiManager.addChatHistory(responce.getContent());
       walkieTalkieManager.setWalkieTalkieText(responce);
     }
   }
