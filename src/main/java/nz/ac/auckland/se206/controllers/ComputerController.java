@@ -3,6 +3,8 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,6 +12,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
@@ -50,7 +53,7 @@ public class ComputerController extends Controller {
     ChatMessage msg = App.getStartMessage();
     System.out.println(msg);
     if (msg != null) {
-      appendChatMessage(msg);
+      typeText(msg.getContent());
     }
 
     // Set the text color to green
@@ -83,7 +86,8 @@ public class ComputerController extends Controller {
     try {
       // Add logging here to trace the flow and variable values
       System.out.println("Starting Authentication...");
-      ChatMessage response = runGpt(new ChatMessage("AI", GptPromptEngineering.welcomeMessage()));
+      ChatMessage response =
+          runGpt(new ChatMessage("user", GptPromptEngineering.initiliseComputerAI()));
 
       // Add more logging to check response and its properties
       System.out.println("Authentication Response: " + response);
@@ -122,7 +126,7 @@ public class ComputerController extends Controller {
       msg = startAuthentication();
       appendChatMessage(msg);
     }
-    if (lastMsg.getRole().equals("AI") && lastMsg.getContent().startsWith("Authenticated")) {
+    if (lastMsg.getRole().equals("user") && lastMsg.getContent().startsWith("Authenticated")) {
       System.out.println("Authenticated");
     }
   }
@@ -142,53 +146,53 @@ public class ComputerController extends Controller {
   @FXML
   public void displayText(ChatMessage message) {}
 
-  // @FXML
-  // public void typeText(String textToType) {
-  //   currentIndex = 0;
+  @FXML
+  public void typeText(String textToType) {
+    currentIndex = 0;
 
-  //   Timeline timeline =
-  //       new Timeline(
-  //           new KeyFrame(
-  //               Duration.seconds(0.05),
-  //               event -> {
-  //                 if (currentIndex <= textToType.length()) {
-  //                   animationIsFinished = false;
-  //                   securityTextArea.setText(
-  //                       securityTextArea.getText() + textToType.charAt(currentIndex));
-  //                   currentIndex++;
-  //                 } else {
-  //                   animationIsFinished = true;
-  //                   System.out.println("textToType");
-  //                   if (!messageQueue.isEmpty()) {
-  //                     // If there are more messages in the queue, start typing the next one
-  //                     typeNextMessage();
-  //                   }
-  //                 }
-  //               }));
+    Timeline timeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(0.05),
+                event -> {
+                  if (currentIndex <= textToType.length()) {
+                    animationIsFinished = false;
+                    securityTextArea.setText(
+                        securityTextArea.getText() + textToType.charAt(currentIndex));
+                    currentIndex++;
+                  } else {
+                    animationIsFinished = true;
+                    System.out.println("textToType");
+                    if (!messageQueue.isEmpty()) {
+                      // If there are more messages in the queue, start typing the next one
+                      typeNextMessage();
+                    }
+                  }
+                }));
 
-  //   timeline.setCycleCount(textToType.length());
-  //   timeline.setOnFinished(
-  //       event -> {
-  //         if (!messageQueue.isEmpty()) {
-  //           // If there are more messages in the queue, start typing the next one
-  //           typeNextMessage();
-  //         } else {
-  //           isTyping = false; // No more messages to type
-  //         }
-  //       });
+    timeline.setCycleCount(textToType.length());
+    timeline.setOnFinished(
+        event -> {
+          if (!messageQueue.isEmpty()) {
+            // If there are more messages in the queue, start typing the next one
+            typeNextMessage();
+          } else {
+            isTyping = false; // No more messages to type
+          }
+        });
 
-  //   if (!isTyping) {
-  //     isTyping = true;
-  //     timeline.play();
-  //   }
-  // }
+    if (!isTyping) {
+      isTyping = true;
+      timeline.play();
+    }
+  }
 
-  // private void typeNextMessage() {
-  //   if (!messageQueue.isEmpty()) {
-  //     ChatMessage nextMessage = messageQueue.poll();
-  //     typeText(nextMessage.getContent());
-  //   }
-  // }
+  private void typeNextMessage() {
+    if (!messageQueue.isEmpty()) {
+      ChatMessage nextMessage = messageQueue.poll();
+      typeText(nextMessage.getContent());
+    }
+  }
 
   private void appendChatMessage(ChatMessage msg) {
     securityTextArea.appendText(msg.getContent() + "\n\n");
