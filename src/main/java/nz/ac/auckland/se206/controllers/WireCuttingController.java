@@ -38,7 +38,7 @@ public class WireCuttingController extends Controller {
     wiresCut = new ArrayList<>();
     styleManager.addItems(redwire,greenwire,bluewire,yellowwire,wirecuttingbackground);
     RandomnessGenerate.addWires(bluewire, yellowwire, greenwire, redwire);
-    styleManager.setItemsMessage("use the wirecutter", bluewire, yellowwire, greenwire, redwire);
+    styleManager.setItemsMessage("use the wirecutter", "bluewire", "yellowwire", "greenwire", "redwire");
   }
 
   @FXML 
@@ -60,7 +60,7 @@ public class WireCuttingController extends Controller {
   void onWireCutterClicked(MouseEvent event) {
     wirecutter.setVisible(false);
     isWireCutterSelected = true;
-    styleManager.removeItemsMessage(redwire, greenwire, bluewire, yellowwire);
+    styleManager.removeItemsMessage("redwire", "greenwire", "bluewire", "yellowwire");
     styleManager.setItemsState(
         HoverColour.GREEN, "redwire", "greenwire", "bluewire", "yellowwire");
   }

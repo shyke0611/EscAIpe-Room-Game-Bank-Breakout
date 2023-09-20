@@ -77,9 +77,9 @@ public class LobbyController extends Controller {
         guardpocket,
         drawerHolder,
         lobbybackground, drawerHolder,credentialsBook,credentialsNote,drawer,openDrawer);
-    styleManager.setItemsMessage("Guard is watching...", key1, key3, key4, guardpocket);
-    styleManager.setItemsMessage("It's locked...", drawerHolder);
-    styleManager.setItemsMessage("A note?", credentialsBook);
+    styleManager.setItemsMessage("Guard is watching...", "key1", "key3", "key4", "guardpocket");
+    styleManager.setItemsMessage("It's locked...", "drawerHolder");
+    styleManager.setItemsMessage("A note?", "credentialsBook");
   }
 
   //   handling mouse events on walkie talkie
@@ -126,7 +126,6 @@ public class LobbyController extends Controller {
     if (GameState.isAlarmTripped) {
       credentialsNote.setVisible(true);
       credentialsNote.setDisable(false);
-      styleManager.setItemsMessage("Wire cutting..?", guardpocket);
       List<HBox> wires = RandomnessGenerate.getRandomWires();
       StringBuilder wireNames = new StringBuilder();
 
@@ -142,7 +141,6 @@ public class LobbyController extends Controller {
       passwordLbl.setText(null);
       titleLbl.setText("Wire Cutting Order");
     }
-    styleManager.setItemsMessage("Already looked here", guardpocket);
   }
 
   // pressing book in drawer
@@ -153,7 +151,9 @@ public class LobbyController extends Controller {
     passwordLbl.setText("Password: " + randomPassword);
     usernameLbl.setText("Username: " + randomUsername);
     titleLbl.setText("Security Room Computer Log In");
-    styleManager.removeItemsMessage(credentialsBook);
+    styleManager.removeItemsMessage("credentialsBook");
+    styleManager.removeItemsMessage("computer");
+    
   }
 
   // pressing any location of the keys
@@ -162,7 +162,7 @@ public class LobbyController extends Controller {
   void onkeyLocationPressed(MouseEvent event) {
     if (GameState.isGuardDistracted) {
       HBox clickedHBox = (HBox) event.getSource();
-      styleManager.setItemsMessage("Already looked here...", clickedHBox);
+      styleManager.setItemsMessage("Already looked here...", "clickedHBox");
       if (clickedHBox == RandomnessGenerate.getkeyLocation()) {
         GameState.isKeyLocationFound = true;
         AnimationManager.fadeTransition(key, 2);
@@ -178,7 +178,7 @@ public class LobbyController extends Controller {
     GameState.isKeyFound = true;
     key.setVisible(false);
     styleManager.setItemsState(HoverColour.GREEN, "drawerHolder");
-    styleManager.setItemsMessage("The key fits...", drawerHolder);
+    styleManager.setItemsMessage("The key fits...", "drawerHolder");
   }
 
   @FXML
@@ -187,8 +187,9 @@ public class LobbyController extends Controller {
     sleepingAnimation();
     guard.setDisable(true);
     styleManager.setItemsState(HoverColour.GREEN, "key1", "key3", "key4");
-    styleManager.setItemsMessage("Something seems odd here...", key1, key3, key4);
-    styleManager.setItemsMessage("Something seems odd here", guardpocket);
+    styleManager.setItemsMessage("Something seems odd here...", "key1", "key3", "key4");
+    styleManager.setItemsMessage("Something seems odd here", "guardpocket");
+    styleManager.setItemsMessage("Seems dangerous for now", "guardpocket");
   }
 
   boolean isZzz1Visible = false;

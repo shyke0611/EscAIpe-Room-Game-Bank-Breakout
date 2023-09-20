@@ -240,7 +240,7 @@
                   <DropShadow height="130.08" radius="60.855000000000004" width="115.34" />
                </effect>
             </HBox>
-            <HBox fx:id="escapebackground" layoutX="287.0" layoutY="94.0" onMousePressed="#onEscape" prefHeight="303.0" prefWidth="308.0" styleClass="guard" stylesheets="@../css/rooms.css" visible="false">
+            <HBox fx:id="escapeDoor" layoutX="287.0" layoutY="94.0" onMousePressed="#onEscape" prefHeight="303.0" prefWidth="308.0" styleClass="guard" stylesheets="@../css/rooms.css" visible="false">
                <children>
                   <ImageView fitHeight="325.0" fitWidth="311.0" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -30,26 +30,28 @@ public class StyleManager {
   }
 
   // Set and apply tooltips for multiple items
-  public void setItemsMessage(String message, Node... items) {
-    for (Node item : items) {
-      Tooltip tooltip = tooltipMap.get(item);
+  public void setItemsMessage(String message, String... items) {
+    for (String item : items) {
+      Node node = getItem(item);
+      Tooltip tooltip = tooltipMap.get(node);
       if (tooltip == null) {
         tooltip = new Tooltip();
-        tooltipMap.put(item, tooltip);
+        tooltipMap.put(node, tooltip);
       }
       tooltip.setText(message);
-      Tooltip.install(item, tooltip);
+      Tooltip.install(node, tooltip);
       tooltip.setShowDelay(Duration.seconds(0));
     }
   }
 
   // Remove tooltips for multiple items
-  public void removeItemsMessage(Node... items) {
-    for (Node item : items) {
-      Tooltip tooltip = tooltipMap.get(item);
+  public void removeItemsMessage(String... items) {
+    for (String item : items) {
+      Node node = getItem(item);
+      Tooltip tooltip = tooltipMap.get(node);
       if (tooltip != null) {
-        Tooltip.uninstall(item, tooltip);
-        tooltipMap.remove(item);
+        Tooltip.uninstall(node, tooltip);
+        tooltipMap.remove(node);
       }
     }
   }
@@ -58,7 +60,6 @@ public class StyleManager {
     String rgba = getRgbaForHoverColour(colour);
     for (String item : items) {
       Node node = getItem(item);
-
       node.setOnMouseEntered(
           event ->
               node.setStyle(
@@ -97,7 +98,7 @@ public class StyleManager {
                 "yellowwire",
                 "walkietalkie",
                 "switchHolder",
-                "walkietalkieHolder"));
+                "walkietalkieHolder","bombHolder","exitHolder","bombPuzzle","escapeDoor"));
     for (Node item : itemsList) {
       if (item == null) {
         continue; // Skip null items
@@ -107,7 +108,7 @@ public class StyleManager {
 
       if (itemId != null) {
         if (!excludeIDs.contains(itemId)) {
-          item.setDisable(on);
+          item.setDisable(true);
         }
 
         if (itemId.endsWith("background")) {

@@ -46,9 +46,8 @@ public class SecurityController extends Controller {
     SceneManager.setController(Scenes.SECURITY, this);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     styleManager.addItems(computer, electricityBox, securitybackground, tempbackground);
-    styleManager.setItemsMessage("A computer...?", computer);
-    styleManager.setItemsMessage("it requires credentials?", logInBtn);
-    styleManager.setItemsMessage("no need to open this right now", electricityBox);
+    styleManager.setItemsMessage("A computer...?", "computer");
+    styleManager.setItemsMessage("no need to open this right now", "electricityBox");
   }
 
   //   handling mouse events on walkie talkie
@@ -105,7 +104,7 @@ public class SecurityController extends Controller {
     } else {
       logInScreen.setVisible(false);
       App.setUI(Scenes.COMPUTER);
-      styleManager.removeItemsMessage(computer);
+      styleManager.removeItemsMessage("computer");
     }
   }
 

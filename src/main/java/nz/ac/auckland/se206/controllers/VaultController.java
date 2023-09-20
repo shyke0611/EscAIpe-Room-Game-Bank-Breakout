@@ -50,7 +50,7 @@ public class VaultController extends Controller {
   @FXML private Label inputLbl;
   @FXML private Label statusLbl;
   @FXML private Label givencode;
-  @FXML private HBox escapebackground;
+  @FXML private HBox escapeDoor;
   @FXML private Pane slidePane;
   @FXML private Button lootBtn;
 
@@ -77,9 +77,12 @@ public class VaultController extends Controller {
         doorHolder,
         exitHolder,
         bombHolder,
-        bombPuzzle,walkietalkie,walkietalkieHolder,switchHolder);
+        bombPuzzle,walkietalkie,walkietalkieHolder,switchHolder,escapeDoor);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     givencode.setText("Code: " + RandomnessGenerate.getPasscode());
+    styleManager.setItemsMessage("set bomb down", "exitHolder");
+    styleManager.setItemsMessage("escape", "escapeDoor");
+    styleManager.setItemsMessage("activate bomb", "bombHolder");
   }
 
   //   handling mouse events on walkie talkie
@@ -105,6 +108,7 @@ public class VaultController extends Controller {
     AnimationManager.slideDoorsAnimation(vaultbackground);
     AnimationManager.slideDoorsAnimation(slidePane);
     bomblogo.setVisible(false);
+    styleManager.removeItemsMessage("bombHolder");
   }
 
   @FXML
@@ -144,6 +148,8 @@ public class VaultController extends Controller {
     GameState.isAlarmTripped = true;
     styleManager.setItemsState(HoverColour.GREEN, "electricityBox");
     styleManager.setItemsState(HoverColour.GREEN, "guardpocket");
+    styleManager.setItemsMessage("Something seems odd?", "guardpocket");
+    styleManager.setItemsMessage("Alarm Wires...?", "electricityBox");
     lootBtn.setDisable(true);
   }
   }
@@ -171,7 +177,7 @@ public class VaultController extends Controller {
   public void onCheckCode(ActionEvent event) {
     String code = givencode.getText().substring("Code: ".length());
     if (inputLbl.getText().equals(code)) {
-      statusLbl.setText("Bomb Activated");
+      statusLbl.setText("Success, press x to Activate bomb");
       GameState.isBombActivated = true;
 
     } else {
@@ -186,7 +192,7 @@ public class VaultController extends Controller {
     if (GameState.isBombActivated) {
       styleManager.setVisible(false, "walkietalkie", "switchHolder","walkietalkieHolder", "bombHolder");
       AnimationManager.startBombAnimation(exitHolder);
-      AnimationManager.delayAnimation(exitHolder, escapebackground);
+      AnimationManager.delayAnimation(exitHolder, escapeDoor);
       exitHolder.setDisable(true);
     }
   }
@@ -205,7 +211,7 @@ public class VaultController extends Controller {
   public void showInfo(MouseEvent event) {
     String door = event.getSource().toString();
 
-    if (AIAccessGranted) {
+    if (GameState.isFirewallDisabled) {
       String style = "-fx-effect: dropshadow(gaussian, #00bf00, 5, 5, 0, 0);";
       String moneyText = "Money: $";
       String difficultyText = "Difficulty: ";
