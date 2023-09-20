@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
@@ -16,6 +17,7 @@ public class ConnectDotsController extends Controller {
 
   @FXML private GridPane gridPane;
   @FXML private StackPane disableSecurity;
+  @FXML private Label timerLabel;
 
   // 0 = empty, 1 = red, 2 = blue, 3 = green, 4 = purple, negative = node
   private int[][] grid = new int[6][6];
@@ -33,6 +35,7 @@ public class ConnectDotsController extends Controller {
   public void initialize() {
 
     SceneManager.setController(Scenes.EYESCANNER, this);
+    super.setTimerLabel(timerLabel);
     disableSecurity.setVisible(false);
     setSolution();
 

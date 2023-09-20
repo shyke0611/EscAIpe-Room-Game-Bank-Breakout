@@ -22,6 +22,7 @@ import nz.ac.auckland.se206.StyleManager;
 
 public class ChemicalMixingController extends Controller {
 
+  @FXML private Label timerLabel;
   @FXML private Slider slider;
   @FXML private Button stopButton;
   @FXML private Button retryButton;
@@ -63,6 +64,7 @@ public class ChemicalMixingController extends Controller {
 
   public void initialize() {
     SceneManager.setController(Scenes.CHEMICALMIXING, this);
+    super.setTimerLabel(timerLabel);
 
     // Setting up hover animations
     setupListeners();
