@@ -10,6 +10,7 @@ import java.util.Set;
 import javafx.scene.Node;
 import javafx.scene.control.Tooltip;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.AnimationManager.Type;
 
 public class StyleManager {
 
@@ -87,18 +88,13 @@ public class StyleManager {
   }
 
   public void setAlarm(boolean on) {
-    Set<String> excludeIDs =
+    Set<String> includeIDs =
         new HashSet<>(
             Arrays.asList(
-                "electricityBox",
-                "guardpocket",
-                "redwire",
-                "greenwire",
-                "bluewire",
-                "yellowwire",
-                "walkietalkie",
-                "switchHolder",
-                "walkietalkieHolder","bombHolder","exitHolder","bombPuzzle","escapeDoor"));
+                "drawer",
+                "credentialsNote",
+                "computer",
+                "doorHolder"));
     for (Node item : itemsList) {
       if (item == null) {
         continue; // Skip null items
@@ -107,16 +103,26 @@ public class StyleManager {
       System.out.println("Item ID: " + itemId);
 
       if (itemId != null) {
-        if (!excludeIDs.contains(itemId)) {
+        if (includeIDs.contains(itemId)) {
           item.setDisable(true);
         }
 
         if (itemId.endsWith("background")) {
-          AnimationManager.toggleAlarmAnimation(item, on);
+          AnimationManager.toggleAlarmAnimation(item, on, 0.5, Type.InnerShadow);
         }
       }
     }
   }
+
+  public void setClueHover(String item, boolean isOn) {
+    Node node = getItem(item);
+    if (isOn) {
+     node.setStyle("-fx-effect: dropshadow(gaussian, rgba(34, 255, 0, 0.7), 10, 10, 0, 0)");
+    } else {
+      node.setStyle(null);
+    }
+    }
+  
 
   public void setDisable(boolean value, String... items) {
     for (String item : items) {
@@ -138,5 +144,4 @@ public class StyleManager {
     }
     return null;
   }
-
 }

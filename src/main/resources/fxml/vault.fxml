@@ -39,20 +39,6 @@
                   </Label>
                </children>
             </VBox>
-            <VBox fx:id="VaultRoomSwitch" alignment="CENTER" prefHeight="110.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
-               <children>
-                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/robber2.png" />
-                     </image>
-                  </ImageView>
-                  <Label text="Vault">
-                     <font>
-                        <Font size="21.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
             <VBox fx:id="SecurityRoomSwitch" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
                <children>
                   <ImageView fx:id="Security" fitHeight="111.0" fitWidth="100.0" onMouseClicked="#switchToSecurity" pickOnBounds="true" preserveRatio="true">
@@ -61,6 +47,20 @@
                      </image>
                   </ImageView>
                   <Label text="Security">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox fx:id="VaultRoomSwitch" alignment="CENTER" prefHeight="110.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/robber2.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Vault">
                      <font>
                         <Font size="21.0" />
                      </font>
@@ -212,7 +212,7 @@
       <Rectangle fx:id="whiteBackground" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="710.0" layoutX="-7.0" layoutY="-7.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="1009.0" />
       <HBox fx:id="bombHolder" alignment="CENTER" layoutX="777.0" layoutY="539.0" onMousePressed="#onBombPressed" prefHeight="153.0" prefWidth="201.0" styleClass="bomb" stylesheets="@../css/rooms.css" visible="false">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="guard" stylesheets="@../css/rooms.css">
+            <HBox fx:id="bomblayer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="guard" stylesheets="@../css/rooms.css">
                <children>
                   <ImageView fx:id="bomblogo" fitHeight="101.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -249,7 +249,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <VBox fx:id="bombPuzzle" layoutX="94.0" layoutY="84.0" prefHeight="404.0" prefWidth="681.0">
+            <VBox fx:id="bombPuzzle" layoutX="94.0" layoutY="84.0" prefHeight="404.0" prefWidth="681.0" visible="false">
                <children>
                   <HBox alignment="CENTER" prefHeight="112.0" prefWidth="610.0">
                      <children>
@@ -271,7 +271,10 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="134.0" prefWidth="680.0">
                                  <children>
-                                    <Label fx:id="statusLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="171.0" textFill="#0be059" />
+                                    <Label fx:id="statusLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="171.0" textFill="#0be059">
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font></Label>
                                     <Label fx:id="inputLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="160.0" text="Enter Code">
                                        <font>
                                           <Font size="18.0" />

@@ -10,6 +10,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
@@ -18,6 +20,7 @@ import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.WalkieTalkieManager;
+import nz.ac.auckland.se206.AnimationManager.Type;
 
 public class SecurityController extends Controller {
 
@@ -45,7 +48,7 @@ public class SecurityController extends Controller {
   public void initialize() {
     SceneManager.setController(Scenes.SECURITY, this);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
-    styleManager.addItems(computer, electricityBox, securitybackground, tempbackground);
+    styleManager.addItems(computer, electricityBox, securitybackground, tempbackground,VaultRoomSwitch);
     styleManager.setItemsMessage("A computer...?", "computer");
     styleManager.setItemsMessage("no need to open this right now", "electricityBox");
   }
@@ -67,6 +70,7 @@ public class SecurityController extends Controller {
     if (GameState.isAlarmDisabled) {
       styleManager.getItem("bombHolder").setVisible(true);
       styleManager.setDisable(true, "bronzeDoor", "silverDoor", "goldDoor");
+      styleManager.setClueHover("VaultRoomSwitch",false);
     }
     App.setUI(Scenes.VAULT);
   }
@@ -145,6 +149,7 @@ public class SecurityController extends Controller {
   // mechanics for when login is successful
   private void handleSuccessfulLogin() {
     loginMsgLbl.setText("Success");
+    loginMsgLbl.setTextFill(Color.GREEN);
     GameState.isSecurityComputerLoggedIn = true;
     App.setUI(Scenes.COMPUTER);
     styleManager.setDisable(true, "credentialsBook");
@@ -154,10 +159,12 @@ public class SecurityController extends Controller {
   // mechanics for empty credential input
   private void handleEmptyCredentials() {
     loginMsgLbl.setText("Enter your credentials");
+    loginMsgLbl.setTextFill(Color.ORANGE);
   }
 
   // mechanics for when login fails
   private void handleFailedLogin() {
     loginMsgLbl.setText("Wrong username or password");
+    loginMsgLbl.setTextFill(Color.RED);
   }
 }

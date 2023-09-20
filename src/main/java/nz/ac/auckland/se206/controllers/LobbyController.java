@@ -4,6 +4,7 @@ import java.util.List;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -20,6 +21,7 @@ import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.WalkieTalkieManager;
+import nz.ac.auckland.se206.AnimationManager.Type;
 
 public class LobbyController extends Controller {
 
@@ -76,11 +78,12 @@ public class LobbyController extends Controller {
         guard,
         guardpocket,
         drawerHolder,
-        lobbybackground, drawerHolder,credentialsBook,credentialsNote,drawer,openDrawer);
+        lobbybackground, drawerHolder,credentialsBook,credentialsNote,drawer,openDrawer,SecurityRoomSwitch);
     styleManager.setItemsMessage("Guard is watching...", "key1", "key3", "key4", "guardpocket");
     styleManager.setItemsMessage("It's locked...", "drawerHolder");
     styleManager.setItemsMessage("A note?", "credentialsBook");
     styleManager.setItemsMessage("put him to sleep", "guard");
+    styleManager.setClueHover("guard",true);
   }
 
   //   handling mouse events on walkie talkie
@@ -93,6 +96,9 @@ public class LobbyController extends Controller {
   @FXML
   public void switchToSecurity() {
     App.setUI(Scenes.SECURITY);
+    if (!GameState.isFirewallDisabled) {
+    styleManager.setClueHover("SecurityRoomSwitch",false);
+  }
   }
 
   @FXML
@@ -153,6 +159,7 @@ public class LobbyController extends Controller {
     usernameLbl.setText("Username: " + randomUsername);
     titleLbl.setText("Security Room Computer Log In");
     styleManager.removeItemsMessage("credentialsBook");
+    styleManager.setClueHover("SecurityRoomSwitch",true);
     // styleManager.removeItemsMessage("computer");
     
   }
@@ -162,8 +169,8 @@ public class LobbyController extends Controller {
   @FXML
   void onkeyLocationPressed(MouseEvent event) {
     if (GameState.isGuardDistracted) {
-      HBox clickedHBox = (HBox) event.getSource();
-      styleManager.setItemsMessage("Already looked here...", "clickedHBox");
+      Node clickedHBox = (HBox) event.getSource();
+      styleManager.setItemsMessage("Already looked here...","clickedHBox");
       if (clickedHBox == RandomnessGenerate.getkeyLocation()) {
         GameState.isKeyLocationFound = true;
         AnimationManager.fadeTransition(key, 2);
@@ -187,6 +194,7 @@ public class LobbyController extends Controller {
     GameState.isGuardDistracted = true;
     sleepingAnimation();
     guard.setDisable(true);
+    styleManager.setClueHover("guard",false);
     styleManager.setItemsState(HoverColour.GREEN, "key1", "key3", "key4");
     styleManager.setItemsMessage("Something seems odd here...", "key1", "key3", "key4");
     styleManager.setItemsMessage("Something seems odd here", "guardpocket");

@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
@@ -100,6 +101,7 @@ public class WireCuttingController extends Controller {
 
   private void handleCorrectCombination() {
     taskLbl.setText("Success");
+    taskLbl.setTextFill(Color.GREEN);
     GameState.isWiresCut = true;
     styleManager.setAlarm(false);
     GameState.isAlarmDisabled = true;
@@ -107,9 +109,12 @@ public class WireCuttingController extends Controller {
     styleManager.setDisable(true, "guardpocket");
     styleManager.setVisible(false, "credentialsNote");
     retryBtn.setDisable(true);
+    // styleManager.setClueHover("bomblayer",true);
+    // styleManager.setClueHover("VaultRoomSwitch",true);
   }
 
   private void handleIncorrectCombination() {
     taskLbl.setText("Fail");
+    taskLbl.setTextFill(Color.RED);
   }
 }

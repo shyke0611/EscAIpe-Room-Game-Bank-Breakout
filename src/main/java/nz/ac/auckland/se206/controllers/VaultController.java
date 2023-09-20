@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
@@ -21,6 +22,7 @@ import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.WalkieTalkieManager;
+import nz.ac.auckland.se206.AnimationManager.Type;
 
 public class VaultController extends Controller {
 
@@ -48,7 +50,9 @@ public class VaultController extends Controller {
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
   @FXML private HBox bombHolder;
+  @FXML private HBox bomblayer;
   @FXML private VBox bombPuzzle;
+  @FXML private VBox lobbyRoomSwitch;
   @FXML private Button button;
   @FXML private Button checkBtn;
   @FXML private VBox lootBtnHolder;
@@ -90,14 +94,14 @@ public class VaultController extends Controller {
         lootLbl,
         bronzeDoorHolder,
         silverDoorHolder,
-        goldDoorHolder);
+        goldDoorHolder,lobbyRoomSwitch,bomblayer);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     givencode.setText("Code: " + RandomnessGenerate.getPasscode());
     styleManager.setItemsMessage("set bomb down", "exitHolder");
     styleManager.setItemsMessage("escape", "escapeDoor");
     styleManager.setItemsMessage("activate bomb", "bombHolder");
     styleManager.setItemsMessage(
-        "Need to disable firewall block", "bronzeDoorHolder", "silverDoorHolder", "goldDoorHolder");
+        "Need to disable firewall from blocking us", "bronzeDoorHolder", "silverDoorHolder", "goldDoorHolder");
   }
 
   //   handling mouse events on walkie talkie
@@ -110,6 +114,7 @@ public class VaultController extends Controller {
   @FXML
   public void switchToLobby() {
     App.setUI(Scenes.LOBBY);
+    styleManager.setClueHover("lobbyRoomSwitch",false);
   }
 
   @FXML
@@ -124,6 +129,7 @@ public class VaultController extends Controller {
     AnimationManager.slideDoorsAnimation(slidePane);
     bomblogo.setVisible(false);
     styleManager.removeItemsMessage("bombHolder");
+    // styleManager.setClueHover("bomblayer",false);
   }
 
   @FXML
@@ -163,6 +169,7 @@ public class VaultController extends Controller {
       styleManager.setItemsMessage("Alarm Wires...?", "electricityBox");
       lootBtnHolder.setDisable(true);
       lootBtnHolder.setVisible(false);
+      styleManager.setClueHover("lobbyRoomSwitch",true);
     }
   }
 
@@ -190,11 +197,13 @@ public class VaultController extends Controller {
     String code = givencode.getText().substring("Code: ".length());
     if (inputLbl.getText().equals(code)) {
       statusLbl.setText("Success, press x to Activate bomb");
+      statusLbl.setTextFill(Color.GREEN);
       GameState.isBombActivated = true;
 
     } else {
       statusLbl.setText("Wrong Try Again");
       inputLbl.setText(null);
+      statusLbl.setTextFill(Color.RED);
     }
     labelText.setLength(0);
   }
@@ -204,7 +213,7 @@ public class VaultController extends Controller {
     if (GameState.isBombActivated) {
       styleManager.setVisible(
           false, "walkietalkie", "switchHolder", "walkietalkieHolder", "bombHolder");
-      AnimationManager.startBombAnimation(exitHolder);
+      AnimationManager.toggleAlarmAnimation(exitHolder,true,0.2,Type.InnerShadow);
       AnimationManager.delayAnimation(exitHolder, escapeDoor);
       exitHolder.setDisable(true);
     }
@@ -259,14 +268,14 @@ public class VaultController extends Controller {
     difficultyValue.setText(difficultyText);
   }
 
-  private ImageView getDoorByEvent(MouseEvent event) {
-    if (event.getSource().toString().contains("goldDoor")) {
-      return goldDoor;
-    } else if (event.getSource().toString().contains("silverDoor")) {
-      return silverDoor;
-    } else if (event.getSource().toString().contains("bronzeDoor")) {
-      return bronzeDoor;
-    }
-    return null;
-  }
+  // private ImageView getDoorByEvent(MouseEvent event) {
+  //   if (event.getSource().toString().contains("goldDoor")) {
+  //     return goldDoor;
+  //   } else if (event.getSource().toString().contains("silverDoor")) {
+  //     return silverDoor;
+  //   } else if (event.getSource().toString().contains("bronzeDoor")) {
+  //     return bronzeDoor;
+  //   }
+  //   return null;
+  // }
 }
