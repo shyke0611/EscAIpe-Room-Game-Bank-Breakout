@@ -3,6 +3,7 @@ package nz.ac.auckland.se206.controllers;
 import java.util.List;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,7 +18,9 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameManager;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.HackerAiManager;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
@@ -65,6 +68,7 @@ public class LobbyController extends Controller {
   private String randomPassword;
   StyleManager styleManager = StyleManager.getInstance();
   WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
+  HackerAiManager hackerAiManager = HackerAiManager.getInstance();
 
   public void initialize() {
     SceneManager.setController(Scenes.LOBBY, this);
@@ -167,6 +171,7 @@ public class LobbyController extends Controller {
     titleLbl.setText("Security Room Computer Log In");
     styleManager.removeItemsMessage("credentialsBook");
     styleManager.removeItemsMessage("computer");
+    GameManager.completeObjective();
   }
 
   // pressing any location of the keys
@@ -189,6 +194,7 @@ public class LobbyController extends Controller {
   @FXML
   void onKeyPressed(MouseEvent event) {
     GameState.isKeyFound = true;
+    GameManager.completeObjective();
     key.setVisible(false);
     styleManager.setItemsState(HoverColour.GREEN, "drawerHolder");
     styleManager.setItemsMessage("The key fits...", "drawerHolder");
@@ -220,18 +226,22 @@ public class LobbyController extends Controller {
   }
 
   @FXML
-  public void invokeHackerAI(KeyEvent event) {
+  public void invokeHackerAI(KeyEvent event) throws ApiProxyException {
+
     if (event.getCode() == KeyCode.ENTER) {
       ChatMessage msg = new ChatMessage("user", lobbyTextInput.getText());
       walkieTalkieManager.clearWalkieTalkie();
-      try {
-        ChatMessage response = walkieTalkieManager.runGpt(msg);
-        walkieTalkieManager.setWalkieTalkieText(response);
 
-      } catch (ApiProxyException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-      }
+      ChatMessage responce = hackerAiManager.processInput(msg);
+
+      walkieTalkieManager.setWalkieTalkieText(responce);
     }
+  }
+
+  @FXML
+  public void quickHint(ActionEvent event) {
+    String hint = hackerAiManager.GetQuickHint();
+    hackerAiManager.storeQuickHint();
+    walkieTalkieManager.setWalkieTalkieText(new ChatMessage("user", hint));
   }
 }

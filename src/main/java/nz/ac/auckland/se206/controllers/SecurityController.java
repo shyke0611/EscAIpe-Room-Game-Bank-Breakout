@@ -1,23 +1,30 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.HackerAiManager;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.WalkieTalkieManager;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class SecurityController extends Controller {
 
@@ -39,8 +46,11 @@ public class SecurityController extends Controller {
   @FXML private VBox walkietalkieText;
   @FXML private ImageView securitybackground;
   @FXML private ImageView tempbackground;
+  @FXML private TextArea securityTextArea;
 
   StyleManager styleManager = StyleManager.getInstance();
+  WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
+  HackerAiManager hackerAiManager = HackerAiManager.getInstance();
 
   public void initialize() {
     SceneManager.setController(Scenes.SECURITY, this);
@@ -164,5 +174,24 @@ public class SecurityController extends Controller {
   // mechanics for when login fails
   private void handleFailedLogin() {
     loginMsgLbl.setText("Wrong username or password");
+  }
+
+  @FXML
+  public void invokeHackerAI(KeyEvent event) throws ApiProxyException {
+    if (event.getCode() == KeyCode.ENTER) {
+      ChatMessage msg = new ChatMessage("user", securityTextArea.getText());
+      walkieTalkieManager.clearWalkieTalkie();
+
+      ChatMessage responce = hackerAiManager.processInput(msg);
+
+      walkieTalkieManager.setWalkieTalkieText(responce);
+    }
+  }
+
+  @FXML
+  public void quickHint(ActionEvent event) {
+    String hint = hackerAiManager.GetQuickHint();
+    hackerAiManager.storeQuickHint();
+    walkieTalkieManager.setWalkieTalkieText(new ChatMessage("user", hint));
   }
 }

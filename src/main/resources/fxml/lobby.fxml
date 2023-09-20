@@ -157,7 +157,10 @@
                <children>
                   <HBox fx:id="textAreaBox" prefHeight="100.0" prefWidth="528.0">
                      <children>
-                        <TextArea fx:id="lobbyTextArea" editable="false" onKeyPressed="#invokeHackerAI" prefHeight="100.0" prefWidth="425.0" stylesheets="@../css/rooms.css" />
+                        <TextArea fx:id="lobbyTextArea" editable="false" onKeyPressed="#invokeHackerAI" prefHeight="100.0" prefWidth="425.0" stylesheets="@../css/rooms.css" wrapText="true">
+                           <font>
+                              <Font size="17.0" />
+                           </font></TextArea>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="component2" stylesheets="@../css/rooms.css">
                            <children>
                               <Button fx:id="viewHistoryBtn" mnemonicParsing="false" onAction="#onSwitchToHacker" text="View History">
@@ -165,7 +168,7 @@
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button fx:id="quickHintBtn" mnemonicParsing="false" text="Quick Hint" />
+                              <Button fx:id="quickHintBtn" mnemonicParsing="false" onAction="#quickHint" text="Quick Hint" />
                            </children>
                         </VBox>
                      </children>

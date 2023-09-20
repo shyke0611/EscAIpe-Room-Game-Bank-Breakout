@@ -49,7 +49,7 @@ public class WalkieTalkieManager {
     }
   }
 
-  public static void clearWalkieTalkie() {
+  public void clearWalkieTalkie() {
     for (VBox vBox : walkietalkieMap.values()) {
       // Iterate through the children of the VBox (assuming they are HBox containers)
       ObservableList<Node> children = vBox.getChildren();
@@ -70,7 +70,7 @@ public class WalkieTalkieManager {
     }
   }
 
-  public static void setWalkieTalkieText(ChatMessage msg) {
+  public void setWalkieTalkieText(ChatMessage msg) {
     for (VBox vBox : walkietalkieMap.values()) {
       // Iterate through the children of the VBox (assuming they are HBox containers)
       ObservableList<Node> children = vBox.getChildren();
