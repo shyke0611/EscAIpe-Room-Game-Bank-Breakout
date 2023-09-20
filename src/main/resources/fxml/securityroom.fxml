@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="SecurityPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SecurityController">
@@ -208,23 +209,21 @@
             </VBox>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="343.0" layoutY="27.0" prefHeight="60.0" prefWidth="216.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 0 20 20 0;">
+      <Button layoutX="546.0" layoutY="323.0" mnemonicParsing="false" onMouseClicked="#switchToDots" text="Connect Dots" />
+      <StackPane layoutX="407.0" layoutY="94.0" prefHeight="154.0" prefWidth="274.0" rotate="-0.5">
          <children>
-            <Label prefHeight="39.0" prefWidth="100.0" style="-fx-background-color: #9fd7ff; -fx-background-radius: 0 20 20 0;" text="Timer:" textFill="#051a28">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcbcbc" height="148.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" width="271.0" />
+            <Label fx:id="timerLabel" text="0:00" translateY="15.0">
                <font>
-                  <Font size="32.0" />
+                  <Font size="64.0" />
                </font>
             </Label>
-            <Label prefHeight="37.0" prefWidth="81.0" text="Count">
+            <Label text="Time Remaining:" translateY="-40.0">
                <font>
-                  <Font size="30.0" />
+                  <Font size="24.0" />
                </font>
-               <HBox.margin>
-                  <Insets left="20.0" />
-               </HBox.margin>
             </Label>
          </children>
-      </HBox>
-      <Button layoutX="546.0" layoutY="323.0" mnemonicParsing="false" onMouseClicked="#switchToDots" text="Connect Dots" />
+      </StackPane>
    </children>
 </AnchorPane>

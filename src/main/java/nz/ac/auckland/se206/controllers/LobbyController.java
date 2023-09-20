@@ -26,6 +26,7 @@ public class LobbyController extends Controller {
   @FXML private ImageView Security;
   @FXML private ImageView lobbybackground;
   @FXML private VBox SecurityRoomSwitch;
+  @FXML private Label timerLabel;
   @FXML private ImageView Vault;
   @FXML private VBox VaultRoomSwitch;
   @FXML private Button closeNoteBtn;
@@ -59,6 +60,7 @@ public class LobbyController extends Controller {
 
   public void initialize() {
     SceneManager.setController(Scenes.LOBBY, this);
+    super.setTimerLabel(timerLabel, 1);
     // obtain random credentials
     randomUsername = RandomnessGenerate.getUsername();
     randomPassword = RandomnessGenerate.getPasscode();
@@ -67,7 +69,7 @@ public class LobbyController extends Controller {
     RandomnessGenerate.generateRandomKeyLocation();
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     styleManager.addItems(
-      key,
+        key,
         key1,
         key3,
         key4,
@@ -76,7 +78,12 @@ public class LobbyController extends Controller {
         guard,
         guardpocket,
         drawerHolder,
-        lobbybackground, drawerHolder,credentialsBook,credentialsNote,drawer,openDrawer);
+        lobbybackground,
+        drawerHolder,
+        credentialsBook,
+        credentialsNote,
+        drawer,
+        openDrawer);
     styleManager.setItemsMessage("Guard is watching...", "key1", "key3", "key4", "guardpocket");
     styleManager.setItemsMessage("It's locked...", "drawerHolder");
     styleManager.setItemsMessage("A note?", "credentialsBook");
@@ -153,7 +160,6 @@ public class LobbyController extends Controller {
     titleLbl.setText("Security Room Computer Log In");
     styleManager.removeItemsMessage("credentialsBook");
     styleManager.removeItemsMessage("computer");
-    
   }
 
   // pressing any location of the keys
@@ -205,5 +211,4 @@ public class LobbyController extends Controller {
     timeline.setCycleCount(Timeline.INDEFINITE);
     timeline.play();
   }
-
 }

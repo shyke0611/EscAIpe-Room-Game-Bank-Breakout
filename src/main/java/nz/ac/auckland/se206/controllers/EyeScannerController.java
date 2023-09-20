@@ -10,8 +10,8 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
-import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 
 public class EyeScannerController extends Controller {
@@ -33,6 +33,7 @@ public class EyeScannerController extends Controller {
   @FXML private Label blueValue;
 
   @FXML private VBox walkietalkieText;
+  @FXML private Label timerLabel;
 
   private int red;
   private int green;
@@ -41,12 +42,13 @@ public class EyeScannerController extends Controller {
   private int guardRed;
   private int guardGreen;
   private int guardBlue;
-  
+
   StyleManager styleManager = StyleManager.getInstance();
 
   public void initialize() {
 
     SceneManager.setController(Scenes.EYESCANNER, this);
+    super.setTimerLabel(timerLabel, 3);
     accessGranted.setVisible(false);
     accessDenied.setVisible(false);
 
@@ -157,10 +159,10 @@ public class EyeScannerController extends Controller {
   }
 
   public void switchToVault() {
-   if (GameState.isEyeScannerBypassed) {
-    styleManager.getItem("silverDoor").setVisible(false);
-    GameState.isAnyDoorOpen = true;
-   }
-     App.setUI(Scenes.VAULT);
+    if (GameState.isEyeScannerBypassed) {
+      styleManager.getItem("silverDoor").setVisible(false);
+      GameState.isAnyDoorOpen = true;
+    }
+    App.setUI(Scenes.VAULT);
   }
 }

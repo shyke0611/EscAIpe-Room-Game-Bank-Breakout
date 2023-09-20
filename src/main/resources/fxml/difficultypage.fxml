@@ -287,7 +287,7 @@
             </DropShadow>
          </effect>
          <children>
-            <Button fx:id="playBtn" mnemonicParsing="false" onAction="#startHeist" prefHeight="56.0" prefWidth="220.0" style="-fx-background-radius: 30;" text="Start Heist">
+            <Button fx:id="playBtn" disable="true" mnemonicParsing="false" onAction="#startHeist" prefHeight="56.0" prefWidth="220.0" style="-fx-background-radius: 30;" text="Start Heist">
                <font>
                   <Font name="BM KIRANGHAERANG OTF" size="30.0" />
                </font>
