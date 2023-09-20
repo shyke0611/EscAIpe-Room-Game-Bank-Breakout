@@ -207,7 +207,7 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="584.0" layoutY="480.0" prefHeight="17.0" prefWidth="268.0" text="0 Minutes and 0 Seconds" textFill="#404040">
+      <Label fx:id="timerLabel" alignment="CENTER" layoutX="584.0" layoutY="480.0" prefHeight="17.0" prefWidth="268.0" text="0 Minutes and 0 Seconds" textFill="#404040">
          <font>
             <Font size="22.0" />
          </font>

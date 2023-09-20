@@ -9,6 +9,7 @@ public class TimerControl {
 
   private static int initialCount = 10;
   private static int count;
+  private static int i = 0;
 
   private static Timer timer;
   private static TimerTask task;
@@ -19,9 +20,9 @@ public class TimerControl {
       case 1:
         return "" + minutes + ":" + getSecondsString();
       case 2:
-        return "" + minutes + ":" + getSecondsString() + " Seconds";
+        return "" + minutes + " Minutes and " + getSecondsString() + " Seconds";
       case 3:
-        return "Time Remaining: " + minutes + "Minutes and " + getSecondsString() + " Seconds";
+        return "Time Remaining: " + minutes + " Minutes and " + getSecondsString() + " Seconds";
       default:
         return "" + minutes + ":" + getSecondsString();
     }
@@ -56,6 +57,7 @@ public class TimerControl {
   }
 
   public static void resetCount() {
+    i = 0;
     count = initialCount;
   }
 
@@ -64,13 +66,18 @@ public class TimerControl {
     task =
         new TimerTask() {
           public void run() {
+            i++;
 
             // if time is not up, update timer label
             if (count > 0) {
-              count--;
+              if (i % 2 == 0) {
+                count--;
+              }
+              int format = SceneManager.getActiveController().getFormat();
+
               Platform.runLater(
                   () -> {
-                    SceneManager.getTimerLabel().setText(getTime(1));
+                    SceneManager.getTimerLabel().setText(getTime(format));
                   });
               // if time is up, reset game
             } else {
@@ -92,7 +99,7 @@ public class TimerControl {
     resetCount();
     timer = new Timer("Timer", true);
     createTask();
-    timer.scheduleAtFixedRate(task, 0, 1000);
+    timer.scheduleAtFixedRate(task, 0, 500);
   }
 
   // method to cancel timer
