@@ -157,7 +157,6 @@ public class LobbyController extends Controller {
     // set note text to the randomly generated credentials
     passwordLbl.setText("Password: " + randomPassword);
     usernameLbl.setText("Username: " + randomUsername);
-    titleLbl.setText("Security Room Computer Log In");
     styleManager.removeItemsMessage("credentialsBook");
     styleManager.removeItemsMessage("computer");
   }
