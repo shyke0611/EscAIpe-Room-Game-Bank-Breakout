@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -20,6 +21,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
@@ -41,6 +43,7 @@ public class ComputerController extends Controller {
   @FXML private Button dotGameBtn;
   @FXML private Label timerLabel;
   @FXML private Label processingLabel;
+  @FXML private ImageView usbStick;
 
   private static int currentIndex = 0;
 
@@ -52,6 +55,8 @@ public class ComputerController extends Controller {
   private Queue<ChatMessage> messageQueue = new LinkedList<>();
   private boolean isTyping = false;
   private StringBuilder textBuffer;
+  private WalkieTalkieManager walkieTalkieManager;
+  private StyleManager styleManager = StyleManager.getInstance();
 
   private Timeline timeline;
 
@@ -59,14 +64,18 @@ public class ComputerController extends Controller {
     SceneManager.setController(Scenes.COMPUTER, this);
     super.setTimerLabel(timerLabel, 1);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
+    walkieTalkieManager = WalkieTalkieManager.getInstance();
+    styleManager.addItems(usbStick);
 
     textBuffer = new StringBuilder();
 
     timeline = new Timeline(new KeyFrame(Duration.seconds(0.6), e -> updateLabel()));
     timeline.setCycleCount(Timeline.INDEFINITE);
 
-    ChatMessage msg = App.getStartMessage();
-    System.out.println(msg);
+    chatCompletionRequest =
+        new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(1).setMaxTokens(256);
+    ChatMessage msg = runGpt(new ChatMessage("user", GptPromptEngineering.welcomeMessage()));
+
     if (msg != null) {
       messageQueue.add(msg);
       appendChatMessage();
@@ -130,6 +139,7 @@ public class ComputerController extends Controller {
             String message = inputTextField.getText();
             ChatMessage msg = new ChatMessage("user", message);
             messageQueue.add(msg);
+            inputTextField.clear();
             appendChatMessage();
 
             Platform.runLater(
@@ -137,7 +147,7 @@ public class ComputerController extends Controller {
                   timeline.play();
                 });
 
-            if (message.trim().equals("1")) {
+            if (message.trim().equalsIgnoreCase("yes")) {
               lastMsg = getRiddle();
               System.out.println("message recived");
               messageQueue.add(lastMsg);
@@ -151,16 +161,19 @@ public class ComputerController extends Controller {
               return null;
             }
 
-            inputTextField.clear();
-
             // appendChatMessage(msg);
 
-            if (lastMsg.getRole().equals("assistant") && lastMsg.getContent().contains("Correct")
-                || lastMsg.getContent().contains("correct")) {
+            if (lastMsg.getRole().equals("assistant") && lastMsg.getContent().startsWith("Correct")
+                || lastMsg.getContent().startsWith("correct")) {
               msg = startAuthentication();
             }
             if (lastMsg.getRole().equals("assistant")
-                && lastMsg.getContent().contains("security level")) {
+                && lastMsg.getContent().startsWith("Authenticated")
+                && lastMsg.getContent().contains("security")) {
+              walkieTalkieManager.toggleWalkieTalkie();
+              walkieTalkieManager.setWalkieTalkieText(
+                  new ChatMessage(
+                      "user", "FireWall Disabled, you can now see what is behind each vault door"));
               // Higer security level granted
               // set access to hard door
 
@@ -169,6 +182,10 @@ public class ComputerController extends Controller {
             if (lastMsg.getRole().equals("assistant")
                 && lastMsg.getContent().startsWith("Authenticated")) {
               System.out.println("Authenticated");
+              walkieTalkieManager.toggleWalkieTalkie();
+              walkieTalkieManager.setWalkieTalkieText(
+                  new ChatMessage(
+                      "user", "FireWall Disabled, you can now see what is behind each vault door"));
 
               // Set vault visble/firewall disabled
             }
@@ -177,6 +194,7 @@ public class ComputerController extends Controller {
                 && lastMsg.getContent().contains("Authentication failed")) {
               numberOfMessagesCorrect = 0;
               System.out.println("authetication failed");
+
               startConnectDots();
               // Logic to start connect dots mini game
             }
@@ -219,8 +237,19 @@ public class ComputerController extends Controller {
     WalkieTalkieManager.toggleWalkieTalkie();
   }
 
+  @FXML
   private void startConnectDots() {
+    walkieTalkieManager.toggleWalkieTalkie();
+    walkieTalkieManager.setWalkieTalkieText(
+        new ChatMessage(
+            "user", "Authentication failed, plug in the usbstick to bypass the firewall"));
 
+    usbStick.setVisible(true);
+    styleManager.setClueHover("usbStick", true);
+  }
+
+  @FXML
+  private void connectDots() {
     App.setUI(Scenes.CONNECTDOTS);
   }
 

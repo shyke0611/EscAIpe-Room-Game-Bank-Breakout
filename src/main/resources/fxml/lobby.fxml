@@ -323,5 +323,10 @@
             </DropShadow>
          </effect>
       </HBox>
+      <Label layoutX="835.0" layoutY="300.0" text="Since 1967" textFill="#fdff6a82">
+         <font>
+            <Font name="Impact" size="17.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

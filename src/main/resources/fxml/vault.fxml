@@ -189,6 +189,21 @@
                </children></HBox>
          </children>
       </HBox>
+      <Label layoutX="155.0" layoutY="190.0" prefHeight="21.0" prefWidth="56.0" text="Vault 2" textFill="#00000055">
+         <font>
+            <Font name="Impact" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="790.0" layoutY="190.0" text="Vault 3" textFill="#00000055">
+         <font>
+            <Font name="Impact" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="470.0" layoutY="190.0" text="Vault 1" textFill="#00000055">
+         <font>
+            <Font name="Impact" size="16.0" />
+         </font>
+      </Label>
       <Rectangle fx:id="dialogueBox" arcHeight="40.0" arcWidth="40.0" fill="#000000ac" height="88.0" layoutX="726.0" layoutY="28.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="260.0" />
       <Label fx:id="moneyValue" layoutX="742.0" layoutY="43.0" text="Money: $20,000,000" textFill="WHITE" visible="false">
          <font>
@@ -202,17 +217,11 @@
       </Label>
       <Rectangle fx:id="whiteBackground" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="710.0" layoutX="-7.0" layoutY="-7.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="1009.0" />
 
-      <ImageView fx:id="VaultDoor" fitHeight="495.0" fitWidth="512.0" layoutX="244.0" layoutY="101.0" opacity="0.0">
+                                          <ImageView fx:id="VaultDoor" fitHeight="495.0" fitWidth="512.0" layoutX="244.0" layoutY="101.0" opacity="0.0">
          <image>
             <Image url="@../../../../../../../../../Downloads/metallic-bank-vault-door-isolated-white/vaultDoor.jpg" />
          </image>
       </ImageView>
-      <Text layoutX="783.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="laserCutting scene " />
-      <Label layoutX="462.0" layoutY="167.0" text="Vault 283" textFill="#0000007c">
-         <font>
-            <Font name="Avenir Next Condensed Bold" size="15.0" />
-         </font>
-      </Label>
 
       <HBox fx:id="bombHolder" alignment="CENTER" layoutX="777.0" layoutY="539.0" onMousePressed="#onBombPressed" prefHeight="153.0" prefWidth="201.0" styleClass="bomb" stylesheets="@../css/rooms.css" visible="false">
          <children>
