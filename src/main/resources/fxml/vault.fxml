@@ -262,11 +262,12 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="134.0" prefWidth="680.0">
                                  <children>
-                                    <Label fx:id="statusLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="171.0" textFill="#0be059">
+                                    <Label fx:id="statusLbl" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="74.0" prefWidth="171.0" textAlignment="CENTER" textFill="#0be059" translateY="25.0" wrapText="true">
                                        <font>
-                                          <Font size="11.0" />
-                                       </font></Label>
-                                    <Label fx:id="inputLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="160.0" text="Enter Code">
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="inputLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="160.0" text="Enter Code" translateY="-15.0">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -326,7 +327,7 @@
             </Button>
          </children>
       </VBox>
-      <StackPane layoutX="460.0" layoutY="119.0" prefHeight="52.0" prefWidth="99.0">
+      <StackPane fx:id="timerClock" layoutX="460.0" layoutY="119.0" prefHeight="52.0" prefWidth="99.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#888d7d" height="64.0" stroke="BLACK" strokeType="INSIDE" width="99.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a7ab3d" height="47.0" stroke="BLACK" strokeType="INSIDE" width="79.0" />
