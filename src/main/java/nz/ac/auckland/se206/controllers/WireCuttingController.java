@@ -50,6 +50,7 @@ public class WireCuttingController extends Controller {
   @FXML
   void onGoBack() {
     App.setUI(Scenes.SECURITY);
+    styleManager.setClueHover("electricityBox",false);
   }
 
   @FXML

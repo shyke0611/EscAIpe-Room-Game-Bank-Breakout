@@ -80,7 +80,9 @@ public class TimerControl {
                     SceneManager.getTimerLabel().setText(getTime(format));
                   });
               // if time is up, reset game
-            } else {
+                } else if (count == 30) {
+                  StyleManager.setAlarm(true);
+                } else {
               App.setUI(Scenes.GAMEFINISH);
               cancelTimer();
             }

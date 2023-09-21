@@ -214,7 +214,7 @@
             </HBox>
          </children>
       </HBox>
-      <Pane fx:id="slidePane" layoutX="1151.0" layoutY="45.0" prefHeight="494.0" prefWidth="890.0">
+      <Pane fx:id="slidePane" layoutX="1149.0" layoutY="45.0" prefHeight="494.0" prefWidth="845.0">
          <children>
             <HBox fx:id="exitHolder" layoutX="316.0" layoutY="189.0" onMousePressed="#onBombPlaced" prefHeight="120.0" prefWidth="233.0" styleClass="guard" stylesheets="@../css/rooms.css">
                <children>
@@ -310,7 +310,7 @@
             </VBox>
          </children>
       </Pane>
-      <VBox fx:id="lootBtnHolder" alignment="CENTER" layoutX="341.0" layoutY="128.0" prefHeight="80.0" prefWidth="315.0" visible="false">
+      <VBox fx:id="lootBtnHolder" alignment="CENTER" layoutX="341.0" layoutY="128.0" prefHeight="55.0" prefWidth="342.0" visible="false">
          <children>
             <Label fx:id="lootLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="303.0" text="Collect Loot or Try more vaults" textFill="#1fff12">
                <font>
@@ -320,7 +320,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="lootBtn" mnemonicParsing="false" onAction="#onLootCollected" prefHeight="26.0" prefWidth="117.0" styleClass="computer-button" stylesheets="@../css/rooms.css" text="Collect Loot">
+            <Button fx:id="lootBtn" mnemonicParsing="false" onAction="#onLootCollected" prefHeight="26.0" prefWidth="117.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="Collect Loot">
                <font>
                   <Font size="15.0" />
                </font>
@@ -330,8 +330,8 @@
       <StackPane fx:id="timerClock" layoutX="460.0" layoutY="119.0" prefHeight="52.0" prefWidth="99.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#888d7d" height="64.0" stroke="BLACK" strokeType="INSIDE" width="99.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a7ab3d" height="47.0" stroke="BLACK" strokeType="INSIDE" width="79.0" />
-            <Label fx:id="timerLabel" alignment="CENTER" prefHeight="44.0" prefWidth="81.0" text="0:00">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a7ab3d" height="52.0" stroke="BLACK" strokeType="INSIDE" width="79.0" />
+            <Label fx:id="timerLabel" alignment="CENTER" prefHeight="44.0" prefWidth="83.0" text="0:00">
                <font>
                   <Font name="Agency FB" size="36.0" />
                </font>
