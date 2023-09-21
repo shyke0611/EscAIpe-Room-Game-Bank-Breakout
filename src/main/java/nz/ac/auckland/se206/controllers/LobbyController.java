@@ -45,10 +45,11 @@ public class LobbyController extends Controller {
   @FXML private VBox lobbyRoomSwitch;
   @FXML private Button quickHintBtn;
   @FXML private Button viewHistoryBtn;
-  @FXML private VBox walkietalkie;
+  @FXML private VBox lobbywalkietalkie;
   @FXML private VBox walkietalkieText;
   @FXML private TextField lobbyTextInput;
   @FXML private TextArea lobbyTextArea;
+  @FXML private ImageView lobbyWalkieTalkie;
   // key locations:
   @FXML private HBox key1;
   @FXML private HBox key3;
@@ -74,6 +75,7 @@ public class LobbyController extends Controller {
 
   public void initialize() {
     SceneManager.setController(Scenes.LOBBY, this);
+    WalkieTalkieManager.addWalkieTalkieImage(this, lobbyWalkieTalkie);
     // obtain random credentials
     randomUsername = RandomnessGenerate.getUsername();
     randomPassword = RandomnessGenerate.getPasscode();
@@ -81,7 +83,7 @@ public class LobbyController extends Controller {
     RandomnessGenerate.addKeyLocation(key1, key3, key4);
     RandomnessGenerate.generateRandomKeyLocation();
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
-    WalkieTalkieManager.addWalkieTalkie(null, walkietalkie);
+
     styleManager.addItems(
         key,
         key1,
@@ -237,12 +239,12 @@ public class LobbyController extends Controller {
   public void invokeHackerAI(KeyEvent event) throws ApiProxyException {
 
     if (event.getCode() == KeyCode.ENTER) {
-      walkieTalkieManager.startAnimation();
 
       Task<Void> aiTask =
           new Task<Void>() {
             @Override
             protected Void call() throws Exception {
+              walkieTalkieManager.startAnimation();
               // Perform AI-related operations here
               ChatMessage msg = new ChatMessage("user", lobbyTextInput.getText());
               hackerAiManager.addChatHistory(msg.getContent());
@@ -252,13 +254,14 @@ public class LobbyController extends Controller {
               hackerAiManager.addChatHistory(responce.getContent());
 
               // Move this code here to use the `responce` variable within the call method
+
               Platform.runLater(
                   () -> {
                     walkieTalkieManager.setWalkieTalkieText(responce);
 
                     lobbyTextInput.clear();
+                    walkieTalkieManager.stopAnimation();
                   });
-              walkieTalkieManager.stopAnimation();
               return null;
             }
           };

@@ -52,7 +52,7 @@ public class VaultController extends Controller {
   @FXML private HBox exitHolder;
 
   @FXML private HBox doorHolder;
-  @FXML private VBox walkietalkie;
+  @FXML private VBox vaultwalkietalkie;
   @FXML private VBox walkietalkieText;
   @FXML private HBox bombHolder;
   @FXML private VBox bombPuzzle;
@@ -67,6 +67,7 @@ public class VaultController extends Controller {
 
   @FXML private HBox switchHolder;
   @FXML private HBox walkietalkieHolder;
+  @FXML private ImageView vaultWalkieTalkie;
 
   private Canvas canvas;
   private GraphicsContext gc;
@@ -82,6 +83,7 @@ public class VaultController extends Controller {
 
   public void initialize() {
     SceneManager.setController(Scenes.VAULT, this);
+    WalkieTalkieManager.addWalkieTalkieImage(this, vaultWalkieTalkie);
     styleManager.addItems(
         goldDoor,
         silverDoor,
@@ -91,13 +93,13 @@ public class VaultController extends Controller {
         exitHolder,
         bombHolder,
         bombPuzzle,
-        walkietalkie,
+        vaultwalkietalkie,
         walkietalkieHolder,
         switchHolder,
         escapeDoor);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     givencode.setText("Code: " + RandomnessGenerate.getPasscode());
-    WalkieTalkieManager.addWalkieTalkie(null, walkietalkie);
+
     styleManager.setItemsMessage("set bomb down", "exitHolder");
     styleManager.setItemsMessage("escape", "escapeDoor");
     styleManager.setItemsMessage("activate bomb", "bombHolder");
@@ -291,7 +293,7 @@ public class VaultController extends Controller {
     if (event.getCode() == KeyCode.ENTER) {
       walkieTalkieManager.startAnimation();
 
-      Task<Void> aiTask =
+      Task<Void> aiTask3 =
           new Task<Void>() {
             @Override
             protected Void call() throws Exception {
@@ -304,20 +306,21 @@ public class VaultController extends Controller {
               hackerAiManager.addChatHistory(responce.getContent());
 
               // Move this code here to use the `responce` variable within the call method
+
               Platform.runLater(
                   () -> {
                     walkieTalkieManager.setWalkieTalkieText(responce);
 
                     vaultTextField.clear();
+                    walkieTalkieManager.stopAnimation();
                   });
-              walkieTalkieManager.stopAnimation();
               return null;
             }
           };
 
-      Thread aiThread = new Thread(aiTask);
-      aiThread.setDaemon(true);
-      aiThread.start();
+      Thread aiThread3 = new Thread(aiTask3);
+      aiThread3.setDaemon(true);
+      aiThread3.start();
     }
   }
 

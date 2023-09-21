@@ -4,6 +4,7 @@ import java.util.HashMap;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.TextArea;
@@ -28,12 +29,17 @@ public class WalkieTalkieManager {
   private int dotCount = 1;
   // storing the walkietalkie textboxes
   private static HashMap<Controller, VBox> walkietalkieMap = new HashMap<>();
+  private static HashMap<Controller, ImageView> walkieTalkieImageMap = new HashMap<>();
   private static boolean walkieTalkieOpen = false;
   private static WalkieTalkieManager instance = new WalkieTalkieManager();
   private Timeline timeline;
 
   public static void addWalkieTalkie(Controller controller, VBox walkietalkie) {
     walkietalkieMap.put(controller, walkietalkie);
+  }
+
+  public static void addWalkieTalkieImage(Controller controller, ImageView walkietalkie) {
+    walkieTalkieImageMap.put(controller, walkietalkie);
   }
 
   public static WalkieTalkieManager getInstance() {
@@ -104,31 +110,28 @@ public class WalkieTalkieManager {
 
     // Iterate through the map and update the visibility of all VBoxes
     for (VBox vBox : walkietalkieMap.values()) {
-      if ("walkietalkieText".equals(vBox.getId())) {
-        vBox.setVisible(walkieTalkieOpen);
-      }
+
+      vBox.setVisible(walkieTalkieOpen);
     }
   }
 
   public void startAnimation() {
     timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> updateTypingLabel()));
+
+    Platform.runLater(
+        () -> {
+          for (ImageView image : walkieTalkieImageMap.values()) {
+            // Iterate through the children of the VBox (assuming they are HBox containers)
+
+            // Check the ID of the ImageView
+            if (image.getId().endsWith("WalkieTalkie")) {
+
+              image.setImage(new Image("images/hacker.png"));
+            }
+          }
+        });
     timeline.setCycleCount(Animation.INDEFINITE);
     timeline.play();
-
-    for (VBox vBox : walkietalkieMap.values()) {
-      // Iterate through the children of the VBox (assuming they are HBox containers)
-      ObservableList<Node> children = vBox.getChildren();
-      for (Node node : children) {
-        if (node instanceof ImageView) {
-          ImageView image = (ImageView) node;
-
-          // Check the ID of the ImageView
-          if (image.getId().endsWith("WalkieTalkie")) {
-            image.setImage(new Image("images/hacker.png"));
-          }
-        }
-      }
-    }
   }
 
   private void updateTypingLabel() {
@@ -154,18 +157,12 @@ public class WalkieTalkieManager {
     if (timeline != null) {
       timeline.stop();
     }
-    for (VBox vBox : walkietalkieMap.values()) {
+    for (ImageView image : walkieTalkieImageMap.values()) {
       // Iterate through the children of the VBox (assuming they are HBox containers)
-      ObservableList<Node> children = vBox.getChildren();
-      for (Node node : children) {
-        if (node instanceof ImageView) {
-          ImageView image = (ImageView) node;
 
-          // Check the ID of the ImageView
-          if (image.getId().contains("WalkieTalkie")) {
-            image.setImage(new Image("images/walkietalkie.png"));
-          }
-        }
+      // Check the ID of the ImageView
+      if (image.getId().contains("WalkieTalkie")) {
+        image.setImage(new Image("images/walkietalkie.png"));
       }
     }
   }

@@ -44,12 +44,13 @@ public class SecurityController extends Controller {
   @FXML private PasswordField passwordField;
   @FXML private HBox computer;
   @FXML private TextField usernameField;
-  @FXML private VBox walkietalkie;
+  @FXML private VBox securitywalkietalkie;
   @FXML private VBox walkietalkieText;
   @FXML private ImageView securitybackground;
   @FXML private ImageView tempbackground;
   @FXML private TextArea securityTextArea;
   @FXML private TextField securityInputField;
+  @FXML private ImageView securityWalkieTalkie;
 
   StyleManager styleManager = StyleManager.getInstance();
   WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
@@ -57,9 +58,10 @@ public class SecurityController extends Controller {
 
   public void initialize() {
     SceneManager.setController(Scenes.SECURITY, this);
+    WalkieTalkieManager.addWalkieTalkieImage(this, securityWalkieTalkie);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     styleManager.addItems(computer, electricityBox, securitybackground);
-    WalkieTalkieManager.addWalkieTalkie(null, walkietalkie);
+
     // styleManager.setItemsMessage("A computer...?", computer);
     // styleManager.setItemsMessage("it requires credentials?", logInBtn);
     // styleManager.setItemsMessage("no need to open this right now", electricityBox);
@@ -188,12 +190,12 @@ public class SecurityController extends Controller {
   public void invokeHackerAI(KeyEvent event) throws ApiProxyException {
 
     if (event.getCode() == KeyCode.ENTER) {
-      walkieTalkieManager.startAnimation();
 
-      Task<Void> aiTask =
+      Task<Void> aiTask2 =
           new Task<Void>() {
             @Override
             protected Void call() throws Exception {
+              walkieTalkieManager.startAnimation();
               // Perform AI-related operations here
               ChatMessage msg = new ChatMessage("user", securityInputField.getText());
               hackerAiManager.addChatHistory(msg.getContent());
@@ -208,15 +210,16 @@ public class SecurityController extends Controller {
                     walkieTalkieManager.setWalkieTalkieText(responce);
 
                     securityInputField.clear();
+                    walkieTalkieManager.stopAnimation();
                   });
-              walkieTalkieManager.stopAnimation();
+
               return null;
             }
           };
 
-      Thread aiThread = new Thread(aiTask);
-      aiThread.setDaemon(true);
-      aiThread.start();
+      Thread aiThread2 = new Thread(aiTask2);
+      aiThread2.setDaemon(true);
+      aiThread2.start();
     }
   }
 
