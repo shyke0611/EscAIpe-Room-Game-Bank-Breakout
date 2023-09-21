@@ -146,7 +146,7 @@
          <children>
             <VBox fx:id="walkietalkie" onMousePressed="#onWalkieTalkie" prefHeight="200.0" prefWidth="100.0" styleClass="walkietalkie" stylesheets="@../css/rooms.css">
                <children>
-                  <ImageView fitHeight="141.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="lobbyWalkieTalkie" fitHeight="141.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/walkietalkie.png" />
                      </image>
@@ -159,7 +159,7 @@
                      <children>
                         <TextArea fx:id="lobbyTextArea" editable="false" onKeyPressed="#invokeHackerAI" prefHeight="100.0" prefWidth="425.0" stylesheets="@../css/rooms.css" wrapText="true">
                            <font>
-                              <Font size="17.0" />
+                              <Font size="19.0" />
                            </font></TextArea>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="component2" stylesheets="@../css/rooms.css">
                            <children>

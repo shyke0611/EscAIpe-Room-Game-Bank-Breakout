@@ -1,5 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -7,6 +9,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -41,6 +44,7 @@ public class VaultController extends Controller {
   @FXML private ImageView vaultbackground;
   @FXML private ImageView bomblogo;
   @FXML private TextArea vaultTextArea;
+  @FXML private TextField vaultTextField;
 
   @FXML private Rectangle dialogueBox;
   @FXML private Label moneyValue;
@@ -93,6 +97,7 @@ public class VaultController extends Controller {
         escapeDoor);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     givencode.setText("Code: " + RandomnessGenerate.getPasscode());
+    WalkieTalkieManager.addWalkieTalkie(null, walkietalkie);
     styleManager.setItemsMessage("set bomb down", "exitHolder");
     styleManager.setItemsMessage("escape", "escapeDoor");
     styleManager.setItemsMessage("activate bomb", "bombHolder");
@@ -134,6 +139,10 @@ public class VaultController extends Controller {
   @FXML
   public void onSwitchToHacker() {
     SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.VAULT);
+    HackerVanController vanController =
+        (HackerVanController) SceneManager.getController(Scenes.HACKERVAN);
+    vanController.printChatHistory();
+    vanController.loadQuickHints();
     App.setUI(Scenes.HACKERVAN);
   }
 
@@ -278,14 +287,37 @@ public class VaultController extends Controller {
 
   @FXML
   public void invokeHackerAI(KeyEvent event) throws ApiProxyException {
-    if (event.getCode() == KeyCode.ENTER) {
-      ChatMessage msg = new ChatMessage("user", vaultTextArea.getText());
-      hackerAiManager.addChatHistory(msg.getContent());
-      walkieTalkieManager.clearWalkieTalkie();
 
-      ChatMessage responce = hackerAiManager.processInput(msg);
-      hackerAiManager.addChatHistory(responce.getContent());
-      walkieTalkieManager.setWalkieTalkieText(responce);
+    if (event.getCode() == KeyCode.ENTER) {
+      walkieTalkieManager.startAnimation();
+
+      Task<Void> aiTask =
+          new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+              // Perform AI-related operations here
+              ChatMessage msg = new ChatMessage("user", vaultTextField.getText());
+              hackerAiManager.addChatHistory(msg.getContent());
+              walkieTalkieManager.clearWalkieTalkie();
+
+              ChatMessage responce = hackerAiManager.processInput(msg);
+              hackerAiManager.addChatHistory(responce.getContent());
+
+              // Move this code here to use the `responce` variable within the call method
+              Platform.runLater(
+                  () -> {
+                    walkieTalkieManager.setWalkieTalkieText(responce);
+
+                    vaultTextField.clear();
+                  });
+              walkieTalkieManager.stopAnimation();
+              return null;
+            }
+          };
+
+      Thread aiThread = new Thread(aiTask);
+      aiThread.setDaemon(true);
+      aiThread.start();
     }
   }
 

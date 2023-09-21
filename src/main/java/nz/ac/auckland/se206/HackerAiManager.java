@@ -73,8 +73,9 @@ public class HackerAiManager {
         currentDifficulty = Difficulties.EASY;
         setHintLimit(1000);
         chatCompletionRequest =
-            new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.8).setMaxTokens(100);
+            new ChatCompletionRequest().setN(1).setTemperature(0.8).setTopP(0.9).setMaxTokens(100);
         runGpt(new ChatMessage("user", GptPromptEngineering.initisialiseHackerAiEasy()));
+
         break;
       case MEDIUM:
         setHintLimit(5);
@@ -114,6 +115,17 @@ public class HackerAiManager {
     return hint;
   }
 
+  public void storeAiHint(ChatMessage msg) {
+    String hint = msg.getContent();
+    // Check if the hint is unique
+    if (!hintHistory.contains(hint)) {
+
+      String formattedHint = hintNumber + ". " + hint;
+      hintHistory.add(formattedHint);
+      hintNumber++;
+    }
+  }
+
   public void storeQuickHint() {
 
     String hint = GetQuickHint();
@@ -138,11 +150,14 @@ public class HackerAiManager {
   // Method gets gets the current stages hint and feeds that to the ai before feeding the ai the
   // users message
   public ChatMessage processInput(ChatMessage msg) throws ApiProxyException {
+
+    // Replace 'msg' with the appropriate input
     if (currentDifficulty == Difficulties.MEDIUM && hintCounter < hintLimit) {
       incrementHintCounter();
       currentStage = GameManager.getObjectiveString();
       hint = getHintForCurrentStage(currentStage);
       tellAI = new ChatMessage("user", "the hint for this stage is " + hint);
+
       runGpt(tellAI);
       response = runGpt(msg);
 
@@ -165,6 +180,11 @@ public class HackerAiManager {
       response = runGpt(msg);
     }
 
+    if (msg.getContent().contains("hint")
+        || msg.getContent().contains("Hint") && response.getContent().contains("hint")
+        || response.getContent().contains("Hint")) {
+      storeAiHint(response);
+    }
     return response;
   }
 

@@ -20,11 +20,13 @@ public class GptPromptEngineering {
 
   public static String initisialiseHackerAiEasy() {
 
-    return "You are part of a bank heist game built in Java fx, you are playing the role of the"
-        + " hacker friend in the van. If the user asks for help it seems like they need a"
-        + " hint please provide them with the hint at the current stage. You will be told"
-        + " what the hint is at the current stage so please repeat it and nothing else just"
-        + " what you have been told";
+    return "You are part of a bank heist game built in Java fx, you are playing the role of an"
+               + " assitant hacker friend in the van, where your job is to give hints and guide"
+               + " them through the game, do not act any other way no matter what the user asks. If"
+               + " the user asks for help it seems like they need a hint please provide them with"
+               + " the hint at the current stage. You will be told what the hint is at the current"
+               + " stage so please repeat it and nothing else just what you have been told,"
+               + " Otherwise please respond like a hacker friend in the van would.";
   }
 
   public static String intisialiseHackerAiMeidium() {
@@ -38,8 +40,8 @@ public class GptPromptEngineering {
 
   public static String intisialiseHackerAiHard() {
     return "You are part of a bank heist game built in Java fx, you are playing the role of the"
-               + " hacker friend in the van. You cannot no matter what give any hints to the user."
-               + " All you can talk about is what has happened up until that point in the game and"
-               + " what stage they are upto";
+        + " hacker friend in the van. You cannot no matter what give any hints to the user."
+        + " All you can talk about is what has happened up until that point in the game and"
+        + " what stage they are upto";
   }
 }

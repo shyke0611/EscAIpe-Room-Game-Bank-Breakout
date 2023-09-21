@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="SecurityPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SecurityController">
+<AnchorPane fx:id="SecurityPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#invokeHackerAI" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SecurityController">
    <children>
       <ImageView fx:id="tempbackground" fitHeight="150.0" fitWidth="200.0" layoutX="-58.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -171,7 +171,7 @@
          <children>
             <VBox fx:id="walkietalkie" onMousePressed="#onWalkieTalkie" prefHeight="200.0" prefWidth="100.0" styleClass="walkietalkie" stylesheets="@../css/rooms.css">
                <children>
-                  <ImageView fitHeight="141.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="securityWalkieTalkie" fitHeight="141.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/walkietalkie.png" />
                      </image>
@@ -200,7 +200,7 @@
                   </HBox>
                   <HBox prefHeight="51.0" prefWidth="512.0">
                      <children>
-                        <TextField prefHeight="58.0" prefWidth="512.0" promptText="Bzzz... type here" stylesheets="@../css/rooms.css">
+                        <TextField fx:id="securityInputField" prefHeight="58.0" prefWidth="512.0" promptText="Bzzz... type here" stylesheets="@../css/rooms.css">
                            <font>
                               <Font size="22.0" />
                            </font>

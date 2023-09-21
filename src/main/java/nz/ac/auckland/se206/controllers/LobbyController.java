@@ -3,6 +3,8 @@ package nz.ac.auckland.se206.controllers;
 import java.util.List;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -79,6 +81,7 @@ public class LobbyController extends Controller {
     RandomnessGenerate.addKeyLocation(key1, key3, key4);
     RandomnessGenerate.generateRandomKeyLocation();
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
+    WalkieTalkieManager.addWalkieTalkie(null, walkietalkie);
     styleManager.addItems(
         key,
         key1,
@@ -119,8 +122,11 @@ public class LobbyController extends Controller {
 
   @FXML
   public void onSwitchToHacker() {
-    SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.LOBBY);
-
+    SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.VAULT);
+    HackerVanController vanController =
+        (HackerVanController) SceneManager.getController(Scenes.HACKERVAN);
+    vanController.printChatHistory();
+    vanController.loadQuickHints();
     App.setUI(Scenes.HACKERVAN);
   }
 
@@ -231,14 +237,35 @@ public class LobbyController extends Controller {
   public void invokeHackerAI(KeyEvent event) throws ApiProxyException {
 
     if (event.getCode() == KeyCode.ENTER) {
-      ChatMessage msg = new ChatMessage("user", lobbyTextInput.getText());
-      hackerAiManager.addChatHistory(msg.getContent());
-      walkieTalkieManager.clearWalkieTalkie();
+      walkieTalkieManager.startAnimation();
 
-      ChatMessage responce = hackerAiManager.processInput(msg);
-      hackerAiManager.addChatHistory(responce.getContent());
+      Task<Void> aiTask =
+          new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+              // Perform AI-related operations here
+              ChatMessage msg = new ChatMessage("user", lobbyTextInput.getText());
+              hackerAiManager.addChatHistory(msg.getContent());
+              walkieTalkieManager.clearWalkieTalkie();
 
-      walkieTalkieManager.setWalkieTalkieText(responce);
+              ChatMessage responce = hackerAiManager.processInput(msg);
+              hackerAiManager.addChatHistory(responce.getContent());
+
+              // Move this code here to use the `responce` variable within the call method
+              Platform.runLater(
+                  () -> {
+                    walkieTalkieManager.setWalkieTalkieText(responce);
+
+                    lobbyTextInput.clear();
+                  });
+              walkieTalkieManager.stopAnimation();
+              return null;
+            }
+          };
+
+      Thread aiThread = new Thread(aiTask);
+      aiThread.setDaemon(true);
+      aiThread.start();
     }
   }
 
