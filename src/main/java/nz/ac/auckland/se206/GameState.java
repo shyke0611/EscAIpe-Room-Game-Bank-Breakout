@@ -29,5 +29,6 @@ public class GameState {
   public static boolean isChemicalMixingBypassed = false;
   public static boolean isLaserCuttingBypassed = false;
   public static boolean isAnyDoorOpen = false;
+  public static boolean isConnectDotreached = false;
 
 }

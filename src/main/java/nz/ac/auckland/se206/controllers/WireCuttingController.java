@@ -109,8 +109,9 @@ public class WireCuttingController extends Controller {
     styleManager.setDisable(true, "guardpocket");
     styleManager.setVisible(false, "credentialsNote");
     retryBtn.setDisable(true);
-    // styleManager.setClueHover("bomblayer",true);
-    // styleManager.setClueHover("VaultRoomSwitch",true);
+    styleManager.setClueHover("bomblayer",true);
+    styleManager.setClueHover("lobbyRoomSwitch",false);
+    styleManager.getItem("realvaultbackground").setVisible(false);
   }
 
   private void handleIncorrectCombination() {

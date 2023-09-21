@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.WalkieTalkieManager;
@@ -44,6 +45,7 @@ public class ComputerController extends Controller {
   }
 
   public void switchToDots() {
+    GameState.isConnectDotreached = true;
     App.setUI(Scenes.CONNECTDOTS);
   }
 

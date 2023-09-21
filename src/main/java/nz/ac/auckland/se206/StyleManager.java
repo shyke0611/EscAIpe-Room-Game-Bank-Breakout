@@ -9,8 +9,8 @@ import java.util.Map;
 import java.util.Set;
 import javafx.scene.Node;
 import javafx.scene.control.Tooltip;
+import javafx.scene.effect.Glow;
 import javafx.util.Duration;
-import nz.ac.auckland.se206.AnimationManager.Type;
 
 public class StyleManager {
 
@@ -29,21 +29,21 @@ public class StyleManager {
   public static StyleManager getInstance() {
     return instance;
   }
-
-  // Set and apply tooltips for multiple items
+  
   public void setItemsMessage(String message, String... items) {
-    for (String item : items) {
-      Node node = getItem(item);
-      Tooltip tooltip = tooltipMap.get(node);
-      if (tooltip == null) {
-        tooltip = new Tooltip();
-        tooltipMap.put(node, tooltip);
+      for (String item : items) {
+          Node node = getItem(item);
+          Tooltip tooltip = tooltipMap.get(node);
+          if (tooltip == null) {
+              tooltip = new Tooltip();
+              tooltipMap.put(node, tooltip);
+          }
+          tooltip.setText(message);
+          Tooltip.install(node, tooltip);
+          tooltip.setShowDelay(Duration.seconds(0));
       }
-      tooltip.setText(message);
-      Tooltip.install(node, tooltip);
-      tooltip.setShowDelay(Duration.seconds(0));
-    }
   }
+  
 
   // Remove tooltips for multiple items
   public void removeItemsMessage(String... items) {
@@ -108,7 +108,7 @@ public class StyleManager {
         }
 
         if (itemId.endsWith("background")) {
-          AnimationManager.toggleAlarmAnimation(item, on, 0.5, Type.InnerShadow);
+          AnimationManager.toggleAlarmAnimation(item, on, 0.7);
         }
       }
     }
@@ -116,11 +116,9 @@ public class StyleManager {
 
   public void setClueHover(String item, boolean isOn) {
     Node node = getItem(item);
-    if (isOn) {
-     node.setStyle("-fx-effect: dropshadow(gaussian, rgba(34, 255, 0, 0.7), 10, 10, 0, 0)");
-    } else {
-      node.setStyle(null);
-    }
+   AnimationManager.toggleHoverAnimation(node, isOn, 1);
+    //  node.setStyle("-fx-effect: dropshadow(gaussian, rgba(34, 255, 0, 0.7), 10, 10, 0, 0)");
+  
     }
   
 

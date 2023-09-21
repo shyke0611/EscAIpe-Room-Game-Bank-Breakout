@@ -20,7 +20,7 @@ import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.WalkieTalkieManager;
-import nz.ac.auckland.se206.AnimationManager.Type;
+
 
 public class SecurityController extends Controller {
 
@@ -41,14 +41,13 @@ public class SecurityController extends Controller {
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
   @FXML private ImageView securitybackground;
-  @FXML private ImageView tempbackground;
 
   StyleManager styleManager = StyleManager.getInstance();
 
   public void initialize() {
     SceneManager.setController(Scenes.SECURITY, this);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
-    styleManager.addItems(computer, electricityBox, securitybackground, tempbackground,VaultRoomSwitch);
+    styleManager.addItems(computer, electricityBox, securitybackground,VaultRoomSwitch);
     styleManager.setItemsMessage("A computer...?", "computer");
     styleManager.setItemsMessage("no need to open this right now", "electricityBox");
   }
@@ -105,6 +104,8 @@ public class SecurityController extends Controller {
     // if already logged in, skip log in stage
     if (!GameState.isSecurityComputerLoggedIn) {
       logInScreen.setVisible(true);
+    } else if (GameState.isConnectDotreached){
+      App.setUI(Scenes.CONNECTDOTS);
     } else {
       logInScreen.setVisible(false);
       App.setUI(Scenes.COMPUTER);

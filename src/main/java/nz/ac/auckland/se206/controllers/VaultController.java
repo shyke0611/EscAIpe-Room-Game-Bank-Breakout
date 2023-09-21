@@ -22,7 +22,7 @@ import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.WalkieTalkieManager;
-import nz.ac.auckland.se206.AnimationManager.Type;
+
 
 public class VaultController extends Controller {
 
@@ -35,6 +35,7 @@ public class VaultController extends Controller {
   @FXML private ImageView silverDoor;
   @FXML private ImageView bronzeDoor;
   @FXML private ImageView vaultbackground;
+  @FXML private ImageView realvaultbackground;
   @FXML private ImageView bomblogo;
 
   @FXML private Rectangle dialogueBox;
@@ -94,7 +95,7 @@ public class VaultController extends Controller {
         lootLbl,
         bronzeDoorHolder,
         silverDoorHolder,
-        goldDoorHolder,lobbyRoomSwitch,bomblayer);
+        goldDoorHolder,lobbyRoomSwitch,bomblayer,realvaultbackground);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     givencode.setText("Code: " + RandomnessGenerate.getPasscode());
     styleManager.setItemsMessage("set bomb down", "exitHolder");
@@ -129,7 +130,7 @@ public class VaultController extends Controller {
     AnimationManager.slideDoorsAnimation(slidePane);
     bomblogo.setVisible(false);
     styleManager.removeItemsMessage("bombHolder");
-    // styleManager.setClueHover("bomblayer",false);
+    styleManager.setClueHover("bomblayer",false);
   }
 
   @FXML
@@ -213,7 +214,7 @@ public class VaultController extends Controller {
     if (GameState.isBombActivated) {
       styleManager.setVisible(
           false, "walkietalkie", "switchHolder", "walkietalkieHolder", "bombHolder");
-      AnimationManager.toggleAlarmAnimation(exitHolder,true,0.2,Type.InnerShadow);
+      AnimationManager.toggleAlarmAnimation(exitHolder,true,0.5);
       AnimationManager.delayAnimation(exitHolder, escapeDoor);
       exitHolder.setDisable(true);
     }

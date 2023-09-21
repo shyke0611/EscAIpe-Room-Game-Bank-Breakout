@@ -1,26 +1,22 @@
 package nz.ac.auckland.se206;
 
-import java.util.HashSet;
-import java.util.Set;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
+import javafx.scene.effect.BlurType;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Glow;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.effect.Light;
 import javafx.scene.effect.Lighting;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class AnimationManager {
-  private static boolean isShadowOn = false;
   private static boolean isSlideAnimationPlayed = false;
-  private static Set<Timeline> timelineList = new HashSet<>();
-  private static Set<Node> nodesWithActiveAnimation = new HashSet<>();
-
-  public enum Type {
-    DropShadow,
-    InnerShadow
-  }
 
   public static void fadeTransition(Node node, int seconds) {
     FadeTransition fadeIn = new FadeTransition(Duration.seconds(seconds), node);
@@ -29,46 +25,61 @@ public class AnimationManager {
     fadeIn.play();
   }
 
-  public static void toggleAlarmAnimation(Node node, boolean isOn, double time, Type effect) {
-    if (isOn && !nodesWithActiveAnimation.contains(node)) {
-      startAlarmAnimation(node, time, effect);
-      nodesWithActiveAnimation.add(node);
-    } else if (!isOn && nodesWithActiveAnimation.contains(node)) {
-      for (Timeline timeline : timelineList) {
-        timeline.stop();
-      }
-      node.setStyle(null);
-      // nodesWithActiveAnimation.remove(node);
-    }
-  }
-
-  public static void startAlarmAnimation(Node node, double time, Type effect) {
+  public static void toggleAlarmAnimation(Node node, boolean isOn, double time) {
     Duration duration = Duration.seconds(time);
 
-    KeyFrame keyFrame =
-        new KeyFrame(
-            duration,
-            event -> {
-              if (isShadowOn) {
-                node.setStyle(null);
-              } else {
-                if (effect == Type.InnerShadow) {
-                  node.setStyle("-fx-effect: innershadow(gaussian, red, 200, 0, 0, 0)");
-                 
+    if (isOn) {
+        InnerShadow innerShadow = new InnerShadow();
+        innerShadow.setColor(Color.RED);
 
-                } else if (effect == Type.DropShadow) {
-                  node.setStyle(
-                      "-fx-effect: dropshadow(gaussian, rgba(34, 255, 0, 0.7), 10, 10, 0, 0)");
-                }
-              }
-              isShadowOn = !isShadowOn;
-            });
+        // Create a Lighting effect
+        Lighting lighting = new Lighting();
+        lighting.setDiffuseConstant(0.4);
+        lighting.setSpecularConstant(0.1);
+        lighting.setSpecularExponent(3.0);
 
-    Timeline alarmTimeline = new Timeline(keyFrame);
-    alarmTimeline.setCycleCount(Timeline.INDEFINITE);
-    alarmTimeline.play();
+        // Configure a distant light source
+        lighting.setLight(new Light.Distant(0, 100, Color.RED));
 
-    timelineList.add(alarmTimeline);
+        innerShadow.setInput(lighting);
+        node.setEffect(innerShadow);
+
+        Timeline animation =
+            new Timeline(
+                new KeyFrame(Duration.ZERO, new KeyValue(innerShadow.radiusProperty(), 0)),
+                new KeyFrame(duration, new KeyValue(innerShadow.radiusProperty(), 200))
+            );
+        animation.setCycleCount(Timeline.INDEFINITE);
+        animation.play();
+    } else {
+        node.setEffect(null);
+    }
+}
+
+
+
+
+
+
+  public static void toggleHoverAnimation(Node node, boolean isOn, double time) {
+    Duration duration = Duration.seconds(time);
+
+    if (isOn) {
+      DropShadow dropShadow = new DropShadow();
+      dropShadow.setColor(Color.rgb(34, 255, 0, 0.7));
+      dropShadow.setBlurType(BlurType.GAUSSIAN);
+
+      node.setEffect(dropShadow);
+
+      Timeline animation =
+          new Timeline(
+              new KeyFrame(Duration.ZERO, new KeyValue(dropShadow.spreadProperty(), 0)),
+              new KeyFrame(duration, new KeyValue(dropShadow.spreadProperty(), 2)));
+      animation.setCycleCount(Timeline.INDEFINITE);
+      animation.play();
+    } else {
+      node.setEffect(null);
+    }
   }
 
   public static void slideDoorsAnimation(Node node) {

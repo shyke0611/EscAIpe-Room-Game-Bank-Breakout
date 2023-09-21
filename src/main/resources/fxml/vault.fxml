@@ -18,9 +18,14 @@
 
 <AnchorPane fx:id="VaultPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.VaultController">
    <children>
-      <ImageView fx:id="vaultbackground" fitHeight="719.0" fitWidth="2243.0" layoutX="-36.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true" scaleX="1.01">
+      <ImageView fx:id="vaultbackground" fitHeight="719.0" fitWidth="2196.0" layoutX="-36.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true" scaleX="1.01">
          <image>
             <Image url="@../images/baseVaultImage.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="realvaultbackground" fitHeight="704.0" fitWidth="1019.0" layoutX="-3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/realvaultbackground.png" />
          </image>
       </ImageView>
       <HBox fx:id="switchHolder" layoutX="27.0" layoutY="30.0" prefHeight="128.0" prefWidth="300.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 10;">
@@ -223,7 +228,7 @@
             </HBox>
          </children>
       </HBox>
-      <Pane fx:id="slidePane" layoutX="1176.0" layoutY="45.0" prefHeight="494.0" prefWidth="865.0">
+      <Pane fx:id="slidePane" layoutX="1151.0" layoutY="45.0" prefHeight="494.0" prefWidth="890.0">
          <children>
             <HBox fx:id="exitHolder" layoutX="316.0" layoutY="189.0" onMousePressed="#onBombPlaced" prefHeight="120.0" prefWidth="233.0" styleClass="guard" stylesheets="@../css/rooms.css">
                <children>

@@ -21,7 +21,6 @@ import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.WalkieTalkieManager;
-import nz.ac.auckland.se206.AnimationManager.Type;
 
 public class LobbyController extends Controller {
 
@@ -170,7 +169,7 @@ public class LobbyController extends Controller {
   void onkeyLocationPressed(MouseEvent event) {
     if (GameState.isGuardDistracted) {
       Node clickedHBox = (HBox) event.getSource();
-      styleManager.setItemsMessage("Already looked here...","clickedHBox");
+      styleManager.setItemsMessage("Already looked here...",clickedHBox.getId().toString());
       if (clickedHBox == RandomnessGenerate.getkeyLocation()) {
         GameState.isKeyLocationFound = true;
         AnimationManager.fadeTransition(key, 2);
