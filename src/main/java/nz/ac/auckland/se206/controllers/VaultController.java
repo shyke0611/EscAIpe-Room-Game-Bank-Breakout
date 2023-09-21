@@ -16,6 +16,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -28,6 +29,7 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.StyleManager.HoverColour;
+import nz.ac.auckland.se206.TimerControl;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -76,6 +78,7 @@ public class VaultController extends Controller {
   @FXML private HBox escapeDoor;
   @FXML private Pane slidePane;
   @FXML private Button lootBtn;
+  @FXML private StackPane timerClock;
 
   @FXML private HBox switchHolder;
   @FXML private HBox walkietalkieHolder;
@@ -96,7 +99,7 @@ public class VaultController extends Controller {
     SceneManager.setController(Scenes.VAULT, this);
     WalkieTalkieManager.addWalkieTalkieImage(this, vaultWalkieTalkie);
     super.setTimerLabel(timerLabel, 1);
-    
+
     styleManager.addItems(
         goldDoor,
         silverDoor,
@@ -125,7 +128,10 @@ public class VaultController extends Controller {
     styleManager.setItemsMessage("escape", "escapeDoor");
     styleManager.setItemsMessage("activate bomb", "bombHolder");
     styleManager.setItemsMessage(
-        "Need to disable firewall from blocking us", "bronzeDoorHolder", "silverDoorHolder", "goldDoorHolder");
+        "Need to disable firewall from blocking us",
+        "bronzeDoorHolder",
+        "silverDoorHolder",
+        "goldDoorHolder");
   }
 
   //   handling mouse events on walkie talkie
@@ -157,6 +163,7 @@ public class VaultController extends Controller {
     AnimationManager.slideDoorsAnimation(doorHolder);
     AnimationManager.slideDoorsAnimation(vaultbackground);
     AnimationManager.slideDoorsAnimation(slidePane);
+    timerClock.setTranslateX(350);
     bomblogo.setVisible(false);
     styleManager.removeItemsMessage("bombHolder");
     styleManager.setClueHover("bomblayer",false);
@@ -192,11 +199,11 @@ public class VaultController extends Controller {
     }
   }
 
-
   @FXML
   void onLootCollected(ActionEvent event) {
     if (GameState.isFirewallDisabled && GameState.isAnyDoorOpen) {
-      styleManager.setAlarm(true);
+      App.textToSpeech("Trigger the alarm");
+      StyleManager.setAlarm(true);
       GameState.isAlarmTripped = true;
       styleManager.setItemsState(HoverColour.GREEN, "electricityBox");
       styleManager.setItemsState(HoverColour.GREEN, "guardpocket");
@@ -235,6 +242,7 @@ public class VaultController extends Controller {
     String code = givencode.getText().substring("Code: ".length());
     if (inputLbl.getText().equals(code)) {
       statusLbl.setText("Success, press x to Activate bomb");
+      inputLbl.setText("");
       statusLbl.setTextFill(Color.GREEN);
       GameState.isBombActivated = true;
 
@@ -258,6 +266,7 @@ public class VaultController extends Controller {
   }
 
   public void onEscape() {
+    TimerControl.cancelTimer();
     App.setUI(Scenes.GAMEFINISH);
   }
 

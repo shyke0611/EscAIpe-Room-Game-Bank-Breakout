@@ -153,7 +153,30 @@
     -fx-cursor: hand;
 }
 
+/* 
+.button {
+    -fx-background-color: black;
+    -fx-text-fill: green;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 5px 10px;  //Adjust padding as needed 
+    -fx-background-radius: //5px;  Rounded corners 
+}
 
+ //Hover effect 
+.button:hover {
+    -fx-background-color: darkgreen;  //Change color on hover 
+}
+
+ //Pressed effect 
+.button:pressed {
+    -fx-background-color: forestgreen;  //Change color when pressed 
+}
+
+.hbox {
+    -fx-background-color: darkgreen;
+}
+ */
 .pourBtn {
     -fx-background-color:
         #090a0c,

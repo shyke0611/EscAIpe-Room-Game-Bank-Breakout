@@ -2,13 +2,20 @@ package nz.ac.auckland.se206;
 
 import java.io.IOException;
 import javafx.application.Application;
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.HackerAiManager.Difficulties;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /**
  * This is the entry point of the JavaFX application, while you can change this class, it should
@@ -17,6 +24,8 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 public class App extends Application {
 
   private static Scene scene;
+  private ChatCompletionRequest chatCompletionRequest;
+  private static ChatMessage message;
 
   public static void main(final String[] args) {
     launch();
@@ -59,6 +68,14 @@ public class App extends Application {
     hackerAiManager.initialiseHackerAi(Difficulties.EASY);
     GameManager.completeObjective();
 
+    chatCompletionRequest =
+        new ChatCompletionRequest().setN(1).setTemperature(0.5).setTopP(0.9).setMaxTokens(100);
+    try {
+      message = runGpt(new ChatMessage("user", GptPromptEngineering.welcomeMessage()));
+    } catch (ApiProxyException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
     // Initialise controllers hashmap to SceneManager
     SceneManager.addController(SceneManager.Scenes.VAULT, null);
     SceneManager.addController(SceneManager.Scenes.LOBBY, null);
@@ -96,5 +113,40 @@ public class App extends Application {
     stage.setScene(scene);
     stage.show();
     root.requestFocus();
+  }
+
+  public static ChatMessage getStartMessage() {
+    return message;
+  }
+
+  public ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
+    chatCompletionRequest.addMessage(msg);
+    try {
+      ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
+      Choice result = chatCompletionResult.getChoices().iterator().next();
+      chatCompletionRequest.addMessage(result.getChatMessage());
+      return result.getChatMessage();
+    } catch (ApiProxyException e) {
+      // TODO handle exception appropriately
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  public static void textToSpeech(String string) {
+    Task<Void> speechTask =
+        new Task<Void>() {
+
+          @Override
+          protected Void call() throws Exception {
+            TextToSpeech textToSpeech = new TextToSpeech();
+            textToSpeech.speak(string);
+            return null;
+          }
+        };
+
+    Thread speechThread = new Thread(speechTask);
+    speechThread.setDaemon(true);
+    speechThread.start();
   }
 }
