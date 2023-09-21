@@ -3,12 +3,12 @@ package nz.ac.auckland.se206;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
+import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Glow;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.effect.Light;
 import javafx.scene.effect.Lighting;
@@ -17,6 +17,7 @@ import javafx.util.Duration;
 
 public class AnimationManager {
   private static boolean isSlideAnimationPlayed = false;
+  private ScaleTransition scaleTransitionGun;
 
   public static void fadeTransition(Node node, int seconds) {
     FadeTransition fadeIn = new FadeTransition(Duration.seconds(seconds), node);
@@ -110,5 +111,24 @@ public class AnimationManager {
                 }));
 
     timeline.play();
+  }
+
+  public static ScaleTransition createScaleTransition(Node node) {
+    ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), node);
+    scaleTransition.setFromX(1.0); // Initial scale X
+    scaleTransition.setFromY(1.0); // Initial scale Y
+    scaleTransition.setToX(1.1); // Enlarged scale X
+    scaleTransition.setToY(1.1); // Enlarged scale Y
+    return scaleTransition;
+  }
+
+  public static void playAnimationForward(ScaleTransition scaleTransition) {
+    scaleTransition.setRate(1); // Play forward
+    scaleTransition.play();
+  }
+
+  public static void playAnimationReverse(ScaleTransition scaleTransition) {
+    scaleTransition.setRate(-1); // Play in reverse
+    scaleTransition.play();
   }
 }

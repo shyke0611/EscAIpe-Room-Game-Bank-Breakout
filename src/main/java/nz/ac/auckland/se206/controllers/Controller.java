@@ -3,10 +3,12 @@ package nz.ac.auckland.se206.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.StyleManager;
@@ -59,6 +61,16 @@ public void grantAccess() {
   HoverColour.GREEN, "bronzeDoorHolder", "silverDoorHolder", "goldDoorHolder");
   styleManager.setItemsMessage("We can go in", "bronzeDoorHolder", "silverDoorHolder", "goldDoorHolder");
   App.setUI(Scenes.SECURITY);
+}
+
+protected void setupListeners(Node... items) {
+  for (Node node : items) {
+  ScaleTransition scaleTransition = AnimationManager.createScaleTransition(node);
+  // Add hover listeners to start and stop the animation
+  node.setStyle("-fx-cursor: hand;");
+  node.setOnMouseEntered(event -> AnimationManager.playAnimationForward(scaleTransition));
+  node.setOnMouseExited(event -> AnimationManager.playAnimationReverse(scaleTransition));
+  }
 }
 
 

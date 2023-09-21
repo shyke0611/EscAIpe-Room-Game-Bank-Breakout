@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
@@ -13,6 +14,7 @@
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#draw" onMousePressed="#mousePressed" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LaserCuttingController">
    <children>
+      <HBox layoutX="152.0" layoutY="477.0" prefHeight="100.0" prefWidth="200.0" />
       <ImageView fitHeight="700.0" fitWidth="1000.0" onMouseClicked="#setVault" pickOnBounds="true" preserveRatio="true" scaleX="1.01">
          <image>
             <Image url="@../images/backgroundVault.png" />
@@ -59,7 +61,7 @@
             </Label>
          </children>
       </StackPane>
-      <Button fx:id="takeLootBtn" layoutX="436.0" layoutY="554.0" mnemonicParsing="false" onAction="#setVault" text="Go Back" visible="false">
+      <Button fx:id="takeLootBtn" layoutX="406.0" layoutY="554.0" mnemonicParsing="false" onMouseClicked="#setVault" prefHeight="53.0" prefWidth="185.0" styleClass="computer-button" stylesheets="@../css/rooms.css" text="Go Back" visible="false">
          <font>
             <Font size="20.0" />
          </font>

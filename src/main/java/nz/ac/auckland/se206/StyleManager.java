@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import javafx.animation.ScaleTransition;
 import javafx.scene.Node;
 import javafx.scene.control.Tooltip;
 import javafx.scene.effect.Glow;
@@ -65,7 +67,11 @@ public class StyleManager {
           event ->
               node.setStyle(
                   "-fx-effect: dropshadow(gaussian, " + rgba + ", 5, 5, 0, 0); -fx-cursor: hand;"));
+                  // ScaleTransition scaleTransition = AnimationManager.createScaleTransition(node);
+              // AnimationManager.playAnimationForward(scaleTransition);
+                  
       node.setOnMouseExited(event -> node.setStyle(""));
+      // node.setOnMouseExited(event -> AnimationManager.playAnimationReverse(scaleTransition));
     }
   }
 

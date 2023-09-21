@@ -50,6 +50,7 @@ public class SecurityController extends Controller {
     styleManager.addItems(computer, electricityBox, securitybackground,VaultRoomSwitch);
     styleManager.setItemsMessage("A computer...?", "computer");
     styleManager.setItemsMessage("no need to open this right now", "electricityBox");
+    // setupListeners(computer,electricityBox);
   }
 
   //   handling mouse events on walkie talkie
@@ -111,6 +112,7 @@ public class SecurityController extends Controller {
       App.setUI(Scenes.COMPUTER);
       styleManager.removeItemsMessage("computer");
     }
+    styleManager.setClueHover("computer",false);
   }
 
   // method that handles overall login mechanics

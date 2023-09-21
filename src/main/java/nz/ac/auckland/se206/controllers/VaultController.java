@@ -115,7 +115,10 @@ public class VaultController extends Controller {
   @FXML
   public void switchToLobby() {
     App.setUI(Scenes.LOBBY);
+    if (GameState.isAlarmTripped) {
     styleManager.setClueHover("lobbyRoomSwitch",false);
+    styleManager.setClueHover("guardpocket",true);
+    }
   }
 
   @FXML

@@ -83,6 +83,8 @@ public class LobbyController extends Controller {
     styleManager.setItemsMessage("A note?", "credentialsBook");
     styleManager.setItemsMessage("put him to sleep", "guard");
     styleManager.setClueHover("guard",true);
+    // setupListeners(key1,key3,key4,guard,credentialsBook,drawerHolder,guardpocket);
+    setupListeners(key);
   }
 
   //   handling mouse events on walkie talkie
@@ -95,8 +97,13 @@ public class LobbyController extends Controller {
   @FXML
   public void switchToSecurity() {
     App.setUI(Scenes.SECURITY);
-    if (!GameState.isFirewallDisabled) {
+    if (!GameState.isSecurityComputerLoggedIn) {
     styleManager.setClueHover("SecurityRoomSwitch",false);
+    styleManager.setClueHover("computer",true);
+    styleManager.setItemsState(HoverColour.GREEN,"computer");
+  } else if (GameState.isAlarmTripped) {
+    styleManager.setClueHover("SecurityRoomSwitch",false);
+  styleManager.setClueHover("electricityBox",true);
   }
   }
 
@@ -146,6 +153,8 @@ public class LobbyController extends Controller {
       usernameLbl.setText(wireNames.toString());
       passwordLbl.setText(null);
       titleLbl.setText("Wire Cutting Order");
+      styleManager.setClueHover("guardpocket",false);
+      styleManager.setClueHover("SecurityRoomSwitch",true);
     }
   }
 
