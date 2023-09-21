@@ -14,12 +14,15 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.StyleManager;
 
 public class ChemicalMixingController extends Controller {
 
+  @FXML private Label timerLabel;
   @FXML private Slider slider;
   @FXML private Button stopButton;
   @FXML private Button retryButton;
@@ -57,11 +60,14 @@ public class ChemicalMixingController extends Controller {
   private ScaleTransition scaleTransitionBlue;
   private boolean sliderMoving = false;
 
+  StyleManager styleManager = StyleManager.getInstance();
+
   public void initialize() {
     SceneManager.setController(Scenes.CHEMICALMIXING, this);
+    super.setTimerLabel(timerLabel, 3);
 
     // Setting up hover animations
-    setupListeners();
+    setupListeners(greenVile,redVile,blueVile,yellowVile);
 
     // Intialsing recipe and saving for later reference
     initializeRecipe();
@@ -86,6 +92,7 @@ public class ChemicalMixingController extends Controller {
   public void pourChemical(MouseEvent event) {
 
     ImageView image = (ImageView) event.getSource();
+    image.setStyle("-fx-cursor: hand;");
 
     // Setting the current vile label and saving current clicked colour
     if (image.getId().equals("yellowVile")) {
@@ -183,6 +190,7 @@ public class ChemicalMixingController extends Controller {
       fourthPour.setVisible(true);
       fourthPour.setFill(currentColour);
       checkWin();
+      GameState.isChemicalMixingBypassed = true;
     }
   }
 
@@ -195,10 +203,15 @@ public class ChemicalMixingController extends Controller {
     winLabel.setVisible(true);
   }
 
-  @FXML
-  public void setVault() {
-    App.setUI(Scenes.VAULT);
-  }
+  // @FXML
+  // public void setVault() {
+  //   if (GameState.isChemicalMixingBypassed) {
+  //     styleManager.getItem("goldDoor").setVisible(false);
+  //     styleManager.getItem("lootBtnHolder").setVisible(true);
+  //     GameState.isAnyDoorOpen = true;
+  //   }
+  //   App.setUI(Scenes.VAULT);
+  // }
 
   @FXML
   public void retryButtonClicked() {
@@ -245,41 +258,41 @@ public class ChemicalMixingController extends Controller {
     }
   }
 
-  private ScaleTransition createScaleTransition(ImageView imageView) {
-    ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), imageView);
-    scaleTransition.setFromX(1.0); // Initial scale X
-    scaleTransition.setFromY(1.0); // Initial scale Y
-    scaleTransition.setToX(1.2); // Enlarged scale X
-    scaleTransition.setToY(1.2); // Enlarged scale Y
-    return scaleTransition;
-  }
+  // private ScaleTransition createScaleTransition(ImageView imageView) {
+  //   ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), imageView);
+  //   scaleTransition.setFromX(1.0); // Initial scale X
+  //   scaleTransition.setFromY(1.0); // Initial scale Y
+  //   scaleTransition.setToX(1.2); // Enlarged scale X
+  //   scaleTransition.setToY(1.2); // Enlarged scale Y
+  //   return scaleTransition;
+  // }
 
-  private void playAnimationForward(ScaleTransition scaleTransition) {
-    scaleTransition.setRate(1); // Play forward
-    scaleTransition.play();
-  }
+  // private void playAnimationForward(ScaleTransition scaleTransition) {
+  //   scaleTransition.setRate(1); // Play forward
+  //   scaleTransition.play();
+  // }
 
-  private void playAnimationReverse(ScaleTransition scaleTransition) {
-    scaleTransition.setRate(-1); // Play in reverse
-    scaleTransition.play();
-  }
+  // private void playAnimationReverse(ScaleTransition scaleTransition) {
+  //   scaleTransition.setRate(-1); // Play in reverse
+  //   scaleTransition.play();
+  // }
 
-  private void setupListeners() {
-    scaleTransitionGreen = createScaleTransition(greenVile);
-    scaleTransitionYellow = createScaleTransition(yellowVile);
-    scaleTransitionRed = createScaleTransition(redVile);
-    scaleTransitionBlue = createScaleTransition(blueVile);
+  // private void setupListeners() {
+  //   scaleTransitionGreen = createScaleTransition(greenVile);
+  //   scaleTransitionYellow = createScaleTransition(yellowVile);
+  //   scaleTransitionRed = createScaleTransition(redVile);
+  //   scaleTransitionBlue = createScaleTransition(blueVile);
 
-    // Add hover listeners to start and stop the animation
-    greenVile.setOnMouseEntered(event -> playAnimationForward(scaleTransitionGreen));
-    greenVile.setOnMouseExited(event -> playAnimationReverse(scaleTransitionGreen));
-    redVile.setOnMouseEntered(event -> playAnimationForward(scaleTransitionRed));
-    redVile.setOnMouseExited(event -> playAnimationReverse(scaleTransitionRed));
-    yellowVile.setOnMouseEntered(event -> playAnimationForward(scaleTransitionYellow));
-    yellowVile.setOnMouseExited(event -> playAnimationReverse(scaleTransitionYellow));
-    blueVile.setOnMouseEntered(event -> playAnimationForward(scaleTransitionBlue));
-    blueVile.setOnMouseExited(event -> playAnimationReverse(scaleTransitionBlue));
-  }
+  //   // Add hover listeners to start and stop the animation
+  //   greenVile.setOnMouseEntered(event -> playAnimationForward(scaleTransitionGreen));
+  //   greenVile.setOnMouseExited(event -> playAnimationReverse(scaleTransitionGreen));
+  //   redVile.setOnMouseEntered(event -> playAnimationForward(scaleTransitionRed));
+  //   redVile.setOnMouseExited(event -> playAnimationReverse(scaleTransitionRed));
+  //   yellowVile.setOnMouseEntered(event -> playAnimationForward(scaleTransitionYellow));
+  //   yellowVile.setOnMouseExited(event -> playAnimationReverse(scaleTransitionYellow));
+  //   blueVile.setOnMouseEntered(event -> playAnimationForward(scaleTransitionBlue));
+  //   blueVile.setOnMouseExited(event -> playAnimationReverse(scaleTransitionBlue));
+  // }
 
   @FXML
   public void initializeRecipe() {

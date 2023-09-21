@@ -14,9 +14,12 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="LobbyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LobbyController">
+<AnchorPane fx:id="LobbyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#invokeHackerAI" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LobbyController">
    <children>
       <ImageView fx:id="lobbybackground" fitHeight="701.0" fitWidth="1010.0" layoutX="-6.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -39,20 +42,6 @@
                   </Label>
                </children>
             </VBox>
-            <VBox fx:id="VaultRoomSwitch" alignment="CENTER" prefHeight="110.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
-               <children>
-                  <ImageView fx:id="Vault" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#switchToVault" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/robber2.png" />
-                     </image>
-                  </ImageView>
-                  <Label text="Vault">
-                     <font>
-                        <Font size="21.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
             <VBox fx:id="SecurityRoomSwitch" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
                <children>
                   <ImageView fx:id="Security" fitHeight="111.0" fitWidth="100.0" onMouseClicked="#switchToSecurity" pickOnBounds="true" preserveRatio="true">
@@ -67,9 +56,37 @@
                   </Label>
                </children>
             </VBox>
+            <VBox fx:id="VaultRoomSwitch" alignment="CENTER" prefHeight="110.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
+               <children>
+                  <ImageView fx:id="Vault" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#switchToVault" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/robber2.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Vault">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="343.0" layoutY="27.0" prefHeight="60.0" prefWidth="216.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 0 20 20 0;">
+      <StackPane layoutX="500.0" layoutY="130.0" prefHeight="87.0" prefWidth="131.0">
+         <children>
+            <Line endY="-80.0" strokeWidth="5.0" translateY="-85.0" />
+            <Rectangle fill="#5e5e5e" height="96.0" stroke="BLACK" strokeType="INSIDE" width="138.0" />
+            <Rectangle height="74.0" stroke="BLACK" strokeType="INSIDE" width="134.0" />
+            <Label fx:id="timerLabel" alignment="CENTER" prefHeight="70.0" prefWidth="133.0" text="0:00" textFill="WHITE">
+               <font>
+                  <Font size="48.0" />
+               </font>
+            </Label>
+            <Circle fill="RED" radius="3.0" stroke="BLACK" strokeType="INSIDE" translateX="60.0" translateY="42.0" />
+            <Circle radius="3.0" stroke="BLACK" strokeType="INSIDE" translateX="50.0" translateY="42.0" />
+         </children>
+      </StackPane>
+      <HBox alignment="CENTER" layoutX="343.0" layoutY="27.0" prefHeight="60.0" prefWidth="216.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 0 20 20 0;" visible="false">
          <children>
             <Label prefHeight="39.0" prefWidth="100.0" style="-fx-background-color: #9fd7ff; -fx-background-radius: 0 20 20 0;" text="Timer:" textFill="#051a28">
                <font>
@@ -125,7 +142,7 @@
             </ImageView>
          </children>
       </HBox>
-      <HBox fx:id="guardpocket" alignment="CENTER" layoutX="879.0" layoutY="478.0" onMousePressed="#onGuardPocket" prefHeight="28.0" prefWidth="17.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
+      <HBox fx:id="guardpocket" alignment="CENTER" layoutX="879.0" layoutY="478.0" onMousePressed="#onGuardPocket" prefHeight="28.0" prefWidth="17.0" styleClass="drawer" stylesheets="@../css/rooms.css">
          <children>
             <ImageView fx:id="guardpocket2" fitHeight="24.0" fitWidth="11.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -144,9 +161,9 @@
          </children></HBox>
       <HBox layoutX="15.0" layoutY="539.0" prefHeight="150.0" prefWidth="665.0">
          <children>
-            <VBox fx:id="walkietalkie" onMousePressed="#onWalkieTalkie" prefHeight="200.0" prefWidth="100.0" styleClass="walkietalkie" stylesheets="@../css/rooms.css">
+            <VBox fx:id="lobbywalkietalkie" onMousePressed="#onWalkieTalkie" prefHeight="200.0" prefWidth="100.0" styleClass="walkietalkie" stylesheets="@../css/rooms.css">
                <children>
-                  <ImageView fitHeight="141.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="lobbyWalkieTalkie" fitHeight="141.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/walkietalkie.png" />
                      </image>
@@ -155,9 +172,12 @@
             </VBox>
             <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0" visible="false">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="528.0">
+                  <HBox fx:id="textAreaBox" prefHeight="100.0" prefWidth="528.0">
                      <children>
-                        <TextArea editable="false" prefHeight="100.0" prefWidth="425.0" stylesheets="@../css/rooms.css" />
+                        <TextArea fx:id="lobbyTextArea" editable="false" onKeyPressed="#invokeHackerAI" prefHeight="100.0" prefWidth="425.0" stylesheets="@../css/rooms.css" wrapText="true">
+                           <font>
+                              <Font size="19.0" />
+                           </font></TextArea>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="component2" stylesheets="@../css/rooms.css">
                            <children>
                               <Button fx:id="viewHistoryBtn" mnemonicParsing="false" onAction="#onSwitchToHacker" text="View History">
@@ -165,14 +185,14 @@
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button fx:id="quickHintBtn" mnemonicParsing="false" text="Quick Hint" />
+                              <Button fx:id="quickHintBtn" mnemonicParsing="false" onAction="#quickHint" text="Quick Hint" />
                            </children>
                         </VBox>
                      </children>
                   </HBox>
                   <HBox prefHeight="51.0" prefWidth="512.0">
                      <children>
-                        <TextField prefHeight="58.0" prefWidth="512.0" promptText="Bzzz... type here" stylesheets="@../css/rooms.css">
+                        <TextField fx:id="lobbyTextInput" prefHeight="58.0" prefWidth="512.0" promptText="Bzzz... type here" stylesheets="@../css/rooms.css">
                            <font>
                               <Font size="22.0" />
                            </font>
@@ -228,7 +248,7 @@
             <String fx:value="keylocations" />
          </styleClass>
       </HBox>
-      <HBox fx:id="credentialsNote" layoutX="297.0" layoutY="331.0" prefHeight="166.0" prefWidth="306.0" visible="false">
+      <HBox fx:id="credentialsNote" layoutX="297.0" layoutY="331.0" prefHeight="243.0" prefWidth="306.0" visible="false">
          <children>
             <VBox prefHeight="179.0" prefWidth="306.0">
                <children>
@@ -249,24 +269,30 @@
                                     <Font name="Apple LiGothic Medium" size="22.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="titleLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="258.0" text="title">
+                              <Label fx:id="titleLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="71.0" prefWidth="258.0" style="-fx-text-alignment: center;" text="Security Room Computer Log In:" wrapText="true">
                                  <font>
                                     <Font name="Apple LiGothic Medium" size="23.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="usernameLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="12.0" prefWidth="252.0">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="HanziPen SC Regular" size="15.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="passwordLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="13.0" prefWidth="259.0">
-                                 <font>
-                                    <Font name="HanziPen SC Regular" size="15.0" />
-                                 </font>
-                              </Label>
+                              <StackPane prefHeight="118.0" prefWidth="306.0">
+                                 <children>
+                                    <Label fx:id="usernameLbl" contentDisplay="CENTER" prefHeight="21.0" prefWidth="166.0" text="Username:" translateY="-35.0">
+                                       <font>
+                                          <Font name="HanziPen SC Regular" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="passwordLbl" contentDisplay="CENTER" prefHeight="21.0" prefWidth="169.0" text="Password:" translateY="-15.0">
+                                       <font>
+                                          <Font name="HanziPen SC Regular" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="orderLabel" contentDisplay="CENTER" prefHeight="118.0" prefWidth="102.0" text="Order" translateX="20.0" translateY="-23.0" visible="false" wrapText="true">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </StackPane>
                            </children>
                         </VBox>
                         <Button fx:id="closeNoteBtn" mnemonicParsing="false" onAction="#onCloseNote" prefHeight="18.0" prefWidth="31.0" styleClass="close-button" stylesheets="@../css/rooms.css" text="X" textFill="#ff0404">

@@ -9,11 +9,13 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.WalkieTalkieManager;
@@ -34,6 +36,8 @@ public class ComputerController extends Controller {
   @FXML private Button viewHistoryBtn;
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
+  @FXML private Button dotGameBtn;
+  @FXML private Label timerLabel;
 
   private static int currentIndex = 0;
 
@@ -47,6 +51,7 @@ public class ComputerController extends Controller {
 
   public void initialize() throws ApiProxyException {
     SceneManager.setController(Scenes.COMPUTER, this);
+    super.setTimerLabel(timerLabel, 1);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
 
     ChatMessage msg = App.getStartMessage();
@@ -174,6 +179,11 @@ public class ComputerController extends Controller {
   public void onSwitchToHacker() {
     SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.COMPUTER);
     App.setUI(Scenes.HACKERVAN);
+  }
+
+  public void switchToDots() {
+    GameState.isConnectDotreached = true;
+    App.setUI(Scenes.CONNECTDOTS);
   }
 
   //   handling mouse events on walkie talkie

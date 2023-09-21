@@ -3,21 +3,22 @@ package nz.ac.auckland.se206;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import javafx.animation.ScaleTransition;
 import javafx.scene.Node;
 import javafx.scene.control.Tooltip;
-import javafx.scene.layout.HBox;
+import javafx.scene.effect.Glow;
 import javafx.util.Duration;
 
 public class StyleManager {
 
   private static StyleManager instance = new StyleManager();
   private Map<Node, Tooltip> tooltipMap = new HashMap<>();
-  private Map<Node, HoverColour> hoverStyleMap = new HashMap<>();
   private List<Node> itemsList = new ArrayList<>();
-
 
   public enum HoverColour {
     RED,
@@ -25,114 +26,126 @@ public class StyleManager {
     ORANGE,
   }
 
-  public enum State {
-    HOVER,
-    CLICK,
-  }
-
   private StyleManager() {}
 
   public static StyleManager getInstance() {
     return instance;
   }
-
-  // Set and apply tooltips for multiple items
-  public void setItemsMessage(String message, Node... items) {
-    for (Node item : items) {
-      Tooltip tooltip = tooltipMap.get(item);
-      if (tooltip == null) {
-        tooltip = new Tooltip();
-        tooltipMap.put(item, tooltip);
+  
+  public void setItemsMessage(String message, String... items) {
+      for (String item : items) {
+          Node node = getItem(item);
+          Tooltip tooltip = tooltipMap.get(node);
+          if (tooltip == null) {
+              tooltip = new Tooltip();
+              tooltipMap.put(node, tooltip);
+          }
+          tooltip.setText(message);
+          Tooltip.install(node, tooltip);
+          tooltip.setShowDelay(Duration.seconds(0));
       }
-      tooltip.setText(message);
-      Tooltip.install(item, tooltip);
-      tooltip.setShowDelay(Duration.seconds(0));
-    }
   }
+  
 
   // Remove tooltips for multiple items
-  public void removeItemsMessage(HBox... items) {
-    for (HBox item : items) {
-      Tooltip tooltip = tooltipMap.get(item);
+  public void removeItemsMessage(String... items) {
+    for (String item : items) {
+      Node node = getItem(item);
+      Tooltip tooltip = tooltipMap.get(node);
       if (tooltip != null) {
-        Tooltip.uninstall(item, tooltip);
-        tooltipMap.remove(item);
+        Tooltip.uninstall(node, tooltip);
+        tooltipMap.remove(node);
       }
     }
   }
 
-  public void setItemsState(HoverColour colour,State state, Node... items) {
+  public void setItemsState(HoverColour colour, String... items) {
     String rgba = getRgbaForHoverColour(colour);
-
-    for (Node item : items) {
-      HoverColour hover = hoverStyleMap.get(item);
-      if (hover == null) {
-        hoverStyleMap.put(item, colour);
-      }
-
-      item.setOnMouseEntered(
+    for (String item : items) {
+      Node node = getItem(item);
+      node.setOnMouseEntered(
           event ->
-              item.setStyle(
+              node.setStyle(
                   "-fx-effect: dropshadow(gaussian, " + rgba + ", 5, 5, 0, 0); -fx-cursor: hand;"));
-      if (state == State.HOVER) {
-      item.setOnMouseExited(event -> item.setStyle(""));
-      } else {
-        item.setOnMousePressed(event ->
-              item.setStyle(
-                  "-fx-effect: dropshadow(gaussian, " + rgba + ", 5, 5, 0, 0); -fx-cursor: hand;"));
-      }
+                  // ScaleTransition scaleTransition = AnimationManager.createScaleTransition(node);
+              // AnimationManager.playAnimationForward(scaleTransition);
+                  
+      node.setOnMouseExited(event -> node.setStyle(""));
+      // node.setOnMouseExited(event -> AnimationManager.playAnimationReverse(scaleTransition));
     }
   }
 
   private String getRgbaForHoverColour(HoverColour colour) {
     switch (colour) {
-        case RED:
-            return "rgba(255, 0, 0, 0.7)";
-        case GREEN:
-            return "rgba(34, 255, 0, 0.7)";
-        case ORANGE:
-            return "rgba(255, 183, 0, 0.7)";
-        default:
-            return null; 
-    }
-}
-
-  // Remove hover state
-  public void removeItemsHoverState(Node... items) {
-    for (Node item : items) {
-      hoverStyleMap.remove(item);
-      item.setOnMouseEntered(null);
-      item.setOnMouseExited(null);
-      item.setStyle("");
+      case RED:
+        return "rgba(255, 0, 0, 0.7)";
+      case GREEN:
+        return "rgba(34, 255, 0, 0.7)";
+      case ORANGE:
+        return "rgba(255, 183, 0, 0.7)";
+      default:
+        return null;
     }
   }
 
   // adds Items into arraylist
   public void addItems(Node... items) {
-    itemsList.addAll(Arrays.asList(items));
+    itemsList.addAll(List.of(items));
   }
 
-  public void setAlarmStyleOn() {
+  public void setAlarm(boolean on) {
+    Set<String> includeIDs =
+        new HashSet<>(
+            Arrays.asList(
+                "drawer",
+                "credentialsNote",
+                "computer",
+                "doorHolder"));
     for (Node item : itemsList) {
-      if (!item.getId().toString().equals("electricityBox"))
-      item.setDisable(true);
-      if (item.getId().endsWith("background")) {
-        AnimationManager.toggleAlarmAnimation(item);
+      if (item == null) {
+        continue; // Skip null items
+      }
+      String itemId = item.getId();
+      System.out.println("Item ID: " + itemId);
+
+      if (itemId != null) {
+        if (includeIDs.contains(itemId)) {
+          item.setDisable(true);
+        }
+
+        if (itemId.endsWith("background")) {
+          AnimationManager.toggleAlarmAnimation(item, on, 0.7);
+        }
       }
     }
   }
 
-  public void setDisable(boolean value,Node... items) {
-    for (Node item : items) {
-      item.setDisable(value);
+  public void setClueHover(String item, boolean isOn) {
+    Node node = getItem(item);
+   AnimationManager.toggleHoverAnimation(node, isOn, 1);
+    //  node.setStyle("-fx-effect: dropshadow(gaussian, rgba(34, 255, 0, 0.7), 10, 10, 0, 0)");
+  
+    }
+  
+
+  public void setDisable(boolean value, String... items) {
+    for (String item : items) {
+      getItem(item).setDisable(value);
     }
   }
 
-  public void setVisible(boolean value,Node... items) {
-    for (Node item : items) {
-      item.setVisible(value);
+  public void setVisible(boolean value, String... items) {
+    for (String item : items) {
+      getItem(item).setVisible(value);
     }
   }
 
-
+  public Node getItem(String node) {
+    for (Node item : itemsList) {
+      if (item.getId().toString().equals(node)) {
+        return item;
+      }
+    }
+    return null;
+  }
 }
