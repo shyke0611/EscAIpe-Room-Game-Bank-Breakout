@@ -166,4 +166,10 @@ public class WalkieTalkieManager {
       }
     }
   }
+
+  public static void reset() {
+    walkieTalkieOpen = false;
+    walkietalkieMap.clear();
+    walkieTalkieImageMap.clear();
+  }
 }

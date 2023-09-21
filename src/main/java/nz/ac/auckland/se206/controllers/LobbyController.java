@@ -83,6 +83,7 @@ public class LobbyController extends Controller {
     super.setTimerLabel(timerLabel, 1);
 
     // obtain random credentials
+    RandomnessGenerate.generateRandomCredentials();
     randomUsername = RandomnessGenerate.getUsername();
     randomPassword = RandomnessGenerate.getPasscode();
     // add the hboxs into arraylist and generate random
@@ -108,6 +109,7 @@ public class LobbyController extends Controller {
         openDrawer,
         SecurityRoomSwitch,VaultRoomSwitch,lobbyRoomSwitch,guardeyes);
     styleManager.setItemsMessage("Guard is watching...", "key1", "key3", "key4", "guardpocket","guardeyes");
+
     styleManager.setItemsMessage("It's locked...", "drawerHolder");
     styleManager.setItemsMessage("A note?", "credentialsBook");
     styleManager.setItemsMessage("put him to sleep", "guard");
@@ -125,7 +127,7 @@ public class LobbyController extends Controller {
 
   // @FXML
   // public void switchToSecurity() {
-   
+
   // }
 
   // @FXML
@@ -162,7 +164,6 @@ public class LobbyController extends Controller {
 
   @FXML
   void onGuardPocket(MouseEvent event) {
-  
 
     if (GameState.isAlarmTripped) {
       credentialsNote.setVisible(true);
@@ -185,7 +186,13 @@ public class LobbyController extends Controller {
       titleLbl.setText("Wire Cutting Order");
       styleManager.setClueHover("guardpocket", false);
       GameState.isWireCredentialsFound = true;
-    titleLbl.setPrefHeight(35);
+
+
+      if (!GameState.isSecurityRoomHoverPressed2) {
+        styleManager.setClueHover("SecurityRoomSwitch", true);
+      }
+      titleLbl.setPrefHeight(35);
+      GameState.isSecurityRoomHoverPressed2 = true;
     }
   }
 
@@ -207,7 +214,7 @@ public class LobbyController extends Controller {
     usernameLbl.setText("Username: " + randomUsername);
     styleManager.removeItemsMessage("credentialsBook");
     if (!GameState.isSecurityRoomHoverPressed) {
-    styleManager.setClueHover("SecurityRoomSwitch",true);
+      styleManager.setClueHover("SecurityRoomSwitch", true);
     }
     GameState.isSecurityRoomHoverPressed = true;
     GameState.isCredentialsFound = true;

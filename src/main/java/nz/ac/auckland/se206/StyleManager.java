@@ -14,8 +14,8 @@ import javafx.util.Duration;
 public class StyleManager {
 
   private static StyleManager instance = new StyleManager();
-  private Map<Node, Tooltip> tooltipMap = new HashMap<>();
-  private  static List<Node> itemsList = new ArrayList<>();
+  private static Map<Node, Tooltip> tooltipMap = new HashMap<>();
+  private static List<Node> itemsList = new ArrayList<>();
 
   public enum HoverColour {
     RED,
@@ -141,5 +141,10 @@ public class StyleManager {
       }
     }
     return null;
+  }
+
+  public static void reset() {
+    tooltipMap.clear();
+    itemsList.clear();
   }
 }

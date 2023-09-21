@@ -26,6 +26,7 @@ public class App extends Application {
   private static Scene scene;
   private ChatCompletionRequest chatCompletionRequest;
   private static ChatMessage message;
+  private static App instance;
 
   public static void main(final String[] args) {
     launch();
@@ -61,6 +62,7 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException, ApiProxyException {
+    instance = this;
     // initialise the randomiser for all random components
     RandomnessGenerate.generateRandomGameComponents();
 
@@ -92,20 +94,7 @@ public class App extends Application {
     SceneManager.addController(SceneManager.Scenes.WIRECUTTING, null);
     SceneManager.addController(SceneManager.Scenes.LASERCUTTING, null);
 
-    // Add scenes to SceneManager
-    SceneManager.addUi(SceneManager.Scenes.VAULT, loadFxml("vault"));
-    SceneManager.addUi(SceneManager.Scenes.LOBBY, loadFxml("lobby"));
-    SceneManager.addUi(SceneManager.Scenes.SECURITY, loadFxml("securityroom"));
-    SceneManager.addUi(SceneManager.Scenes.WIRECUTTING, loadFxml("wirecutting"));
-    SceneManager.addUi(SceneManager.Scenes.MAIN_MENU, loadFxml("mainmenu"));
-    SceneManager.addUi(SceneManager.Scenes.DIFFICULTYPAGE, loadFxml("difficultypage"));
-    SceneManager.addUi(SceneManager.Scenes.COMPUTER, loadFxml("computer"));
-    SceneManager.addUi(SceneManager.Scenes.HACKERVAN, loadFxml("hackervan"));
-    SceneManager.addUi(SceneManager.Scenes.EYESCANNER, loadFxml("eyescanner"));
-    SceneManager.addUi(SceneManager.Scenes.CHEMICALMIXING, loadFxml("chemicalmixing"));
-    SceneManager.addUi(SceneManager.Scenes.GAMEFINISH, loadFxml("gamefinish"));
-    SceneManager.addUi(SceneManager.Scenes.CONNECTDOTS, loadFxml("connectdots"));
-    SceneManager.addUi(SceneManager.Scenes.LASERCUTTING, loadFxml("laserCutting"));
+    loadAllScenes();
 
     Parent root = SceneManager.getUiRoot(Scenes.MAIN_MENU);
 
@@ -148,5 +137,30 @@ public class App extends Application {
     Thread speechThread = new Thread(speechTask);
     speechThread.setDaemon(true);
     speechThread.start();
+  }
+
+  private void loadAllScenes() throws IOException {
+    // Add scenes to SceneManager
+    SceneManager.addUi(SceneManager.Scenes.MAIN_MENU, loadFxml("mainmenu"));
+    SceneManager.addUi(SceneManager.Scenes.DIFFICULTYPAGE, loadFxml("difficultypage"));
+    SceneManager.addUi(SceneManager.Scenes.GAMEFINISH, loadFxml("gamefinish"));
+    loadGameScenes();
+  }
+
+  private void loadGameScenes() throws IOException {
+    SceneManager.addUi(SceneManager.Scenes.VAULT, loadFxml("vault"));
+    SceneManager.addUi(SceneManager.Scenes.LOBBY, loadFxml("lobby"));
+    SceneManager.addUi(SceneManager.Scenes.SECURITY, loadFxml("securityroom"));
+    SceneManager.addUi(SceneManager.Scenes.WIRECUTTING, loadFxml("wirecutting"));
+    SceneManager.addUi(SceneManager.Scenes.COMPUTER, loadFxml("computer"));
+    SceneManager.addUi(SceneManager.Scenes.HACKERVAN, loadFxml("hackervan"));
+    SceneManager.addUi(SceneManager.Scenes.EYESCANNER, loadFxml("eyescanner"));
+    SceneManager.addUi(SceneManager.Scenes.CHEMICALMIXING, loadFxml("chemicalmixing"));
+    SceneManager.addUi(SceneManager.Scenes.CONNECTDOTS, loadFxml("connectdots"));
+    SceneManager.addUi(SceneManager.Scenes.LASERCUTTING, loadFxml("laserCutting"));
+  }
+
+  public static void reloadScenes() throws IOException {
+    instance.loadAllScenes();
   }
 }
