@@ -190,6 +190,9 @@ public class VaultController extends Controller {
   public void switchToEyeScanner() {
     if (GameState.isFirewallDisabled /* && GameState.isSecondRiddleSolved*/) {
       App.setUI(Scenes.EYESCANNER);
+      GameState.isEyeScannerEntered = true;
+      styleManager.setItemsMessage("Get guard eye colour","guardeyes");
+      styleManager.setItemsState(HoverColour.GREEN,"guardeyes");
     }
   }
 
@@ -202,7 +205,7 @@ public class VaultController extends Controller {
   @FXML
   void onLootCollected(ActionEvent event) {
     if (GameState.isFirewallDisabled && GameState.isAnyDoorOpen) {
-      App.textToSpeech("Trigger the alarm");
+      App.textToSpeech("Alarm Triggered, Disable it");
       StyleManager.setAlarm(true);
       GameState.isAlarmTripped = true;
       styleManager.setItemsState(HoverColour.GREEN, "electricityBox");

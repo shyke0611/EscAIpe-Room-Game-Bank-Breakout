@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
@@ -35,6 +36,8 @@ public class EyeScannerController extends Controller {
   @FXML private VBox walkietalkieText;
   @FXML private Label timerLabel;
 
+  @FXML private Button compareBtn;
+
   private int red;
   private int green;
   private int blue;
@@ -47,6 +50,7 @@ public class EyeScannerController extends Controller {
 
   public void initialize() {
 
+    styleManager.addItems(compareBtn);
     SceneManager.setController(Scenes.EYESCANNER, this);
     super.setTimerLabel(timerLabel, 3);
     accessGranted.setVisible(false);

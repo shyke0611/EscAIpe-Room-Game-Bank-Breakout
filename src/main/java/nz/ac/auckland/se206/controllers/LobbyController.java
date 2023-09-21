@@ -45,6 +45,7 @@ public class LobbyController extends Controller {
   @FXML private Button closeNoteBtn;
   @FXML private HBox credentialsNote;
   @FXML private HBox drawerHolder;
+  @FXML private HBox guardeyes;
   @FXML private Button quickHintBtn;
   @FXML private Button viewHistoryBtn;
   @FXML private VBox lobbywalkietalkie;
@@ -105,8 +106,8 @@ public class LobbyController extends Controller {
         credentialsNote,
         drawer,
         openDrawer,
-        SecurityRoomSwitch,VaultRoomSwitch,lobbyRoomSwitch);
-    styleManager.setItemsMessage("Guard is watching...", "key1", "key3", "key4", "guardpocket");
+        SecurityRoomSwitch,VaultRoomSwitch,lobbyRoomSwitch,guardeyes);
+    styleManager.setItemsMessage("Guard is watching...", "key1", "key3", "key4", "guardpocket","guardeyes");
     styleManager.setItemsMessage("It's locked...", "drawerHolder");
     styleManager.setItemsMessage("A note?", "credentialsBook");
     styleManager.setItemsMessage("put him to sleep", "guard");
@@ -193,6 +194,15 @@ public class LobbyController extends Controller {
     }
   }
 
+  @FXML
+  void onGuardEyes(MouseEvent event) {
+   if (GameState.isEyeScannerEntered) {
+    guardeyes.setDisable(true);
+    styleManager.getItem("compareBtn").setDisable(false);
+    ((EyeScannerController) SceneManager.getController(Scenes.EYESCANNER)).updateGuardEye();
+   }
+  }
+
   // pressing book in drawer
   @FXML
   void onCredentialsBookPressed(MouseEvent event) {
@@ -243,9 +253,9 @@ public class LobbyController extends Controller {
     guard.setDisable(true);
     styleManager.setClueHover("guard", false);
     styleManager.setItemsState(HoverColour.GREEN, "key1", "key3", "key4");
+    styleManager.setItemsState(HoverColour.RED, "guardpocket","guardeyes");
     styleManager.setItemsMessage("Something seems odd here...", "key1", "key3", "key4");
-    styleManager.setItemsMessage("Something seems odd here", "guardpocket");
-    styleManager.setItemsMessage("Seems dangerous for now", "guardpocket");
+    styleManager.setItemsMessage("Seems dangerous for now", "guardpocket","guardeyes");
   }
 
   boolean isZzz1Visible = false;
