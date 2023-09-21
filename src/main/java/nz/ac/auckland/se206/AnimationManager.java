@@ -30,37 +30,31 @@ public class AnimationManager {
     Duration duration = Duration.seconds(time);
 
     if (isOn) {
-        InnerShadow innerShadow = new InnerShadow();
-        innerShadow.setColor(Color.RED);
+      InnerShadow innerShadow = new InnerShadow();
+      innerShadow.setColor(Color.RED);
 
-        // Create a Lighting effect
-        Lighting lighting = new Lighting();
-        lighting.setDiffuseConstant(0.4);
-        lighting.setSpecularConstant(0.1);
-        lighting.setSpecularExponent(3.0);
+      // Create a Lighting effect
+      Lighting lighting = new Lighting();
+      lighting.setDiffuseConstant(0.4);
+      lighting.setSpecularConstant(0.1);
+      lighting.setSpecularExponent(3.0);
 
-        // Configure a distant light source
-        lighting.setLight(new Light.Distant(0, 100, Color.RED));
+      // Configure a distant light source
+      lighting.setLight(new Light.Distant(0, 100, Color.RED));
 
-        innerShadow.setInput(lighting);
-        node.setEffect(innerShadow);
+      innerShadow.setInput(lighting);
+      node.setEffect(innerShadow);
 
-        Timeline animation =
-            new Timeline(
-                new KeyFrame(Duration.ZERO, new KeyValue(innerShadow.radiusProperty(), 0)),
-                new KeyFrame(duration, new KeyValue(innerShadow.radiusProperty(), 200))
-            );
-        animation.setCycleCount(Timeline.INDEFINITE);
-        animation.play();
+      Timeline animation =
+          new Timeline(
+              new KeyFrame(Duration.ZERO, new KeyValue(innerShadow.radiusProperty(), 0)),
+              new KeyFrame(duration, new KeyValue(innerShadow.radiusProperty(), 200)));
+      animation.setCycleCount(Timeline.INDEFINITE);
+      animation.play();
     } else {
-        node.setEffect(null);
+      node.setEffect(null);
     }
-}
-
-
-
-
-
+  }
 
   public static void toggleHoverAnimation(Node node, boolean isOn, double time) {
     Duration duration = Duration.seconds(time);
@@ -130,5 +124,9 @@ public class AnimationManager {
   public static void playAnimationReverse(ScaleTransition scaleTransition) {
     scaleTransition.setRate(-1); // Play in reverse
     scaleTransition.play();
+  }
+
+  public static void reset() {
+    isSlideAnimationPlayed = false;
   }
 }

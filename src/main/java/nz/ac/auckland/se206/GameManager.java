@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206;
 
+import java.io.IOException;
 import nz.ac.auckland.se206.difficulties.*;
 import nz.ac.auckland.se206.difficulties.Difficulty.Difficulties;
 
@@ -47,8 +48,6 @@ public class GameManager {
   private static DoorObjectives activeDoorObjective = null;
 
   public static void createGame(Difficulties difficulty, int minutes) {
-    resetGame();
-
     // Create the difficulty
     switch (difficulty) {
       case EASY:
@@ -79,6 +78,18 @@ public class GameManager {
     selectedDoor = null;
     activeObjective = Objectives.START_GAME;
     activeDoorObjective = null;
+    SceneManager.clearScenes();
+    RandomnessGenerate.reset();
+    StyleManager.reset();
+    WalkieTalkieManager.reset();
+    GameState.resetGameState();
+    AnimationManager.reset();
+    new HackerAiManager();
+    try {
+      App.reloadScenes();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   public static int getQuestionsCorrect() {

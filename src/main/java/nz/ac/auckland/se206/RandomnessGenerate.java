@@ -51,14 +51,14 @@ public class RandomnessGenerate {
   // method to get random wires list
   public static List<HBox> getRandomWires() {
     return wiresList;
-  } 
+  }
 
   // Method to add HBox elements to the keyLocationList
   public static void addKeyLocation(HBox... hboxes) {
     keyLocationList.addAll(Arrays.asList(hboxes));
   }
 
-  //Method to add wires to wireslist
+  // Method to add wires to wireslist
   public static void addWires(HBox... wires) {
     List<HBox> shuffledWires = Arrays.asList(wires);
     Collections.shuffle(shuffledWires);
@@ -80,8 +80,7 @@ public class RandomnessGenerate {
     return randomKeyLocation;
   }
 
-
-  public static int getRandomColourValue(){
+  public static int getRandomColourValue() {
     return random.nextInt(255);
   }
 
@@ -89,7 +88,10 @@ public class RandomnessGenerate {
     int randomChemialAmountIndex = random.nextInt(partsAmount.size());
     randomChemialAmount = partsAmount.get(randomChemialAmountIndex);
     return randomChemialAmount;
+  }
 
+  public static void reset() {
+    keyLocationList.clear();
+    wiresList.clear();
   }
 }
-
