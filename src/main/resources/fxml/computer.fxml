@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -13,6 +14,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../css/computer.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ComputerController">
    <children>
+      <ImageView fitHeight="707.0" fitWidth="1000.0" onMouseClicked="#onGoBack" opacity="0.58" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/secuirty%20room.png" />
+         </image>
+      </ImageView>
       <HBox layoutX="29.0" layoutY="55.0" prefHeight="602.0" prefWidth="817.0">
          <children>
             <AnchorPane prefHeight="602.0" prefWidth="1011.0" stylesheets="@../css/computer.css">
@@ -102,5 +108,10 @@
             </VBox>
          </children>
       </HBox>
+      <Label fx:id="processingLabel" layoutX="662.0" layoutY="361.0" prefHeight="28.0" prefWidth="206.0">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

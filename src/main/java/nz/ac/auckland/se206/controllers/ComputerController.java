@@ -3,16 +3,19 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
+import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
@@ -34,20 +37,29 @@ public class ComputerController extends Controller {
   @FXML private Button viewHistoryBtn;
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
+  @FXML private Label processingLabel;
 
   private static int currentIndex = 0;
 
   private ChatCompletionRequest chatCompletionRequest;
   private ChatMessage lastMsg;
   private int numberOfMessagesCorrect = 0;
+  private int dotCount = 0;
   private boolean animationIsFinished = false;
   private Queue<ChatMessage> messageQueue = new LinkedList<>();
   private boolean isTyping = false;
-  Timeline timeline;
+  private StringBuilder textBuffer;
+
+  private Timeline timeline;
 
   public void initialize() throws ApiProxyException {
     SceneManager.setController(Scenes.COMPUTER, this);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
+
+    textBuffer = new StringBuilder();
+
+    timeline = new Timeline(new KeyFrame(Duration.seconds(0.6), e -> updateLabel()));
+    timeline.setCycleCount(Timeline.INDEFINITE);
 
     ChatMessage msg = App.getStartMessage();
     System.out.println(msg);
@@ -116,7 +128,10 @@ public class ComputerController extends Controller {
             messageQueue.add(msg);
             appendChatMessage();
 
-            showProcessingAnimation();
+            Platform.runLater(
+                () -> {
+                  timeline.play();
+                });
 
             if (message.trim().equals("1")) {
               lastMsg = getRiddle();
@@ -150,6 +165,7 @@ public class ComputerController extends Controller {
             if (lastMsg.getRole().equals("assistant")
                 && lastMsg.getContent().startsWith("Authenticated")) {
               System.out.println("Authenticated");
+
               // Set vault visble/firewall disabled
             }
 
@@ -160,9 +176,11 @@ public class ComputerController extends Controller {
               startConnectDots();
               // Logic to start connect dots mini game
             }
-            hideProcessingAnimation();
+
             Platform.runLater(
                 () -> {
+                  processingLabel.setText("");
+                  timeline.stop();
                   appendChatMessage();
                 });
 
@@ -179,47 +197,10 @@ public class ComputerController extends Controller {
     App.setUI(Scenes.HACKERVAN);
   }
 
-  private void showProcessingAnimation() {
-    final String[] dots = {"", ".", "..", "..."}; // Array for animated dots
-    final int animationDelay = 500; // Delay between changing dots
-    final String processingText = "Processing"; // The text to display
-
-    Task<Void> task =
-        new Task<Void>() {
-          @Override
-          protected Void call() throws Exception {
-            for (int i = 0; i < dots.length; i++) {
-              final String animation = processingText + dots[i];
-
-              Platform.runLater(
-                  () -> {
-                    securityTextArea.appendText(animation);
-                  });
-
-              try {
-                Thread.sleep(animationDelay);
-              } catch (InterruptedException e) {
-                e.printStackTrace();
-              }
-            }
-            return null;
-          }
-        };
-
-    new Thread(task).start();
-  }
-
-  private void hideProcessingAnimation() {
-    // Clear the last line in the securityTextArea to hide the animation
-    Platform.runLater(
-        () -> {
-          String text = securityTextArea.getText();
-          int lastNewlineIndex = text.lastIndexOf('\n');
-          if (lastNewlineIndex >= 0) {
-            String newText = text.substring(0, lastNewlineIndex);
-            securityTextArea.setText(newText);
-          }
-        });
+  private void updateLabel() {
+    dotCount = (dotCount % 3) + 1; // Cycle dots from 1 to 3
+    String dots = ".".repeat(dotCount); // Generate dots
+    processingLabel.setText("Processing" + dots);
   }
 
   //   handling mouse events on walkie talkie
@@ -281,10 +262,6 @@ public class ComputerController extends Controller {
   //     typeText(nextMessage.getContent());
   //   }
   // }
-
-  private void putInChat(ChatMessage msg) {
-    securityTextArea.appendText(msg.getContent());
-  }
 
   // securityTextArea.appendText(msg.getContent() + "\n\n");private void
   // appendChatMessage(ChatMessage msg) {
