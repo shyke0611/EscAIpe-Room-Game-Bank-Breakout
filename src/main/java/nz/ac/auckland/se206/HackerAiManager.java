@@ -38,6 +38,7 @@ public class HackerAiManager {
   }
 
   public HackerAiManager() {
+    instance = this;
     // Initialize the hint mappings
     hintMappings.put(
         "Find Keys", "You must distract the guard to look in the places where the keys may be.");
