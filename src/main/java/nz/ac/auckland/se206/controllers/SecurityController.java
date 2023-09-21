@@ -1,28 +1,38 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.HackerAiManager;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.StyleManager.HoverColour;
-import nz.ac.auckland.se206.StyleManager.State;
 import nz.ac.auckland.se206.WalkieTalkieManager;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class SecurityController extends Controller {
 
   @FXML private ImageView Lobby;
+  @FXML private Label timerLabel;
   @FXML private Button LogOffBtn;
   @FXML private AnchorPane SecurityPane;
   @FXML private VBox SecurityRoomSwitch;
@@ -36,22 +46,28 @@ public class SecurityController extends Controller {
   @FXML private PasswordField passwordField;
   @FXML private HBox computer;
   @FXML private TextField usernameField;
-  @FXML private VBox walkietalkie;
+  @FXML private VBox securitywalkietalkie;
   @FXML private VBox walkietalkieText;
   @FXML private ImageView securitybackground;
+  @FXML private ImageView tempbackground;
+  @FXML private TextArea securityTextArea;
+  @FXML private TextField securityInputField;
+  @FXML private ImageView securityWalkieTalkie;
 
   StyleManager styleManager = StyleManager.getInstance();
+  WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
+  HackerAiManager hackerAiManager = HackerAiManager.getInstance();
 
   public void initialize() {
     SceneManager.setController(Scenes.SECURITY, this);
+
+    super.setTimerLabel(timerLabel, 1);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
-
-    styleManager.setItemsMessage("A computer...?", computer);
-
-    styleManager.addItems(computer, electricityBox, securitybackground);
-    styleManager.setItemsMessage("A computer...?", computer);
-    styleManager.setItemsMessage("it requires credentials?", logInBtn);
-    styleManager.setItemsMessage("no need to open this right now", electricityBox);
+    WalkieTalkieManager.addWalkieTalkieImage(this, securityWalkieTalkie);
+    styleManager.addItems(computer, electricityBox, securitybackground, VaultRoomSwitch);
+    styleManager.setItemsMessage("A computer...?", "computer");
+    styleManager.setItemsMessage("no need to open this right now", "electricityBox");
+    // setupListeners(computer,electricityBox);
   }
 
   //   handling mouse events on walkie talkie
@@ -61,28 +77,33 @@ public class SecurityController extends Controller {
     WalkieTalkieManager.toggleWalkieTalkie();
   }
 
+  @FXML
   public void switchToLobby() {
     App.setUI(Scenes.LOBBY);
   }
 
+  @FXML
   public void switchToVault() {
+    if (GameState.isAlarmDisabled) {
+      styleManager.getItem("bombHolder").setVisible(true);
+      styleManager.setDisable(true, "bronzeDoor", "silverDoor", "goldDoor");
+      styleManager.setClueHover("VaultRoomSwitch", false);
+    }
     App.setUI(Scenes.VAULT);
   }
 
-  public void switchToDots() {
-    App.setUI(Scenes.CONNECTDOTS);
-  }
-
   public void onSwitchToHacker() {
-    SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.SECURITY);
+    SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.VAULT);
+    HackerVanController vanController =
+        (HackerVanController) SceneManager.getController(Scenes.HACKERVAN);
+    vanController.printChatHistory();
+    vanController.loadQuickHints();
     App.setUI(Scenes.HACKERVAN);
   }
 
   @FXML
   void onWireCutting(MouseEvent event) {
-    if (!GameState.isWiresCut
-    /** && GameState.isAlarmTripped */
-    ) {
+    if (!GameState.isWiresCut && GameState.isAlarmTripped) {
       App.setUI(Scenes.WIRECUTTING);
     } else if (GameState.isWiresCut) {
       electricityBox.setDisable(true);
@@ -103,15 +124,16 @@ public class SecurityController extends Controller {
   @FXML
   public void onClickComputer(MouseEvent event) {
     // if already logged in, skip log in stage
-    App.setUI(Scenes.COMPUTER);
-
-    // if (!GameState.isSecurityComputerLoggedIn) {
-    //   logInScreen.setVisible(true);
-    // } else {
-    //   logInScreen.setVisible(false);
-    //   App.setUI(Scenes.COMPUTER);
-    //   styleManager.removeItemsMessage(computer);
-    // }
+    if (!GameState.isSecurityComputerLoggedIn) {
+      logInScreen.setVisible(true);
+    } else if (GameState.isConnectDotreached) {
+      App.setUI(Scenes.CONNECTDOTS);
+    } else {
+      logInScreen.setVisible(false);
+      App.setUI(Scenes.COMPUTER);
+      styleManager.removeItemsMessage("computer");
+    }
+    styleManager.setClueHover("computer", false);
   }
 
   // method that handles overall login mechanics
@@ -126,7 +148,7 @@ public class SecurityController extends Controller {
     if (areCredentialsValid(enteredUsername, enteredPassword, randomUsername, randomPassword)) {
       handleSuccessfulLogin();
       logInScreen.setVisible(false);
-      styleManager.setItemsState(HoverColour.GREEN, State.HOVER, computer);
+      styleManager.setItemsState(HoverColour.GREEN, "computer");
     } else if (areCredentialsEmpty()) {
       handleEmptyCredentials();
     } else {
@@ -151,17 +173,66 @@ public class SecurityController extends Controller {
   // mechanics for when login is successful
   private void handleSuccessfulLogin() {
     loginMsgLbl.setText("Success");
+    loginMsgLbl.setTextFill(Color.GREEN);
     GameState.isSecurityComputerLoggedIn = true;
     App.setUI(Scenes.COMPUTER);
+    styleManager.setDisable(true, "credentialsBook");
+    styleManager.setVisible(false, "credentialsNote");
   }
 
   // mechanics for empty credential input
   private void handleEmptyCredentials() {
     loginMsgLbl.setText("Enter your credentials");
+    loginMsgLbl.setTextFill(Color.ORANGE);
   }
 
   // mechanics for when login fails
   private void handleFailedLogin() {
     loginMsgLbl.setText("Wrong username or password");
+    loginMsgLbl.setTextFill(Color.RED);
+  }
+
+  @FXML
+  public void invokeHackerAI(KeyEvent event) throws ApiProxyException {
+
+    if (event.getCode() == KeyCode.ENTER) {
+
+      Task<Void> aiTask2 =
+          new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+              walkieTalkieManager.startAnimation();
+              // Perform AI-related operations here
+              ChatMessage msg = new ChatMessage("user", securityInputField.getText());
+              hackerAiManager.addChatHistory(msg.getContent());
+              walkieTalkieManager.clearWalkieTalkie();
+
+              ChatMessage responce = hackerAiManager.processInput(msg);
+              hackerAiManager.addChatHistory(responce.getContent());
+
+              // Move this code here to use the `responce` variable within the call method
+              Platform.runLater(
+                  () -> {
+                    walkieTalkieManager.setWalkieTalkieText(responce);
+
+                    securityInputField.clear();
+                    walkieTalkieManager.stopAnimation();
+                  });
+
+              return null;
+            }
+          };
+
+      Thread aiThread2 = new Thread(aiTask2);
+      aiThread2.setDaemon(true);
+      aiThread2.start();
+    }
+  }
+
+  @FXML
+  public void quickHint(ActionEvent event) {
+    String hint = hackerAiManager.GetQuickHint();
+    hackerAiManager.storeQuickHint();
+    walkieTalkieManager.setWalkieTalkieText(new ChatMessage("user", hint));
   }
 }

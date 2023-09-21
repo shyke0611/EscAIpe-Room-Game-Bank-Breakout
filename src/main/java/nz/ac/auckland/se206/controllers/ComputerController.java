@@ -17,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.WalkieTalkieManager;
@@ -37,6 +38,8 @@ public class ComputerController extends Controller {
   @FXML private Button viewHistoryBtn;
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
+  @FXML private Button dotGameBtn;
+  @FXML private Label timerLabel;
   @FXML private Label processingLabel;
 
   private static int currentIndex = 0;
@@ -54,6 +57,7 @@ public class ComputerController extends Controller {
 
   public void initialize() throws ApiProxyException {
     SceneManager.setController(Scenes.COMPUTER, this);
+    super.setTimerLabel(timerLabel, 1);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
 
     textBuffer = new StringBuilder();
@@ -201,6 +205,11 @@ public class ComputerController extends Controller {
     dotCount = (dotCount % 3) + 1; // Cycle dots from 1 to 3
     String dots = ".".repeat(dotCount); // Generate dots
     processingLabel.setText("Processing" + dots);
+  }
+
+  public void switchToDots() {
+    GameState.isConnectDotreached = true;
+    App.setUI(Scenes.CONNECTDOTS);
   }
 
   //   handling mouse events on walkie talkie

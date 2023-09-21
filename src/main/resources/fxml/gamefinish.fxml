@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.GameFinishController">
+   <children>
+      <HBox alignment="CENTER" layoutX="84.0" layoutY="48.0" prefHeight="100.0" prefWidth="819.0">
+         <children>
+            <Label fx:id="outcomeLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="819.0" text="Congratulations or Game Over Text">
+               <font>
+                  <Font size="53.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Label fx:id="timeLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="261.0" layoutY="202.0" prefHeight="47.0" prefWidth="508.0" text="Time Taken: ">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <Label fx:id="moneyLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="307.0" layoutY="286.0" prefHeight="50.0" prefWidth="412.0" text="Money Stolen:">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Label>
+      <Button fx:id="exitButton" layoutX="280.0" layoutY="405.0" mnemonicParsing="false" onAction="#onExit" prefHeight="92.0" prefWidth="185.0" text="exit">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Button>
+      <Button fx:id="mainmenuBtn" layoutX="488.0" layoutY="404.0" mnemonicParsing="false" onAction="#onSwitchToMainMenu" prefHeight="95.0" prefWidth="177.0" text="main menu">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <TextArea fx:id="leaderboard" editable="false" layoutX="734.0" layoutY="211.0" prefHeight="360.0" prefWidth="200.0" promptText="leader board" />
+   </children>
+</AnchorPane>

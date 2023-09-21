@@ -6,9 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import nz.ac.auckland.se206.HackerAiManager.Difficulties;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.gpt.ChatMessage;
-import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
@@ -54,46 +54,45 @@ public class App extends Application {
    *
    * @param stage The primary stage of the application.
    * @throws IOException If "src/main/resources/fxml/canvas.fxml" is not found.
+   * @throws ApiProxyException
    */
   @Override
-  public void start(final Stage stage) throws IOException {
+  public void start(final Stage stage) throws IOException, ApiProxyException {
     // initialise the randomiser for all random components
     RandomnessGenerate.generateRandomGameComponents();
 
-    chatCompletionRequest =
-        new ChatCompletionRequest().setN(1).setTemperature(0.5).setTopP(0.9).setMaxTokens(100);
-    try {
-      message = runGpt(new ChatMessage("user", GptPromptEngineering.welcomeMessage()));
-    } catch (ApiProxyException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
+    HackerAiManager hackerAiManager = HackerAiManager.getInstance();
+    hackerAiManager.initialiseHackerAi(Difficulties.EASY);
+    GameManager.completeObjective();
+
     // Initialise controllers hashmap to SceneManager
     SceneManager.addController(SceneManager.Scenes.VAULT, null);
     SceneManager.addController(SceneManager.Scenes.LOBBY, null);
     SceneManager.addController(SceneManager.Scenes.SECURITY, null);
+    SceneManager.addController(SceneManager.Scenes.WIRECUTTING, null);
     SceneManager.addController(SceneManager.Scenes.MAIN_MENU, null);
     SceneManager.addController(SceneManager.Scenes.DIFFICULTYPAGE, null);
     SceneManager.addController(SceneManager.Scenes.COMPUTER, null);
     SceneManager.addController(SceneManager.Scenes.HACKERVAN, null);
     SceneManager.addController(SceneManager.Scenes.EYESCANNER, null);
     SceneManager.addController(SceneManager.Scenes.CHEMICALMIXING, null);
+    SceneManager.addController(SceneManager.Scenes.GAMEFINISH, null);
     SceneManager.addController(SceneManager.Scenes.CONNECTDOTS, null);
     SceneManager.addController(SceneManager.Scenes.WIRECUTTING, null);
-    SceneManager.addController(SceneManager.Scenes.CHEMICALMIXING, null);
     SceneManager.addController(SceneManager.Scenes.LASERCUTTING, null);
 
     // Add scenes to SceneManager
     SceneManager.addUi(SceneManager.Scenes.VAULT, loadFxml("vault"));
     SceneManager.addUi(SceneManager.Scenes.LOBBY, loadFxml("lobby"));
     SceneManager.addUi(SceneManager.Scenes.SECURITY, loadFxml("securityroom"));
+    SceneManager.addUi(SceneManager.Scenes.WIRECUTTING, loadFxml("wirecutting"));
     SceneManager.addUi(SceneManager.Scenes.MAIN_MENU, loadFxml("mainmenu"));
     SceneManager.addUi(SceneManager.Scenes.DIFFICULTYPAGE, loadFxml("difficultypage"));
     SceneManager.addUi(SceneManager.Scenes.COMPUTER, loadFxml("computer"));
     SceneManager.addUi(SceneManager.Scenes.HACKERVAN, loadFxml("hackervan"));
-    SceneManager.addUi(SceneManager.Scenes.WIRECUTTING, loadFxml("wirecutting"));
     SceneManager.addUi(SceneManager.Scenes.EYESCANNER, loadFxml("eyescanner"));
     SceneManager.addUi(SceneManager.Scenes.CHEMICALMIXING, loadFxml("chemicalmixing"));
+    SceneManager.addUi(SceneManager.Scenes.GAMEFINISH, loadFxml("gamefinish"));
     SceneManager.addUi(SceneManager.Scenes.CONNECTDOTS, loadFxml("connectdots"));
     SceneManager.addUi(SceneManager.Scenes.LASERCUTTING, loadFxml("laserCutting"));
 

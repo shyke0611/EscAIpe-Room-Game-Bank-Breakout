@@ -3,19 +3,29 @@ package nz.ac.auckland.se206;
 import java.util.Timer;
 import java.util.TimerTask;
 import javafx.application.Platform;
+import nz.ac.auckland.se206.SceneManager.Scenes;
 
 public class TimerControl {
 
-  private static int initialCount = 0;
+  private static int initialCount = 10;
   private static int count;
+  private static int i = 0;
 
   private static Timer timer;
   private static TimerTask task;
 
-  public static String getTime() {
+  public static String getTime(int format) {
     int minutes = count / 60;
-    String time = "" + minutes + ":" + getSecondsString();
-    return time;
+    switch (format) {
+      case 1:
+        return "" + minutes + ":" + getSecondsString();
+      case 2:
+        return "" + minutes + " Minutes and " + getSecondsString() + " Seconds";
+      case 3:
+        return "Time Remaining: " + minutes + " Minutes and " + getSecondsString() + " Seconds";
+      default:
+        return "" + minutes + ":" + getSecondsString();
+    }
   }
 
   private static String getSecondsString() {
@@ -29,7 +39,7 @@ public class TimerControl {
   }
 
   // method to set timer count
-  public static void setCount(int minutes) {
+  public static void setTimer(int minutes) {
     switch (minutes) {
       case 2:
         initialCount = 120;
@@ -47,6 +57,7 @@ public class TimerControl {
   }
 
   public static void resetCount() {
+    i = 0;
     count = initialCount;
   }
 
@@ -55,16 +66,22 @@ public class TimerControl {
     task =
         new TimerTask() {
           public void run() {
+            i++;
 
             // if time is not up, update timer label
             if (count > 0) {
-              count--;
+              if (i % 2 == 0) {
+                count--;
+              }
+              int format = SceneManager.getActiveController().getFormat();
+
               Platform.runLater(
                   () -> {
-                    SceneManager.getTimerLabel().setText(getTime());
+                    SceneManager.getTimerLabel().setText(getTime(format));
                   });
               // if time is up, reset game
             } else {
+              App.setUI(Scenes.GAMEFINISH);
               cancelTimer();
             }
           }
@@ -82,7 +99,7 @@ public class TimerControl {
     resetCount();
     timer = new Timer("Timer", true);
     createTask();
-    timer.scheduleAtFixedRate(task, 0, 1000);
+    timer.scheduleAtFixedRate(task, 0, 500);
   }
 
   // method to cancel timer
