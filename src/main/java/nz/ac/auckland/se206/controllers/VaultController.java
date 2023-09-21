@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.AnimationManager;
@@ -54,6 +55,7 @@ public class VaultController extends Controller {
   @FXML private HBox escapeDoor;
   @FXML private Pane slidePane;
   @FXML private Button lootBtn;
+  @FXML private StackPane timerClock;
 
   @FXML private HBox switchHolder;
   @FXML private HBox walkietalkieHolder;
@@ -113,6 +115,7 @@ public class VaultController extends Controller {
     AnimationManager.slideDoorsAnimation(doorHolder);
     AnimationManager.slideDoorsAnimation(vaultbackground);
     AnimationManager.slideDoorsAnimation(slidePane);
+    timerClock.setTranslateX(350);
     bomblogo.setVisible(false);
     styleManager.removeItemsMessage("bombHolder");
   }
@@ -184,6 +187,7 @@ public class VaultController extends Controller {
     String code = givencode.getText().substring("Code: ".length());
     if (inputLbl.getText().equals(code)) {
       statusLbl.setText("Success, press x to Activate bomb");
+      inputLbl.setText("");
       GameState.isBombActivated = true;
 
     } else {

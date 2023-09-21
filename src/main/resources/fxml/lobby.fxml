@@ -245,7 +245,7 @@
             <String fx:value="keylocations" />
          </styleClass>
       </HBox>
-      <HBox fx:id="credentialsNote" layoutX="297.0" layoutY="331.0" prefHeight="243.0" prefWidth="306.0">
+      <HBox fx:id="credentialsNote" layoutX="297.0" layoutY="331.0" prefHeight="243.0" prefWidth="306.0" visible="false">
          <children>
             <VBox prefHeight="179.0" prefWidth="306.0">
                <children>
@@ -326,6 +326,5 @@
             </DropShadow>
          </effect>
       </HBox>
-      <Label layoutX="500.0" layoutY="146.0" text="Label" />
    </children>
 </AnchorPane>
