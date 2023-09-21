@@ -19,7 +19,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="LobbyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LobbyController">
+<AnchorPane fx:id="LobbyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#invokeHackerAI" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LobbyController">
    <children>
       <ImageView fx:id="lobbybackground" fitHeight="701.0" fitWidth="1010.0" layoutX="-6.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -42,20 +42,6 @@
                   </Label>
                </children>
             </VBox>
-            <VBox fx:id="VaultRoomSwitch" alignment="CENTER" prefHeight="110.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
-               <children>
-                  <ImageView fx:id="Vault" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#switchToVault" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/robber2.png" />
-                     </image>
-                  </ImageView>
-                  <Label text="Vault">
-                     <font>
-                        <Font size="21.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
             <VBox fx:id="SecurityRoomSwitch" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
                <children>
                   <ImageView fx:id="Security" fitHeight="111.0" fitWidth="100.0" onMouseClicked="#switchToSecurity" pickOnBounds="true" preserveRatio="true">
@@ -64,6 +50,20 @@
                      </image>
                   </ImageView>
                   <Label text="Security">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox fx:id="VaultRoomSwitch" alignment="CENTER" prefHeight="110.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
+               <children>
+                  <ImageView fx:id="Vault" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#switchToVault" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/robber2.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Vault">
                      <font>
                         <Font size="21.0" />
                      </font>
@@ -161,9 +161,9 @@
          </children></HBox>
       <HBox layoutX="15.0" layoutY="539.0" prefHeight="150.0" prefWidth="665.0">
          <children>
-            <VBox fx:id="walkietalkie" onMousePressed="#onWalkieTalkie" prefHeight="200.0" prefWidth="100.0" styleClass="walkietalkie" stylesheets="@../css/rooms.css">
+            <VBox fx:id="lobbywalkietalkie" onMousePressed="#onWalkieTalkie" prefHeight="200.0" prefWidth="100.0" styleClass="walkietalkie" stylesheets="@../css/rooms.css">
                <children>
-                  <ImageView fitHeight="141.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="lobbyWalkieTalkie" fitHeight="141.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/walkietalkie.png" />
                      </image>
@@ -172,9 +172,12 @@
             </VBox>
             <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0" visible="false">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="528.0">
+                  <HBox fx:id="textAreaBox" prefHeight="100.0" prefWidth="528.0">
                      <children>
-                        <TextArea editable="false" prefHeight="100.0" prefWidth="425.0" stylesheets="@../css/rooms.css" />
+                        <TextArea fx:id="lobbyTextArea" editable="false" onKeyPressed="#invokeHackerAI" prefHeight="100.0" prefWidth="425.0" stylesheets="@../css/rooms.css" wrapText="true">
+                           <font>
+                              <Font size="19.0" />
+                           </font></TextArea>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="component2" stylesheets="@../css/rooms.css">
                            <children>
                               <Button fx:id="viewHistoryBtn" mnemonicParsing="false" onAction="#onSwitchToHacker" text="View History">
@@ -182,14 +185,14 @@
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button fx:id="quickHintBtn" mnemonicParsing="false" text="Quick Hint" />
+                              <Button fx:id="quickHintBtn" mnemonicParsing="false" onAction="#quickHint" text="Quick Hint" />
                            </children>
                         </VBox>
                      </children>
                   </HBox>
                   <HBox prefHeight="51.0" prefWidth="512.0">
                      <children>
-                        <TextField prefHeight="58.0" prefWidth="512.0" promptText="Bzzz... type here" stylesheets="@../css/rooms.css">
+                        <TextField fx:id="lobbyTextInput" prefHeight="58.0" prefWidth="512.0" promptText="Bzzz... type here" stylesheets="@../css/rooms.css">
                            <font>
                               <Font size="22.0" />
                            </font>

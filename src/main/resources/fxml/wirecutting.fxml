@@ -167,10 +167,13 @@
             </StackPane>
             <VBox alignment="CENTER" prefHeight="425.0" prefWidth="456.0">
                <children>
-                  <Label text="Use this wirecutter" textFill="WHITE">
+                  <Label fx:id="wirecutterLbl" text="Use this wirecutter" textFill="WHITE">
                      <font>
-                        <Font size="25.0" />
+                        <Font name="Apple LiSung Light" size="25.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
                   </Label>
                   <HBox fx:id="wirecutter" alignment="CENTER" onMousePressed="#onWireCutterClicked" prefHeight="101.0" prefWidth="127.0" styleClass="guard" stylesheets="@../css/rooms.css">
                      <children>
@@ -191,7 +194,7 @@
                   </Label>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="267.0" translateY="-25.0">
                      <children>
-                        <Button fx:id="retryBtn" mnemonicParsing="false" onAction="#onRetry" styleClass="computer-button" stylesheets="@../css/rooms.css" text="retry" />
+                        <Button fx:id="retryBtn" mnemonicParsing="false" onAction="#onRetry" styleClass="computer-button" stylesheets="@../css/rooms.css" text="Retry" />
                         <Button fx:id="goBackBtn" mnemonicParsing="false" onAction="#onGoBack" styleClass="computer-button" stylesheets="@../css/rooms.css" text="Exit">
                            <HBox.margin>
                               <Insets left="20.0" />

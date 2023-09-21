@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.WalkieTalkieManager;
@@ -23,6 +24,7 @@ public class ComputerController extends Controller {
   @FXML private Button viewHistoryBtn;
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
+  @FXML private Button dotGameBtn;
   @FXML private Label timerLabel;
 
   public void initialize() {
@@ -43,6 +45,11 @@ public class ComputerController extends Controller {
   public void onSwitchToHacker() {
     SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.COMPUTER);
     App.setUI(Scenes.HACKERVAN);
+  }
+
+  public void switchToDots() {
+    GameState.isConnectDotreached = true;
+    App.setUI(Scenes.CONNECTDOTS);
   }
 
   //   handling mouse events on walkie talkie

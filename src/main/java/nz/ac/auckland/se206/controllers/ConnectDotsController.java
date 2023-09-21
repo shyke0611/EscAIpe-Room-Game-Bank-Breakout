@@ -12,7 +12,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
 public class ConnectDotsController extends Controller {
@@ -21,6 +23,8 @@ public class ConnectDotsController extends Controller {
   @FXML private StackPane disableSecurity;
   @FXML private Label timerLabel;
   @FXML private Button resetButton;
+
+  StyleManager styleManager = StyleManager.getInstance();
 
   // 0 = empty, 1 = red, 2 = blue, 3 = green, 4 = purple, negative = node
   private int[][] grid = new int[6][6];
@@ -127,6 +131,7 @@ public class ConnectDotsController extends Controller {
 
     if (isGameComplete()) {
       disableSecurity.setVisible(true);
+            GameState.isSecondUserAuthenticated = true;
       resetButton.setDisable(true);
     }
   }
@@ -255,6 +260,9 @@ public class ConnectDotsController extends Controller {
   }
 
   public void switchToSecurity() {
+    if (GameState.isSecondUserAuthenticated) {
+      styleManager.getItem("computer").setDisable(true);
+    }
     App.setUI(Scenes.SECURITY);
   }
 }
