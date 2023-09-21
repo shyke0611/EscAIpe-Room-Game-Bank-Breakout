@@ -202,9 +202,9 @@
                   </ImageView>
                </children>
             </VBox>
-            <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0" visible="false">
+            <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="528.0">
+                  <HBox prefHeight="100.0" prefWidth="528.0" visible="false">
                      <children>
                         <TextArea fx:id="securityTextArea" editable="false" onKeyPressed="#invokeHackerAI" prefHeight="100.0" prefWidth="425.0" stylesheets="@../css/rooms.css" wrapText="true">
                            <font>
@@ -222,7 +222,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox prefHeight="51.0" prefWidth="512.0">
+                  <HBox prefHeight="51.0" prefWidth="512.0" visible="false">
                      <children>
                         <TextField fx:id="securityInputField" prefHeight="58.0" prefWidth="512.0" promptText="Bzzz... type here" stylesheets="@../css/rooms.css">
                            <font>

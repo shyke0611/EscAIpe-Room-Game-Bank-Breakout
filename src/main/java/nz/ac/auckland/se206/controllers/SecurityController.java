@@ -123,7 +123,7 @@ public class SecurityController extends Controller {
 
   // opening computer log in screen
   @FXML
-  void onClickComputer(MouseEvent event) {
+  public void onClickComputer(MouseEvent event) {
     // if already logged in, skip log in stage
     if (!GameState.isSecurityComputerLoggedIn) {
       logInScreen.setVisible(true);
