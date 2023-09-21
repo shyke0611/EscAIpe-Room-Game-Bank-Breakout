@@ -97,7 +97,6 @@ public class VaultController extends Controller {
         bombHolder,
         bombPuzzle,
         vaultwalkietalkie,
-        walkietalkie,
         walkietalkieHolder,
         switchHolder,
         escapeDoor);
