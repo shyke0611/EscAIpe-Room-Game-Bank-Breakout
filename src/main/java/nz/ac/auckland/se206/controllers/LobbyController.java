@@ -53,6 +53,7 @@ public class LobbyController extends Controller {
   @FXML private Label titleLbl;
   @FXML private Label passwordLbl;
   @FXML private Label usernameLbl;
+  @FXML private Label orderLabel;
 
   private String randomUsername;
   private String randomPassword;
@@ -138,15 +139,18 @@ public class LobbyController extends Controller {
 
       for (HBox wire : wires) {
         String name = wire.getId();
-        wireNames.append(name).append(", ");
+        wireNames.append(name).append(" \n");
       }
       if (wireNames.length() > 0) {
-        wireNames.setLength(wireNames.length() - 2);
+        wireNames.setLength(wireNames.length() - 1);
       }
 
-      usernameLbl.setText(wireNames.toString());
+      usernameLbl.setText(null);
       passwordLbl.setText(null);
+      orderLabel.setText(wireNames.toString());
+      orderLabel.setVisible(true);
       titleLbl.setText("Wire Cutting Order");
+      titleLbl.setPrefHeight(35);
     }
   }
 
