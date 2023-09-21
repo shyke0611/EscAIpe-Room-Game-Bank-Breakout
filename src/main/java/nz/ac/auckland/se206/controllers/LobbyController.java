@@ -107,8 +107,12 @@ public class LobbyController extends Controller {
         credentialsNote,
         drawer,
         openDrawer,
-        SecurityRoomSwitch,VaultRoomSwitch,lobbyRoomSwitch,guardeyes);
-    styleManager.setItemsMessage("Guard is watching...", "key1", "key3", "key4", "guardpocket","guardeyes");
+        SecurityRoomSwitch,
+        VaultRoomSwitch,
+        lobbyRoomSwitch,
+        guardeyes);
+    styleManager.setItemsMessage(
+        "Guard is watching...", "key1", "key3", "key4", "guardpocket", "guardeyes");
 
     styleManager.setItemsMessage("It's locked...", "drawerHolder");
     styleManager.setItemsMessage("A note?", "credentialsBook");
@@ -186,23 +190,17 @@ public class LobbyController extends Controller {
       titleLbl.setText("Wire Cutting Order");
       styleManager.setClueHover("guardpocket", false);
       GameState.isWireCredentialsFound = true;
-
-
-      if (!GameState.isSecurityRoomHoverPressed2) {
-        styleManager.setClueHover("SecurityRoomSwitch", true);
-      }
       titleLbl.setPrefHeight(35);
-      GameState.isSecurityRoomHoverPressed2 = true;
     }
   }
 
   @FXML
   void onGuardEyes(MouseEvent event) {
-   if (GameState.isEyeScannerEntered) {
-    guardeyes.setDisable(true);
-    styleManager.getItem("compareBtn").setDisable(false);
-    ((EyeScannerController) SceneManager.getController(Scenes.EYESCANNER)).updateGuardEye();
-   }
+    if (GameState.isEyeScannerEntered) {
+      guardeyes.setDisable(true);
+      styleManager.getItem("compareBtn").setDisable(false);
+      ((EyeScannerController) SceneManager.getController(Scenes.EYESCANNER)).updateGuardEye();
+    }
   }
 
   // pressing book in drawer
@@ -255,9 +253,9 @@ public class LobbyController extends Controller {
     guard.setDisable(true);
     styleManager.setClueHover("guard", false);
     styleManager.setItemsState(HoverColour.GREEN, "key1", "key3", "key4");
-    styleManager.setItemsState(HoverColour.RED, "guardpocket","guardeyes");
+    styleManager.setItemsState(HoverColour.RED, "guardpocket", "guardeyes");
     styleManager.setItemsMessage("Something seems odd here...", "key1", "key3", "key4");
-    styleManager.setItemsMessage("Seems dangerous for now", "guardpocket","guardeyes");
+    styleManager.setItemsMessage("Seems dangerous for now", "guardpocket", "guardeyes");
   }
 
   boolean isZzz1Visible = false;
