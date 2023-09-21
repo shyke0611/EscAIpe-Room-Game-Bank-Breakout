@@ -2,6 +2,7 @@ package nz.ac.auckland.se206;
 
 import java.io.IOException;
 import javafx.application.Application;
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,6 +15,7 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /**
  * This is the entry point of the JavaFX application, while you can change this class, it should
@@ -65,7 +67,6 @@ public class App extends Application {
     HackerAiManager hackerAiManager = HackerAiManager.getInstance();
     hackerAiManager.initialiseHackerAi(Difficulties.EASY);
     GameManager.completeObjective();
-
 
     chatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.5).setTopP(0.9).setMaxTokens(100);
@@ -130,5 +131,22 @@ public class App extends Application {
       e.printStackTrace();
       return null;
     }
+  }
+
+  public static void textToSpeech(String string) {
+    Task<Void> speechTask =
+        new Task<Void>() {
+
+          @Override
+          protected Void call() throws Exception {
+            TextToSpeech textToSpeech = new TextToSpeech();
+            textToSpeech.speak(string);
+            return null;
+          }
+        };
+
+    Thread speechThread = new Thread(speechTask);
+    speechThread.setDaemon(true);
+    speechThread.start();
   }
 }

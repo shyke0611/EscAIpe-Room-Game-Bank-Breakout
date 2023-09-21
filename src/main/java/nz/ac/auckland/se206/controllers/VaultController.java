@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -197,6 +196,7 @@ public class VaultController extends Controller {
   @FXML
   void onLootCollected(ActionEvent event) {
     if (GameState.isFirewallDisabled && GameState.isAnyDoorOpen) {
+      App.textToSpeech("Trigger the alarm");
       styleManager.setAlarm(true);
       GameState.isAlarmTripped = true;
       styleManager.setItemsState(HoverColour.GREEN, "electricityBox");

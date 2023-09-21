@@ -14,8 +14,8 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
-import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.StyleManager;
 
 public class ConnectDotsController extends Controller {
 
@@ -131,8 +131,9 @@ public class ConnectDotsController extends Controller {
 
     if (isGameComplete()) {
       disableSecurity.setVisible(true);
-            GameState.isSecondUserAuthenticated = true;
+      GameState.isSecondUserAuthenticated = true;
       resetButton.setDisable(true);
+      App.textToSpeech("Security Disabled, Vault Access Granted");
     }
   }
 
