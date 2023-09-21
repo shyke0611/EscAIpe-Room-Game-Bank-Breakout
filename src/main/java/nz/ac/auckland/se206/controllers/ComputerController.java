@@ -116,6 +116,8 @@ public class ComputerController extends Controller {
             messageQueue.add(msg);
             appendChatMessage();
 
+            showProcessingAnimation();
+
             if (message.trim().equals("1")) {
               lastMsg = getRiddle();
               System.out.println("message recived");
@@ -158,6 +160,7 @@ public class ComputerController extends Controller {
               startConnectDots();
               // Logic to start connect dots mini game
             }
+            hideProcessingAnimation();
             Platform.runLater(
                 () -> {
                   appendChatMessage();
@@ -174,6 +177,49 @@ public class ComputerController extends Controller {
   public void onSwitchToHacker() {
     SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.COMPUTER);
     App.setUI(Scenes.HACKERVAN);
+  }
+
+  private void showProcessingAnimation() {
+    final String[] dots = {"", ".", "..", "..."}; // Array for animated dots
+    final int animationDelay = 500; // Delay between changing dots
+    final String processingText = "Processing"; // The text to display
+
+    Task<Void> task =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            for (int i = 0; i < dots.length; i++) {
+              final String animation = processingText + dots[i];
+
+              Platform.runLater(
+                  () -> {
+                    securityTextArea.appendText(animation);
+                  });
+
+              try {
+                Thread.sleep(animationDelay);
+              } catch (InterruptedException e) {
+                e.printStackTrace();
+              }
+            }
+            return null;
+          }
+        };
+
+    new Thread(task).start();
+  }
+
+  private void hideProcessingAnimation() {
+    // Clear the last line in the securityTextArea to hide the animation
+    Platform.runLater(
+        () -> {
+          String text = securityTextArea.getText();
+          int lastNewlineIndex = text.lastIndexOf('\n');
+          if (lastNewlineIndex >= 0) {
+            String newText = text.substring(0, lastNewlineIndex);
+            securityTextArea.setText(newText);
+          }
+        });
   }
 
   //   handling mouse events on walkie talkie
