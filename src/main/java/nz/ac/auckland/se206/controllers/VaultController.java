@@ -84,10 +84,6 @@ public class VaultController extends Controller {
   @FXML private HBox walkietalkieHolder;
   @FXML private ImageView vaultWalkieTalkie;
 
-  private Canvas canvas;
-  private GraphicsContext gc;
-  private double prevX, prevY;
-  private boolean cutting = false;
   @FXML private Rectangle AIAccess;
 
   StyleManager styleManager = StyleManager.getInstance();
@@ -190,6 +186,9 @@ public class VaultController extends Controller {
   public void switchToEyeScanner() {
     if (GameState.isFirewallDisabled /* && GameState.isSecondRiddleSolved*/) {
       App.setUI(Scenes.EYESCANNER);
+      GameState.isEyeScannerEntered = true;
+      styleManager.setItemsMessage("Get guard eye colour","guardeyes");
+      styleManager.setItemsState(HoverColour.GREEN,"guardeyes");
     }
   }
 
@@ -202,19 +201,15 @@ public class VaultController extends Controller {
   @FXML
   void onLootCollected(ActionEvent event) {
     if (GameState.isFirewallDisabled && GameState.isAnyDoorOpen) {
-      App.textToSpeech("Trigger the alarm");
+      App.textToSpeech("Alarm Triggered, Go and Disable it");
       StyleManager.setAlarm(true);
       GameState.isAlarmTripped = true;
       styleManager.setItemsState(HoverColour.GREEN, "electricityBox");
       styleManager.setItemsState(HoverColour.GREEN, "guardpocket");
       styleManager.setItemsMessage("Something seems odd?", "guardpocket");
       styleManager.setItemsMessage("Alarm Wires...?", "electricityBox");
-      lootBtnHolder.setDisable(true);
       lootBtnHolder.setVisible(false);
-      if (!GameState.isLobbyRoomHoverPressed) {
-      styleManager.setClueHover("lobbyRoomSwitch",true);
-      }
-      GameState.isLobbyRoomHoverPressed = true;
+      
     }
   }
 
@@ -259,6 +254,7 @@ public class VaultController extends Controller {
     if (GameState.isBombActivated) {
       styleManager.setVisible(
           false, "switchHolder", "walkietalkieHolder", "bombHolder");
+      App.textToSpeech("Good job, 5,4,3,2,1");
       AnimationManager.toggleAlarmAnimation(exitHolder,true,0.5);
       AnimationManager.delayAnimation(exitHolder, escapeDoor);
       exitHolder.setDisable(true);
@@ -268,6 +264,8 @@ public class VaultController extends Controller {
   public void onEscape() {
     TimerControl.cancelTimer();
     App.setUI(Scenes.GAMEFINISH);
+    SceneManager.getController(Scenes.GAMEFINISH).setGameWonPage();
+    // SceneManager.getController(Scenes.GAMEFINISH).setMoneyStolenLabel();
   }
 
   @FXML

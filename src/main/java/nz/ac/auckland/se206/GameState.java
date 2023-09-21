@@ -21,6 +21,7 @@ public class GameState {
   public static boolean isThirdRiddleSolved = false;
   public static boolean isSecondUserAuthenticated = false;
   public static boolean isBombActivated = false;
+  public static boolean isEyeScannerEntered = false;
   public static boolean isEyeScannerBypassed = false;
   public static boolean isChemicalMixingBypassed = false;
   public static boolean isLaserCuttingBypassed = false;
@@ -32,9 +33,7 @@ public class GameState {
   // tracking record of if the green hover is pressed
   public static boolean isComputerHoverPressed = false;
   public static boolean isSecurityRoomHoverPressed = false;
-  public static boolean isSecurityRoomHoverPressed2 = false;
   public static boolean isGuardPocketHoverPressed = false;
-  public static boolean isLobbyRoomHoverPressed = false;
   public static boolean isElectricityHoverPressed = false;
 
   public static void resetGameState() {

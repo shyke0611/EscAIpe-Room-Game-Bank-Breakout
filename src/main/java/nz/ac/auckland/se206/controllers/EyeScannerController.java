@@ -1,12 +1,12 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
-import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
@@ -35,6 +35,8 @@ public class EyeScannerController extends Controller {
   @FXML private VBox walkietalkieText;
   @FXML private Label timerLabel;
 
+  @FXML private Button compareBtn;
+
   private int red;
   private int green;
   private int blue;
@@ -47,6 +49,7 @@ public class EyeScannerController extends Controller {
 
   public void initialize() {
 
+    styleManager.addItems(compareBtn);
     SceneManager.setController(Scenes.EYESCANNER, this);
     super.setTimerLabel(timerLabel, 3);
     accessGranted.setVisible(false);
@@ -133,6 +136,7 @@ public class EyeScannerController extends Controller {
       accessGranted.setVisible(true);
       accessDenied.setVisible(false);
       GameState.isEyeScannerBypassed = true;
+      // updateMoneyStolen(10000000);
     } else {
       accessGranted.setVisible(false);
       accessDenied.setVisible(true);

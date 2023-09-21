@@ -112,6 +112,9 @@ public class SecurityController extends Controller {
   @FXML
   void onWireCutting(MouseEvent event) {
     if (!GameState.isWiresCut && GameState.isAlarmTripped) {
+      if (!GameState.isWireCredentialsFound) {
+      App.textToSpeech("you need to find wire cutting order");
+      }
       App.setUI(Scenes.WIRECUTTING);
     } else if (GameState.isWiresCut) {
       electricityBox.setDisable(true);

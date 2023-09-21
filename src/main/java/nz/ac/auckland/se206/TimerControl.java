@@ -42,7 +42,7 @@ public class TimerControl {
   public static void setTimer(int minutes) {
     switch (minutes) {
       case 2:
-        initialCount = 120;
+        initialCount = 32;
         break;
       case 4:
         initialCount = 240;
@@ -72,6 +72,10 @@ public class TimerControl {
             if (count > 0) {
               if (i % 2 == 0) {
                 count--;
+                if (count == 30 && !GameState.isAlarmTripped) {
+                  GameState.isAlarmTripped = true;
+                  StyleManager.setAlarm(true);
+                }
               }
               int format = SceneManager.getActiveController().getFormat();
 
@@ -80,9 +84,12 @@ public class TimerControl {
                     SceneManager.getTimerLabel().setText(getTime(format));
                   });
               // if time is up, reset game
-                } else if (count == 30) {
-                  StyleManager.setAlarm(true);
-                } else {
+            
+            } else {
+              SceneManager.getController(Scenes.GAMEFINISH).setGameLostPage();
+              // int money = SceneManager.getController(Scenes.GAMEFINISH).getMoneyStolen();
+              // SceneManager.getController(Scenes.GAMEFINISH).setMoneyStolenLabel(money);
+              // SceneManager.getController(Scenes.GAMEFINISH).setTim
               App.setUI(Scenes.GAMEFINISH);
               cancelTimer();
             }
