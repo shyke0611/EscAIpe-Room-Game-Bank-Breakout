@@ -155,6 +155,7 @@ public class VaultController extends Controller {
     bomblogo.setVisible(false);
     styleManager.removeItemsMessage("bombHolder");
     styleManager.setClueHover("bomblayer",false);
+    styleManager.setVisible(false,"switchHolder");
   }
 
   @FXML
