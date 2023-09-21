@@ -65,6 +65,8 @@ public class VaultController extends Controller {
   @FXML private HBox bomblayer;
   @FXML private VBox bombPuzzle;
   @FXML private VBox lobbyRoomSwitch;
+  @FXML private VBox SecurityRoomSwitch;
+  @FXML private VBox VaultRoomSwitch;
   @FXML private Button button;
   @FXML private Button checkBtn;
   @FXML private VBox lootBtnHolder;
@@ -115,7 +117,7 @@ public class VaultController extends Controller {
         goldDoorHolder,
         lobbyRoomSwitch,
         bomblayer,
-        realvaultbackground);
+        realvaultbackground,VaultRoomSwitch,SecurityRoomSwitch);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     givencode.setText("Code: " + RandomnessGenerate.getPasscode());
 
@@ -133,19 +135,22 @@ public class VaultController extends Controller {
     WalkieTalkieManager.toggleWalkieTalkie();
   }
 
-  @FXML
-  public void switchToLobby() {
-    App.setUI(Scenes.LOBBY);
-    if (GameState.isAlarmTripped) {
-    styleManager.setClueHover("lobbyRoomSwitch",false);
-    styleManager.setClueHover("guardpocket",true);
-    }
-  }
+  // @FXML
+  // public void switchToLobby() {
+  //   App.setUI(Scenes.LOBBY);
+  //   if (GameState.isAlarmTripped) {
+  //   styleManager.setClueHover("lobbyRoomSwitch",false);
+  //   if (!GameState.isGuardPocketHoverPressed) {
+  //   styleManager.setClueHover("guardpocket",true);
+  //   }
+  //   GameState.isGuardPocketHoverPressed = true;
+  //   }
+  // }
 
-  @FXML
-  public void switchToSecurity() {
-    App.setUI(Scenes.SECURITY);
-  }
+  // @FXML
+  // public void switchToSecurity() {
+  //   App.setUI(Scenes.SECURITY);
+  // }
 
   @FXML
   void onBombPressed(MouseEvent event) {
@@ -199,7 +204,10 @@ public class VaultController extends Controller {
       styleManager.setItemsMessage("Alarm Wires...?", "electricityBox");
       lootBtnHolder.setDisable(true);
       lootBtnHolder.setVisible(false);
+      if (!GameState.isLobbyRoomHoverPressed) {
       styleManager.setClueHover("lobbyRoomSwitch",true);
+      }
+      GameState.isLobbyRoomHoverPressed = true;
     }
   }
 
@@ -242,7 +250,7 @@ public class VaultController extends Controller {
     bombPuzzle.setVisible(false);
     if (GameState.isBombActivated) {
       styleManager.setVisible(
-          false, "walkietalkie", "switchHolder", "walkietalkieHolder", "bombHolder");
+          false, "switchHolder", "walkietalkieHolder", "bombHolder");
       AnimationManager.toggleAlarmAnimation(exitHolder,true,0.5);
       AnimationManager.delayAnimation(exitHolder, escapeDoor);
       exitHolder.setDisable(true);

@@ -65,7 +65,7 @@ public class SecurityController extends Controller {
     super.setTimerLabel(timerLabel, 1);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     WalkieTalkieManager.addWalkieTalkieImage(this, securityWalkieTalkie);
-    styleManager.addItems(computer, electricityBox, securitybackground,VaultRoomSwitch);
+    styleManager.addItems(computer, electricityBox, securitybackground,VaultRoomSwitch,lobbyRoomSwitch,SecurityRoomSwitch);
     styleManager.setItemsMessage("A computer...?", "computer");
     styleManager.setItemsMessage("no need to open this right now", "electricityBox");
     // setupListeners(computer,electricityBox);
@@ -78,20 +78,27 @@ public class SecurityController extends Controller {
     WalkieTalkieManager.toggleWalkieTalkie();
   }
 
-  @FXML
-  public void switchToLobby() {
-    App.setUI(Scenes.LOBBY);
-  }
+  // @FXML
+  // public void switchToLobby() {
+  //   App.setUI(Scenes.LOBBY);
+  //   if (GameState.isAlarmTripped) {
+  //     styleManager.setClueHover("lobbyRoomSwitch",false);
+  //     if (GameState.isGuardPocketHoverPressed) {
+  //     styleManager.setClueHover("guardpocket",true);
+  //     }
+  //     GameState.isGuardPocketHoverPressed = true;
+  //     }
+  // }
 
-  @FXML
-  public void switchToVault() {
-    if (GameState.isAlarmDisabled) {
-      styleManager.getItem("bombHolder").setVisible(true);
-      styleManager.setDisable(true, "bronzeDoor", "silverDoor", "goldDoor");
-      styleManager.setClueHover("VaultRoomSwitch",false);
-    }
-    App.setUI(Scenes.VAULT);
-  }
+  // @FXML
+  // public void switchToVault() {
+  //   if (GameState.isAlarmDisabled) {
+  //     styleManager.getItem("bombHolder").setVisible(true);
+  //     styleManager.setDisable(true, "bronzeDoor", "silverDoor", "goldDoor");
+  //     styleManager.setClueHover("VaultRoomSwitch",false);
+  //   }
+  //   App.setUI(Scenes.VAULT);
+  // }
 
   public void onSwitchToHacker() {
     SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.VAULT);
@@ -124,6 +131,7 @@ public class SecurityController extends Controller {
   // opening computer log in screen
   @FXML
   void onClickComputer(MouseEvent event) {
+    styleManager.setClueHover("computer",false);
     // if already logged in, skip log in stage
     if (!GameState.isSecurityComputerLoggedIn) {
       logInScreen.setVisible(true);
@@ -134,7 +142,7 @@ public class SecurityController extends Controller {
       App.setUI(Scenes.COMPUTER);
       styleManager.removeItemsMessage("computer");
     }
-    styleManager.setClueHover("computer",false);
+
   }
 
   // method that handles overall login mechanics

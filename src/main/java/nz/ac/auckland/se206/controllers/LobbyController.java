@@ -41,10 +41,10 @@ public class LobbyController extends Controller {
   @FXML private Label timerLabel;
   @FXML private ImageView Vault;
   @FXML private VBox VaultRoomSwitch;
+  @FXML private VBox lobbyRoomSwitch;
   @FXML private Button closeNoteBtn;
   @FXML private HBox credentialsNote;
   @FXML private HBox drawerHolder;
-  @FXML private VBox lobbyRoomSwitch;
   @FXML private Button quickHintBtn;
   @FXML private Button viewHistoryBtn;
   @FXML private VBox lobbywalkietalkie;
@@ -104,7 +104,7 @@ public class LobbyController extends Controller {
         credentialsNote,
         drawer,
         openDrawer,
-        SecurityRoomSwitch);
+        SecurityRoomSwitch,VaultRoomSwitch,lobbyRoomSwitch);
     styleManager.setItemsMessage("Guard is watching...", "key1", "key3", "key4", "guardpocket");
     styleManager.setItemsMessage("It's locked...", "drawerHolder");
     styleManager.setItemsMessage("A note?", "credentialsBook");
@@ -121,23 +121,15 @@ public class LobbyController extends Controller {
     WalkieTalkieManager.toggleWalkieTalkie();
   }
 
-  @FXML
-  public void switchToSecurity() {
-    App.setUI(Scenes.SECURITY);
-    if (!GameState.isSecurityComputerLoggedIn) {
-    styleManager.setClueHover("SecurityRoomSwitch",false);
-    styleManager.setClueHover("computer",true);
-    styleManager.setItemsState(HoverColour.GREEN,"computer");
-  } else if (GameState.isAlarmTripped) {
-    styleManager.setClueHover("SecurityRoomSwitch",false);
-  styleManager.setClueHover("electricityBox",true);
-  }
-  }
+  // @FXML
+  // public void switchToSecurity() {
+   
+  // }
 
-  @FXML
-  public void switchToVault() {
-    App.setUI(Scenes.VAULT);
-  }
+  // @FXML
+  // public void switchToVault() {
+  //   App.setUI(Scenes.VAULT);
+  // }
 
   @FXML
   public void onSwitchToHacker() {
@@ -168,6 +160,8 @@ public class LobbyController extends Controller {
 
   @FXML
   void onGuardPocket(MouseEvent event) {
+  
+
     if (GameState.isAlarmTripped) {
       credentialsNote.setVisible(true);
       credentialsNote.setDisable(false);
@@ -186,7 +180,11 @@ public class LobbyController extends Controller {
       passwordLbl.setText(null);
       titleLbl.setText("Wire Cutting Order");
       styleManager.setClueHover("guardpocket",false);
+      GameState.isWireCredentialsFound = true;
+      if (!GameState.isSecurityRoomHoverPressed2) {
       styleManager.setClueHover("SecurityRoomSwitch",true);
+      }
+      GameState.isSecurityRoomHoverPressed2 = true;
     }
   }
 
@@ -198,7 +196,11 @@ public class LobbyController extends Controller {
     passwordLbl.setText("Password: " + randomPassword);
     usernameLbl.setText("Username: " + randomUsername);
     styleManager.removeItemsMessage("credentialsBook");
+    if (!GameState.isSecurityRoomHoverPressed) {
     styleManager.setClueHover("SecurityRoomSwitch",true);
+    }
+    GameState.isSecurityRoomHoverPressed = true;
+    GameState.isCredentialsFound = true;
     // styleManager.removeItemsMessage("computer");
     GameManager.completeObjective();
   }

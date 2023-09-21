@@ -58,7 +58,6 @@ public abstract class Controller {
     App.setUI(Scenes.VAULT);
 }
 
-// move this code somewhere else (temporary firewall diable method (click rectangle))
 @FXML
 public void grantAccess() {
   GameState.isFirewallDisabled = true;
@@ -77,6 +76,62 @@ protected void setupListeners(Node... items) {
   node.setOnMouseEntered(event -> AnimationManager.playAnimationForward(scaleTransition));
   node.setOnMouseExited(event -> AnimationManager.playAnimationReverse(scaleTransition));
   }
+}
+
+@FXML
+public void switchToSecurity() {
+    App.setUI(Scenes.SECURITY);
+
+    if (!GameState.isSecurityComputerLoggedIn && GameState.isCredentialsFound) {
+        handleComputerHover("computer");
+        GameState.isComputerHoverPressed = true;
+    } else if (GameState.isAlarmTripped && GameState.isWireCredentialsFound) {
+        handleElectricityHover("electricityBox");
+    }
+}
+
+@FXML
+public void switchToLobby() {
+    App.setUI(Scenes.LOBBY);
+
+    if (GameState.isAlarmTripped) {
+        handleGuardPocketHover("guardpocket");
+    }
+}
+
+private void handleComputerHover(String item) {
+    styleManager.setClueHover("SecurityRoomSwitch", false);
+    if (!GameState.isComputerHoverPressed) {
+        styleManager.setClueHover(item, true);
+        GameState.isComputerHoverPressed = true;
+        styleManager.setItemsState(HoverColour.GREEN, item);
+    }
+}
+
+private void handleElectricityHover(String item) {
+    styleManager.setClueHover("SecurityRoomSwitch", false);
+    if (!GameState.isElectricityHoverPressed) {
+        styleManager.setClueHover(item, true);
+        GameState.isElectricityHoverPressed = true;
+    }
+}
+
+private void handleGuardPocketHover(String item) {
+    styleManager.setClueHover("lobbyRoomSwitch", false);
+    if (!GameState.isGuardPocketHoverPressed) {
+        styleManager.setClueHover(item, true);
+        GameState.isGuardPocketHoverPressed = true;
+    }
+}
+
+@FXML
+public void switchToVault() {
+  if (GameState.isAlarmDisabled) {
+    styleManager.getItem("bombHolder").setVisible(true);
+    styleManager.setDisable(true, "bronzeDoor", "silverDoor", "goldDoor");
+    styleManager.setClueHover("VaultRoomSwitch",false);
+  }
+  App.setUI(Scenes.VAULT);
 }
 
 

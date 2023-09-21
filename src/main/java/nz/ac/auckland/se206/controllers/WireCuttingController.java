@@ -53,6 +53,7 @@ public class WireCuttingController extends Controller {
   @FXML
   void onGoBack() {
     App.setUI(Scenes.SECURITY);
+    styleManager.setClueHover("electricityBox",false);
   }
 
   @FXML
@@ -118,7 +119,6 @@ public class WireCuttingController extends Controller {
     styleManager.setClueHover("bomblayer",true);
     styleManager.setClueHover("lobbyRoomSwitch",false);
     styleManager.getItem("realvaultbackground").setVisible(false);
-    styleManager.setClueHover("electricityBox",false);
   }
 
   private void handleIncorrectCombination() {
