@@ -59,6 +59,11 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
+            <Label fx:id="timerLabel" prefHeight="30.0" prefWidth="348.0" text="Time Remaining: 0 Minutes 0 Seconds" translateX="-525.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </StackPane>
       <Button fx:id="takeLootBtn" layoutX="406.0" layoutY="554.0" mnemonicParsing="false" onMouseClicked="#setVault" prefHeight="53.0" prefWidth="185.0" styleClass="computer-button" stylesheets="@../css/rooms.css" text="Go Back" visible="false">

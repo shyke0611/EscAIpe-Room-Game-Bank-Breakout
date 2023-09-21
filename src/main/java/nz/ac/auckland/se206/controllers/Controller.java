@@ -17,14 +17,20 @@ import nz.ac.auckland.se206.StyleManager.HoverColour;
 
 public abstract class Controller {
   private Label timerLabel;
+  private int format;
   StyleManager styleManager = StyleManager.getInstance();
 
-  public void setTimerLabel(Label timerLabel) {
+  public void setTimerLabel(Label timerLabel, int format) {
     this.timerLabel = timerLabel;
+    this.format = format;
   }
 
   public Label getTimerLabel() {
     return timerLabel;
+  }
+
+  public int getFormat() {
+    return format;
   }
 
   @FXML

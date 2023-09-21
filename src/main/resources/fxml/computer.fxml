@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
@@ -11,6 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ComputerController">
@@ -75,6 +77,18 @@
                         </HBox>
                      </children>
                   </VBox>
+                  <StackPane layoutX="750.0" layoutY="481.0" prefHeight="47.0" prefWidth="128.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="15.0" fill="#4a4a4a" height="10.0" stroke="BLACK" strokeType="INSIDE" translateX="25.0" translateY="-25.0" width="30.0" />
+                        <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#909090" height="52.0" stroke="BLACK" strokeType="INSIDE" width="97.0" />
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#52544b" height="36.0" stroke="BLACK" strokeType="INSIDE" width="79.0" />
+                        <Label fx:id="timerLabel" alignment="CENTER" prefHeight="29.0" prefWidth="100.0" text="0:00" textFill="#99ab12" translateX="2.0" translateY="-1.0">
+                           <font>
+                              <Font name="Agency FB" size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </StackPane>
                </children>
             </AnchorPane>
          </children>

@@ -32,6 +32,7 @@ public class WireCuttingController extends Controller {
   @FXML private Button retryBtn;
 
   @FXML private Label taskLbl;
+  @FXML private Label timerLabel;
   @FXML private Label wirecutterLbl;
   @FXML private ImageView wirecuttingbackground;
 
@@ -40,14 +41,16 @@ public class WireCuttingController extends Controller {
 
   public void initialize() {
     SceneManager.setController(Scenes.WIRECUTTING, this);
+    super.setTimerLabel(timerLabel, 2);
     wiresCut = new ArrayList<>();
-    styleManager.addItems(redwire,greenwire,bluewire,yellowwire,wirecuttingbackground);
+    styleManager.addItems(redwire, greenwire, bluewire, yellowwire, wirecuttingbackground);
     RandomnessGenerate.addWires(bluewire, yellowwire, greenwire, redwire);
-    styleManager.setItemsMessage("use the wirecutter", "bluewire", "yellowwire", "greenwire", "redwire");
+    styleManager.setItemsMessage(
+        "use the wirecutter", "bluewire", "yellowwire", "greenwire", "redwire");
     setupListeners(wirecutter);
   }
 
-  @FXML 
+  @FXML
   void onGoBack() {
     App.setUI(Scenes.SECURITY);
   }
@@ -68,14 +71,13 @@ public class WireCuttingController extends Controller {
     wirecutterLbl.setVisible(false);
     isWireCutterSelected = true;
     styleManager.removeItemsMessage("redwire", "greenwire", "bluewire", "yellowwire");
-    styleManager.setItemsState(
-        HoverColour.GREEN, "redwire", "greenwire", "bluewire", "yellowwire");
+    styleManager.setItemsState(HoverColour.GREEN, "redwire", "greenwire", "bluewire", "yellowwire");
   }
 
   @FXML
   void onRetry() {
     wiresCut.clear();
-    styleManager.setVisible(true, "yellowwire","redwire","bluewire","greenwire");
+    styleManager.setVisible(true, "yellowwire", "redwire", "bluewire", "greenwire");
     taskLbl.setText(null);
   }
 

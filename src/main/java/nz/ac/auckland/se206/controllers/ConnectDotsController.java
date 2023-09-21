@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
@@ -18,6 +21,8 @@ public class ConnectDotsController extends Controller {
 
   @FXML private GridPane gridPane;
   @FXML private StackPane disableSecurity;
+  @FXML private Label timerLabel;
+  @FXML private Button resetButton;
 
   StyleManager styleManager = StyleManager.getInstance();
 
@@ -36,101 +41,99 @@ public class ConnectDotsController extends Controller {
 
   public void initialize() {
 
-    SceneManager.setController(Scenes.EYESCANNER, this);
+    SceneManager.setController(Scenes.CONNECTDOTS, this);
+    super.setTimerLabel(timerLabel, 3);
     disableSecurity.setVisible(false);
     setSolution();
+  }
 
-    // Instant drag start event
-    gridPane.setOnMousePressed(
-        e -> {
-          initialColumn = getIndex(e.getX(), false);
-          initialRow = getIndex(e.getY(), true);
+  public void startDrag(MouseEvent e) {
+    initialColumn = getIndex(e.getX(), false);
+    initialRow = getIndex(e.getY(), true);
 
-          nodeSelected = grid[initialRow][initialColumn] < 0;
+    nodeSelected = grid[initialRow][initialColumn] < 0;
 
-          if (nodeSelected) {
-            nodeValue = grid[initialRow][initialColumn];
-            columnPath.add(initialColumn);
-            rowPath.add(initialRow);
-          }
-        });
+    if (nodeSelected) {
+      nodeValue = grid[initialRow][initialColumn];
+      columnPath.add(initialColumn);
+      rowPath.add(initialRow);
+    }
+  }
 
-    // Event while dragging
-    gridPane.setOnMouseDragged(
-        e -> {
-          if (!nodeSelected) {
-            return;
-          }
+  public void drag(MouseEvent e) {
+    if (!nodeSelected) {
+      return;
+    }
 
-          int currentColumn = getIndex(e.getX(), false);
-          int currentRow = getIndex(e.getY(), true);
+    int currentColumn = getIndex(e.getX(), false);
+    int currentRow = getIndex(e.getY(), true);
 
-          // If the current cell is not valid return
-          if (!isCellValid(currentColumn, currentRow)) {
-            return;
-          }
+    // If the current cell is not valid return
+    if (!isCellValid(currentColumn, currentRow)) {
+      return;
+    }
 
-          // If the current cell is not empty return;
-          if (grid[currentRow][currentColumn] != 0) {
-            return;
-          }
+    // If the current cell is not empty return;
+    if (grid[currentRow][currentColumn] != 0) {
+      return;
+    }
 
-          // Continue path
-          columnPath.add(currentColumn);
-          rowPath.add(currentRow);
-          grid[currentRow][currentColumn] = Math.abs(nodeValue);
-          Rectangle node = getNodeFromGridPane(gridPane, currentRow, currentColumn);
-          node.setFill(getColour(nodeValue));
-        });
+    // Continue path
+    columnPath.add(currentColumn);
+    rowPath.add(currentRow);
+    grid[currentRow][currentColumn] = Math.abs(nodeValue);
+    Rectangle node = getNodeFromGridPane(gridPane, currentRow, currentColumn);
+    node.setFill(getColour(nodeValue));
+  }
 
-    // Event when mouse is released
-    gridPane.setOnMouseReleased(
-        e -> {
-          if (!nodeSelected) {
-            return;
-          }
+  public void endDrag(MouseEvent e) {
+    if (!nodeSelected) {
+      return;
+    }
 
-          int finalColumn = getIndex(e.getX(), false);
-          int finalRow = getIndex(e.getY(), true);
+    int finalColumn = getIndex(e.getX(), false);
+    int finalRow = getIndex(e.getY(), true);
 
-          if (isCellValid(finalColumn, finalRow)) {
-            if (grid[finalRow][finalColumn] == nodeValue) {
-              columnPath.add(finalColumn);
-              rowPath.add(finalRow);
-            }
-          }
+    // Add final cell to path if valid - can be a node
+    if (isCellValid(finalColumn, finalRow)) {
+      if (grid[finalRow][finalColumn] == nodeValue) {
+        columnPath.add(finalColumn);
+        rowPath.add(finalRow);
+      }
+    }
 
-          int lastIndex = columnPath.size() - 1;
+    int lastIndex = columnPath.size() - 1;
 
-          // If end cell is not same type as start node then clear path
-          if (grid[rowPath.get(lastIndex)][columnPath.get(lastIndex)] != nodeValue) {
-            for (int i = 0; i < columnPath.size(); i++) {
-              int column = columnPath.get(i);
-              int row = rowPath.get(i);
+    // If end cell is not same type as start node then clear path cant be start node
+    if (grid[rowPath.get(lastIndex)][columnPath.get(lastIndex)] != nodeValue
+        || (finalRow == initialRow && finalColumn == initialColumn)) {
+      for (int i = 0; i < columnPath.size(); i++) {
+        int column = columnPath.get(i);
+        int row = rowPath.get(i);
 
-              // If the current cell is a node continue;
-              if (grid[row][column] < 0) {
-                continue;
-              }
-              grid[row][column] = 0;
-              Rectangle node = getNodeFromGridPane(gridPane, row, column);
-              node.setFill(Paint.valueOf("white"));
-            }
-          }
+        // If the current cell is a node continue;
+        if (grid[row][column] < 0) {
+          continue;
+        }
+        grid[row][column] = 0;
+        Rectangle node = getNodeFromGridPane(gridPane, row, column);
+        node.setFill(Paint.valueOf("white"));
+      }
+    }
 
-          // Reset variables
-          nodeSelected = false;
-          nodeValue = 0;
-          initialColumn = -1;
-          initialRow = -1;
-          rowPath.clear();
-          columnPath.clear();
+    // Reset variables
+    nodeSelected = false;
+    nodeValue = 0;
+    initialColumn = -1;
+    initialRow = -1;
+    rowPath.clear();
+    columnPath.clear();
 
-          if (isGameComplete()) {
-            disableSecurity.setVisible(true);
+    if (isGameComplete()) {
+      disableSecurity.setVisible(true);
             GameState.isSecondUserAuthenticated = true;
-          }
-        });
+      resetButton.setDisable(true);
+    }
   }
 
   private void setSolution() {

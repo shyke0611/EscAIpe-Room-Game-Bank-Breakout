@@ -3,30 +3,42 @@ package nz.ac.auckland.se206.controllers;
 import java.util.List;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameManager;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.HackerAiManager;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.WalkieTalkieManager;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class LobbyController extends Controller {
 
   @FXML private ImageView Security;
   @FXML private ImageView lobbybackground;
   @FXML private VBox SecurityRoomSwitch;
+  @FXML private Label timerLabel;
   @FXML private ImageView Vault;
   @FXML private VBox VaultRoomSwitch;
   @FXML private Button closeNoteBtn;
@@ -35,8 +47,11 @@ public class LobbyController extends Controller {
   @FXML private VBox lobbyRoomSwitch;
   @FXML private Button quickHintBtn;
   @FXML private Button viewHistoryBtn;
-  @FXML private VBox walkietalkie;
+  @FXML private VBox lobbywalkietalkie;
   @FXML private VBox walkietalkieText;
+  @FXML private TextField lobbyTextInput;
+  @FXML private TextArea lobbyTextArea;
+  @FXML private ImageView lobbyWalkieTalkie;
   // key locations:
   @FXML private HBox key1;
   @FXML private HBox key3;
@@ -57,9 +72,14 @@ public class LobbyController extends Controller {
   private String randomUsername;
   private String randomPassword;
   StyleManager styleManager = StyleManager.getInstance();
+  WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
+  HackerAiManager hackerAiManager = HackerAiManager.getInstance();
 
   public void initialize() {
     SceneManager.setController(Scenes.LOBBY, this);
+    WalkieTalkieManager.addWalkieTalkieImage(this, lobbyWalkieTalkie);
+    super.setTimerLabel(timerLabel, 1);
+    
     // obtain random credentials
     randomUsername = RandomnessGenerate.getUsername();
     randomPassword = RandomnessGenerate.getPasscode();
@@ -67,8 +87,9 @@ public class LobbyController extends Controller {
     RandomnessGenerate.addKeyLocation(key1, key3, key4);
     RandomnessGenerate.generateRandomKeyLocation();
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
+
     styleManager.addItems(
-      key,
+        key,
         key1,
         key3,
         key4,
@@ -77,7 +98,13 @@ public class LobbyController extends Controller {
         guard,
         guardpocket,
         drawerHolder,
-        lobbybackground, drawerHolder,credentialsBook,credentialsNote,drawer,openDrawer,SecurityRoomSwitch);
+        lobbybackground,
+        drawerHolder,
+        credentialsBook,
+        credentialsNote,
+        drawer,
+        openDrawer,
+        SecurityRoomSwitch);
     styleManager.setItemsMessage("Guard is watching...", "key1", "key3", "key4", "guardpocket");
     styleManager.setItemsMessage("It's locked...", "drawerHolder");
     styleManager.setItemsMessage("A note?", "credentialsBook");
@@ -112,8 +139,13 @@ public class LobbyController extends Controller {
     App.setUI(Scenes.VAULT);
   }
 
+  @FXML
   public void onSwitchToHacker() {
-    SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.LOBBY);
+    SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.VAULT);
+    HackerVanController vanController =
+        (HackerVanController) SceneManager.getController(Scenes.HACKERVAN);
+    vanController.printChatHistory();
+    vanController.loadQuickHints();
     App.setUI(Scenes.HACKERVAN);
   }
 
@@ -165,11 +197,10 @@ public class LobbyController extends Controller {
     // set note text to the randomly generated credentials
     passwordLbl.setText("Password: " + randomPassword);
     usernameLbl.setText("Username: " + randomUsername);
-    titleLbl.setText("Security Room Computer Log In");
     styleManager.removeItemsMessage("credentialsBook");
     styleManager.setClueHover("SecurityRoomSwitch",true);
     // styleManager.removeItemsMessage("computer");
-    
+    GameManager.completeObjective();
   }
 
   // pressing any location of the keys
@@ -192,6 +223,7 @@ public class LobbyController extends Controller {
   @FXML
   void onKeyPressed(MouseEvent event) {
     GameState.isKeyFound = true;
+    GameManager.completeObjective();
     key.setVisible(false);
     styleManager.setItemsState(HoverColour.GREEN, "drawerHolder");
     styleManager.setItemsMessage("The key fits...", "drawerHolder");
@@ -221,6 +253,50 @@ public class LobbyController extends Controller {
     Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), e -> toggleImageViews()));
     timeline.setCycleCount(Timeline.INDEFINITE);
     timeline.play();
+  }
+
+  @FXML
+  public void invokeHackerAI(KeyEvent event) throws ApiProxyException {
+
+    if (event.getCode() == KeyCode.ENTER) {
+
+      Task<Void> aiTask =
+          new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+              walkieTalkieManager.startAnimation();
+              // Perform AI-related operations here
+              ChatMessage msg = new ChatMessage("user", lobbyTextInput.getText());
+              hackerAiManager.addChatHistory(msg.getContent());
+              walkieTalkieManager.clearWalkieTalkie();
+
+              ChatMessage responce = hackerAiManager.processInput(msg);
+              hackerAiManager.addChatHistory(responce.getContent());
+
+              // Move this code here to use the `responce` variable within the call method
+
+              Platform.runLater(
+                  () -> {
+                    walkieTalkieManager.setWalkieTalkieText(responce);
+
+                    lobbyTextInput.clear();
+                    walkieTalkieManager.stopAnimation();
+                  });
+              return null;
+            }
+          };
+
+      Thread aiThread = new Thread(aiTask);
+      aiThread.setDaemon(true);
+      aiThread.start();
+    }
+  }
+
+  @FXML
+  public void quickHint(ActionEvent event) {
+    String hint = hackerAiManager.GetQuickHint();
+    hackerAiManager.storeQuickHint();
+    walkieTalkieManager.setWalkieTalkieText(new ChatMessage("user", hint));
   }
 
 }

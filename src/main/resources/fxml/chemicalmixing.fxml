@@ -167,6 +167,11 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
+            <Label fx:id="timerLabel" prefHeight="30.0" prefWidth="348.0" text="Time Remaining: 0 Minutes 0 Seconds" translateX="-500.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </StackPane>
    </children>
