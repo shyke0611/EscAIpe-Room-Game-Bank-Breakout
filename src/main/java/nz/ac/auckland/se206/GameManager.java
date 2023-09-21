@@ -12,7 +12,7 @@ public class GameManager {
     FIND_PASSCODE,
     LOGIN,
     DISABLE_FIREWALL,
-    EXTRA_SECURITY_LAYER,
+    COMPLETE_MINIGAME,
     SELECT_VAULT_DOOR,
     DOOR_OBJECTIVES,
     ALARM_TRIPPED,
@@ -41,6 +41,7 @@ public class GameManager {
 
   private static int questionsCorrect = 0;
   private static Doors selectedDoor;
+  private static GameManager instance = new GameManager();
 
   private static Objectives activeObjective = Objectives.START_GAME;
   private static DoorObjectives activeDoorObjective = null;
@@ -67,6 +68,10 @@ public class GameManager {
     }
 
     TimerControl.setTimer(minutes);
+  }
+
+  public static GameManager getInstance() {
+    return instance;
   }
 
   public static void resetGame() {
@@ -120,12 +125,11 @@ public class GameManager {
         if (questionsCorrect != 0) {
           activeObjective = Objectives.SELECT_VAULT_DOOR;
         } else {
-          activeObjective = Objectives.EXTRA_SECURITY_LAYER;
+          activeObjective = Objectives.COMPLETE_MINIGAME;
         }
 
         break;
-
-      case EXTRA_SECURITY_LAYER:
+      case COMPLETE_MINIGAME:
         activeObjective = Objectives.SELECT_VAULT_DOOR;
         break;
 
@@ -194,6 +198,10 @@ public class GameManager {
     }
   }
 
+  public static Objectives getCurrentObjective() {
+    return activeObjective;
+  }
+
   public static String getObjectiveString() {
     switch (activeObjective) {
       case START_GAME:
@@ -210,8 +218,8 @@ public class GameManager {
       case DISABLE_FIREWALL:
         return "Disable Firewall";
 
-      case EXTRA_SECURITY_LAYER:
-        return "complete Extra Security Layer";
+      case COMPLETE_MINIGAME:
+        return "Complete Minigame";
 
       case SELECT_VAULT_DOOR:
         return "Select Vault Door";

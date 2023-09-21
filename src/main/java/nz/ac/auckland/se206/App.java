@@ -6,7 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import nz.ac.auckland.se206.HackerAiManager.Difficulties;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /**
  * This is the entry point of the JavaFX application, while you can change this class, it should
@@ -46,11 +48,17 @@ public class App extends Application {
    *
    * @param stage The primary stage of the application.
    * @throws IOException If "src/main/resources/fxml/canvas.fxml" is not found.
+   * @throws ApiProxyException
    */
   @Override
-  public void start(final Stage stage) throws IOException {
+  public void start(final Stage stage) throws IOException, ApiProxyException {
     // initialise the randomiser for all random components
     RandomnessGenerate.generateRandomGameComponents();
+
+    HackerAiManager hackerAiManager = HackerAiManager.getInstance();
+    hackerAiManager.initialiseHackerAi(Difficulties.EASY);
+    GameManager.completeObjective();
+
     // Initialise controllers hashmap to SceneManager
     SceneManager.addController(SceneManager.Scenes.VAULT, null);
     SceneManager.addController(SceneManager.Scenes.LOBBY, null);

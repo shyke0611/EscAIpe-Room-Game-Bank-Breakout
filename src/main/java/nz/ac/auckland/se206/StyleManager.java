@@ -98,7 +98,11 @@ public class StyleManager {
                 "yellowwire",
                 "walkietalkie",
                 "switchHolder",
-                "walkietalkieHolder","bombHolder","exitHolder","bombPuzzle","escapeDoor"));
+                "walkietalkieHolder",
+                "bombHolder",
+                "exitHolder",
+                "bombPuzzle",
+                "escapeDoor"));
     for (Node item : itemsList) {
       if (item == null) {
         continue; // Skip null items

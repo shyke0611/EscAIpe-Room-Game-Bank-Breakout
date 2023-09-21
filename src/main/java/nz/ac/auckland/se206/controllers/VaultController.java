@@ -1,12 +1,18 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -15,12 +21,15 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.HackerAiManager;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.WalkieTalkieManager;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class VaultController extends Controller {
 
@@ -34,6 +43,8 @@ public class VaultController extends Controller {
   @FXML private ImageView bronzeDoor;
   @FXML private ImageView vaultbackground;
   @FXML private ImageView bomblogo;
+  @FXML private TextArea vaultTextArea;
+  @FXML private TextField vaultTextField;
   @FXML private Label timerLabel;
 
   @FXML private Rectangle dialogueBox;
@@ -42,7 +53,7 @@ public class VaultController extends Controller {
   @FXML private HBox exitHolder;
 
   @FXML private HBox doorHolder;
-  @FXML private VBox walkietalkie;
+  @FXML private VBox vaultwalkietalkie;
   @FXML private VBox walkietalkieText;
   @FXML private HBox bombHolder;
   @FXML private VBox bombPuzzle;
@@ -57,6 +68,7 @@ public class VaultController extends Controller {
 
   @FXML private HBox switchHolder;
   @FXML private HBox walkietalkieHolder;
+  @FXML private ImageView vaultWalkieTalkie;
 
   private Canvas canvas;
   private GraphicsContext gc;
@@ -67,10 +79,14 @@ public class VaultController extends Controller {
   private Boolean AIAccessGranted = false;
   StyleManager styleManager = StyleManager.getInstance();
   private StringBuilder labelText = new StringBuilder();
+  WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
+  HackerAiManager hackerAiManager = HackerAiManager.getInstance();
 
   public void initialize() {
     SceneManager.setController(Scenes.VAULT, this);
+    WalkieTalkieManager.addWalkieTalkieImage(this, vaultWalkieTalkie);
     super.setTimerLabel(timerLabel, 1);
+    
     styleManager.addItems(
         goldDoor,
         silverDoor,
@@ -80,12 +96,14 @@ public class VaultController extends Controller {
         exitHolder,
         bombHolder,
         bombPuzzle,
+        vaultwalkietalkie,
         walkietalkie,
         walkietalkieHolder,
         switchHolder,
         escapeDoor);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     givencode.setText("Code: " + RandomnessGenerate.getPasscode());
+
     styleManager.setItemsMessage("set bomb down", "exitHolder");
     styleManager.setItemsMessage("escape", "escapeDoor");
     styleManager.setItemsMessage("activate bomb", "bombHolder");
@@ -127,6 +145,10 @@ public class VaultController extends Controller {
   @FXML
   public void onSwitchToHacker() {
     SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.VAULT);
+    HackerVanController vanController =
+        (HackerVanController) SceneManager.getController(Scenes.HACKERVAN);
+    vanController.printChatHistory();
+    vanController.loadQuickHints();
     App.setUI(Scenes.HACKERVAN);
   }
 
@@ -267,5 +289,49 @@ public class VaultController extends Controller {
       return bronzeDoor;
     }
     return null;
+  }
+
+  @FXML
+  public void invokeHackerAI(KeyEvent event) throws ApiProxyException {
+
+    if (event.getCode() == KeyCode.ENTER) {
+      walkieTalkieManager.startAnimation();
+
+      Task<Void> aiTask3 =
+          new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+              // Perform AI-related operations here
+              ChatMessage msg = new ChatMessage("user", vaultTextField.getText());
+              hackerAiManager.addChatHistory(msg.getContent());
+              walkieTalkieManager.clearWalkieTalkie();
+
+              ChatMessage responce = hackerAiManager.processInput(msg);
+              hackerAiManager.addChatHistory(responce.getContent());
+
+              // Move this code here to use the `responce` variable within the call method
+
+              Platform.runLater(
+                  () -> {
+                    walkieTalkieManager.setWalkieTalkieText(responce);
+
+                    vaultTextField.clear();
+                    walkieTalkieManager.stopAnimation();
+                  });
+              return null;
+            }
+          };
+
+      Thread aiThread3 = new Thread(aiTask3);
+      aiThread3.setDaemon(true);
+      aiThread3.start();
+    }
+  }
+
+  @FXML
+  public void quickHint(ActionEvent event) {
+    String hint = hackerAiManager.GetQuickHint();
+    hackerAiManager.storeQuickHint();
+    walkieTalkieManager.setWalkieTalkieText(new ChatMessage("user", hint));
   }
 }
