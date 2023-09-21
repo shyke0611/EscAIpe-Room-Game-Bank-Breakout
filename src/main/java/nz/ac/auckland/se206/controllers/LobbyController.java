@@ -185,12 +185,7 @@ public class LobbyController extends Controller {
       titleLbl.setText("Wire Cutting Order");
       styleManager.setClueHover("guardpocket", false);
       GameState.isWireCredentialsFound = true;
-      if (!GameState.isSecurityRoomHoverPressed2) {
-      styleManager.setClueHover("SecurityRoomSwitch", true);
-        
-    }
     titleLbl.setPrefHeight(35);
-      GameState.isSecurityRoomHoverPressed2 = true;
     }
   }
 

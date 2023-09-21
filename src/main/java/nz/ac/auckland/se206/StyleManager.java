@@ -91,7 +91,7 @@ public class StyleManager {
 
   public static void setAlarm(boolean on) {
     Set<String> includeIDs =
-        new HashSet<>(Arrays.asList("drawer", "credentialsNote", "computer", "doorHolder"));
+        new HashSet<>(Arrays.asList("drawer", "credentialsNote", "computer", "doorHolder","guardeyes"));
     for (Node item : itemsList) {
       if (item == null) {
         continue; // Skip null items

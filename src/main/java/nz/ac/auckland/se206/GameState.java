@@ -33,8 +33,6 @@ public class GameState {
   // tracking record of if the green hover is pressed
   public static boolean isComputerHoverPressed = false;
   public static boolean isSecurityRoomHoverPressed = false;
-  public static boolean isSecurityRoomHoverPressed2 = false;
   public static boolean isGuardPocketHoverPressed = false;
-  public static boolean isLobbyRoomHoverPressed = false;
   public static boolean isElectricityHoverPressed = false;
 }

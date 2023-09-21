@@ -118,7 +118,7 @@
             </VBox>
          </children>
       </HBox>
-      <HBox fx:id="doorHolder" layoutX="51.0" layoutY="185.0" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+      <HBox fx:id="doorHolder" layoutX="66.0" layoutY="185.0" prefHeight="299.0" prefWidth="914.0" spacing="50.0">
          <children>
             <HBox fx:id="silverDoorHolder" prefHeight="100.0" prefWidth="200.0" styleClass="drawer" stylesheets="@../css/rooms.css">
                <children>
@@ -310,9 +310,9 @@
             </VBox>
          </children>
       </Pane>
-      <VBox fx:id="lootBtnHolder" alignment="CENTER" layoutX="341.0" layoutY="128.0" prefHeight="55.0" prefWidth="342.0" visible="false">
+      <VBox fx:id="lootBtnHolder" alignment="CENTER" layoutX="331.0" layoutY="128.0" prefHeight="68.0" prefWidth="381.0" visible="false">
          <children>
-            <Label fx:id="lootLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="303.0" text="Collect Loot or Try more vaults" textFill="#1fff12">
+            <Label fx:id="lootLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="453.0" text="Collect Loot Now or Open More Vaults" textFill="#3cff2b">
                <font>
                   <Font name="Chalkboard" size="21.0" />
                </font>
@@ -326,12 +326,15 @@
                </font>
             </Button>
          </children>
+         <effect>
+            <DropShadow height="29.84" radius="10.735" spread="0.2" width="15.1" />
+         </effect>
       </VBox>
-      <StackPane fx:id="timerClock" layoutX="460.0" layoutY="119.0" prefHeight="52.0" prefWidth="99.0">
+      <StackPane fx:id="timerClock" layoutX="460.0" layoutY="41.0" prefHeight="72.0" prefWidth="99.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#888d7d" height="64.0" stroke="BLACK" strokeType="INSIDE" width="99.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a7ab3d" height="52.0" stroke="BLACK" strokeType="INSIDE" width="79.0" />
-            <Label fx:id="timerLabel" alignment="CENTER" prefHeight="44.0" prefWidth="83.0" text="0:00">
+            <Label fx:id="timerLabel" alignment="CENTER" prefHeight="111.0" prefWidth="83.0" text="0:00">
                <font>
                   <Font name="Agency FB" size="36.0" />
                </font>

@@ -81,11 +81,12 @@ protected void setupListeners(Node... items) {
 @FXML
 public void switchToSecurity() {
     App.setUI(Scenes.SECURITY);
+    styleManager.setClueHover("SecurityRoomSwitch", false);
 
     if (!GameState.isSecurityComputerLoggedIn && GameState.isCredentialsFound) {
         handleComputerHover("computer");
         GameState.isComputerHoverPressed = true;
-    } else if (GameState.isAlarmTripped && GameState.isWireCredentialsFound) {
+    } else if (GameState.isAlarmTripped) {
         handleElectricityHover("electricityBox");
     }
 }
@@ -100,7 +101,6 @@ public void switchToLobby() {
 }
 
 private void handleComputerHover(String item) {
-    styleManager.setClueHover("SecurityRoomSwitch", false);
     if (!GameState.isComputerHoverPressed) {
         styleManager.setClueHover(item, true);
         GameState.isComputerHoverPressed = true;
@@ -109,7 +109,6 @@ private void handleComputerHover(String item) {
 }
 
 private void handleElectricityHover(String item) {
-    styleManager.setClueHover("SecurityRoomSwitch", false);
     if (!GameState.isElectricityHoverPressed) {
         styleManager.setClueHover(item, true);
         GameState.isElectricityHoverPressed = true;
@@ -117,7 +116,6 @@ private void handleElectricityHover(String item) {
 }
 
 private void handleGuardPocketHover(String item) {
-    styleManager.setClueHover("lobbyRoomSwitch", false);
     if (!GameState.isGuardPocketHoverPressed) {
         styleManager.setClueHover(item, true);
         GameState.isGuardPocketHoverPressed = true;
