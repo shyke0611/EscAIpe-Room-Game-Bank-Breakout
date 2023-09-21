@@ -179,6 +179,7 @@ public class LaserCuttingController extends Controller {
         // Reset the points and angles for the next circle
         takeLootBtn.setVisible(true);
         GameState.isLaserCuttingBypassed = true;
+        // updateMoneyStolen(5000000);
         points.clear();
         angles.clear();
         return true;

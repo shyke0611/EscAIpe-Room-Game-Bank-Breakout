@@ -116,6 +116,7 @@ public class DifficultyController extends Controller {
     GameManager.createGame(difficulty, timerValue);
     TimerControl.runTimer();
     App.setUI(Scenes.LOBBY);
+    ((GameFinishController) SceneManager.getController(Scenes.GAMEFINISH)).setDifficultyLabel(difficulty.toString());
   }
 
   private void handleDifficultySelection(VBox vbox, ImageView alarmImage, String label) {

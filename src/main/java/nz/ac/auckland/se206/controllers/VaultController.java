@@ -209,6 +209,7 @@ public class VaultController extends Controller {
       styleManager.setItemsMessage("Something seems odd?", "guardpocket");
       styleManager.setItemsMessage("Alarm Wires...?", "electricityBox");
       lootBtnHolder.setVisible(false);
+      
     }
   }
 
@@ -263,6 +264,8 @@ public class VaultController extends Controller {
   public void onEscape() {
     TimerControl.cancelTimer();
     App.setUI(Scenes.GAMEFINISH);
+    SceneManager.getController(Scenes.GAMEFINISH).setGameWonPage();
+    // SceneManager.getController(Scenes.GAMEFINISH).setMoneyStolenLabel();
   }
 
   @FXML

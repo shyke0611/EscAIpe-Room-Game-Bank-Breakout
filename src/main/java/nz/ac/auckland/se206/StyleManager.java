@@ -91,7 +91,7 @@ public class StyleManager {
 
   public static void setAlarm(boolean on) {
     Set<String> includeIDs =
-        new HashSet<>(Arrays.asList("drawer", "credentialsNote", "computer", "doorHolder","guardeyes"));
+        new HashSet<>(Arrays.asList("guard","drawerHolder","drawer", "credentialsNote", "computer", "doorHolder","guardeyes","key1","key3","key4"));
     for (Node item : itemsList) {
       if (item == null) {
         continue; // Skip null items
@@ -102,6 +102,8 @@ public class StyleManager {
       if (itemId != null) {
         if (includeIDs.contains(itemId)) {
           item.setDisable(true);
+          item.setStyle(null);
+          // setClueHover(itemId,!on);
         }
 
         if (itemId.endsWith("background")) {

@@ -117,7 +117,7 @@ public class WireCuttingController extends Controller {
     styleManager.setClueHover("lobbyRoomSwitch", false);
     styleManager.getItem("realvaultbackground").setVisible(false);
     styleManager.setClueHover("electricityBox", false);
-    App.textToSpeech("Alarm Disabled, you can escape now");
+    App.textToSpeech("Alarm Disabled");
   }
 
   private void handleIncorrectCombination() {

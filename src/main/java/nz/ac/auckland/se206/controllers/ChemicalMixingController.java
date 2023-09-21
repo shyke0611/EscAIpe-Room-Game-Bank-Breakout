@@ -191,6 +191,7 @@ public class ChemicalMixingController extends Controller {
       fourthPour.setFill(currentColour);
       checkWin();
       GameState.isChemicalMixingBypassed = true;
+      // updateMoneyStolen(20000000);
     }
   }
 

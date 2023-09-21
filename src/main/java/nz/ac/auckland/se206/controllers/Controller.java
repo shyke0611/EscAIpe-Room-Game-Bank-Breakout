@@ -1,13 +1,12 @@
 package nz.ac.auckland.se206.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.Labeled;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -17,8 +16,14 @@ import nz.ac.auckland.se206.StyleManager.HoverColour;
 
 public abstract class Controller {
   private Label timerLabel;
+  private Label moneyLbl;
   private int format;
+//   protected int moneyStolen = 0;
   StyleManager styleManager = StyleManager.getInstance();
+
+//   public void updateMoneyStolen(int value) {
+//     this.moneyStolen = moneyStolen + value;
+//   }
 
   public void setTimerLabel(Label timerLabel, int format) {
     this.timerLabel = timerLabel;
@@ -31,6 +36,20 @@ public abstract class Controller {
 
   public int getFormat() {
     return format;
+  }
+
+//   public void setMoneyStolenLabel() {
+//     moneyLbl.setText("$" + String.valueOf(moneyStolen));
+//   }
+  
+//   public int getMoneyStolen() {
+//     return moneyStolen;
+//   }
+  // required for gamfinish page
+  public void setGameWonPage() {
+  }
+
+  public void setGameLostPage() {
   }
 
   @FXML
