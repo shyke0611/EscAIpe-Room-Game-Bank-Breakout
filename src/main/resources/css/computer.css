@@ -1,0 +1,62 @@
+/* Apply these styles to your TextArea */
+.text-area {
+    -fx-control-inner-background: black;
+    -fx-text-fill: limegreen;
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 20px;
+    -fx-background-color: transparent;
+    -fx-border-color: black;
+    -fx-padding: 0; /* Remove padding */
+}
+
+/* Apply these styles to your TextField */
+.text-field {
+    -fx-control-inner-background: black;
+    -fx-text-fill: limegreen;
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 20px;
+    -fx-background-color: transparent;
+    -fx-border-color: limegreen;
+    -fx-padding: 0; /* Remove padding */
+}
+
+/* Apply these styles to your buttons */
+.button {
+    -fx-background-color: black, darkgreen, black;
+    -fx-background-insets: 0, 0, 0; /* Remove insets */
+    -fx-background-radius: 0;
+    -fx-border-color: limegreen;
+    -fx-border-width: 1px;
+    -fx-text-fill: limegreen;
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 14px;
+}
+
+/* Apply these styles to the "Send" button */
+.send-button {
+    -fx-background-color: black, darkgreen, black;
+    -fx-background-insets: 0, 0, 0; /* Remove insets */
+    -fx-background-radius: 0;
+    -fx-border-color: limegreen;
+    -fx-border-width: 1px;
+    -fx-text-fill: limegreen;
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 14px;
+}
+
+/* Apply these styles to the "Go Back" button */
+.back-button {
+    -fx-background-color: black, darkred, black;
+    -fx-background-insets: 0, 0, 0; /* Remove insets */
+    -fx-background-radius: 0;
+    -fx-border-color: red;
+    -fx-border-width: 1px;
+    -fx-text-fill: red;
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 14px;
+}
+
+.hbox {
+    -fx-background-color: darkgreen;
+ /* Adjust padding as needed */
+}

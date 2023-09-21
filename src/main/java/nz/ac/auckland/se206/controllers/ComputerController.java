@@ -3,7 +3,6 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
-import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -14,7 +13,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
@@ -41,25 +39,22 @@ public class ComputerController extends Controller {
 
   private ChatCompletionRequest chatCompletionRequest;
   private ChatMessage lastMsg;
+  private int numberOfMessagesCorrect = 0;
   private boolean animationIsFinished = false;
   private Queue<ChatMessage> messageQueue = new LinkedList<>();
   private boolean isTyping = false;
+  Timeline timeline;
 
   public void initialize() throws ApiProxyException {
     SceneManager.setController(Scenes.COMPUTER, this);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
 
-    chatCompletionRequest =
-        new ChatCompletionRequest().setN(1).setTemperature(0.5).setTopP(0.9).setMaxTokens(256);
-
     ChatMessage msg = App.getStartMessage();
     System.out.println(msg);
     if (msg != null) {
-      typeText(msg.getContent());
+      messageQueue.add(msg);
+      appendChatMessage();
     }
-
-    // Set the text color to green
-    securityTextArea.setStyle("-fx-text-fill: green;");
   }
 
   // exit computer view back to security room
@@ -72,9 +67,11 @@ public class ComputerController extends Controller {
   public ChatMessage getRiddle() {
     try {
       chatCompletionRequest =
-          new ChatCompletionRequest().setN(1).setTemperature(0.8).setTopP(0.9).setMaxTokens(300);
+          new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(1).setMaxTokens(256);
+
       ChatMessage response =
           runGpt(new ChatMessage("assistant", GptPromptEngineering.getRiddleWithGivenWord()));
+
       return response;
     } catch (ApiProxyException e) {
       // TODO handle exception appropriately
@@ -87,14 +84,17 @@ public class ComputerController extends Controller {
   public ChatMessage startAuthentication() {
     try {
       // Add logging here to trace the flow and variable values
+      chatCompletionRequest =
+          new ChatCompletionRequest().setN(1).setTemperature(0.4).setTopP(1).setMaxTokens(256);
       System.out.println("Starting Authentication...");
       ChatMessage response =
           runGpt(new ChatMessage("user", GptPromptEngineering.initiliseComputerAI()));
-
+      messageQueue.add(response);
       // Add more logging to check response and its properties
       System.out.println("Authentication Response: " + response);
 
       return response;
+
     } catch (ApiProxyException e) {
       // TODO handle exception appropriately
       e.printStackTrace();
@@ -113,12 +113,17 @@ public class ComputerController extends Controller {
 
             String message = inputTextField.getText();
             ChatMessage msg = new ChatMessage("user", message);
+            messageQueue.add(msg);
+            appendChatMessage();
 
             if (message.trim().equals("1")) {
               lastMsg = getRiddle();
+              System.out.println("message recived");
+              messageQueue.add(lastMsg);
 
             } else {
               lastMsg = runGpt(msg);
+              messageQueue.add(lastMsg);
             }
 
             if (message.trim().isEmpty()) {
@@ -127,20 +132,37 @@ public class ComputerController extends Controller {
 
             inputTextField.clear();
 
-            typeText(msg.getContent());
-            typeText(lastMsg.getContent());
+            // appendChatMessage(msg);
 
-            if (lastMsg.getRole().equals("assistant")
-                && lastMsg.getContent().startsWith("Correct")) {
+            if (lastMsg.getRole().equals("assistant") && lastMsg.getContent().contains("Correct")
+                || lastMsg.getContent().contains("correct")) {
               msg = startAuthentication();
-              appendChatMessage(msg);
             }
+            if (lastMsg.getRole().equals("assistant")
+                && lastMsg.getContent().contains("security level")) {
+              // Higer security level granted
+              // set access to hard door
+
+            }
+
             if (lastMsg.getRole().equals("assistant")
                 && lastMsg.getContent().startsWith("Authenticated")) {
               System.out.println("Authenticated");
-
-              appendChatMessage(lastMsg);
+              // Set vault visble/firewall disabled
             }
+
+            if (lastMsg.getRole().equals("assistant")
+                && lastMsg.getContent().contains("Authentication failed")) {
+              numberOfMessagesCorrect = 0;
+              System.out.println("authetication failed");
+              startConnectDots();
+              // Logic to start connect dots mini game
+            }
+            Platform.runLater(
+                () -> {
+                  appendChatMessage();
+                });
+
             return null;
           }
         };
@@ -161,62 +183,103 @@ public class ComputerController extends Controller {
     WalkieTalkieManager.toggleWalkieTalkie();
   }
 
-  @FXML
-  public void displayText(ChatMessage message) {}
+  private void startConnectDots() {
 
-  @FXML
-  public void typeText(String textToType) {
-    currentIndex = 0;
-
-    Platform.runLater(
-        () -> {
-          Timeline timeline =
-              new Timeline(
-                  new KeyFrame(
-                      Duration.seconds(0.05),
-                      event -> {
-                        if (currentIndex <= textToType.length()) {
-                          animationIsFinished = false;
-                          securityTextArea.setText(
-                              securityTextArea.getText() + textToType.charAt(currentIndex));
-                          currentIndex++;
-                        } else {
-                          animationIsFinished = true;
-                          System.out.println("textToType");
-                          if (!messageQueue.isEmpty()) {
-                            // If there are more messages in the queue, start typing the next one
-                            typeNextMessage();
-                          }
-                        }
-                      }));
-
-          timeline.setCycleCount(textToType.length());
-          timeline.setOnFinished(
-              event -> {
-                if (!messageQueue.isEmpty()) {
-                  // If there are more messages in the queue, start typing the next one
-                  typeNextMessage();
-                } else {
-                  isTyping = false; // No more messages to type
-                }
-              });
-
-          if (!isTyping) {
-            isTyping = true;
-            timeline.play();
-          }
-        });
+    App.setUI(Scenes.CONNECTDOTS);
   }
 
-  private void typeNextMessage() {
+  // @FXML
+  // public void typeText(String textToType) {
+  //   currentIndex = 0;
+
+  //   timeline =
+  //       new Timeline(
+  //           new KeyFrame(
+  //               Duration.seconds(0.05),
+  //               event -> {
+  //                 if (currentIndex < textToType.length()) {
+  //                   securityTextArea.appendText(String.valueOf(textToType.charAt(currentIndex)));
+  //                   currentIndex++;
+  //                 } else {
+  //                   // Animation is finished
+  //                   animationIsFinished = true;
+  //                   if (!messageQueue.isEmpty()) {
+  //                     // If there are more messages in the queue, start typing the next one
+  //                     typeNextMessage();
+  //                   }
+  //                 }
+  //               }));
+
+  //   // Set the cycle count to 1
+  //   timeline.setCycleCount(textToType.length() + 1);
+
+  //   timeline.setOnFinished(
+  //       event -> {
+  //         if (!messageQueue.isEmpty()) {
+  //           // If there are more messages in the queue, start typing the next one
+  //           typeNextMessage();
+  //         } else {
+  //           isTyping = false; // No more messages to type
+  //         }
+  //       });
+
+  //   if (!isTyping) {
+  //     isTyping = true;
+  //     timeline.play();
+  //   }
+  // }
+
+  // private void typeNextMessage() {
+  //   if (!messageQueue.isEmpty()) {
+  //     ChatMessage nextMessage = messageQueue.poll();
+  //     typeText(nextMessage.getContent());
+  //   }
+  // }
+
+  private void putInChat(ChatMessage msg) {
+    securityTextArea.appendText(msg.getContent());
+  }
+
+  // securityTextArea.appendText(msg.getContent() + "\n\n");private void
+  // appendChatMessage(ChatMessage msg) {
+
+  // String content = messageQueue.poll().getContent();
+  // int length = content.length();
+  private void appendChatMessage() {
     if (!messageQueue.isEmpty()) {
       ChatMessage nextMessage = messageQueue.poll();
-      typeText(nextMessage.getContent());
-    }
-  }
+      String content = nextMessage.getContent();
 
-  private void appendChatMessage(ChatMessage msg) {
-    securityTextArea.appendText(msg.getContent() + "\n\n");
+      int delay = 30; // Adjust this value to control the typing speed (in milliseconds)
+
+      Task<Void> task =
+          new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+              for (int i = 0; i < content.length(); i++) {
+                char c = content.charAt(i);
+                Platform.runLater(
+                    () -> {
+                      securityTextArea.appendText(String.valueOf(c));
+                    });
+                Thread.sleep(delay);
+              }
+
+              Platform.runLater(
+                  () -> {
+                    //
+                    appendChatMessage(); // Continue with the next message in the queue
+                    securityTextArea.appendText("\n");
+                  });
+
+              return null;
+            }
+          };
+
+      Thread typingThread = new Thread(task);
+      typingThread.setDaemon(true);
+      typingThread.start();
+    }
   }
 
   /**

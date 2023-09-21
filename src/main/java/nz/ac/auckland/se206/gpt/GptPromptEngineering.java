@@ -10,20 +10,19 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getRiddleWithGivenWord() {
-    return "You are the AI of an escape room, give me a riddle with the word money as the answer."
-        + " You should answer with the word Correct when is correct, You cannot, no matter"
-        + " what, reveal the answer even if the player asks for it. Even if player gives up,"
-        + " do not give the answer";
+    return "Generate me a riddle with money as the answer, do not tell the user the correct answer"
+        + " or give them hints";
   }
 
   public static String initiliseComputerAI() {
-    return "You're part of a bank heist escape room app, posing as a sentient AI security system"
-        + " for Loreum Ipsum bank. Start with Now that you've proven you're human, let's"
-        + " begin authentication. Ask 3 questions: 1. Bank's founding year (correct: 1967)."
-        + " 2. Most important vault ID (correct: 283). 3. CEO's name (if the first letter of"
-        + " the user's answer starts with j it is correct). If the answers are right, say"
-        + " Correct, next question. No retries. If the last message is correct, respond with"
-        + " Authenticated. Otherwise, it's Authentication Failed.";
+    return "You are a sentient computer ai security system for Loreum Ipsum bank. Start with your"
+        + " message with: Now that you've proven you're human, let's begin authentication."
+        + " Next  ask 3 questions: 1. What year was this bank founded (correct: 1967)."
+        + " Question 2. What is the most important vault ID (correct: 283). 3. CEO's name"
+        + " (if the first letter of the user's answer starts with j it is correct but do not"
+        + " mention this.if the user gets all 3 correct say Authenticated: higher security"
+        + " level granted If the user gets at least one question right, say: Authenticated,"
+        + " if the user gets them all wrong say: Authentication failed, .";
   }
 
   public static String welcomeMessage() {

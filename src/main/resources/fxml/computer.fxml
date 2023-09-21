@@ -11,37 +11,49 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ComputerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../css/computer.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ComputerController">
    <children>
       <HBox layoutX="29.0" layoutY="55.0" prefHeight="602.0" prefWidth="817.0">
          <children>
-            <AnchorPane prefHeight="602.0" prefWidth="1011.0">
+            <AnchorPane prefHeight="602.0" prefWidth="1011.0" stylesheets="@../css/computer.css">
                <children>
                   <ImageView fitHeight="602.0" fitWidth="936.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/computer.png" />
                      </image>
                   </ImageView>
-                  <VBox layoutX="88.0" layoutY="21.0" prefHeight="383.0" prefWidth="761.0">
+                  <VBox layoutX="88.0" layoutY="21.0" prefHeight="383.0" prefWidth="761.0" stylesheets="@../css/computer.css">
                      <children>
-                        <TextArea fx:id="securityTextArea" editable="false" prefHeight="360.0" prefWidth="761.0" wrapText="true">
+                        <TextArea fx:id="securityTextArea" editable="false" focusTraversable="false" prefHeight="360.0" prefWidth="761.0" stylesheets="@../css/computer.css" wrapText="true">
                            <font>
                               <Font name="Monospaced Bold" size="18.0" />
                            </font></TextArea>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" stylesheets="@../css/rooms.css">
                            <children>
-                              <TextField fx:id="inputTextField" prefHeight="61.0" prefWidth="513.0" promptText="type here...">
+                              <TextField fx:id="inputTextField" prefHeight="62.0" prefWidth="544.0" promptText=" type here..." stylesheets="@../css/computer.css">
                                  <font>
                                     <Font size="29.0" />
                                  </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
                               </TextField>
-                              <Button fx:id="sendBtn" mnemonicParsing="false" onAction="#onSend" prefHeight="47.0" prefWidth="108.0" text="Send">
+                              <Button fx:id="sendBtn" mnemonicParsing="false" onAction="#onSend" prefHeight="58.0" prefWidth="99.0" stylesheets="@../css/computer.css" text="Send">
                                  <HBox.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button fx:id="goBackBtn" mnemonicParsing="false" onAction="#onGoBack" prefHeight="48.0" prefWidth="112.0" text="Go back" />
+                              <Button fx:id="goBackBtn" mnemonicParsing="false" onAction="#onGoBack" prefHeight="58.0" prefWidth="102.0" stylesheets="@../css/computer.css" text="Go back">
+                                 <padding>
+                                    <Insets right="5.0" />
+                                 </padding></Button>
                            </children>
+                           <padding>
+                              <Insets left="5.0" right="5.0" top="2.0" />
+                           </padding>
                         </HBox>
                      </children>
                   </VBox>

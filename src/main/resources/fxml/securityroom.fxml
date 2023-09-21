@@ -173,9 +173,9 @@
                   </ImageView>
                </children>
             </VBox>
-            <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0" visible="false">
+            <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="528.0">
+                  <HBox prefHeight="100.0" prefWidth="528.0" visible="false">
                      <children>
                         <TextArea editable="false" prefHeight="100.0" prefWidth="425.0" stylesheets="@../css/rooms.css" />
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="component2" stylesheets="@../css/rooms.css">
@@ -190,7 +190,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox prefHeight="51.0" prefWidth="512.0">
+                  <HBox prefHeight="51.0" prefWidth="512.0" visible="false">
                      <children>
                         <TextField prefHeight="58.0" prefWidth="512.0" promptText="Bzzz... type here" stylesheets="@../css/rooms.css">
                            <font>
