@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -29,6 +30,7 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.StyleManager.HoverColour;
+import nz.ac.auckland.se206.TimerControl;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -255,6 +257,7 @@ public class VaultController extends Controller {
   }
 
   public void onEscape() {
+    TimerControl.cancelTimer();
     App.setUI(Scenes.GAMEFINISH);
   }
 
