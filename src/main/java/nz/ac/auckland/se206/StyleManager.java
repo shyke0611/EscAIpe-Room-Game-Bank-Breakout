@@ -7,8 +7,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import javafx.animation.ScaleTransition;
 import javafx.scene.Node;
 import javafx.scene.control.Tooltip;
+import javafx.scene.effect.Glow;
 import javafx.util.Duration;
 
 public class StyleManager {
@@ -28,21 +31,21 @@ public class StyleManager {
   public static StyleManager getInstance() {
     return instance;
   }
-
-  // Set and apply tooltips for multiple items
+  
   public void setItemsMessage(String message, String... items) {
-    for (String item : items) {
-      Node node = getItem(item);
-      Tooltip tooltip = tooltipMap.get(node);
-      if (tooltip == null) {
-        tooltip = new Tooltip();
-        tooltipMap.put(node, tooltip);
+      for (String item : items) {
+          Node node = getItem(item);
+          Tooltip tooltip = tooltipMap.get(node);
+          if (tooltip == null) {
+              tooltip = new Tooltip();
+              tooltipMap.put(node, tooltip);
+          }
+          tooltip.setText(message);
+          Tooltip.install(node, tooltip);
+          tooltip.setShowDelay(Duration.seconds(0));
       }
-      tooltip.setText(message);
-      Tooltip.install(node, tooltip);
-      tooltip.setShowDelay(Duration.seconds(0));
-    }
   }
+  
 
   // Remove tooltips for multiple items
   public void removeItemsMessage(String... items) {
@@ -64,7 +67,11 @@ public class StyleManager {
           event ->
               node.setStyle(
                   "-fx-effect: dropshadow(gaussian, " + rgba + ", 5, 5, 0, 0); -fx-cursor: hand;"));
+                  // ScaleTransition scaleTransition = AnimationManager.createScaleTransition(node);
+              // AnimationManager.playAnimationForward(scaleTransition);
+                  
       node.setOnMouseExited(event -> node.setStyle(""));
+      // node.setOnMouseExited(event -> AnimationManager.playAnimationReverse(scaleTransition));
     }
   }
 
@@ -87,7 +94,7 @@ public class StyleManager {
   }
 
   public void setAlarm(boolean on) {
-    Set<String> excludeIDs =
+    Set<String> includeIDs =
         new HashSet<>(
             Arrays.asList(
                 "electricityBox",
@@ -102,7 +109,11 @@ public class StyleManager {
                 "bombHolder",
                 "exitHolder",
                 "bombPuzzle",
-                "escapeDoor"));
+                "escapeDoor",
+                "drawer",
+                "credentialsNote",
+                "computer",
+                "doorHolder"));
     for (Node item : itemsList) {
       if (item == null) {
         continue; // Skip null items
@@ -111,16 +122,24 @@ public class StyleManager {
       System.out.println("Item ID: " + itemId);
 
       if (itemId != null) {
-        if (!excludeIDs.contains(itemId)) {
+        if (includeIDs.contains(itemId)) {
           item.setDisable(true);
         }
 
         if (itemId.endsWith("background")) {
-          AnimationManager.toggleAlarmAnimation(item, on);
+          AnimationManager.toggleAlarmAnimation(item, on, 0.7);
         }
       }
     }
   }
+
+  public void setClueHover(String item, boolean isOn) {
+    Node node = getItem(item);
+   AnimationManager.toggleHoverAnimation(node, isOn, 1);
+    //  node.setStyle("-fx-effect: dropshadow(gaussian, rgba(34, 255, 0, 0.7), 10, 10, 0, 0)");
+  
+    }
+  
 
   public void setDisable(boolean value, String... items) {
     for (String item : items) {

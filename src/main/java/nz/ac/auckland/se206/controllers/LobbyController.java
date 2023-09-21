@@ -7,6 +7,7 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -102,10 +103,15 @@ public class LobbyController extends Controller {
         credentialsBook,
         credentialsNote,
         drawer,
-        openDrawer);
+        openDrawer,
+        SecurityRoomSwitch);
     styleManager.setItemsMessage("Guard is watching...", "key1", "key3", "key4", "guardpocket");
     styleManager.setItemsMessage("It's locked...", "drawerHolder");
     styleManager.setItemsMessage("A note?", "credentialsBook");
+    styleManager.setItemsMessage("put him to sleep", "guard");
+    styleManager.setClueHover("guard",true);
+    // setupListeners(key1,key3,key4,guard,credentialsBook,drawerHolder,guardpocket);
+    setupListeners(key);
   }
 
   //   handling mouse events on walkie talkie
@@ -118,6 +124,14 @@ public class LobbyController extends Controller {
   @FXML
   public void switchToSecurity() {
     App.setUI(Scenes.SECURITY);
+    if (!GameState.isSecurityComputerLoggedIn) {
+    styleManager.setClueHover("SecurityRoomSwitch",false);
+    styleManager.setClueHover("computer",true);
+    styleManager.setItemsState(HoverColour.GREEN,"computer");
+  } else if (GameState.isAlarmTripped) {
+    styleManager.setClueHover("SecurityRoomSwitch",false);
+  styleManager.setClueHover("electricityBox",true);
+  }
   }
 
   @FXML
@@ -171,6 +185,8 @@ public class LobbyController extends Controller {
       usernameLbl.setText(wireNames.toString());
       passwordLbl.setText(null);
       titleLbl.setText("Wire Cutting Order");
+      styleManager.setClueHover("guardpocket",false);
+      styleManager.setClueHover("SecurityRoomSwitch",true);
     }
   }
 
@@ -182,7 +198,8 @@ public class LobbyController extends Controller {
     passwordLbl.setText("Password: " + randomPassword);
     usernameLbl.setText("Username: " + randomUsername);
     styleManager.removeItemsMessage("credentialsBook");
-    styleManager.removeItemsMessage("computer");
+    styleManager.setClueHover("SecurityRoomSwitch",true);
+    // styleManager.removeItemsMessage("computer");
     GameManager.completeObjective();
   }
 
@@ -191,8 +208,8 @@ public class LobbyController extends Controller {
   @FXML
   void onkeyLocationPressed(MouseEvent event) {
     if (GameState.isGuardDistracted) {
-      HBox clickedHBox = (HBox) event.getSource();
-      styleManager.setItemsMessage("Already looked here...", "clickedHBox");
+      Node clickedHBox = (HBox) event.getSource();
+      styleManager.setItemsMessage("Already looked here...",clickedHBox.getId().toString());
       if (clickedHBox == RandomnessGenerate.getkeyLocation()) {
         GameState.isKeyLocationFound = true;
         AnimationManager.fadeTransition(key, 2);
@@ -217,6 +234,7 @@ public class LobbyController extends Controller {
     GameState.isGuardDistracted = true;
     sleepingAnimation();
     guard.setDisable(true);
+    styleManager.setClueHover("guard",false);
     styleManager.setItemsState(HoverColour.GREEN, "key1", "key3", "key4");
     styleManager.setItemsMessage("Something seems odd here...", "key1", "key3", "key4");
     styleManager.setItemsMessage("Something seems odd here", "guardpocket");

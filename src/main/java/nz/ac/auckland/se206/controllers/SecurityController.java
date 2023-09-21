@@ -16,6 +16,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.HackerAiManager;
@@ -63,9 +65,10 @@ public class SecurityController extends Controller {
     super.setTimerLabel(timerLabel, 1);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     WalkieTalkieManager.addWalkieTalkieImage(this, securityWalkieTalkie);
-    styleManager.addItems(computer, electricityBox, securitybackground, tempbackground);
+    styleManager.addItems(computer, electricityBox, securitybackground,VaultRoomSwitch);
     styleManager.setItemsMessage("A computer...?", "computer");
     styleManager.setItemsMessage("no need to open this right now", "electricityBox");
+    // setupListeners(computer,electricityBox);
   }
 
   //   handling mouse events on walkie talkie
@@ -85,12 +88,9 @@ public class SecurityController extends Controller {
     if (GameState.isAlarmDisabled) {
       styleManager.getItem("bombHolder").setVisible(true);
       styleManager.setDisable(true, "bronzeDoor", "silverDoor", "goldDoor");
+      styleManager.setClueHover("VaultRoomSwitch",false);
     }
     App.setUI(Scenes.VAULT);
-  }
-
-  public void switchToDots() {
-    App.setUI(Scenes.CONNECTDOTS);
   }
 
   public void onSwitchToHacker() {
@@ -127,11 +127,14 @@ public class SecurityController extends Controller {
     // if already logged in, skip log in stage
     if (!GameState.isSecurityComputerLoggedIn) {
       logInScreen.setVisible(true);
+    } else if (GameState.isConnectDotreached){
+      App.setUI(Scenes.CONNECTDOTS);
     } else {
       logInScreen.setVisible(false);
       App.setUI(Scenes.COMPUTER);
       styleManager.removeItemsMessage("computer");
     }
+    styleManager.setClueHover("computer",false);
   }
 
   // method that handles overall login mechanics
@@ -171,6 +174,7 @@ public class SecurityController extends Controller {
   // mechanics for when login is successful
   private void handleSuccessfulLogin() {
     loginMsgLbl.setText("Success");
+    loginMsgLbl.setTextFill(Color.GREEN);
     GameState.isSecurityComputerLoggedIn = true;
     App.setUI(Scenes.COMPUTER);
     styleManager.setDisable(true, "credentialsBook");
@@ -180,11 +184,13 @@ public class SecurityController extends Controller {
   // mechanics for empty credential input
   private void handleEmptyCredentials() {
     loginMsgLbl.setText("Enter your credentials");
+    loginMsgLbl.setTextFill(Color.ORANGE);
   }
 
   // mechanics for when login fails
   private void handleFailedLogin() {
     loginMsgLbl.setText("Wrong username or password");
+    loginMsgLbl.setTextFill(Color.RED);
   }
 
   @FXML

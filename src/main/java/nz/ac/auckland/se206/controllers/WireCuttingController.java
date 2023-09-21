@@ -2,12 +2,16 @@ package nz.ac.auckland.se206.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
@@ -29,6 +33,7 @@ public class WireCuttingController extends Controller {
 
   @FXML private Label taskLbl;
   @FXML private Label timerLabel;
+  @FXML private Label wirecutterLbl;
   @FXML private ImageView wirecuttingbackground;
 
   private boolean isWireCutterSelected = false;
@@ -42,6 +47,7 @@ public class WireCuttingController extends Controller {
     RandomnessGenerate.addWires(bluewire, yellowwire, greenwire, redwire);
     styleManager.setItemsMessage(
         "use the wirecutter", "bluewire", "yellowwire", "greenwire", "redwire");
+    setupListeners(wirecutter);
   }
 
   @FXML
@@ -62,6 +68,7 @@ public class WireCuttingController extends Controller {
   @FXML
   void onWireCutterClicked(MouseEvent event) {
     wirecutter.setVisible(false);
+    wirecutterLbl.setVisible(false);
     isWireCutterSelected = true;
     styleManager.removeItemsMessage("redwire", "greenwire", "bluewire", "yellowwire");
     styleManager.setItemsState(HoverColour.GREEN, "redwire", "greenwire", "bluewire", "yellowwire");
@@ -100,6 +107,7 @@ public class WireCuttingController extends Controller {
 
   private void handleCorrectCombination() {
     taskLbl.setText("Success");
+    taskLbl.setTextFill(Color.GREEN);
     GameState.isWiresCut = true;
     styleManager.setAlarm(false);
     GameState.isAlarmDisabled = true;
@@ -107,9 +115,15 @@ public class WireCuttingController extends Controller {
     styleManager.setDisable(true, "guardpocket");
     styleManager.setVisible(false, "credentialsNote");
     retryBtn.setDisable(true);
+    styleManager.setClueHover("bomblayer",true);
+    styleManager.setClueHover("lobbyRoomSwitch",false);
+    styleManager.getItem("realvaultbackground").setVisible(false);
+    styleManager.setClueHover("electricityBox",false);
   }
 
   private void handleIncorrectCombination() {
     taskLbl.setText("Fail");
+    taskLbl.setTextFill(Color.RED);
   }
+
 }

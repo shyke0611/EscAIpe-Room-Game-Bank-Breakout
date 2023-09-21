@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,6 +17,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ComputerController">
    <children>
+      <ImageView fx:id="securitybackground" fitHeight="715.0" fitWidth="1005.0" layoutX="-2.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/secuirty%20room.png" />
+         </image>
+      </ImageView>
       <HBox layoutX="29.0" layoutY="55.0" prefHeight="602.0" prefWidth="817.0">
          <children>
             <AnchorPane prefHeight="602.0" prefWidth="1011.0">
@@ -27,21 +33,47 @@
                   </ImageView>
                   <VBox layoutX="88.0" layoutY="21.0" prefHeight="383.0" prefWidth="761.0">
                      <children>
-                        <TextArea fx:id="securityTextArea" editable="false" prefHeight="360.0" prefWidth="761.0" />
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                        <StackPane prefHeight="327.0" prefWidth="761.0">
                            <children>
-                              <TextField fx:id="inputTextField" prefHeight="61.0" prefWidth="513.0" promptText="type here...">
+                              <TextArea fx:id="securityTextArea" editable="false" prefHeight="299.0" prefWidth="761.0">
+                                 <StackPane.margin>
+                                    <Insets bottom="3.0" />
+                                 </StackPane.margin></TextArea>
+                              <Button fx:id="dotGameBtn" mnemonicParsing="false" onMouseClicked="#switchToDots" prefHeight="41.0" prefWidth="267.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="Double authentication required">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font></Button>
+                           </children>
+                        </StackPane>
+                        <HBox alignment="CENTER_LEFT" prefHeight="54.0" prefWidth="713.0" style="-fx-background-color: white; -fx-background-radius: 100;">
+                           <children>
+                              <TextField fx:id="inputTextField" prefHeight="54.0" prefWidth="494.0" promptText="type here..." style="-fx-background-color: transparent;">
                                  <font>
                                     <Font size="29.0" />
                                  </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
                               </TextField>
-                              <Button fx:id="sendBtn" mnemonicParsing="false" onAction="#onSend" prefHeight="47.0" prefWidth="108.0" text="Send">
+                              <Button fx:id="sendBtn" mnemonicParsing="false" onAction="#onSend" prefHeight="47.0" prefWidth="108.0" style="-fx-background-color: grey; -fx-background-radius: 30 10 10 30;" text="Send" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </HBox.margin>
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
                               </Button>
-                              <Button fx:id="goBackBtn" mnemonicParsing="false" onAction="#onGoBack" prefHeight="48.0" prefWidth="112.0" text="Go back" />
+                              <Button fx:id="goBackBtn" mnemonicParsing="false" onAction="#onGoBack" prefHeight="48.0" prefWidth="112.0" style="-fx-background-color: grey; -fx-background-radius: 10 30 30 10;" text="Go back" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font></Button>
                            </children>
+                           <VBox.margin>
+                              <Insets left="2.0" right="2.0" />
+                           </VBox.margin>
+                           <effect>
+                              <DropShadow height="0.0" offsetY="2.0" radius="5.4875" width="23.95" />
+                           </effect>
                         </HBox>
                      </children>
                   </VBox>

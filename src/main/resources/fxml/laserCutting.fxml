@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
@@ -13,18 +14,19 @@
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#draw" onMousePressed="#mousePressed" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LaserCuttingController">
    <children>
+      <HBox layoutX="152.0" layoutY="477.0" prefHeight="100.0" prefWidth="200.0" />
       <ImageView fitHeight="700.0" fitWidth="1000.0" onMouseClicked="#setVault" pickOnBounds="true" preserveRatio="true" scaleX="1.01">
          <image>
             <Image url="@../images/backgroundVault.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="582.0" layoutX="54.0" layoutY="44.0" stroke="WHITE" strokeType="INSIDE" width="896.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="582.0" layoutX="54.0" layoutY="44.0" stroke="#110404" strokeType="INSIDE" width="896.0" />
       <ImageView fitHeight="500.0" fitWidth="500.0" layoutX="282.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/bronzeDoor.png" />
          </image>
       </ImageView>
-      <Label layoutX="305.0" layoutY="83.0" text="Cut through the door" underline="true">
+      <Label layoutX="160.0" layoutY="83.0" prefHeight="47.0" prefWidth="717.0" text="Cut  the door within the dotted lines" textFill="#27c350" underline="true">
          <font>
             <Font name="American Typewriter" size="40.0" />
          </font>
@@ -43,7 +45,7 @@
             <Image url="@../images/LaserGun.png" />
          </image>
       </ImageView>
-      <Label fx:id="equipLaserGun" layoutX="96.0" layoutY="436.0" text="Equip Laser Gun">
+      <Label fx:id="equipLaserGun" layoutX="96.0" layoutY="436.0" text="Equip Laser Gun" textFill="#3ad33c">
          <font>
             <Font name="American Typewriter" size="25.0" />
          </font>
@@ -64,7 +66,7 @@
             </Label>
          </children>
       </StackPane>
-      <Button fx:id="takeLootBtn" layoutX="436.0" layoutY="554.0" mnemonicParsing="false" onAction="#setVault" text="TAKE LOOT" visible="false">
+      <Button fx:id="takeLootBtn" layoutX="406.0" layoutY="554.0" mnemonicParsing="false" onMouseClicked="#setVault" prefHeight="53.0" prefWidth="185.0" styleClass="computer-button" stylesheets="@../css/rooms.css" text="Go Back" visible="false">
          <font>
             <Font size="20.0" />
          </font>
