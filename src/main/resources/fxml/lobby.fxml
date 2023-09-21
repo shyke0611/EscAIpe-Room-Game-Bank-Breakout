@@ -14,6 +14,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="LobbyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#invokeHackerAI" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LobbyController">
@@ -69,7 +72,21 @@
             </VBox>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="343.0" layoutY="27.0" prefHeight="60.0" prefWidth="216.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 0 20 20 0;">
+      <StackPane layoutX="500.0" layoutY="130.0" prefHeight="87.0" prefWidth="131.0">
+         <children>
+            <Line endY="-80.0" strokeWidth="5.0" translateY="-85.0" />
+            <Rectangle fill="#5e5e5e" height="96.0" stroke="BLACK" strokeType="INSIDE" width="138.0" />
+            <Rectangle height="74.0" stroke="BLACK" strokeType="INSIDE" width="134.0" />
+            <Label fx:id="timerLabel" alignment="CENTER" prefHeight="70.0" prefWidth="133.0" text="0:00" textFill="WHITE">
+               <font>
+                  <Font size="48.0" />
+               </font>
+            </Label>
+            <Circle fill="RED" radius="3.0" stroke="BLACK" strokeType="INSIDE" translateX="60.0" translateY="42.0" />
+            <Circle radius="3.0" stroke="BLACK" strokeType="INSIDE" translateX="50.0" translateY="42.0" />
+         </children>
+      </StackPane>
+      <HBox alignment="CENTER" layoutX="343.0" layoutY="27.0" prefHeight="60.0" prefWidth="216.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 0 20 20 0;" visible="false">
          <children>
             <Label prefHeight="39.0" prefWidth="100.0" style="-fx-background-color: #9fd7ff; -fx-background-radius: 0 20 20 0;" text="Timer:" textFill="#051a28">
                <font>
@@ -252,7 +269,7 @@
                                     <Font name="Apple LiGothic Medium" size="22.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="titleLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="258.0" text="title">
+                              <Label fx:id="titleLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="71.0" prefWidth="258.0" style="-fx-text-alignment: center;" text="Security Room Computer Log In:" wrapText="true">
                                  <font>
                                     <Font name="Apple LiGothic Medium" size="23.0" />
                                  </font>

@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="SecurityPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#invokeHackerAI" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SecurityController">
@@ -35,6 +36,22 @@
             </ImageView>
          </children>
       </HBox>
+      <Button layoutX="546.0" layoutY="323.0" mnemonicParsing="false" onMouseClicked="#switchToDots" text="Connect Dots" />
+      <StackPane layoutX="407.0" layoutY="94.0" prefHeight="154.0" prefWidth="274.0" rotate="-0.5">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcbcbc" height="148.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" width="271.0" />
+            <Label fx:id="timerLabel" text="0:00" translateY="15.0">
+               <font>
+                  <Font size="64.0" />
+               </font>
+            </Label>
+            <Label text="Time Remaining:" translateY="-40.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </StackPane>
       <HBox fx:id="computer" alignment="CENTER" layoutX="132.0" layoutY="299.0" onMousePressed="#onClickComputer" prefHeight="256.0" prefWidth="280.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
          <children>
             <ImageView fitHeight="280.0" fitWidth="434.0" pickOnBounds="true" preserveRatio="true">
@@ -44,7 +61,7 @@
             </ImageView>
          </children>
       </HBox>
-      <HBox fx:id="logInScreen" layoutX="167.0" layoutY="168.0" prefHeight="453.0" prefWidth="688.0" style="-fx-border-color: #eccb0f;" visible="false">
+      <HBox fx:id="logInScreen" layoutX="200.0" layoutY="210.0" prefHeight="453.0" prefWidth="688.0" style="-fx-border-color: #eccb0f;" visible="false">
          <children>
             <VBox prefHeight="510.0" prefWidth="392.0">
                <children>
@@ -55,7 +72,7 @@
                               <Image url="@../images/banklogo.jpg" />
                            </image>
                         </ImageView>
-                        <Label prefHeight="59.0" prefWidth="405.0" text="206 Bank Computer" textFill="#eccb0f">
+                        <Label alignment="CENTER" prefHeight="69.0" prefWidth="448.0" text="206 Bank Computer" textFill="#eccb0f">
                            <font>
                               <Font name="BM KIRANGHAERANG OTF" size="47.0" />
                            </font>
@@ -77,7 +94,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Label fx:id="loginMsgLbl" prefHeight="35.0" prefWidth="205.0" textFill="#f20808">
+                  <Label fx:id="loginMsgLbl" alignment="CENTER" prefHeight="61.0" prefWidth="205.0" style="-fx-text-alignment: center;" textFill="#f20808" wrapText="true">
                      <font>
                         <Font name="Avenir Next Condensed Bold" size="19.0" />
                      </font>
@@ -211,23 +228,5 @@
             </VBox>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="343.0" layoutY="27.0" prefHeight="60.0" prefWidth="216.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 0 20 20 0;">
-         <children>
-            <Label prefHeight="39.0" prefWidth="100.0" style="-fx-background-color: #9fd7ff; -fx-background-radius: 0 20 20 0;" text="Timer:" textFill="#051a28">
-               <font>
-                  <Font size="32.0" />
-               </font>
-            </Label>
-            <Label prefHeight="37.0" prefWidth="81.0" text="Count">
-               <font>
-                  <Font size="30.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="20.0" />
-               </HBox.margin>
-            </Label>
-         </children>
-      </HBox>
-      <Button layoutX="546.0" layoutY="323.0" mnemonicParsing="false" onMouseClicked="#switchToDots" text="Connect Dots" />
    </children>
 </AnchorPane>

@@ -45,6 +45,7 @@ public class VaultController extends Controller {
   @FXML private ImageView bomblogo;
   @FXML private TextArea vaultTextArea;
   @FXML private TextField vaultTextField;
+  @FXML private Label timerLabel;
 
   @FXML private Rectangle dialogueBox;
   @FXML private Label moneyValue;
@@ -84,6 +85,8 @@ public class VaultController extends Controller {
   public void initialize() {
     SceneManager.setController(Scenes.VAULT, this);
     WalkieTalkieManager.addWalkieTalkieImage(this, vaultWalkieTalkie);
+    super.setTimerLabel(timerLabel, 1);
+    
     styleManager.addItems(
         goldDoor,
         silverDoor,
@@ -94,6 +97,7 @@ public class VaultController extends Controller {
         bombHolder,
         bombPuzzle,
         vaultwalkietalkie,
+        walkietalkie,
         walkietalkieHolder,
         switchHolder,
         escapeDoor);

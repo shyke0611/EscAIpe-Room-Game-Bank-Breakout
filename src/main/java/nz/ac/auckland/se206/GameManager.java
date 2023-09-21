@@ -67,7 +67,7 @@ public class GameManager {
         break;
     }
 
-    TimerControl.setCount(minutes);
+    TimerControl.setTimer(minutes);
   }
 
   public static GameManager getInstance() {

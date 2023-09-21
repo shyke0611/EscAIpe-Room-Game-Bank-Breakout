@@ -31,6 +31,7 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 public class SecurityController extends Controller {
 
   @FXML private ImageView Lobby;
+  @FXML private Label timerLabel;
   @FXML private Button LogOffBtn;
   @FXML private AnchorPane SecurityPane;
   @FXML private VBox SecurityRoomSwitch;
@@ -58,13 +59,13 @@ public class SecurityController extends Controller {
 
   public void initialize() {
     SceneManager.setController(Scenes.SECURITY, this);
-    WalkieTalkieManager.addWalkieTalkieImage(this, securityWalkieTalkie);
-    WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
-    styleManager.addItems(computer, electricityBox, securitybackground);
 
-    // styleManager.setItemsMessage("A computer...?", computer);
-    // styleManager.setItemsMessage("it requires credentials?", logInBtn);
-    // styleManager.setItemsMessage("no need to open this right now", electricityBox);
+    super.setTimerLabel(timerLabel, 1);
+    WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
+    WalkieTalkieManager.addWalkieTalkieImage(this, securityWalkieTalkie);
+    styleManager.addItems(computer, electricityBox, securitybackground, tempbackground);
+    styleManager.setItemsMessage("A computer...?", "computer");
+    styleManager.setItemsMessage("no need to open this right now", "electricityBox");
   }
 
   //   handling mouse events on walkie talkie

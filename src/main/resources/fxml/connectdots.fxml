@@ -42,9 +42,14 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
+                  <Label fx:id="timerLabel" prefHeight="30.0" prefWidth="348.0" text="Time Remaining: 0 Minutes 0 Seconds" translateX="-500.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </StackPane>
-            <GridPane fx:id="gridPane" alignment="CENTER" gridLinesVisible="true" layoutX="150.0" layoutY="100.0" prefHeight="480.0" prefWidth="540.0">
+            <GridPane fx:id="gridPane" alignment="CENTER" gridLinesVisible="true" layoutX="150.0" layoutY="100.0" onMouseDragged="#drag" onMousePressed="#startDrag" onMouseReleased="#endDrag" prefHeight="480.0" prefWidth="540.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
@@ -100,7 +105,7 @@
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="80.0" stroke="BLACK" strokeType="INSIDE" width="90.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
                </children>
             </GridPane>
-            <Button layoutX="730.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#resetGame" prefHeight="50.0" prefWidth="75.0" text="Reset">
+            <Button fx:id="resetButton" layoutX="730.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#resetGame" prefHeight="50.0" prefWidth="75.0" text="Reset">
                <font>
                   <Font size="18.0" />
                </font>

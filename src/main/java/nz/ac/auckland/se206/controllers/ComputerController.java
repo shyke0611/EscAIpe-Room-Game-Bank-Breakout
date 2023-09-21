@@ -3,6 +3,7 @@ package nz.ac.auckland.se206.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -22,9 +23,11 @@ public class ComputerController extends Controller {
   @FXML private Button viewHistoryBtn;
   @FXML private VBox walkietalkie;
   @FXML private VBox walkietalkieText;
+  @FXML private Label timerLabel;
 
   public void initialize() {
     SceneManager.setController(Scenes.COMPUTER, this);
+    super.setTimerLabel(timerLabel, 1);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
   }
 

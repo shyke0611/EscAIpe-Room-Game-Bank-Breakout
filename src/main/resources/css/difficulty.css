@@ -24,3 +24,7 @@
     -fx-text-fill :  #305dae;
 }
 
+#timerslider .thumb {
+    -fx-background-color: #305dae;
+}
+

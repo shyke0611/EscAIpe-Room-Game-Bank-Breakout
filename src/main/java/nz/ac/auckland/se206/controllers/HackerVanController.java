@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -24,6 +25,12 @@ public class HackerVanController extends Controller {
   @FXML private TextField hackerVanInput;
 
   @FXML private TextArea historyTextArea;
+  @FXML private Label timerLabel;
+
+  public void initialize() {
+    SceneManager.setController(Scenes.HACKERVAN, this);
+    super.setTimerLabel(timerLabel, 3);
+  }
 
   private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
   WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();

@@ -46,6 +46,7 @@ public class LaserCuttingController extends Controller {
 
   @FXML private Canvas canvas;
   @FXML private GraphicsContext gc;
+  @FXML private Label timerLabel;
 
   private ScaleTransition scaleTransitionGun;
   private Boolean gunEquppied = false;
@@ -60,6 +61,7 @@ public class LaserCuttingController extends Controller {
 
   public void initialize() {
     SceneManager.setController(Scenes.LASERCUTTING, this);
+    super.setTimerLabel(timerLabel, 3);
     gc = canvas.getGraphicsContext2D();
 
     root.getChildren().add(cursorLine);

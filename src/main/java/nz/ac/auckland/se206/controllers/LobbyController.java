@@ -37,6 +37,7 @@ public class LobbyController extends Controller {
   @FXML private ImageView Security;
   @FXML private ImageView lobbybackground;
   @FXML private VBox SecurityRoomSwitch;
+  @FXML private Label timerLabel;
   @FXML private ImageView Vault;
   @FXML private VBox VaultRoomSwitch;
   @FXML private Button closeNoteBtn;
@@ -76,6 +77,8 @@ public class LobbyController extends Controller {
   public void initialize() {
     SceneManager.setController(Scenes.LOBBY, this);
     WalkieTalkieManager.addWalkieTalkieImage(this, lobbyWalkieTalkie);
+    super.setTimerLabel(timerLabel, 1);
+    
     // obtain random credentials
     randomUsername = RandomnessGenerate.getUsername();
     randomPassword = RandomnessGenerate.getPasscode();
@@ -178,7 +181,6 @@ public class LobbyController extends Controller {
     // set note text to the randomly generated credentials
     passwordLbl.setText("Password: " + randomPassword);
     usernameLbl.setText("Username: " + randomUsername);
-    titleLbl.setText("Security Room Computer Log In");
     styleManager.removeItemsMessage("credentialsBook");
     styleManager.removeItemsMessage("computer");
     GameManager.completeObjective();
@@ -278,4 +280,5 @@ public class LobbyController extends Controller {
     hackerAiManager.storeQuickHint();
     walkieTalkieManager.setWalkieTalkieText(new ChatMessage("user", hint));
   }
+
 }
