@@ -97,19 +97,6 @@ public class StyleManager {
     Set<String> includeIDs =
         new HashSet<>(
             Arrays.asList(
-                "electricityBox",
-                "guardpocket",
-                "redwire",
-                "greenwire",
-                "bluewire",
-                "yellowwire",
-                "walkietalkie",
-                "switchHolder",
-                "walkietalkieHolder",
-                "bombHolder",
-                "exitHolder",
-                "bombPuzzle",
-                "escapeDoor",
                 "drawer",
                 "credentialsNote",
                 "computer",
