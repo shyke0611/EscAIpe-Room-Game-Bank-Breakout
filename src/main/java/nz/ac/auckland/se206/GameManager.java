@@ -89,6 +89,7 @@ public class GameManager {
   }
 
   public static void resetGame() {
+    // Reset the game and all variables/classes
     resetGameManager();
     SceneManager.clearScenes();
     RandomnessGenerate.reset();
@@ -97,6 +98,7 @@ public class GameManager {
     GameState.resetGameState();
     AnimationManager.reset();
     new HackerAiManager();
+    // Reload the scenes so they are reset
     try {
       App.reloadScenes();
     } catch (IOException e) {
@@ -235,28 +237,25 @@ public class GameManager {
   }
 
   public static String getObjectiveString() {
+    // Return the objective as a string
     switch (activeObjective) {
       case START_GAME:
         return "Start Game";
       case GET_KEYS:
         return "Find Keys";
-
       case FIND_PASSCODE:
         return "Find Passcode";
-
       case LOGIN:
         return "Login";
-
       case DISABLE_FIREWALL:
         return "Disable Firewall";
-
       case COMPLETE_MINIGAME:
         return "Complete Minigame";
-
       case SELECT_VAULT_DOOR:
         return "Select Vault Door";
 
       case DOOR_OBJECTIVES:
+        // Return the objective for the door as a string
         if (activeDoorObjective == DoorObjectives.FIND_EXTRA_PASSCODE) {
           return "Find Extra Passcode";
         } else if (activeDoorObjective == DoorObjectives.CHEMICAL_MIXING) {
@@ -271,19 +270,14 @@ public class GameManager {
 
       case ALARM_TRIPPED:
         return "Alarm Tripped";
-
       case DISABLE_LASERTRAP:
         return "Disable Laser Trap";
-
       case FIND_ESCAPE:
         return "Find Escape";
-
       case ESCAPE:
         return "Escape";
-
       case GAME_OVER:
         return null;
-
       default:
         return null;
     }

@@ -128,17 +128,20 @@ public class App extends Application {
   }
 
   public static void textToSpeech(String string) {
+    // Create a text-to-speech task
     Task<Void> speechTask =
         new Task<Void>() {
 
           @Override
           protected Void call() throws Exception {
+            // Perform text-to-speech operations here
             TextToSpeech textToSpeech = new TextToSpeech();
             textToSpeech.speak(string);
             return null;
           }
         };
 
+    // Run the task in a background thread
     Thread speechThread = new Thread(speechTask);
     speechThread.setDaemon(true);
     speechThread.start();
@@ -153,9 +156,11 @@ public class App extends Application {
   }
 
   private void loadGameScenes() throws IOException {
+    // Add main room scenes to SceneManager
     SceneManager.addUi(SceneManager.Scenes.VAULT, loadFxml("vault"));
     SceneManager.addUi(SceneManager.Scenes.LOBBY, loadFxml("lobby"));
     SceneManager.addUi(SceneManager.Scenes.SECURITY, loadFxml("securityroom"));
+    // Add scenes within game to SceneManager
     SceneManager.addUi(SceneManager.Scenes.WIRECUTTING, loadFxml("wirecutting"));
     SceneManager.addUi(SceneManager.Scenes.COMPUTER, loadFxml("computer"));
     SceneManager.addUi(SceneManager.Scenes.HACKERVAN, loadFxml("hackervan"));
