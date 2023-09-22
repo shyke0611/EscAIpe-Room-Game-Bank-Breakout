@@ -18,7 +18,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
@@ -223,11 +222,6 @@ public class ComputerController extends Controller {
     dotCount = (dotCount % 3) + 1; // Cycle dots from 1 to 3
     String dots = ".".repeat(dotCount); // Generate dots
     processingLabel.setText("Processing" + dots);
-  }
-
-  public void switchToDots() {
-    GameState.isConnectDotreached = true;
-    App.setUI(Scenes.CONNECTDOTS);
   }
 
   //   handling mouse events on walkie talkie

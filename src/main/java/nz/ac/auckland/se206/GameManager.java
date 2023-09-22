@@ -76,6 +76,14 @@ public class GameManager {
     return instance;
   }
 
+  public void setDifficulty(Difficulty d) {
+    difficulty = d;
+  }
+
+  public Difficulty geDifficulty() {
+    return difficulty;
+  }
+
   public static void resetGame() {
     resetGameManager();
     SceneManager.clearScenes();

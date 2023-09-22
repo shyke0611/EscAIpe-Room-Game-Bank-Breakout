@@ -7,11 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import nz.ac.auckland.se206.HackerAiManager.Difficulties;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.controllers.GameFinishController;
 import nz.ac.auckland.se206.gpt.ChatMessage;
-import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
@@ -71,18 +69,6 @@ public class App extends Application {
     // initialise the randomiser for all random components
     RandomnessGenerate.generateRandomCredentials();
 
-    HackerAiManager hackerAiManager = HackerAiManager.getInstance();
-    hackerAiManager.initialiseHackerAi(Difficulties.MEDIUM);
-    GameManager.completeObjective();
-
-    chatCompletionRequest =
-        new ChatCompletionRequest().setN(1).setTemperature(0.5).setTopP(0.9).setMaxTokens(100);
-    try {
-      message = runGpt(new ChatMessage("user", GptPromptEngineering.welcomeMessage()));
-    } catch (ApiProxyException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
     // Initialise controllers hashmap to SceneManager
     SceneManager.addController(SceneManager.Scenes.VAULT, null);
     SceneManager.addController(SceneManager.Scenes.LOBBY, null);
@@ -100,6 +86,9 @@ public class App extends Application {
     SceneManager.addController(SceneManager.Scenes.LASERCUTTING, null);
 
     loadAllScenes();
+
+    // DONT DELETE, ensures object starts on find keys which is important for ai to work
+    GameManager.completeObjective();
 
     Parent root = SceneManager.getUiRoot(Scenes.MAIN_MENU);
 
