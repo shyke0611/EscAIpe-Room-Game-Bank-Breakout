@@ -66,6 +66,7 @@ public class HackerAiManager {
     hintMappings.put("Find Escape", "Place the bomb in the vault and arm it to escape");
 
     // Initialize the context mappings
+    contextMappsing.put("Find Keys", "You have not done anything yet");
     contextMappsing.put(
         "Find Passcode",
         "The player put the guard to sleep in order to check places to find the keys");
@@ -141,9 +142,14 @@ public class HackerAiManager {
 
   public String GetQuickHint() {
     currentStage = GameManager.getObjectiveString();
-    hint = getHintForCurrentStage(currentStage);
 
-    if (Difficulties.MEDIUM == currentDifficulty && hintCounter <= 0) {
+    if (Difficulties.EASY == currentDifficulty) {
+      Platform.runLater(() -> walkieTalkieManager.setHintText("Unlimited"));
+      hint = getHintForCurrentStage(currentStage);
+    } else if (Difficulties.HARD == currentDifficulty) {
+      Platform.runLater(() -> walkieTalkieManager.setHintText("0"));
+      hint = "You are not allow to have hints ";
+    } else if (Difficulties.MEDIUM == currentDifficulty && hintCounter <= 0) {
       Platform.runLater(
           () ->
               walkieTalkieManager.setWalkieTalkieText(
@@ -154,6 +160,7 @@ public class HackerAiManager {
 
     } else {
       Platform.runLater(() -> walkieTalkieManager.setHintText(Integer.toString(hintCounter)));
+      hint = getHintForCurrentStage(currentStage);
     }
 
     return hint;
@@ -223,6 +230,7 @@ public class HackerAiManager {
       // Things to add, update ai to say what has happend during round
       tellAIContext = new ChatMessage("user", contextMappsing.get(currentStage));
       runGpt(tellAIContext);
+
       response = runGpt(msg);
 
     } else if (currentDifficulty == Difficulties.EASY) {
