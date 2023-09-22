@@ -55,16 +55,16 @@ public abstract class Controller {
   @FXML
   public void setVault(MouseEvent event) {
     if (GameState.isLaserCuttingBypassed) {
+        styleManager.getItem("silverDoor").setVisible(false);
+        styleManager.getItem("silverDoorHolder").setDisable(true);
+    }
+    if (GameState.isChemicalMixingBypassed) {
         styleManager.getItem("bronzeDoor").setVisible(false);
         styleManager.getItem("bronzeDoorHolder").setDisable(true);
     }
-    if (GameState.isChemicalMixingBypassed) {
+    if (GameState.isEyeScannerBypassed) {
         styleManager.getItem("goldDoor").setVisible(false);
         styleManager.getItem("goldDoorHolder").setDisable(true);
-    }
-    if (GameState.isEyeScannerBypassed) {
-        styleManager.getItem("silverDoor").setVisible(false);
-        styleManager.getItem("silverDoorHolder").setDisable(true);
     }
     if (GameState.isLaserCuttingBypassed || GameState.isChemicalMixingBypassed || GameState.isEyeScannerBypassed) {
         styleManager.getItem("lootBtnHolder").setVisible(true);
