@@ -76,6 +76,7 @@ public class VaultController extends Controller {
   @FXML private Pane slidePane;
   @FXML private Button lootBtn;
   @FXML private StackPane timerClock;
+  @FXML private Label numberOfHints;
 
   @FXML private HBox switchHolder;
   @FXML private HBox walkietalkieHolder;
@@ -91,6 +92,7 @@ public class VaultController extends Controller {
   public void initialize() {
     SceneManager.setController(Scenes.VAULT, this);
     WalkieTalkieManager.addWalkieTalkieImage(this, vaultWalkieTalkie);
+    WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
     super.setTimerLabel(timerLabel, 1);
 
     styleManager.addItems(
@@ -132,12 +134,12 @@ public class VaultController extends Controller {
   //   handling mouse events on walkie talkie
   //   open and closes when walkie talkie is clicked
   @FXML
-  public void onWalkieTalkie(MouseEvent event) {
+  private void onWalkieTalkie(MouseEvent event) {
     WalkieTalkieManager.toggleWalkieTalkie();
   }
 
   @FXML
-  public void onBombPressed(MouseEvent event) {
+  private void onBombPressed(MouseEvent event) {
     AnimationManager.slideDoorsAnimation(doorHolder);
     AnimationManager.slideDoorsAnimation(vaultbackground);
     AnimationManager.slideDoorsAnimation(slidePane);
@@ -151,7 +153,7 @@ public class VaultController extends Controller {
   }
 
   @FXML
-  public void onBombPlaced(MouseEvent event) {
+  private void onBombPlaced(MouseEvent event) {
     if (!GameState.isBombActivated) {
       GameManager.completeObjective();
       bombPuzzle.setVisible(true);
@@ -159,7 +161,7 @@ public class VaultController extends Controller {
   }
 
   @FXML
-  public void onSwitchToHacker() {
+  private void onSwitchToHacker() {
     SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.VAULT);
     HackerVanController vanController =
         (HackerVanController) SceneManager.getController(Scenes.HACKERVAN);
@@ -169,7 +171,7 @@ public class VaultController extends Controller {
   }
 
   @FXML
-  public void onSwitchToEyeScanner() {
+  private void onSwitchToEyeScanner() {
     if (GameState.isFirewallDisabled /* && GameState.isSecondRiddleSolved*/) {
       GameManager.completeObjective();
       App.setUI(Scenes.EYESCANNER);
@@ -180,7 +182,7 @@ public class VaultController extends Controller {
   }
 
   @FXML
-  public void onSwitchToChemicalMixing() {
+  private void onSwitchToChemicalMixing() {
     if (GameState.isFirewallDisabled && GameState.isThirdRiddleSolved) {
       GameManager.completeObjective();
       App.setUI(Scenes.CHEMICALMIXING);
@@ -188,7 +190,7 @@ public class VaultController extends Controller {
   }
 
   @FXML
-  public void onLootCollected(ActionEvent event) {
+  private void onLootCollected(ActionEvent event) {
     if (GameState.isFirewallDisabled && GameState.isAnyDoorOpen) {
       App.textToSpeech("Alarm Triggered, Go and Disable it");
       StyleManager.setAlarm(true);
@@ -204,7 +206,7 @@ public class VaultController extends Controller {
   }
 
   @FXML
-  public void onLaserCuttingScene() {
+  private void onLaserCuttingScene() {
     if (GameState.isFirewallDisabled) {
       GameManager.completeObjective();
       App.setUI(Scenes.LASERCUTTING);
@@ -212,7 +214,7 @@ public class VaultController extends Controller {
   }
 
   @FXML
-  public void onButtonClick(ActionEvent event) {
+  private void onButtonClick(ActionEvent event) {
     Button button = (Button) event.getSource();
     String buttonText = button.getText();
     updateCode(buttonText);
@@ -224,7 +226,7 @@ public class VaultController extends Controller {
   }
 
   @FXML
-  public void onCheckCode(ActionEvent event) {
+  private void onCheckCode(ActionEvent event) {
     String code = givencode.getText().substring("Code: ".length());
     if (inputLbl.getText().equals(code)) {
       statusLbl.setText("Success, press x to Activate bomb");
@@ -241,7 +243,7 @@ public class VaultController extends Controller {
   }
 
   @FXML
-  public void onExitBomb() {
+  private void onExitBomb() {
     bombPuzzle.setVisible(false);
     if (GameState.isBombActivated) {
       styleManager.setVisible(false, "switchHolder", "walkietalkieHolder", "bombHolder");
@@ -253,14 +255,14 @@ public class VaultController extends Controller {
   }
 
   @FXML
-  public void onEscape() {
+  private void onEscape() {
     TimerControl.cancelTimer();
     App.setUI(Scenes.GAMEFINISH);
     ((GameFinishController) SceneManager.getController(Scenes.GAMEFINISH)).setGameWonPage();
   }
 
   @FXML
-  public void showInfo(MouseEvent event) {
+  private void showInfo(MouseEvent event) {
     String door = event.getSource().toString();
 
     if (GameState.isFirewallDisabled) {
@@ -281,7 +283,7 @@ public class VaultController extends Controller {
   }
 
   @FXML
-  public void clearInfo(MouseEvent event) {
+  private void clearInfo(MouseEvent event) {
     dialogueBox.setVisible(false);
     moneyValue.setText(null);
     difficultyValue.setText(null);
@@ -304,14 +306,14 @@ public class VaultController extends Controller {
     difficultyValue.setText(difficultyText);
   }
 
-  public void showMoneyCollected() {
+  private void showMoneyCollected() {
     setInfoText("Money: " + GameManager.getMoneyToGain(), null);
   }
 
   @FXML
-  public void invokeHackerAI(KeyEvent event) throws ApiProxyException {
+  private void invokeHackerAI(KeyEvent event) throws ApiProxyException {
 
-    if (event.getCode() == KeyCode.ENTER) {
+    if (event.getCode() == KeyCode.ENTER && walkieTalkieManager.isWalkieTalkieOpen()) {
       walkieTalkieManager.startAnimation();
 
       Task<Void> aiTask3 =
@@ -346,7 +348,7 @@ public class VaultController extends Controller {
   }
 
   @FXML
-  public void onQuickHint(ActionEvent event) {
+  private void onQuickHint(ActionEvent event) {
     String hint = hackerAiManager.GetQuickHint();
     hackerAiManager.storeQuickHint();
     walkieTalkieManager.setWalkieTalkieText(new ChatMessage("user", hint));

@@ -30,13 +30,16 @@ public class StyleManager {
   }
 
   public void setItemsMessage(String message, String... items) {
+    // Go through each item
     for (String item : items) {
       Node node = getItem(item);
       Tooltip tooltip = tooltipMap.get(node);
+      // if the tool tip is null then create a new one
       if (tooltip == null) {
         tooltip = new Tooltip();
         tooltipMap.put(node, tooltip);
       }
+      // set the message and install the tooltip
       tooltip.setText(message);
       Tooltip.install(node, tooltip);
       tooltip.setShowDelay(Duration.seconds(0));
@@ -63,21 +66,22 @@ public class StyleManager {
           event ->
               node.setStyle(
                   "-fx-effect: dropshadow(gaussian, " + rgba + ", 5, 5, 0, 0); -fx-cursor: hand;"));
-      // ScaleTransition scaleTransition = AnimationManager.createScaleTransition(node);
-      // AnimationManager.playAnimationForward(scaleTransition);
 
       node.setOnMouseExited(event -> node.setStyle(""));
-      // node.setOnMouseExited(event -> AnimationManager.playAnimationReverse(scaleTransition));
     }
   }
 
   private String getRgbaForHoverColour(HoverColour colour) {
+    // return the rgba value for the given colour
     switch (colour) {
       case RED:
+        // Red hover colour
         return "rgba(255, 0, 0, 0.7)";
       case GREEN:
+        // Green hover colour
         return "rgba(34, 255, 0, 0.7)";
       case ORANGE:
+        // Orange hover colour
         return "rgba(255, 183, 0, 0.7)";
       default:
         return null;
@@ -90,8 +94,19 @@ public class StyleManager {
   }
 
   public static void setAlarm(boolean on) {
-    Set<String> includeIDs =
-        new HashSet<>(Arrays.asList("guard","drawerHolder","drawer", "credentialsNote", "computer", "doorHolder","guardeyes","key1","key3","key4"));
+    Set<String> includeIds =
+        new HashSet<>(
+            Arrays.asList(
+                "guard",
+                "drawerHolder",
+                "drawer",
+                "credentialsNote",
+                "computer",
+                "doorHolder",
+                "guardeyes",
+                "key1",
+                "key3",
+                "key4"));
     for (Node item : itemsList) {
       if (item == null) {
         continue; // Skip null items
@@ -100,10 +115,9 @@ public class StyleManager {
       System.out.println("Item ID: " + itemId);
 
       if (itemId != null) {
-        if (includeIDs.contains(itemId)) {
+        if (includeIds.contains(itemId)) {
           item.setDisable(true);
           item.setStyle(null);
-          // setClueHover(itemId,!on);
         }
 
         if (itemId.endsWith("background")) {
@@ -117,7 +131,6 @@ public class StyleManager {
     for (Node node : itemsList) {
       if (node.getId().equals(item)) {
         AnimationManager.toggleHoverAnimation(node, isOn, 1);
-        //  node.setStyle("-fx-effect: dropshadow(gaussian, rgba(34, 255, 0, 0.7), 10, 10, 0, 0)");
       }
     }
   }

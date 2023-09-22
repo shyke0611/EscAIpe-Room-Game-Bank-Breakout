@@ -19,34 +19,22 @@ import nz.ac.auckland.se206.TimerControl;
 import nz.ac.auckland.se206.difficulties.Difficulty.Difficulties;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
+/** Controller class for the Difficulty Selection scene. */
 public class DifficultyController extends Controller {
 
   @FXML private VBox buttonsContainer;
-
   @FXML private ImageView easyAlarmImage;
-
   @FXML private ImageView hardAlarmImage;
-
   @FXML private VBox easyVbox;
-
   @FXML private VBox hardVbox;
-
   @FXML private ImageView mediumAlarmImage;
-
   @FXML private VBox mediumVbox;
-
   @FXML private Label titleLabel1;
-
   @FXML private Label titleLabel2;
-
   @FXML private Label difficultyLabel;
-
   @FXML private Label timerLabel;
-
   @FXML private Button startBtn;
-
   @FXML private Button playBtn;
-
   @FXML private Slider timerSlider;
 
   private boolean easyVboxClicked = false;
@@ -54,17 +42,24 @@ public class DifficultyController extends Controller {
   private boolean hardVboxClicked = false;
   private Difficulties difficulty;
   private boolean difficultySelected = false;
-
   private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
-
+  
+  /**
+   * Initialize the Difficulty Selection controller. It sets the controller for the Difficulty
+   * Selection scene.
+   */
   public void initialize() {
     SceneManager.setController(Scenes.DIFFICULTYPAGE, this);
   }
 
-  // Handling mouse hovering event over each difficulty
-  // when mouse enters the difficulty boxes turn image visibility on
+  /**
+   * Handle the mouse hovering event over each difficulty. When the mouse enters the difficulty
+   * boxes, turn image colour on.
+   *
+   * @param event The MouseEvent triggered by hovering over a difficulty box.
+   */
   @FXML
-  void onDifficultyEntered(MouseEvent event) {
+  private void onDifficultyEntered(MouseEvent event) {
     if (event.getSource() == easyVbox) {
       easyAlarmImage.setVisible(true);
     } else if (event.getSource() == mediumVbox) {
@@ -74,9 +69,14 @@ public class DifficultyController extends Controller {
     }
   }
 
-  // when mouse exits the difficulty boxes turn image visibility off
+  /**
+   * Handle the mouse exiting event from each difficulty. When the mouse exits the difficulty boxes,
+   * turn image colour off.
+   *
+   * @param event The MouseEvent triggered by exiting a difficulty box.
+   */
   @FXML
-  void onDifficultyExited(MouseEvent event) {
+  private void onDifficultyExited(MouseEvent event) {
     if (event.getSource() == easyVbox && !easyVboxClicked) {
       easyAlarmImage.setVisible(false);
     } else if (event.getSource() == mediumVbox && !mediumVboxClicked) {
@@ -86,10 +86,13 @@ public class DifficultyController extends Controller {
     }
   }
 
-  // Handling mouse click events over each difficulty
-
+  /**
+   * Handle the mouse click events over each difficulty.
+   *
+   * @param event The MouseEvent triggered by clicking a difficulty box.
+   */
   @FXML
-  void onDifficultyClicked(MouseEvent event) throws ApiProxyException {
+  private void onDifficultyClicked(MouseEvent event) {
     if (!difficultySelected) {
       difficultySelected = true;
       playBtn.setDisable(false);
@@ -130,15 +133,25 @@ public class DifficultyController extends Controller {
     aiThread3.start();
   }
 
-  // when slider changes values to set timer, timer value is shown in the text label
+   /**
+   * Handle the slider value change event. When the slider changes values to set the timer, the
+   * timer value is shown in the text label.
+   *
+   * @param event The MouseEvent triggered by changing the slider value.
+   */
   @FXML
-  void onSliderChanged(MouseEvent event) {
+  private void onSliderChanged(MouseEvent event) {
     int timerValue = (int) timerSlider.getValue();
     timerLabel.setText(Integer.toString(timerValue) + " Minutes");
   }
 
+  /**
+   * Handle the event when the "Start Heist" button is clicked.
+   *
+   * @param event The ActionEvent triggered by clicking the "Start Heist" button.
+   */
   @FXML
-  public void startHeist(ActionEvent event) throws IOException {
+  private void onStartHeist(ActionEvent event) {
     int timerValue = (int) timerSlider.getValue();
     GameManager.createGame(difficulty, timerValue);
     TimerControl.runTimer();
@@ -147,6 +160,15 @@ public class DifficultyController extends Controller {
         .setDifficultyLabel(difficulty.toString());
   }
 
+  /**
+   * Handle the selection of a difficulty level. Resets the clicked state of difficulty boxes,
+   * updates the displayed difficulty label, and makes the selected difficulty box visually distinct
+   * by adding a CSS class.
+   *
+   * @param vbox The VBox representing the selected difficulty box.
+   * @param alarmImage The ImageView representing the alarm image for the selected difficulty.
+   * @param label The label text for the selected difficulty.
+   */
   private void handleDifficultySelection(VBox vbox, ImageView alarmImage, String label) {
     easyVboxClicked = false;
     mediumVboxClicked = false;

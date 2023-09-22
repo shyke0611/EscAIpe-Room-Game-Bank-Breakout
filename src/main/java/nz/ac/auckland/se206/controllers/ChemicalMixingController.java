@@ -19,6 +19,10 @@ import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
+
+/**
+ * Controller class for the Chemical Mixing scene.
+ */
 public class ChemicalMixingController extends Controller {
 
   @FXML private Label timerLabel;
@@ -55,6 +59,10 @@ public class ChemicalMixingController extends Controller {
   private Timeline sliderAnimation;
   private boolean sliderMoving = false;
 
+  /**
+ * Initializes the Chemical Mixing controller and sets up the initial state of the scene.
+ * It also sets up hover animations for vile images and initializes the chemical recipe.
+ */
   public void initialize() {
     SceneManager.setController(Scenes.CHEMICALMIXING, this);
     super.setTimerLabel(timerLabel, 3);
@@ -81,8 +89,13 @@ public class ChemicalMixingController extends Controller {
     sliderAnimation.setCycleCount(Timeline.INDEFINITE); // Repeat indefinitely
   }
 
+  /**
+ * Handles the event when a chemical vile is poured into the beaker.
+ *
+ * @param event The MouseEvent triggered by pouring a vile.
+ */
   @FXML
-  public void onPourChemical(MouseEvent event) {
+  private void onPourChemical(MouseEvent event) {
 
     ImageView image = (ImageView) event.getSource();
     image.setStyle("-fx-cursor: hand;");
@@ -154,7 +167,13 @@ public class ChemicalMixingController extends Controller {
         });
   }
 
-  public void fillBeaker(int value, int pourCount) {
+  /**
+ * Fills the beaker with the poured chemical and checks if the combination is correct.
+ *
+ * @param value     The value representing the poured chemical.
+ * @param pourCount The number of times chemicals have been poured.
+ */
+  private void fillBeaker(int value, int pourCount) {
 
     // More ugly code to determine which rectangle to fill and what colour
     Paint currentColour;
@@ -183,11 +202,14 @@ public class ChemicalMixingController extends Controller {
       fourthPour.setFill(currentColour);
       checkWin();
       GameState.isChemicalMixingBypassed = true;
-      // updateMoneyStolen(20000000);
     }
   }
 
-  public void checkWin() {
+  /**
+ * Checks if the player has successfully completed the chemical mixing challenge.
+ * If successful, it reveals the "Continue" button and win message, and increases the money to gain.
+ */
+  private void checkWin() {
     retryButton.setVisible(false);
     stopButton.setVisible(false);
 
@@ -198,8 +220,13 @@ public class ChemicalMixingController extends Controller {
     GameManager.increaseMoneyToGain(5000000);
   }
 
+  /**
+ * Handles the event when the "Retry" button is clicked to reset the challenge.
+ *
+ * @param event The ActionEvent triggered by clicking the "Retry" button.
+ */
   @FXML
-  public void onRetryButtonClicked(ActionEvent event) {
+  private void onRetryButtonClicked(ActionEvent event) {
     // Reset all necessary variables and elements
     slider.setValue(0);
     currentVile.setText("");
@@ -232,6 +259,10 @@ public class ChemicalMixingController extends Controller {
     }
   }
 
+
+/**
+ * stops or resumes the slider animation when the "Stop" button is pressed.
+ */
   @FXML
   private void onStopSlider() {
     if (sliderAnimation != null && sliderAnimation.getStatus() == Timeline.Status.RUNNING) {
@@ -243,7 +274,11 @@ public class ChemicalMixingController extends Controller {
     }
   }
 
-  public void initializeRecipe() {
+  /**
+ * Initializes the chemical recipe by generating random amounts of chemicals.
+ * Displays the initial amounts on the labels.
+ */
+  private void initializeRecipe() {
     randomYellow = RandomnessGenerate.getRandomChemicalAmount();
     randomRed = RandomnessGenerate.getRandomChemicalAmount();
     randomBlue = RandomnessGenerate.getRandomChemicalAmount();

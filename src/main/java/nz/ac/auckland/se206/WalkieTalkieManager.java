@@ -7,6 +7,7 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -28,14 +29,19 @@ public class WalkieTalkieManager {
 
   private int dotCount = 1;
   // storing the walkietalkie textboxes
-  private static HashMap<Controller, VBox> walkietalkieMap = new HashMap<>();
+  private static HashMap<Controller, VBox> walkieTalkieMap = new HashMap<>();
   private static HashMap<Controller, ImageView> walkieTalkieImageMap = new HashMap<>();
+  private static HashMap<Controller, Label> walkieTalkieHints = new HashMap<>();
   private static boolean walkieTalkieOpen = false;
   private static WalkieTalkieManager instance = new WalkieTalkieManager();
   private Timeline timeline;
 
   public static void addWalkieTalkie(Controller controller, VBox walkietalkie) {
-    walkietalkieMap.put(controller, walkietalkie);
+    walkieTalkieMap.put(controller, walkietalkie);
+  }
+
+  public static void addWalkieTalkieHint(Controller controller, Label hint) {
+    walkieTalkieHints.put(controller, hint);
   }
 
   public static void addWalkieTalkieImage(Controller controller, ImageView walkietalkie) {
@@ -44,6 +50,10 @@ public class WalkieTalkieManager {
 
   public static WalkieTalkieManager getInstance() {
     return instance;
+  }
+
+  public boolean isWalkieTalkieOpen() {
+    return walkieTalkieOpen;
   }
 
   public ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
@@ -64,15 +74,15 @@ public class WalkieTalkieManager {
   }
 
   public void clearWalkieTalkie() {
-    for (VBox vBox : walkietalkieMap.values()) {
+    for (VBox vertBox : walkieTalkieMap.values()) {
       // Iterate through the children of the VBox (assuming they are HBox containers)
-      ObservableList<Node> children = vBox.getChildren();
+      ObservableList<Node> children = vertBox.getChildren();
       for (Node node : children) {
         if (node instanceof HBox) {
-          HBox hBox = (HBox) node;
+          HBox horizontalBox = (HBox) node;
 
           // Now, iterate through the children of the HBox to find the TextArea
-          ObservableList<Node> hboxChildren = hBox.getChildren();
+          ObservableList<Node> hboxChildren = horizontalBox.getChildren();
           for (Node hboxChild : hboxChildren) {
             if (hboxChild instanceof TextField) {
               TextField textArea = (TextField) hboxChild;
@@ -85,9 +95,9 @@ public class WalkieTalkieManager {
   }
 
   public void setWalkieTalkieText(ChatMessage msg) {
-    for (VBox vBox : walkietalkieMap.values()) {
+    for (VBox vertBox : walkieTalkieMap.values()) {
       // Iterate through the children of the VBox (assuming they are HBox containers)
-      ObservableList<Node> children = vBox.getChildren();
+      ObservableList<Node> children = vertBox.getChildren();
       for (Node node : children) {
         if (node instanceof HBox) {
           HBox hbox = (HBox) node;
@@ -105,13 +115,20 @@ public class WalkieTalkieManager {
     }
   }
 
+  public void setHintText(String hintCount) {
+    for (Label label : walkieTalkieHints.values()) {
+      System.out.println(hintCount);
+      label.setText(hintCount);
+    }
+  }
+
   public static void toggleWalkieTalkie() {
     walkieTalkieOpen = !walkieTalkieOpen;
 
     // Iterate through the map and update the visibility of all VBoxes
-    for (VBox vBox : walkietalkieMap.values()) {
+    for (VBox vertBox : walkieTalkieMap.values()) {
 
-      vBox.setVisible(walkieTalkieOpen);
+      vertBox.setVisible(walkieTalkieOpen);
     }
   }
 
@@ -169,7 +186,7 @@ public class WalkieTalkieManager {
 
   public static void reset() {
     walkieTalkieOpen = false;
-    walkietalkieMap.clear();
+    walkieTalkieMap.clear();
     walkieTalkieImageMap.clear();
   }
 }

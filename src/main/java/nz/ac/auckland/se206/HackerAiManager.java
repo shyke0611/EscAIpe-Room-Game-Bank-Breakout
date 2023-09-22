@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javafx.application.Platform;
 import nz.ac.auckland.se206.difficulties.Difficulty.Difficulties;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
@@ -15,8 +16,9 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 public class HackerAiManager {
 
   private int hintLimit;
-  private int hintCounter = 0;
+  private int hintCounter;
   private static HackerAiManager instance = new HackerAiManager();
+  private WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
 
   // Map to store hints for different game stages
   private Map<String, String> hintMappings = new HashMap<>();
@@ -26,10 +28,10 @@ public class HackerAiManager {
 
   private int hintNumber = 1; // Hint number for hint history
   private ChatMessage response;
-  private ChatMessage tellAIHint;
+  private ChatMessage tellAiHint;
   private String currentStage;
   private String hint;
-  private ChatMessage tellAIContext;
+  private ChatMessage tellAiContext;
 
   private ChatCompletionRequest chatCompletionRequest;
   private Difficulties currentDifficulty;
@@ -59,6 +61,7 @@ public class HackerAiManager {
     hintMappings.put("Find Escape", "Place the bomb in the vault and arm it to escape");
 
     // Initialize the context mappings
+    contextMappsing.put("Find Keys", "You have not done anything yet");
     contextMappsing.put(
         "Find Passcode",
         "The player put the guard to sleep in order to check places to find the keys");
@@ -89,25 +92,31 @@ public class HackerAiManager {
 
   public void initialiseHackerAi(Difficulties difficulty) throws ApiProxyException {
 
+    // Initialise the ai based on the difficulty
     switch (difficulty) {
       case EASY:
         currentDifficulty = Difficulties.EASY;
-        setHintLimit(1000);
+        setHintLimit(-1);
+        hintCounter = -1;
         chatCompletionRequest =
             new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(1).setMaxTokens(100);
         runGpt(new ChatMessage("user", GptPromptEngineering.initisialiseHackerAiEasy()));
-
         break;
+
+        // Initialise the ai for the medium difficulty
       case MEDIUM:
         setHintLimit(5);
+        hintCounter = 5;
         currentDifficulty = Difficulties.MEDIUM;
         chatCompletionRequest =
             new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(1).setMaxTokens(100);
         runGpt(new ChatMessage("user", GptPromptEngineering.intisialiseHackerAiMeidium()));
-
         break;
+
+        // Initialise the ai for the hard difficulty
       case HARD:
         setHintLimit(0);
+        hintCounter = -1;
         currentDifficulty = Difficulties.HARD;
         chatCompletionRequest =
             new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(1).setMaxTokens(100);
@@ -121,7 +130,7 @@ public class HackerAiManager {
   }
 
   public void incrementHintCounter() {
-    hintCounter++;
+    hintCounter--;
   }
 
   // Method to get a hint for the current game stage
@@ -131,8 +140,31 @@ public class HackerAiManager {
 
   public String GetQuickHint() {
     currentStage = GameManager.getObjectiveString();
-    hint = getHintForCurrentStage(currentStage);
-    hintCounter++;
+
+    if (Difficulties.EASY == currentDifficulty) {
+      // Update the visual hint counter and retrieve hint
+      Platform.runLater(() -> walkieTalkieManager.setHintText("Unlimited"));
+      hint = getHintForCurrentStage(currentStage);
+    } else if (Difficulties.HARD == currentDifficulty) {
+      // Update the visual hint counter and return no hint
+      Platform.runLater(() -> walkieTalkieManager.setHintText("0"));
+      hint = "You are not allow to have hints ";
+    } else if (Difficulties.MEDIUM == currentDifficulty && hintCounter <= 0) {
+      // Update the visual hint counter and return all hints used
+      Platform.runLater(
+          () ->
+              walkieTalkieManager.setWalkieTalkieText(
+                  new ChatMessage(
+                      "user",
+                      "You have used all your hints, you can still ask for help but you will not"
+                          + " get a hint")));
+
+    } else {
+      // Update the visual hint counter and retrieve hint
+      Platform.runLater(() -> walkieTalkieManager.setHintText(Integer.toString(hintCounter)));
+      hint = getHintForCurrentStage(currentStage);
+    }
+
     return hint;
   }
 
@@ -147,12 +179,24 @@ public class HackerAiManager {
     }
   }
 
+  public boolean stringExists(String existingHint) {
+    for (String hint : hintHistory) {
+      if (hint.equals(existingHint)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   public void storeQuickHint() {
 
     String hint = GetQuickHint();
+    incrementHintCounter();
+    System.out.println(hint);
+    System.out.println(hintCounter);
 
     // Check if the hint is unique
-    if (!hintHistory.contains(hint)) {
+    if (!stringExists(hint)) {
 
       String formattedHint = hintNumber + ". " + hint;
       hintHistory.add(formattedHint);
@@ -173,44 +217,47 @@ public class HackerAiManager {
   public ChatMessage processInput(ChatMessage msg) throws ApiProxyException {
 
     // Replace 'msg' with the appropriate input
-    if (currentDifficulty == Difficulties.MEDIUM) {
+    if (currentDifficulty == Difficulties.MEDIUM && hintCounter > 0) {
       currentStage = GameManager.getObjectiveString();
       hint = getHintForCurrentStage(currentStage);
-      tellAIContext = new ChatMessage("user", "Context:" + contextMappsing.get(currentStage));
-      tellAIHint = new ChatMessage("user", "Hint:" + hint);
+      tellAiContext = new ChatMessage("user", "Context:" + contextMappsing.get(currentStage));
+      tellAiHint = new ChatMessage("user", "Hint:" + hint);
       ChatMessage gptCall =
-          new ChatMessage("user", tellAIHint.getContent() + tellAIContext.getContent());
+          new ChatMessage("user", tellAiHint.getContent() + tellAiContext.getContent());
       runGpt(gptCall);
 
       response = runGpt(msg);
 
     } else if (currentDifficulty == Difficulties.HARD) {
       // Things to add, update ai to say what has happend during round
-      tellAIContext = new ChatMessage("user", contextMappsing.get(currentStage));
-      runGpt(tellAIContext);
+      tellAiContext = new ChatMessage("user", contextMappsing.get(currentStage));
+      runGpt(tellAiContext);
+
       response = runGpt(msg);
 
     } else if (currentDifficulty == Difficulties.EASY) {
       currentStage = GameManager.getObjectiveString();
       hint = getHintForCurrentStage(currentStage);
-      tellAIContext = new ChatMessage("user", "Context:" + contextMappsing.get(currentStage));
-      tellAIHint = new ChatMessage("user", "the current hint for stage is " + hint);
-      runGpt(tellAIHint);
-      runGpt(tellAIContext);
+      tellAiContext = new ChatMessage("user", "Context:" + contextMappsing.get(currentStage));
+      tellAiHint = new ChatMessage("user", "the current hint for stage is " + hint);
+      runGpt(tellAiHint);
+      runGpt(tellAiContext);
       response = runGpt(msg);
 
     } else {
-      tellAIHint = new ChatMessage("user", "You have used all your hints");
-      tellAIContext = new ChatMessage("user", contextMappsing.get(currentStage));
-      runGpt(tellAIHint);
-      runGpt(tellAIContext);
-      response = runGpt(msg);
+      tellAiHint = new ChatMessage("user", "You have used all your hints");
+      tellAiContext = new ChatMessage("user", contextMappsing.get(currentStage));
+      ChatMessage gptCall =
+          new ChatMessage("user", tellAiHint.getContent() + tellAiContext.getContent());
+      runGpt(gptCall);
     }
 
-    if (userIsAiAskingForHelp(response.getContent()) && response.getContent().contains("hint")) {
+    if (userIsAiAskingForHelp(msg.getContent())) {
       storeAiHint(response);
       incrementHintCounter();
-      System.out.println(hintCounter);
+      if (hintCounter > 0) {
+        Platform.runLater(() -> walkieTalkieManager.setHintText(Integer.toString(hintCounter)));
+      }
     }
     return response;
   }

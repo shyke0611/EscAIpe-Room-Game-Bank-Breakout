@@ -22,12 +22,16 @@ public class TimerControl {
   public static String formatTime(int time, int format) {
     int minutes = time / 60;
     String minutesSuffix = minutes == 1 ? " Minute " : " Minutes ";
+
     switch (format) {
       case 1:
+        // Short format e.g. 0:00
         return "" + minutes + ":" + getSecondsString(time);
       case 2:
+        // Medium format e.g. 0 Minutes and 00 Seconds
         return "" + minutes + minutesSuffix + "and " + getSecondsString(time) + " Seconds";
       case 3:
+        // Long format e.g. Time Remaining: 0 Minutes and 00 Seconds
         return "Time Remaining: "
             + minutes
             + minutesSuffix
@@ -35,6 +39,7 @@ public class TimerControl {
             + getSecondsString(time)
             + " Seconds";
       case 4:
+        // Medium format adjusted e.g. 0 Minutes 0 Seconds
         return "" + minutes + minutesSuffix + (time % 60) + " Seconds";
       default:
         return "" + minutes + ":" + getSecondsString(time);
@@ -53,6 +58,7 @@ public class TimerControl {
 
   // method to set timer count
   public static void setTimer(int minutes) {
+    // set initial count(seconds) based on minutes
     switch (minutes) {
       case 2:
         initialCount = 32;

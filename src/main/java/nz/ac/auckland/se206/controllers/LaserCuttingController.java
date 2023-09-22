@@ -48,7 +48,8 @@ public class LaserCuttingController extends Controller {
   @FXML private Label timerLabel;
 
   private Boolean gunEquppied = false;
-  private double prevX, prevY;
+  private double prevY;
+  private double prevX;
   private double totalAngle = 0.0;
 
   private Line cursorLine = new Line();
@@ -78,19 +79,22 @@ public class LaserCuttingController extends Controller {
     formatBlackCirlce();
   }
 
-  public void laserGunClicked() {
+  @FXML
+  private void laserGunClicked() {
     gunEquppied = true;
     canvas.setVisible(true);
     laserGun.setVisible(false);
     equipLaserGun.setVisible(false);
   }
 
-  public void mouseReleased(MouseEvent event) {
+  @FXML
+  private void mouseReleased(MouseEvent event) {
     clearCursorLine();
     gc.clearRect(0, 0, 1000, 700);
   }
 
-  public void draw(MouseEvent event) {
+  @FXML
+  private void draw(MouseEvent event) {
 
     double x = event.getX();
     double y = event.getY();
@@ -125,20 +129,21 @@ public class LaserCuttingController extends Controller {
     prevY = y;
   }
 
-  public void clearCursorLine() {
+  private void clearCursorLine() {
     // Clear the cursor line by setting its end point to its start point
     cursorLine.setEndX(cursorLine.getStartX());
     cursorLine.setEndY(cursorLine.getStartY());
   }
 
-  public void mousePressed(MouseEvent event) {
+  @FXML
+  private void mousePressed(MouseEvent event) {
     prevX = event.getX();
     prevY = event.getY();
     points.clear();
     angles.clear();
   }
 
-  public boolean isMouseInsideLargerCircleOutsideSmallerCircle(
+  private boolean isMouseInsideLargerCircleOutsideSmallerCircle(
       Point2D mousePosition, Circle largerCircle, Circle smallerCircle) {
     // Calculate the distance from the mouse position to the center of the larger circle
     double distanceToLargerCircle =
@@ -153,7 +158,7 @@ public class LaserCuttingController extends Controller {
         && (distanceToSmallerCircle > smallerCircle.getRadius());
   }
 
-  public boolean whileUserisDrawing(Point2D mousePosition) {
+  private boolean whileUserisDrawing(Point2D mousePosition) {
     points.add(mousePosition);
 
     if (points.size() > 1) {
@@ -189,7 +194,7 @@ public class LaserCuttingController extends Controller {
     return false;
   }
 
-  public double calculateAngle(Point2D point1, Point2D point2, Circle circle) {
+  private double calculateAngle(Point2D point1, Point2D point2, Circle circle) {
     double centerX = circle.getCenterX();
     double centerY = circle.getCenterY();
 
@@ -253,7 +258,7 @@ public class LaserCuttingController extends Controller {
     blackCircle.setStrokeWidth(10);
   }
 
-  public void applyGlowEffect(Line line) {
+  private void applyGlowEffect(Line line) {
 
     // Create a GaussianBlur effect
     GaussianBlur blur = new GaussianBlur(15);

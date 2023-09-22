@@ -33,6 +33,8 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 public class SecurityController extends Controller {
 
   @FXML private Label timerLabel;
+
+  @FXML private Label numberOfHints;
   @FXML private Button logOffBtn;
   @FXML private AnchorPane securityPane;
   @FXML private VBox securityRoomSwitch;
@@ -63,6 +65,7 @@ public class SecurityController extends Controller {
     super.setTimerLabel(timerLabel, 1);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     WalkieTalkieManager.addWalkieTalkieImage(this, securityWalkieTalkie);
+    WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
     styleManager.addItems(
         computer,
         electricityBox,
@@ -70,7 +73,6 @@ public class SecurityController extends Controller {
         vaultRoomSwitch,
         lobbyRoomSwitch,
         securityRoomSwitch);
-
     styleManager.setItemsMessage("A computer...?", "computer");
     styleManager.setItemsMessage("no need to open this right now", "electricityBox");
     // setupListeners(computer,electricityBox);
@@ -79,11 +81,12 @@ public class SecurityController extends Controller {
   //   handling mouse events on walkie talkie
   //   open and closes when walkie talkie is clicked
   @FXML
-  public void onWalkieTalkie(MouseEvent event) {
+  private void onWalkieTalkie(MouseEvent event) {
     WalkieTalkieManager.toggleWalkieTalkie();
   }
 
-  public void onSwitchToHacker(ActionEvent event) {
+  @FXML
+  private void onSwitchToHacker(ActionEvent event) {
     SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.VAULT);
     HackerVanController vanController =
         (HackerVanController) SceneManager.getController(Scenes.HACKERVAN);
@@ -93,7 +96,7 @@ public class SecurityController extends Controller {
   }
 
   @FXML
-  public void onWireCutting(MouseEvent event) {
+  private void onWireCutting(MouseEvent event) {
     if (!GameState.isWiresCut && GameState.isAlarmTripped) {
       if (!GameState.isWireCredentialsFound) {
         App.textToSpeech("you need to find wire cutting order");
@@ -106,20 +109,19 @@ public class SecurityController extends Controller {
 
   // set visibility of log in screen off (log off computer)
   @FXML
-  public void onLogOff(ActionEvent event) {
+  private void onLogOff(ActionEvent event) {
     logInScreen.setVisible(false);
   }
 
   // check log in details before logging in
   @FXML
-  public void onLogIn(ActionEvent event) {
+  private void onLogIn(ActionEvent event) {
     checkLogin();
   }
 
   // opening computer log in screen
   @FXML
-  public void onClickComputer(MouseEvent event) {
-
+  private void onClickComputer(MouseEvent event) {
     styleManager.setClueHover("computer", false);
     // if already logged in, skip log in stage
     if (!GameState.isSecurityComputerLoggedIn) {
@@ -191,9 +193,9 @@ public class SecurityController extends Controller {
   }
 
   @FXML
-  public void invokeHackerAI(KeyEvent event) throws ApiProxyException {
+  private void invokeHackerAI(KeyEvent event) throws ApiProxyException {
 
-    if (event.getCode() == KeyCode.ENTER) {
+    if (event.getCode() == KeyCode.ENTER && walkieTalkieManager.isWalkieTalkieOpen()) {
 
       Task<Void> aiTask2 =
           new Task<Void>() {
@@ -228,7 +230,7 @@ public class SecurityController extends Controller {
   }
 
   @FXML
-  public void onQuickHint(ActionEvent event) {
+  private void onQuickHint(ActionEvent event) {
     String hint = hackerAiManager.GetQuickHint();
     hackerAiManager.storeQuickHint();
     walkieTalkieManager.setWalkieTalkieText(new ChatMessage("user", hint));
