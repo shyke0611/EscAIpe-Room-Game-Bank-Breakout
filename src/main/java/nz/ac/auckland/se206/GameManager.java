@@ -317,7 +317,4 @@ public class GameManager {
     difficulty = d;
   }
 
-  public Difficulty geDifficulty() {
-    return difficulty;
-  }
 }

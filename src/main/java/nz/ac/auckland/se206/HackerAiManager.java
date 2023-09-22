@@ -21,7 +21,7 @@ public class HackerAiManager {
     return instance;
   }
 
-  private int hintLimit;
+  private int hintLimit = 0;
   private int hintCounter;
   private WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
 
@@ -139,7 +139,7 @@ public class HackerAiManager {
     return hintMappings.getOrDefault(currentStage, "No hint available for this stage.");
   }
 
-  public String GetQuickHint() {
+  public String getQuickHint() {
     currentStage = GameManager.getObjectiveString();
 
     if (Difficulties.EASY == currentDifficulty) {
@@ -191,7 +191,7 @@ public class HackerAiManager {
 
   public void storeQuickHint() {
 
-    String hint = GetQuickHint();
+    String hint = getQuickHint();
     incrementHintCounter();
     System.out.println(hint);
     System.out.println(hintCounter);

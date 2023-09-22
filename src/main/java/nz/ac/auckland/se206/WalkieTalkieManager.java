@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206;
 
-import java.util.HashMap;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -22,15 +21,27 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
+import java.util.HashMap;
+
 public class WalkieTalkieManager {
 
-  // storing the walkietalkie textboxes
+  // Static Fields
   private static HashMap<Controller, VBox> walkieTalkieMap = new HashMap<>();
   private static HashMap<Controller, ImageView> walkieTalkieImageMap = new HashMap<>();
   private static HashMap<Controller, Label> walkieTalkieHints = new HashMap<>();
   private static boolean walkieTalkieOpen = false;
   private static WalkieTalkieManager instance = new WalkieTalkieManager();
 
+  // Instance Fields
+  private Timeline timeline;
+  private ChatCompletionRequest chatCompletionRequest = new ChatCompletionRequest()
+      .setN(1)
+      .setTemperature(0.7)
+      .setTopP(0.8)
+      .setMaxTokens(100);
+  private int dotCount = 1;
+
+  // Static Methods
   public static void addWalkieTalkie(Controller controller, VBox walkietalkie) {
     walkieTalkieMap.put(controller, walkietalkie);
   }
@@ -56,27 +67,25 @@ public class WalkieTalkieManager {
     }
   }
 
-  private Timeline timeline;
-  private ChatCompletionRequest chatCompletionRequest =
-      new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.8).setMaxTokens(100);
-  private int dotCount = 1;
+  public static void reset() {
+    walkieTalkieOpen = false;
+    walkieTalkieMap.clear();
+    walkieTalkieImageMap.clear();
+  }
 
+  // Instance Methods
   public boolean isWalkieTalkieOpen() {
     return walkieTalkieOpen;
   }
 
   public ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
-
     chatCompletionRequest.addMessage(msg);
     try {
       ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
       Choice result = chatCompletionResult.getChoices().iterator().next();
       chatCompletionRequest.addMessage(result.getChatMessage());
-      // appendChatMessage(result.getChatMessage());
-      System.out.println(result.getChatMessage().getContent());
       return result.getChatMessage();
     } catch (ApiProxyException e) {
-      // TODO handle exception appropriately
       e.printStackTrace();
       return null;
     }
@@ -126,7 +135,6 @@ public class WalkieTalkieManager {
 
   public void setHintText(String hintCount) {
     for (Label label : walkieTalkieHints.values()) {
-      System.out.println(hintCount);
       label.setText(hintCount);
     }
   }
@@ -134,24 +142,19 @@ public class WalkieTalkieManager {
   public void startAnimation() {
     timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> updateTypingLabel()));
 
-    Platform.runLater(
-        () -> {
-          for (ImageView image : walkieTalkieImageMap.values()) {
-            // Iterate through the children of the VBox (assuming they are HBox containers)
+    Platform.runLater(() -> {
+      for (ImageView image : walkieTalkieImageMap.values()) {
+        if (image.getId().endsWith("WalkieTalkie")) {
+          image.setImage(new Image("images/hacker.png"));
+        }
+      }
+    });
 
-            // Check the ID of the ImageView
-            if (image.getId().endsWith("WalkieTalkie")) {
-
-              image.setImage(new Image("images/hacker.png"));
-            }
-          }
-        });
     timeline.setCycleCount(Animation.INDEFINITE);
     timeline.play();
   }
 
   private void updateTypingLabel() {
-    // Update the typing label text with cycling dots
     StringBuilder dots = new StringBuilder();
     for (int i = 0; i < dotCount; i++) {
       dots.append(".");
@@ -161,7 +164,6 @@ public class WalkieTalkieManager {
 
     setWalkieTalkieText(msg);
 
-    // Increase or reset dot count
     if (dotCount < 3) {
       dotCount++;
     } else {
@@ -174,18 +176,9 @@ public class WalkieTalkieManager {
       timeline.stop();
     }
     for (ImageView image : walkieTalkieImageMap.values()) {
-      // Iterate through the children of the VBox (assuming they are HBox containers)
-
-      // Check the ID of the ImageView
       if (image.getId().contains("WalkieTalkie")) {
         image.setImage(new Image("images/walkietalkie.png"));
       }
     }
-  }
-
-  public static void reset() {
-    walkieTalkieOpen = false;
-    walkieTalkieMap.clear();
-    walkieTalkieImageMap.clear();
   }
 }

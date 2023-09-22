@@ -122,6 +122,7 @@ public class DifficultyController extends Controller {
   }
 
   public void initialiseHacker(Difficulties difficulties) {
+    // set relevant methods to initialise hacker
     Task<Void> aiTask3 =
         new Task<Void>() {
           @Override
@@ -131,6 +132,7 @@ public class DifficultyController extends Controller {
           }
         };
 
+   // new thread for hacker
     Thread aiThread3 = new Thread(aiTask3);
     aiThread3.setDaemon(true);
     aiThread3.start();
