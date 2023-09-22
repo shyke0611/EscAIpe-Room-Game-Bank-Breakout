@@ -47,7 +47,7 @@ public class EyeScannerController extends Controller {
   private int guardGreen;
   private int guardBlue;
 
-  StyleManager styleManager = StyleManager.getInstance();
+  private StyleManager styleManager = StyleManager.getInstance();
 
   public void initialize() {
 

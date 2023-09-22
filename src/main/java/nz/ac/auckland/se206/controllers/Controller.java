@@ -14,14 +14,8 @@ import nz.ac.auckland.se206.StyleManager.HoverColour;
 
 public abstract class Controller {
   private Label timerLabel;
-  private Label moneyLbl;
   private int format;
-  //   protected int moneyStolen = 0;
-  StyleManager styleManager = StyleManager.getInstance();
-
-  //   public void updateMoneyStolen(int value) {
-  //     this.moneyStolen = moneyStolen + value;
-  //   }
+  private StyleManager styleManager = StyleManager.getInstance();
 
   public void setTimerLabel(Label timerLabel, int format) {
     this.timerLabel = timerLabel;
@@ -36,31 +30,25 @@ public abstract class Controller {
     return format;
   }
 
-  //   public void setMoneyStolenLabel() {
-  //     moneyLbl.setText("$" + String.valueOf(moneyStolen));
-  //   }
-
-  //   public int getMoneyStolen() {
-  //     return moneyStolen;
-  //   }
-
   @FXML
   public void setVault(MouseEvent event) {
     if (GameState.isLaserCuttingBypassed) {
-        styleManager.getItem("silverDoor").setVisible(false);
-        styleManager.getItem("silverDoorHolder").setDisable(true);
+      styleManager.getItem("silverDoor").setVisible(false);
+      styleManager.getItem("silverDoorHolder").setDisable(true);
     }
     if (GameState.isChemicalMixingBypassed) {
-        styleManager.getItem("bronzeDoor").setVisible(false);
-        styleManager.getItem("bronzeDoorHolder").setDisable(true);
+      styleManager.getItem("bronzeDoor").setVisible(false);
+      styleManager.getItem("bronzeDoorHolder").setDisable(true);
     }
     if (GameState.isEyeScannerBypassed) {
-        styleManager.getItem("goldDoor").setVisible(false);
-        styleManager.getItem("goldDoorHolder").setDisable(true);
+      styleManager.getItem("goldDoor").setVisible(false);
+      styleManager.getItem("goldDoorHolder").setDisable(true);
     }
-    if (GameState.isLaserCuttingBypassed || GameState.isChemicalMixingBypassed || GameState.isEyeScannerBypassed) {
-        styleManager.getItem("lootBtnHolder").setVisible(true);
-        GameState.isAnyDoorOpen = true;
+    if (GameState.isLaserCuttingBypassed
+        || GameState.isChemicalMixingBypassed
+        || GameState.isEyeScannerBypassed) {
+      styleManager.getItem("lootBtnHolder").setVisible(true);
+      GameState.isAnyDoorOpen = true;
     }
     if (GameState.isLaserCuttingBypassed
         && GameState.isChemicalMixingBypassed
@@ -82,7 +70,7 @@ public abstract class Controller {
     App.setUI(Scenes.SECURITY);
   }
 
-  protected void setupListeners(Node... items) {
+  public void setUpListener(Node... items) {
     for (Node node : items) {
       ScaleTransition scaleTransition = AnimationManager.createScaleTransition(node);
       // Add hover listeners to start and stop the animation
@@ -95,7 +83,7 @@ public abstract class Controller {
   @FXML
   public void switchToSecurity() {
     App.setUI(Scenes.SECURITY);
-    styleManager.setClueHover("SecurityRoomSwitch", false);
+    styleManager.setClueHover("securityRoomSwitch", false);
 
     if (!GameState.isSecurityComputerLoggedIn && GameState.isCredentialsFound) {
       handleComputerHover("computer");
@@ -141,7 +129,7 @@ public abstract class Controller {
     if (GameState.isAlarmDisabled) {
       styleManager.getItem("bombHolder").setVisible(true);
       styleManager.setDisable(true, "bronzeDoor", "silverDoor", "goldDoor");
-      styleManager.setClueHover("VaultRoomSwitch", false);
+      styleManager.setClueHover("vaultRoomSwitch", false);
     }
     App.setUI(Scenes.VAULT);
   }

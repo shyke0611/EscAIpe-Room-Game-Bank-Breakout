@@ -2,7 +2,6 @@ package nz.ac.auckland.se206.controllers;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
-import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -54,20 +53,14 @@ public class ChemicalMixingController extends Controller {
   private int pourCount;
 
   private Timeline sliderAnimation;
-  private ScaleTransition scaleTransitionGreen;
-  private ScaleTransition scaleTransitionYellow;
-  private ScaleTransition scaleTransitionRed;
-  private ScaleTransition scaleTransitionBlue;
   private boolean sliderMoving = false;
-
-  StyleManager styleManager = StyleManager.getInstance();
 
   public void initialize() {
     SceneManager.setController(Scenes.CHEMICALMIXING, this);
     super.setTimerLabel(timerLabel, 3);
 
     // Setting up hover animations
-    setupListeners(greenVile, redVile, blueVile, yellowVile);
+    setUpListener(greenVile, redVile, blueVile, yellowVile);
 
     // Intialsing recipe and saving for later reference
     initializeRecipe();
@@ -299,11 +292,10 @@ public class ChemicalMixingController extends Controller {
 
   @FXML
   public void initializeRecipe() {
-    RandomnessGenerate random = new RandomnessGenerate();
-    randomYellow = random.getRandomChemialAmount();
-    randomRed = random.getRandomChemialAmount();
-    randomBlue = random.getRandomChemialAmount();
-    randomGreen = random.getRandomChemialAmount();
+    randomYellow = RandomnessGenerate.getRandomChemicalAmount();
+    randomRed = RandomnessGenerate.getRandomChemicalAmount();
+    randomBlue = RandomnessGenerate.getRandomChemicalAmount();
+    randomGreen = RandomnessGenerate.getRandomChemicalAmount();
 
     yellowParts.setText("Yellow: " + randomYellow);
     redParts.setText("Red: " + randomRed);

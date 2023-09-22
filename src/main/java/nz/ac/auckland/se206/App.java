@@ -69,7 +69,7 @@ public class App extends Application {
   public void start(final Stage stage) throws IOException, ApiProxyException {
     instance = this;
     // initialise the randomiser for all random components
-    RandomnessGenerate.generateRandomGameComponents();
+    RandomnessGenerate.generateRandomCredentials();
 
     HackerAiManager hackerAiManager = HackerAiManager.getInstance();
     hackerAiManager.initialiseHackerAi(Difficulties.MEDIUM);

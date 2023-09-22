@@ -42,9 +42,9 @@
                   </Label>
                </children>
             </VBox>
-            <VBox fx:id="SecurityRoomSwitch" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
+            <VBox fx:id="securityRoomSwitch" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
                <children>
-                  <ImageView fx:id="Security" fitHeight="111.0" fitWidth="100.0" onMouseClicked="#switchToSecurity" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="security" fitHeight="111.0" fitWidth="100.0" onMouseClicked="#switchToSecurity" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/robber3.png" />
                      </image>
@@ -56,7 +56,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox fx:id="VaultRoomSwitch" alignment="CENTER" prefHeight="110.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
+            <VBox fx:id="vaultRoomSwitch" alignment="CENTER" prefHeight="110.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
                <children>
                   <ImageView fx:id="Vault" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#switchToVault" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -133,7 +133,7 @@
             </HBox>
          </children>
       </VBox>
-      <HBox fx:id="key1" alignment="BOTTOM_LEFT" layoutX="161.0" layoutY="389.0" onMousePressed="#onkeyLocationPressed" prefHeight="118.0" prefWidth="80.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
+      <HBox fx:id="key1" alignment="BOTTOM_LEFT" layoutX="161.0" layoutY="389.0" onMousePressed="#onKeyLocationPressed" prefHeight="118.0" prefWidth="80.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
          <children>
             <ImageView fitHeight="138.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -151,7 +151,7 @@
             </ImageView>
          </children>
       </HBox>
-      <HBox fx:id="key3" alignment="CENTER" layoutX="838.0" layoutY="562.0" onMousePressed="#onkeyLocationPressed" prefHeight="32.0" prefWidth="19.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
+      <HBox fx:id="key3" alignment="CENTER" layoutX="838.0" layoutY="562.0" onMousePressed="#onKeyLocationPressed" prefHeight="32.0" prefWidth="19.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
          <children>
             <ImageView fx:id="guardpocket1" fitHeight="28.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -235,7 +235,7 @@
             </ImageView>
          </children>
       </HBox>
-      <HBox fx:id="key4" layoutX="638.0" layoutY="474.0" onMousePressed="#onkeyLocationPressed" prefHeight="53.0" prefWidth="89.0" stylesheets="@../css/rooms.css">
+      <HBox fx:id="key4" layoutX="638.0" layoutY="474.0" onMousePressed="#onKeyLocationPressed" prefHeight="53.0" prefWidth="89.0" stylesheets="@../css/rooms.css">
          <children>
             <ImageView fitHeight="52.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
                <image>
