@@ -31,7 +31,7 @@ public abstract class Controller {
   }
 
   @FXML
-  public void setVault(MouseEvent event) {
+  protected void setVault(MouseEvent event) {
     if (GameState.isLaserCuttingBypassed) {
       styleManager.getItem("silverDoor").setVisible(false);
       styleManager.getItem("silverDoorHolder").setDisable(true);
@@ -60,7 +60,7 @@ public abstract class Controller {
   }
 
   @FXML
-  public void grantAccess() {
+  protected void grantAccess() {
     GameState.isFirewallDisabled = true;
     styleManager.setDisable(true, "computer");
     styleManager.setItemsState(
@@ -70,7 +70,7 @@ public abstract class Controller {
     App.setUI(Scenes.SECURITY);
   }
 
-  public void setUpListener(Node... items) {
+  protected void setUpListener(Node... items) {
     for (Node node : items) {
       ScaleTransition scaleTransition = AnimationManager.createScaleTransition(node);
       // Add hover listeners to start and stop the animation
@@ -81,7 +81,7 @@ public abstract class Controller {
   }
 
   @FXML
-  public void switchToSecurity() {
+  protected void switchToSecurity() {
     App.setUI(Scenes.SECURITY);
     styleManager.setClueHover("securityRoomSwitch", false);
 
@@ -94,7 +94,7 @@ public abstract class Controller {
   }
 
   @FXML
-  public void switchToLobby() {
+  protected void switchToLobby() {
     App.setUI(Scenes.LOBBY);
 
     if (GameState.isAlarmTripped) {
@@ -125,7 +125,7 @@ public abstract class Controller {
   }
 
   @FXML
-  public void switchToVault() {
+  protected void switchToVault() {
     if (GameState.isAlarmDisabled) {
       styleManager.getItem("bombHolder").setVisible(true);
       styleManager.setDisable(true, "bronzeDoor", "silverDoor", "goldDoor");
