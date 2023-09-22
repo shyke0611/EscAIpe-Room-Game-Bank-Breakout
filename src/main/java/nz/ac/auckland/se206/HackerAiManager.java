@@ -15,9 +15,14 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 public class HackerAiManager {
 
+  private static HackerAiManager instance = new HackerAiManager();
+
+  public static HackerAiManager getInstance() {
+    return instance;
+  }
+
   private int hintLimit;
   private int hintCounter;
-  private static HackerAiManager instance = new HackerAiManager();
   private WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
 
   // Map to store hints for different game stages
@@ -123,10 +128,6 @@ public class HackerAiManager {
         runGpt(new ChatMessage("user", GptPromptEngineering.intisialiseHackerAiHard()));
         break;
     }
-  }
-
-  public static HackerAiManager getInstance() {
-    return instance;
   }
 
   public void incrementHintCounter() {
