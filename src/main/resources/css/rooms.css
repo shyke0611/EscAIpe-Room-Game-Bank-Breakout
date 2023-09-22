@@ -172,11 +172,11 @@
 .button:pressed {
     -fx-background-color: forestgreen;  //Change color when pressed 
 }
-
-.hbox {
+*/
+.vbox {
     -fx-background-color: darkgreen;
 }
- */
+ 
 .pourBtn {
     -fx-background-color:
         #090a0c,

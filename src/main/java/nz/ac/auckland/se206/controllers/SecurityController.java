@@ -32,6 +32,8 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 public class SecurityController extends Controller {
 
   @FXML private Label timerLabel;
+
+  @FXML private Label numberOfHints;
   @FXML private Button logOffBtn;
   @FXML private AnchorPane securityPane;
   @FXML private VBox securityRoomSwitch;
@@ -62,6 +64,7 @@ public class SecurityController extends Controller {
     super.setTimerLabel(timerLabel, 1);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     WalkieTalkieManager.addWalkieTalkieImage(this, securityWalkieTalkie);
+    WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
     styleManager.addItems(
         computer,
         electricityBox,
@@ -69,7 +72,6 @@ public class SecurityController extends Controller {
         vaultRoomSwitch,
         lobbyRoomSwitch,
         securityRoomSwitch);
-
     styleManager.setItemsMessage("A computer...?", "computer");
     styleManager.setItemsMessage("no need to open this right now", "electricityBox");
     // setupListeners(computer,electricityBox);
@@ -118,7 +120,6 @@ public class SecurityController extends Controller {
   // opening computer log in screen
   @FXML
   public void onClickComputer(MouseEvent event) {
-
     styleManager.setClueHover("computer", false);
     // if already logged in, skip log in stage
     if (!GameState.isSecurityComputerLoggedIn) {
@@ -191,7 +192,7 @@ public class SecurityController extends Controller {
   @FXML
   public void invokeHackerAI(KeyEvent event) throws ApiProxyException {
 
-    if (event.getCode() == KeyCode.ENTER) {
+    if (event.getCode() == KeyCode.ENTER && walkieTalkieManager.isWalkieTalkieOpen()) {
 
       Task<Void> aiTask2 =
           new Task<Void>() {
