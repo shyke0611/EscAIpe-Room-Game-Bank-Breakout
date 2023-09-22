@@ -33,11 +33,10 @@ public class SecurityController extends Controller {
 
   @FXML private ImageView Lobby;
   @FXML private Label timerLabel;
-  @FXML private Button LogOffBtn;
-  @FXML private AnchorPane SecurityPane;
-  @FXML private VBox SecurityRoomSwitch;
-  @FXML private ImageView Vault;
-  @FXML private VBox VaultRoomSwitch;
+  @FXML private Button logOffBtn;
+  @FXML private AnchorPane securityPane;
+  @FXML private VBox securityRoomSwitch;
+  @FXML private VBox vaultRoomSwitch;
   @FXML private VBox lobbyRoomSwitch;
   @FXML private Button logInBtn;
   @FXML private HBox logInScreen;
@@ -64,7 +63,13 @@ public class SecurityController extends Controller {
     super.setTimerLabel(timerLabel, 1);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     WalkieTalkieManager.addWalkieTalkieImage(this, securityWalkieTalkie);
-    styleManager.addItems(computer, electricityBox, securitybackground,VaultRoomSwitch,lobbyRoomSwitch,SecurityRoomSwitch);
+    styleManager.addItems(
+        computer,
+        electricityBox,
+        securitybackground,
+        vaultRoomSwitch,
+        lobbyRoomSwitch,
+        securityRoomSwitch);
     styleManager.setItemsMessage("A computer...?", "computer");
     styleManager.setItemsMessage("no need to open this right now", "electricityBox");
     // setupListeners(computer,electricityBox);
@@ -73,33 +78,11 @@ public class SecurityController extends Controller {
   //   handling mouse events on walkie talkie
   //   open and closes when walkie talkie is clicked
   @FXML
-  void onWalkieTalkie(MouseEvent event) {
+  public void onWalkieTalkie(MouseEvent event) {
     WalkieTalkieManager.toggleWalkieTalkie();
   }
 
-  // @FXML
-  // public void switchToLobby() {
-  //   App.setUI(Scenes.LOBBY);
-  //   if (GameState.isAlarmTripped) {
-  //     styleManager.setClueHover("lobbyRoomSwitch",false);
-  //     if (GameState.isGuardPocketHoverPressed) {
-  //     styleManager.setClueHover("guardpocket",true);
-  //     }
-  //     GameState.isGuardPocketHoverPressed = true;
-  //     }
-  // }
-
-  // @FXML
-  // public void switchToVault() {
-  //   if (GameState.isAlarmDisabled) {
-  //     styleManager.getItem("bombHolder").setVisible(true);
-  //     styleManager.setDisable(true, "bronzeDoor", "silverDoor", "goldDoor");
-  //     styleManager.setClueHover("VaultRoomSwitch",false);
-  //   }
-  //   App.setUI(Scenes.VAULT);
-  // }
-
-  public void onSwitchToHacker() {
+  public void onSwitchToHacker(ActionEvent event) {
     SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.VAULT);
     HackerVanController vanController =
         (HackerVanController) SceneManager.getController(Scenes.HACKERVAN);
@@ -109,10 +92,10 @@ public class SecurityController extends Controller {
   }
 
   @FXML
-  void onWireCutting(MouseEvent event) {
+  public void onWireCutting(MouseEvent event) {
     if (!GameState.isWiresCut && GameState.isAlarmTripped) {
       if (!GameState.isWireCredentialsFound) {
-      App.textToSpeech("you need to find wire cutting order");
+        App.textToSpeech("you need to find wire cutting order");
       }
       App.setUI(Scenes.WIRECUTTING);
     } else if (GameState.isWiresCut) {
@@ -121,30 +104,31 @@ public class SecurityController extends Controller {
   }
 
   // set visibility of log in screen off (log off computer)
-  public void OnLogOff() {
+  @FXML
+  public void onLogOff(ActionEvent event) {
     logInScreen.setVisible(false);
   }
 
   // check log in details before logging in
-  public void onLogIn() {
+  @FXML
+  public void onLogIn(ActionEvent event) {
     checkLogin();
   }
 
   // opening computer log in screen
   @FXML
-  void onClickComputer(MouseEvent event) {
-    styleManager.setClueHover("computer",false);
+  public void onClickComputer(MouseEvent event) {
+    styleManager.setClueHover("computer", false);
     // if already logged in, skip log in stage
     if (!GameState.isSecurityComputerLoggedIn) {
       logInScreen.setVisible(true);
-    } else if (GameState.isConnectDotreached){
+    } else if (GameState.isConnectDotreached) {
       App.setUI(Scenes.CONNECTDOTS);
     } else {
       logInScreen.setVisible(false);
       App.setUI(Scenes.COMPUTER);
       styleManager.removeItemsMessage("computer");
     }
-
   }
 
   // method that handles overall login mechanics

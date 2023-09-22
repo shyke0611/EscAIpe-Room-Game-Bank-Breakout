@@ -46,7 +46,7 @@ public class WireCuttingController extends Controller {
     RandomnessGenerate.addWires(bluewire, yellowwire, greenwire, redwire);
     styleManager.setItemsMessage(
         "use the wirecutter", "bluewire", "yellowwire", "greenwire", "redwire");
-    setupListeners(wirecutter);
+    setUpListener(wirecutter);
   }
 
   @FXML

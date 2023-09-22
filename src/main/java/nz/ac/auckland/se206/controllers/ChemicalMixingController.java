@@ -60,7 +60,7 @@ public class ChemicalMixingController extends Controller {
     super.setTimerLabel(timerLabel, 3);
 
     // Setting up hover animations
-    setupListeners(greenVile, redVile, blueVile, yellowVile);
+    setUpListener(greenVile, redVile, blueVile, yellowVile);
 
     // Intialsing recipe and saving for later reference
     initializeRecipe();
@@ -292,11 +292,10 @@ public class ChemicalMixingController extends Controller {
 
   @FXML
   public void initializeRecipe() {
-    RandomnessGenerate random = new RandomnessGenerate();
-    randomYellow = random.getRandomChemialAmount();
-    randomRed = random.getRandomChemialAmount();
-    randomBlue = random.getRandomChemialAmount();
-    randomGreen = random.getRandomChemialAmount();
+    randomYellow = RandomnessGenerate.getRandomChemicalAmount();
+    randomRed = RandomnessGenerate.getRandomChemicalAmount();
+    randomBlue = RandomnessGenerate.getRandomChemicalAmount();
+    randomGreen = RandomnessGenerate.getRandomChemicalAmount();
 
     yellowParts.setText("Yellow: " + randomYellow);
     redParts.setText("Red: " + randomRed);

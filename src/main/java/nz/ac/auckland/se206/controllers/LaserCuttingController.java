@@ -72,7 +72,7 @@ public class LaserCuttingController extends Controller {
     cursorLine.setStroke(Color.RED);
 
     applyGlowEffect(cursorLine);
-    setupListeners(laserGun);
+    setUpListener(laserGun);
     styleManager.addItems(laserGun);
     styleManager.setItemsState(HoverColour.GREEN, "laserGun");
     formatBlackCirlce();
