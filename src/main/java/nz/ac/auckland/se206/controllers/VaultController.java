@@ -82,8 +82,6 @@ public class VaultController extends Controller {
   @FXML private HBox walkietalkieHolder;
   @FXML private ImageView vaultWalkieTalkie;
 
-  @FXML private Rectangle AIAccess;
-
   // initialising instances
   private StyleManager styleManager = StyleManager.getInstance();
   private StringBuilder labelText = new StringBuilder();
@@ -338,7 +336,7 @@ public class VaultController extends Controller {
   }
 
   @FXML
-  private void invokeHackerAI(KeyEvent event) throws ApiProxyException {
+  private void onInvokeHacker(KeyEvent event) throws ApiProxyException {
 
     if (event.getCode() == KeyCode.ENTER && walkieTalkieManager.isWalkieTalkieOpen()) {
       walkieTalkieManager.startAnimation();

@@ -95,7 +95,7 @@ public class HackerAiManager {
     hintLimit = limit;
   }
 
-  public void initialiseHackerAi(Difficulties difficulty) throws ApiProxyException {
+  public void initialiseHacker(Difficulties difficulty) throws ApiProxyException {
 
     // Initialise the ai based on the difficulty
     switch (difficulty) {
@@ -105,7 +105,7 @@ public class HackerAiManager {
         hintCounter = -1;
         chatCompletionRequest =
             new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(1).setMaxTokens(100);
-        runGpt(new ChatMessage("user", GptPromptEngineering.initisialiseHackerAiEasy()));
+        runGpt(new ChatMessage("user", GptPromptEngineering.initisialiseHackerEasy()));
         break;
 
         // Initialise the ai for the medium difficulty
@@ -115,7 +115,7 @@ public class HackerAiManager {
         currentDifficulty = Difficulties.MEDIUM;
         chatCompletionRequest =
             new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(1).setMaxTokens(100);
-        runGpt(new ChatMessage("user", GptPromptEngineering.intisialiseHackerAiMeidium()));
+        runGpt(new ChatMessage("user", GptPromptEngineering.intisialiseHackerMeidium()));
         break;
 
         // Initialise the ai for the hard difficulty
@@ -125,7 +125,7 @@ public class HackerAiManager {
         currentDifficulty = Difficulties.HARD;
         chatCompletionRequest =
             new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(1).setMaxTokens(100);
-        runGpt(new ChatMessage("user", GptPromptEngineering.intisialiseHackerAiHard()));
+        runGpt(new ChatMessage("user", GptPromptEngineering.intisialiseHackerHard()));
         break;
     }
   }
@@ -313,7 +313,6 @@ public class HackerAiManager {
       System.out.println(result.getChatMessage().getContent());
       return result.getChatMessage();
     } catch (ApiProxyException e) {
-      // TODO handle exception appropriately
       e.printStackTrace();
       return null;
     }

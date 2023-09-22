@@ -52,7 +52,7 @@
                       </Tab>
                     </tabs>
                   </TabPane>
-                  <TextField fx:id="hackerVanInput" onKeyPressed="#invokeHackerAI" prefHeight="48.0" prefWidth="479.0" promptText="ask hacker friend something" styleClass="text-field" stylesheets="@../css/hackervan.css">
+                  <TextField fx:id="hackerVanInput" onKeyPressed="#onInvokeHacker" prefHeight="48.0" prefWidth="479.0" promptText="ask hacker friend something" styleClass="text-field" stylesheets="@../css/hackervan.css">
                      <font>
                         <Font size="14.0" />
                      </font>

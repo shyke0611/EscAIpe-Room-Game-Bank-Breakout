@@ -208,7 +208,7 @@ public class LobbyController extends Controller {
     } else {
       name = "green wire";
     }
-    // return name
+    // returning the wire label
     return name;
   }
 
@@ -275,7 +275,7 @@ public class LobbyController extends Controller {
   @FXML
   private void onGuardPressed(MouseEvent event) {
     GameState.isGuardDistracted = true;
-    // setting animation
+    // setting relevant animation for guard is sleeping
     sleepingAnimation();
     guard.setDisable(true);
     // setting style when guard is pressed
@@ -301,7 +301,7 @@ public class LobbyController extends Controller {
   }
 
   @FXML
-  private void invokeHackerAI(KeyEvent event) throws ApiProxyException {
+  private void onInvokeHacker(KeyEvent event) throws ApiProxyException {
 
     if (event.getCode() == KeyCode.ENTER && walkieTalkieManager.isWalkieTalkieOpen()) {
       System.out.println(lobbyTextInput.getText());

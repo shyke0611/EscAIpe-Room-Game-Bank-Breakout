@@ -126,7 +126,7 @@ public class DifficultyController extends Controller {
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
-            hackerAiManager.initialiseHackerAi(difficulties);
+            hackerAiManager.initialiseHacker(difficulties);
             return null;
           }
         };

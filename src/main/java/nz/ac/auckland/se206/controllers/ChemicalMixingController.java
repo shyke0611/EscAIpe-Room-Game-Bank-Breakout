@@ -19,10 +19,7 @@ import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
-
-/**
- * Controller class for the Chemical Mixing scene.
- */
+/** Controller class for the Chemical Mixing scene. */
 public class ChemicalMixingController extends Controller {
 
   @FXML private Label timerLabel;
@@ -60,9 +57,9 @@ public class ChemicalMixingController extends Controller {
   private boolean sliderMoving = false;
 
   /**
- * Initializes the Chemical Mixing controller and sets up the initial state of the scene.
- * It also sets up hover animations for vile images and initializes the chemical recipe.
- */
+   * Initializes the Chemical Mixing controller and sets up the initial state of the scene. It also
+   * sets up hover animations for vile images and initializes the chemical recipe.
+   */
   public void initialize() {
     SceneManager.setController(Scenes.CHEMICALMIXING, this);
     super.setTimerLabel(timerLabel, 3);
@@ -90,10 +87,10 @@ public class ChemicalMixingController extends Controller {
   }
 
   /**
- * Handles the event when a chemical vile is poured into the beaker.
- *
- * @param event The MouseEvent triggered by pouring a vile.
- */
+   * Handles the event when a chemical vile is poured into the beaker.
+   *
+   * @param event The MouseEvent triggered by pouring a vile.
+   */
   @FXML
   private void onPourChemical(MouseEvent event) {
 
@@ -168,11 +165,11 @@ public class ChemicalMixingController extends Controller {
   }
 
   /**
- * Fills the beaker with the poured chemical and checks if the combination is correct.
- *
- * @param value     The value representing the poured chemical.
- * @param pourCount The number of times chemicals have been poured.
- */
+   * Fills the beaker with the poured chemical and checks if the combination is correct.
+   *
+   * @param value The value representing the poured chemical.
+   * @param pourCount The number of times chemicals have been poured.
+   */
   private void fillBeaker(int value, int pourCount) {
 
     // More ugly code to determine which rectangle to fill and what colour
@@ -206,13 +203,13 @@ public class ChemicalMixingController extends Controller {
   }
 
   /**
- * Checks if the player has successfully completed the chemical mixing challenge.
- * If successful, it reveals the "Continue" button and win message, and increases the money to gain.
- */
+   * Checks if the player has successfully completed the chemical mixing challenge. If successful,
+   * it reveals the "Continue" button and win message, and increases the money to gain.
+   */
   private void checkWin() {
+    // set visibility
     retryButton.setVisible(false);
     stopButton.setVisible(false);
-
     continueBtn.setVisible(true);
     winLabel.setVisible(true);
     GameManager.completeObjective();
@@ -221,10 +218,10 @@ public class ChemicalMixingController extends Controller {
   }
 
   /**
- * Handles the event when the "Retry" button is clicked to reset the challenge.
- *
- * @param event The ActionEvent triggered by clicking the "Retry" button.
- */
+   * Handles the event when the "Retry" button is clicked to reset the challenge.
+   *
+   * @param event The ActionEvent triggered by clicking the "Retry" button.
+   */
   @FXML
   private void onRetryButtonClicked(ActionEvent event) {
     // Reset all necessary variables and elements
@@ -259,10 +256,7 @@ public class ChemicalMixingController extends Controller {
     }
   }
 
-
-/**
- * stops or resumes the slider animation when the "Stop" button is pressed.
- */
+  /** stops or resumes the slider animation when the "Stop" button is pressed. */
   @FXML
   private void onStopSlider() {
     if (sliderAnimation != null && sliderAnimation.getStatus() == Timeline.Status.RUNNING) {
@@ -275,9 +269,9 @@ public class ChemicalMixingController extends Controller {
   }
 
   /**
- * Initializes the chemical recipe by generating random amounts of chemicals.
- * Displays the initial amounts on the labels.
- */
+   * Initializes the chemical recipe by generating random amounts of chemicals. Displays the initial
+   * amounts on the labels.
+   */
   private void initializeRecipe() {
     randomYellow = RandomnessGenerate.getRandomChemicalAmount();
     randomRed = RandomnessGenerate.getRandomChemicalAmount();

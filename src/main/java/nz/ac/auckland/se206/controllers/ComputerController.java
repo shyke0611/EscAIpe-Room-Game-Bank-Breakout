@@ -46,16 +46,11 @@ public class ComputerController extends Controller {
   @FXML private Label processingLabel;
   @FXML private ImageView usbStick;
 
-  private static int currentIndex = 0;
-
   private ChatCompletionRequest chatCompletionRequest;
   private ChatMessage lastMsg;
   private int numberOfMessagesCorrect = 0;
   private int dotCount = 0;
-  private boolean animationIsFinished = false;
   private Queue<ChatMessage> messageQueue = new LinkedList<>();
-  private boolean isTyping = false;
-  private StringBuilder textBuffer;
   private WalkieTalkieManager walkieTalkieManager;
   private StyleManager styleManager = StyleManager.getInstance();
 
@@ -67,8 +62,6 @@ public class ComputerController extends Controller {
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     walkieTalkieManager = WalkieTalkieManager.getInstance();
     styleManager.addItems(usbStick);
-
-    textBuffer = new StringBuilder();
 
     timeline = new Timeline(new KeyFrame(Duration.seconds(0.6), e -> updateLabel()));
     timeline.setCycleCount(Timeline.INDEFINITE);
@@ -87,12 +80,12 @@ public class ComputerController extends Controller {
 
   // exit computer view back to security room
   @FXML
-  void onGoBack(ActionEvent event) {
+  private void onGoBack(ActionEvent event) {
     App.setUI(Scenes.SECURITY);
   }
 
   @FXML
-  public ChatMessage getRiddle() {
+  private ChatMessage getRiddle() {
     try {
       chatCompletionRequest =
           new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(1).setMaxTokens(256);
@@ -102,21 +95,20 @@ public class ComputerController extends Controller {
 
       return response;
     } catch (ApiProxyException e) {
-      // TODO handle exception appropriately
       e.printStackTrace();
     }
     return null;
   }
 
   @FXML
-  public ChatMessage startAuthentication() {
+  private ChatMessage startAuthentication() {
     try {
       // Add logging here to trace the flow and variable values
       chatCompletionRequest =
           new ChatCompletionRequest().setN(1).setTemperature(0.4).setTopP(1).setMaxTokens(256);
       System.out.println("Starting Authentication...");
       ChatMessage response =
-          runGpt(new ChatMessage("user", GptPromptEngineering.initiliseComputerAI()));
+          runGpt(new ChatMessage("user", GptPromptEngineering.initiliseComputer()));
       messageQueue.add(response);
       // Add more logging to check response and its properties
       System.out.println("Authentication Response: " + response);
@@ -124,14 +116,13 @@ public class ComputerController extends Controller {
       return response;
 
     } catch (ApiProxyException e) {
-      // TODO handle exception appropriately
       e.printStackTrace();
     }
     return null;
   }
 
   @FXML
-  public void onSend(ActionEvent event) throws ApiProxyException, IOException {
+  private void onSend(ActionEvent event) throws ApiProxyException, IOException {
 
     Task<Void> task =
         new Task<Void>() {
@@ -164,8 +155,6 @@ public class ComputerController extends Controller {
               return null;
             }
 
-            // appendChatMessage(msg);
-
             if (lastMsg.getRole().equals("assistant") && lastMsg.getContent().startsWith("Correct")
                 || lastMsg.getContent().startsWith("correct")) {
               msg = startAuthentication();
@@ -173,7 +162,7 @@ public class ComputerController extends Controller {
             if (lastMsg.getRole().equals("assistant")
                 && lastMsg.getContent().startsWith("Authenticated")
                 && lastMsg.getContent().contains("security")) {
-              walkieTalkieManager.toggleWalkieTalkie();
+              WalkieTalkieManager.toggleWalkieTalkie();
               walkieTalkieManager.setWalkieTalkieText(
                   new ChatMessage(
                       "user", "FireWall Disabled, you can now see what is behind each vault door"));
@@ -185,7 +174,7 @@ public class ComputerController extends Controller {
             if (lastMsg.getRole().equals("assistant")
                 && lastMsg.getContent().startsWith("Authenticated")) {
               System.out.println("Authenticated");
-              walkieTalkieManager.toggleWalkieTalkie();
+              WalkieTalkieManager.toggleWalkieTalkie();
               walkieTalkieManager.setWalkieTalkieText(
                   new ChatMessage(
                       "user", "FireWall Disabled, you can now see what is behind each vault door"));
@@ -217,7 +206,8 @@ public class ComputerController extends Controller {
     searchThreadDave.start();
   }
 
-  public void onSwitchToHacker() {
+  @FXML
+  private void onSwitchToHacker() {
     SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.COMPUTER);
     App.setUI(Scenes.HACKERVAN);
   }
@@ -228,16 +218,16 @@ public class ComputerController extends Controller {
     processingLabel.setText("Processing" + dots);
   }
 
-  //   handling mouse events on walkie talkie
-  //   open and closes when walkie talkie is clicked
+   // Handling mouse events on walkie talkie
+  // Opens and closes when walkie talkie is clicked
   @FXML
-  void onWalkieTalkie(MouseEvent event) {
+  private void onWalkieTalkie(MouseEvent event) {
     WalkieTalkieManager.toggleWalkieTalkie();
   }
 
   @FXML
   private void startConnectDots() {
-    walkieTalkieManager.toggleWalkieTalkie();
+    WalkieTalkieManager.toggleWalkieTalkie();
     walkieTalkieManager.setWalkieTalkieText(
         new ChatMessage(
             "user", "Authentication failed, plug in the usbstick to bypass the firewall"));
@@ -304,7 +294,6 @@ public class ComputerController extends Controller {
 
       return result.getChatMessage();
     } catch (ApiProxyException e) {
-      // TODO handle exception appropriately
       e.printStackTrace();
       return null;
     }
