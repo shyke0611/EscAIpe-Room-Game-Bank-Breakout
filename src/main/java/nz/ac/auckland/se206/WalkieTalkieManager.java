@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206;
 
+import java.util.HashMap;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -21,8 +22,6 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
-import java.util.HashMap;
-
 public class WalkieTalkieManager {
 
   // Static Fields
@@ -33,13 +32,10 @@ public class WalkieTalkieManager {
   private static WalkieTalkieManager instance = new WalkieTalkieManager();
 
   // Instance Fields
-  private Timeline timeline;
-  private ChatCompletionRequest chatCompletionRequest = new ChatCompletionRequest()
-      .setN(1)
-      .setTemperature(0.7)
-      .setTopP(0.8)
-      .setMaxTokens(100);
   private int dotCount = 1;
+  private Timeline timeline;
+  private ChatCompletionRequest chatCompletionRequest =
+      new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.8).setMaxTokens(100);
 
   // Static Methods
   public static void addWalkieTalkie(Controller controller, VBox walkietalkie) {
@@ -79,12 +75,15 @@ public class WalkieTalkieManager {
   }
 
   public ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
+    // Add the message to the request
     chatCompletionRequest.addMessage(msg);
     try {
+      // Execute the request and get the result
       ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
       Choice result = chatCompletionResult.getChoices().iterator().next();
       chatCompletionRequest.addMessage(result.getChatMessage());
       return result.getChatMessage();
+      // If there is an error, print the stack trace and return null
     } catch (ApiProxyException e) {
       e.printStackTrace();
       return null;
@@ -140,30 +139,31 @@ public class WalkieTalkieManager {
   }
 
   public void startAnimation() {
+    // creating new timeline for animation
     timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> updateTypingLabel()));
-
-    Platform.runLater(() -> {
-      for (ImageView image : walkieTalkieImageMap.values()) {
-        if (image.getId().endsWith("WalkieTalkie")) {
-          image.setImage(new Image("images/hacker.png"));
-        }
-      }
-    });
+    Platform.runLater(
+        () -> {
+          // switching imageviews
+          for (ImageView image : walkieTalkieImageMap.values()) {
+            if (image.getId().endsWith("WalkieTalkie")) {
+              image.setImage(new Image("images/hacker.png"));
+            }
+          }
+        });
 
     timeline.setCycleCount(Animation.INDEFINITE);
     timeline.play();
   }
 
   private void updateTypingLabel() {
+    // creating dots for animation
     StringBuilder dots = new StringBuilder();
     for (int i = 0; i < dotCount; i++) {
       dots.append(".");
     }
-
+    // creating new message and setting it to walkietalkie
     ChatMessage msg = new ChatMessage("user", "Typing" + dots.toString());
-
     setWalkieTalkieText(msg);
-
     if (dotCount < 3) {
       dotCount++;
     } else {

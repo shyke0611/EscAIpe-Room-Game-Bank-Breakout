@@ -316,5 +316,4 @@ public class GameManager {
   public void setDifficulty(Difficulty d) {
     difficulty = d;
   }
-
 }
