@@ -83,7 +83,7 @@ public class ChemicalMixingController extends Controller {
   }
 
   @FXML
-  public void onPourChemical(MouseEvent event) {
+  private void onPourChemical(MouseEvent event) {
 
     ImageView image = (ImageView) event.getSource();
     image.setStyle("-fx-cursor: hand;");
@@ -155,7 +155,7 @@ public class ChemicalMixingController extends Controller {
         });
   }
 
-  public void fillBeaker(int value, int pourCount) {
+  private void fillBeaker(int value, int pourCount) {
 
     // More ugly code to determine which rectangle to fill and what colour
     Paint currentColour;
@@ -184,11 +184,10 @@ public class ChemicalMixingController extends Controller {
       fourthPour.setFill(currentColour);
       checkWin();
       GameState.isChemicalMixingBypassed = true;
-      // updateMoneyStolen(20000000);
     }
   }
 
-  public void checkWin() {
+  private void checkWin() {
     retryButton.setVisible(false);
     stopButton.setVisible(false);
 
@@ -199,7 +198,7 @@ public class ChemicalMixingController extends Controller {
   }
 
   @FXML
-  public void onRetryButtonClicked(ActionEvent event) {
+  private void onRetryButtonClicked(ActionEvent event) {
     // Reset all necessary variables and elements
     slider.setValue(0);
     currentVile.setText("");
@@ -243,7 +242,7 @@ public class ChemicalMixingController extends Controller {
     }
   }
 
-  public void initializeRecipe() {
+  private void initializeRecipe() {
     randomYellow = RandomnessGenerate.getRandomChemicalAmount();
     randomRed = RandomnessGenerate.getRandomChemicalAmount();
     randomBlue = RandomnessGenerate.getRandomChemicalAmount();

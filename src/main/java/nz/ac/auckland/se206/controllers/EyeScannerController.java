@@ -133,6 +133,16 @@ public class EyeScannerController extends Controller {
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
   }
 
+  public void updateGuardEye() {
+    guardRed = RandomnessGenerate.getRandomColourValue();
+    guardGreen = RandomnessGenerate.getRandomColourValue();
+    guardBlue = RandomnessGenerate.getRandomColourValue();
+    mystery.setVisible(false);
+    error.setVisible(false);
+    guardEye.setFill(Paint.valueOf("rgb(" + guardRed + "," + guardGreen + "," + guardBlue + ")"));
+    System.out.println("Guard eye colour: " + guardRed + " " + guardGreen + " " + guardBlue);
+  }
+
   public void compareSample() {
     if (isColourMatch(red, guardRed)
         && isColourMatch(green, guardGreen)
@@ -157,13 +167,4 @@ public class EyeScannerController extends Controller {
     return false;
   }
 
-  public void updateGuardEye() {
-    guardRed = RandomnessGenerate.getRandomColourValue();
-    guardGreen = RandomnessGenerate.getRandomColourValue();
-    guardBlue = RandomnessGenerate.getRandomColourValue();
-    mystery.setVisible(false);
-    error.setVisible(false);
-    guardEye.setFill(Paint.valueOf("rgb(" + guardRed + "," + guardGreen + "," + guardBlue + ")"));
-    System.out.println("Guard eye colour: " + guardRed + " " + guardGreen + " " + guardBlue);
-  }
 }
