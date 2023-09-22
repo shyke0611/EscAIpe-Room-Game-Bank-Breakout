@@ -84,17 +84,20 @@ public class VaultController extends Controller {
 
   @FXML private Rectangle AIAccess;
 
+  // initialising instances
   private StyleManager styleManager = StyleManager.getInstance();
   private StringBuilder labelText = new StringBuilder();
   private WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
   private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
 
   public void initialize() {
+    // setting up walkietalkie and controller
     SceneManager.setController(Scenes.VAULT, this);
     WalkieTalkieManager.addWalkieTalkieImage(this, vaultWalkieTalkie);
     WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
     super.setTimerLabel(timerLabel, 1);
 
+    // adding relevant items to the stylemanager list
     styleManager.addItems(
         goldDoor,
         silverDoor,
@@ -121,6 +124,7 @@ public class VaultController extends Controller {
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     givencode.setText("Code: " + RandomnessGenerate.getPasscode());
 
+    // setting setyle for the items
     styleManager.setItemsMessage("set bomb down", "exitHolder");
     styleManager.setItemsMessage("escape", "escapeDoor");
     styleManager.setItemsMessage("activate bomb", "bombHolder");
@@ -129,6 +133,10 @@ public class VaultController extends Controller {
         "bronzeDoorHolder",
         "silverDoorHolder",
         "goldDoorHolder");
+  }
+
+  public void showMoneyCollected() {
+    setInfoText("Money: " + GameManager.getMoneyToGain(), null);
   }
 
   //   handling mouse events on walkie talkie
@@ -140,10 +148,11 @@ public class VaultController extends Controller {
 
   @FXML
   private void onBombPressed(MouseEvent event) {
+    // setting sliding animation
     AnimationManager.slideDoorsAnimation(doorHolder);
     AnimationManager.slideDoorsAnimation(vaultbackground);
     AnimationManager.slideDoorsAnimation(slidePane);
-    // timerClock.setTranslateX(350);
+    // setting style for relevant items
     bomblogo.setVisible(false);
     bombHolder.setDisable(true);
     styleManager.removeItemsMessage("bombHolder");
@@ -160,9 +169,11 @@ public class VaultController extends Controller {
 
   @FXML
   private void onSwitchToHacker() {
-    SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.VAULT);
+    // setting relevant method for hacker scene
+    SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.LOBBY);
     HackerVanController vanController =
         (HackerVanController) SceneManager.getController(Scenes.HACKERVAN);
+    // loading relevant information
     vanController.printChatHistory();
     vanController.loadQuickHints();
     App.setUI(Scenes.HACKERVAN);
@@ -170,9 +181,11 @@ public class VaultController extends Controller {
 
   @FXML
   private void onSwitchToEyeScanner() {
+    // when firewall is disabled execute
     if (GameState.isFirewallDisabled /* && GameState.isSecondRiddleSolved*/) {
       App.setUI(Scenes.EYESCANNER);
       GameState.isEyeScannerEntered = true;
+      // setting style
       styleManager.setItemsMessage("Get guard eye colour", "guardeyes");
       styleManager.setItemsState(HoverColour.GREEN, "guardeyes");
     }
@@ -180,6 +193,7 @@ public class VaultController extends Controller {
 
   @FXML
   private void onSwitchToChemicalMixing() {
+    // when firewall is disabled execute
     if (GameState.isFirewallDisabled /* && GameState.isThirdRiddleSolved*/) {
       App.setUI(Scenes.CHEMICALMIXING);
     }
@@ -187,10 +201,12 @@ public class VaultController extends Controller {
 
   @FXML
   private void onLootCollected(ActionEvent event) {
+    // execute when firewall is disabled and any vault is opened
     if (GameState.isFirewallDisabled && GameState.isAnyDoorOpen) {
       App.textToSpeech("Alarm Triggered, Go and Disable it");
       StyleManager.setAlarm(true);
       GameState.isAlarmTripped = true;
+      // setting style to relevant items
       styleManager.setItemsState(HoverColour.GREEN, "electricityBox");
       styleManager.setItemsState(HoverColour.GREEN, "guardpocket");
       styleManager.setItemsMessage("Something seems odd?", "guardpocket");
@@ -202,6 +218,7 @@ public class VaultController extends Controller {
 
   @FXML
   private void onLaserCuttingScene() {
+    // execute when firewall is disabled
     if (GameState.isFirewallDisabled /*&& GameState.isFirstRiddleSolved*/) {
       App.setUI(Scenes.LASERCUTTING);
     }
@@ -221,13 +238,16 @@ public class VaultController extends Controller {
 
   @FXML
   private void onCheckCode(ActionEvent event) {
+    // check bomb code
     String code = givencode.getText().substring("Code: ".length());
+    // handle correct input
     if (inputLbl.getText().equals(code)) {
       statusLbl.setText("Success, press x to Activate bomb");
       inputLbl.setText("");
       statusLbl.setTextFill(Color.GREEN);
       GameState.isBombActivated = true;
 
+      // handle incorrect input
     } else {
       statusLbl.setText("Wrong Try Again");
       inputLbl.setText(null);
@@ -239,9 +259,11 @@ public class VaultController extends Controller {
   @FXML
   private void onExitBomb() {
     bombPuzzle.setVisible(false);
+    // execute when bomb is activated
     if (GameState.isBombActivated) {
       styleManager.setVisible(false, "switchHolder", "walkietalkieHolder", "bombHolder");
       App.textToSpeech("Good job, 5,4,3,2,1");
+      // set animation for bomb
       AnimationManager.toggleAlarmAnimation(exitHolder, true, 0.5);
       AnimationManager.delayAnimation(exitHolder, escapeDoor);
       exitHolder.setDisable(true);
@@ -259,11 +281,13 @@ public class VaultController extends Controller {
   private void showInfo(MouseEvent event) {
     String door = event.getSource().toString();
 
+    // execute when firewall is disabled
     if (GameState.isFirewallDisabled) {
 
       String moneyText = "Money: $";
       String difficultyText = "Difficulty: ";
 
+      // setting style for relevant vaults
       if (door.contains("goldDoor")) {
         setInfoText(moneyText + "20,000,000", difficultyText + "★★★★★");
       } else if (door.contains("silverDoor")) {
@@ -278,9 +302,11 @@ public class VaultController extends Controller {
 
   @FXML
   private void clearInfo(MouseEvent event) {
+    // clearing info by setting visibility to false
     dialogueBox.setVisible(false);
     moneyValue.setText(null);
     difficultyValue.setText(null);
+    // remove style
     setDoorStyle(goldDoor, "");
     setDoorStyle(bronzeDoor, "");
     setDoorStyle(silverDoor, "");
@@ -293,15 +319,12 @@ public class VaultController extends Controller {
   }
 
   private void setInfoText(String moneyText, String difficultyText) {
+    // setting visibility to true to set info
     dialogueBox.setVisible(true);
     moneyValue.setVisible(true);
     difficultyValue.setVisible(true);
     moneyValue.setText(moneyText);
     difficultyValue.setText(difficultyText);
-  }
-
-  private void showMoneyCollected() {
-    setInfoText("Money: " + GameManager.getMoneyToGain(), null);
   }
 
   @FXML

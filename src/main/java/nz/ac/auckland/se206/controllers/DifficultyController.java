@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-import java.io.IOException;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,7 +16,6 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.TimerControl;
 import nz.ac.auckland.se206.difficulties.Difficulty.Difficulties;
-import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /** Controller class for the Difficulty Selection scene. */
 public class DifficultyController extends Controller {
@@ -43,7 +41,7 @@ public class DifficultyController extends Controller {
   private Difficulties difficulty;
   private boolean difficultySelected = false;
   private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
-  
+
   /**
    * Initialize the Difficulty Selection controller. It sets the controller for the Difficulty
    * Selection scene.
@@ -60,6 +58,7 @@ public class DifficultyController extends Controller {
    */
   @FXML
   private void onDifficultyEntered(MouseEvent event) {
+    // setting visibility of each difficulty clicked
     if (event.getSource() == easyVbox) {
       easyAlarmImage.setVisible(true);
     } else if (event.getSource() == mediumVbox) {
@@ -77,6 +76,7 @@ public class DifficultyController extends Controller {
    */
   @FXML
   private void onDifficultyExited(MouseEvent event) {
+    // setting visibility of each difficulty clicked
     if (event.getSource() == easyVbox && !easyVboxClicked) {
       easyAlarmImage.setVisible(false);
     } else if (event.getSource() == mediumVbox && !mediumVboxClicked) {
@@ -93,24 +93,27 @@ public class DifficultyController extends Controller {
    */
   @FXML
   private void onDifficultyClicked(MouseEvent event) {
+    // handle if difficulty is not chosen
     if (!difficultySelected) {
       difficultySelected = true;
       playBtn.setDisable(false);
     }
 
+    // handle if difficulty is easy
     if (event.getSource() == easyVbox) {
       handleDifficultySelection(easyVbox, easyAlarmImage, "Easy");
       easyVboxClicked = true;
       difficulty = Difficulties.EASY;
       initialiseHacker(difficulty);
-
       GameManager.completeObjective();
+      // handle if difficulty is medium
     } else if (event.getSource() == mediumVbox) {
       handleDifficultySelection(mediumVbox, mediumAlarmImage, "Medium");
       mediumVboxClicked = true;
       difficulty = Difficulties.MEDIUM;
       initialiseHacker(difficulty);
     } else {
+      // handle if difficulty is hard
       handleDifficultySelection(hardVbox, hardAlarmImage, "Hard");
       hardVboxClicked = true;
       difficulty = Difficulties.HARD;
@@ -133,7 +136,7 @@ public class DifficultyController extends Controller {
     aiThread3.start();
   }
 
-   /**
+  /**
    * Handle the slider value change event. When the slider changes values to set the timer, the
    * timer value is shown in the text label.
    *
@@ -152,6 +155,7 @@ public class DifficultyController extends Controller {
    */
   @FXML
   private void onStartHeist(ActionEvent event) {
+    // setting relevant methods to start game
     int timerValue = (int) timerSlider.getValue();
     GameManager.createGame(difficulty, timerValue);
     TimerControl.runTimer();
@@ -170,14 +174,17 @@ public class DifficultyController extends Controller {
    * @param label The label text for the selected difficulty.
    */
   private void handleDifficultySelection(VBox vbox, ImageView alarmImage, String label) {
+    // set boolean states
     easyVboxClicked = false;
     mediumVboxClicked = false;
     hardVboxClicked = false;
 
+    // setting css styling to each difficulty box
     easyVbox.getStyleClass().remove("clicked-container");
     mediumVbox.getStyleClass().remove("clicked-container");
     hardVbox.getStyleClass().remove("clicked-container");
 
+    //setting visibility to each difficulty box
     easyAlarmImage.setVisible(false);
     mediumAlarmImage.setVisible(false);
     hardAlarmImage.setVisible(false);

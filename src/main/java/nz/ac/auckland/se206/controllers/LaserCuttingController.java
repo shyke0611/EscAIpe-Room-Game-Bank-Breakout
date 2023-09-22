@@ -62,16 +62,15 @@ public class LaserCuttingController extends Controller {
     SceneManager.setController(Scenes.LASERCUTTING, this);
     super.setTimerLabel(timerLabel, 3);
     gc = canvas.getGraphicsContext2D();
-
     root.getChildren().add(cursorLine);
-
+    // Set the cursor line's start and end points to the same point
     cursorLine.setStartX(500);
     cursorLine.setStartY(700);
     cursorLine.setEndX(500);
     cursorLine.setEndY(700);
     cursorLine.setStrokeWidth(3);
     cursorLine.setStroke(Color.RED);
-
+    // applying effects on the gun
     applyGlowEffect(cursorLine);
     setUpListener(laserGun);
     styleManager.addItems(laserGun);
@@ -81,6 +80,7 @@ public class LaserCuttingController extends Controller {
 
   @FXML
   private void laserGunClicked() {
+    // handling when the user clicks on the laser gun
     gunEquppied = true;
     canvas.setVisible(true);
     laserGun.setVisible(false);
@@ -94,40 +94,45 @@ public class LaserCuttingController extends Controller {
   }
 
   @FXML
-  private void draw(MouseEvent event) {
-
+private void draw(MouseEvent event) {
+    // Get the current mouse coordinates (x, y)
     double x = event.getX();
     double y = event.getY();
-
+    // Set drawing properties: red color and line width of 3
     gc.setStroke(Color.RED);
     gc.setLineWidth(3);
+    // Draw a line from the previous mouse position to the current position
     gc.strokeLine(prevX, prevY, x, y);
-
+    // Create a Point2D object to represent the current mouse position
     Point2D mousePosition = new Point2D(x, y);
-
-    if (gunEquppied
-        && isMouseInsideLargerCircleOutsideSmallerCircle(mousePosition, outerCircle, innerCircle)) {
-      cursorLine.setEndX(x);
-      cursorLine.setEndY(y);
+    // Check if a gun is equipped and the mouse is inside a specific region
+    if (gunEquppied && isMouseInsideLargerCircleOutsideSmallerCircle(mousePosition, outerCircle, innerCircle)) {
+        // Update the cursor line's end coordinates to follow the mouse
+        cursorLine.setEndX(x);
+        cursorLine.setEndY(y);
     }
-
+    // Check if the mouse is outside a specific region
     if (!isMouseInsideLargerCircleOutsideSmallerCircle(mousePosition, outerCircle, innerCircle)) {
-      gc.clearRect(0, 0, 1000, 700);
-      points.clear();
-      angles.clear();
+        // Clear the canvas and reset some data structures
+        gc.clearRect(0, 0, 1000, 700);
+        points.clear();
+        angles.clear();
     }
-
+    // Check if a specific condition is met while the user is drawing
     if (whileUserisDrawing(mousePosition)) {
-      blackCircle.setVisible(true);
-      insideVault.setVisible(true);
-      outerCircle.setVisible(false);
-      innerCircle.setVisible(false);
-      gc.clearRect(0, 0, 1000, 700);
+        // Toggle the visibility of certain UI elements
+        blackCircle.setVisible(true);
+        insideVault.setVisible(true);
+        outerCircle.setVisible(false);
+        innerCircle.setVisible(false);
+        // Clear the canvas
+        gc.clearRect(0, 0, 1000, 700);
     }
-
+    // Update the previous mouse coordinates for the next iteration
     prevX = x;
     prevY = y;
-  }
+}
+
 
   private void clearCursorLine() {
     // Clear the cursor line by setting its end point to its start point
@@ -221,6 +226,7 @@ public class LaserCuttingController extends Controller {
 
   @FXML
   private void formatBlackCirlce() {
+    // create new gradient for the outside of the circle
     RadialGradient gradientOutside =
         new RadialGradient(
             0,
@@ -248,17 +254,14 @@ public class LaserCuttingController extends Controller {
     // Create a radial gradient fill
     RadialGradient gradient =
         new RadialGradient(0, 0, 0.5, 0.5, 1, true, CycleMethod.NO_CYCLE, stops);
-
     // Set the gradient fill as the circle's fill
     blackCircle.setFill(gradient);
-
     blackCircle.setEffect(dropShadow);
     blackCircle.setStroke(gradientOutside);
     blackCircle.setStrokeWidth(10);
   }
 
   private void applyGlowEffect(Line line) {
-
     // Create a GaussianBlur effect
     GaussianBlur blur = new GaussianBlur(15);
     Blend blend = new Blend();
