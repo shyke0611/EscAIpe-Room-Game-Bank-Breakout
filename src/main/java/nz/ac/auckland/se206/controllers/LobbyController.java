@@ -128,7 +128,7 @@ public class LobbyController extends Controller {
 
   @FXML
   public void onSwitchToHacker(ActionEvent event) {
-    // SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.VAULT);
+    SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.VAULT);
     HackerVanController vanController =
         (HackerVanController) SceneManager.getController(Scenes.HACKERVAN);
     vanController.printChatHistory();
@@ -312,7 +312,7 @@ public class LobbyController extends Controller {
   }
 
   @FXML
-  public void quickHint(ActionEvent event) {
+  public void onQuickHint(ActionEvent event) {
     String hint = hackerAiManager.GetQuickHint();
     hackerAiManager.storeQuickHint();
     walkieTalkieManager.setWalkieTalkieText(new ChatMessage("user", hint));

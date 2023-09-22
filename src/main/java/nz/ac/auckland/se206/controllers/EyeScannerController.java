@@ -166,13 +166,4 @@ public class EyeScannerController extends Controller {
     guardEye.setFill(Paint.valueOf("rgb(" + guardRed + "," + guardGreen + "," + guardBlue + ")"));
     System.out.println("Guard eye colour: " + guardRed + " " + guardGreen + " " + guardBlue);
   }
-
-  // public void setVault() {
-  //  if (GameState.isEyeScannerBypassed) {
-  //   styleManager.getItem("silverDoor").setVisible(false);
-  //   styleManager.getItem("lootBtnHolder").setVisible(true);
-  //   GameState.isAnyDoorOpen = true;
-  //  }
-  //    App.setUI(Scenes.VAULT);
-  // }
 }
