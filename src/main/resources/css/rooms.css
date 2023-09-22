@@ -148,10 +148,10 @@
 
 }
 
-.goldDoor:hover {
+/* .goldDoor:hover {
     -fx-effect: dropshadow(gaussian, rgba(255, 50, 0, 0.7), 5, 5, 0, 0);
     -fx-cursor: hand;
-}
+} */
 
 /* 
 .button {
@@ -173,8 +173,8 @@
     -fx-background-color: forestgreen;  //Change color when pressed 
 }
 */
-.vbox {
-    -fx-background-color: darkgreen;
+#myVBox {
+    -fx-background-color: black;
 }
  
 .pourBtn {
