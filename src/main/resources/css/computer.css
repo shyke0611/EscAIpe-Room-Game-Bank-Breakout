@@ -14,8 +14,8 @@
     -fx-control-inner-background: black;
     -fx-text-fill: limegreen;
     -fx-font-family: "Courier New", monospace;
-    -fx-font-size: 20px;
-    -fx-background-color: transparent;
+    -fx-font-size: 25px;
+    -fx-background-color: black;
     -fx-border-color: limegreen;
     -fx-padding: 0; /* Remove padding */
 }
@@ -58,5 +58,12 @@
 
 .hbox {
     -fx-background-color: darkgreen;
+    -fx-control-inner-background: black;
  /* Adjust padding as needed */
+}
+
+.label {
+    -fx-text-fill: limegreen;
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 24px;
 }

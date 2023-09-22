@@ -189,6 +189,21 @@
                </children></HBox>
          </children>
       </HBox>
+      <Label layoutX="155.0" layoutY="190.0" prefHeight="21.0" prefWidth="56.0" text="Vault 2" textFill="#00000055">
+         <font>
+            <Font name="Impact" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="790.0" layoutY="190.0" text="Vault 3" textFill="#00000055">
+         <font>
+            <Font name="Impact" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="470.0" layoutY="190.0" text="Vault 1" textFill="#00000055">
+         <font>
+            <Font name="Impact" size="16.0" />
+         </font>
+      </Label>
       <Rectangle fx:id="dialogueBox" arcHeight="40.0" arcWidth="40.0" fill="#000000ac" height="88.0" layoutX="726.0" layoutY="28.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="260.0" />
       <Label fx:id="moneyValue" layoutX="742.0" layoutY="43.0" text="Money: $20,000,000" textFill="WHITE" visible="false">
          <font>
@@ -341,5 +356,6 @@
             </Label>
          </children>
       </StackPane>
+
    </children>
 </AnchorPane>

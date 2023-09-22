@@ -70,6 +70,7 @@ public class SecurityController extends Controller {
         vaultRoomSwitch,
         lobbyRoomSwitch,
         securityRoomSwitch);
+
     styleManager.setItemsMessage("A computer...?", "computer");
     styleManager.setItemsMessage("no need to open this right now", "electricityBox");
     // setupListeners(computer,electricityBox);
@@ -118,6 +119,7 @@ public class SecurityController extends Controller {
   // opening computer log in screen
   @FXML
   public void onClickComputer(MouseEvent event) {
+
     styleManager.setClueHover("computer", false);
     // if already logged in, skip log in stage
     if (!GameState.isSecurityComputerLoggedIn) {
