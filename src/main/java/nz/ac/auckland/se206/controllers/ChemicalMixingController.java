@@ -195,20 +195,20 @@ public class ChemicalMixingController extends Controller {
       currentColour = Paint.valueOf("#34f86f");
     }
 
-     // setting paint colour for the first vile selected
+    // setting paint colour for the first vile selected
     if (pourCount == 1) {
       firstPour.setVisible(true);
       firstPour.setFill(currentColour);
       whiteRectangle.setVisible(true);
-       // setting paint colour for the second vile selected
+      // setting paint colour for the second vile selected
     } else if (pourCount == 2) {
       secondPour.setVisible(true);
       secondPour.setFill(currentColour);
-       // setting paint colour for the third vile selected
+      // setting paint colour for the third vile selected
     } else if (pourCount == 3) {
       thirdPour.setVisible(true);
       thirdPour.setFill(currentColour);
-       // setting paint colour for the last vile selected
+      // setting paint colour for the last vile selected
     } else if (pourCount == 4) {
       fourthPour.setVisible(true);
       fourthPour.setFill(currentColour);
