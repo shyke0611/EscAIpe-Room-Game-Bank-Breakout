@@ -24,7 +24,7 @@ public class ConnectDotsController extends Controller {
   @FXML private Label timerLabel;
   @FXML private Button resetButton;
 
-  StyleManager styleManager = StyleManager.getInstance();
+  private StyleManager styleManager = StyleManager.getInstance();
 
   // 0 = empty, 1 = red, 2 = blue, 3 = green, 4 = purple, negative = node
   private int[][] grid = new int[6][6];

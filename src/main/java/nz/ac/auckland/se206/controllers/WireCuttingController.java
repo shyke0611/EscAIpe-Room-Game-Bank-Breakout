@@ -35,13 +35,14 @@ public class WireCuttingController extends Controller {
   @FXML private ImageView wirecuttingbackground;
 
   private boolean isWireCutterSelected = false;
-  StyleManager styleManager = StyleManager.getInstance();
+  private StyleManager styleManager = StyleManager.getInstance();
 
   public void initialize() {
     SceneManager.setController(Scenes.WIRECUTTING, this);
     super.setTimerLabel(timerLabel, 2);
     wiresCut = new ArrayList<>();
-    styleManager.addItems(redwire, greenwire, bluewire, yellowwire, wirecuttingbackground,wirecuttingorderLbl);
+    styleManager.addItems(
+        redwire, greenwire, bluewire, yellowwire, wirecuttingbackground, wirecuttingorderLbl);
     RandomnessGenerate.addWires(bluewire, yellowwire, greenwire, redwire);
     styleManager.setItemsMessage(
         "use the wirecutter", "bluewire", "yellowwire", "greenwire", "redwire");
@@ -51,7 +52,7 @@ public class WireCuttingController extends Controller {
   @FXML
   void onGoBack() {
     App.setUI(Scenes.SECURITY);
-    styleManager.setClueHover("electricityBox",false);
+    styleManager.setClueHover("electricityBox", false);
   }
 
   @FXML
@@ -108,7 +109,7 @@ public class WireCuttingController extends Controller {
     taskLbl.setText("Success");
     taskLbl.setTextFill(Color.GREEN);
     GameState.isWiresCut = true;
-    styleManager.setAlarm(false);
+    StyleManager.setAlarm(false);
     GameState.isAlarmDisabled = true;
     styleManager.setDisable(true, "electricityBox");
     styleManager.setDisable(true, "guardpocket");

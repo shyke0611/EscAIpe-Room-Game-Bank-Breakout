@@ -2,7 +2,6 @@ package nz.ac.auckland.se206.controllers;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
-import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -54,13 +53,7 @@ public class ChemicalMixingController extends Controller {
   private int pourCount;
 
   private Timeline sliderAnimation;
-  private ScaleTransition scaleTransitionGreen;
-  private ScaleTransition scaleTransitionYellow;
-  private ScaleTransition scaleTransitionRed;
-  private ScaleTransition scaleTransitionBlue;
   private boolean sliderMoving = false;
-
-  StyleManager styleManager = StyleManager.getInstance();
 
   public void initialize() {
     SceneManager.setController(Scenes.CHEMICALMIXING, this);

@@ -73,9 +73,9 @@ public class LobbyController extends Controller {
 
   private String randomUsername;
   private String randomPassword;
-  StyleManager styleManager = StyleManager.getInstance();
-  WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
-  HackerAiManager hackerAiManager = HackerAiManager.getInstance();
+  private StyleManager styleManager = StyleManager.getInstance();
+  private WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
+  private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
 
   public void initialize() {
     SceneManager.setController(Scenes.LOBBY, this);

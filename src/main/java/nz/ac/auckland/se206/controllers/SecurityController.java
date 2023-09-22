@@ -17,7 +17,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.HackerAiManager;
@@ -55,9 +54,9 @@ public class SecurityController extends Controller {
   @FXML private TextField securityInputField;
   @FXML private ImageView securityWalkieTalkie;
 
-  StyleManager styleManager = StyleManager.getInstance();
-  WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
-  HackerAiManager hackerAiManager = HackerAiManager.getInstance();
+  private StyleManager styleManager = StyleManager.getInstance();
+  private WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
+  private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
 
   public void initialize() {
     SceneManager.setController(Scenes.SECURITY, this);

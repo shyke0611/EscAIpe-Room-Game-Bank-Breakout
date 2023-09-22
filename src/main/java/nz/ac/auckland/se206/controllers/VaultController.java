@@ -85,10 +85,10 @@ public class VaultController extends Controller {
 
   @FXML private Rectangle AIAccess;
 
-  StyleManager styleManager = StyleManager.getInstance();
+  private StyleManager styleManager = StyleManager.getInstance();
   private StringBuilder labelText = new StringBuilder();
-  WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
-  HackerAiManager hackerAiManager = HackerAiManager.getInstance();
+  private WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
+  private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
 
   public void initialize() {
     SceneManager.setController(Scenes.VAULT, this);

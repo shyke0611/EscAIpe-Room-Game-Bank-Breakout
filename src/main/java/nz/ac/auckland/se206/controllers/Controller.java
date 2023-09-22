@@ -14,14 +14,8 @@ import nz.ac.auckland.se206.StyleManager.HoverColour;
 
 public abstract class Controller {
   private Label timerLabel;
-  private Label moneyLbl;
   private int format;
-  //   protected int moneyStolen = 0;
-  StyleManager styleManager = StyleManager.getInstance();
-
-  //   public void updateMoneyStolen(int value) {
-  //     this.moneyStolen = moneyStolen + value;
-  //   }
+  private StyleManager styleManager = StyleManager.getInstance();
 
   public void setTimerLabel(Label timerLabel, int format) {
     this.timerLabel = timerLabel;
@@ -35,14 +29,6 @@ public abstract class Controller {
   public int getFormat() {
     return format;
   }
-
-  //   public void setMoneyStolenLabel() {
-  //     moneyLbl.setText("$" + String.valueOf(moneyStolen));
-  //   }
-
-  //   public int getMoneyStolen() {
-  //     return moneyStolen;
-  //   }
 
   @FXML
   public void setVault(MouseEvent event) {

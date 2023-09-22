@@ -2,7 +2,6 @@ package nz.ac.auckland.se206.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
@@ -48,7 +47,6 @@ public class LaserCuttingController extends Controller {
   @FXML private GraphicsContext gc;
   @FXML private Label timerLabel;
 
-  private ScaleTransition scaleTransitionGun;
   private Boolean gunEquppied = false;
   private double prevX, prevY;
   private double totalAngle = 0.0;
@@ -57,7 +55,7 @@ public class LaserCuttingController extends Controller {
   private List<Double> angles = new ArrayList<>();
   private List<Point2D> points = new ArrayList<>();
 
-  StyleManager styleManager = StyleManager.getInstance();
+  private StyleManager styleManager = StyleManager.getInstance();
 
   public void initialize() {
     SceneManager.setController(Scenes.LASERCUTTING, this);
