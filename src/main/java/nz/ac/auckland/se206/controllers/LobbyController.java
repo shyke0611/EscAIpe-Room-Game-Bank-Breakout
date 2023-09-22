@@ -187,6 +187,7 @@ public class LobbyController extends Controller {
       passwordLbl.setText(null);
       orderLabel.setText(wireNames.toString());
       orderLabel.setVisible(true);
+      styleManager.getItem("wirecuttingorderLbl").setVisible(false);
       titleLbl.setText("Wire Cutting Order");
       styleManager.setClueHover("guardpocket", false);
       GameState.isWireCredentialsFound = true;
