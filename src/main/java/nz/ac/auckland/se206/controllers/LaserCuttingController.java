@@ -214,36 +214,6 @@ public class LaserCuttingController extends Controller {
     return angleDifference;
   }
 
-  // private void setupListeners() {
-  //   scaleTransitionGun = AnimationManager.createScaleTransition(laserGun);
-
-  //   // Add hover listeners to start and stop the animation
-  //   laserGun.setStyle("-fx-cursor: hand;");
-  //   laserGun.setOnMouseEntered(event ->
-  // AnimationManager.playAnimationForward(scaleTransitionGun));
-  //   laserGun.setOnMouseExited(event ->
-  // AnimationManager.playAnimationReverse(scaleTransitionGun));
-  // }
-
-  // private ScaleTransition createScaleTransition(ImageView imageView) {
-  //   ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), imageView);
-  //   scaleTransition.setFromX(1.0); // Initial scale X
-  //   scaleTransition.setFromY(1.0); // Initial scale Y
-  //   scaleTransition.setToX(1.2); // Enlarged scale X
-  //   scaleTransition.setToY(1.2); // Enlarged scale Y
-  //   return scaleTransition;
-  // }
-
-  // private void playAnimationForward(ScaleTransition scaleTransition) {
-  //   scaleTransition.setRate(1); // Play forward
-  //   scaleTransition.play();
-  // }
-
-  // private void playAnimationReverse(ScaleTransition scaleTransition) {
-  //   scaleTransition.setRate(-1); // Play in reverse
-  //   scaleTransition.play();
-  // }
-
   @FXML
   private void formatBlackCirlce() {
     RadialGradient gradientOutside =
@@ -281,19 +251,6 @@ public class LaserCuttingController extends Controller {
     blackCircle.setStroke(gradientOutside);
     blackCircle.setStrokeWidth(10);
   }
-
-  // public void setVault() {
-  //   if (GameState.isLaserCuttingBypassed) {
-  //     styleManager.getItem("bronzeDoor").setVisible(false);
-  //     styleManager.getItem("lootBtnHolder").setVisible(true);
-  //     GameState.isAnyDoorOpen = true;
-  //   } else if (GameState.isLaserCuttingBypassed && GameState.isChemicalMixingBypassed &&
-  // GameState.isEyeScannerBypassed) {
-  //     Label label = (Label) styleManager.getItem("lootBtnHolder");
-  //     label.setText("Collect all the loot and Escape");
-  //   }
-  //   App.setUI(Scenes.VAULT);
-  // }
 
   public void applyGlowEffect(Line line) {
 

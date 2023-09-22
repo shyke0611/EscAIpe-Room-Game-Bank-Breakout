@@ -31,7 +31,6 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class SecurityController extends Controller {
 
-  @FXML private ImageView Lobby;
   @FXML private Label timerLabel;
   @FXML private Button logOffBtn;
   @FXML private AnchorPane securityPane;
@@ -227,7 +226,7 @@ public class SecurityController extends Controller {
   }
 
   @FXML
-  public void quickHint(ActionEvent event) {
+  public void onQuickHint(ActionEvent event) {
     String hint = hackerAiManager.GetQuickHint();
     hackerAiManager.storeQuickHint();
     walkieTalkieManager.setWalkieTalkieText(new ChatMessage("user", hint));
