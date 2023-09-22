@@ -160,8 +160,9 @@ public class VaultController extends Controller {
     AnimationManager.slideDoorsAnimation(doorHolder);
     AnimationManager.slideDoorsAnimation(vaultbackground);
     AnimationManager.slideDoorsAnimation(slidePane);
-    timerClock.setTranslateX(350);
+    // timerClock.setTranslateX(350);
     bomblogo.setVisible(false);
+    bombHolder.setDisable(true);
     styleManager.removeItemsMessage("bombHolder");
     styleManager.setClueHover("bomblayer", false);
     styleManager.setVisible(false, "switchHolder");

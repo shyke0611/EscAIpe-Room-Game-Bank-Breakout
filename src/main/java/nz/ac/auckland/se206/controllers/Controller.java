@@ -47,28 +47,26 @@ public abstract class Controller {
   @FXML
   public void setVault(MouseEvent event) {
     if (GameState.isLaserCuttingBypassed) {
-      styleManager.getItem("bronzeDoor").setVisible(false);
-      styleManager.getItem("bronzeDoorHolder").setDisable(true);
+        styleManager.getItem("silverDoor").setVisible(false);
+        styleManager.getItem("silverDoorHolder").setDisable(true);
     }
     if (GameState.isChemicalMixingBypassed) {
-      styleManager.getItem("goldDoor").setVisible(false);
-      styleManager.getItem("goldDoorHolder").setDisable(true);
+        styleManager.getItem("bronzeDoor").setVisible(false);
+        styleManager.getItem("bronzeDoorHolder").setDisable(true);
     }
     if (GameState.isEyeScannerBypassed) {
-      styleManager.getItem("silverDoor").setVisible(false);
-      styleManager.getItem("silverDoorHolder").setDisable(true);
+        styleManager.getItem("goldDoor").setVisible(false);
+        styleManager.getItem("goldDoorHolder").setDisable(true);
     }
-    if (GameState.isLaserCuttingBypassed
-        || GameState.isChemicalMixingBypassed
-        || GameState.isEyeScannerBypassed) {
-      styleManager.getItem("lootBtnHolder").setVisible(true);
-      GameState.isAnyDoorOpen = true;
+    if (GameState.isLaserCuttingBypassed || GameState.isChemicalMixingBypassed || GameState.isEyeScannerBypassed) {
+        styleManager.getItem("lootBtnHolder").setVisible(true);
+        GameState.isAnyDoorOpen = true;
     }
     if (GameState.isLaserCuttingBypassed
         && GameState.isChemicalMixingBypassed
         && GameState.isEyeScannerBypassed) {
       Label label = (Label) styleManager.getItem("lootLbl");
-      label.setText("Collect it all the loot and escape");
+      label.setText("Collect all the loot and escape");
     }
     App.setUI(Scenes.VAULT);
   }

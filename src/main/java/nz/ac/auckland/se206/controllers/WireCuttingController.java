@@ -30,6 +30,7 @@ public class WireCuttingController extends Controller {
 
   @FXML private Label taskLbl;
   @FXML private Label timerLabel;
+  @FXML private Label wirecuttingorderLbl;
   @FXML private Label wirecutterLbl;
   @FXML private ImageView wirecuttingbackground;
 
@@ -40,7 +41,7 @@ public class WireCuttingController extends Controller {
     SceneManager.setController(Scenes.WIRECUTTING, this);
     super.setTimerLabel(timerLabel, 2);
     wiresCut = new ArrayList<>();
-    styleManager.addItems(redwire, greenwire, bluewire, yellowwire, wirecuttingbackground);
+    styleManager.addItems(redwire, greenwire, bluewire, yellowwire, wirecuttingbackground,wirecuttingorderLbl);
     RandomnessGenerate.addWires(bluewire, yellowwire, greenwire, redwire);
     styleManager.setItemsMessage(
         "use the wirecutter", "bluewire", "yellowwire", "greenwire", "redwire");

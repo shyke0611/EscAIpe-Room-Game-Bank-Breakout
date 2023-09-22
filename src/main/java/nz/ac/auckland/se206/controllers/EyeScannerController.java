@@ -18,6 +18,7 @@ import nz.ac.auckland.se206.WalkieTalkieManager;
 public class EyeScannerController extends Controller {
 
   @FXML private Label error;
+  @FXML private Label geteyesampleLbl;
   @FXML private VBox accessGranted;
   @FXML private VBox accessDenied;
   @FXML private Label mystery;
@@ -60,6 +61,8 @@ public class EyeScannerController extends Controller {
     redValue.textProperty().bind(redSlider.valueProperty().asString("%.0f"));
     greenValue.textProperty().bind(greenSlider.valueProperty().asString("%.0f"));
     blueValue.textProperty().bind(blueSlider.valueProperty().asString("%.0f"));
+
+    styleManager.addItems(geteyesampleLbl);
 
     // Adjust the colour of the artificial eye and adjust slider colour based on the sliders
 

@@ -133,7 +133,7 @@
                            <image>
                               <Image url="@../images/opensilverdoor.png" />
                            </image></ImageView>
-                        <ImageView fx:id="silverDoor" fitHeight="266.0" fitWidth="265.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#switchToEyeScanner" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="silverDoor" fitHeight="266.0" fitWidth="265.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#laserCuttingScene" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/silverDoor.png" />
                            </image>
@@ -156,7 +156,7 @@
                               <Image url="@../images/opengolddoor.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="goldDoor" fitHeight="266.0" fitWidth="265.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onSwitchToChemicalMixing" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="goldDoor" fitHeight="266.0" fitWidth="265.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#switchToEyeScanner" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/goldDoor.png" />
                            </image>
@@ -179,7 +179,7 @@
                               <Image url="@../images/openbronzedoor.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="bronzeDoor" fitHeight="299.0" fitWidth="299.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#laserCuttingScene" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="bronzeDoor" fitHeight="299.0" fitWidth="299.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onSwitchToChemicalMixing" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/bronzeDoor.png" />
                            </image>
@@ -330,7 +330,7 @@
             <DropShadow height="29.84" radius="10.735" spread="0.2" width="15.1" />
          </effect>
       </VBox>
-      <StackPane fx:id="timerClock" layoutX="460.0" layoutY="41.0" prefHeight="72.0" prefWidth="99.0">
+      <StackPane fx:id="timerClock" layoutX="460.0" layoutY="47.0" prefHeight="64.0" prefWidth="118.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#888d7d" height="64.0" stroke="BLACK" strokeType="INSIDE" width="99.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a7ab3d" height="52.0" stroke="BLACK" strokeType="INSIDE" width="79.0" />

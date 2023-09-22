@@ -141,7 +141,7 @@ public class LobbyController extends Controller {
 
   @FXML
   public void onSwitchToHacker() {
-    SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.VAULT);
+    // SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.VAULT);
     HackerVanController vanController =
         (HackerVanController) SceneManager.getController(Scenes.HACKERVAN);
     vanController.printChatHistory();
@@ -176,7 +176,7 @@ public class LobbyController extends Controller {
       StringBuilder wireNames = new StringBuilder();
 
       for (HBox wire : wires) {
-        String name = wire.getId();
+        String name = getWireLabel(wire);
         wireNames.append(name).append(" \n");
       }
       if (wireNames.length() > 0) {
@@ -185,8 +185,11 @@ public class LobbyController extends Controller {
 
       usernameLbl.setText(null);
       passwordLbl.setText(null);
+
       orderLabel.setText(wireNames.toString());
+
       orderLabel.setVisible(true);
+      styleManager.getItem("wirecuttingorderLbl").setVisible(false);
       titleLbl.setText("Wire Cutting Order");
       styleManager.setClueHover("guardpocket", false);
       GameState.isWireCredentialsFound = true;
@@ -194,11 +197,26 @@ public class LobbyController extends Controller {
     }
   }
 
+  public String getWireLabel(Node wire) {
+    String name = wire.getId();
+    if (name.startsWith("red")) {
+      name = "red wire";
+    } else if (name.startsWith("blue")) {
+      name = "blue wire";
+    } else if (name.startsWith("yellow")) {
+      name = "yellow wire";
+    } else {
+      name = "green wire";
+    }
+    return name;
+  }
+
   @FXML
   void onGuardEyes(MouseEvent event) {
     if (GameState.isEyeScannerEntered) {
       guardeyes.setDisable(true);
       styleManager.getItem("compareBtn").setDisable(false);
+      styleManager.getItem("geteyesampleLbl").setVisible(false);
       ((EyeScannerController) SceneManager.getController(Scenes.EYESCANNER)).updateGuardEye();
     }
   }

@@ -19,14 +19,16 @@ public class HackerAiManager {
 
   // Map to store hints for different game stages
   private Map<String, String> hintMappings = new HashMap<>();
+  private Map<String, String> contextMappsing = new HashMap<>();
   private List<String> chatHistory = new ArrayList<>();
   private List<String> hintHistory = new ArrayList<>();
 
   private int hintNumber = 1; // Hint number for hint history
   private ChatMessage response;
-  private ChatMessage tellAI;
+  private ChatMessage tellAIHint;
   private String currentStage;
   private String hint;
+  private ChatMessage tellAIContext;
 
   private ChatCompletionRequest chatCompletionRequest;
   private Difficulties currentDifficulty;
@@ -60,6 +62,29 @@ public class HackerAiManager {
         "You must find the correct order of wires to cut in security, they are hidden in the guards"
             + " pocket");
     hintMappings.put("Find Escape", "Place the bomb in the vault and arm it to escape");
+
+    // Initialize the context mappings
+    contextMappsing.put(
+        "Find Passcode",
+        "The player put the guard to sleep in order to check places to find the keys");
+    contextMappsing.put(
+        "Login", "The player used the keys to unlock the drawer and found the passcode");
+    contextMappsing.put(
+        "Disable Firewall", "The player used the passcode to login to the computer");
+    contextMappsing.put(
+        "Complete Minigame",
+        "The player failed the authentication test but used the bypass to gain access to the vault"
+            + " information");
+    contextMappsing.put(
+        "Scan Eye",
+        "The player scanned the colour of the guards eye in order to get into one of the vaults");
+    contextMappsing.put("Mix Chemicals", "The player mixed the chemicals to melt the lock");
+    contextMappsing.put(
+        "Cut Through Lasers",
+        "The player used the laser gun to cut a hole in the door and get through");
+    contextMappsing.put(
+        "Disable Lasertrap", "The player disabled the lasertrap in security but cutting wires");
+    contextMappsing.put("Find Escape", "The player placed the bomb in the vault and armed it");
   }
 
   // Method to set hint limits for different game stages
@@ -74,7 +99,7 @@ public class HackerAiManager {
         currentDifficulty = Difficulties.EASY;
         setHintLimit(1000);
         chatCompletionRequest =
-            new ChatCompletionRequest().setN(1).setTemperature(0.8).setTopP(0.9).setMaxTokens(100);
+            new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(1).setMaxTokens(100);
         runGpt(new ChatMessage("user", GptPromptEngineering.initisialiseHackerAiEasy()));
 
         break;
@@ -82,7 +107,7 @@ public class HackerAiManager {
         setHintLimit(5);
         currentDifficulty = Difficulties.MEDIUM;
         chatCompletionRequest =
-            new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.8).setMaxTokens(100);
+            new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(1).setMaxTokens(100);
         runGpt(new ChatMessage("user", GptPromptEngineering.intisialiseHackerAiMeidium()));
 
         break;
@@ -90,7 +115,7 @@ public class HackerAiManager {
         setHintLimit(0);
         currentDifficulty = Difficulties.HARD;
         chatCompletionRequest =
-            new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.8).setMaxTokens(100);
+            new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(1).setMaxTokens(100);
         runGpt(new ChatMessage("user", GptPromptEngineering.intisialiseHackerAiHard()));
         break;
     }
@@ -153,40 +178,65 @@ public class HackerAiManager {
   public ChatMessage processInput(ChatMessage msg) throws ApiProxyException {
 
     // Replace 'msg' with the appropriate input
-    if (currentDifficulty == Difficulties.MEDIUM && hintCounter < hintLimit) {
-      incrementHintCounter();
+    if (currentDifficulty == Difficulties.MEDIUM) {
       currentStage = GameManager.getObjectiveString();
       hint = getHintForCurrentStage(currentStage);
-      tellAI = new ChatMessage("user", "the hint for this stage is " + hint);
+      tellAIContext = new ChatMessage("user", "Context:" + contextMappsing.get(currentStage));
+      tellAIHint = new ChatMessage("user", "Hint:" + hint);
+      ChatMessage gptCall =
+          new ChatMessage("user", tellAIHint.getContent() + tellAIContext.getContent());
+      runGpt(gptCall);
 
-      runGpt(tellAI);
       response = runGpt(msg);
 
     } else if (currentDifficulty == Difficulties.HARD) {
       // Things to add, update ai to say what has happend during round
-      tellAI = new ChatMessage("user", "You cannot give any hints no matter what");
-      runGpt(tellAI);
+      tellAIContext = new ChatMessage("user", contextMappsing.get(currentStage));
+      runGpt(tellAIContext);
       response = runGpt(msg);
 
     } else if (currentDifficulty == Difficulties.EASY) {
       currentStage = GameManager.getObjectiveString();
       hint = getHintForCurrentStage(currentStage);
-      tellAI = new ChatMessage("user", "the current hint for stage is " + hint);
-      runGpt(tellAI);
+      tellAIContext = new ChatMessage("user", "Context:" + contextMappsing.get(currentStage));
+      tellAIHint = new ChatMessage("user", "the current hint for stage is " + hint);
+      runGpt(tellAIHint);
+      runGpt(tellAIContext);
       response = runGpt(msg);
 
     } else {
-      tellAI = new ChatMessage("user", "You have used all your hints");
-      runGpt(tellAI);
+      tellAIHint = new ChatMessage("user", "You have used all your hints");
+      tellAIContext = new ChatMessage("user", contextMappsing.get(currentStage));
+      runGpt(tellAIHint);
+      runGpt(tellAIContext);
       response = runGpt(msg);
     }
 
-    if (msg.getContent().contains("hint")
-        || msg.getContent().contains("Hint") && response.getContent().contains("hint")
-        || response.getContent().contains("Hint")) {
+    if (userIsAiAskingForHelp(response.getContent()) && response.getContent().contains("hint")) {
       storeAiHint(response);
+      incrementHintCounter();
+      System.out.println(hintCounter);
     }
     return response;
+  }
+
+  public boolean userIsAiAskingForHelp(String msg) {
+    // Convert the message to lowercase for case-insensitive matching
+    String lowercaseMsg = msg.toLowerCase();
+
+    // Define an array of keywords to check for
+    String[] keywords = {
+      "help", "hint", "assist", "support", "clue", "pointer", "aid", "guide", "give me a hand"
+    };
+
+    // Check if any of the keywords is present in the message
+    for (String keyword : keywords) {
+      if (lowercaseMsg.contains(keyword)) {
+        return true; // User is asking for help
+      }
+    }
+
+    return false; // No help-related keywords found in the message
   }
 
   public String getFormattedChatHistory() {
