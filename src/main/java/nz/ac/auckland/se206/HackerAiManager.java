@@ -251,7 +251,7 @@ public class HackerAiManager {
       tellAiHint = new ChatMessage("user", "You have used all your hints");
       tellAIContext = new ChatMessage("user", contextMappsing.get(currentStage));
       ChatMessage gptCall =
-          new ChatMessage("user", tellAIHint.getContent() + tellAIContext.getContent());
+          new ChatMessage("user", tellAiHint.getContent() + tellAIContext.getContent());
       runGpt(gptCall);
     }
 
