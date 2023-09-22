@@ -4,8 +4,6 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -116,7 +114,9 @@ public class VaultController extends Controller {
         goldDoorHolder,
         lobbyRoomSwitch,
         bomblayer,
-        realvaultbackground,VaultRoomSwitch,SecurityRoomSwitch);
+        realvaultbackground,
+        VaultRoomSwitch,
+        SecurityRoomSwitch);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     givencode.setText("Code: " + RandomnessGenerate.getPasscode());
 
@@ -159,11 +159,12 @@ public class VaultController extends Controller {
     AnimationManager.slideDoorsAnimation(doorHolder);
     AnimationManager.slideDoorsAnimation(vaultbackground);
     AnimationManager.slideDoorsAnimation(slidePane);
-    timerClock.setTranslateX(350);
+    // timerClock.setTranslateX(350);
     bomblogo.setVisible(false);
+    bombHolder.setDisable(true);
     styleManager.removeItemsMessage("bombHolder");
-    styleManager.setClueHover("bomblayer",false);
-    styleManager.setVisible(false,"switchHolder");
+    styleManager.setClueHover("bomblayer", false);
+    styleManager.setVisible(false, "switchHolder");
   }
 
   @FXML
@@ -187,8 +188,8 @@ public class VaultController extends Controller {
     if (GameState.isFirewallDisabled /* && GameState.isSecondRiddleSolved*/) {
       App.setUI(Scenes.EYESCANNER);
       GameState.isEyeScannerEntered = true;
-      styleManager.setItemsMessage("Get guard eye colour","guardeyes");
-      styleManager.setItemsState(HoverColour.GREEN,"guardeyes");
+      styleManager.setItemsMessage("Get guard eye colour", "guardeyes");
+      styleManager.setItemsState(HoverColour.GREEN, "guardeyes");
     }
   }
 
@@ -209,7 +210,6 @@ public class VaultController extends Controller {
       styleManager.setItemsMessage("Something seems odd?", "guardpocket");
       styleManager.setItemsMessage("Alarm Wires...?", "electricityBox");
       lootBtnHolder.setVisible(false);
-      
     }
   }
 
@@ -252,10 +252,9 @@ public class VaultController extends Controller {
   public void onExitBomb() {
     bombPuzzle.setVisible(false);
     if (GameState.isBombActivated) {
-      styleManager.setVisible(
-          false, "switchHolder", "walkietalkieHolder", "bombHolder");
+      styleManager.setVisible(false, "switchHolder", "walkietalkieHolder", "bombHolder");
       App.textToSpeech("Good job, 5,4,3,2,1");
-      AnimationManager.toggleAlarmAnimation(exitHolder,true,0.5);
+      AnimationManager.toggleAlarmAnimation(exitHolder, true, 0.5);
       AnimationManager.delayAnimation(exitHolder, escapeDoor);
       exitHolder.setDisable(true);
     }
