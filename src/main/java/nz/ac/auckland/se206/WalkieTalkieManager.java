@@ -75,12 +75,15 @@ public class WalkieTalkieManager {
   }
 
   public ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
+    // Add the message to the request
     chatCompletionRequest.addMessage(msg);
     try {
+      // Execute the request and get the result
       ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
       Choice result = chatCompletionResult.getChoices().iterator().next();
       chatCompletionRequest.addMessage(result.getChatMessage());
       return result.getChatMessage();
+      // If there is an error, print the stack trace and return null
     } catch (ApiProxyException e) {
       e.printStackTrace();
       return null;
@@ -136,10 +139,12 @@ public class WalkieTalkieManager {
   }
 
   public void startAnimation() {
+    // creating new timeline for animation
     timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> updateTypingLabel()));
 
     Platform.runLater(
         () -> {
+          // switching imageviews
           for (ImageView image : walkieTalkieImageMap.values()) {
             if (image.getId().endsWith("WalkieTalkie")) {
               image.setImage(new Image("images/hacker.png"));
@@ -152,15 +157,14 @@ public class WalkieTalkieManager {
   }
 
   private void updateTypingLabel() {
+    // creating dots for animation
     StringBuilder dots = new StringBuilder();
     for (int i = 0; i < dotCount; i++) {
       dots.append(".");
     }
-
+    // creating new message and setting it to walkietalkie
     ChatMessage msg = new ChatMessage("user", "Typing" + dots.toString());
-
     setWalkieTalkieText(msg);
-
     if (dotCount < 3) {
       dotCount++;
     } else {
