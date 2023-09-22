@@ -18,6 +18,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameManager;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.HackerAiManager;
 import nz.ac.auckland.se206.RandomnessGenerate;
@@ -127,6 +128,7 @@ public class SecurityController extends Controller {
       App.setUI(Scenes.CONNECTDOTS);
     } else {
       logInScreen.setVisible(false);
+      GameManager.completeObjective();
       App.setUI(Scenes.COMPUTER);
       styleManager.removeItemsMessage("computer");
     }

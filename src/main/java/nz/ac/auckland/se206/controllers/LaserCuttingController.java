@@ -178,6 +178,7 @@ public class LaserCuttingController extends Controller {
         GameState.isLaserCuttingBypassed = true;
         // $10 Million
         GameManager.increaseMoneyToGain(10000000);
+        GameManager.completeObjective();
         // updateMoneyStolen(5000000);
         points.clear();
         angles.clear();

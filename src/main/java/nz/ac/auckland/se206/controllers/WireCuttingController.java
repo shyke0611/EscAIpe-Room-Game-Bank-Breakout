@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameManager;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
@@ -119,6 +120,7 @@ public class WireCuttingController extends Controller {
     styleManager.setClueHover("lobbyRoomSwitch", false);
     styleManager.getItem("realvaultbackground").setVisible(false);
     styleManager.setClueHover("electricityBox", false);
+    GameManager.completeObjective();
     App.textToSpeech("Alarm Disabled");
   }
 

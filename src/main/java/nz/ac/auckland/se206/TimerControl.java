@@ -87,6 +87,7 @@ public class TimerControl {
                 count--;
                 if (count == 30 && !GameState.isAlarmTripped) {
                   GameState.isAlarmTripped = true;
+                  GameManager.completeObjective();
                   StyleManager.setAlarm(true);
                 }
               }
