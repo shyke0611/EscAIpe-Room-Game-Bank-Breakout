@@ -61,7 +61,7 @@ public class TimerControl {
     // set initial count(seconds) based on minutes
     switch (minutes) {
       case 2:
-        initialCount = 32;
+        initialCount = 120;
         break;
       case 4:
         initialCount = 240;
