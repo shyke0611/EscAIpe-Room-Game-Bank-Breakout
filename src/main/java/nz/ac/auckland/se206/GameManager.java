@@ -88,14 +88,6 @@ public class GameManager {
     return instance;
   }
 
-  public void setDifficulty(Difficulty d) {
-    difficulty = d;
-  }
-
-  public Difficulty geDifficulty() {
-    return difficulty;
-  }
-
   public static void resetGame() {
     // Reset the game and all variables/classes
     resetGameManager();
@@ -319,5 +311,13 @@ public class GameManager {
 
     int millions = money / 1000000;
     return "$" + millions + ",000,000";
+  }
+
+  public void setDifficulty(Difficulty d) {
+    difficulty = d;
+  }
+
+  public Difficulty geDifficulty() {
+    return difficulty;
   }
 }

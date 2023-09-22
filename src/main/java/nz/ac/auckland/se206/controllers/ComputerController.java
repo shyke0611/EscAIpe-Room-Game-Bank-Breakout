@@ -18,6 +18,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameManager;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
@@ -177,7 +179,7 @@ public class ComputerController extends Controller {
                       "user", "FireWall Disabled, you can now see what is behind each vault door"));
               // Higer security level granted
               // set access to hard door
-
+              GameState.isThirdRiddleSolved = true;
             }
 
             if (lastMsg.getRole().equals("assistant")
@@ -188,7 +190,7 @@ public class ComputerController extends Controller {
                   new ChatMessage(
                       "user", "FireWall Disabled, you can now see what is behind each vault door"));
 
-              // Set vault visble/firewall disabled
+              GameManager.completeObjective();
             }
 
             if (lastMsg.getRole().equals("assistant")

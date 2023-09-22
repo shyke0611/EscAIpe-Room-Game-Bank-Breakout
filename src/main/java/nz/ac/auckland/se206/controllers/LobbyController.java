@@ -81,17 +81,20 @@ public class LobbyController extends Controller {
 
   /** Initializes the LobbyController. */
   public void initialize() {
+    // set method on initialisation
     SceneManager.setController(Scenes.LOBBY, this);
     WalkieTalkieManager.addWalkieTalkieImage(this, lobbyWalkieTalkie);
     WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
+    WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     super.setTimerLabel(timerLabel, 1);
+    // set random components
     RandomnessGenerate.generateRandomCredentials();
     randomUsername = RandomnessGenerate.getUsername();
     randomPassword = RandomnessGenerate.getPasscode();
     RandomnessGenerate.addKeyLocation(key1, key3, key4);
     RandomnessGenerate.generateRandomKeyLocation();
-    WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
 
+    // adding relevant nodes (items) into the stylemanager list
     styleManager.addItems(
         key,
         key1,
@@ -115,6 +118,7 @@ public class LobbyController extends Controller {
     styleManager.setItemsMessage(
         "Guard is watching...", "key1", "key3", "key4", "guardpocket", "guardeyes");
 
+    // setting style to items
     styleManager.setItemsMessage("It's locked...", "drawerHolder");
     styleManager.setItemsMessage("A note?", "credentialsBook");
     styleManager.setItemsMessage("Put him to sleep", "guard");
@@ -131,9 +135,11 @@ public class LobbyController extends Controller {
 
   @FXML
   private void onSwitchToHacker() {
+    // setting relevant method for hacker scene
     SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.LOBBY);
     HackerVanController vanController =
         (HackerVanController) SceneManager.getController(Scenes.HACKERVAN);
+    // loading relevant information
     vanController.printChatHistory();
     vanController.loadQuickHints();
     App.setUI(Scenes.HACKERVAN);
@@ -150,6 +156,7 @@ public class LobbyController extends Controller {
   private void onDrawerPressed(MouseEvent event) {
     // Opens only when key is found to the drawer
     if (GameState.isKeyFound) {
+      // setting visibility
       styleManager.setVisible(false, "drawer");
       styleManager.setVisible(true, "openDrawer", "credentialsBook");
       styleManager.setDisable(true, "drawerHolder");
@@ -159,12 +166,13 @@ public class LobbyController extends Controller {
   @FXML
   private void onGuardPocket(MouseEvent event) {
 
+    // executes when alarm is tripped
     if (GameState.isAlarmTripped) {
+      // opening credentials note
       credentialsNote.setVisible(true);
       credentialsNote.setDisable(false);
       List<HBox> wires = RandomnessGenerate.getRandomWires();
       StringBuilder wireNames = new StringBuilder();
-
       for (HBox wire : wires) {
         String name = getWireLabel(wire);
         wireNames.append(name).append(" \n");
@@ -176,19 +184,21 @@ public class LobbyController extends Controller {
       usernameLbl.setText(null);
       passwordLbl.setText(null);
 
+      // setting wire order information to text
       orderLabel.setText(wireNames.toString());
-
       orderLabel.setVisible(true);
-      styleManager.getItem("wirecuttingorderLbl").setVisible(false);
       titleLbl.setText("Wire Cutting Order");
+      titleLbl.setPrefHeight(35);
+      // setting style
+      styleManager.getItem("wirecuttingorderLbl").setVisible(false);
       styleManager.setClueHover("guardpocket", false);
       GameState.isWireCredentialsFound = true;
-      titleLbl.setPrefHeight(35);
     }
   }
 
   private String getWireLabel(Node wire) {
     String name = wire.getId();
+    // checking wire id to set name
     if (name.startsWith("red")) {
       name = "red wire";
     } else if (name.startsWith("blue")) {
@@ -198,13 +208,16 @@ public class LobbyController extends Controller {
     } else {
       name = "green wire";
     }
+    // return name
     return name;
   }
 
   @FXML
   private void onGuardEyes(MouseEvent event) {
+    // execute only if eye scanner puzzle is pressed
     if (GameState.isEyeScannerEntered) {
       guardeyes.setDisable(true);
+      // updating items
       styleManager.getItem("compareBtn").setDisable(false);
       styleManager.getItem("geteyesampleLbl").setVisible(false);
       ((EyeScannerController) SceneManager.getController(Scenes.EYESCANNER)).updateGuardEye();
@@ -219,10 +232,12 @@ public class LobbyController extends Controller {
     passwordLbl.setText("Password: " + randomPassword);
     usernameLbl.setText("Username: " + randomUsername);
     styleManager.removeItemsMessage("credentialsBook");
+    // set glow effect
     if (!GameState.isSecurityRoomHoverPressed) {
       styleManager.setClueHover("securityRoomSwitch", true);
     }
     GameState.isSecurityRoomHoverPressed = true;
+    // update game state
     GameState.isCredentialsFound = true;
     GameManager.completeObjective();
   }
@@ -231,9 +246,11 @@ public class LobbyController extends Controller {
   // If key found it turns invisible (we can change mechanics later)
   @FXML
   private void onKeyLocationPressed(MouseEvent event) {
+    // execute only when guard is distracted
     if (GameState.isGuardDistracted) {
       Node clickedKeyLocation = (HBox) event.getSource();
       styleManager.setItemsMessage("Already looked here...", clickedKeyLocation.getId().toString());
+      // get the clicked key location and execute relevant methods
       if (clickedKeyLocation == RandomnessGenerate.getkeyLocation()) {
         GameState.isKeyLocationFound = true;
         AnimationManager.fadeTransition(key, 2);
@@ -246,9 +263,11 @@ public class LobbyController extends Controller {
   // Pressing the key
   @FXML
   private void onKeyPressed(MouseEvent event) {
+    // updating game state
     GameState.isKeyFound = true;
     GameManager.completeObjective();
     key.setVisible(false);
+    // setting style
     styleManager.setItemsState(HoverColour.GREEN, "drawerHolder");
     styleManager.setItemsMessage("The key fits...", "drawerHolder");
   }
@@ -256,8 +275,10 @@ public class LobbyController extends Controller {
   @FXML
   private void onGuardPressed(MouseEvent event) {
     GameState.isGuardDistracted = true;
+    // setting animation
     sleepingAnimation();
     guard.setDisable(true);
+    // setting style when guard is pressed
     styleManager.setClueHover("guard", false);
     styleManager.setItemsState(HoverColour.GREEN, "key1", "key3", "key4");
     styleManager.setItemsState(HoverColour.RED, "guardpocket", "guardeyes");
@@ -266,12 +287,14 @@ public class LobbyController extends Controller {
   }
 
   private void toggleImageViews() {
+    // method to use in sleeeping animation (toggles between two images)
     zzz1.setVisible(isZzz1Visible);
     zzz2.setVisible(!isZzz1Visible);
     isZzz1Visible = !isZzz1Visible;
   }
 
   private void sleepingAnimation() {
+    // creating new timeline for sleeping animation
     Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), e -> toggleImageViews()));
     timeline.setCycleCount(Timeline.INDEFINITE);
     timeline.play();

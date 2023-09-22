@@ -4,11 +4,7 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -18,6 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameManager;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.HackerAiManager;
 import nz.ac.auckland.se206.RandomnessGenerate;
@@ -31,8 +28,8 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class SecurityController extends Controller {
 
+  // FXML elements
   @FXML private Label timerLabel;
-
   @FXML private Label numberOfHints;
   @FXML private Button logOffBtn;
   @FXML private AnchorPane securityPane;
@@ -54,17 +51,24 @@ public class SecurityController extends Controller {
   @FXML private TextField securityInputField;
   @FXML private ImageView securityWalkieTalkie;
 
+  // Managers and controllers
   private StyleManager styleManager = StyleManager.getInstance();
   private WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
   private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
 
   public void initialize() {
+    // Set the controller for the current scene
     SceneManager.setController(Scenes.SECURITY, this);
 
+    // Set the timer label
     super.setTimerLabel(timerLabel, 1);
+
+    // Add walkie talkie elements to the scene
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     WalkieTalkieManager.addWalkieTalkieImage(this, securityWalkieTalkie);
     WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
+
+    // Add style items and set messages
     styleManager.addItems(
         computer,
         electricityBox,
@@ -74,75 +78,83 @@ public class SecurityController extends Controller {
         securityRoomSwitch);
     styleManager.setItemsMessage("A computer...?", "computer");
     styleManager.setItemsMessage("no need to open this right now", "electricityBox");
-    // setupListeners(computer,electricityBox);
   }
 
-  //   handling mouse events on walkie talkie
-  //   open and closes when walkie talkie is clicked
+  // Handling mouse events on walkie talkie - opens and closes when walkie talkie is clicked
   @FXML
   private void onWalkieTalkie(MouseEvent event) {
     WalkieTalkieManager.toggleWalkieTalkie();
   }
 
+  // Switch to Hacker scene when the button is clicked
   @FXML
-  private void onSwitchToHacker(ActionEvent event) {
-    SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.VAULT);
+  private void onSwitchToHacker() {
+    // setting relevant method for hacker scene
+    SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.LOBBY);
     HackerVanController vanController =
         (HackerVanController) SceneManager.getController(Scenes.HACKERVAN);
+    // loading relevant information
     vanController.printChatHistory();
     vanController.loadQuickHints();
     App.setUI(Scenes.HACKERVAN);
   }
 
+  // Handling wire cutting when clicked
   @FXML
   private void onWireCutting(MouseEvent event) {
+    // if wire not cur and alarm is tripped
     if (!GameState.isWiresCut && GameState.isAlarmTripped) {
+      // when wire order are not found yet
       if (!GameState.isWireCredentialsFound) {
         App.textToSpeech("you need to find wire cutting order");
       }
       App.setUI(Scenes.WIRECUTTING);
+      // when wire is cut
     } else if (GameState.isWiresCut) {
       electricityBox.setDisable(true);
     }
   }
 
-  // set visibility of log in screen off (log off computer)
+  // Set visibility of the log in screen off (log off computer)
   @FXML
   private void onLogOff(ActionEvent event) {
     logInScreen.setVisible(false);
   }
 
-  // check log in details before logging in
+  // Check log in details before logging in
   @FXML
   private void onLogIn(ActionEvent event) {
     checkLogin();
   }
 
-  // opening computer log in screen
+  // Opening computer log in screen
   @FXML
   private void onClickComputer(MouseEvent event) {
     styleManager.setClueHover("computer", false);
-    // if already logged in, skip log in stage
+    // If already logged in, skip log in stage
     if (!GameState.isSecurityComputerLoggedIn) {
       logInScreen.setVisible(true);
+      // if connect the dot puzzle is reached
     } else if (GameState.isConnectDotreached) {
       App.setUI(Scenes.CONNECTDOTS);
     } else {
       logInScreen.setVisible(false);
+      GameManager.completeObjective();
       App.setUI(Scenes.COMPUTER);
       styleManager.removeItemsMessage("computer");
     }
   }
 
-  // method that handles overall login mechanics
+  // Method that handles overall login mechanics
   private void checkLogin() {
-    // get user input credentials
+    // Get user input credentials
     String enteredUsername = usernameField.getText().toLowerCase();
     String enteredPassword = passwordField.getText();
-    // get generated credentials
+    // Get generated credentials
     String randomUsername = RandomnessGenerate.getUsername();
     String randomPassword = RandomnessGenerate.getPasscode();
 
+    // handling the credentials
     if (areCredentialsValid(enteredUsername, enteredPassword, randomUsername, randomPassword)) {
       handleSuccessfulLogin();
       logInScreen.setVisible(false);
@@ -154,42 +166,46 @@ public class SecurityController extends Controller {
     }
   }
 
-  // check credentials
+  // Check credentials
   private boolean areCredentialsValid(
       String enteredUsername,
       String enteredPassword,
       String randomUsername,
       String randomPassword) {
+    // return if they are correct
     return enteredUsername.equals(randomUsername) && enteredPassword.equals(randomPassword);
   }
 
-  // check if credentials are empty
+  // Check if credentials are empty
   private boolean areCredentialsEmpty() {
     return usernameField.getText().isEmpty() && passwordField.getText().isEmpty();
   }
 
-  // mechanics for when login is successful
+  // Mechanics for when login is successful
   private void handleSuccessfulLogin() {
+    // sets relevant method for when credentials are correct
     loginMsgLbl.setText("Success");
     loginMsgLbl.setTextFill(Color.GREEN);
     GameState.isSecurityComputerLoggedIn = true;
     App.setUI(Scenes.COMPUTER);
+    // setting style
     styleManager.setDisable(true, "credentialsBook");
     styleManager.setVisible(false, "credentialsNote");
   }
 
-  // mechanics for empty credential input
+  // Mechanics for empty credential input
   private void handleEmptyCredentials() {
     loginMsgLbl.setText("Enter your credentials");
     loginMsgLbl.setTextFill(Color.ORANGE);
   }
 
-  // mechanics for when login fails
+  // Mechanics for when login fails
   private void handleFailedLogin() {
     loginMsgLbl.setText("Wrong username or password");
     loginMsgLbl.setTextFill(Color.RED);
   }
 
+  // Invoke Hacker AI when the Enter key is pressed
   @FXML
   private void invokeHackerAI(KeyEvent event) throws ApiProxyException {
 
@@ -205,13 +221,13 @@ public class SecurityController extends Controller {
               hackerAiManager.addChatHistory(msg.getContent());
               walkieTalkieManager.clearWalkieTalkie();
 
-              ChatMessage responce = hackerAiManager.processInput(msg);
-              hackerAiManager.addChatHistory(responce.getContent());
+              ChatMessage response = hackerAiManager.processInput(msg);
+              hackerAiManager.addChatHistory(response.getContent());
 
-              // Move this code here to use the `responce` variable within the call method
+              // Move this code here to use the `response` variable within the call method
               Platform.runLater(
                   () -> {
-                    walkieTalkieManager.setWalkieTalkieText(responce);
+                    walkieTalkieManager.setWalkieTalkieText(response);
 
                     securityInputField.clear();
                     walkieTalkieManager.stopAnimation();
@@ -227,6 +243,7 @@ public class SecurityController extends Controller {
     }
   }
 
+  // Display a quick hint when the hint button is clicked
   @FXML
   private void onQuickHint(ActionEvent event) {
     String hint = hackerAiManager.GetQuickHint();

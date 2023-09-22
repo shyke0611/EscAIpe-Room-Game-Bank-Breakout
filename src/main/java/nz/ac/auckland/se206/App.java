@@ -25,7 +25,6 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 public class App extends Application {
 
   private static Scene scene;
-  private ChatCompletionRequest chatCompletionRequest;
   private static ChatMessage message;
   private static App instance;
 
@@ -57,6 +56,36 @@ public class App extends Application {
     scene.setRoot(SceneManager.getUiRoot(newUi));
     SceneManager.setActiveController(SceneManager.getController(newUi));
   }
+
+  public static ChatMessage getStartMessage() {
+    return message;
+  }
+
+  public static void textToSpeech(String string) {
+    // Create a text-to-speech task
+    Task<Void> speechTask =
+        new Task<Void>() {
+
+          @Override
+          protected Void call() throws Exception {
+            // Perform text-to-speech operations here
+            TextToSpeech textToSpeech = new TextToSpeech();
+            textToSpeech.speak(string);
+            return null;
+          }
+        };
+
+    // Run the task in a background thread
+    Thread speechThread = new Thread(speechTask);
+    speechThread.setDaemon(true);
+    speechThread.start();
+  }
+
+  public static void reloadScenes() throws IOException {
+    instance.loadAllScenes();
+  }
+
+  private ChatCompletionRequest chatCompletionRequest;
 
   /**
    * This method is invoked when the application starts. It loads and shows the "Canvas" scene.
@@ -113,10 +142,6 @@ public class App extends Application {
     root.requestFocus();
   }
 
-  public static ChatMessage getStartMessage() {
-    return message;
-  }
-
   public ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
     chatCompletionRequest.addMessage(msg);
     try {
@@ -129,26 +154,6 @@ public class App extends Application {
       e.printStackTrace();
       return null;
     }
-  }
-
-  public static void textToSpeech(String string) {
-    // Create a text-to-speech task
-    Task<Void> speechTask =
-        new Task<Void>() {
-
-          @Override
-          protected Void call() throws Exception {
-            // Perform text-to-speech operations here
-            TextToSpeech textToSpeech = new TextToSpeech();
-            textToSpeech.speak(string);
-            return null;
-          }
-        };
-
-    // Run the task in a background thread
-    Thread speechThread = new Thread(speechTask);
-    speechThread.setDaemon(true);
-    speechThread.start();
   }
 
   private void loadAllScenes() throws IOException {
@@ -172,9 +177,5 @@ public class App extends Application {
     SceneManager.addUi(SceneManager.Scenes.CHEMICALMIXING, loadFxml("chemicalmixing"));
     SceneManager.addUi(SceneManager.Scenes.CONNECTDOTS, loadFxml("connectdots"));
     SceneManager.addUi(SceneManager.Scenes.LASERCUTTING, loadFxml("laserCutting"));
-  }
-
-  public static void reloadScenes() throws IOException {
-    instance.loadAllScenes();
   }
 }

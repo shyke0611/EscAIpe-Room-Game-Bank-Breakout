@@ -2,9 +2,6 @@ package nz.ac.auckland.se206.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.Action;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameManager;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
@@ -21,9 +19,7 @@ import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.StyleManager.HoverColour;
 
-/**
- * Controller class for the Wire Cutting scene.
- */
+/** Controller class for the Wire Cutting scene. */
 public class WireCuttingController extends Controller {
 
   @FXML private HBox wirecutter;
@@ -42,16 +38,17 @@ public class WireCuttingController extends Controller {
 
   private boolean isWireCutterSelected = false;
   private StyleManager styleManager = StyleManager.getInstance();
-  private List<HBox> wiresCut; 
+  private List<HBox> wiresCut;
 
-   /**
-   * Initialize the Wire Cutting controller.
-   * It sets up the initial state of the Wire Cutting scene.
+  /**
+   * Initialize the Wire Cutting controller. It sets up the initial state of the Wire Cutting scene.
    */
   public void initialize() {
     SceneManager.setController(Scenes.WIRECUTTING, this);
+    // setting timer
     super.setTimerLabel(timerLabel, 2);
     wiresCut = new ArrayList<>();
+    // generating relevant methods on initialise
     styleManager.addItems(
         redwire, greenwire, bluewire, yellowwire, wirecuttingbackground, wirecuttingorderLbl);
     RandomnessGenerate.addWires(bluewire, yellowwire, greenwire, redwire);
@@ -60,9 +57,8 @@ public class WireCuttingController extends Controller {
     setUpListener(wirecutter);
   }
 
-    /**
-   * Handle the "Go Back" button click event.
-   * Navigates back to the Security scene.
+  /**
+   * Handle the "Go Back" button click event. Navigates back to the Security scene.
    *
    * @param event The ActionEvent triggered by clicking the "Go Back" button.
    */
@@ -72,9 +68,9 @@ public class WireCuttingController extends Controller {
     styleManager.setClueHover("electricityBox", false);
   }
 
-   /**
-   * Handle the wire click event.
-   * If the wire cutter is selected, hides the clicked wire and checks the wire combination.
+  /**
+   * Handle the wire click event. If the wire cutter is selected, hides the clicked wire and checks
+   * the wire combination.
    *
    * @param event The MouseEvent triggered by clicking a wire.
    */
@@ -89,8 +85,8 @@ public class WireCuttingController extends Controller {
   }
 
   /**
-   * Handle the wire cutter click event.
-   * Sets the wire cutter as selected and updates the wire colors accordingly.
+   * Handle the wire cutter click event. Sets the wire cutter as selected and updates the wire
+   * colors accordingly.
    *
    * @param event The MouseEvent triggered by clicking the wire cutter.
    */
@@ -99,13 +95,13 @@ public class WireCuttingController extends Controller {
     wirecutter.setVisible(false);
     wirecutterLbl.setVisible(false);
     isWireCutterSelected = true;
+    // setting/removing relevant styles
     styleManager.removeItemsMessage("redwire", "greenwire", "bluewire", "yellowwire");
     styleManager.setItemsState(HoverColour.GREEN, "redwire", "greenwire", "bluewire", "yellowwire");
   }
 
-   /**
-   * Handle the retry button click event.
-   * Resets the wire cutting puzzle.
+  /**
+   * Handle the retry button click event. Resets the wire cutting puzzle.
    *
    * @param event The ActionEvent triggered by clicking the retry button.
    */
@@ -117,13 +113,14 @@ public class WireCuttingController extends Controller {
   }
 
   /**
-   * Check if the wires cut by the player match the expected wire combination.
-   * If all wires are cut in the correct order, handleCorrectCombination is called.
+   * Check if the wires cut by the player match the expected wire combination. If all wires are cut
+   * in the correct order, handleCorrectCombination is called.
    */
   private void checkWireCombination() {
     if (wiresCut.size() == RandomnessGenerate.getRandomWires().size()) {
       boolean allWiresCorrect = true;
 
+      // iterate through to get wire clicked
       for (int i = 0; i < wiresCut.size(); i++) {
         HBox clickedWire = wiresCut.get(i);
         HBox expectedWire = RandomnessGenerate.getRandomWires().get(i);
@@ -135,6 +132,7 @@ public class WireCuttingController extends Controller {
         }
       }
 
+      // handle combinations
       if (allWiresCorrect) {
         handleCorrectCombination();
 
@@ -145,15 +143,17 @@ public class WireCuttingController extends Controller {
   }
 
   /**
-   * Handle the correct wire combination.
-   * Sets the success message, updates the game state, and disables related elements.
+   * Handle the correct wire combination. Sets the success message, updates the game state, and
+   * disables related elements.
    */
   private void handleCorrectCombination() {
+    // handling relevant methods
     taskLbl.setText("Success");
     taskLbl.setTextFill(Color.GREEN);
     GameState.isWiresCut = true;
     StyleManager.setAlarm(false);
     GameState.isAlarmDisabled = true;
+    // setting relevant styles
     styleManager.setDisable(true, "electricityBox");
     styleManager.setDisable(true, "guardpocket");
     styleManager.setVisible(false, "credentialsNote");
@@ -162,13 +162,11 @@ public class WireCuttingController extends Controller {
     styleManager.setClueHover("lobbyRoomSwitch", false);
     styleManager.getItem("realvaultbackground").setVisible(false);
     styleManager.setClueHover("electricityBox", false);
+    GameManager.completeObjective();
     App.textToSpeech("Alarm Disabled");
   }
 
-  /**
-   * Handle the incorrect wire combination.
-   * Sets the fail message.
-   */
+  /** Handle the incorrect wire combination. Sets the fail message. */
   private void handleIncorrectCombination() {
     taskLbl.setText("Fail");
     taskLbl.setTextFill(Color.RED);

@@ -56,6 +56,7 @@ public class EyeScannerController extends Controller {
    */
   public void initialize() {
 
+    // set relevant method on initialisation
     styleManager.addItems(compareBtn);
     SceneManager.setController(Scenes.EYESCANNER, this);
     super.setTimerLabel(timerLabel, 3);
@@ -140,9 +141,11 @@ public class EyeScannerController extends Controller {
 
   /** Update the guard's eye color with a random color. */
   public void updateGuardEye() {
+    // getting random eye colour combination
     guardRed = RandomnessGenerate.getRandomColourValue();
     guardGreen = RandomnessGenerate.getRandomColourValue();
     guardBlue = RandomnessGenerate.getRandomColourValue();
+    // setting visibility
     mystery.setVisible(false);
     error.setVisible(false);
     guardEye.setFill(Paint.valueOf("rgb(" + guardRed + "," + guardGreen + "," + guardBlue + ")"));
@@ -156,13 +159,16 @@ public class EyeScannerController extends Controller {
    */
   @FXML
   private void onCompareSample() {
+    // comparing eye colour with guard eye colour
     if (isColourMatch(red, guardRed)
         && isColourMatch(green, guardGreen)
         && isColourMatch(blue, guardBlue)) {
+      // access granted if match found
       accessGranted.setVisible(true);
       accessDenied.setVisible(false);
       GameState.isEyeScannerBypassed = true;
       // $20 Million
+      GameManager.completeObjective();
       GameManager.increaseMoneyToGain(20000000);
     } else {
       accessGranted.setVisible(false);

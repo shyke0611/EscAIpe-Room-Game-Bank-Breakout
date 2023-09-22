@@ -23,6 +23,7 @@ public class GameFinishController extends Controller {
   @FXML private AnchorPane failPage;
 
   public void initialize() {
+    // initialize the controller for the current scene
     SceneManager.setController(Scenes.GAMEFINISH, this);
   }
 
@@ -31,17 +32,20 @@ public class GameFinishController extends Controller {
   }
 
   public void setStatLabels() {
+    // set the labels for the statistics
     timeChosenLbl.setText(TimerControl.getInitialTime() + " Minutes");
     timeLbl.setText(TimerControl.getTimeTaken());
     moneyLbl.setText(GameManager.getMoneyGained());
   }
 
   public void setGameLostPage() {
+    // set the game lost page
     successPage.setVisible(false);
     failPage.setVisible(true);
   }
 
   public void setGameWonPage() {
+    // set the game won page
     failPage.setVisible(false);
     successPage.setVisible(true);
   }
