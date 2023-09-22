@@ -39,9 +39,6 @@ public class AnimationManager {
       lighting.setSpecularConstant(0.1);
       lighting.setSpecularExponent(3.0);
 
-      // Configure a distant light source
-      lighting.setLight(new Light.Distant(0, 100, Color.RED));
-
       innerShadow.setInput(lighting);
       node.setEffect(innerShadow);
 
