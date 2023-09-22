@@ -13,7 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameManager;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
@@ -67,7 +67,7 @@ public class ChemicalMixingController extends Controller {
     super.setTimerLabel(timerLabel, 3);
 
     // Setting up hover animations
-    setupListeners(greenVile,redVile,blueVile,yellowVile);
+    setupListeners(greenVile, redVile, blueVile, yellowVile);
 
     // Intialsing recipe and saving for later reference
     initializeRecipe();
@@ -191,6 +191,7 @@ public class ChemicalMixingController extends Controller {
       fourthPour.setFill(currentColour);
       checkWin();
       GameState.isChemicalMixingBypassed = true;
+      // updateMoneyStolen(20000000);
     }
   }
 
@@ -201,6 +202,8 @@ public class ChemicalMixingController extends Controller {
 
     continueBtn.setVisible(true);
     winLabel.setVisible(true);
+    // $5 Million
+    GameManager.increaseMoneyToGain(5000000);
   }
 
   // @FXML

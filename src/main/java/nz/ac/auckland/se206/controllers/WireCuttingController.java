@@ -2,8 +2,6 @@ package nz.ac.auckland.se206.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,7 +9,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
@@ -33,6 +30,7 @@ public class WireCuttingController extends Controller {
 
   @FXML private Label taskLbl;
   @FXML private Label timerLabel;
+  @FXML private Label wirecuttingorderLbl;
   @FXML private Label wirecutterLbl;
   @FXML private ImageView wirecuttingbackground;
 
@@ -43,7 +41,7 @@ public class WireCuttingController extends Controller {
     SceneManager.setController(Scenes.WIRECUTTING, this);
     super.setTimerLabel(timerLabel, 2);
     wiresCut = new ArrayList<>();
-    styleManager.addItems(redwire, greenwire, bluewire, yellowwire, wirecuttingbackground);
+    styleManager.addItems(redwire, greenwire, bluewire, yellowwire, wirecuttingbackground,wirecuttingorderLbl);
     RandomnessGenerate.addWires(bluewire, yellowwire, greenwire, redwire);
     styleManager.setItemsMessage(
         "use the wirecutter", "bluewire", "yellowwire", "greenwire", "redwire");
@@ -53,6 +51,7 @@ public class WireCuttingController extends Controller {
   @FXML
   void onGoBack() {
     App.setUI(Scenes.SECURITY);
+    styleManager.setClueHover("electricityBox",false);
   }
 
   @FXML
@@ -115,15 +114,15 @@ public class WireCuttingController extends Controller {
     styleManager.setDisable(true, "guardpocket");
     styleManager.setVisible(false, "credentialsNote");
     retryBtn.setDisable(true);
-    styleManager.setClueHover("bomblayer",true);
-    styleManager.setClueHover("lobbyRoomSwitch",false);
+    styleManager.setClueHover("bomblayer", true);
+    styleManager.setClueHover("lobbyRoomSwitch", false);
     styleManager.getItem("realvaultbackground").setVisible(false);
-    styleManager.setClueHover("electricityBox",false);
+    styleManager.setClueHover("electricityBox", false);
+    App.textToSpeech("Alarm Disabled");
   }
 
   private void handleIncorrectCombination() {
     taskLbl.setText("Fail");
     taskLbl.setTextFill(Color.RED);
   }
-
 }

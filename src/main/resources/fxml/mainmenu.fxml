@@ -2,9 +2,11 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -22,16 +24,30 @@
                   <Image url="@../images/cash.png" />
                </image>
             </ImageView>
-            <Label fx:id="titleLabel1" layoutX="100.0" layoutY="4.0" opacity="0.69" prefHeight="169.0" prefWidth="536.0" text="Money Heist" textFill="#1c56dd">
-               <font>
-                  <Font name="Serif Bold" size="96.0" />
-               </font>
-            </Label>
-            <Label fx:id="titleLabel2" layoutX="318.0" layoutY="102.0" opacity="0.5" text="escape room" textFill="#e10606">
-               <font>
-                  <Font name="Silom" size="51.0" />
-               </font>
-            </Label>
+            <HBox layoutX="38.0" layoutY="39.0" prefHeight="108.0" prefWidth="569.0">
+               <children>
+                  <Label fx:id="titleLabel1" opacity="0.79" prefHeight="108.0" prefWidth="608.0" text="Money Heist" textFill="#1c56dd">
+                     <font>
+                        <Font name="Serif Bold" size="96.0" />
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <DropShadow height="38.69" radius="21.792499999999997" width="50.48" />
+               </effect>
+            </HBox>
+            <HBox layoutX="258.0" layoutY="97.0" prefHeight="71.0" prefWidth="369.0">
+               <children>
+                  <Label fx:id="titleLabel2" opacity="0.75" text="escape room" textFill="#e10606">
+                     <font>
+                        <Font name="Silom" size="51.0" />
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <DropShadow height="38.69" radius="21.055" width="47.53" />
+               </effect>
+            </HBox>
          </children>
       </AnchorPane>
       <AnchorPane layoutY="7.0" prefHeight="701.0" prefWidth="302.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="-1.0">
@@ -48,7 +64,7 @@
                         <Font name="Kannada MN" size="45.0" />
                      </font>
                   </Button>
-                  <Button fx:id="quitBtn" minWidth="100.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="258.0" stylesheets="@../css/mainmenu.css" text="Quit" textFill="#b59e1d">
+                  <Button fx:id="quitBtn" minWidth="100.0" mnemonicParsing="false" onMouseClicked="#exitGame" prefHeight="50.0" prefWidth="258.0" stylesheets="@../css/mainmenu.css" text="Quit" textFill="#b59e1d">
                      <font>
                         <Font name="Kannada MN" size="45.0" />
                      </font>

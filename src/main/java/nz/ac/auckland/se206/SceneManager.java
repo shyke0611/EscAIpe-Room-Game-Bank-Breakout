@@ -86,4 +86,9 @@ public class SceneManager {
   public static Label getTimerLabel() {
     return activeController.getTimerLabel();
   }
+
+  public static void clearScenes() {
+    sceneMap.clear();
+    previousSceneMap.clear();
+  }
 }

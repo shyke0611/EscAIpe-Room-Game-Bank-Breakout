@@ -1,12 +1,13 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
-import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameManager;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
@@ -17,6 +18,7 @@ import nz.ac.auckland.se206.WalkieTalkieManager;
 public class EyeScannerController extends Controller {
 
   @FXML private Label error;
+  @FXML private Label geteyesampleLbl;
   @FXML private VBox accessGranted;
   @FXML private VBox accessDenied;
   @FXML private Label mystery;
@@ -35,6 +37,8 @@ public class EyeScannerController extends Controller {
   @FXML private VBox walkietalkieText;
   @FXML private Label timerLabel;
 
+  @FXML private Button compareBtn;
+
   private int red;
   private int green;
   private int blue;
@@ -47,6 +51,7 @@ public class EyeScannerController extends Controller {
 
   public void initialize() {
 
+    styleManager.addItems(compareBtn);
     SceneManager.setController(Scenes.EYESCANNER, this);
     super.setTimerLabel(timerLabel, 3);
     accessGranted.setVisible(false);
@@ -56,6 +61,8 @@ public class EyeScannerController extends Controller {
     redValue.textProperty().bind(redSlider.valueProperty().asString("%.0f"));
     greenValue.textProperty().bind(greenSlider.valueProperty().asString("%.0f"));
     blueValue.textProperty().bind(blueSlider.valueProperty().asString("%.0f"));
+
+    styleManager.addItems(geteyesampleLbl);
 
     // Adjust the colour of the artificial eye and adjust slider colour based on the sliders
 
@@ -133,6 +140,8 @@ public class EyeScannerController extends Controller {
       accessGranted.setVisible(true);
       accessDenied.setVisible(false);
       GameState.isEyeScannerBypassed = true;
+      // $20 Million
+      GameManager.increaseMoneyToGain(20000000);
     } else {
       accessGranted.setVisible(false);
       accessDenied.setVisible(true);

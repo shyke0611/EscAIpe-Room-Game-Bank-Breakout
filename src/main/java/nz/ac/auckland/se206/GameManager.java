@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206;
 
+import java.io.IOException;
 import nz.ac.auckland.se206.difficulties.*;
 import nz.ac.auckland.se206.difficulties.Difficulty.Difficulties;
 
@@ -46,9 +47,10 @@ public class GameManager {
   private static Objectives activeObjective = Objectives.START_GAME;
   private static DoorObjectives activeDoorObjective = null;
 
-  public static void createGame(Difficulties difficulty, int minutes) {
-    resetGame();
+  private static int moneyGained = 0;
+  private static int moneyToGain = 0;
 
+  public static void createGame(Difficulties difficulty, int minutes) {
     // Create the difficulty
     switch (difficulty) {
       case EASY:
@@ -75,10 +77,28 @@ public class GameManager {
   }
 
   public static void resetGame() {
+    resetGameManager();
+    SceneManager.clearScenes();
+    RandomnessGenerate.reset();
+    StyleManager.reset();
+    WalkieTalkieManager.reset();
+    GameState.resetGameState();
+    AnimationManager.reset();
+    new HackerAiManager();
+    try {
+      App.reloadScenes();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void resetGameManager() {
     questionsCorrect = 0;
     selectedDoor = null;
     activeObjective = Objectives.START_GAME;
     activeDoorObjective = null;
+    moneyGained = 0;
+    moneyToGain = 0;
   }
 
   public static int getQuestionsCorrect() {
@@ -253,5 +273,35 @@ public class GameManager {
       default:
         return null;
     }
+  }
+
+  public static void increaseMoneyToGain(int amount) {
+    moneyToGain += amount;
+  }
+
+  public static void collectMoney() {
+    moneyGained = moneyToGain;
+    moneyToGain = 0;
+  }
+
+  public static void loseMoney() {
+    moneyGained = 0;
+  }
+
+  public static String getMoneyGained() {
+    return formatMoney(moneyGained);
+  }
+
+  public static String getMoneyToGain() {
+    return formatMoney(moneyToGain);
+  }
+
+  private static String formatMoney(int money) {
+    if (money == 0) {
+      return "$0";
+    }
+
+    int millions = money / 1000000;
+    return "$" + millions + ",000,000";
   }
 }

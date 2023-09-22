@@ -23,8 +23,15 @@ public class RandomnessGenerate {
   static {
     // Initialize the lists when the class is loaded and stores all the possible passwords and
     // usernames to choose from
-    passcodeList = Arrays.asList("206", "281", "282", "284", "274");
-    usernameList = Arrays.asList("username1", "username2", "username3", "username4");
+    passcodeList = Arrays.asList("206", "281", "282", "284", "274", "234", "598", "101");
+    usernameList =
+        Arrays.asList(
+            "FinanceShield3",
+            "LoremIpsumBank",
+            "SecureBanker2",
+            "BankerDefender1",
+            "AccountProtector",
+            "CashFlowGuard");
     partsAmount = Arrays.asList("1", "2", "3", "4");
   }
 
@@ -51,14 +58,14 @@ public class RandomnessGenerate {
   // method to get random wires list
   public static List<HBox> getRandomWires() {
     return wiresList;
-  } 
+  }
 
   // Method to add HBox elements to the keyLocationList
   public static void addKeyLocation(HBox... hboxes) {
     keyLocationList.addAll(Arrays.asList(hboxes));
   }
 
-  //Method to add wires to wireslist
+  // Method to add wires to wireslist
   public static void addWires(HBox... wires) {
     List<HBox> shuffledWires = Arrays.asList(wires);
     Collections.shuffle(shuffledWires);
@@ -80,8 +87,7 @@ public class RandomnessGenerate {
     return randomKeyLocation;
   }
 
-
-  public static int getRandomColourValue(){
+  public static int getRandomColourValue() {
     return random.nextInt(255);
   }
 
@@ -89,7 +95,10 @@ public class RandomnessGenerate {
     int randomChemialAmountIndex = random.nextInt(partsAmount.size());
     randomChemialAmount = partsAmount.get(randomChemialAmountIndex);
     return randomChemialAmount;
+  }
 
+  public static void reset() {
+    keyLocationList.clear();
+    wiresList.clear();
   }
 }
-

@@ -118,7 +118,7 @@
             </VBox>
          </children>
       </HBox>
-      <HBox fx:id="doorHolder" layoutX="51.0" layoutY="185.0" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+      <HBox fx:id="doorHolder" layoutX="66.0" layoutY="185.0" prefHeight="299.0" prefWidth="914.0" spacing="50.0">
          <children>
             <HBox fx:id="silverDoorHolder" prefHeight="100.0" prefWidth="200.0" styleClass="drawer" stylesheets="@../css/rooms.css">
                <children>
@@ -133,7 +133,7 @@
                            <image>
                               <Image url="@../images/opensilverdoor.png" />
                            </image></ImageView>
-                        <ImageView fx:id="silverDoor" fitHeight="266.0" fitWidth="265.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#switchToEyeScanner" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="silverDoor" fitHeight="266.0" fitWidth="265.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#laserCuttingScene" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/silverDoor.png" />
                            </image>
@@ -156,7 +156,7 @@
                               <Image url="@../images/opengolddoor.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="goldDoor" fitHeight="266.0" fitWidth="265.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onSwitchToChemicalMixing" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="goldDoor" fitHeight="266.0" fitWidth="265.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#switchToEyeScanner" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/goldDoor.png" />
                            </image>
@@ -179,7 +179,7 @@
                               <Image url="@../images/openbronzedoor.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="bronzeDoor" fitHeight="299.0" fitWidth="299.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#laserCuttingScene" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="bronzeDoor" fitHeight="299.0" fitWidth="299.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onSwitchToChemicalMixing" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/bronzeDoor.png" />
                            </image>
@@ -216,13 +216,6 @@
          </font>
       </Label>
       <Rectangle fx:id="whiteBackground" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="710.0" layoutX="-7.0" layoutY="-7.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="1009.0" />
-
-                                          <ImageView fx:id="VaultDoor" fitHeight="495.0" fitWidth="512.0" layoutX="244.0" layoutY="101.0" opacity="0.0">
-         <image>
-            <Image url="@../../../../../../../../../Downloads/metallic-bank-vault-door-isolated-white/vaultDoor.jpg" />
-         </image>
-      </ImageView>
-
       <HBox fx:id="bombHolder" alignment="CENTER" layoutX="777.0" layoutY="539.0" onMousePressed="#onBombPressed" prefHeight="153.0" prefWidth="201.0" styleClass="bomb" stylesheets="@../css/rooms.css" visible="false">
          <children>
             <HBox fx:id="bomblayer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="guard" stylesheets="@../css/rooms.css">
@@ -236,7 +229,7 @@
             </HBox>
          </children>
       </HBox>
-      <Pane fx:id="slidePane" layoutX="1151.0" layoutY="45.0" prefHeight="494.0" prefWidth="890.0">
+      <Pane fx:id="slidePane" layoutX="1149.0" layoutY="45.0" prefHeight="494.0" prefWidth="845.0">
          <children>
             <HBox fx:id="exitHolder" layoutX="316.0" layoutY="189.0" onMousePressed="#onBombPlaced" prefHeight="120.0" prefWidth="233.0" styleClass="guard" stylesheets="@../css/rooms.css">
                <children>
@@ -284,11 +277,12 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="134.0" prefWidth="680.0">
                                  <children>
-                                    <Label fx:id="statusLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="171.0" textFill="#0be059">
+                                    <Label fx:id="statusLbl" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="74.0" prefWidth="171.0" textAlignment="CENTER" textFill="#0be059" translateY="25.0" wrapText="true">
                                        <font>
-                                          <Font size="11.0" />
-                                       </font></Label>
-                                    <Label fx:id="inputLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="160.0" text="Enter Code">
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="inputLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="160.0" text="Enter Code" translateY="-15.0">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -331,9 +325,9 @@
             </VBox>
          </children>
       </Pane>
-      <VBox fx:id="lootBtnHolder" alignment="CENTER" layoutX="341.0" layoutY="128.0" prefHeight="80.0" prefWidth="315.0" visible="false">
+      <VBox fx:id="lootBtnHolder" alignment="CENTER" layoutX="331.0" layoutY="128.0" prefHeight="68.0" prefWidth="381.0" visible="false">
          <children>
-            <Label fx:id="lootLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="303.0" text="Collect Loot or Try more vaults" textFill="#1fff12">
+            <Label fx:id="lootLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="453.0" text="Collect Loot Now or Open More Vaults" textFill="#3cff2b">
                <font>
                   <Font name="Chalkboard" size="21.0" />
                </font>
@@ -341,18 +335,21 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="lootBtn" mnemonicParsing="false" onAction="#onLootCollected" prefHeight="26.0" prefWidth="117.0" styleClass="computer-button" stylesheets="@../css/rooms.css" text="Collect Loot">
+            <Button fx:id="lootBtn" mnemonicParsing="false" onAction="#onLootCollected" onMouseEntered="#showMoneyCollected" onMouseExited="#clearInfo" prefHeight="26.0" prefWidth="117.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="Collect Loot">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
          </children>
+         <effect>
+            <DropShadow height="29.84" radius="10.735" spread="0.2" width="15.1" />
+         </effect>
       </VBox>
-      <StackPane layoutX="460.0" layoutY="119.0" prefHeight="52.0" prefWidth="99.0">
+      <StackPane fx:id="timerClock" layoutX="460.0" layoutY="47.0" prefHeight="64.0" prefWidth="118.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#888d7d" height="64.0" stroke="BLACK" strokeType="INSIDE" width="99.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a7ab3d" height="47.0" stroke="BLACK" strokeType="INSIDE" width="79.0" />
-            <Label fx:id="timerLabel" alignment="CENTER" prefHeight="44.0" prefWidth="81.0" text="0:00">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a7ab3d" height="52.0" stroke="BLACK" strokeType="INSIDE" width="79.0" />
+            <Label fx:id="timerLabel" alignment="CENTER" prefHeight="111.0" prefWidth="83.0" text="0:00">
                <font>
                   <Font name="Agency FB" size="36.0" />
                </font>

@@ -4,8 +4,6 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -16,11 +14,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameManager;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.HackerAiManager;
 import nz.ac.auckland.se206.RandomnessGenerate;
@@ -28,6 +28,7 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.StyleManager.HoverColour;
+import nz.ac.auckland.se206.TimerControl;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -65,6 +66,8 @@ public class VaultController extends Controller {
   @FXML private HBox bomblayer;
   @FXML private VBox bombPuzzle;
   @FXML private VBox lobbyRoomSwitch;
+  @FXML private VBox SecurityRoomSwitch;
+  @FXML private VBox VaultRoomSwitch;
   @FXML private Button button;
   @FXML private Button checkBtn;
   @FXML private VBox lootBtnHolder;
@@ -74,15 +77,12 @@ public class VaultController extends Controller {
   @FXML private HBox escapeDoor;
   @FXML private Pane slidePane;
   @FXML private Button lootBtn;
+  @FXML private StackPane timerClock;
 
   @FXML private HBox switchHolder;
   @FXML private HBox walkietalkieHolder;
   @FXML private ImageView vaultWalkieTalkie;
 
-  private Canvas canvas;
-  private GraphicsContext gc;
-  private double prevX, prevY;
-  private boolean cutting = false;
   @FXML private Rectangle AIAccess;
 
   StyleManager styleManager = StyleManager.getInstance();
@@ -94,7 +94,7 @@ public class VaultController extends Controller {
     SceneManager.setController(Scenes.VAULT, this);
     WalkieTalkieManager.addWalkieTalkieImage(this, vaultWalkieTalkie);
     super.setTimerLabel(timerLabel, 1);
-    
+
     styleManager.addItems(
         goldDoor,
         silverDoor,
@@ -115,7 +115,9 @@ public class VaultController extends Controller {
         goldDoorHolder,
         lobbyRoomSwitch,
         bomblayer,
-        realvaultbackground);
+        realvaultbackground,
+        VaultRoomSwitch,
+        SecurityRoomSwitch);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     givencode.setText("Code: " + RandomnessGenerate.getPasscode());
 
@@ -123,7 +125,10 @@ public class VaultController extends Controller {
     styleManager.setItemsMessage("escape", "escapeDoor");
     styleManager.setItemsMessage("activate bomb", "bombHolder");
     styleManager.setItemsMessage(
-        "Need to disable firewall from blocking us", "bronzeDoorHolder", "silverDoorHolder", "goldDoorHolder");
+        "Need to disable firewall from blocking us",
+        "bronzeDoorHolder",
+        "silverDoorHolder",
+        "goldDoorHolder");
   }
 
   //   handling mouse events on walkie talkie
@@ -133,28 +138,34 @@ public class VaultController extends Controller {
     WalkieTalkieManager.toggleWalkieTalkie();
   }
 
-  @FXML
-  public void switchToLobby() {
-    App.setUI(Scenes.LOBBY);
-    if (GameState.isAlarmTripped) {
-    styleManager.setClueHover("lobbyRoomSwitch",false);
-    styleManager.setClueHover("guardpocket",true);
-    }
-  }
+  // @FXML
+  // public void switchToLobby() {
+  //   App.setUI(Scenes.LOBBY);
+  //   if (GameState.isAlarmTripped) {
+  //   styleManager.setClueHover("lobbyRoomSwitch",false);
+  //   if (!GameState.isGuardPocketHoverPressed) {
+  //   styleManager.setClueHover("guardpocket",true);
+  //   }
+  //   GameState.isGuardPocketHoverPressed = true;
+  //   }
+  // }
 
-  @FXML
-  public void switchToSecurity() {
-    App.setUI(Scenes.SECURITY);
-  }
+  // @FXML
+  // public void switchToSecurity() {
+  //   App.setUI(Scenes.SECURITY);
+  // }
 
   @FXML
   void onBombPressed(MouseEvent event) {
     AnimationManager.slideDoorsAnimation(doorHolder);
     AnimationManager.slideDoorsAnimation(vaultbackground);
     AnimationManager.slideDoorsAnimation(slidePane);
+    // timerClock.setTranslateX(350);
     bomblogo.setVisible(false);
+    bombHolder.setDisable(true);
     styleManager.removeItemsMessage("bombHolder");
-    styleManager.setClueHover("bomblayer",false);
+    styleManager.setClueHover("bomblayer", false);
+    styleManager.setVisible(false, "switchHolder");
   }
 
   @FXML
@@ -177,6 +188,9 @@ public class VaultController extends Controller {
   public void switchToEyeScanner() {
     if (GameState.isFirewallDisabled /* && GameState.isSecondRiddleSolved*/) {
       App.setUI(Scenes.EYESCANNER);
+      GameState.isEyeScannerEntered = true;
+      styleManager.setItemsMessage("Get guard eye colour", "guardeyes");
+      styleManager.setItemsState(HoverColour.GREEN, "guardeyes");
     }
   }
 
@@ -186,19 +200,18 @@ public class VaultController extends Controller {
     }
   }
 
-
   @FXML
   void onLootCollected(ActionEvent event) {
     if (GameState.isFirewallDisabled && GameState.isAnyDoorOpen) {
-      styleManager.setAlarm(true);
+      App.textToSpeech("Alarm Triggered, Go and Disable it");
+      StyleManager.setAlarm(true);
       GameState.isAlarmTripped = true;
       styleManager.setItemsState(HoverColour.GREEN, "electricityBox");
       styleManager.setItemsState(HoverColour.GREEN, "guardpocket");
       styleManager.setItemsMessage("Something seems odd?", "guardpocket");
       styleManager.setItemsMessage("Alarm Wires...?", "electricityBox");
-      lootBtnHolder.setDisable(true);
       lootBtnHolder.setVisible(false);
-      styleManager.setClueHover("lobbyRoomSwitch",true);
+      GameManager.collectMoney();
     }
   }
 
@@ -226,6 +239,7 @@ public class VaultController extends Controller {
     String code = givencode.getText().substring("Code: ".length());
     if (inputLbl.getText().equals(code)) {
       statusLbl.setText("Success, press x to Activate bomb");
+      inputLbl.setText("");
       statusLbl.setTextFill(Color.GREEN);
       GameState.isBombActivated = true;
 
@@ -240,16 +254,18 @@ public class VaultController extends Controller {
   public void onExitBomb() {
     bombPuzzle.setVisible(false);
     if (GameState.isBombActivated) {
-      styleManager.setVisible(
-          false, "walkietalkie", "switchHolder", "walkietalkieHolder", "bombHolder");
-      AnimationManager.toggleAlarmAnimation(exitHolder,true,0.5);
+      styleManager.setVisible(false, "switchHolder", "walkietalkieHolder", "bombHolder");
+      App.textToSpeech("Good job, 5,4,3,2,1");
+      AnimationManager.toggleAlarmAnimation(exitHolder, true, 0.5);
       AnimationManager.delayAnimation(exitHolder, escapeDoor);
       exitHolder.setDisable(true);
     }
   }
 
   public void onEscape() {
+    TimerControl.cancelTimer();
     App.setUI(Scenes.GAMEFINISH);
+    ((GameFinishController) SceneManager.getController(Scenes.GAMEFINISH)).setGameWonPage();
   }
 
   @FXML
@@ -295,6 +311,10 @@ public class VaultController extends Controller {
     difficultyValue.setVisible(true);
     moneyValue.setText(moneyText);
     difficultyValue.setText(difficultyText);
+  }
+
+  public void showMoneyCollected() {
+    setInfoText("Money: " + GameManager.getMoneyToGain(), null);
   }
 
   // private ImageView getDoorByEvent(MouseEvent event) {

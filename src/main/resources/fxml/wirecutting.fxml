@@ -167,6 +167,14 @@
             </StackPane>
             <VBox alignment="CENTER" prefHeight="425.0" prefWidth="456.0">
                <children>
+                  <Label fx:id="wirecuttingorderLbl" text="Find Wire Cutting Order" textFill="#ff0101">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
                   <Label fx:id="wirecutterLbl" text="Use this wirecutter" textFill="WHITE">
                      <font>
                         <Font name="Apple LiSung Light" size="25.0" />
