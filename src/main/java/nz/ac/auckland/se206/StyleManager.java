@@ -13,21 +13,64 @@ import javafx.util.Duration;
 
 public class StyleManager {
 
-  private static StyleManager instance = new StyleManager();
-  private static Map<Node, Tooltip> tooltipMap = new HashMap<>();
-  private static List<Node> itemsList = new ArrayList<>();
-
   public enum HoverColour {
     RED,
     GREEN,
     ORANGE,
   }
 
-  private StyleManager() {}
+  private static StyleManager instance = new StyleManager();
+  private static Map<Node, Tooltip> tooltipMap = new HashMap<>();
+  private static List<Node> itemsList = new ArrayList<>();
 
   public static StyleManager getInstance() {
     return instance;
   }
+
+  public static void reset() {
+    tooltipMap.clear();
+    itemsList.clear();
+  }
+
+  public static void setAlarm(boolean on) {
+    // Create a set of items to include
+    Set<String> includeIds =
+        new HashSet<>(
+            Arrays.asList(
+                "guard",
+                "drawerHolder",
+                "drawer",
+                "credentialsNote",
+                "computer",
+                "doorHolder",
+                "guardeyes",
+                "key1",
+                "key3",
+                "key4"));
+
+    // Go through all items
+    for (Node item : itemsList) {
+      if (item == null) {
+        continue; // Skip null items
+      }
+      String itemId = item.getId();
+      System.out.println("Item ID: " + itemId);
+
+      if (itemId != null) {
+        // If the item is in the set, disable it
+        if (includeIds.contains(itemId)) {
+          item.setDisable(true);
+          item.setStyle(null);
+        }
+        // If the item is the background, animate it
+        if (itemId.endsWith("background")) {
+          AnimationManager.toggleAlarmAnimation(item, on, 0.7);
+        }
+      }
+    }
+  }
+
+  private StyleManager() {}
 
   public void setItemsMessage(String message, String... items) {
     // Go through each item
@@ -59,7 +102,9 @@ public class StyleManager {
   }
 
   public void setItemsState(HoverColour colour, String... items) {
+    // Get the rgba value for the given colour
     String rgba = getRgbaForHoverColour(colour);
+    // For each item add a hover glow effect
     for (String item : items) {
       Node node = getItem(item);
       node.setOnMouseEntered(
@@ -93,40 +138,6 @@ public class StyleManager {
     itemsList.addAll(List.of(items));
   }
 
-  public static void setAlarm(boolean on) {
-    Set<String> includeIds =
-        new HashSet<>(
-            Arrays.asList(
-                "guard",
-                "drawerHolder",
-                "drawer",
-                "credentialsNote",
-                "computer",
-                "doorHolder",
-                "guardeyes",
-                "key1",
-                "key3",
-                "key4"));
-    for (Node item : itemsList) {
-      if (item == null) {
-        continue; // Skip null items
-      }
-      String itemId = item.getId();
-      System.out.println("Item ID: " + itemId);
-
-      if (itemId != null) {
-        if (includeIds.contains(itemId)) {
-          item.setDisable(true);
-          item.setStyle(null);
-        }
-
-        if (itemId.endsWith("background")) {
-          AnimationManager.toggleAlarmAnimation(item, on, 0.7);
-        }
-      }
-    }
-  }
-
   public void setClueHover(String item, boolean isOn) {
     for (Node node : itemsList) {
       if (node.getId().equals(item)) {
@@ -154,10 +165,5 @@ public class StyleManager {
       }
     }
     return null;
-  }
-
-  public static void reset() {
-    tooltipMap.clear();
-    itemsList.clear();
   }
 }

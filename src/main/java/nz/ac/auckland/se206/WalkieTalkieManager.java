@@ -24,17 +24,12 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 public class WalkieTalkieManager {
 
-  private ChatCompletionRequest chatCompletionRequest =
-      new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.8).setMaxTokens(100);
-
-  private int dotCount = 1;
   // storing the walkietalkie textboxes
   private static HashMap<Controller, VBox> walkieTalkieMap = new HashMap<>();
   private static HashMap<Controller, ImageView> walkieTalkieImageMap = new HashMap<>();
   private static HashMap<Controller, Label> walkieTalkieHints = new HashMap<>();
   private static boolean walkieTalkieOpen = false;
   private static WalkieTalkieManager instance = new WalkieTalkieManager();
-  private Timeline timeline;
 
   public static void addWalkieTalkie(Controller controller, VBox walkietalkie) {
     walkieTalkieMap.put(controller, walkietalkie);
@@ -51,6 +46,20 @@ public class WalkieTalkieManager {
   public static WalkieTalkieManager getInstance() {
     return instance;
   }
+
+  public static void toggleWalkieTalkie() {
+    walkieTalkieOpen = !walkieTalkieOpen;
+
+    // Iterate through the map and update the visibility of all VBoxes
+    for (VBox vertBox : walkieTalkieMap.values()) {
+      vertBox.setVisible(walkieTalkieOpen);
+    }
+  }
+
+  private Timeline timeline;
+  private ChatCompletionRequest chatCompletionRequest =
+      new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.8).setMaxTokens(100);
+  private int dotCount = 1;
 
   public boolean isWalkieTalkieOpen() {
     return walkieTalkieOpen;
@@ -119,16 +128,6 @@ public class WalkieTalkieManager {
     for (Label label : walkieTalkieHints.values()) {
       System.out.println(hintCount);
       label.setText(hintCount);
-    }
-  }
-
-  public static void toggleWalkieTalkie() {
-    walkieTalkieOpen = !walkieTalkieOpen;
-
-    // Iterate through the map and update the visibility of all VBoxes
-    for (VBox vertBox : walkieTalkieMap.values()) {
-
-      vertBox.setVisible(walkieTalkieOpen);
     }
   }
 
