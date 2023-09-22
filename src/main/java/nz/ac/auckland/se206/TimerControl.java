@@ -4,6 +4,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import javafx.application.Platform;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.controllers.GameFinishController;
 
 public class TimerControl {
 
@@ -15,21 +16,33 @@ public class TimerControl {
   private static TimerTask task;
 
   public static String getTime(int format) {
-    int minutes = count / 60;
+    return formatTime(count, format);
+  }
+
+  public static String formatTime(int time, int format) {
+    int minutes = time / 60;
+    String minutesSuffix = minutes == 1 ? " Minute " : " Minutes ";
     switch (format) {
       case 1:
-        return "" + minutes + ":" + getSecondsString();
+        return "" + minutes + ":" + getSecondsString(time);
       case 2:
-        return "" + minutes + " Minutes and " + getSecondsString() + " Seconds";
+        return "" + minutes + minutesSuffix + "and " + getSecondsString(time) + " Seconds";
       case 3:
-        return "Time Remaining: " + minutes + " Minutes and " + getSecondsString() + " Seconds";
+        return "Time Remaining: "
+            + minutes
+            + minutesSuffix
+            + " and "
+            + getSecondsString(time)
+            + " Seconds";
+      case 4:
+        return "" + minutes + minutesSuffix + (time % 60) + " Seconds";
       default:
-        return "" + minutes + ":" + getSecondsString();
+        return "" + minutes + ":" + getSecondsString(time);
     }
   }
 
-  private static String getSecondsString() {
-    int seconds = count % 60;
+  private static String getSecondsString(int time) {
+    int seconds = time % 60;
     String secondString = seconds < 10 ? "0" + seconds : "" + seconds;
     return secondString;
   }
@@ -84,12 +97,11 @@ public class TimerControl {
                     SceneManager.getTimerLabel().setText(getTime(format));
                   });
               // if time is up, reset game
-            
+
             } else {
-              SceneManager.getController(Scenes.GAMEFINISH).setGameLostPage();
-              // int money = SceneManager.getController(Scenes.GAMEFINISH).getMoneyStolen();
-              // SceneManager.getController(Scenes.GAMEFINISH).setMoneyStolenLabel(money);
-              // SceneManager.getController(Scenes.GAMEFINISH).setTim
+              ((GameFinishController) SceneManager.getController(Scenes.GAMEFINISH))
+                  .setGameLostPage();
+              GameManager.loseMoney();
               App.setUI(Scenes.GAMEFINISH);
               cancelTimer();
             }
@@ -116,5 +128,18 @@ public class TimerControl {
     task.cancel();
     timer.cancel();
     timer.purge();
+  }
+
+  public static String getTimeTaken() {
+    int timeTaken = initialCount - count;
+    if (timeTaken == initialCount) {
+      return "Failed to Escape";
+    }
+    String time = formatTime(timeTaken, 4);
+    return time;
+  }
+
+  public static String getInitialTime() {
+    return "" + (initialCount / 60);
   }
 }

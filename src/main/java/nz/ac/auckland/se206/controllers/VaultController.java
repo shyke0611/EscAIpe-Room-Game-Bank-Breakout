@@ -20,6 +20,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameManager;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.HackerAiManager;
 import nz.ac.auckland.se206.RandomnessGenerate;
@@ -210,6 +211,7 @@ public class VaultController extends Controller {
       styleManager.setItemsMessage("Something seems odd?", "guardpocket");
       styleManager.setItemsMessage("Alarm Wires...?", "electricityBox");
       lootBtnHolder.setVisible(false);
+      GameManager.collectMoney();
     }
   }
 
@@ -263,8 +265,7 @@ public class VaultController extends Controller {
   public void onEscape() {
     TimerControl.cancelTimer();
     App.setUI(Scenes.GAMEFINISH);
-    SceneManager.getController(Scenes.GAMEFINISH).setGameWonPage();
-    // SceneManager.getController(Scenes.GAMEFINISH).setMoneyStolenLabel();
+    ((GameFinishController) SceneManager.getController(Scenes.GAMEFINISH)).setGameWonPage();
   }
 
   @FXML
@@ -310,6 +311,10 @@ public class VaultController extends Controller {
     difficultyValue.setVisible(true);
     moneyValue.setText(moneyText);
     difficultyValue.setText(difficultyText);
+  }
+
+  public void showMoneyCollected() {
+    setInfoText("Money: " + GameManager.getMoneyToGain(), null);
   }
 
   // private ImageView getDoorByEvent(MouseEvent event) {

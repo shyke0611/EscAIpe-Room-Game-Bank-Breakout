@@ -22,13 +22,12 @@ import javafx.scene.paint.RadialGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-import javafx.util.Duration;
-import nz.ac.auckland.se206.AnimationManager;
+import nz.ac.auckland.se206.GameManager;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
-import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.StyleManager;
+import nz.ac.auckland.se206.StyleManager.HoverColour;
 
 public class LaserCuttingController extends Controller {
 
@@ -77,7 +76,7 @@ public class LaserCuttingController extends Controller {
     applyGlowEffect(cursorLine);
     setupListeners(laserGun);
     styleManager.addItems(laserGun);
-    styleManager.setItemsState(HoverColour.GREEN,"laserGun");
+    styleManager.setItemsState(HoverColour.GREEN, "laserGun");
     formatBlackCirlce();
   }
 
@@ -179,6 +178,8 @@ public class LaserCuttingController extends Controller {
         // Reset the points and angles for the next circle
         takeLootBtn.setVisible(true);
         GameState.isLaserCuttingBypassed = true;
+        // $10 Million
+        GameManager.increaseMoneyToGain(10000000);
         // updateMoneyStolen(5000000);
         points.clear();
         angles.clear();
@@ -220,8 +221,10 @@ public class LaserCuttingController extends Controller {
 
   //   // Add hover listeners to start and stop the animation
   //   laserGun.setStyle("-fx-cursor: hand;");
-  //   laserGun.setOnMouseEntered(event -> AnimationManager.playAnimationForward(scaleTransitionGun));
-  //   laserGun.setOnMouseExited(event -> AnimationManager.playAnimationReverse(scaleTransitionGun));
+  //   laserGun.setOnMouseEntered(event ->
+  // AnimationManager.playAnimationForward(scaleTransitionGun));
+  //   laserGun.setOnMouseExited(event ->
+  // AnimationManager.playAnimationReverse(scaleTransitionGun));
   // }
 
   // private ScaleTransition createScaleTransition(ImageView imageView) {
