@@ -47,13 +47,13 @@ public class GameFinishController extends Controller {
   }
 
   @FXML
-  void onExit(ActionEvent event) {
+  private void onExit(ActionEvent event) {
     // exit code here
     Platform.exit();
   }
 
   @FXML
-  void onSwitchToMainMenu(ActionEvent event) {
+  private void onSwitchToMainMenu(ActionEvent event) {
     App.setUI(Scenes.MAIN_MENU);
     mainmenuBtn.setDisable(true);
     // reset game code here
