@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,10 +12,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameManager;
+import nz.ac.auckland.se206.HackerAiManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.TimerControl;
 import nz.ac.auckland.se206.difficulties.Difficulty.Difficulties;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class DifficultyController extends Controller {
 
@@ -52,6 +55,8 @@ public class DifficultyController extends Controller {
   private Difficulties difficulty;
   private boolean difficultySelected = false;
 
+  private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
+
   public void initialize() {
     SceneManager.setController(Scenes.DIFFICULTYPAGE, this);
   }
@@ -84,7 +89,7 @@ public class DifficultyController extends Controller {
   // Handling mouse click events over each difficulty
 
   @FXML
-  void onDifficultyClicked(MouseEvent event) {
+  void onDifficultyClicked(MouseEvent event) throws ApiProxyException {
     if (!difficultySelected) {
       difficultySelected = true;
       playBtn.setDisable(false);
@@ -94,15 +99,35 @@ public class DifficultyController extends Controller {
       handleDifficultySelection(easyVbox, easyAlarmImage, "Easy");
       easyVboxClicked = true;
       difficulty = Difficulties.EASY;
+      initialiseHacker(difficulty);
+
+      GameManager.completeObjective();
     } else if (event.getSource() == mediumVbox) {
       handleDifficultySelection(mediumVbox, mediumAlarmImage, "Medium");
       mediumVboxClicked = true;
       difficulty = Difficulties.MEDIUM;
+      initialiseHacker(difficulty);
     } else {
       handleDifficultySelection(hardVbox, hardAlarmImage, "Hard");
       hardVboxClicked = true;
       difficulty = Difficulties.HARD;
+      initialiseHacker(difficulty);
     }
+  }
+
+  public void initialiseHacker(Difficulties difficulties) {
+    Task<Void> aiTask3 =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            hackerAiManager.initialiseHackerAi(difficulties);
+            return null;
+          }
+        };
+
+    Thread aiThread3 = new Thread(aiTask3);
+    aiThread3.setDaemon(true);
+    aiThread3.start();
   }
 
   // when slider changes values to set timer, timer value is shown in the text label

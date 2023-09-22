@@ -39,14 +39,10 @@
                      <children>
                         <StackPane prefHeight="327.0" prefWidth="761.0">
                            <children>
-                              <TextArea fx:id="securityTextArea" editable="false" prefHeight="299.0" prefWidth="761.0">
+                              <TextArea fx:id="securityTextArea" editable="false" prefHeight="299.0" prefWidth="761.0" wrapText="true">
                                  <StackPane.margin>
                                     <Insets bottom="3.0" />
                                  </StackPane.margin></TextArea>
-                              <Button fx:id="dotGameBtn" mnemonicParsing="false" onMouseClicked="#switchToDots" prefHeight="41.0" prefWidth="267.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="Double authentication required">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font></Button>
                            </children>
                         </StackPane>
                         <HBox alignment="CENTER_LEFT" prefHeight="54.0" prefWidth="713.0" style="-fx-background-color: white; -fx-background-radius: 100;">
