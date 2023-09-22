@@ -100,10 +100,10 @@ public class WalkieTalkieManager {
       ObservableList<Node> children = vBox.getChildren();
       for (Node node : children) {
         if (node instanceof HBox) {
-          HBox hBox = (HBox) node;
+          HBox hbox = (HBox) node;
 
           // Now, iterate through the children of the HBox to find the TextArea
-          ObservableList<Node> hboxChildren = hBox.getChildren();
+          ObservableList<Node> hboxChildren = hbox.getChildren();
           for (Node hboxChild : hboxChildren) {
             if (hboxChild instanceof TextArea) {
               TextArea textArea = (TextArea) hboxChild;

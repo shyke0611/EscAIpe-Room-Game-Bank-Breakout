@@ -10,14 +10,12 @@ import javafx.scene.Node;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
-import javafx.scene.effect.Light;
 import javafx.scene.effect.Lighting;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class AnimationManager {
   private static boolean isSlideAnimationPlayed = false;
-  private ScaleTransition scaleTransitionGun;
 
   public static void fadeTransition(Node node, int seconds) {
     FadeTransition fadeIn = new FadeTransition(Duration.seconds(seconds), node);
@@ -38,9 +36,6 @@ public class AnimationManager {
       lighting.setDiffuseConstant(0.4);
       lighting.setSpecularConstant(0.1);
       lighting.setSpecularExponent(3.0);
-
-      // Configure a distant light source
-      lighting.setLight(new Light.Distant(0, 100, Color.RED));
 
       innerShadow.setInput(lighting);
       node.setEffect(innerShadow);

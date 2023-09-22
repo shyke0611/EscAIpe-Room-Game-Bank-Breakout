@@ -2,7 +2,6 @@ package nz.ac.auckland.se206.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
@@ -22,13 +21,12 @@ import javafx.scene.paint.RadialGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-import javafx.util.Duration;
-import nz.ac.auckland.se206.AnimationManager;
+import nz.ac.auckland.se206.GameManager;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
-import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.StyleManager;
+import nz.ac.auckland.se206.StyleManager.HoverColour;
 
 public class LaserCuttingController extends Controller {
 
@@ -49,7 +47,6 @@ public class LaserCuttingController extends Controller {
   @FXML private GraphicsContext gc;
   @FXML private Label timerLabel;
 
-  private ScaleTransition scaleTransitionGun;
   private Boolean gunEquppied = false;
   private double prevX, prevY;
   private double totalAngle = 0.0;
@@ -58,7 +55,7 @@ public class LaserCuttingController extends Controller {
   private List<Double> angles = new ArrayList<>();
   private List<Point2D> points = new ArrayList<>();
 
-  StyleManager styleManager = StyleManager.getInstance();
+  private StyleManager styleManager = StyleManager.getInstance();
 
   public void initialize() {
     SceneManager.setController(Scenes.LASERCUTTING, this);
@@ -75,9 +72,9 @@ public class LaserCuttingController extends Controller {
     cursorLine.setStroke(Color.RED);
 
     applyGlowEffect(cursorLine);
-    setupListeners(laserGun);
+    setUpListener(laserGun);
     styleManager.addItems(laserGun);
-    styleManager.setItemsState(HoverColour.GREEN,"laserGun");
+    styleManager.setItemsState(HoverColour.GREEN, "laserGun");
     formatBlackCirlce();
   }
 
@@ -179,6 +176,8 @@ public class LaserCuttingController extends Controller {
         // Reset the points and angles for the next circle
         takeLootBtn.setVisible(true);
         GameState.isLaserCuttingBypassed = true;
+        // $10 Million
+        GameManager.increaseMoneyToGain(10000000);
         // updateMoneyStolen(5000000);
         points.clear();
         angles.clear();
@@ -214,34 +213,6 @@ public class LaserCuttingController extends Controller {
 
     return angleDifference;
   }
-
-  // private void setupListeners() {
-  //   scaleTransitionGun = AnimationManager.createScaleTransition(laserGun);
-
-  //   // Add hover listeners to start and stop the animation
-  //   laserGun.setStyle("-fx-cursor: hand;");
-  //   laserGun.setOnMouseEntered(event -> AnimationManager.playAnimationForward(scaleTransitionGun));
-  //   laserGun.setOnMouseExited(event -> AnimationManager.playAnimationReverse(scaleTransitionGun));
-  // }
-
-  // private ScaleTransition createScaleTransition(ImageView imageView) {
-  //   ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), imageView);
-  //   scaleTransition.setFromX(1.0); // Initial scale X
-  //   scaleTransition.setFromY(1.0); // Initial scale Y
-  //   scaleTransition.setToX(1.2); // Enlarged scale X
-  //   scaleTransition.setToY(1.2); // Enlarged scale Y
-  //   return scaleTransition;
-  // }
-
-  // private void playAnimationForward(ScaleTransition scaleTransition) {
-  //   scaleTransition.setRate(1); // Play forward
-  //   scaleTransition.play();
-  // }
-
-  // private void playAnimationReverse(ScaleTransition scaleTransition) {
-  //   scaleTransition.setRate(-1); // Play in reverse
-  //   scaleTransition.play();
-  // }
 
   @FXML
   private void formatBlackCirlce() {
@@ -280,19 +251,6 @@ public class LaserCuttingController extends Controller {
     blackCircle.setStroke(gradientOutside);
     blackCircle.setStrokeWidth(10);
   }
-
-  // public void setVault() {
-  //   if (GameState.isLaserCuttingBypassed) {
-  //     styleManager.getItem("bronzeDoor").setVisible(false);
-  //     styleManager.getItem("lootBtnHolder").setVisible(true);
-  //     GameState.isAnyDoorOpen = true;
-  //   } else if (GameState.isLaserCuttingBypassed && GameState.isChemicalMixingBypassed &&
-  // GameState.isEyeScannerBypassed) {
-  //     Label label = (Label) styleManager.getItem("lootBtnHolder");
-  //     label.setText("Collect all the loot and Escape");
-  //   }
-  //   App.setUI(Scenes.VAULT);
-  // }
 
   public void applyGlowEffect(Line line) {
 

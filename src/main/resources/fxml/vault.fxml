@@ -44,7 +44,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox fx:id="SecurityRoomSwitch" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
+            <VBox fx:id="securityRoomSwitch" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
                <children>
                   <ImageView fx:id="Security" fitHeight="111.0" fitWidth="100.0" onMouseClicked="#switchToSecurity" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -58,7 +58,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox fx:id="VaultRoomSwitch" alignment="CENTER" prefHeight="110.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
+            <VBox fx:id="vaultRoomSwitch" alignment="CENTER" prefHeight="110.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
                <children>
                   <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -100,7 +100,7 @@
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button fx:id="quickHintBtn" mnemonicParsing="false" onAction="#quickHint" text="Quick Hint" />
+                              <Button fx:id="quickHintBtn" mnemonicParsing="false" onAction="#onQuickHint" text="Quick Hint" />
                            </children>
                         </VBox>
                      </children>
@@ -158,7 +158,7 @@
                            <image>
                               <Image url="@../images/opensilverdoor.png" />
                            </image></ImageView>
-                        <ImageView fx:id="silverDoor" fitHeight="266.0" fitWidth="265.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#switchToEyeScanner" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="silverDoor" fitHeight="266.0" fitWidth="265.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onLaserCuttingScene" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/silverDoor.png" />
                            </image>
@@ -181,7 +181,7 @@
                               <Image url="@../images/opengolddoor.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="goldDoor" fitHeight="266.0" fitWidth="265.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onSwitchToChemicalMixing" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="goldDoor" fitHeight="266.0" fitWidth="265.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onSwitchToEyeScanner" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/goldDoor.png" />
                            </image>
@@ -204,7 +204,7 @@
                               <Image url="@../images/openbronzedoor.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="bronzeDoor" fitHeight="299.0" fitWidth="299.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#laserCuttingScene" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="bronzeDoor" fitHeight="299.0" fitWidth="299.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onSwitchToChemicalMixing" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/bronzeDoor.png" />
                            </image>
@@ -214,6 +214,21 @@
                </children></HBox>
          </children>
       </HBox>
+      <Label layoutX="155.0" layoutY="190.0" prefHeight="21.0" prefWidth="56.0" text="Vault 2" textFill="#00000055">
+         <font>
+            <Font name="Impact" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="790.0" layoutY="190.0" text="Vault 3" textFill="#00000055">
+         <font>
+            <Font name="Impact" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="470.0" layoutY="190.0" text="Vault 1" textFill="#00000055">
+         <font>
+            <Font name="Impact" size="16.0" />
+         </font>
+      </Label>
       <Rectangle fx:id="dialogueBox" arcHeight="40.0" arcWidth="40.0" fill="#000000ac" height="88.0" layoutX="726.0" layoutY="28.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="260.0" />
       <Label fx:id="moneyValue" layoutX="742.0" layoutY="43.0" text="Money: $20,000,000" textFill="WHITE" visible="false">
          <font>
@@ -366,5 +381,6 @@
             </Label>
          </children>
       </StackPane>
+
    </children>
 </AnchorPane>

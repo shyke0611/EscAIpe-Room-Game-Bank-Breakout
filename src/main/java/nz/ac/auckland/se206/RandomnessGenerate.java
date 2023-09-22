@@ -23,15 +23,16 @@ public class RandomnessGenerate {
   static {
     // Initialize the lists when the class is loaded and stores all the possible passwords and
     // usernames to choose from
-    passcodeList = Arrays.asList("206", "281", "282", "284", "274");
-    usernameList = Arrays.asList("username1", "username2", "username3", "username4");
+    passcodeList = Arrays.asList("206", "281", "282", "284", "274", "234", "598", "101");
+    usernameList =
+        Arrays.asList(
+            "username1",
+            "username2",
+            "username3",
+            "username4",
+            "username5",
+            "username6");
     partsAmount = Arrays.asList("1", "2", "3", "4");
-  }
-
-  // calling all the generate random stuff into one method
-  public static void generateRandomGameComponents() {
-    generateRandomCredentials();
-    // generateRandomKeyLocation();
   }
 
   // generating random login credentials for security computer log in
@@ -44,8 +45,8 @@ public class RandomnessGenerate {
 
   // generating random HBox (key location)
   public static void generateRandomKeyLocation() {
-    int randomHBoxIndex = random.nextInt(keyLocationList.size());
-    randomKeyLocation = keyLocationList.get(randomHBoxIndex);
+    int randomKeyLocationIndex = random.nextInt(keyLocationList.size());
+    randomKeyLocation = keyLocationList.get(randomKeyLocationIndex);
   }
 
   // method to get random wires list
@@ -84,7 +85,7 @@ public class RandomnessGenerate {
     return random.nextInt(255);
   }
 
-  public String getRandomChemialAmount() {
+  public static String getRandomChemicalAmount() {
     int randomChemialAmountIndex = random.nextInt(partsAmount.size());
     randomChemialAmount = partsAmount.get(randomChemialAmountIndex);
     return randomChemialAmount;

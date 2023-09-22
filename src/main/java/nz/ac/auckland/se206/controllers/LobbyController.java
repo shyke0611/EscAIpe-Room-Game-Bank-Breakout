@@ -35,12 +35,11 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class LobbyController extends Controller {
 
-  @FXML private ImageView Security;
+  // FXML elements
   @FXML private ImageView lobbybackground;
-  @FXML private VBox SecurityRoomSwitch;
+  @FXML private VBox securityRoomSwitch;
   @FXML private Label timerLabel;
-  @FXML private ImageView Vault;
-  @FXML private VBox VaultRoomSwitch;
+  @FXML private VBox vaultRoomSwitch;
   @FXML private VBox lobbyRoomSwitch;
   @FXML private Button closeNoteBtn;
   @FXML private HBox credentialsNote;
@@ -53,7 +52,7 @@ public class LobbyController extends Controller {
   @FXML private TextField lobbyTextInput;
   @FXML private TextArea lobbyTextArea;
   @FXML private ImageView lobbyWalkieTalkie;
-  // key locations:
+
   @FXML private HBox key1;
   @FXML private HBox key3;
   @FXML private HBox key4;
@@ -72,23 +71,22 @@ public class LobbyController extends Controller {
   @FXML private Label usernameLbl;
   @FXML private Label orderLabel;
 
+  // Other fields
   private String randomUsername;
   private String randomPassword;
-  StyleManager styleManager = StyleManager.getInstance();
-  WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
-  HackerAiManager hackerAiManager = HackerAiManager.getInstance();
+  private StyleManager styleManager = StyleManager.getInstance();
+  private WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
+  private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
+  private boolean isZzz1Visible = false;
 
   public void initialize() {
     SceneManager.setController(Scenes.LOBBY, this);
     WalkieTalkieManager.addWalkieTalkieImage(this, lobbyWalkieTalkie);
     WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
     super.setTimerLabel(timerLabel, 1);
-
-    // obtain random credentials
     RandomnessGenerate.generateRandomCredentials();
     randomUsername = RandomnessGenerate.getUsername();
     randomPassword = RandomnessGenerate.getPasscode();
-    // add the hboxs into arraylist and generate random
     RandomnessGenerate.addKeyLocation(key1, key3, key4);
     RandomnessGenerate.generateRandomKeyLocation();
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
@@ -109,8 +107,8 @@ public class LobbyController extends Controller {
         credentialsNote,
         drawer,
         openDrawer,
-        SecurityRoomSwitch,
-        VaultRoomSwitch,
+        securityRoomSwitch,
+        vaultRoomSwitch,
         lobbyRoomSwitch,
         guardeyes);
     styleManager.setItemsMessage(
@@ -118,28 +116,17 @@ public class LobbyController extends Controller {
 
     styleManager.setItemsMessage("It's locked...", "drawerHolder");
     styleManager.setItemsMessage("A note?", "credentialsBook");
-    styleManager.setItemsMessage("put him to sleep", "guard");
+    styleManager.setItemsMessage("Put him to sleep", "guard");
     styleManager.setClueHover("guard", true);
-    // setupListeners(key1,key3,key4,guard,credentialsBook,drawerHolder,guardpocket);
-    setupListeners(key);
+    setUpListener(key);
   }
 
-  //   handling mouse events on walkie talkie
-  //   open and closes when walkie talkie is clicked
+  // Handling mouse events on walkie talkie
+  // Opens and closes when walkie talkie is clicked
   @FXML
-  void onWalkieTalkie(MouseEvent event) {
+  public void onWalkieTalkie(MouseEvent event) {
     WalkieTalkieManager.toggleWalkieTalkie();
   }
-
-  // @FXML
-  // public void switchToSecurity() {
-
-  // }
-
-  // @FXML
-  // public void switchToVault() {
-  //   App.setUI(Scenes.VAULT);
-  // }
 
   @FXML
   public void onSwitchToHacker() {
@@ -151,16 +138,16 @@ public class LobbyController extends Controller {
     App.setUI(Scenes.HACKERVAN);
   }
 
-  // closing credential notes
+  // Closing credential notes
   @FXML
-  void onCloseNote() {
+  public void onCloseNote(MouseEvent event) {
     credentialsNote.setVisible(false);
   }
 
-  // opening drawer to get credential notes
+  // Opening drawer to get credential notes
   @FXML
-  void onDrawerPressed(MouseEvent event) {
-    // opens only when key is found to the drawer
+  public void onDrawerPressed(MouseEvent event) {
+    // Opens only when key is found to the drawer
     if (GameState.isKeyFound) {
       styleManager.setVisible(false, "drawer");
       styleManager.setVisible(true, "openDrawer", "credentialsBook");
@@ -169,7 +156,7 @@ public class LobbyController extends Controller {
   }
 
   @FXML
-  void onGuardPocket(MouseEvent event) {
+ public void onGuardPocket(MouseEvent event) {
 
     if (GameState.isAlarmTripped) {
       credentialsNote.setVisible(true);
@@ -178,7 +165,7 @@ public class LobbyController extends Controller {
       StringBuilder wireNames = new StringBuilder();
 
       for (HBox wire : wires) {
-        String name = wire.getId();
+        String name = getWireLabel(wire);
         wireNames.append(name).append(" \n");
       }
       if (wireNames.length() > 0) {
@@ -187,8 +174,11 @@ public class LobbyController extends Controller {
 
       usernameLbl.setText(null);
       passwordLbl.setText(null);
+
       orderLabel.setText(wireNames.toString());
+
       orderLabel.setVisible(true);
+      styleManager.getItem("wirecuttingorderLbl").setVisible(false);
       titleLbl.setText("Wire Cutting Order");
       styleManager.setClueHover("guardpocket", false);
       GameState.isWireCredentialsFound = true;
@@ -196,40 +186,54 @@ public class LobbyController extends Controller {
     }
   }
 
+  public String getWireLabel(Node wire) {
+    String name = wire.getId();
+    if (name.startsWith("red")) {
+      name = "red wire";
+    } else if (name.startsWith("blue")) {
+      name = "blue wire";
+    } else if (name.startsWith("yellow")) {
+      name = "yellow wire";
+    } else {
+      name = "green wire";
+    }
+    return name;
+  }
+
   @FXML
-  void onGuardEyes(MouseEvent event) {
+  public void onGuardEyes(MouseEvent event) {
     if (GameState.isEyeScannerEntered) {
       guardeyes.setDisable(true);
       styleManager.getItem("compareBtn").setDisable(false);
+      styleManager.getItem("geteyesampleLbl").setVisible(false);
       ((EyeScannerController) SceneManager.getController(Scenes.EYESCANNER)).updateGuardEye();
     }
   }
 
-  // pressing book in drawer
+  // Pressing book in drawer
   @FXML
-  void onCredentialsBookPressed(MouseEvent event) {
+  public void onCredentialsBookPressed(MouseEvent event) {
     credentialsNote.setVisible(true);
-    // set note text to the randomly generated credentials
+    // Set note text to the randomly generated credentials
     passwordLbl.setText("Password: " + randomPassword);
     usernameLbl.setText("Username: " + randomUsername);
     styleManager.removeItemsMessage("credentialsBook");
     if (!GameState.isSecurityRoomHoverPressed) {
-      styleManager.setClueHover("SecurityRoomSwitch", true);
+      styleManager.setClueHover("securityRoomSwitch", true);
     }
     GameState.isSecurityRoomHoverPressed = true;
     GameState.isCredentialsFound = true;
-    // styleManager.removeItemsMessage("computer");
     GameManager.completeObjective();
   }
 
-  // pressing any location of the keys
-  // if key found it turns invisible (we can change mehanics later)
+  // Pressing any location of the keys
+  // If key found it turns invisible (we can change mechanics later)
   @FXML
-  void onkeyLocationPressed(MouseEvent event) {
+  public void onKeyLocationPressed(MouseEvent event) {
     if (GameState.isGuardDistracted) {
-      Node clickedHBox = (HBox) event.getSource();
-      styleManager.setItemsMessage("Already looked here...", clickedHBox.getId().toString());
-      if (clickedHBox == RandomnessGenerate.getkeyLocation()) {
+      Node clickedKeyLocation = (HBox) event.getSource();
+      styleManager.setItemsMessage("Already looked here...", clickedKeyLocation.getId().toString());
+      if (clickedKeyLocation == RandomnessGenerate.getkeyLocation()) {
         GameState.isKeyLocationFound = true;
         AnimationManager.fadeTransition(key, 2);
         styleManager.setDisable(false, "key");
@@ -238,9 +242,9 @@ public class LobbyController extends Controller {
     }
   }
 
-  // pressing the key
+  // Pressing the key
   @FXML
-  void onKeyPressed(MouseEvent event) {
+  public void onKeyPressed(MouseEvent event) {
     GameState.isKeyFound = true;
     GameManager.completeObjective();
     key.setVisible(false);
@@ -249,7 +253,7 @@ public class LobbyController extends Controller {
   }
 
   @FXML
-  void onGuardPressed(MouseEvent event) {
+  public void onGuardPressed(MouseEvent event) {
     GameState.isGuardDistracted = true;
     sleepingAnimation();
     guard.setDisable(true);
@@ -259,8 +263,6 @@ public class LobbyController extends Controller {
     styleManager.setItemsMessage("Something seems odd here...", "key1", "key3", "key4");
     styleManager.setItemsMessage("Seems dangerous for now", "guardpocket", "guardeyes");
   }
-
-  boolean isZzz1Visible = false;
 
   public void toggleImageViews() {
     zzz1.setVisible(isZzz1Visible);
@@ -313,7 +315,7 @@ public class LobbyController extends Controller {
   }
 
   @FXML
-  public void quickHint(ActionEvent event) {
+  public void onQuickHint(ActionEvent event) {
     String hint = hackerAiManager.GetQuickHint();
     hackerAiManager.storeQuickHint();
     walkieTalkieManager.setWalkieTalkieText(new ChatMessage("user", hint));

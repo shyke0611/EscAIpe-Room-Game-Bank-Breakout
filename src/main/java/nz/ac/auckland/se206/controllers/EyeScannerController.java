@@ -7,6 +7,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import nz.ac.auckland.se206.GameManager;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
@@ -17,6 +18,7 @@ import nz.ac.auckland.se206.WalkieTalkieManager;
 public class EyeScannerController extends Controller {
 
   @FXML private Label error;
+  @FXML private Label geteyesampleLbl;
   @FXML private VBox accessGranted;
   @FXML private VBox accessDenied;
   @FXML private Label mystery;
@@ -45,7 +47,7 @@ public class EyeScannerController extends Controller {
   private int guardGreen;
   private int guardBlue;
 
-  StyleManager styleManager = StyleManager.getInstance();
+  private StyleManager styleManager = StyleManager.getInstance();
 
   public void initialize() {
 
@@ -59,6 +61,8 @@ public class EyeScannerController extends Controller {
     redValue.textProperty().bind(redSlider.valueProperty().asString("%.0f"));
     greenValue.textProperty().bind(greenSlider.valueProperty().asString("%.0f"));
     blueValue.textProperty().bind(blueSlider.valueProperty().asString("%.0f"));
+
+    styleManager.addItems(geteyesampleLbl);
 
     // Adjust the colour of the artificial eye and adjust slider colour based on the sliders
 
@@ -136,7 +140,8 @@ public class EyeScannerController extends Controller {
       accessGranted.setVisible(true);
       accessDenied.setVisible(false);
       GameState.isEyeScannerBypassed = true;
-      // updateMoneyStolen(10000000);
+      // $20 Million
+      GameManager.increaseMoneyToGain(20000000);
     } else {
       accessGranted.setVisible(false);
       accessDenied.setVisible(true);
@@ -161,13 +166,4 @@ public class EyeScannerController extends Controller {
     guardEye.setFill(Paint.valueOf("rgb(" + guardRed + "," + guardGreen + "," + guardBlue + ")"));
     System.out.println("Guard eye colour: " + guardRed + " " + guardGreen + " " + guardBlue);
   }
-
-  // public void setVault() {
-  //  if (GameState.isEyeScannerBypassed) {
-  //   styleManager.getItem("silverDoor").setVisible(false);
-  //   styleManager.getItem("lootBtnHolder").setVisible(true);
-  //   GameState.isAnyDoorOpen = true;
-  //  }
-  //    App.setUI(Scenes.VAULT);
-  // }
 }

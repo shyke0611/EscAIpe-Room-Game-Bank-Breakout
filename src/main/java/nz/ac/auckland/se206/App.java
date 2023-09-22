@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.HackerAiManager.Difficulties;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.controllers.GameFinishController;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -49,6 +50,10 @@ public class App extends Application {
   }
 
   public static void setUI(Scenes newUI) {
+    if (newUI == Scenes.GAMEFINISH) {
+      ((GameFinishController) SceneManager.getController(newUI)).setStatLabels();
+    }
+
     scene.setRoot(SceneManager.getUiRoot(newUI));
     SceneManager.setActiveController(SceneManager.getController(newUI));
   }
@@ -64,7 +69,7 @@ public class App extends Application {
   public void start(final Stage stage) throws IOException, ApiProxyException {
     instance = this;
     // initialise the randomiser for all random components
-    RandomnessGenerate.generateRandomGameComponents();
+    RandomnessGenerate.generateRandomCredentials();
 
     HackerAiManager hackerAiManager = HackerAiManager.getInstance();
     hackerAiManager.initialiseHackerAi(Difficulties.EASY);
