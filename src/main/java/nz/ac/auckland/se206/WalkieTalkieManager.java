@@ -31,12 +31,6 @@ public class WalkieTalkieManager {
   private static boolean walkieTalkieOpen = false;
   private static WalkieTalkieManager instance = new WalkieTalkieManager();
 
-  // Instance Fields
-  private int dotCount = 1;
-  private Timeline timeline;
-  private ChatCompletionRequest chatCompletionRequest =
-      new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.8).setMaxTokens(100);
-
   // Static Methods
   public static void addWalkieTalkie(Controller controller, VBox walkietalkie) {
     walkieTalkieMap.put(controller, walkietalkie);
@@ -68,6 +62,12 @@ public class WalkieTalkieManager {
     walkieTalkieMap.clear();
     walkieTalkieImageMap.clear();
   }
+
+  // Instance Fields
+  private Timeline timeline;
+  private ChatCompletionRequest chatCompletionRequest =
+      new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.8).setMaxTokens(100);
+  private int dotCount = 1;
 
   // Instance Methods
   public boolean isWalkieTalkieOpen() {
@@ -141,6 +141,7 @@ public class WalkieTalkieManager {
   public void startAnimation() {
     // creating new timeline for animation
     timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> updateTypingLabel()));
+
     Platform.runLater(
         () -> {
           // switching imageviews
