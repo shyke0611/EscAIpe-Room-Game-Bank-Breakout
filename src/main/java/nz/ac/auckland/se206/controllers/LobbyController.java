@@ -147,7 +147,7 @@ public class LobbyController extends Controller {
 
   // Closing credential notes
   @FXML
-  private void onCloseNote(MouseEvent event) {
+  private void onCloseNote() {
     credentialsNote.setVisible(false);
   }
 
