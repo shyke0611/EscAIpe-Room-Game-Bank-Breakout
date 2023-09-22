@@ -207,7 +207,7 @@ public class SecurityController extends Controller {
 
   // Invoke Hacker AI when the Enter key is pressed
   @FXML
-  private void invokeHackerAI(KeyEvent event) throws ApiProxyException {
+  private void onInvokeHacker(KeyEvent event) throws ApiProxyException {
 
     if (event.getCode() == KeyCode.ENTER && walkieTalkieManager.isWalkieTalkieOpen()) {
 

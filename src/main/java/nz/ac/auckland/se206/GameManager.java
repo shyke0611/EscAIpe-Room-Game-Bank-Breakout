@@ -46,7 +46,7 @@ public class GameManager {
   private static int questionsCorrect = 0;
   private static Doors selectedDoor;
   private static GameManager instance = new GameManager();
-  private static int hintCount;
+  private static int hintCount = 0;
 
   private static Objectives activeObjective = Objectives.START_GAME;
   private static DoorObjectives activeDoorObjective = null;

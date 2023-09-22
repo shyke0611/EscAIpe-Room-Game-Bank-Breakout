@@ -107,7 +107,7 @@
                   </HBox>
                   <HBox prefHeight="51.0" prefWidth="512.0" stylesheets="@../css/rooms.css">
                      <children>
-                        <TextField fx:id="vaultTextField" onKeyPressed="#invokeHackerAI" prefHeight="52.0" prefWidth="399.0" promptText="Bzzz... type here" stylesheets="@../css/rooms.css">
+                        <TextField fx:id="vaultTextField" onKeyPressed="#onInvokeHacker" prefHeight="52.0" prefWidth="399.0" promptText="Bzzz... type here" stylesheets="@../css/rooms.css">
                            <font>
                               <Font size="22.0" />
                            </font>
