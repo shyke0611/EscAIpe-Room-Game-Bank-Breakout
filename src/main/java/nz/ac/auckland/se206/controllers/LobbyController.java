@@ -79,9 +79,7 @@ public class LobbyController extends Controller {
   private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
   private boolean isZzz1Visible = false;
 
-  /**
-     * Initializes the LobbyController.
-     */
+  /** Initializes the LobbyController. */
   public void initialize() {
     SceneManager.setController(Scenes.LOBBY, this);
     WalkieTalkieManager.addWalkieTalkieImage(this, lobbyWalkieTalkie);
@@ -143,7 +141,7 @@ public class LobbyController extends Controller {
 
   // Closing credential notes
   @FXML
-  private void onCloseNote(MouseEvent event) {
+  private void onCloseNote() {
     credentialsNote.setVisible(false);
   }
 

@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,9 +15,7 @@ import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 
-/**
- * Controller class for the Eye Scanner scene.
- */
+/** Controller class for the Eye Scanner scene. */
 public class EyeScannerController extends Controller {
 
   @FXML private Label error;
@@ -53,10 +50,9 @@ public class EyeScannerController extends Controller {
 
   private StyleManager styleManager = StyleManager.getInstance();
 
-    /**
-   * Initialize the Eye Scanner controller.
-   * It sets up the initial state of the Eye Scanner scene, including sliders, color synchronization,
-   * and walkie-talkie management.
+  /**
+   * Initialize the Eye Scanner controller. It sets up the initial state of the Eye Scanner scene,
+   * including sliders, color synchronization, and walkie-talkie management.
    */
   public void initialize() {
 
@@ -142,9 +138,7 @@ public class EyeScannerController extends Controller {
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
   }
 
-   /**
-   * Update the guard's eye color with a random color.
-   */
+  /** Update the guard's eye color with a random color. */
   public void updateGuardEye() {
     guardRed = RandomnessGenerate.getRandomColourValue();
     guardGreen = RandomnessGenerate.getRandomColourValue();
@@ -156,12 +150,12 @@ public class EyeScannerController extends Controller {
   }
 
   /**
- * Compares the sample eye color with the guard's eye color and updates the access status.
- *
- * @param event The ActionEvent triggered by the "Compare" button.
- */
+   * Compares the sample eye color with the guard's eye color and updates the access status.
+   *
+   * @param event The ActionEvent triggered by the "Compare" button.
+   */
   @FXML
-  private void onCompareSample(ActionEvent event) {
+  private void onCompareSample() {
     if (isColourMatch(red, guardRed)
         && isColourMatch(green, guardGreen)
         && isColourMatch(blue, guardBlue)) {
@@ -176,9 +170,7 @@ public class EyeScannerController extends Controller {
     }
   }
 
-  /**
-   * Boolean to return if colour of eye colour matches with margin error
-   */
+  /** Boolean to return if colour of eye colour matches with margin error */
   private boolean isColourMatch(int colour, int guardColour) {
     if (colour >= guardColour - 35 && colour <= guardColour + 35) {
       return true;
@@ -186,5 +178,4 @@ public class EyeScannerController extends Controller {
     ;
     return false;
   }
-
 }
