@@ -17,7 +17,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.HackerAiManager;
@@ -65,7 +64,13 @@ public class SecurityController extends Controller {
     super.setTimerLabel(timerLabel, 1);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     WalkieTalkieManager.addWalkieTalkieImage(this, securityWalkieTalkie);
-    styleManager.addItems(computer, electricityBox, securitybackground,VaultRoomSwitch,lobbyRoomSwitch,SecurityRoomSwitch);
+    styleManager.addItems(
+        computer,
+        electricityBox,
+        securitybackground,
+        VaultRoomSwitch,
+        lobbyRoomSwitch,
+        SecurityRoomSwitch);
     styleManager.setItemsMessage("A computer...?", "computer");
     styleManager.setItemsMessage("no need to open this right now", "electricityBox");
     // setupListeners(computer,electricityBox);
@@ -113,7 +118,7 @@ public class SecurityController extends Controller {
   void onWireCutting(MouseEvent event) {
     if (!GameState.isWiresCut && GameState.isAlarmTripped) {
       if (!GameState.isWireCredentialsFound) {
-      App.textToSpeech("you need to find wire cutting order");
+        App.textToSpeech("you need to find wire cutting order");
       }
       App.setUI(Scenes.WIRECUTTING);
     } else if (GameState.isWiresCut) {
@@ -134,18 +139,17 @@ public class SecurityController extends Controller {
   // opening computer log in screen
   @FXML
   void onClickComputer(MouseEvent event) {
-    styleManager.setClueHover("computer",false);
+    styleManager.setClueHover("computer", false);
     // if already logged in, skip log in stage
     if (!GameState.isSecurityComputerLoggedIn) {
       logInScreen.setVisible(true);
-    } else if (GameState.isConnectDotreached){
+    } else if (GameState.isConnectDotreached) {
       App.setUI(Scenes.CONNECTDOTS);
     } else {
       logInScreen.setVisible(false);
       App.setUI(Scenes.COMPUTER);
       styleManager.removeItemsMessage("computer");
     }
-
   }
 
   // method that handles overall login mechanics

@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,6 +17,11 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../css/computer.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ComputerController">
    <children>
       <ImageView fx:id="securitybackground" fitHeight="715.0" fitWidth="1005.0" layoutX="-2.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/secuirty%20room.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="707.0" fitWidth="1000.0" onMouseClicked="#onGoBack" opacity="0.58" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/secuirty%20room.png" />
          </image>
@@ -72,7 +76,6 @@
                               <Insets left="2.0" right="2.0" />
                            </VBox.margin>
                            <effect>
-                              <DropShadow height="0.0" offsetY="2.0" radius="5.4875" width="23.95" />
                            </effect>
                         </HBox>
                      </children>
@@ -108,7 +111,7 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="528.0">
                      <children>
-                        <TextArea editable="false" prefHeight="100.0" prefWidth="425.0" stylesheets="@../css/rooms.css" />
+                        <TextArea editable="false" prefHeight="100.0" prefWidth="425.0" stylesheets="@../css/rooms.css" wrapText="true" />
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="component2" stylesheets="@../css/rooms.css">
                            <children>
                               <Button fx:id="viewHistoryBtn" mnemonicParsing="false" onAction="#onSwitchToHacker" text="View History">
@@ -134,5 +137,15 @@
             </VBox>
          </children>
       </HBox>
+      <Label fx:id="processingLabel" layoutX="130.0" layoutY="361.0" prefHeight="28.0" prefWidth="206.0">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="usbStick" fitHeight="218.0" fitWidth="290.0" layoutX="406.0" layoutY="132.0" onMouseClicked="#connectDots" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/vecteezy_usb-flash-drive-illustration-clean-icon-design-element-on_20526300-removebg-preview.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
