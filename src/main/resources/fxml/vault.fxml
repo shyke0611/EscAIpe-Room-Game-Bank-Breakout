@@ -360,7 +360,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="lootBtn" mnemonicParsing="false" onAction="#onLootCollected" prefHeight="26.0" prefWidth="117.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="Collect Loot">
+            <Button fx:id="lootBtn" mnemonicParsing="false" onAction="#onLootCollected" onMouseEntered="#showMoneyCollected" onMouseExited="#clearInfo" prefHeight="26.0" prefWidth="117.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="Collect Loot">
                <font>
                   <Font size="15.0" />
                </font>

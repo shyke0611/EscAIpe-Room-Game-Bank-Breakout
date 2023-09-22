@@ -134,6 +134,10 @@ public class HackerAiManager {
     hintCounter--;
   }
 
+  public int getHintLimit() {
+    return hintLimit;
+  }
+
   // Method to get a hint for the current game stage
   public String getHintForCurrentStage(String currentStage) {
     return hintMappings.getOrDefault(currentStage, "No hint available for this stage.");
