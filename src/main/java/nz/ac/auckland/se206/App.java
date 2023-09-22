@@ -9,7 +9,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.controllers.GameFinishController;
+import nz.ac.auckland.se206.difficulties.Difficulty.Difficulties;
 import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
@@ -76,7 +78,7 @@ public class App extends Application {
     chatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.5).setTopP(0.9).setMaxTokens(100);
     try {
-      message = runGpt(new ChatMessage("user", GptPromptEngineering.welcomeMessage()));
+      message = runGpt(new ChatMessage("user", GptPromptEngineering.initiliseComputerAI()));
     } catch (ApiProxyException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
