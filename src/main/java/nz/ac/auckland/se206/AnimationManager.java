@@ -55,12 +55,14 @@ public class AnimationManager {
     Duration duration = Duration.seconds(time);
 
     if (isOn) {
+      // Create a DropShadow effect
       DropShadow dropShadow = new DropShadow();
       dropShadow.setColor(Color.rgb(34, 255, 0, 0.7));
       dropShadow.setBlurType(BlurType.GAUSSIAN);
 
       node.setEffect(dropShadow);
 
+      // Create a Timeline animation
       Timeline animation =
           new Timeline(
               new KeyFrame(Duration.ZERO, new KeyValue(dropShadow.spreadProperty(), 0)),
@@ -68,6 +70,7 @@ public class AnimationManager {
       animation.setCycleCount(Timeline.INDEFINITE);
       animation.play();
     } else {
+      // Remove the effect
       node.setEffect(null);
     }
   }
@@ -89,6 +92,7 @@ public class AnimationManager {
   }
 
   public static void delayAnimation(Node node, Node node1) {
+    // Delay the animation for 3 seconds
     Duration delay = Duration.seconds(3);
     Timeline timeline =
         new Timeline(

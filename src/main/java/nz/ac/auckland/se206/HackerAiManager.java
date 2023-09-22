@@ -30,7 +30,7 @@ public class HackerAiManager {
   private ChatMessage tellAiHint;
   private String currentStage;
   private String hint;
-  private ChatMessage tellAIContext;
+  private ChatMessage tellAiContext;
 
   private ChatCompletionRequest chatCompletionRequest;
   private Difficulties currentDifficulty;
@@ -93,8 +93,6 @@ public class HackerAiManager {
 
     // Initialise the ai based on the difficulty
     switch (difficulty) {
-
-        // Initialise the ai for the easy difficulty
       case EASY:
         currentDifficulty = Difficulties.EASY;
         setHintLimit(-1);
@@ -143,12 +141,15 @@ public class HackerAiManager {
     currentStage = GameManager.getObjectiveString();
 
     if (Difficulties.EASY == currentDifficulty) {
+      // Update the visual hint counter and retrieve hint
       Platform.runLater(() -> walkieTalkieManager.setHintText("Unlimited"));
       hint = getHintForCurrentStage(currentStage);
     } else if (Difficulties.HARD == currentDifficulty) {
+      // Update the visual hint counter and return no hint
       Platform.runLater(() -> walkieTalkieManager.setHintText("0"));
       hint = "You are not allow to have hints ";
     } else if (Difficulties.MEDIUM == currentDifficulty && hintCounter <= 0) {
+      // Update the visual hint counter and return all hints used
       Platform.runLater(
           () ->
               walkieTalkieManager.setWalkieTalkieText(
@@ -158,6 +159,7 @@ public class HackerAiManager {
                           + " get a hint")));
 
     } else {
+      // Update the visual hint counter and retrieve hint
       Platform.runLater(() -> walkieTalkieManager.setHintText(Integer.toString(hintCounter)));
       hint = getHintForCurrentStage(currentStage);
     }
@@ -217,35 +219,35 @@ public class HackerAiManager {
     if (currentDifficulty == Difficulties.MEDIUM && hintCounter > 0) {
       currentStage = GameManager.getObjectiveString();
       hint = getHintForCurrentStage(currentStage);
-      tellAIContext = new ChatMessage("user", "Context:" + contextMappsing.get(currentStage));
+      tellAiContext = new ChatMessage("user", "Context:" + contextMappsing.get(currentStage));
       tellAiHint = new ChatMessage("user", "Hint:" + hint);
       ChatMessage gptCall =
-          new ChatMessage("user", tellAiHint.getContent() + tellAIContext.getContent());
+          new ChatMessage("user", tellAiHint.getContent() + tellAiContext.getContent());
       runGpt(gptCall);
 
       response = runGpt(msg);
 
     } else if (currentDifficulty == Difficulties.HARD) {
       // Things to add, update ai to say what has happend during round
-      tellAIContext = new ChatMessage("user", contextMappsing.get(currentStage));
-      runGpt(tellAIContext);
+      tellAiContext = new ChatMessage("user", contextMappsing.get(currentStage));
+      runGpt(tellAiContext);
 
       response = runGpt(msg);
 
     } else if (currentDifficulty == Difficulties.EASY) {
       currentStage = GameManager.getObjectiveString();
       hint = getHintForCurrentStage(currentStage);
-      tellAIContext = new ChatMessage("user", "Context:" + contextMappsing.get(currentStage));
+      tellAiContext = new ChatMessage("user", "Context:" + contextMappsing.get(currentStage));
       tellAiHint = new ChatMessage("user", "the current hint for stage is " + hint);
       runGpt(tellAiHint);
-      runGpt(tellAIContext);
+      runGpt(tellAiContext);
       response = runGpt(msg);
 
     } else {
       tellAiHint = new ChatMessage("user", "You have used all your hints");
-      tellAIContext = new ChatMessage("user", contextMappsing.get(currentStage));
+      tellAiContext = new ChatMessage("user", contextMappsing.get(currentStage));
       ChatMessage gptCall =
-          new ChatMessage("user", tellAiHint.getContent() + tellAIContext.getContent());
+          new ChatMessage("user", tellAiHint.getContent() + tellAiContext.getContent());
       runGpt(gptCall);
     }
 

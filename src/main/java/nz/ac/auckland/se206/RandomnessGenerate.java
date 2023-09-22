@@ -8,10 +8,10 @@ import java.util.Random;
 import javafx.scene.layout.HBox;
 
 public class RandomnessGenerate {
-  private static List<String> passcodeList = new ArrayList<>();
-  private static List<String> usernameList = new ArrayList<>();
+  private static List<String> passcodeList;
+  private static List<String> usernameList;
   private static List<HBox> keyLocationList = new ArrayList<>();
-  private static List<String> partsAmount = new ArrayList<>();
+  private static List<String> partsAmount;
   private static List<HBox> wiresList = new ArrayList<>();
 
   private static Random random = new Random();
@@ -25,13 +25,7 @@ public class RandomnessGenerate {
     // usernames to choose from
     passcodeList = Arrays.asList("206", "281", "282", "284", "274", "234", "598", "101");
     usernameList =
-        Arrays.asList(
-            "username1",
-            "username2",
-            "username3",
-            "username4",
-            "username5",
-            "username6");
+        Arrays.asList("username1", "username2", "username3", "username4", "username5", "username6");
     partsAmount = Arrays.asList("1", "2", "3", "4");
   }
 

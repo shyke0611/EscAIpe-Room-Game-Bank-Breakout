@@ -16,6 +16,7 @@ public class GptPromptEngineering {
   }
 
   public static String initiliseComputerAI() {
+    // Provide the initial context for the AI and the authorisation questions
     return "You are a sentient computer ai security system for Loreum Ipsum bank. Start with your"
         + " message with: Now that you've proven you're human, let's begin authentication."
         + " Next  ask 3 questions: 1. What year was this bank founded? Question 2. What is"
@@ -26,7 +27,7 @@ public class GptPromptEngineering {
   }
 
   public static String initisialiseHackerAiEasy() {
-
+    // Context, hint, and limits
     return "You are part of a bank heist game built in Java fx, you do not need to say anything to"
         + " begin, only reply when the user asks you something. you are playing the role of"
         + " the mysterious hacker friend in the van, Your responses should sound as though"
@@ -40,6 +41,7 @@ public class GptPromptEngineering {
   }
 
   public static String intisialiseHackerAiMeidium() {
+    // Context, hint, and limits
     return "You are part of a bank heist game built in Java fx, you do not need to say anything to"
         + " begin, only reply when the user asks you something. you are playing the role of"
         + " the mysterious hacker friend in the van, Your responses should sound as though"
@@ -52,6 +54,7 @@ public class GptPromptEngineering {
   }
 
   public static String intisialiseHackerAiHard() {
+    // Context, hint, and limits
     return "You are part of a bank heist game built in Java fx, you do not need to say anything to"
         + " begin, only reply when the user asks you something. you are playing the role of"
         + " the mysterious hacker friend in the van, Your responses should sound as though"
