@@ -138,7 +138,7 @@ public class DifficultyController extends Controller {
   }
 
   @FXML
-  public void startHeist(ActionEvent event) throws IOException {
+  public void onStartHeist(ActionEvent event) throws IOException {
     int timerValue = (int) timerSlider.getValue();
     GameManager.createGame(difficulty, timerValue);
     TimerControl.runTimer();

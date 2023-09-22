@@ -1,8 +1,11 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
-import nz.ac.auckland.se206.difficulties.*;
+import nz.ac.auckland.se206.difficulties.Difficulty;
 import nz.ac.auckland.se206.difficulties.Difficulty.Difficulties;
+import nz.ac.auckland.se206.difficulties.EasyDifficulty;
+import nz.ac.auckland.se206.difficulties.HardDifficulty;
+import nz.ac.auckland.se206.difficulties.MediumDifficulty;
 
 public class GameManager {
 
@@ -43,9 +46,11 @@ public class GameManager {
   private static int questionsCorrect = 0;
   private static Doors selectedDoor;
   private static GameManager instance = new GameManager();
+  private static int hintCount;
 
   private static Objectives activeObjective = Objectives.START_GAME;
   private static DoorObjectives activeDoorObjective = null;
+  private static WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
 
   private static int moneyGained = 0;
   private static int moneyToGain = 0;
@@ -55,14 +60,21 @@ public class GameManager {
     switch (difficulty) {
       case EASY:
         GameManager.difficulty = new EasyDifficulty();
+        walkieTalkieManager.setHintText("Unlimited");
+        hintCount = -1;
         break;
 
       case MEDIUM:
         GameManager.difficulty = new MediumDifficulty();
+        walkieTalkieManager.setHintText("5");
+        hintCount = 5;
+
         break;
 
       case HARD:
         GameManager.difficulty = new HardDifficulty();
+        walkieTalkieManager.setHintText("0");
+        hintCount = -1;
         break;
 
       default:
@@ -261,6 +273,8 @@ public class GameManager {
           return "Cut Through Lasers";
         } else if (activeDoorObjective == DoorObjectives.EYE_SCANNER) {
           return "Scan Eye";
+        } else {
+          return null;
         }
 
       case ALARM_TRIPPED:

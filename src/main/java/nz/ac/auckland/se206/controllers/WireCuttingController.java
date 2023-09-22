@@ -50,13 +50,13 @@ public class WireCuttingController extends Controller {
   }
 
   @FXML
-  void onGoBack() {
+  private void onGoBack() {
     App.setUI(Scenes.SECURITY);
     styleManager.setClueHover("electricityBox", false);
   }
 
   @FXML
-  void onWireClicked(MouseEvent event) {
+  private void onWireClicked(MouseEvent event) {
     if (isWireCutterSelected == true) {
       HBox clickedWire = (HBox) event.getSource();
       clickedWire.setVisible(false);
@@ -66,7 +66,7 @@ public class WireCuttingController extends Controller {
   }
 
   @FXML
-  void onWireCutterClicked(MouseEvent event) {
+  private void onWireCutterClicked(MouseEvent event) {
     wirecutter.setVisible(false);
     wirecutterLbl.setVisible(false);
     isWireCutterSelected = true;
@@ -75,13 +75,13 @@ public class WireCuttingController extends Controller {
   }
 
   @FXML
-  void onRetry() {
+  private void onRetry() {
     wiresCut.clear();
     styleManager.setVisible(true, "yellowwire", "redwire", "bluewire", "greenwire");
     taskLbl.setText(null);
   }
 
-  public void checkWireCombination() {
+  private void checkWireCombination() {
     if (wiresCut.size() == RandomnessGenerate.getRandomWires().size()) {
       boolean allWiresCorrect = true;
 

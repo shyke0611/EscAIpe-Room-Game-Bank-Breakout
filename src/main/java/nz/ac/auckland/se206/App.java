@@ -47,13 +47,13 @@ public class App extends Application {
     return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
   }
 
-  public static void setUI(Scenes newUI) {
-    if (newUI == Scenes.GAMEFINISH) {
-      ((GameFinishController) SceneManager.getController(newUI)).setStatLabels();
+  public static void setUI(Scenes newUi) {
+    if (newUi == Scenes.GAMEFINISH) {
+      ((GameFinishController) SceneManager.getController(newUi)).setStatLabels();
     }
 
-    scene.setRoot(SceneManager.getUiRoot(newUI));
-    SceneManager.setActiveController(SceneManager.getController(newUI));
+    scene.setRoot(SceneManager.getUiRoot(newUi));
+    SceneManager.setActiveController(SceneManager.getController(newUi));
   }
 
   /**
@@ -68,6 +68,19 @@ public class App extends Application {
     instance = this;
     // initialise the randomiser for all random components
     RandomnessGenerate.generateRandomCredentials();
+
+    HackerAiManager hackerAiManager = HackerAiManager.getInstance();
+    hackerAiManager.initialiseHackerAi(Difficulties.EASY);
+    GameManager.completeObjective();
+
+    chatCompletionRequest =
+        new ChatCompletionRequest().setN(1).setTemperature(0.5).setTopP(0.9).setMaxTokens(100);
+    try {
+      message = runGpt(new ChatMessage("user", GptPromptEngineering.welcomeMessage()));
+    } catch (ApiProxyException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
 
     // Initialise controllers hashmap to SceneManager
     SceneManager.addController(SceneManager.Scenes.VAULT, null);
