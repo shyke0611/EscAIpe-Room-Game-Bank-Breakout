@@ -237,7 +237,7 @@
                   </Label>
                </children>
             </StackPane>
-            <Label alignment="CENTER" layoutX="4.0" layoutY="68.0" prefHeight="17.0" prefWidth="860.0" text="Get eye colour sample from the guard" textAlignment="CENTER">
+            <Label fx:id="geteyesampleLbl" alignment="CENTER" layoutX="4.0" layoutY="68.0" prefHeight="17.0" prefWidth="860.0" text="Get eye colour sample from the guard" textAlignment="CENTER" textFill="#f81212">
                <font>
                   <Font size="31.0" />
                </font>

@@ -199,6 +199,7 @@ public class LobbyController extends Controller {
     if (GameState.isEyeScannerEntered) {
       guardeyes.setDisable(true);
       styleManager.getItem("compareBtn").setDisable(false);
+      styleManager.getItem("geteyesampleLbl").setVisible(false);
       ((EyeScannerController) SceneManager.getController(Scenes.EYESCANNER)).updateGuardEye();
     }
   }
