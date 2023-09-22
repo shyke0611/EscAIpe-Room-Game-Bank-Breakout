@@ -17,7 +17,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.HackerAiManager;
@@ -34,6 +33,7 @@ public class SecurityController extends Controller {
 
   @FXML private ImageView Lobby;
   @FXML private Label timerLabel;
+  @FXML private Label numberOfHints;
   @FXML private Button LogOffBtn;
   @FXML private AnchorPane SecurityPane;
   @FXML private VBox SecurityRoomSwitch;
@@ -65,7 +65,8 @@ public class SecurityController extends Controller {
     super.setTimerLabel(timerLabel, 1);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     WalkieTalkieManager.addWalkieTalkieImage(this, securityWalkieTalkie);
-    styleManager.addItems(computer, electricityBox, securitybackground,VaultRoomSwitch,lobbyRoomSwitch,SecurityRoomSwitch);
+    WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
+    styleManager.addItems(computer, electricityBox, securitybackground, VaultRoomSwitch);
     styleManager.setItemsMessage("A computer...?", "computer");
     styleManager.setItemsMessage("no need to open this right now", "electricityBox");
     // setupListeners(computer,electricityBox);
@@ -100,8 +101,9 @@ public class SecurityController extends Controller {
   //   App.setUI(Scenes.VAULT);
   // }
 
+  @FXML
   public void onSwitchToHacker() {
-    SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.VAULT);
+    SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.SECURITY);
     HackerVanController vanController =
         (HackerVanController) SceneManager.getController(Scenes.HACKERVAN);
     vanController.printChatHistory();
@@ -113,7 +115,7 @@ public class SecurityController extends Controller {
   void onWireCutting(MouseEvent event) {
     if (!GameState.isWiresCut && GameState.isAlarmTripped) {
       if (!GameState.isWireCredentialsFound) {
-      App.textToSpeech("you need to find wire cutting order");
+        App.textToSpeech("you need to find wire cutting order");
       }
       App.setUI(Scenes.WIRECUTTING);
     } else if (GameState.isWiresCut) {
@@ -134,18 +136,18 @@ public class SecurityController extends Controller {
   // opening computer log in screen
   @FXML
   void onClickComputer(MouseEvent event) {
-    styleManager.setClueHover("computer",false);
+    styleManager.setClueHover("computer", false);
     // if already logged in, skip log in stage
     if (!GameState.isSecurityComputerLoggedIn) {
       logInScreen.setVisible(true);
-    } else if (GameState.isConnectDotreached){
+    } else if (GameState.isConnectDotreached) {
       App.setUI(Scenes.CONNECTDOTS);
     } else {
       logInScreen.setVisible(false);
       App.setUI(Scenes.COMPUTER);
       styleManager.removeItemsMessage("computer");
     }
-
+    styleManager.setClueHover("computer", false);
   }
 
   // method that handles overall login mechanics
@@ -207,7 +209,7 @@ public class SecurityController extends Controller {
   @FXML
   public void invokeHackerAI(KeyEvent event) throws ApiProxyException {
 
-    if (event.getCode() == KeyCode.ENTER) {
+    if (event.getCode() == KeyCode.ENTER && walkieTalkieManager.isWalkieTalkieOpen()) {
 
       Task<Void> aiTask2 =
           new Task<Void>() {

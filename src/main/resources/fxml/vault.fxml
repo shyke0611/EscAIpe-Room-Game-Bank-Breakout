@@ -87,9 +87,9 @@
             </VBox>
             <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0" visible="false">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="528.0">
+                  <HBox prefHeight="100.0" prefWidth="512.0">
                      <children>
-                        <TextArea fx:id="vaultTextArea" editable="false" prefHeight="100.0" prefWidth="425.0" stylesheets="@../css/rooms.css" wrapText="true">
+                        <TextArea fx:id="vaultTextArea" editable="false" prefHeight="99.0" prefWidth="398.0" stylesheets="@../css/rooms.css" wrapText="true">
                            <font>
                               <Font size="19.0" />
                            </font></TextArea>
@@ -105,13 +105,38 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox prefHeight="51.0" prefWidth="512.0">
+                  <HBox prefHeight="51.0" prefWidth="512.0" stylesheets="@../css/rooms.css">
                      <children>
-                        <TextField fx:id="vaultTextField" onKeyPressed="#invokeHackerAI" prefHeight="58.0" prefWidth="512.0" promptText="Bzzz... type here" stylesheets="@../css/rooms.css">
+                        <TextField fx:id="vaultTextField" onKeyPressed="#invokeHackerAI" prefHeight="52.0" prefWidth="399.0" promptText="Bzzz... type here" stylesheets="@../css/rooms.css">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </TextField>
+                        <VBox fx:id="myVBox" prefHeight="52.0" prefWidth="92.0" stylesheets="@../css/rooms.css">
+                           <children>
+                              <StackPane prefHeight="150.0" prefWidth="200.0">
+                                 <children>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" height="51.0" stroke="BLACK" strokeType="INSIDE" width="98.0" />
+                                    <Label fx:id="numberOfHints" alignment="TOP_CENTER" text="Unlimited" textFill="#1bcd2a" wrapText="true">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                       <StackPane.margin>
+                                          <Insets top="15.0" />
+                                       </StackPane.margin>
+                                    </Label>
+                                    <Label alignment="TOP_CENTER" prefHeight="26.0" prefWidth="92.0" text="Hints Left:" textFill="#1bcd2a" wrapText="true">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                       <StackPane.margin>
+                                          <Insets bottom="25.0" />
+                                       </StackPane.margin>
+                                    </Label>
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </VBox>
                      </children>
                   </HBox>
                </children>
