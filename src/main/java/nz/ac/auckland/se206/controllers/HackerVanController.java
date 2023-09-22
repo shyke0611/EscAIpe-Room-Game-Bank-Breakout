@@ -27,15 +27,15 @@ public class HackerVanController extends Controller {
   @FXML private TextArea historyTextArea;
   @FXML private Label timerLabel;
 
+  private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
+  private WalkieTalkieManager walkieTalkieManage = WalkieTalkieManager.getInstance();
+
   public void initialize() {
     SceneManager.setController(Scenes.HACKERVAN, this);
     super.setTimerLabel(timerLabel, 3);
     printChatHistory();
     loadQuickHints();
   }
-
-  private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
-  private WalkieTalkieManager walkieTalkieManage = WalkieTalkieManager.getInstance();
 
   @FXML
   private void onGoBack() {

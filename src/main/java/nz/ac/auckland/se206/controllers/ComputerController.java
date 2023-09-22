@@ -48,7 +48,6 @@ public class ComputerController extends Controller {
 
   private ChatCompletionRequest chatCompletionRequest;
   private ChatMessage lastMsg;
-  private int numberOfMessagesCorrect = 0;
   private int dotCount = 0;
   private Queue<ChatMessage> messageQueue = new LinkedList<>();
   private WalkieTalkieManager walkieTalkieManager;
@@ -157,7 +156,7 @@ public class ComputerController extends Controller {
 
             if (lastMsg.getRole().equals("assistant") && lastMsg.getContent().startsWith("Correct")
                 || lastMsg.getContent().startsWith("correct")) {
-              msg = startAuthentication();
+              startAuthentication();
             }
             if (lastMsg.getRole().equals("assistant")
                 && lastMsg.getContent().startsWith("Authenticated")
@@ -184,7 +183,6 @@ public class ComputerController extends Controller {
 
             if (lastMsg.getRole().equals("assistant")
                 && lastMsg.getContent().contains("Authentication failed")) {
-              numberOfMessagesCorrect = 0;
               System.out.println("authetication failed");
 
               startConnectDots();

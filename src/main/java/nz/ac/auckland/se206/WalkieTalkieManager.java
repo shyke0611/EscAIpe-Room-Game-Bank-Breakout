@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206;
 
+import java.util.HashMap;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -21,8 +22,6 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
-import java.util.HashMap;
-
 public class WalkieTalkieManager {
 
   // Static Fields
@@ -31,15 +30,6 @@ public class WalkieTalkieManager {
   private static HashMap<Controller, Label> walkieTalkieHints = new HashMap<>();
   private static boolean walkieTalkieOpen = false;
   private static WalkieTalkieManager instance = new WalkieTalkieManager();
-
-  // Instance Fields
-  private Timeline timeline;
-  private ChatCompletionRequest chatCompletionRequest = new ChatCompletionRequest()
-      .setN(1)
-      .setTemperature(0.7)
-      .setTopP(0.8)
-      .setMaxTokens(100);
-  private int dotCount = 1;
 
   // Static Methods
   public static void addWalkieTalkie(Controller controller, VBox walkietalkie) {
@@ -72,6 +62,12 @@ public class WalkieTalkieManager {
     walkieTalkieMap.clear();
     walkieTalkieImageMap.clear();
   }
+
+  // Instance Fields
+  private Timeline timeline;
+  private ChatCompletionRequest chatCompletionRequest =
+      new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.8).setMaxTokens(100);
+  private int dotCount = 1;
 
   // Instance Methods
   public boolean isWalkieTalkieOpen() {
@@ -142,13 +138,14 @@ public class WalkieTalkieManager {
   public void startAnimation() {
     timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> updateTypingLabel()));
 
-    Platform.runLater(() -> {
-      for (ImageView image : walkieTalkieImageMap.values()) {
-        if (image.getId().endsWith("WalkieTalkie")) {
-          image.setImage(new Image("images/hacker.png"));
-        }
-      }
-    });
+    Platform.runLater(
+        () -> {
+          for (ImageView image : walkieTalkieImageMap.values()) {
+            if (image.getId().endsWith("WalkieTalkie")) {
+              image.setImage(new Image("images/hacker.png"));
+            }
+          }
+        });
 
     timeline.setCycleCount(Animation.INDEFINITE);
     timeline.play();
