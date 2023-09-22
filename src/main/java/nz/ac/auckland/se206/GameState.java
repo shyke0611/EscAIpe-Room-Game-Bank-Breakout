@@ -60,9 +60,7 @@ public class GameState {
     isWireCredentialsFound = false;
     isComputerHoverPressed = false;
     isSecurityRoomHoverPressed = false;
-    isSecurityRoomHoverPressed2 = false;
     isGuardPocketHoverPressed = false;
-    isLobbyRoomHoverPressed = false;
     isElectricityHoverPressed = false;
   }
 }
