@@ -25,13 +25,6 @@ public class GptPromptEngineering {
         + " Authenticated, if the user gets them all wrong say: Authentication failed";
   }
 
-  public static String welcomeMessage() {
-    return "You are part of a bank heist escape room game application, your job is to act as though"
-        + " you are a sentient AI security system of the bank, the name of the bank is"
-        + " Loreum Ipsum. Please print a short, one-sentence welcome message to the user and"
-        + " tell them to type yes if they are ready to start the authentication process";
-  }
-
   public static String initisialiseHackerAiEasy() {
 
     return "You are part of a bank heist game built in Java fx, you do not need to say anything to"

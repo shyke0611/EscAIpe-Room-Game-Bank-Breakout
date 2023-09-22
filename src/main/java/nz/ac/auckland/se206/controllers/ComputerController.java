@@ -71,9 +71,11 @@ public class ComputerController extends Controller {
     timeline = new Timeline(new KeyFrame(Duration.seconds(0.6), e -> updateLabel()));
     timeline.setCycleCount(Timeline.INDEFINITE);
 
-    chatCompletionRequest =
-        new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(1).setMaxTokens(256);
-    ChatMessage msg = runGpt(new ChatMessage("user", GptPromptEngineering.welcomeMessage()));
+    ChatMessage msg =
+        new ChatMessage(
+            "user",
+            "Welcome to Lorem Ipsum, where security is our top priority, please type 'yes' to start"
+                + " the authentication process");
 
     if (msg != null) {
       messageQueue.add(msg);
@@ -247,59 +249,6 @@ public class ComputerController extends Controller {
     App.setUI(Scenes.CONNECTDOTS);
   }
 
-  // @FXML
-  // public void typeText(String textToType) {
-  //   currentIndex = 0;
-
-  //   timeline =
-  //       new Timeline(
-  //           new KeyFrame(
-  //               Duration.seconds(0.05),
-  //               event -> {
-  //                 if (currentIndex < textToType.length()) {
-  //                   securityTextArea.appendText(String.valueOf(textToType.charAt(currentIndex)));
-  //                   currentIndex++;
-  //                 } else {
-  //                   // Animation is finished
-  //                   animationIsFinished = true;
-  //                   if (!messageQueue.isEmpty()) {
-  //                     // If there are more messages in the queue, start typing the next one
-  //                     typeNextMessage();
-  //                   }
-  //                 }
-  //               }));
-
-  //   // Set the cycle count to 1
-  //   timeline.setCycleCount(textToType.length() + 1);
-
-  //   timeline.setOnFinished(
-  //       event -> {
-  //         if (!messageQueue.isEmpty()) {
-  //           // If there are more messages in the queue, start typing the next one
-  //           typeNextMessage();
-  //         } else {
-  //           isTyping = false; // No more messages to type
-  //         }
-  //       });
-
-  //   if (!isTyping) {
-  //     isTyping = true;
-  //     timeline.play();
-  //   }
-  // }
-
-  // private void typeNextMessage() {
-  //   if (!messageQueue.isEmpty()) {
-  //     ChatMessage nextMessage = messageQueue.poll();
-  //     typeText(nextMessage.getContent());
-  //   }
-  // }
-
-  // securityTextArea.appendText(msg.getContent() + "\n\n");private void
-  // appendChatMessage(ChatMessage msg) {
-
-  // String content = messageQueue.poll().getContent();
-  // int length = content.length();
   private void appendChatMessage() {
     if (!messageQueue.isEmpty()) {
       ChatMessage nextMessage = messageQueue.poll();
