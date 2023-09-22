@@ -7,6 +7,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import nz.ac.auckland.se206.GameManager;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
@@ -136,7 +137,8 @@ public class EyeScannerController extends Controller {
       accessGranted.setVisible(true);
       accessDenied.setVisible(false);
       GameState.isEyeScannerBypassed = true;
-      // updateMoneyStolen(10000000);
+      // $20 Million
+      GameManager.increaseMoneyToGain(20000000);
     } else {
       accessGranted.setVisible(false);
       accessDenied.setVisible(true);
