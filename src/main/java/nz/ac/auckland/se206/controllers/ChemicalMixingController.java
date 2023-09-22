@@ -1,8 +1,10 @@
 package nz.ac.auckland.se206.controllers;
 
+
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,7 +19,6 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
-import nz.ac.auckland.se206.StyleManager;
 
 public class ChemicalMixingController extends Controller {
 
@@ -82,7 +83,7 @@ public class ChemicalMixingController extends Controller {
   }
 
   @FXML
-  public void pourChemical(MouseEvent event) {
+  public void onPourChemical(MouseEvent event) {
 
     ImageView image = (ImageView) event.getSource();
     image.setStyle("-fx-cursor: hand;");
@@ -108,7 +109,7 @@ public class ChemicalMixingController extends Controller {
     // Pour button was clicked
     stopButton.setOnAction(
         e -> {
-          stopSlider();
+          onStopSlider();
           stopButton.setDisable(true);
           currentVile.setText("Pick a vile");
 
@@ -154,7 +155,6 @@ public class ChemicalMixingController extends Controller {
         });
   }
 
-  @FXML
   public void fillBeaker(int value, int pourCount) {
 
     // More ugly code to determine which rectangle to fill and what colour
@@ -188,7 +188,6 @@ public class ChemicalMixingController extends Controller {
     }
   }
 
-  @FXML
   public void checkWin() {
     retryButton.setVisible(false);
     stopButton.setVisible(false);
@@ -199,18 +198,8 @@ public class ChemicalMixingController extends Controller {
     GameManager.increaseMoneyToGain(5000000);
   }
 
-  // @FXML
-  // public void setVault() {
-  //   if (GameState.isChemicalMixingBypassed) {
-  //     styleManager.getItem("goldDoor").setVisible(false);
-  //     styleManager.getItem("lootBtnHolder").setVisible(true);
-  //     GameState.isAnyDoorOpen = true;
-  //   }
-  //   App.setUI(Scenes.VAULT);
-  // }
-
   @FXML
-  public void retryButtonClicked() {
+  public void onRetryButtonClicked(ActionEvent event) {
     // Reset all necessary variables and elements
     slider.setValue(0);
     currentVile.setText("");
@@ -244,7 +233,7 @@ public class ChemicalMixingController extends Controller {
   }
 
   @FXML
-  private void stopSlider() {
+  private void onStopSlider() {
     if (sliderAnimation != null && sliderAnimation.getStatus() == Timeline.Status.RUNNING) {
       sliderAnimation.pause();
       sliderMoving = false;
@@ -254,43 +243,6 @@ public class ChemicalMixingController extends Controller {
     }
   }
 
-  // private ScaleTransition createScaleTransition(ImageView imageView) {
-  //   ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), imageView);
-  //   scaleTransition.setFromX(1.0); // Initial scale X
-  //   scaleTransition.setFromY(1.0); // Initial scale Y
-  //   scaleTransition.setToX(1.2); // Enlarged scale X
-  //   scaleTransition.setToY(1.2); // Enlarged scale Y
-  //   return scaleTransition;
-  // }
-
-  // private void playAnimationForward(ScaleTransition scaleTransition) {
-  //   scaleTransition.setRate(1); // Play forward
-  //   scaleTransition.play();
-  // }
-
-  // private void playAnimationReverse(ScaleTransition scaleTransition) {
-  //   scaleTransition.setRate(-1); // Play in reverse
-  //   scaleTransition.play();
-  // }
-
-  // private void setupListeners() {
-  //   scaleTransitionGreen = createScaleTransition(greenVile);
-  //   scaleTransitionYellow = createScaleTransition(yellowVile);
-  //   scaleTransitionRed = createScaleTransition(redVile);
-  //   scaleTransitionBlue = createScaleTransition(blueVile);
-
-  //   // Add hover listeners to start and stop the animation
-  //   greenVile.setOnMouseEntered(event -> playAnimationForward(scaleTransitionGreen));
-  //   greenVile.setOnMouseExited(event -> playAnimationReverse(scaleTransitionGreen));
-  //   redVile.setOnMouseEntered(event -> playAnimationForward(scaleTransitionRed));
-  //   redVile.setOnMouseExited(event -> playAnimationReverse(scaleTransitionRed));
-  //   yellowVile.setOnMouseEntered(event -> playAnimationForward(scaleTransitionYellow));
-  //   yellowVile.setOnMouseExited(event -> playAnimationReverse(scaleTransitionYellow));
-  //   blueVile.setOnMouseEntered(event -> playAnimationForward(scaleTransitionBlue));
-  //   blueVile.setOnMouseExited(event -> playAnimationReverse(scaleTransitionBlue));
-  // }
-
-  @FXML
   public void initializeRecipe() {
     randomYellow = RandomnessGenerate.getRandomChemicalAmount();
     randomRed = RandomnessGenerate.getRandomChemicalAmount();

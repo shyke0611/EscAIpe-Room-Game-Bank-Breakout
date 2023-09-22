@@ -65,6 +65,7 @@ public class LobbyController extends Controller {
   @FXML private ImageView openDrawer;
   @FXML private HBox credentialsBook;
 
+  @FXML private Label numberOfHints;
   @FXML private Label titleLbl;
   @FXML private Label passwordLbl;
   @FXML private Label usernameLbl;
@@ -81,6 +82,7 @@ public class LobbyController extends Controller {
   public void initialize() {
     SceneManager.setController(Scenes.LOBBY, this);
     WalkieTalkieManager.addWalkieTalkieImage(this, lobbyWalkieTalkie);
+    WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
     super.setTimerLabel(timerLabel, 1);
     RandomnessGenerate.generateRandomCredentials();
     randomUsername = RandomnessGenerate.getUsername();
@@ -127,8 +129,8 @@ public class LobbyController extends Controller {
   }
 
   @FXML
-  public void onSwitchToHacker(ActionEvent event) {
-    // SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.VAULT);
+  public void onSwitchToHacker() {
+    SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.LOBBY);
     HackerVanController vanController =
         (HackerVanController) SceneManager.getController(Scenes.HACKERVAN);
     vanController.printChatHistory();
@@ -277,7 +279,8 @@ public class LobbyController extends Controller {
   @FXML
   public void invokeHackerAI(KeyEvent event) throws ApiProxyException {
 
-    if (event.getCode() == KeyCode.ENTER) {
+    if (event.getCode() == KeyCode.ENTER && walkieTalkieManager.isWalkieTalkieOpen()) {
+      System.out.println(lobbyTextInput.getText());
 
       Task<Void> aiTask =
           new Task<Void>() {
@@ -312,7 +315,7 @@ public class LobbyController extends Controller {
   }
 
   @FXML
-  public void quickHint(ActionEvent event) {
+  public void onQuickHint(ActionEvent event) {
     String hint = hackerAiManager.GetQuickHint();
     hackerAiManager.storeQuickHint();
     walkieTalkieManager.setWalkieTalkieText(new ChatMessage("user", hint));

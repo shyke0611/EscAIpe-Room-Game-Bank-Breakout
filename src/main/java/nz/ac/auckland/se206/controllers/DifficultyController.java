@@ -60,8 +60,9 @@ public class DifficultyController extends Controller {
   // when mouse enters the difficulty boxes turn image visibility on
   @FXML
   void onDifficultyEntered(MouseEvent event) {
-    if (event.getSource() == easyVbox) easyAlarmImage.setVisible(true);
-    else if (event.getSource() == mediumVbox) {
+    if (event.getSource() == easyVbox) {
+      easyAlarmImage.setVisible(true);
+    } else if (event.getSource() == mediumVbox) {
       mediumAlarmImage.setVisible(true);
     } else {
       hardAlarmImage.setVisible(true);
@@ -71,8 +72,9 @@ public class DifficultyController extends Controller {
   // when mouse exits the difficulty boxes turn image visibility off
   @FXML
   void onDifficultyExited(MouseEvent event) {
-    if (event.getSource() == easyVbox && !easyVboxClicked) easyAlarmImage.setVisible(false);
-    else if (event.getSource() == mediumVbox && !mediumVboxClicked) {
+    if (event.getSource() == easyVbox && !easyVboxClicked) {
+      easyAlarmImage.setVisible(false);
+    } else if (event.getSource() == mediumVbox && !mediumVboxClicked) {
       mediumAlarmImage.setVisible(false);
     } else if (event.getSource() == hardVbox && !hardVboxClicked) {
       hardAlarmImage.setVisible(false);
@@ -116,7 +118,8 @@ public class DifficultyController extends Controller {
     GameManager.createGame(difficulty, timerValue);
     TimerControl.runTimer();
     App.setUI(Scenes.LOBBY);
-    ((GameFinishController) SceneManager.getController(Scenes.GAMEFINISH)).setDifficultyLabel(difficulty.toString());
+    ((GameFinishController) SceneManager.getController(Scenes.GAMEFINISH))
+        .setDifficultyLabel(difficulty.toString());
   }
 
   private void handleDifficultySelection(VBox vbox, ImageView alarmImage, String label) {

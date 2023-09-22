@@ -46,9 +46,11 @@ public class GameManager {
   private static int questionsCorrect = 0;
   private static Doors selectedDoor;
   private static GameManager instance = new GameManager();
+  private static int hintCount;
 
   private static Objectives activeObjective = Objectives.START_GAME;
   private static DoorObjectives activeDoorObjective = null;
+  private static WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
 
   private static int moneyGained = 0;
   private static int moneyToGain = 0;
@@ -58,14 +60,21 @@ public class GameManager {
     switch (difficulty) {
       case EASY:
         GameManager.difficulty = new EasyDifficulty();
+        walkieTalkieManager.setHintText("Unlimited");
+        hintCount = -1;
         break;
 
       case MEDIUM:
         GameManager.difficulty = new MediumDifficulty();
+        walkieTalkieManager.setHintText("5");
+        hintCount = 5;
+
         break;
 
       case HARD:
         GameManager.difficulty = new HardDifficulty();
+        walkieTalkieManager.setHintText("0");
+        hintCount = -1;
         break;
 
       default:

@@ -76,6 +76,7 @@ public class VaultController extends Controller {
   @FXML private Pane slidePane;
   @FXML private Button lootBtn;
   @FXML private StackPane timerClock;
+  @FXML private Label numberOfHints;
 
   @FXML private HBox switchHolder;
   @FXML private HBox walkietalkieHolder;
@@ -91,6 +92,7 @@ public class VaultController extends Controller {
   public void initialize() {
     SceneManager.setController(Scenes.VAULT, this);
     WalkieTalkieManager.addWalkieTalkieImage(this, vaultWalkieTalkie);
+    WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
     super.setTimerLabel(timerLabel, 1);
 
     styleManager.addItems(
@@ -305,7 +307,7 @@ public class VaultController extends Controller {
   @FXML
   public void invokeHackerAI(KeyEvent event) throws ApiProxyException {
 
-    if (event.getCode() == KeyCode.ENTER) {
+    if (event.getCode() == KeyCode.ENTER && walkieTalkieManager.isWalkieTalkieOpen()) {
       walkieTalkieManager.startAnimation();
 
       Task<Void> aiTask3 =
@@ -340,7 +342,7 @@ public class VaultController extends Controller {
   }
 
   @FXML
-  public void quickHint(ActionEvent event) {
+  public void onQuickHint(ActionEvent event) {
     String hint = hackerAiManager.GetQuickHint();
     hackerAiManager.storeQuickHint();
     walkieTalkieManager.setWalkieTalkieText(new ChatMessage("user", hint));

@@ -7,6 +7,7 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -30,6 +31,7 @@ public class WalkieTalkieManager {
   // storing the walkietalkie textboxes
   private static HashMap<Controller, VBox> walkieTalkieMap = new HashMap<>();
   private static HashMap<Controller, ImageView> walkieTalkieImageMap = new HashMap<>();
+  private static HashMap<Controller, Label> walkieTalkieHints = new HashMap<>();
   private static boolean walkieTalkieOpen = false;
   private static WalkieTalkieManager instance = new WalkieTalkieManager();
   private Timeline timeline;
@@ -38,12 +40,20 @@ public class WalkieTalkieManager {
     walkieTalkieMap.put(controller, walkietalkie);
   }
 
+  public static void addWalkieTalkieHint(Controller controller, Label hint) {
+    walkieTalkieHints.put(controller, hint);
+  }
+
   public static void addWalkieTalkieImage(Controller controller, ImageView walkietalkie) {
     walkieTalkieImageMap.put(controller, walkietalkie);
   }
 
   public static WalkieTalkieManager getInstance() {
     return instance;
+  }
+
+  public boolean isWalkieTalkieOpen() {
+    return walkieTalkieOpen;
   }
 
   public ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
@@ -102,6 +112,13 @@ public class WalkieTalkieManager {
           }
         }
       }
+    }
+  }
+
+  public void setHintText(String hintCount) {
+    for (Label label : walkieTalkieHints.values()) {
+      System.out.println(hintCount);
+      label.setText(hintCount);
     }
   }
 
