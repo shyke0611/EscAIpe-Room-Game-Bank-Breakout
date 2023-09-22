@@ -16,9 +16,7 @@ import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 
-/**
- * Controller class for the Eye Scanner scene.
- */
+/** Controller class for the Eye Scanner scene. */
 public class EyeScannerController extends Controller {
 
   @FXML private Label error;
@@ -53,13 +51,13 @@ public class EyeScannerController extends Controller {
 
   private StyleManager styleManager = StyleManager.getInstance();
 
-    /**
-   * Initialize the Eye Scanner controller.
-   * It sets up the initial state of the Eye Scanner scene, including sliders, color synchronization,
-   * and walkie-talkie management.
+  /**
+   * Initialize the Eye Scanner controller. It sets up the initial state of the Eye Scanner scene,
+   * including sliders, color synchronization, and walkie-talkie management.
    */
   public void initialize() {
 
+    // set relevant method on initialisation
     styleManager.addItems(compareBtn);
     SceneManager.setController(Scenes.EYESCANNER, this);
     super.setTimerLabel(timerLabel, 3);
@@ -142,13 +140,13 @@ public class EyeScannerController extends Controller {
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
   }
 
-   /**
-   * Update the guard's eye color with a random color.
-   */
+  /** Update the guard's eye color with a random color. */
   public void updateGuardEye() {
+    // getting random eye colour combination
     guardRed = RandomnessGenerate.getRandomColourValue();
     guardGreen = RandomnessGenerate.getRandomColourValue();
     guardBlue = RandomnessGenerate.getRandomColourValue();
+    // setting visibility
     mystery.setVisible(false);
     error.setVisible(false);
     guardEye.setFill(Paint.valueOf("rgb(" + guardRed + "," + guardGreen + "," + guardBlue + ")"));
@@ -156,15 +154,17 @@ public class EyeScannerController extends Controller {
   }
 
   /**
- * Compares the sample eye color with the guard's eye color and updates the access status.
- *
- * @param event The ActionEvent triggered by the "Compare" button.
- */
+   * Compares the sample eye color with the guard's eye color and updates the access status.
+   *
+   * @param event The ActionEvent triggered by the "Compare" button.
+   */
   @FXML
   private void onCompareSample(ActionEvent event) {
+    // comparing eye colour with guard eye colour
     if (isColourMatch(red, guardRed)
         && isColourMatch(green, guardGreen)
         && isColourMatch(blue, guardBlue)) {
+      // access granted if match found
       accessGranted.setVisible(true);
       accessDenied.setVisible(false);
       GameState.isEyeScannerBypassed = true;
@@ -177,9 +177,7 @@ public class EyeScannerController extends Controller {
     }
   }
 
-  /**
-   * Boolean to return if colour of eye colour matches with margin error
-   */
+  /** Boolean to return if colour of eye colour matches with margin error */
   private boolean isColourMatch(int colour, int guardColour) {
     if (colour >= guardColour - 35 && colour <= guardColour + 35) {
       return true;
@@ -187,5 +185,4 @@ public class EyeScannerController extends Controller {
     ;
     return false;
   }
-
 }
