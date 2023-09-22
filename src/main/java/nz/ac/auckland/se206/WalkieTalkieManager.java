@@ -24,13 +24,14 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 public class WalkieTalkieManager {
 
-  // storing the walkietalkie textboxes
+  // Static Fields
   private static HashMap<Controller, VBox> walkieTalkieMap = new HashMap<>();
   private static HashMap<Controller, ImageView> walkieTalkieImageMap = new HashMap<>();
   private static HashMap<Controller, Label> walkieTalkieHints = new HashMap<>();
   private static boolean walkieTalkieOpen = false;
   private static WalkieTalkieManager instance = new WalkieTalkieManager();
 
+  // Static Methods
   public static void addWalkieTalkie(Controller controller, VBox walkietalkie) {
     walkieTalkieMap.put(controller, walkietalkie);
   }
@@ -56,27 +57,34 @@ public class WalkieTalkieManager {
     }
   }
 
+  public static void reset() {
+    walkieTalkieOpen = false;
+    walkieTalkieMap.clear();
+    walkieTalkieImageMap.clear();
+  }
+
+  // Instance Fields
   private Timeline timeline;
   private ChatCompletionRequest chatCompletionRequest =
       new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.8).setMaxTokens(100);
   private int dotCount = 1;
 
+  // Instance Methods
   public boolean isWalkieTalkieOpen() {
     return walkieTalkieOpen;
   }
 
   public ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
-
+    // Add the message to the request
     chatCompletionRequest.addMessage(msg);
     try {
+      // Execute the request and get the result
       ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
       Choice result = chatCompletionResult.getChoices().iterator().next();
       chatCompletionRequest.addMessage(result.getChatMessage());
-      // appendChatMessage(result.getChatMessage());
-      System.out.println(result.getChatMessage().getContent());
       return result.getChatMessage();
+      // If there is an error, print the stack trace and return null
     } catch (ApiProxyException e) {
-      // TODO handle exception appropriately
       e.printStackTrace();
       return null;
     }
@@ -126,42 +134,37 @@ public class WalkieTalkieManager {
 
   public void setHintText(String hintCount) {
     for (Label label : walkieTalkieHints.values()) {
-
       label.setText(hintCount);
     }
   }
 
   public void startAnimation() {
+    // creating new timeline for animation
     timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> updateTypingLabel()));
 
     Platform.runLater(
         () -> {
+          // switching imageviews
           for (ImageView image : walkieTalkieImageMap.values()) {
-            // Iterate through the children of the VBox (assuming they are HBox containers)
-
-            // Check the ID of the ImageView
             if (image.getId().endsWith("WalkieTalkie")) {
-
               image.setImage(new Image("images/hacker.png"));
             }
           }
         });
+
     timeline.setCycleCount(Animation.INDEFINITE);
     timeline.play();
   }
 
   private void updateTypingLabel() {
-    // Update the typing label text with cycling dots
+    // creating dots for animation
     StringBuilder dots = new StringBuilder();
     for (int i = 0; i < dotCount; i++) {
       dots.append(".");
     }
-
+    // creating new message and setting it to walkietalkie
     ChatMessage msg = new ChatMessage("user", "Typing" + dots.toString());
-
     setWalkieTalkieText(msg);
-
-    // Increase or reset dot count
     if (dotCount < 3) {
       dotCount++;
     } else {
@@ -174,18 +177,9 @@ public class WalkieTalkieManager {
       timeline.stop();
     }
     for (ImageView image : walkieTalkieImageMap.values()) {
-      // Iterate through the children of the VBox (assuming they are HBox containers)
-
-      // Check the ID of the ImageView
       if (image.getId().contains("WalkieTalkie")) {
         image.setImage(new Image("images/walkietalkie.png"));
       }
     }
-  }
-
-  public static void reset() {
-    walkieTalkieOpen = false;
-    walkieTalkieMap.clear();
-    walkieTalkieImageMap.clear();
   }
 }

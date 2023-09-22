@@ -27,26 +27,23 @@ public class HackerVanController extends Controller {
   @FXML private TextArea historyTextArea;
   @FXML private Label timerLabel;
 
+  private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
+  private WalkieTalkieManager walkieTalkieManage = WalkieTalkieManager.getInstance();
+
   public void initialize() {
     SceneManager.setController(Scenes.HACKERVAN, this);
     super.setTimerLabel(timerLabel, 3);
-  }
-
-  private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
-  WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
-
-  public void onGoBack() {
-    App.setUI(SceneManager.getPreviousScene(Scenes.HACKERVAN));
-  }
-
-  public void initialise() {
-    SceneManager.setController(Scenes.HACKERVAN, this);
     printChatHistory();
     loadQuickHints();
   }
 
   @FXML
-  public void invokeHackerAI(KeyEvent event) throws ApiProxyException {
+  private void onGoBack() {
+    App.setUI(SceneManager.getPreviousScene(Scenes.HACKERVAN));
+  }
+
+  @FXML
+  private void onInvokeHacker(KeyEvent event) throws ApiProxyException {
 
     if (event.getCode() == KeyCode.ENTER) {
       // fetch message from field and add it to chat history
@@ -55,20 +52,18 @@ public class HackerVanController extends Controller {
 
       ChatMessage responce = hackerAiManager.processInput(msg);
       hackerAiManager.addChatHistory(responce.getContent());
-      walkieTalkieManager.setWalkieTalkieText(responce);
+      walkieTalkieManage.setWalkieTalkieText(responce);
 
       hackerVanInput.clear();
       printChatHistory();
     }
   }
 
-  @FXML
   public void printChatHistory() {
     String formattedHistory = hackerAiManager.getFormattedChatHistory();
     historyTextArea.setText(formattedHistory);
   }
 
-  @FXML
   public void loadQuickHints() {
     String formattedHints = hackerAiManager.getFormattedHintHistory();
     hintTextArea.setText(formattedHints);

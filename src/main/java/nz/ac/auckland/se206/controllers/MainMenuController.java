@@ -42,7 +42,7 @@ public class MainMenuController extends Controller {
    * @param event The ActionEvent triggered by clicking the "Quit" button.
    */
   @FXML
-  private void exitGame(ActionEvent event) {
+  private void exitGame() {
     Platform.exit();
   }
 }

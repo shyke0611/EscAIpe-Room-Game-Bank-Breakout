@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -159,7 +158,7 @@ public class EyeScannerController extends Controller {
    * @param event The ActionEvent triggered by the "Compare" button.
    */
   @FXML
-  private void onCompareSample(ActionEvent event) {
+  private void onCompareSample() {
     // comparing eye colour with guard eye colour
     if (isColourMatch(red, guardRed)
         && isColourMatch(green, guardGreen)

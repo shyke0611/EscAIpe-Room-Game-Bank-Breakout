@@ -122,15 +122,17 @@ public class DifficultyController extends Controller {
   }
 
   public void initialiseHacker(Difficulties difficulties) {
+    // set relevant methods to initialise hacker
     Task<Void> aiTask3 =
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
-            hackerAiManager.initialiseHackerAi(difficulties);
+            hackerAiManager.initialiseHacker(difficulties);
             return null;
           }
         };
 
+   // new thread for hacker
     Thread aiThread3 = new Thread(aiTask3);
     aiThread3.setDaemon(true);
     aiThread3.start();

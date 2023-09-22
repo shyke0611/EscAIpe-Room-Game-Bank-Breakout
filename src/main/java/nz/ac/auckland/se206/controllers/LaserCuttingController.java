@@ -94,7 +94,7 @@ public class LaserCuttingController extends Controller {
   }
 
   @FXML
-private void draw(MouseEvent event) {
+  private void draw(MouseEvent event) {
     // Get the current mouse coordinates (x, y)
     double x = event.getX();
     double y = event.getY();
@@ -106,33 +106,33 @@ private void draw(MouseEvent event) {
     // Create a Point2D object to represent the current mouse position
     Point2D mousePosition = new Point2D(x, y);
     // Check if a gun is equipped and the mouse is inside a specific region
-    if (gunEquppied && isMouseInsideLargerCircleOutsideSmallerCircle(mousePosition, outerCircle, innerCircle)) {
-        // Update the cursor line's end coordinates to follow the mouse
-        cursorLine.setEndX(x);
-        cursorLine.setEndY(y);
+    if (gunEquppied
+        && isMouseInsideLargerCircleOutsideSmallerCircle(mousePosition, outerCircle, innerCircle)) {
+      // Update the cursor line's end coordinates to follow the mouse
+      cursorLine.setEndX(x);
+      cursorLine.setEndY(y);
     }
     // Check if the mouse is outside a specific region
     if (!isMouseInsideLargerCircleOutsideSmallerCircle(mousePosition, outerCircle, innerCircle)) {
-        // Clear the canvas and reset some data structures
-        gc.clearRect(0, 0, 1000, 700);
-        points.clear();
-        angles.clear();
+      // Clear the canvas and reset some data structures
+      gc.clearRect(0, 0, 1000, 700);
+      points.clear();
+      angles.clear();
     }
     // Check if a specific condition is met while the user is drawing
     if (whileUserisDrawing(mousePosition)) {
-        // Toggle the visibility of certain UI elements
-        blackCircle.setVisible(true);
-        insideVault.setVisible(true);
-        outerCircle.setVisible(false);
-        innerCircle.setVisible(false);
-        // Clear the canvas
-        gc.clearRect(0, 0, 1000, 700);
+      // Toggle the visibility of certain UI elements
+      blackCircle.setVisible(true);
+      insideVault.setVisible(true);
+      outerCircle.setVisible(false);
+      innerCircle.setVisible(false);
+      // Clear the canvas
+      gc.clearRect(0, 0, 1000, 700);
     }
     // Update the previous mouse coordinates for the next iteration
     prevX = x;
     prevY = y;
-}
-
+  }
 
   private void clearCursorLine() {
     // Clear the cursor line by setting its end point to its start point

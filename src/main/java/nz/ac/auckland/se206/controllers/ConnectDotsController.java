@@ -31,6 +31,7 @@ public class ConnectDotsController extends Controller {
   private int[][] grid = new int[6][6];
   private int[][] solution;
 
+  // initialising instances
   private int initialColumn = -1;
   private int initialRow = -1;
 
@@ -41,7 +42,7 @@ public class ConnectDotsController extends Controller {
   private int nodeValue = 0;
 
   public void initialize() {
-
+    // initialising the methods to play this puzzle
     SceneManager.setController(Scenes.CONNECTDOTS, this);
     super.setTimerLabel(timerLabel, 3);
     disableSecurity.setVisible(false);
@@ -49,11 +50,11 @@ public class ConnectDotsController extends Controller {
   }
 
   public void startDrag(MouseEvent e) {
+    // drag event for the puzzle
     initialColumn = getIndex(e.getX(), false);
     initialRow = getIndex(e.getY(), true);
-
     nodeSelected = grid[initialRow][initialColumn] < 0;
-
+    // handle when node is selected
     if (nodeSelected) {
       nodeValue = grid[initialRow][initialColumn];
       columnPath.add(initialColumn);
@@ -62,23 +63,20 @@ public class ConnectDotsController extends Controller {
   }
 
   public void drag(MouseEvent e) {
+    // if no node is selected
     if (!nodeSelected) {
       return;
     }
-
     int currentColumn = getIndex(e.getX(), false);
     int currentRow = getIndex(e.getY(), true);
-
     // If the current cell is not valid return
     if (!isCellValid(currentColumn, currentRow)) {
       return;
     }
-
     // If the current cell is not empty return;
     if (grid[currentRow][currentColumn] != 0) {
       return;
     }
-
     // Continue path
     columnPath.add(currentColumn);
     rowPath.add(currentRow);
@@ -91,10 +89,9 @@ public class ConnectDotsController extends Controller {
     if (!nodeSelected) {
       return;
     }
-
+    // setting variables
     int finalColumn = getIndex(e.getX(), false);
     int finalRow = getIndex(e.getY(), true);
-
     // Add final cell to path if valid - can be a node
     if (isCellValid(finalColumn, finalRow)) {
       if (grid[finalRow][finalColumn] == nodeValue) {
@@ -104,14 +101,12 @@ public class ConnectDotsController extends Controller {
     }
 
     int lastIndex = columnPath.size() - 1;
-
     // If end cell is not same type as start node then clear path cant be start node
     if (grid[rowPath.get(lastIndex)][columnPath.get(lastIndex)] != nodeValue
         || (finalRow == initialRow && finalColumn == initialColumn)) {
       for (int i = 0; i < columnPath.size(); i++) {
         int column = columnPath.get(i);
         int row = rowPath.get(i);
-
         // If the current cell is a node continue;
         if (grid[row][column] < 0) {
           continue;
@@ -121,7 +116,6 @@ public class ConnectDotsController extends Controller {
         node.setFill(Paint.valueOf("white"));
       }
     }
-
     // Reset variables
     nodeSelected = false;
     nodeValue = 0;
@@ -129,8 +123,9 @@ public class ConnectDotsController extends Controller {
     initialRow = -1;
     rowPath.clear();
     columnPath.clear();
-
+    // if game is completed
     if (isGameComplete()) {
+      // handle the relevant methods
       disableSecurity.setVisible(true);
       GameState.isSecondUserAuthenticated = true;
       resetButton.setDisable(true);
@@ -140,6 +135,7 @@ public class ConnectDotsController extends Controller {
   }
 
   private void setSolution() {
+    // 0 = empty, 1 = red, 2 = blue, 3 = green, 4 = purple, negative = node
     int[][] solution = {
       {3, 3, 3, 3, 3, 3},
       {-3, -1, -4, 4, -4, 3},
@@ -148,7 +144,7 @@ public class ConnectDotsController extends Controller {
       {0, 0, -3, -1, 1, 3},
       {0, 0, 3, 3, 3, 3}
     };
-
+    // setting it to the solution
     this.solution = solution;
     copyStartEndNodes();
   }
@@ -177,9 +173,11 @@ public class ConnectDotsController extends Controller {
   }
 
   private Rectangle getNodeFromGridPane(GridPane gridPane, int row, int col) {
+    // Get the node from the gridpane
     for (Node node : gridPane.getChildren()) {
       int columnIndex = GridPane.getColumnIndex(node) == null ? 0 : GridPane.getColumnIndex(node);
       int rowIndex = GridPane.getRowIndex(node) == null ? 0 : GridPane.getRowIndex(node);
+      // if the column and row is the same as the node return the node
       if (columnIndex == col && rowIndex == row) {
         return (Rectangle) node;
       }
@@ -218,7 +216,9 @@ public class ConnectDotsController extends Controller {
   }
 
   private Paint getColour(int value) {
+    // 0 = empty, 1 = red, 2 = blue, 3 = green, 4 = purple, negative = node
     value = Math.abs(value);
+    // getting paint value from int
     switch (value) {
       case 1:
         return Paint.valueOf("red");
@@ -234,11 +234,13 @@ public class ConnectDotsController extends Controller {
   }
 
   public void resetGame() {
+    // Reset grid for resetting game
     for (int i = 0; i < 6; i++) {
       for (int j = 0; j < 6; j++) {
         if (grid[i][j] < 0) {
           continue;
         }
+        // resetting by painting it white again
         grid[i][j] = 0;
         Rectangle node = getNodeFromGridPane(gridPane, i, j);
         node.setFill(Paint.valueOf("white"));
@@ -247,13 +249,16 @@ public class ConnectDotsController extends Controller {
   }
 
   private boolean isGameComplete() {
+    // Check if the grid is the same as the solution
     for (int r = 0; r < 6; r++) {
       for (int c = 0; c < 6; c++) {
 
+        // If the cell is a node continue;
         if (solution[r][c] <= 0) {
           continue;
         }
 
+        // If the cell is not the same as the solution return false;
         if (grid[r][c] != solution[r][c]) {
           return false;
         }
@@ -263,6 +268,7 @@ public class ConnectDotsController extends Controller {
   }
 
   public void switchToSecurity() {
+    // handle switch methods
     if (GameState.isSecondUserAuthenticated) {
       styleManager.getItem("computer").setDisable(true);
     }

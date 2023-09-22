@@ -47,33 +47,26 @@ public class ComputerController extends Controller {
   @FXML private Label processingLabel;
   @FXML private ImageView usbStick;
 
-  private static int currentIndex = 0;
-
   private ChatCompletionRequest chatCompletionRequest;
   private ChatMessage lastMsg;
-  private int numberOfMessagesCorrect = 0;
   private int dotCount = 0;
-  private boolean animationIsFinished = false;
   private Queue<ChatMessage> messageQueue = new LinkedList<>();
-  private boolean isTyping = false;
-  private StringBuilder textBuffer;
   private WalkieTalkieManager walkieTalkieManager;
   private StyleManager styleManager = StyleManager.getInstance();
 
   private Timeline timeline;
 
   public void initialize() throws ApiProxyException {
+    // initialising all the relevant methods
     SceneManager.setController(Scenes.COMPUTER, this);
     super.setTimerLabel(timerLabel, 1);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     walkieTalkieManager = WalkieTalkieManager.getInstance();
     styleManager.addItems(usbStick);
-
-    textBuffer = new StringBuilder();
-
+    // creating new timeline
     timeline = new Timeline(new KeyFrame(Duration.seconds(0.6), e -> updateLabel()));
     timeline.setCycleCount(Timeline.INDEFINITE);
-
+    // setting chat message
     ChatMessage msg =
         new ChatMessage(
             "user",
@@ -88,94 +81,92 @@ public class ComputerController extends Controller {
 
   // exit computer view back to security room
   @FXML
-  void onGoBack(ActionEvent event) {
+  private void onGoBack(ActionEvent event) {
     App.setUI(Scenes.SECURITY);
   }
 
   @FXML
-  public ChatMessage getRiddle() {
+  private ChatMessage getRiddle() {
+    // setting new chat completion request
     try {
       chatCompletionRequest =
           new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(1).setMaxTokens(256);
-
+      // getting riddle for computer ai
       ChatMessage response =
           runGpt(new ChatMessage("assistant", GptPromptEngineering.getRiddleWithGivenWord()));
 
       return response;
     } catch (ApiProxyException e) {
-      // TODO handle exception appropriately
       e.printStackTrace();
     }
     return null;
   }
 
   @FXML
-  public ChatMessage startAuthentication() {
+  private ChatMessage startAuthentication() {
     try {
       // Add logging here to trace the flow and variable values
       chatCompletionRequest =
           new ChatCompletionRequest().setN(1).setTemperature(0.4).setTopP(1).setMaxTokens(256);
       System.out.println("Starting Authentication...");
       ChatMessage response =
-          runGpt(new ChatMessage("user", GptPromptEngineering.initiliseComputerAI()));
+          runGpt(new ChatMessage("user", GptPromptEngineering.initiliseComputer()));
       messageQueue.add(response);
       // Add more logging to check response and its properties
       System.out.println("Authentication Response: " + response);
-
+      // return what computer ai says
       return response;
-
     } catch (ApiProxyException e) {
-      // TODO handle exception appropriately
       e.printStackTrace();
     }
     return null;
   }
 
   @FXML
-  public void onSend(ActionEvent event) throws ApiProxyException, IOException {
-
+  private void onSend(ActionEvent event) throws ApiProxyException, IOException {
+    // creating new task for the thread
     Task<Void> task =
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
             securityTextArea.appendText("\n");
-
+            // getting the message the user inputs
             String message = inputTextField.getText();
             ChatMessage msg = new ChatMessage("user", message);
             messageQueue.add(msg);
             inputTextField.clear();
             appendChatMessage();
-
+            // setting relevant methods
             Platform.runLater(
                 () -> {
                   timeline.play();
                 });
 
+            // if the message is yes, then start the authentication process
             if (message.trim().equalsIgnoreCase("yes")) {
               lastMsg = getRiddle();
               System.out.println("message recived");
               messageQueue.add(lastMsg);
-
+              // else
             } else {
               lastMsg = runGpt(msg);
               messageQueue.add(lastMsg);
             }
-
+            // if input is empty then return null
             if (message.trim().isEmpty()) {
               return null;
             }
-
-            // appendChatMessage(msg);
-
+            // if the message is correct then increment the number of messages correct
             if (lastMsg.getRole().equals("assistant") && lastMsg.getContent().startsWith("Correct")
                 || lastMsg.getContent().startsWith("correct")) {
-              msg = startAuthentication();
+              startAuthentication();
             }
-
+            // if the computer authenticates access
             if (lastMsg.getRole().equals("assistant")
                 && lastMsg.getContent().contains("security")) {
-              walkieTalkieManager.toggleWalkieTalkie();
+              WalkieTalkieManager.toggleWalkieTalkie();
               walkieTalkieManager.setWalkieTalkieText(
+                  // setting the walkie talkie text when firewall disabled
                   new ChatMessage(
                       "user", "FireWall Disabled, you can now see what is behind each vault door"));
 
@@ -190,8 +181,9 @@ public class ComputerController extends Controller {
 
             } else if (lastMsg.getRole().equals("assistant")
                 && lastMsg.getContent().startsWith("Authenticated")) {
-
-              walkieTalkieManager.toggleWalkieTalkie();
+              System.out.println("Authenticated");
+              // setting the walkie talkie text when firewall disabled
+              WalkieTalkieManager.toggleWalkieTalkie();
               walkieTalkieManager.setWalkieTalkieText(
                   new ChatMessage(
                       "user", "FireWall Disabled, you can now see what is behind each vault door"));
@@ -205,14 +197,15 @@ public class ComputerController extends Controller {
               GameManager.completeObjective();
             }
 
+            // when authentication fails
             if (lastMsg.getRole().equals("assistant")
                 && lastMsg.getContent().contains("Authentication failed")) {
-              numberOfMessagesCorrect = 0;
+              System.out.println("authetication failed");
 
               startConnectDots();
               // Logic to start connect dots mini game
             }
-
+            // handle relevant methods
             Platform.runLater(
                 () -> {
                   processingLabel.setText("");
@@ -224,35 +217,41 @@ public class ComputerController extends Controller {
           }
         };
 
+    // thread for the task
     Thread searchThreadDave = new Thread(task, "Search Thread Bob");
     searchThreadDave.start();
   }
 
-  public void onSwitchToHacker() {
+  @FXML
+  private void onSwitchToHacker() {
+    // switch mechanic to hacker van
     SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.COMPUTER);
     App.setUI(Scenes.HACKERVAN);
   }
 
   private void updateLabel() {
+    // update label for the processing label
     dotCount = (dotCount % 3) + 1; // Cycle dots from 1 to 3
     String dots = ".".repeat(dotCount); // Generate dots
     processingLabel.setText("Processing" + dots);
   }
 
-  //   handling mouse events on walkie talkie
-  //   open and closes when walkie talkie is clicked
+  // Handling mouse events on walkie talkie
+  // Opens and closes when walkie talkie is clicked
   @FXML
-  void onWalkieTalkie(MouseEvent event) {
+  private void onWalkieTalkie(MouseEvent event) {
     WalkieTalkieManager.toggleWalkieTalkie();
   }
 
   @FXML
   private void startConnectDots() {
-    walkieTalkieManager.toggleWalkieTalkie();
+    // setting the walkie talkie text on when they fail all three riddles
+    WalkieTalkieManager.toggleWalkieTalkie();
     walkieTalkieManager.setWalkieTalkieText(
         new ChatMessage(
             "user", "Authentication failed, plug in the usbstick to bypass the firewall"));
 
+    // set the second authentication method to visible
     usbStick.setVisible(true);
     styleManager.setClueHover("usbStick", true);
   }
@@ -263,16 +262,20 @@ public class ComputerController extends Controller {
   }
 
   private void appendChatMessage() {
+    // if the message queue is not empty then append the chat message
     if (!messageQueue.isEmpty()) {
       ChatMessage nextMessage = messageQueue.poll();
       String content = nextMessage.getContent();
 
+      // Add typing effect (delay)
       int delay = 30; // Adjust this value to control the typing speed (in milliseconds)
 
+      // create new task for the thread
       Task<Void> task =
           new Task<Void>() {
             @Override
             protected Void call() throws Exception {
+              // Perform typing operations here
               for (int i = 0; i < content.length(); i++) {
                 char c = content.charAt(i);
                 Platform.runLater(
@@ -293,6 +296,7 @@ public class ComputerController extends Controller {
             }
           };
 
+      // creating new thread for the task
       Thread typingThread = new Thread(task);
       typingThread.setDaemon(true);
       typingThread.start();
@@ -307,15 +311,16 @@ public class ComputerController extends Controller {
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   public ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
+    // add message to the chat completion request
     chatCompletionRequest.addMessage(msg);
     try {
+      // execute the chat completion request
       ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
       Choice result = chatCompletionResult.getChoices().iterator().next();
       chatCompletionRequest.addMessage(result.getChatMessage());
-
+      // return the response chat message from ai
       return result.getChatMessage();
     } catch (ApiProxyException e) {
-      // TODO handle exception appropriately
       e.printStackTrace();
       return null;
     }

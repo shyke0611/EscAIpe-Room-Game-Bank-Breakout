@@ -4,7 +4,11 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -205,49 +209,49 @@ public class SecurityController extends Controller {
     loginMsgLbl.setTextFill(Color.RED);
   }
 
-  // Invoke Hacker AI when the Enter key is pressed
   @FXML
-  private void invokeHackerAI(KeyEvent event) throws ApiProxyException {
-
+  private void onInvokeHacker(KeyEvent event) throws ApiProxyException {
+    // Check if the Enter key is pressed and the Walkie-Talkie is open
     if (event.getCode() == KeyCode.ENTER && walkieTalkieManager.isWalkieTalkieOpen()) {
-
-      Task<Void> aiTask2 =
+      // Start the typing animation
+      walkieTalkieManager.startAnimation();
+      // Create a background task for AI processing
+      Task<Void> aiTask3 =
           new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-              walkieTalkieManager.startAnimation();
               // Perform AI-related operations here
+              // Create a ChatMessage from the user's input
               ChatMessage msg = new ChatMessage("user", securityInputField.getText());
+              // Add the user's input to the chat history managed by the hackerAiManager
               hackerAiManager.addChatHistory(msg.getContent());
               walkieTalkieManager.clearWalkieTalkie();
-
+              // Process the user's input with the hackerAiManager and get a response
               ChatMessage response = hackerAiManager.processInput(msg);
               hackerAiManager.addChatHistory(response.getContent());
-
-              // Move this code here to use the `response` variable within the call method
+              // Use Platform.runLater to update the UI on the JavaFX Application Thread
               Platform.runLater(
                   () -> {
                     walkieTalkieManager.setWalkieTalkieText(response);
-
                     securityInputField.clear();
                     walkieTalkieManager.stopAnimation();
                   });
-
               return null;
             }
           };
-
-      Thread aiThread2 = new Thread(aiTask2);
-      aiThread2.setDaemon(true);
-      aiThread2.start();
+      // Create a new thread for the AI task and start it
+      Thread aiThread3 = new Thread(aiTask3);
+      aiThread3.setDaemon(true);
+      aiThread3.start();
     }
   }
 
-  // Display a quick hint when the hint button is clicked
   @FXML
   private void onQuickHint(ActionEvent event) {
-    String hint = hackerAiManager.GetQuickHint();
+    // Get a quick hint from the hackerAiManager
+    String hint = hackerAiManager.getQuickHint();
     hackerAiManager.storeQuickHint();
+    // Set the Walkie-Talkie text to the hint
     walkieTalkieManager.setWalkieTalkieText(new ChatMessage("user", hint));
   }
 }
