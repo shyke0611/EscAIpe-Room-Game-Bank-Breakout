@@ -98,15 +98,19 @@ public class ChemicalMixingController extends Controller {
     image.setStyle("-fx-cursor: hand;");
 
     // Setting the current vile label and saving current clicked colour
+    // this is for yellow vile
     if (image.getId().equals("yellowVile")) {
       currentVile.setText("Yellow Vile");
       vileColour = "yellow";
+      // this is for red vile
     } else if (image.getId().equals("redVile")) {
       currentVile.setText("Red Vile");
       vileColour = "red";
+      // this is for blue vile
     } else if (image.getId().equals("blueVile")) {
       currentVile.setText("Blue Vile");
       vileColour = "blue";
+      // this is for green vile
     } else if (image.getId().equals("greenVile")) {
       currentVile.setText("Green Vile");
       vileColour = "green";
@@ -126,24 +130,28 @@ public class ChemicalMixingController extends Controller {
 
           // Ugly code to determine if user was correct, please help refactor if you know a better
           // wayy
+          // filling beaker for yellow
           if (vileColour == "yellow" && value == Integer.parseInt(randomYellow)) {
             value = 1;
             pourCount++;
             fillBeaker(value, pourCount);
             yellowVile.setDisable(true);
             yellowVile.setOpacity(0.5);
+            // filling beaker for red
           } else if (vileColour == "red" && value == Integer.parseInt(randomRed)) {
             value = 2;
             pourCount++;
             fillBeaker(value, pourCount);
             redVile.setDisable(true);
             redVile.setOpacity(0.5);
+            // filling beaker for blue
           } else if (vileColour == "blue" && value == Integer.parseInt(randomBlue)) {
             value = 3;
             pourCount++;
             fillBeaker(value, pourCount);
             blueVile.setDisable(true);
             blueVile.setOpacity(0.5);
+            // filling beaker for green
           } else if (vileColour == "green" && value == Integer.parseInt(randomGreen)) {
             value = 4;
             pourCount++;
@@ -151,6 +159,7 @@ public class ChemicalMixingController extends Controller {
             greenVile.setDisable(true);
             greenVile.setOpacity(0.5);
           } else {
+            // setting properties to the viles and buttons
             retryButton.setDisable(false);
             yellowVile.setDisable(true);
             redVile.setDisable(true);
@@ -173,7 +182,9 @@ public class ChemicalMixingController extends Controller {
   private void fillBeaker(int value, int pourCount) {
 
     // More ugly code to determine which rectangle to fill and what colour
+
     Paint currentColour;
+    // setting paint colour ro the rectangles in beaker
     if (value == 1) {
       currentColour = Paint.valueOf("#ffd45e");
     } else if (value == 2) {
@@ -184,16 +195,20 @@ public class ChemicalMixingController extends Controller {
       currentColour = Paint.valueOf("#34f86f");
     }
 
+     // setting paint colour for the first vile selected
     if (pourCount == 1) {
       firstPour.setVisible(true);
       firstPour.setFill(currentColour);
       whiteRectangle.setVisible(true);
+       // setting paint colour for the second vile selected
     } else if (pourCount == 2) {
       secondPour.setVisible(true);
       secondPour.setFill(currentColour);
+       // setting paint colour for the third vile selected
     } else if (pourCount == 3) {
       thirdPour.setVisible(true);
       thirdPour.setFill(currentColour);
+       // setting paint colour for the last vile selected
     } else if (pourCount == 4) {
       fourthPour.setVisible(true);
       fourthPour.setFill(currentColour);
@@ -233,7 +248,6 @@ public class ChemicalMixingController extends Controller {
     secondPour.setVisible(false);
     thirdPour.setVisible(false);
     fourthPour.setVisible(false);
-
     // Reset all the viles
     yellowVile.setDisable(false);
     yellowVile.setOpacity(1);
@@ -243,12 +257,10 @@ public class ChemicalMixingController extends Controller {
     blueVile.setOpacity(1);
     greenVile.setDisable(false);
     greenVile.setOpacity(1);
-
     // Clear the vileColour
     vileColour = null;
     retryButton.setDisable(true);
     currentVile.setText("Pick a vile");
-
     // Resume the slider animation
     if (!sliderMoving) {
       sliderAnimation.play();
@@ -259,6 +271,7 @@ public class ChemicalMixingController extends Controller {
   /** stops or resumes the slider animation when the "Stop" button is pressed. */
   @FXML
   private void onStopSlider() {
+    // stopping slider animation
     if (sliderAnimation != null && sliderAnimation.getStatus() == Timeline.Status.RUNNING) {
       sliderAnimation.pause();
       sliderMoving = false;
@@ -273,11 +286,12 @@ public class ChemicalMixingController extends Controller {
    * amounts on the labels.
    */
   private void initializeRecipe() {
+    // initialising the random amounts of chemicals
     randomYellow = RandomnessGenerate.getRandomChemicalAmount();
     randomRed = RandomnessGenerate.getRandomChemicalAmount();
     randomBlue = RandomnessGenerate.getRandomChemicalAmount();
     randomGreen = RandomnessGenerate.getRandomChemicalAmount();
-
+    // setting the text for the viles
     yellowParts.setText("Yellow: " + randomYellow);
     redParts.setText("Red: " + randomRed);
     blueParts.setText("Blue: " + randomBlue);

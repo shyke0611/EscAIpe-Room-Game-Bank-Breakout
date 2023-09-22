@@ -302,46 +302,47 @@ public class LobbyController extends Controller {
 
   @FXML
   private void onInvokeHacker(KeyEvent event) throws ApiProxyException {
-
+    // Check if the Enter key is pressed and the Walkie-Talkie is open
     if (event.getCode() == KeyCode.ENTER && walkieTalkieManager.isWalkieTalkieOpen()) {
-      System.out.println(lobbyTextInput.getText());
-
-      Task<Void> aiTask =
+      // Start the typing animation
+      walkieTalkieManager.startAnimation();
+      // Create a background task for AI processing
+      Task<Void> aiTask3 =
           new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-              walkieTalkieManager.startAnimation();
               // Perform AI-related operations here
+              // Create a ChatMessage from the user's input
               ChatMessage msg = new ChatMessage("user", lobbyTextInput.getText());
+              // Add the user's input to the chat history managed by the hackerAiManager
               hackerAiManager.addChatHistory(msg.getContent());
               walkieTalkieManager.clearWalkieTalkie();
-
-              ChatMessage responce = hackerAiManager.processInput(msg);
-              hackerAiManager.addChatHistory(responce.getContent());
-
-              // Move this code here to use the `responce` variable within the call method
-
+              // Process the user's input with the hackerAiManager and get a response
+              ChatMessage response = hackerAiManager.processInput(msg);
+              hackerAiManager.addChatHistory(response.getContent());
+              // Use Platform.runLater to update the UI on the JavaFX Application Thread
               Platform.runLater(
                   () -> {
-                    walkieTalkieManager.setWalkieTalkieText(responce);
-
+                    walkieTalkieManager.setWalkieTalkieText(response);
                     lobbyTextInput.clear();
                     walkieTalkieManager.stopAnimation();
                   });
               return null;
             }
           };
-
-      Thread aiThread = new Thread(aiTask);
-      aiThread.setDaemon(true);
-      aiThread.start();
+      // Create a new thread for the AI task and start it
+      Thread aiThread3 = new Thread(aiTask3);
+      aiThread3.setDaemon(true);
+      aiThread3.start();
     }
   }
 
   @FXML
   private void onQuickHint(ActionEvent event) {
-    String hint = hackerAiManager.GetQuickHint();
+    // Get a quick hint from the hackerAiManager
+    String hint = hackerAiManager.getQuickHint();
     hackerAiManager.storeQuickHint();
+    // Set the Walkie-Talkie text to the hint
     walkieTalkieManager.setWalkieTalkieText(new ChatMessage("user", hint));
   }
 }

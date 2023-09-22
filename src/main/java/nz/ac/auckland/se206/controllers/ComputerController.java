@@ -218,7 +218,7 @@ public class ComputerController extends Controller {
     processingLabel.setText("Processing" + dots);
   }
 
-   // Handling mouse events on walkie talkie
+  // Handling mouse events on walkie talkie
   // Opens and closes when walkie talkie is clicked
   @FXML
   private void onWalkieTalkie(MouseEvent event) {
