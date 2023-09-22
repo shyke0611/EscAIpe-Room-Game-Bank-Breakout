@@ -67,7 +67,7 @@ public class App extends Application {
     RandomnessGenerate.generateRandomGameComponents();
 
     HackerAiManager hackerAiManager = HackerAiManager.getInstance();
-    hackerAiManager.initialiseHackerAi(Difficulties.EASY);
+    hackerAiManager.initialiseHackerAi(Difficulties.MEDIUM);
     GameManager.completeObjective();
 
     chatCompletionRequest =
