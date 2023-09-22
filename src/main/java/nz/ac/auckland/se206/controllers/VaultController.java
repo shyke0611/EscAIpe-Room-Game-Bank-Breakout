@@ -143,6 +143,7 @@ public class VaultController extends Controller {
     AnimationManager.slideDoorsAnimation(doorHolder);
     AnimationManager.slideDoorsAnimation(vaultbackground);
     AnimationManager.slideDoorsAnimation(slidePane);
+    GameManager.completeObjective();
     // timerClock.setTranslateX(350);
     bomblogo.setVisible(false);
     bombHolder.setDisable(true);
@@ -154,6 +155,7 @@ public class VaultController extends Controller {
   @FXML
   private void onBombPlaced(MouseEvent event) {
     if (!GameState.isBombActivated) {
+      GameManager.completeObjective();
       bombPuzzle.setVisible(true);
     }
   }
@@ -171,6 +173,7 @@ public class VaultController extends Controller {
   @FXML
   private void onSwitchToEyeScanner() {
     if (GameState.isFirewallDisabled /* && GameState.isSecondRiddleSolved*/) {
+      GameManager.completeObjective();
       App.setUI(Scenes.EYESCANNER);
       GameState.isEyeScannerEntered = true;
       styleManager.setItemsMessage("Get guard eye colour", "guardeyes");
@@ -180,7 +183,8 @@ public class VaultController extends Controller {
 
   @FXML
   private void onSwitchToChemicalMixing() {
-    if (GameState.isFirewallDisabled /* && GameState.isThirdRiddleSolved*/) {
+    if (GameState.isFirewallDisabled && GameState.isThirdRiddleSolved) {
+      GameManager.completeObjective();
       App.setUI(Scenes.CHEMICALMIXING);
     }
   }
@@ -191,6 +195,7 @@ public class VaultController extends Controller {
       App.textToSpeech("Alarm Triggered, Go and Disable it");
       StyleManager.setAlarm(true);
       GameState.isAlarmTripped = true;
+      GameManager.completeObjective();
       styleManager.setItemsState(HoverColour.GREEN, "electricityBox");
       styleManager.setItemsState(HoverColour.GREEN, "guardpocket");
       styleManager.setItemsMessage("Something seems odd?", "guardpocket");
@@ -202,7 +207,8 @@ public class VaultController extends Controller {
 
   @FXML
   private void onLaserCuttingScene() {
-    if (GameState.isFirewallDisabled /*&& GameState.isFirstRiddleSolved*/) {
+    if (GameState.isFirewallDisabled) {
+      GameManager.completeObjective();
       App.setUI(Scenes.LASERCUTTING);
     }
   }

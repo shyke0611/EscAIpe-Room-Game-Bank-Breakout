@@ -169,6 +169,7 @@ public class EyeScannerController extends Controller {
       accessDenied.setVisible(false);
       GameState.isEyeScannerBypassed = true;
       // $20 Million
+      GameManager.completeObjective();
       GameManager.increaseMoneyToGain(20000000);
     } else {
       accessGranted.setVisible(false);

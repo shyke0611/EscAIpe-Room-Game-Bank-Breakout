@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -216,6 +215,7 @@ public class ChemicalMixingController extends Controller {
 
     continueBtn.setVisible(true);
     winLabel.setVisible(true);
+    GameManager.completeObjective();
     // $5 Million
     GameManager.increaseMoneyToGain(5000000);
   }
