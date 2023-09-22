@@ -200,7 +200,7 @@ public class ComputerController extends Controller {
               styleManager.getItem("silverDoor").setStyle("");
               styleManager.getItem("bronzeDoor").setStyle("");
               styleManager.removeItemsMessage("goldDoor", "silverDoor", "bronzeDoor");
-              styleManager.setItemsState(HoverColour.GREEN, "goldDoor", "silverDoor", "bronzeDoor");
+              styleManager.setItemsState(HoverColour.GREEN, "silverDoor", "bronzeDoor");
               GameState.isFirewallDisabled = true;
               GameManager.completeObjective();
             }

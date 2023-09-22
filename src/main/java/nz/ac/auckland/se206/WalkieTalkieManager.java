@@ -126,7 +126,7 @@ public class WalkieTalkieManager {
 
   public void setHintText(String hintCount) {
     for (Label label : walkieTalkieHints.values()) {
-      System.out.println(hintCount);
+
       label.setText(hintCount);
     }
   }
