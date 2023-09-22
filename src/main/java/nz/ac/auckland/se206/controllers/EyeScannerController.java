@@ -164,10 +164,12 @@ public class EyeScannerController extends Controller {
     if (isColourMatch(red, guardRed)
         && isColourMatch(green, guardGreen)
         && isColourMatch(blue, guardBlue)) {
+      // access granted if match found
       accessGranted.setVisible(true);
       accessDenied.setVisible(false);
       GameState.isEyeScannerBypassed = true;
-      // setting money earnt
+      // $20 Million
+      GameManager.completeObjective();
       GameManager.increaseMoneyToGain(20000000);
     } else {
       accessGranted.setVisible(false);

@@ -26,9 +26,7 @@ public class SceneManager {
 
   private static Controller activeController;
   private static HashMap<Scenes, Controller> controllerMap = new HashMap<>();
-
   private static HashMap<Scenes, Parent> sceneMap = new HashMap<>();
-
   private static HashMap<Scenes, Scenes> previousSceneMap = new HashMap<>();
 
   // Method to set the previous scene for a given current scene

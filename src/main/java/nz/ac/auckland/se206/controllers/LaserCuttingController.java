@@ -188,6 +188,7 @@ private void draw(MouseEvent event) {
         GameState.isLaserCuttingBypassed = true;
         // $10 Million
         GameManager.increaseMoneyToGain(10000000);
+        GameManager.completeObjective();
         // updateMoneyStolen(5000000);
         points.clear();
         angles.clear();
