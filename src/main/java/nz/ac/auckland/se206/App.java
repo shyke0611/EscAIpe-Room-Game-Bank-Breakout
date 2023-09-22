@@ -132,7 +132,7 @@ public class App extends Application {
     loadAllScenes();
 
     // DONT DELETE, ensures object starts on find keys which is important for ai to work
-    GameManager.completeObjective();
+    // GameManager.completeObjective();
 
     Parent root = SceneManager.getUiRoot(Scenes.MAIN_MENU);
 

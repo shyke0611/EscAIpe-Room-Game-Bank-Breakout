@@ -126,11 +126,11 @@ public class VaultController extends Controller {
     styleManager.setItemsMessage("set bomb down", "exitHolder");
     styleManager.setItemsMessage("escape", "escapeDoor");
     styleManager.setItemsMessage("activate bomb", "bombHolder");
-    styleManager.setItemsMessage(
-        "Need to disable firewall from blocking us",
-        "bronzeDoorHolder",
-        "silverDoorHolder",
-        "goldDoorHolder");
+    // //styleManager.setItemsMessage(
+    //     "Need to disable firewall from blocking us",
+    //     "bronzeDoorHolder",
+    //     "silverDoorHolder",
+    //     "goldDoorHolder");
   }
 
   public void showMoneyCollected() {
@@ -184,7 +184,7 @@ public class VaultController extends Controller {
   @FXML
   private void onSwitchToEyeScanner() {
     // when firewall is disabled execute
-    if (GameState.isFirewallDisabled /* && GameState.isSecondRiddleSolved*/) {
+    if (GameState.isFirewallDisabled && GameState.isSecondRiddleSolved) {
       GameManager.completeObjective();
       App.setUI(Scenes.EYESCANNER);
       GameState.isEyeScannerEntered = true;
@@ -197,7 +197,7 @@ public class VaultController extends Controller {
   @FXML
   private void onSwitchToChemicalMixing() {
     // when firewall is disabled execute
-    if (GameState.isFirewallDisabled && GameState.isThirdRiddleSolved) {
+    if (GameState.isFirewallDisabled) {
       GameManager.completeObjective();
       App.setUI(Scenes.CHEMICALMIXING);
     }

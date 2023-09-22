@@ -23,6 +23,7 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
+import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
@@ -162,20 +163,23 @@ public class ComputerController extends Controller {
             }
             // if the computer authenticates access
             if (lastMsg.getRole().equals("assistant")
-                && lastMsg.getContent().startsWith("Authenticated")
                 && lastMsg.getContent().contains("security")) {
               WalkieTalkieManager.toggleWalkieTalkie();
               walkieTalkieManager.setWalkieTalkieText(
                   // setting the walkie talkie text when firewall disabled
                   new ChatMessage(
                       "user", "FireWall Disabled, you can now see what is behind each vault door"));
-              // Higer security level granted
-              // set access to hard door
-              GameState.isThirdRiddleSolved = true;
-            }
 
-            // if the computer authenticates access
-            if (lastMsg.getRole().equals("assistant")
+              styleManager.getItem("goldDoor").setStyle("");
+              styleManager.getItem("silverDoor").setStyle("");
+              styleManager.getItem("bronzeDoor").setStyle("");
+              styleManager.removeItemsMessage("goldDoor", "silverDoor", "bronzeDoor");
+              styleManager.setItemsState(HoverColour.GREEN, "goldDoor", "silverDoor", "bronzeDoor");
+
+              GameState.isFirewallDisabled = true;
+              GameState.isSecondRiddleSolved = true;
+
+            } else if (lastMsg.getRole().equals("assistant")
                 && lastMsg.getContent().startsWith("Authenticated")) {
               System.out.println("Authenticated");
               // setting the walkie talkie text when firewall disabled
@@ -184,6 +188,12 @@ public class ComputerController extends Controller {
                   new ChatMessage(
                       "user", "FireWall Disabled, you can now see what is behind each vault door"));
 
+              styleManager.getItem("goldDoor").setStyle("");
+              styleManager.getItem("silverDoor").setStyle("");
+              styleManager.getItem("bronzeDoor").setStyle("");
+              styleManager.removeItemsMessage("goldDoor", "silverDoor", "bronzeDoor");
+              styleManager.setItemsState(HoverColour.GREEN, "silverDoor", "bronzeDoor");
+              GameState.isFirewallDisabled = true;
               GameManager.completeObjective();
             }
 
@@ -191,6 +201,7 @@ public class ComputerController extends Controller {
             if (lastMsg.getRole().equals("assistant")
                 && lastMsg.getContent().contains("Authentication failed")) {
               System.out.println("authetication failed");
+
               startConnectDots();
               // Logic to start connect dots mini game
             }

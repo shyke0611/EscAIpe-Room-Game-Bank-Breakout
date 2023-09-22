@@ -104,7 +104,7 @@ public class HackerAiManager {
         setHintLimit(-1);
         hintCounter = -1;
         chatCompletionRequest =
-            new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(1).setMaxTokens(100);
+            new ChatCompletionRequest().setN(1).setTemperature(0.35).setTopP(1).setMaxTokens(100);
         runGpt(new ChatMessage("user", GptPromptEngineering.initisialiseHackerEasy()));
         break;
 
@@ -114,8 +114,8 @@ public class HackerAiManager {
         hintCounter = 5;
         currentDifficulty = Difficulties.MEDIUM;
         chatCompletionRequest =
-            new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(1).setMaxTokens(100);
-        runGpt(new ChatMessage("user", GptPromptEngineering.intisialiseHackerMeidium()));
+            new ChatCompletionRequest().setN(1).setTemperature(0.35).setTopP(1).setMaxTokens(100);
+        runGpt(new ChatMessage("user", GptPromptEngineering.intisialiseHackerHard()));
         break;
 
         // Initialise the ai for the hard difficulty
@@ -245,8 +245,11 @@ public class HackerAiManager {
       hint = getHintForCurrentStage(currentStage);
       tellAiContext = new ChatMessage("user", "Context:" + contextMappsing.get(currentStage));
       tellAiHint = new ChatMessage("user", "the current hint for stage is " + hint);
-      runGpt(tellAiHint);
-      runGpt(tellAiContext);
+      ChatMessage gptCall =
+          new ChatMessage("user", tellAiHint.getContent() + tellAiContext.getContent());
+
+      runGpt(gptCall);
+
       response = runGpt(msg);
 
     } else {
