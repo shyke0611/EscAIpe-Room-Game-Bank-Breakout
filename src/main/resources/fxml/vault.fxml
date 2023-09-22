@@ -330,7 +330,7 @@
             <DropShadow height="29.84" radius="10.735" spread="0.2" width="15.1" />
          </effect>
       </VBox>
-      <StackPane fx:id="timerClock" layoutX="460.0" layoutY="41.0" prefHeight="72.0" prefWidth="99.0">
+      <StackPane fx:id="timerClock" layoutX="460.0" layoutY="47.0" prefHeight="64.0" prefWidth="118.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#888d7d" height="64.0" stroke="BLACK" strokeType="INSIDE" width="99.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a7ab3d" height="52.0" stroke="BLACK" strokeType="INSIDE" width="79.0" />
