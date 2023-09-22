@@ -176,7 +176,7 @@ public class LobbyController extends Controller {
       StringBuilder wireNames = new StringBuilder();
 
       for (HBox wire : wires) {
-        String name = wire.getId();
+        String name = getWireLabel(wire);
         wireNames.append(name).append(" \n");
       }
       if (wireNames.length() > 0) {
@@ -185,7 +185,9 @@ public class LobbyController extends Controller {
 
       usernameLbl.setText(null);
       passwordLbl.setText(null);
+
       orderLabel.setText(wireNames.toString());
+
       orderLabel.setVisible(true);
       styleManager.getItem("wirecuttingorderLbl").setVisible(false);
       titleLbl.setText("Wire Cutting Order");
@@ -193,6 +195,20 @@ public class LobbyController extends Controller {
       GameState.isWireCredentialsFound = true;
       titleLbl.setPrefHeight(35);
     }
+  }
+
+  public String getWireLabel(Node wire) {
+    String name = wire.getId();
+    if (name.startsWith("red")) {
+      name = "red wire";
+    } else if (name.startsWith("blue")) {
+      name = "blue wire";
+    } else if (name.startsWith("yellow")) {
+      name = "yellow wire";
+    } else {
+      name = "green wire";
+    }
+    return name;
   }
 
   @FXML
