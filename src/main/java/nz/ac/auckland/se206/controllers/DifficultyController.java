@@ -1,5 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.IOException;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,10 +12,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameManager;
+import nz.ac.auckland.se206.HackerAiManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.TimerControl;
 import nz.ac.auckland.se206.difficulties.Difficulty.Difficulties;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /** Controller class for the Difficulty Selection scene. */
 public class DifficultyController extends Controller {
@@ -38,7 +42,8 @@ public class DifficultyController extends Controller {
   private boolean hardVboxClicked = false;
   private Difficulties difficulty;
   private boolean difficultySelected = false;
-
+  private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
+  
   /**
    * Initialize the Difficulty Selection controller. It sets the controller for the Difficulty
    * Selection scene.
@@ -97,18 +102,38 @@ public class DifficultyController extends Controller {
       handleDifficultySelection(easyVbox, easyAlarmImage, "Easy");
       easyVboxClicked = true;
       difficulty = Difficulties.EASY;
+      initialiseHacker(difficulty);
+
+      GameManager.completeObjective();
     } else if (event.getSource() == mediumVbox) {
       handleDifficultySelection(mediumVbox, mediumAlarmImage, "Medium");
       mediumVboxClicked = true;
       difficulty = Difficulties.MEDIUM;
+      initialiseHacker(difficulty);
     } else {
       handleDifficultySelection(hardVbox, hardAlarmImage, "Hard");
       hardVboxClicked = true;
       difficulty = Difficulties.HARD;
+      initialiseHacker(difficulty);
     }
   }
 
-  /**
+  public void initialiseHacker(Difficulties difficulties) {
+    Task<Void> aiTask3 =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            hackerAiManager.initialiseHackerAi(difficulties);
+            return null;
+          }
+        };
+
+    Thread aiThread3 = new Thread(aiTask3);
+    aiThread3.setDaemon(true);
+    aiThread3.start();
+  }
+
+   /**
    * Handle the slider value change event. When the slider changes values to set the timer, the
    * timer value is shown in the text label.
    *

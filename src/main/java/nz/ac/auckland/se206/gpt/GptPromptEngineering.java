@@ -16,6 +16,7 @@ public class GptPromptEngineering {
   }
 
   public static String initiliseComputerAI() {
+    // Provide the initial context for the AI and the authorisation questions
     return "You are a sentient computer ai security system for Loreum Ipsum bank. Start with your"
         + " message with: Now that you've proven you're human, let's begin authentication."
         + " Next  ask 3 questions: 1. What year was this bank founded? Question 2. What is"
@@ -25,15 +26,8 @@ public class GptPromptEngineering {
         + " Authenticated, if the user gets them all wrong say: Authentication failed";
   }
 
-  public static String welcomeMessage() {
-    return "You are part of a bank heist escape room game application, your job is to act as though"
-        + " you are a sentient AI security system of the bank, the name of the bank is"
-        + " Loreum Ipsum. Please print a short, one-sentence welcome message to the user and"
-        + " tell them to type yes if they are ready to start the authentication process";
-  }
-
   public static String initisialiseHackerAiEasy() {
-
+    // Context, hint, and limits
     return "You are part of a bank heist game built in Java fx, you do not need to say anything to"
         + " begin, only reply when the user asks you something. you are playing the role of"
         + " the mysterious hacker friend in the van, Your responses should sound as though"
@@ -47,6 +41,7 @@ public class GptPromptEngineering {
   }
 
   public static String intisialiseHackerAiMeidium() {
+    // Context, hint, and limits
     return "You are part of a bank heist game built in Java fx, you do not need to say anything to"
         + " begin, only reply when the user asks you something. you are playing the role of"
         + " the mysterious hacker friend in the van, Your responses should sound as though"
@@ -59,6 +54,7 @@ public class GptPromptEngineering {
   }
 
   public static String intisialiseHackerAiHard() {
+    // Context, hint, and limits
     return "You are part of a bank heist game built in Java fx, you do not need to say anything to"
         + " begin, only reply when the user asks you something. you are playing the role of"
         + " the mysterious hacker friend in the van, Your responses should sound as though"
