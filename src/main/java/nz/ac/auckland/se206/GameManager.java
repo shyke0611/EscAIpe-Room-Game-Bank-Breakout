@@ -1,8 +1,11 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
-import nz.ac.auckland.se206.difficulties.*;
+import nz.ac.auckland.se206.difficulties.Difficulty;
 import nz.ac.auckland.se206.difficulties.Difficulty.Difficulties;
+import nz.ac.auckland.se206.difficulties.EasyDifficulty;
+import nz.ac.auckland.se206.difficulties.HardDifficulty;
+import nz.ac.auckland.se206.difficulties.MediumDifficulty;
 
 public class GameManager {
 
@@ -262,6 +265,8 @@ public class GameManager {
           return "Cut Through Lasers";
         } else if (activeDoorObjective == DoorObjectives.EYE_SCANNER) {
           return "Scan Eye";
+        } else {
+          return null;
         }
 
       case ALARM_TRIPPED:

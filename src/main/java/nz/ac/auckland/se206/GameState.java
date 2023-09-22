@@ -37,6 +37,7 @@ public class GameState {
   public static boolean isElectricityHoverPressed = false;
 
   public static void resetGameState() {
+    // Reset initial flow variables
     isRiddleResolved = false;
     isKeyFound = false;
     isSecurityComputerLoggedIn = false;
@@ -50,6 +51,7 @@ public class GameState {
     isSecondRiddleSolved = false;
     isThirdRiddleSolved = false;
     isSecondUserAuthenticated = false;
+    // Reset minigame variables
     isBombActivated = false;
     isEyeScannerBypassed = false;
     isChemicalMixingBypassed = false;
@@ -58,6 +60,7 @@ public class GameState {
     isConnectDotreached = false;
     isCredentialsFound = false;
     isWireCredentialsFound = false;
+    // Reset tracking record of green hover
     isComputerHoverPressed = false;
     isSecurityRoomHoverPressed = false;
     isGuardPocketHoverPressed = false;

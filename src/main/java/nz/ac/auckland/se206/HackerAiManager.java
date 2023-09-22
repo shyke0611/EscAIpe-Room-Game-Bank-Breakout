@@ -27,7 +27,7 @@ public class HackerAiManager {
 
   private int hintNumber = 1; // Hint number for hint history
   private ChatMessage response;
-  private ChatMessage tellAIHint;
+  private ChatMessage tellAiHint;
   private String currentStage;
   private String hint;
   private ChatMessage tellAIContext;
@@ -97,7 +97,10 @@ public class HackerAiManager {
 
   public void initialiseHackerAi(Difficulties difficulty) throws ApiProxyException {
 
+    // Initialise the ai based on the difficulty
     switch (difficulty) {
+
+        // Initialise the ai for the easy difficulty
       case EASY:
         currentDifficulty = Difficulties.EASY;
         setHintLimit(-1);
@@ -105,8 +108,9 @@ public class HackerAiManager {
         chatCompletionRequest =
             new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(1).setMaxTokens(100);
         runGpt(new ChatMessage("user", GptPromptEngineering.initisialiseHackerAiEasy()));
-
         break;
+
+        // Initialise the ai for the medium difficulty
       case MEDIUM:
         setHintLimit(5);
         hintCounter = 5;
@@ -114,8 +118,9 @@ public class HackerAiManager {
         chatCompletionRequest =
             new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(1).setMaxTokens(100);
         runGpt(new ChatMessage("user", GptPromptEngineering.intisialiseHackerAiMeidium()));
-
         break;
+
+        // Initialise the ai for the hard difficulty
       case HARD:
         setHintLimit(0);
         hintCounter = -1;
@@ -219,9 +224,9 @@ public class HackerAiManager {
       currentStage = GameManager.getObjectiveString();
       hint = getHintForCurrentStage(currentStage);
       tellAIContext = new ChatMessage("user", "Context:" + contextMappsing.get(currentStage));
-      tellAIHint = new ChatMessage("user", "Hint:" + hint);
+      tellAiHint = new ChatMessage("user", "Hint:" + hint);
       ChatMessage gptCall =
-          new ChatMessage("user", tellAIHint.getContent() + tellAIContext.getContent());
+          new ChatMessage("user", tellAiHint.getContent() + tellAIContext.getContent());
       runGpt(gptCall);
 
       response = runGpt(msg);
@@ -237,19 +242,17 @@ public class HackerAiManager {
       currentStage = GameManager.getObjectiveString();
       hint = getHintForCurrentStage(currentStage);
       tellAIContext = new ChatMessage("user", "Context:" + contextMappsing.get(currentStage));
-      tellAIHint = new ChatMessage("user", "the current hint for stage is " + hint);
-      runGpt(tellAIHint);
+      tellAiHint = new ChatMessage("user", "the current hint for stage is " + hint);
+      runGpt(tellAiHint);
       runGpt(tellAIContext);
       response = runGpt(msg);
 
     } else {
-      tellAIHint = new ChatMessage("user", "You have used all your hints");
+      tellAiHint = new ChatMessage("user", "You have used all your hints");
       tellAIContext = new ChatMessage("user", contextMappsing.get(currentStage));
       ChatMessage gptCall =
           new ChatMessage("user", tellAIHint.getContent() + tellAIContext.getContent());
       runGpt(gptCall);
-
-      response = runGpt(msg);
     }
 
     if (userIsAiAskingForHelp(msg.getContent())) {

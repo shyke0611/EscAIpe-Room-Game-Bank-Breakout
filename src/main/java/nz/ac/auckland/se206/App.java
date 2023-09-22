@@ -49,13 +49,13 @@ public class App extends Application {
     return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
   }
 
-  public static void setUI(Scenes newUI) {
-    if (newUI == Scenes.GAMEFINISH) {
-      ((GameFinishController) SceneManager.getController(newUI)).setStatLabels();
+  public static void setUI(Scenes newUi) {
+    if (newUi == Scenes.GAMEFINISH) {
+      ((GameFinishController) SceneManager.getController(newUi)).setStatLabels();
     }
 
-    scene.setRoot(SceneManager.getUiRoot(newUI));
-    SceneManager.setActiveController(SceneManager.getController(newUI));
+    scene.setRoot(SceneManager.getUiRoot(newUi));
+    SceneManager.setActiveController(SceneManager.getController(newUi));
   }
 
   /**
