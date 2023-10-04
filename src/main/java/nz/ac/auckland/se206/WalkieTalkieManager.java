@@ -61,6 +61,7 @@ public class WalkieTalkieManager {
     walkieTalkieOpen = false;
     walkieTalkieMap.clear();
     walkieTalkieImageMap.clear();
+    walkieTalkieHints.clear();
   }
 
   // Instance Fields
