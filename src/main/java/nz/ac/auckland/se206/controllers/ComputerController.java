@@ -96,8 +96,10 @@ public class ComputerController extends Controller {
           runGpt(new ChatMessage("assistant", GptPromptEngineering.getRiddleWithGivenWord()));
 
       return response;
-    } catch (ApiProxyException e) {
-      e.printStackTrace();
+    } catch (Exception e) {
+      System.out.println("start dots");
+      startConnectDots();
+      // e.printStackTrace();
     }
     return null;
   }
@@ -152,10 +154,17 @@ public class ComputerController extends Controller {
               lastMsg = runGpt(msg);
               messageQueue.add(lastMsg);
             }
+
+            if (lastMsg == null) {
+              startConnectDots();
+              return null;
+            }
+
             // if input is empty then return null
             if (message.trim().isEmpty()) {
               return null;
             }
+
             // if the message is correct then increment the number of messages correct
             if (lastMsg.getRole().equals("assistant") && lastMsg.getContent().startsWith("Correct")
                 || lastMsg.getContent().startsWith("correct")) {
