@@ -245,7 +245,7 @@ public class VaultController extends Controller {
   }
 
   @FXML
-  private void onCheckCode(ActionEvent event) {
+  private void onCheckCode() {
     // check bomb code
     String code = givencode.getText().substring("Code: ".length());
     // handle correct input
@@ -382,5 +382,39 @@ public class VaultController extends Controller {
     hackerAiManager.storeQuickHint();
     // Set the Walkie-Talkie text to the hint
     walkieTalkieManager.setWalkieTalkieText(new ChatMessage("user", hint));
+  }
+
+  @FXML
+  private void onBombTyped(KeyEvent event) {
+
+    // If esc is pressed, close the bomb
+    if (event.getCode() == KeyCode.ESCAPE) {
+      onExitBomb();
+    }
+
+    // If enter is pressed, check the code
+    if (event.getCode() == KeyCode.ENTER) {
+      System.out.println("Enter pressed");
+      onCheckCode();
+      return;
+    }
+
+    // If backspace is pressed, remove the last character from the input label
+    if (event.getCode() == KeyCode.BACK_SPACE) {
+      if (labelText.length() > 0) {
+        labelText.deleteCharAt(labelText.length() - 1);
+        inputLbl.setText(labelText.toString());
+      }
+    }
+
+    // If number is pressed, add it to the input label
+    if (event.getCode().isDigitKey() && !event.getCode().equals(KeyCode.ENTER)) {
+      updateCode(event.getText());
+    }
+
+    // if x is pressed, close the bomb
+    if (event.getCode() == KeyCode.X) {
+      onExitBomb();
+    }
   }
 }
