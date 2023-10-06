@@ -254,4 +254,11 @@ public class SecurityController extends Controller {
     // Set the Walkie-Talkie text to the hint
     walkieTalkieManager.setWalkieTalkieText(new ChatMessage("user", hint));
   }
+
+  @FXML
+  public void onEnterPressed(KeyEvent event) {
+    if (event.getCode() == KeyCode.ENTER) {
+      checkLogin();
+    }
+  }
 }
