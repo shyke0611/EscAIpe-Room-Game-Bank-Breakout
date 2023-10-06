@@ -130,7 +130,7 @@ public class ConnectDotsController extends Controller {
       GameState.isSecondUserAuthenticated = true;
       resetButton.setDisable(true);
       GameManager.completeObjective();
-      App.textToSpeech("Security Disabled, Vault Access Granted");
+      App.textToSpeech("Security Disabled, Level 1 Vault Access Granted");
     }
   }
 

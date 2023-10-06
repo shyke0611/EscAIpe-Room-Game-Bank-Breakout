@@ -108,10 +108,6 @@ public class SecurityController extends Controller {
   private void onWireCutting(MouseEvent event) {
     // if wire not cur and alarm is tripped
     if (!GameState.isWiresCut && GameState.isAlarmTripped) {
-      // when wire order are not found yet
-      if (!GameState.isWireCredentialsFound) {
-        App.textToSpeech("you need to find wire cutting order");
-      }
       App.setUI(Scenes.WIRECUTTING);
       // when wire is cut
     } else if (GameState.isWiresCut) {
@@ -253,5 +249,12 @@ public class SecurityController extends Controller {
     hackerAiManager.storeQuickHint();
     // Set the Walkie-Talkie text to the hint
     walkieTalkieManager.setWalkieTalkieText(new ChatMessage("user", hint));
+  }
+
+  @FXML
+  public void onEnterPressed(KeyEvent event) {
+    if (event.getCode() == KeyCode.ENTER) {
+      checkLogin();
+    }
   }
 }

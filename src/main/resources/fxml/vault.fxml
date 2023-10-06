@@ -76,7 +76,7 @@
       </HBox>
       <HBox fx:id="walkietalkieHolder" layoutX="15.0" layoutY="539.0" prefHeight="150.0" prefWidth="665.0">
          <children>
-            <VBox fx:id="vaultwalkietalkie" onMouseClicked="#onWalkieTalkie" onMousePressed="#onWalkieTalkie" prefHeight="200.0" prefWidth="100.0" styleClass="walkietalkie" stylesheets="@../css/rooms.css">
+            <VBox fx:id="vaultwalkietalkie" onMousePressed="#onWalkieTalkie" prefHeight="200.0" prefWidth="100.0" styleClass="walkietalkie" stylesheets="@../css/rooms.css">
                <children>
                   <ImageView fx:id="vaultWalkieTalkie" fitHeight="141.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -145,7 +145,7 @@
       </HBox>
       <HBox fx:id="doorHolder" layoutX="66.0" layoutY="185.0" prefHeight="299.0" prefWidth="914.0" spacing="50.0">
          <children>
-            <HBox fx:id="silverDoorHolder" prefHeight="100.0" prefWidth="200.0"  stylesheets="@../css/rooms.css">
+            <HBox fx:id="silverDoorHolder" prefHeight="100.0" prefWidth="200.0" stylesheets="@../css/rooms.css">
                <children>
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
@@ -190,7 +190,7 @@
                   </StackPane>
                </children>
             </HBox>
-            <HBox fx:id="bronzeDoorHolder" prefHeight="100.0" prefWidth="200.0"  stylesheets="@../css/rooms.css">
+            <HBox fx:id="bronzeDoorHolder" prefHeight="100.0" prefWidth="200.0" stylesheets="@../css/rooms.css">
                <children>
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
@@ -280,7 +280,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <VBox fx:id="bombPuzzle" layoutX="94.0" layoutY="84.0" prefHeight="404.0" prefWidth="681.0" visible="false">
+            <VBox fx:id="bombPuzzle" layoutX="94.0" layoutY="84.0" onKeyPressed="#onBombTyped" prefHeight="404.0" prefWidth="681.0" visible="false">
                <children>
                   <HBox alignment="CENTER" prefHeight="112.0" prefWidth="610.0">
                      <children>
@@ -291,7 +291,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <StackPane alignment="CENTER_LEFT" prefHeight="308.0" prefWidth="697.0">
+                  <StackPane alignment="CENTER_LEFT" focusTraversable="true" prefHeight="308.0" prefWidth="697.0">
                      <children>
                         <ImageView fitHeight="344.0" fitWidth="690.0" pickOnBounds="true" preserveRatio="true">
                            <image>
