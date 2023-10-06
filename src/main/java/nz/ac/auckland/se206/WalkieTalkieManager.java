@@ -50,10 +50,16 @@ public class WalkieTalkieManager {
 
   public static void toggleWalkieTalkie() {
     walkieTalkieOpen = !walkieTalkieOpen;
+    Controller activeController = SceneManager.getActiveController();
 
     // Iterate through the map and update the visibility of all VBoxes
     for (VBox vertBox : walkieTalkieMap.values()) {
       vertBox.setVisible(walkieTalkieOpen);
+    }
+
+    VBox activeWalkieTalkie = walkieTalkieMap.get(activeController);
+    if (walkieTalkieOpen && activeWalkieTalkie != null) {
+      ((HBox) activeWalkieTalkie.getChildren().get(1)).getChildren().get(0).requestFocus();
     }
   }
 
@@ -182,5 +188,9 @@ public class WalkieTalkieManager {
         image.setImage(new Image("images/walkietalkie.png"));
       }
     }
+  }
+
+  public static boolean getWalkieTalkieOpen() {
+    return walkieTalkieOpen;
   }
 }

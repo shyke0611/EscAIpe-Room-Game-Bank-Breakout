@@ -81,6 +81,10 @@ public class ComputerController extends Controller {
     }
   }
 
+  public void setFocus() {
+    inputTextField.requestFocus();
+  }
+
   // exit computer view back to security room
   @FXML
   private void onGoBack(ActionEvent event) {
@@ -252,6 +256,9 @@ public class ComputerController extends Controller {
   @FXML
   private void onWalkieTalkie(MouseEvent event) {
     WalkieTalkieManager.toggleWalkieTalkie();
+    if (!WalkieTalkieManager.getWalkieTalkieOpen()) {
+      inputTextField.requestFocus();
+    }
   }
 
   @FXML

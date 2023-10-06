@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.controllers.ComputerController;
 import nz.ac.auckland.se206.controllers.GameFinishController;
 import nz.ac.auckland.se206.difficulties.Difficulty.Difficulties;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -55,6 +56,10 @@ public class App extends Application {
 
     scene.setRoot(SceneManager.getUiRoot(newUi));
     SceneManager.setActiveController(SceneManager.getController(newUi));
+
+    if (newUi == Scenes.COMPUTER) {
+      ((ComputerController) SceneManager.getController(newUi)).setFocus();
+    }
   }
 
   public static ChatMessage getStartMessage() {
