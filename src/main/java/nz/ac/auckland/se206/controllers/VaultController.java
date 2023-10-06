@@ -208,7 +208,6 @@ public class VaultController extends Controller {
   private void onLootCollected(ActionEvent event) {
     // execute when firewall is disabled and any vault is opened
     if (GameState.isFirewallDisabled && GameState.isAnyDoorOpen) {
-      App.textToSpeech("Alarm Triggered, Go and Disable it");
       StyleManager.setAlarm(true);
       GameState.isAlarmTripped = true;
 
@@ -271,7 +270,6 @@ public class VaultController extends Controller {
     // execute when bomb is activated
     if (GameState.isBombActivated) {
       styleManager.setVisible(false, "switchHolder", "walkietalkieHolder", "bombHolder");
-      App.textToSpeech("Good job, 5,4,3,2,1");
       // set animation for bomb
       AnimationManager.toggleAlarmAnimation(exitHolder, true, 0.5);
       AnimationManager.delayAnimation(exitHolder, escapeDoor);

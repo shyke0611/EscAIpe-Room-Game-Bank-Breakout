@@ -100,7 +100,9 @@ public class ComputerController extends Controller {
       // getting riddle for computer ai
       ChatMessage response =
           runGpt(new ChatMessage("assistant", GptPromptEngineering.getRiddleWithGivenWord()));
-
+      if (!(response == null)) {
+        App.textToSpeech("Welcome user, Starting Authentication");
+      }
       return response;
     } catch (Exception e) {
       System.out.println("start dots");
@@ -150,6 +152,11 @@ public class ComputerController extends Controller {
                   timeline.play();
                 });
 
+            // if input is empty then return null
+            if (message.trim().isEmpty()) {
+              return null;
+            }
+
             // if the message is yes, then start the authentication process
             if (message.trim().equalsIgnoreCase("yes")) {
               lastMsg = getRiddle();
@@ -166,11 +173,6 @@ public class ComputerController extends Controller {
               return null;
             }
 
-            // if input is empty then return null
-            if (message.trim().isEmpty()) {
-              return null;
-            }
-
             // if the message is correct then increment the number of messages correct
             if (lastMsg.getRole().equals("assistant") && lastMsg.getContent().startsWith("Correct")
                 || lastMsg.getContent().startsWith("correct")) {
@@ -179,7 +181,7 @@ public class ComputerController extends Controller {
             // if the computer authenticates access
             if (lastMsg.getRole().equals("assistant")
                 && lastMsg.getContent().contains("security")) {
-              WalkieTalkieManager.toggleWalkieTalkie();
+              // WalkieTalkieManager.toggleWalkieTalkie();
               walkieTalkieManager.setWalkieTalkieText(
                   // setting the walkie talkie text when firewall disabled
                   new ChatMessage(
@@ -193,12 +195,13 @@ public class ComputerController extends Controller {
 
               GameState.isFirewallDisabled = true;
               GameState.isSecondRiddleSolved = true;
+              App.textToSpeech("Security Disabled, Level 3 Vault Access Granted");
 
             } else if (lastMsg.getRole().equals("assistant")
                 && lastMsg.getContent().startsWith("Authenticated")) {
               System.out.println("Authenticated");
               // setting the walkie talkie text when firewall disabled
-              WalkieTalkieManager.toggleWalkieTalkie();
+              // WalkieTalkieManager.toggleWalkieTalkie();
               walkieTalkieManager.setWalkieTalkieText(
                   new ChatMessage(
                       "user", "FireWall Disabled, you can now see what is behind each vault door"));
@@ -210,13 +213,14 @@ public class ComputerController extends Controller {
               styleManager.setItemsState(HoverColour.GREEN, "silverDoor", "bronzeDoor");
               GameState.isFirewallDisabled = true;
               GameManager.completeObjective();
+              App.textToSpeech("Security Disabled, Level 2 Vault Access Granted");
             }
 
             // when authentication fails
             if (lastMsg.getRole().equals("assistant")
                 && lastMsg.getContent().contains("Authentication failed")) {
               System.out.println("authetication failed");
-
+              App.textToSpeech("Authentication failed, Access Denied");
               startConnectDots();
               // Logic to start connect dots mini game
             }
@@ -264,7 +268,7 @@ public class ComputerController extends Controller {
   @FXML
   private void startConnectDots() {
     // setting the walkie talkie text on when they fail all three riddles
-    WalkieTalkieManager.toggleWalkieTalkie();
+    // WalkieTalkieManager.toggleWalkieTalkie();
     walkieTalkieManager.setWalkieTalkieText(
         new ChatMessage(
             "user", "Authentication failed, plug in the usbstick to bypass the firewall"));
