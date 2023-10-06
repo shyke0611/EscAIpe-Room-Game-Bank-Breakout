@@ -280,7 +280,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <VBox fx:id="bombPuzzle" layoutX="94.0" layoutY="84.0" prefHeight="404.0" prefWidth="681.0" visible="false">
+            <VBox fx:id="bombPuzzle" layoutX="94.0" layoutY="84.0" onKeyPressed="#onBombTyped" prefHeight="404.0" prefWidth="681.0" visible="false">
                <children>
                   <HBox alignment="CENTER" prefHeight="112.0" prefWidth="610.0">
                      <children>
@@ -291,7 +291,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <StackPane alignment="CENTER_LEFT" focusTraversable="true" onKeyPressed="#onBombTyped" prefHeight="308.0" prefWidth="697.0">
+                  <StackPane alignment="CENTER_LEFT" focusTraversable="true" prefHeight="308.0" prefWidth="697.0">
                      <children>
                         <ImageView fitHeight="344.0" fitWidth="690.0" pickOnBounds="true" preserveRatio="true">
                            <image>

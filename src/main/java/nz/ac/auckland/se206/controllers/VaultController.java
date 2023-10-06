@@ -166,6 +166,7 @@ public class VaultController extends Controller {
     if (!GameState.isBombActivated) {
       GameManager.completeObjective();
       bombPuzzle.setVisible(true);
+      bombPuzzle.requestFocus();
     }
   }
 
