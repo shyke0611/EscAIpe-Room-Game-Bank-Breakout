@@ -14,6 +14,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -332,6 +334,17 @@ public class ComputerController extends Controller {
     } catch (ApiProxyException e) {
       e.printStackTrace();
       return null;
+    }
+  }
+
+  @FXML
+  public void onEnterPressed(KeyEvent event) {
+    if (event.getCode() == KeyCode.ENTER) {
+      try {
+        onSend(new ActionEvent());
+      } catch (ApiProxyException | IOException e) {
+        System.out.println("Failed to send");
+      }
     }
   }
 }

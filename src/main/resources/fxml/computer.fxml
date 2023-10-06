@@ -47,7 +47,7 @@
                         </StackPane>
                         <HBox alignment="CENTER_LEFT" prefHeight="54.0" prefWidth="713.0" style="-fx-background-color: white; -fx-background-radius: 100;">
                            <children>
-                              <TextField fx:id="inputTextField" prefHeight="54.0" prefWidth="494.0" promptText="type here..." stylesheets="@../css/computer.css">
+                              <TextField fx:id="inputTextField" onKeyPressed="#onEnterPressed" prefHeight="54.0" prefWidth="494.0" promptText="type here..." stylesheets="@../css/computer.css">
                                  <font>
                                     <Font size="29.0" />
                                  </font>
