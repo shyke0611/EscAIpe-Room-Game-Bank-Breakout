@@ -5,8 +5,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,42 +19,53 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.DifficultyController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1000.0" prefHeight="400.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.DifficultyController">
    <children>
-      <AnchorPane layoutX="305.0" prefHeight="729.0" prefWidth="697.0">
+      <AnchorPane layoutX="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1000.0" prefHeight="710.0" prefWidth="1008.0">
          <children>
-            <ImageView fitHeight="721.0" fitWidth="721.0" layoutX="-22.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/titlepage.png" />
-               </image>
-               <effect>
-                  <GaussianBlur radius="0.0" />
-               </effect>
-            </ImageView>
-            <ImageView fitHeight="433.0" fitWidth="456.0" layoutX="138.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/cash.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="100.0" layoutY="4.0" opacity="0.69" prefHeight="169.0" prefWidth="536.0" text="Money Heist" textFill="#1c56dd">
-               <font>
-                  <Font name="Serif Bold" size="96.0" />
-               </font>
-            </Label>
-            <Label layoutX="318.0" layoutY="102.0" opacity="0.5" text="escape room" textFill="#e10606">
-               <font>
-                  <Font name="Silom" size="51.0" />
-               </font>
-            </Label>
+            <AnchorPane layoutX="149.0" prefHeight="695.0" prefWidth="861.0">
+               <children>
+                  <ImageView fitHeight="744.0" fitWidth="1052.0" layoutX="-201.0" layoutY="-44.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/mainmenubackground.png" />
+                     </image>
+                     <effect>
+                        <InnerShadow choke="0.52" height="153.66" radius="66.00999999999999" width="112.38" />
+                     </effect>
+                  </ImageView>
+                  <ImageView fitHeight="416.0" fitWidth="438.0" layoutX="384.0" layoutY="279.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/robber.png" />
+                     </image>
+                     <effect>
+                        <Lighting diffuseConstant="0.91" specularConstant="0.51" specularExponent="21.85">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </ImageView>
+                  <HBox layoutX="-20.0" layoutY="535.0" prefHeight="134.0" prefWidth="677.0">
+                     <effect>
+                        <DropShadow height="38.69" radius="21.055" width="47.53" />
+                     </effect>
+                  </HBox>
+               </children>
+            </AnchorPane>
          </children>
          <effect>
-            <GaussianBlur />
+            <Lighting diffuseConstant="0.65" specularConstant="0.16" specularExponent="14.45">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
          </effect>
-      </AnchorPane>
-      <AnchorPane layoutY="7.0" prefHeight="701.0" prefWidth="302.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="-1.0">
-         <children>
-            <VBox fx:id="buttonsContainer" layoutX="29.0" layoutY="270.0" prefHeight="89.0" prefWidth="258.0" spacing="10.0" />
-         </children>
       </AnchorPane>
       <HBox layoutX="160.0" layoutY="157.0" prefHeight="350.0" prefWidth="800.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="193.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="157.0">
          <children>

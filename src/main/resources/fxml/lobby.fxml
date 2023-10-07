@@ -7,6 +7,8 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -21,10 +23,17 @@
 
 <AnchorPane fx:id="LobbyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LobbyController">
    <children>
-      <ImageView fx:id="lobbybackground" fitHeight="701.0" fitWidth="1010.0" layoutX="-6.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="lobbybackground" fitHeight="704.0" fitWidth="1234.0" layoutX="-40.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/bankInterior.jpg" />
+            <Image url="@../images/banklobby.png" />
          </image>
+         <effect>
+            <Lighting bumpInput="$null" diffuseConstant="1.04" specularConstant="0.13" specularExponent="28.79" surfaceScale="0.0">
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
       </ImageView>
       <HBox layoutX="27.0" layoutY="30.0" prefHeight="128.0" prefWidth="300.0" styleClass="roomswitchback" stylesheets="@../css/rooms.css">
          <children>
@@ -72,9 +81,9 @@
             </VBox>
          </children>
       </HBox>
-      <StackPane layoutX="500.0" layoutY="130.0" prefHeight="87.0" prefWidth="131.0">
+      <StackPane layoutX="371.0" layoutY="25.0" prefHeight="89.0" prefWidth="143.0">
          <children>
-            <Line endY="-80.0" strokeWidth="5.0" translateY="-85.0" />
+            <Line endX="-0.07106781005859375" endY="-80.0" strokeWidth="5.0" translateY="-85.0" />
             <Rectangle fill="#5e5e5e" height="96.0" stroke="BLACK" strokeType="INSIDE" width="138.0" />
             <Rectangle height="74.0" stroke="BLACK" strokeType="INSIDE" width="134.0" />
             <Label fx:id="timerLabel" alignment="CENTER" prefHeight="70.0" prefWidth="133.0" text="0:00" textFill="WHITE">
@@ -103,7 +112,7 @@
             </Label>
          </children>
       </HBox>
-      <VBox layoutX="756.0" layoutY="211.0" prefHeight="472.0" prefWidth="189.0">
+      <VBox layoutX="757.0" layoutY="211.0" prefHeight="475.0" prefWidth="168.0">
          <children>
             <HBox prefHeight="164.0" prefWidth="171.0">
                <children>
@@ -133,11 +142,11 @@
             </HBox>
          </children>
       </VBox>
-      <HBox fx:id="key1" alignment="BOTTOM_LEFT" layoutX="161.0" layoutY="389.0" onMousePressed="#onKeyLocationPressed" prefHeight="118.0" prefWidth="80.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
+      <HBox fx:id="key1" alignment="BOTTOM_LEFT" layoutX="615.0" layoutY="145.0" onMousePressed="#onKeyLocationPressed" prefHeight="69.0" prefWidth="80.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
          <children>
             <ImageView fitHeight="138.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/vase.png" />
+                  <Image url="@../images/vase1.png" />
                </image>
             </ImageView>
          </children>
@@ -161,7 +170,7 @@
          </children></HBox>
       <HBox layoutX="15.0" layoutY="539.0" prefHeight="150.0" prefWidth="665.0">
          <children>
-            <VBox fx:id="lobbywalkietalkie" onMousePressed="#onWalkieTalkie" prefHeight="200.0" prefWidth="100.0" styleClass="walkietalkie" stylesheets="@../css/rooms.css">
+            <VBox fx:id="lobbywalkietalkie" onMousePressed="#onWalkieTalkie" prefHeight="200.0" prefWidth="100.0" styleClass="walkietalkie" stylesheets="@../css/walkietalkie.css">
                <children>
                   <ImageView fx:id="lobbyWalkieTalkie" fitHeight="141.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -170,15 +179,15 @@
                   </ImageView>
                </children>
             </VBox>
-            <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0" visible="false">
+            <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0" stylesheets="@../css/walkietalkie.css" visible="false">
                <children>
                   <HBox fx:id="textAreaBox" prefHeight="100.0" prefWidth="512.0">
                      <children>
-                        <TextArea fx:id="lobbyTextArea" editable="false" prefHeight="99.0" prefWidth="410.0" stylesheets="@../css/rooms.css" wrapText="true">
+                        <TextArea fx:id="lobbyTextArea" editable="false" prefHeight="126.0" prefWidth="408.0" stylesheets="@../css/walkietalkie.css" wrapText="true">
                            <font>
                               <Font size="19.0" />
                            </font></TextArea>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="component2" stylesheets="@../css/rooms.css">
+                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="107.0" styleClass="component1" stylesheets="@../css/walkietalkie.css">
                            <children>
                               <Button fx:id="viewHistoryBtn" mnemonicParsing="false" onAction="#onSwitchToHacker" text="View History">
                                  <VBox.margin>
@@ -187,23 +196,25 @@
                               </Button>
                               <Button fx:id="quickHintBtn" mnemonicParsing="false" onAction="#onQuickHint" text="Quick Hint" />
                            </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
                         </VBox>
                      </children>
                   </HBox>
                   <HBox prefHeight="51.0" prefWidth="512.0">
                      <children>
-                        <TextField fx:id="lobbyTextInput" onKeyPressed="#onInvokeHacker" prefHeight="51.0" prefWidth="640.0" promptText="Bzzz... type here" stylesheets="@../css/rooms.css">
+                        <TextField fx:id="lobbyTextInput" onKeyPressed="#onInvokeHacker" prefHeight="51.0" prefWidth="516.0" promptText="Bzzz... type here" stylesheets="@../css/walkietalkie.css">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </TextField>
-                        <VBox fx:id="myVBox" prefHeight="52.0" prefWidth="202.0" stylesheets="@../css/rooms.css" />
                         <StackPane prefHeight="150.0" prefWidth="200.0">
                            <children>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" height="51.0" stroke="BLACK" strokeType="INSIDE" width="101.0" />
+                              <HBox prefHeight="51.0" prefWidth="62.0" styleClass="component2" stylesheets="@../css/walkietalkie.css" />
                               <Label fx:id="numberOfHints" alignment="TOP_CENTER" text="Unlimited" textFill="#1bcd2a" wrapText="true">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font size="16.0" />
                                  </font>
                                  <StackPane.margin>
                                     <Insets top="15.0" />
@@ -211,7 +222,7 @@
                               </Label>
                               <Label alignment="TOP_CENTER" prefHeight="26.0" prefWidth="92.0" text="Hints Left:" textFill="#1bcd2a" wrapText="true">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font size="16.0" />
                                  </font>
                                  <StackPane.margin>
                                     <Insets bottom="25.0" />
@@ -224,11 +235,11 @@
                </children></VBox>
          </children>
       </HBox>
-      <HBox fx:id="drawerHolder" layoutX="513.0" layoutY="233.0" onMousePressed="#onDrawerPressed" prefHeight="150.0" prefWidth="122.0" styleClass="drawer" stylesheets="@../css/rooms.css">
+      <HBox fx:id="drawerHolder" layoutX="628.0" layoutY="359.0" onMousePressed="#onDrawerPressed" prefHeight="100.0" prefWidth="102.0" styleClass="drawer" stylesheets="@../css/rooms.css">
          <children>
-            <StackPane prefHeight="150.0" prefWidth="133.0">
+            <StackPane prefHeight="150.0" prefWidth="150.0">
                <children>
-                  <ImageView fx:id="openDrawer" fitHeight="150.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="openDrawer" fitHeight="114.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../images/opendrawer.png" />
                      </image>
@@ -236,7 +247,7 @@
                         <DropShadow height="15.1" radius="4.84" width="6.26" />
                      </effect>
                   </ImageView>
-                  <ImageView fx:id="drawer" fitHeight="150.0" fitWidth="371.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="drawer" fitHeight="102.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/drawer.png" />
                      </image>
@@ -248,7 +259,7 @@
             </StackPane>
          </children>
       </HBox>
-      <HBox fx:id="credentialsBook" layoutX="556.0" layoutY="305.0" onMousePressed="#onCredentialsBookPressed" prefHeight="27.0" prefWidth="56.0" styleClass="credentials" stylesheets="@../css/rooms.css" visible="false">
+      <HBox fx:id="credentialsBook" layoutX="653.0" layoutY="404.0" onMousePressed="#onCredentialsBookPressed" prefHeight="23.0" prefWidth="58.0" styleClass="credentials" stylesheets="@../css/rooms.css" visible="false">
          <children>
             <ImageView fitHeight="27.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -257,9 +268,9 @@
             </ImageView>
          </children>
       </HBox>
-      <HBox fx:id="key4" layoutX="638.0" layoutY="474.0" onMousePressed="#onKeyLocationPressed" prefHeight="53.0" prefWidth="89.0" stylesheets="@../css/rooms.css">
+      <HBox fx:id="key4" layoutX="335.0" layoutY="416.0" onMousePressed="#onKeyLocationPressed" prefHeight="55.0" prefWidth="76.0" stylesheets="@../css/rooms.css">
          <children>
-            <ImageView fitHeight="52.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="52.0" fitWidth="441.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/alarmclock.png" />
                </image>
@@ -328,7 +339,7 @@
             </VBox>
          </children>
       </HBox>
-      <HBox fx:id="key" disable="true" layoutX="466.0" layoutY="384.0" onMousePressed="#onKeyPressed" opacity="0.0" prefHeight="116.0" prefWidth="116.0">
+      <HBox fx:id="key" disable="true" layoutX="466.0" layoutY="376.0" onMousePressed="#onKeyPressed" opacity="0.0" prefHeight="139.0" prefWidth="131.0">
          <children>
             <ImageView fitHeight="166.0" fitWidth="131.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -351,11 +362,6 @@
             </DropShadow>
          </effect>
       </HBox>
-      <Label layoutX="835.0" layoutY="300.0" text="Since 1967" textFill="#fdff6a82">
-         <font>
-            <Font name="Impact" size="17.0" />
-         </font>
-      </Label>
       <HBox fx:id="guardeyes" layoutX="844.0" layoutY="385.0" onMousePressed="#onGuardEyes" prefHeight="49.0" prefWidth="53.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
          <children>
             <ImageView fitHeight="52.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
@@ -365,5 +371,15 @@
             </ImageView>
          </children>
       </HBox>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="496.0" layoutY="338.0" prefHeight="41.0" prefWidth="114.0" text="Lorem Ipsum" textFill="#ffffff82">
+         <font>
+            <Font name="Impact" size="21.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="609.0" layoutY="502.0" prefHeight="44.0" prefWidth="90.0" text="Since 1967" textFill="#fdff6a82">
+         <font>
+            <Font name="Impact" size="17.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

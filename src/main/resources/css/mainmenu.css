@@ -1,6 +1,9 @@
 .button {
     -fx-background-color: #000000;
     -fx-text-fill: #b59e1d;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-border-color: #b59e1d;
     -fx-font-size: 35px;
     -fx-font-family: 'Weibei SC';
 
