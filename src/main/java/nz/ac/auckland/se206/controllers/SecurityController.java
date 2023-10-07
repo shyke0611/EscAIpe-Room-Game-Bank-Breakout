@@ -41,6 +41,7 @@ public class SecurityController extends Controller {
   @FXML private VBox vaultRoomSwitch;
   @FXML private VBox lobbyRoomSwitch;
   @FXML private Button logInBtn;
+  @FXML private Button quickHintBtn;
   @FXML private HBox logInScreen;
   @FXML private HBox electricityBox;
   @FXML private Label loginMsgLbl;
@@ -71,6 +72,7 @@ public class SecurityController extends Controller {
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     WalkieTalkieManager.addWalkieTalkieImage(this, securityWalkieTalkie);
     WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
+    WalkieTalkieManager.addQuickHintBtn(this, quickHintBtn);
 
     // Add style items and set messages
     styleManager.addItems(

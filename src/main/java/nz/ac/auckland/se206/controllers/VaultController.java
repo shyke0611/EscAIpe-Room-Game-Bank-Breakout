@@ -68,6 +68,7 @@ public class VaultController extends Controller {
   @FXML private VBox vaultRoomSwitch;
   @FXML private Button button;
   @FXML private Button checkBtn;
+  @FXML private Button quickHintBtn;
   @FXML private VBox lootBtnHolder;
   @FXML private Label inputLbl;
   @FXML private Label statusLbl;
@@ -93,6 +94,7 @@ public class VaultController extends Controller {
     SceneManager.setController(Scenes.VAULT, this);
     WalkieTalkieManager.addWalkieTalkieImage(this, vaultWalkieTalkie);
     WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
+    WalkieTalkieManager.addQuickHintBtn(this, quickHintBtn);
     super.setTimerLabel(timerLabel, 1);
 
     // adding relevant items to the stylemanager list

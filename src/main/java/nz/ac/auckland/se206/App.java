@@ -10,9 +10,7 @@ import javafx.stage.Stage;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.controllers.ComputerController;
 import nz.ac.auckland.se206.controllers.GameFinishController;
-import nz.ac.auckland.se206.difficulties.Difficulty.Difficulties;
 import nz.ac.auckland.se206.gpt.ChatMessage;
-import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
@@ -105,18 +103,18 @@ public class App extends Application {
     // initialise the randomiser for all random components
     RandomnessGenerate.generateRandomCredentials();
 
-    HackerAiManager hackerAiManager = HackerAiManager.getInstance();
-    hackerAiManager.initialiseHacker(Difficulties.EASY);
-    GameManager.completeObjective();
+    // HackerAiManager hackerAiManager = HackerAiManager.getInstance();
+    // hackerAiManager.initialiseHacker(Difficulties.EASY);
+    // GameManager.completeObjective();
 
-    chatCompletionRequest =
-        new ChatCompletionRequest().setN(1).setTemperature(0.5).setTopP(0.9).setMaxTokens(100);
-    try {
-      message = runGpt(new ChatMessage("user", GptPromptEngineering.initiliseComputer()));
-    } catch (ApiProxyException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
+    // chatCompletionRequest =
+    //     new ChatCompletionRequest().setN(1).setTemperature(0.5).setTopP(0.9).setMaxTokens(100);
+    // try {
+    //   message = runGpt(new ChatMessage("user", GptPromptEngineering.initiliseComputer()));
+    // } catch (ApiProxyException e) {
+    //   // TODO Auto-generated catch block
+    //   e.printStackTrace();
+    // }
 
     // Initialise controllers hashmap to SceneManager
     SceneManager.addController(SceneManager.Scenes.VAULT, null);
