@@ -156,7 +156,8 @@ public class HackerAiManager {
     if (Difficulties.EASY == currentDifficulty) {
       // Update the visual hint counter and retrieve hint
       Platform.runLater(() -> walkieTalkieManager.setHintText("Unlimited"));
-      walkieTalkieManager.disableQuickHintBtns();
+
+      hint = getHintForCurrentStage(currentStage);
 
     } else if (Difficulties.HARD == currentDifficulty) {
       // Update the visual hint counter and return no hint
@@ -235,15 +236,24 @@ public class HackerAiManager {
     System.out.println(currentStage);
     userNeedsHelp = false;
 
-    if (walkieTalkieManager.isQuickHintBtnsVisible()) {
+    if (hintCounter <= 0 && currentDifficulty == Difficulties.MEDIUM) {
+      tellAiHint =
+          new ChatMessage(
+              "user",
+              "The player has used all of their hints, do not give out anymore hints whatsoever,"
+                  + " all you can say is: 'Sorry you do not have anymore hints");
+      gptCall = new ChatMessage("user", tellAiHint.getContent());
+      runGpt(gptCall);
+      return response = runGpt(msg);
+    } else if (walkieTalkieManager.isQuickHintBtnsVisible()) {
       gptCall =
           new ChatMessage(
               "user",
-              "You have given the player a hint for this stage already, all you have to say"
-                  + " is:'Sorry i have given you a hint for this stage already'. Once the player"
-                  + " completes the stage you will be given another hint starthing with Hint:,"
-                  + " whenever you recive a message starting with hint you can give  it to the"
-                  + " player otherwise you must  not give them anything ");
+              "The player is now out of hints for the current stage, until you recieve a new hint"
+                  + " you cannot give out any you can, all you can say is: 'I have already given"
+                  + " you a hint for this stage', you can still give out hints for other stages,"
+                  + " you will be told when you can give out more and what the hint will be. Once"
+                  + " that happens you can tell them the hint");
       System.out.println("user has already used hint");
       runGpt(gptCall);
       response = runGpt(msg);
@@ -255,26 +265,27 @@ public class HackerAiManager {
     }
 
     if (currentDifficulty == Difficulties.EASY) {
-      System.out.println("typing");
+      // System.out.println("typing");
       if (userNeedsHelp) {
+        walkieTalkieManager.disableQuickHintBtns();
 
         currentStage = GameManager.getObjectiveString();
         hint = getHintForCurrentStage(currentStage);
-        gptCall = new ChatMessage("user", "Hint:" + hint);
+        gptCall =
+            new ChatMessage(
+                "user",
+                "You are now able to give hints again, ingore any previous command to not give out"
+                    + " hints, here is the next one, say the hint and only the hint: Hint:"
+                    + hint);
         System.out.println(hint);
+        response = runGpt(gptCall);
 
-        runGpt(gptCall);
-
-        response = runGpt(msg);
+        // response = runGpt(msg);
         storeAiHint(response);
       } else {
-
         response = runGpt(msg);
       }
-    }
-
-    // Replace 'msg' with the appropriate input
-    if (currentDifficulty == Difficulties.MEDIUM
+    } else if (currentDifficulty == Difficulties.MEDIUM
         && hintCounter > 0
         && !walkieTalkieManager.isQuickHintBtnsVisible()
         && userNeedsHelp) {
@@ -282,31 +293,25 @@ public class HackerAiManager {
       walkieTalkieManager.disableQuickHintBtns();
 
       hint = getHintForCurrentStage(currentStage);
-      tellAiHint = new ChatMessage("user", "Hint: " + hint);
 
-      gptCall = new ChatMessage("user", tellAiHint.getContent());
+      gptCall =
+          new ChatMessage(
+              "user",
+              "You are now able to give hints again, ingore any previous command to not give out"
+                  + " hints, here is the next one, say the hint and only the hint: Hint:"
+                  + hint);
 
-      runGpt(gptCall);
-      response = runGpt(msg);
+      response = runGpt(gptCall);
+      // response = runGpt(msg);
       storeAiHint(response);
       Platform.runLater(() -> walkieTalkieManager.setHintText(Integer.toString(hintCounter)));
 
-    } else if (hintCounter <= 0) {
-      tellAiHint =
-          new ChatMessage(
-              "user",
-              "You have used all your hints, you cannot give the player anymore hints not matter"
-                  + " what they ask");
-      gptCall = new ChatMessage("user", tellAiHint.getContent());
-      runGpt(gptCall);
-      response = runGpt(msg);
     } else {
       response = runGpt(msg);
     }
 
     if (currentDifficulty == Difficulties.HARD) {
       // Things to add, update ai to say what has happend during round
-
       response = runGpt(msg);
     }
 
