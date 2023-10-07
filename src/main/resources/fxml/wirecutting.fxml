@@ -226,10 +226,13 @@
                         <Insets left="100.0" right="100.0" />
                      </VBox.margin>
                   </HBox>
-                  <Label fx:id="taskLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="226.0" textFill="#ffebeb">
+                  <Label fx:id="taskLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="226.0" textFill="#ffebeb">
                      <font>
                         <Font size="26.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
                   </Label>
                   <Button fx:id="retryBtn" mnemonicParsing="false" onAction="#onRetry" prefHeight="60.0" prefWidth="90.0" styleClass="close-button" stylesheets="@../css/rooms.css" text="Retry">
                      <VBox.margin>
