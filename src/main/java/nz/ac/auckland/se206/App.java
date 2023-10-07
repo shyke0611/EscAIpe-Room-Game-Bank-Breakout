@@ -52,6 +52,10 @@ public class App extends Application {
       ((GameFinishController) SceneManager.getController(newUi)).setStatLabels();
     }
 
+    if (newUi == Scenes.LOBBY || newUi == Scenes.SECURITY || newUi == Scenes.VAULT) {
+      SceneManager.setLastRoom(newUi);
+    }
+
     scene.setRoot(SceneManager.getUiRoot(newUi));
     SceneManager.setActiveController(SceneManager.getController(newUi));
 
