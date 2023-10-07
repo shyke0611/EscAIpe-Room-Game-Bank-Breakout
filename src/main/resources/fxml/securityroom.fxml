@@ -81,7 +81,7 @@
             </StackPane>
          </children>
       </HBox>
-      <HBox fx:id="computer" alignment="CENTER" disable="true" layoutX="673.0" layoutY="340.0" onMousePressed="#onClickComputer" prefHeight="132.0" prefWidth="89.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
+      <HBox alignment="CENTER" disable="true" layoutX="673.0" layoutY="340.0" prefHeight="132.0" prefWidth="89.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
          <children>
             <ImageView fitHeight="138.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -93,7 +93,7 @@
             </ImageView>
          </children>
       </HBox>
-      <HBox fx:id="computer" alignment="CENTER" disable="true" layoutX="826.0" layoutY="365.0" onMousePressed="#onClickComputer" prefHeight="145.0" prefWidth="146.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
+      <HBox alignment="CENTER" disable="true" layoutX="826.0" layoutY="365.0" prefHeight="145.0" prefWidth="146.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
          <children>
             <ImageView fitHeight="156.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -105,7 +105,7 @@
             </ImageView>
          </children>
       </HBox>
-      <HBox fx:id="computer" alignment="CENTER" disable="true" layoutX="361.0" layoutY="308.0" onMousePressed="#onClickComputer" prefHeight="166.0" prefWidth="165.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
+      <HBox alignment="CENTER" disable="true" layoutX="361.0" layoutY="308.0" prefHeight="166.0" prefWidth="165.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
          <children>
             <ImageView fitHeight="168.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true">
                <image>

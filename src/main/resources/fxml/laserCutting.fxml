@@ -19,7 +19,7 @@
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#draw" onMousePressed="#mousePressed" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LaserCuttingController">
    <children>
       <HBox layoutX="152.0" layoutY="477.0" prefHeight="100.0" prefWidth="200.0" />
-      <ImageView fitHeight="707.0" fitWidth="1231.0" layoutX="-218.0" onMouseClicked="#setVault" pickOnBounds="true" preserveRatio="true" scaleX="1.01">
+      <ImageView fitHeight="704.0" fitWidth="1008.0" onMouseClicked="#setVault" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/realvaultbackground.png" />
          </image>
@@ -43,9 +43,9 @@
             <InnerShadow height="255.0" radius="100.19" width="147.76" />
          </effect>
       </ImageView>
-      <Label layoutX="170.0" layoutY="8.0" prefHeight="21.0" prefWidth="717.0" text="Cut  the door within the dotted lines" textFill="#27c350" underline="true">
+      <Label layoutX="334.0" layoutY="118.0" prefHeight="35.0" prefWidth="331.0" text="hold click and drag around" textFill="WHITE" underline="true">
          <font>
-            <Font name="American Typewriter" size="34.0" />
+            <Font name="Copperplate" size="23.0" />
          </font>
       </Label>
       <Circle fx:id="innerCircle" centerX="500.0" centerY="350.0" fill="#1f93ff00" radius="106.0" stroke="BLACK" strokeDashOffset="10.0" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="3.0" style="-fx-stroke-dash-array: 5;" />
@@ -63,16 +63,6 @@
          </font>
       </Label>
       <StackPane alignment="TOP_RIGHT" layoutX="52.0" layoutY="45.0" prefHeight="30.0" prefWidth="894.0" />
-      <Button fx:id="takeLootBtn" layoutX="406.0" layoutY="554.0" mnemonicParsing="false" onMouseClicked="#setVault" prefHeight="53.0" prefWidth="185.0" styleClass="computer-button" stylesheets="@../css/rooms.css" text="Go Back" visible="false">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Label layoutX="258.0" layoutY="47.0" prefHeight="32.0" prefWidth="546.0" text="drag while clicked around it" textFill="#27c350" underline="true">
-         <font>
-            <Font name="American Typewriter" size="34.0" />
-         </font>
-      </Label>
       <ImageView fx:id="insideVault" fitHeight="218.0" fitWidth="218.0" layoutX="390.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/vecteezy_vector-bank-vault-with-open-safe-door_23869823-modified.png" />
@@ -113,9 +103,14 @@
             <Font size="39.0" />
          </font>
       </Button>
-      <Label fx:id="timerLabel" layoutX="307.0" layoutY="135.0" prefHeight="21.0" prefWidth="385.0" text="Time Remaining: 0 Minutes 0 Seconds" textFill="#d0c4c4">
+      <Label fx:id="timerLabel" layoutX="305.0" layoutY="530.0" prefHeight="38.0" prefWidth="400.0" text="Time Remaining: 0 Minutes 0 Seconds" textFill="#d0c4c4">
          <font>
-            <Font name="Copperplate" size="20.0" />
+            <Font name="Copperplate" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="411.0" layoutY="136.0" prefHeight="35.0" prefWidth="155.0" text="dotted lines" textFill="WHITE" underline="true">
+         <font>
+            <Font name="Copperplate" size="23.0" />
          </font>
       </Label>
    </children>

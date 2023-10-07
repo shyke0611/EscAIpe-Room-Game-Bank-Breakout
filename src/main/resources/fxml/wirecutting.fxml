@@ -33,7 +33,39 @@
             </Lighting>
          </effect>
       </ImageView>
-      <HBox layoutX="136.0" layoutY="148.0" prefHeight="433.0" prefWidth="709.0" style="-fx-background-color: black; -fx-background-radius: 0 40 40 0; -fx-border-color: white; -fx-border-radius: 0 40 40 0;">
+      <HBox layoutX="281.0" layoutY="75.0" prefHeight="89.0" prefWidth="430.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#565657" height="87.0" stroke="BLACK" strokeType="INSIDE" width="440.0">
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </Rectangle>
+         </children>
+      </HBox>
+      <HBox layoutX="281.0" layoutY="560.0" prefHeight="89.0" prefWidth="436.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#565657" height="87.0" stroke="BLACK" strokeType="INSIDE" width="440.0">
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </Rectangle>
+         </children>
+      </HBox>
+      <HBox layoutX="281.0" layoutY="148.0" prefHeight="433.0" prefWidth="438.0" style="-fx-background-color: black;">
          <children>
             <StackPane prefHeight="425.0" prefWidth="244.0">
                <children>
@@ -128,7 +160,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="425.0" prefWidth="424.0">
                      <children>
-                        <HBox fx:id="redwire" alignment="CENTER" onMousePressed="#onWireClicked" prefHeight="19.0" prefWidth="119.0" styleClass="drawer" stylesheets="@../css/rooms.css">
+                        <HBox fx:id="redwire" alignment="CENTER" onMousePressed="#onWireClicked" prefHeight="19.0" prefWidth="119.0" styleClass="guard" stylesheets="@../css/rooms.css">
                            <children>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="19.0" stroke="BLACK" strokeType="INSIDE" width="404.0">
                                  <effect>
@@ -143,7 +175,7 @@
                               <Insets bottom="40.0" top="10.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox fx:id="greenwire" alignment="CENTER" onMousePressed="#onWireClicked" prefHeight="8.0" prefWidth="425.0" styleClass="drawer" stylesheets="@../css/rooms.css">
+                        <HBox fx:id="greenwire" alignment="CENTER" onMousePressed="#onWireClicked" prefHeight="8.0" prefWidth="425.0" styleClass="guard" stylesheets="@../css/rooms.css">
                            <children>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#42ff21" height="19.0" stroke="BLACK" strokeType="INSIDE" width="428.0">
                                  <effect>
@@ -158,7 +190,7 @@
                               <Insets bottom="40.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox fx:id="yellowwire" alignment="CENTER" onMousePressed="#onWireClicked" prefHeight="8.0" prefWidth="425.0" styleClass="drawer" stylesheets="@../css/rooms.css">
+                        <HBox fx:id="yellowwire" alignment="CENTER" onMousePressed="#onWireClicked" prefHeight="8.0" prefWidth="425.0" styleClass="guard" stylesheets="@../css/rooms.css">
                            <children>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e7ff21" height="19.0" stroke="BLACK" strokeType="INSIDE" width="429.0">
                                  <effect>
@@ -173,7 +205,7 @@
                               <Insets bottom="40.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox fx:id="bluewire" alignment="CENTER" onMousePressed="#onWireClicked" prefHeight="8.0" prefWidth="425.0" styleClass="drawer" stylesheets="@../css/rooms.css">
+                        <HBox fx:id="bluewire" alignment="CENTER" onMousePressed="#onWireClicked" prefHeight="8.0" prefWidth="425.0" styleClass="guard" stylesheets="@../css/rooms.css">
                            <children>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2170ff" height="19.0" stroke="BLACK" strokeType="INSIDE" width="429.0">
                                  <effect>
@@ -188,79 +220,63 @@
                      <StackPane.margin>
                         <Insets right="410.0" />
                      </StackPane.margin>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
                   </Rectangle>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#565657" height="431.0" stroke="BLACK" strokeType="INSIDE" width="30.0">
                      <StackPane.margin>
                         <Insets left="410.0" />
                      </StackPane.margin>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
                   </Rectangle>
                </children>
             </StackPane>
-            <VBox alignment="CENTER" prefHeight="431.0" prefWidth="250.0">
-               <children>
-                  <Label fx:id="wirecuttingorderLbl" text="Find Wire Cutting Order" textFill="#ff0101">
-                     <font>
-                        <Font name="Baoli SC Regular" size="20.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label fx:id="wirecutterLbl" text="Use this wirecutter" textFill="WHITE">
-                     <font>
-                        <Font name="Baoli SC Regular" size="25.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <HBox fx:id="wirecutter" alignment="CENTER" onMousePressed="#onWireCutterClicked" prefHeight="101.0" prefWidth="127.0" styleClass="guard" stylesheets="@../css/rooms.css">
-                     <children>
-                        <ImageView fitHeight="101.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/wirecutter.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                     <VBox.margin>
-                        <Insets left="100.0" right="100.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <Label fx:id="taskLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="226.0" textFill="#ffebeb">
-                     <font>
-                        <Font size="26.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Button fx:id="retryBtn" mnemonicParsing="false" onAction="#onRetry" prefHeight="60.0" prefWidth="90.0" styleClass="close-button" stylesheets="@../css/rooms.css" text="Retry">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Button>
-                  <Label alignment="CENTER" prefHeight="0.0" prefWidth="269.0" text="Time Remaining:" textAlignment="CENTER" textFill="RED">
-                     <font>
-                        <Font name="Copperplate" size="22.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="timerLabel" alignment="CENTER" prefHeight="17.0" prefWidth="268.0" text="0 Minutes and 0 Seconds" textFill="WHITE">
-                     <font>
-                        <Font size="22.0" />
-                     </font>
-                  </Label>
-               </children>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </VBox>
          </children></HBox>
-      <Button fx:id="goBackBtn" layoutX="839.0" layoutY="119.0" mnemonicParsing="false" onAction="#onGoBack" prefHeight="80.0" prefWidth="85.0" styleClass="close-button" stylesheets="@../css/rooms.css" text="X">
+      <Button fx:id="goBackBtn" layoutX="679.0" layoutY="58.0" mnemonicParsing="false" onAction="#onGoBack" prefHeight="81.0" prefWidth="85.0" styleClass="close-button" stylesheets="@../css/rooms.css" text="X">
          <font>
             <Font size="34.0" />
+         </font>
+      </Button>
+      <Label fx:id="wirecuttingorderLbl" layoutX="392.0" layoutY="154.0" prefHeight="39.0" prefWidth="252.0" text="Find Wire Cutting Order" textFill="#ff0101">
+         <font>
+            <Font name="Baoli SC Regular" size="20.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="363.0" layoutY="81.0" prefHeight="0.0" prefWidth="269.0" text="Time Remaining:" textAlignment="CENTER" textFill="RED">
+         <font>
+            <Font name="Copperplate" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="timerLabel" alignment="CENTER" layoutX="344.0" layoutY="108.0" prefHeight="24.0" prefWidth="318.0" text="0 Minutes and 0 Seconds" textFill="WHITE">
+         <font>
+            <Font name="Copperplate" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="taskLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="514.0" layoutY="595.0" prefHeight="42.0" prefWidth="141.0" textFill="#ffebeb">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Button fx:id="retryBtn" layoutX="353.0" layoutY="589.0" mnemonicParsing="false" onAction="#onRetry" prefHeight="54.0" prefWidth="100.0" styleClass="close-button" stylesheets="@../css/rooms.css" text="Retry">
+         <font>
+            <Font size="22.0" />
          </font>
       </Button>
    </children>

@@ -41,7 +41,6 @@ public class VaultController extends Controller {
   @FXML private ImageView goldDoor;
   @FXML private ImageView silverDoor;
   @FXML private ImageView bronzeDoor;
-  @FXML private ImageView vaultbackground;
   @FXML private ImageView realvaultbackground;
   @FXML private ImageView bomblogo;
   @FXML private TextArea vaultTextArea;
@@ -54,7 +53,6 @@ public class VaultController extends Controller {
   @FXML private Label difficultyValue;
   @FXML private HBox exitHolder;
 
-  @FXML private HBox doorHolder;
   @FXML private HBox goldDoorHolder;
   @FXML private HBox silverDoorHolder;
   @FXML private HBox bronzeDoorHolder;
@@ -100,8 +98,6 @@ public class VaultController extends Controller {
         goldDoor,
         silverDoor,
         bronzeDoor,
-        vaultbackground,
-        doorHolder,
         exitHolder,
         bombHolder,
         bombPuzzle,
@@ -146,16 +142,17 @@ public class VaultController extends Controller {
 
   @FXML
   private void onBombPressed(MouseEvent event) {
-    // setting sliding animation
-    AnimationManager.slideDoorsAnimation(doorHolder);
-    AnimationManager.slideDoorsAnimation(vaultbackground);
-    AnimationManager.slideDoorsAnimation(slidePane);
+    // // setting sliding animation
+    // AnimationManager.slideDoorsAnimation(doorHolder);
+    // AnimationManager.slideDoorsAnimation(vaultbackground);
+    // AnimationManager.slideDoorsAnimation(slidePane);
 
     GameManager.completeObjective();
 
     // setting style for relevant items
     bomblogo.setVisible(false);
     bombHolder.setDisable(true);
+    exitHolder.setVisible(true);
     styleManager.removeItemsMessage("bombHolder");
     styleManager.setClueHover("bomblayer", false);
     styleManager.setVisible(false, "switchHolder");
@@ -219,6 +216,7 @@ public class VaultController extends Controller {
       styleManager.setItemsMessage("Something seems odd?", "guardpocket");
       styleManager.setItemsMessage("Alarm Wires...?", "electricityBox");
       lootBtnHolder.setVisible(false);
+      styleManager.setDisable(true, "bronzeDoor", "silverDoor", "goldDoor");
       GameManager.collectMoney();
     }
   }

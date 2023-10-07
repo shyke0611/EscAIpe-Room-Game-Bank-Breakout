@@ -21,7 +21,7 @@
 
 <AnchorPane fx:id="VaultPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.EyeScannerController">
    <children>
-      <ImageView fitHeight="700.0" fitWidth="1439.0" layoutX="-216.0" onMouseClicked="#setVault" pickOnBounds="true" preserveRatio="true" scaleX="1.01">
+      <ImageView fitHeight="704.0" fitWidth="1008.0" onMouseClicked="#setVault" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/realvaultbackground.png" />
          </image>
@@ -240,7 +240,7 @@
                   <Font name="Copperplate" size="29.0" />
                </font>
             </Label>
-            <Label fx:id="timerLabel" layoutX="169.0" layoutY="51.0" prefHeight="21.0" prefWidth="273.0" text="Time Remaining: 0 Minutes 0 Seconds" textFill="#864bda">
+            <Label fx:id="timerLabel" layoutX="161.0" layoutY="51.0" prefHeight="21.0" prefWidth="306.0" text="Time Remaining: 2 Minutes 34 Seconds" textFill="#864bda">
                <font>
                   <Font name="Copperplate" size="14.0" />
                </font>
