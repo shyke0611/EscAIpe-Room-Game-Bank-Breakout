@@ -33,6 +33,10 @@ public class StyleManager {
   }
 
   public static void setAlarm(boolean on) {
+    if (on) {
+      App.textToSpeech("Alarm Triggered");
+    }
+
     // Create a set of items to include
     Set<String> includeIds =
         new HashSet<>(
