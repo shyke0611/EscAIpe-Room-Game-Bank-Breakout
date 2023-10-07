@@ -136,6 +136,7 @@ public class GameManager {
   }
 
   public static void completeObjective() {
+    walkieTalkieManager.enableQuickHintBtns();
     switch (activeObjective) {
       case START_GAME:
         activeObjective = Objectives.GET_KEYS;
