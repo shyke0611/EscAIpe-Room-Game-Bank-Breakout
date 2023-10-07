@@ -53,6 +53,7 @@ public class ConnectDotsController extends Controller {
     setSolution();
     randomiseColours();
     randomiseRotation();
+    flipSolution();
     copyStartEndNodes();
   }
 
@@ -190,6 +191,38 @@ public class ConnectDotsController extends Controller {
     }
 
     solution = rotation;
+  }
+
+  private void flipSolution() {
+    Random random = new Random();
+    // 0 = nothing, 1 = flip horizontally, 2 - flip vertically
+    int value = random.nextInt(3);
+    if (value == 0) {
+      return;
+    }
+
+    // flip horizontally
+    if (value == 1) {
+      for (int r = 0; r < size; r++) {
+        for (int c = 0; c < size / 2; c++) {
+          int temp = solution[r][c];
+          solution[r][c] = solution[r][size - 1 - c];
+          solution[r][size - 1 - c] = temp;
+        }
+      }
+      return;
+    }
+
+    // flip vertically
+    if (value == 2) {
+      for (int r = 0; r < size / 2; r++) {
+        for (int c = 0; c < size; c++) {
+          int temp = solution[r][c];
+          solution[r][c] = solution[size - 1 - r][c];
+          solution[size - 1 - r][c] = temp;
+        }
+      }
+    }
   }
 
   private void copyStartEndNodes() {
