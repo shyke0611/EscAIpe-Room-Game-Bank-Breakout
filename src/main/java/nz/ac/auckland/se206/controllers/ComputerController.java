@@ -243,8 +243,7 @@ public class ComputerController extends Controller {
 
   @FXML
   private void onSwitchToHacker() {
-    // switch mechanic to hacker van
-    SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.COMPUTER);
+    // switch to hacker van
     App.setUI(Scenes.HACKERVAN);
   }
 

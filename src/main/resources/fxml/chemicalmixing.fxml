@@ -108,7 +108,7 @@
             <Font name="Apple LiSung Light" size="28.0" />
          </font>
       </Button>
-      <Label fx:id="currentVile" layoutX="638.0" layoutY="344.0" prefHeight="33.0" prefWidth="172.0" text="Pick a vile" textFill="#1c15eb">
+      <Label fx:id="currentVile" layoutX="638.0" layoutY="344.0" prefHeight="33.0" prefWidth="172.0" text="Pick a vial" textFill="#1c15eb">
          <font>
             <Font name="American Typewriter" size="35.0" />
          </font>

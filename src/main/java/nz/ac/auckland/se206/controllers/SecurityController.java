@@ -96,7 +96,6 @@ public class SecurityController extends Controller {
   @FXML
   private void onSwitchToHacker() {
     // setting relevant method for hacker scene
-    SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.LOBBY);
     HackerVanController vanController =
         (HackerVanController) SceneManager.getController(Scenes.HACKERVAN);
     // loading relevant information

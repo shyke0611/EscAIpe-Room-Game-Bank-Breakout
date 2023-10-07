@@ -27,17 +27,7 @@ public class SceneManager {
   private static Controller activeController;
   private static HashMap<Scenes, Controller> controllerMap = new HashMap<>();
   private static HashMap<Scenes, Parent> sceneMap = new HashMap<>();
-  private static HashMap<Scenes, Scenes> previousSceneMap = new HashMap<>();
-
-  // Method to set the previous scene for a given current scene
-  public static void setPreviousScene(Scenes currentScene, Scenes previousScene) {
-    previousSceneMap.put(currentScene, previousScene);
-  }
-
-  // Method to get the previous scene for a given current scene
-  public static Scenes getPreviousScene(Scenes currentScenesPrev) {
-    return previousSceneMap.get(currentScenesPrev);
-  }
+  private static Scenes lastRoom;
 
   // Add a scene to the scene map
   public static void addUi(Scenes appUi, Parent uiRoot) {
@@ -85,8 +75,15 @@ public class SceneManager {
     return activeController.getTimerLabel();
   }
 
+  public static void setLastRoom(Scenes appUi) {
+    lastRoom = appUi;
+  }
+
+  public static Scenes getLastRoom() {
+    return lastRoom;
+  }
+
   public static void clearScenes() {
     sceneMap.clear();
-    previousSceneMap.clear();
   }
 }

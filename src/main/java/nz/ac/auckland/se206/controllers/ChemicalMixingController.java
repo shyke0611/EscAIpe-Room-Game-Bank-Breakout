@@ -73,7 +73,7 @@ public class ChemicalMixingController extends Controller {
     // Setting up scene
     stopButton.setDisable(true);
     retryButton.setDisable(true);
-    currentVile.setText("Pick a vile");
+    currentVile.setText("Pick a vial");
     pourCount = 0;
 
     // Creating slider animation
@@ -97,22 +97,28 @@ public class ChemicalMixingController extends Controller {
     ImageView image = (ImageView) event.getSource();
     image.setStyle("-fx-cursor: hand;");
 
+    // Resume the slider animation
+    if (!sliderMoving) {
+      sliderAnimation.play();
+      sliderMoving = true;
+    }
+
     // Setting the current vile label and saving current clicked colour
     // this is for yellow vile
     if (image.getId().equals("yellowVile")) {
-      currentVile.setText("Yellow Vile");
+      currentVile.setText("Yellow Vial");
       vileColour = "yellow";
       // this is for red vile
     } else if (image.getId().equals("redVile")) {
-      currentVile.setText("Red Vile");
+      currentVile.setText("Red Vial");
       vileColour = "red";
       // this is for blue vile
     } else if (image.getId().equals("blueVile")) {
-      currentVile.setText("Blue Vile");
+      currentVile.setText("Blue Vial");
       vileColour = "blue";
       // this is for green vile
     } else if (image.getId().equals("greenVile")) {
-      currentVile.setText("Green Vile");
+      currentVile.setText("Green Vial");
       vileColour = "green";
     }
 
@@ -124,7 +130,7 @@ public class ChemicalMixingController extends Controller {
         e -> {
           onStopSlider();
           stopButton.setDisable(true);
-          currentVile.setText("Pick a vile");
+          currentVile.setText("Pick a vial");
 
           int value = (int) Math.floor(slider.getValue());
 
@@ -240,7 +246,6 @@ public class ChemicalMixingController extends Controller {
   @FXML
   private void onRetryButtonClicked(ActionEvent event) {
     // Reset all necessary variables and elements
-    slider.setValue(0);
     currentVile.setText("");
     stopButton.setDisable(true);
     pourCount = 0;
@@ -260,12 +265,7 @@ public class ChemicalMixingController extends Controller {
     // Clear the vileColour
     vileColour = null;
     retryButton.setDisable(true);
-    currentVile.setText("Pick a vile");
-    // Resume the slider animation
-    if (!sliderMoving) {
-      sliderAnimation.play();
-      sliderMoving = true;
-    }
+    currentVile.setText("Pick a vial");
   }
 
   /** stops or resumes the slider animation when the "Stop" button is pressed. */

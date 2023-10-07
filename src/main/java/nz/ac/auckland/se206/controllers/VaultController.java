@@ -175,7 +175,6 @@ public class VaultController extends Controller {
   @FXML
   private void onSwitchToHacker() {
     // setting relevant method for hacker scene
-    SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.LOBBY);
     HackerVanController vanController =
         (HackerVanController) SceneManager.getController(Scenes.HACKERVAN);
     // loading relevant information
@@ -210,8 +209,10 @@ public class VaultController extends Controller {
   private void onLootCollected(ActionEvent event) {
     // execute when firewall is disabled and any vault is opened
     if (GameState.isFirewallDisabled && GameState.isAnyDoorOpen) {
-      StyleManager.setAlarm(true);
-      GameState.isAlarmTripped = true;
+      if (!GameState.isAlarmTripped) {
+        StyleManager.setAlarm(true);
+        GameState.isAlarmTripped = true;
+      }
 
       GameManager.completeObjective();
 
