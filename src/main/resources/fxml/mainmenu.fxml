@@ -59,7 +59,7 @@
                         <Font name="Tsukushi B Round Gothic Regula" size="45.0" />
                      </font>
                   </Button>
-                  <Button fx:id="instructionsBtn" minWidth="100.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="258.0" stylesheets="@../css/mainmenu.css" text="Instructions" textFill="#b59e1d">
+                  <Button fx:id="instructionsBtn" minWidth="100.0" mnemonicParsing="false" onMouseClicked="#onInstructions" prefHeight="60.0" prefWidth="258.0" stylesheets="@../css/mainmenu.css" text="Instructions" textFill="#b59e1d">
                      <font>
                         <Font name="Kannada MN" size="45.0" />
                      </font>

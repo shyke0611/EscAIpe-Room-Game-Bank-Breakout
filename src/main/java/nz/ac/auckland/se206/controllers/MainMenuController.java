@@ -45,4 +45,9 @@ public class MainMenuController extends Controller {
   private void exitGame() {
     Platform.exit();
   }
+
+  @FXML
+  private void onInstructions() {
+    App.setUI(Scenes.INSTRUCTIONS);
+  }
 }

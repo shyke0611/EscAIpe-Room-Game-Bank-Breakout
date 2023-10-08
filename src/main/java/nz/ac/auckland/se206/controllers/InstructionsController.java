@@ -2,16 +2,21 @@ package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
 public class InstructionsController extends Controller {
 
+  // General Information labels
   @FXML private Label contextParagraph;
   @FXML private Label storylineParagraph;
   @FXML private Label disableSecurityParagraph;
   @FXML private Label executingHeistParagraph;
   @FXML private Label escapingParagraph;
+
+  @FXML private ScrollPane instructionsScroll;
 
   public void initialize() {
     SceneManager.setController(Scenes.INSTRUCTIONS, this);
@@ -55,5 +60,25 @@ public class InstructionsController extends Controller {
             + " disable the alarm and set off a bomb for a daring getaway. Failing to do so within"
             + " the time limit results in capture and no stolen money.";
     escapingParagraph.setText(escaping);
+  }
+
+  @FXML
+  public void goGeneralInformation() {
+    instructionsScroll.setVvalue(0);
+  }
+
+  @FXML
+  private void goGameMechanics() {
+    instructionsScroll.setVvalue(11);
+  }
+
+  @FXML
+  private void goPuzzles() {
+    instructionsScroll.setVvalue(30);
+  }
+
+  @FXML
+  private void onSwitchToMain() {
+    App.setUI(Scenes.MAIN_MENU);
   }
 }

@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.controllers.ComputerController;
 import nz.ac.auckland.se206.controllers.GameFinishController;
+import nz.ac.auckland.se206.controllers.InstructionsController;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
@@ -48,10 +49,12 @@ public class App extends Application {
   }
 
   public static void setUI(Scenes newUi) {
+    // Update stats if going to end screen
     if (newUi == Scenes.GAMEFINISH) {
       ((GameFinishController) SceneManager.getController(newUi)).setStatLabels();
     }
 
+    // Update last room variable when going to a room
     if (newUi == Scenes.LOBBY || newUi == Scenes.SECURITY || newUi == Scenes.VAULT) {
       SceneManager.setLastRoom(newUi);
     }
@@ -59,8 +62,14 @@ public class App extends Application {
     scene.setRoot(SceneManager.getUiRoot(newUi));
     SceneManager.setActiveController(SceneManager.getController(newUi));
 
+    // Adjust focus upon entering computer
     if (newUi == Scenes.COMPUTER) {
       ((ComputerController) SceneManager.getController(newUi)).setFocus();
+    }
+
+    // Scroll to top of instructions upon entering
+    if (newUi == Scenes.INSTRUCTIONS) {
+      ((InstructionsController) SceneManager.getController(newUi)).goGeneralInformation();
     }
   }
 
