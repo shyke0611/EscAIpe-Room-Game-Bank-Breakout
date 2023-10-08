@@ -186,18 +186,9 @@
                </image>
             </ImageView>
          </children></HBox>
-      <HBox layoutX="15.0" layoutY="539.0" prefHeight="150.0" prefWidth="665.0">
+      <HBox layoutX="189.0" layoutY="521.0" prefHeight="152.0" prefWidth="512.0">
          <children>
-            <VBox fx:id="lobbywalkietalkie" alignment="CENTER" onMousePressed="#onWalkieTalkie" prefHeight="150.0" prefWidth="120.0" styleClass="walkietalkie" stylesheets="@../css/walkietalkie.css">
-               <children>
-                  <ImageView fx:id="lobbyWalkieTalkie" fitHeight="121.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/walkietalkie.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </VBox>
-            <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0" stylesheets="@../css/walkietalkie.css">
+            <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0" stylesheets="@../css/walkietalkie.css" visible="false">
                <children>
                   <HBox fx:id="textAreaBox" prefHeight="100.0" prefWidth="512.0">
                      <children>
@@ -222,7 +213,7 @@
                   </HBox>
                   <HBox prefHeight="51.0" prefWidth="512.0">
                      <children>
-                        <TextField fx:id="lobbyTextInput" onKeyPressed="#onInvokeHacker" prefHeight="51.0" prefWidth="497.0" promptText="Bzzz... type here" stylesheets="@../css/walkietalkie.css">
+                        <TextField fx:id="lobbyTextInput" onKeyPressed="#onInvokeHacker" prefHeight="51.0" prefWidth="497.0" promptText="Bzzz..." stylesheets="@../css/walkietalkie.css">
                            <font>
                               <Font size="22.0" />
                            </font>
@@ -525,6 +516,24 @@
             </Label>
          </children>
       </StackPane>
+      <VBox fx:id="lobbywalkietalkie" alignment="CENTER" layoutX="10.0" layoutY="490.0" onMousePressed="#onWalkieTalkie" prefHeight="144.0" prefWidth="208.0" styleClass="walkietalkie" stylesheets="@../css/walkietalkie.css">
+         <children>
+            <StackPane prefHeight="214.0" prefWidth="218.0">
+               <children>
+                  <ImageView fitHeight="214.0" fitWidth="211.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/walkietalkiepad.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="lobbyWalkieTalkie" fitHeight="121.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/walkietalkie.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
 
    </children>
 </AnchorPane>
