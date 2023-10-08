@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MainMenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.InstructionsController">
    <children>
       <ImageView fitHeight="700.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" />
       <VBox layoutX="25.0" layoutY="25.0" prefHeight="650.0" prefWidth="950.0">
@@ -28,20 +28,20 @@
             <HBox prefHeight="29.0" prefWidth="950.0">
                <children>
                   <Label prefHeight="35.0" prefWidth="147.0" text="GENERAL INFORMATION" />
-                  <Label prefHeight="27.0" prefWidth="137.0" text="GAME INFORMATION" />
+                  <Label prefHeight="27.0" prefWidth="137.0" text="GAME MECHANICS" />
                   <Label prefHeight="35.0" prefWidth="173.0" text="PUZZLES AND MINIGAMES" />
                   <Label prefHeight="29.0" prefWidth="427.0" />
                </children>
             </HBox>
-            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="569.0" prefWidth="950.0" vbarPolicy="ALWAYS" vmax="5.0">
+            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="569.0" prefWidth="950.0" vbarPolicy="ALWAYS" vmax="10.0" vvalue="8.0">
                <content>
-                  <AnchorPane prefHeight="673.0" prefWidth="935.0">
+                  <AnchorPane prefHeight="1120.0" prefWidth="935.0">
                      <children>
-                        <VBox layoutX="8.0" prefHeight="822.0" prefWidth="918.0">
+                        <VBox layoutX="8.0" prefHeight="1224.0" prefWidth="918.0">
                            <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
+                              <VBox prefHeight="563.0" prefWidth="918.0">
                                  <children>
-                                    <Label prefHeight="50.0" prefWidth="917.0" text="GENERAL INFORMATION">
+                                    <Label prefHeight="41.0" prefWidth="918.0" text="GENERAL INFORMATION">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
@@ -49,23 +49,23 @@
                                           <Font name="System Bold" size="24.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Context">
+                                    <Label prefHeight="30.0" text="Context:">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="TOP_LEFT" prefHeight="43.0" prefWidth="923.0" text="Label" />
-                                    <VBox prefHeight="200.0" prefWidth="100.0">
+                                    <Label fx:id="contextParagraph" alignment="TOP_LEFT" prefHeight="80.0" prefWidth="918.0" text="context paragraph" wrapText="true" />
+                                    <VBox prefHeight="375.0" prefWidth="918.0">
                                        <children>
-                                          <Label prefHeight="43.0" prefWidth="264.0" text="Storyline">
+                                          <Label prefHeight="25.0" prefWidth="264.0" text="Storyline:">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
-                                          <Label alignment="TOP_LEFT" prefHeight="40.0" prefWidth="918.0" text="Label" />
-                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                          <Label fx:id="storylineParagraph" alignment="TOP_LEFT" prefHeight="22.0" prefWidth="918.0" text="storyline paragraph" wrapText="true" />
+                                          <VBox prefHeight="100.0" prefWidth="918.0">
                                              <children>
-                                                <Label prefHeight="41.0" prefWidth="76.0" text="Sequence 1">
+                                                <Label prefHeight="20.0" prefWidth="275.0" text="Phase 1: Disabling Security">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
@@ -73,14 +73,14 @@
                                                 <HBox prefHeight="68.0" prefWidth="918.0">
                                                    <children>
                                                       <ImageView fitHeight="80.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true" />
-                                                      <Label alignment="TOP_LEFT" prefHeight="149.0" prefWidth="697.0" text="Label" />
+                                                      <Label fx:id="disableSecurityParagraph" alignment="TOP_LEFT" prefHeight="80.0" prefWidth="697.0" text="disable security paragraph" wrapText="true" />
                                                    </children>
                                                 </HBox>
                                              </children>
                                           </VBox>
-                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                          <VBox prefHeight="100.0" prefWidth="100.0">
                                              <children>
-                                                <Label prefHeight="41.0" prefWidth="76.0" text="Sequence 2">
+                                                <Label prefHeight="20.0" prefWidth="156.0" text="Phase 2: Executing Heist">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
@@ -88,14 +88,14 @@
                                                 <HBox prefHeight="68.0" prefWidth="918.0">
                                                    <children>
                                                       <ImageView fitHeight="80.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true" />
-                                                      <Label alignment="TOP_LEFT" prefHeight="149.0" prefWidth="697.0" text="Label" />
+                                                      <Label fx:id="executingHeistParagraph" alignment="TOP_LEFT" prefHeight="80.0" prefWidth="697.0" text="executing heist paragraph" wrapText="true" />
                                                    </children>
                                                 </HBox>
                                              </children>
                                           </VBox>
-                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                          <VBox prefHeight="100.0" prefWidth="918.0">
                                              <children>
-                                                <Label prefHeight="41.0" prefWidth="76.0" text="Sequence 3">
+                                                <Label prefHeight="20.0" prefWidth="183.0" text="Phase 3: Escaping">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
@@ -103,7 +103,7 @@
                                                 <HBox prefHeight="68.0" prefWidth="918.0">
                                                    <children>
                                                       <ImageView fitHeight="80.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true" />
-                                                      <Label alignment="TOP_LEFT" prefHeight="149.0" prefWidth="697.0" text="Label" />
+                                                      <Label fx:id="escapingParagraph" alignment="TOP_LEFT" prefHeight="80.0" prefWidth="697.0" text="escaping paragraph" wrapText="true" />
                                                    </children>
                                                 </HBox>
                                              </children>
@@ -112,63 +112,113 @@
                                     </VBox>
                                  </children>
                               </VBox>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
+                              <VBox prefHeight="451.0" prefWidth="918.0">
                                  <children>
-                                    <Label text="GAME INFORMATION">
+                                    <Label text="GAME MECHANICS">
                                        <font>
                                           <Font name="System Bold" size="24.0" />
                                        </font>
                                     </Label>
                                     <VBox prefHeight="200.0" prefWidth="100.0">
                                        <children>
-                                          <Label text="Mechanics">
+                                          <Label prefHeight="27.0" prefWidth="225.0" text="Interactability:">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
-                                          <Label text="Label" />
-                                       </children>
-                                    </VBox>
-                                    <VBox prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Label prefHeight="27.0" prefWidth="57.0" text="Glows">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Label>
+                                          <Label prefHeight="17.0" prefWidth="927.0" text="Clickable objects will be highlighted with a coloured glow and display tooltips when hovered over to indicate their current usability." />
                                           <HBox prefHeight="100.0" prefWidth="200.0">
                                              <children>
                                                 <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                                                <VBox prefHeight="200.0" prefWidth="100.0">
+                                                <VBox prefHeight="150.0" prefWidth="100.0">
                                                    <children>
-                                                      <Label prefHeight="46.0" prefWidth="102.0" text="Green Glow">
+                                                      <Label prefHeight="40.0" prefWidth="102.0" text="Green Glow">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label alignment="TOP_LEFT" prefHeight="103.0" prefWidth="102.0" text="Label" />
+                                                      <Label alignment="TOP_LEFT" prefHeight="100.0" prefWidth="135.0" text="Players currently can interact with this object." textAlignment="JUSTIFY" wrapText="true" />
                                                    </children>
                                                 </VBox>
                                                 <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                                                <VBox prefHeight="200.0" prefWidth="100.0">
+                                                <VBox prefHeight="150.0" prefWidth="100.0">
                                                    <children>
-                                                      <Label prefHeight="45.0" prefWidth="120.0" text="Orange Glow">
+                                                      <Label prefHeight="40.0" prefWidth="120.0" text="Orange Glow">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label alignment="TOP_LEFT" prefHeight="128.0" prefWidth="121.0" text="Label" />
+                                                      <Label alignment="TOP_LEFT" prefHeight="100.0" prefWidth="121.0" text="Players may need to interact with this object in future." textAlignment="JUSTIFY" wrapText="true" />
                                                    </children>
                                                 </VBox>
                                                 <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                                                <VBox prefHeight="200.0" prefWidth="100.0">
+                                                <VBox prefHeight="150.0" prefWidth="100.0">
                                                    <children>
-                                                      <Label prefHeight="49.0" prefWidth="107.0" text="Red Glow">
+                                                      <Label prefHeight="40.0" prefWidth="107.0" text="Red Glow">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label alignment="TOP_LEFT" prefHeight="122.0" prefWidth="112.0" text="Label" />
+                                                      <Label alignment="TOP_LEFT" prefHeight="100.0" prefWidth="112.0" text="Players currently can not interact with this object" textAlignment="JUSTIFY" wrapText="true" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="213.0" prefWidth="918.0">
+                                       <children>
+                                          <Label prefHeight="27.0" prefWidth="144.0" text="Switching Rooms:">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="TOP_LEFT" prefHeight="26.0" prefWidth="918.0" text="The game features three interconnected rooms that players must traverse to complete the heist successfully. There is a bank lobby, a security room and a vault room." />
+                                          <Label alignment="TOP_LEFT" prefHeight="19.0" prefWidth="931.0" text="To change rooms, players simply click on the robber icon that corresponds to their desired destination." textAlignment="JUSTIFY" wrapText="true" />
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                                                <VBox prefHeight="150.0" prefWidth="107.0">
+                                                   <children>
+                                                      <Label prefHeight="40.0" prefWidth="102.0" text="Room Switching">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label alignment="TOP_LEFT" prefHeight="100.0" prefWidth="89.0" text="Select the icon corresponding to destination to switch rooms." textAlignment="JUSTIFY" wrapText="true" />
+                                                   </children>
+                                                </VBox>
+                                                <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                                                <VBox prefHeight="150.0" prefWidth="100.0">
+                                                   <children>
+                                                      <Label prefHeight="40.0" prefWidth="102.0" text="Bank Lobby">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label alignment="TOP_LEFT" prefHeight="100.0" prefWidth="135.0" text="Players currently can interact with this object." textAlignment="JUSTIFY" wrapText="true" />
+                                                   </children>
+                                                </VBox>
+                                                <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                                                <VBox prefHeight="150.0" prefWidth="100.0">
+                                                   <children>
+                                                      <Label prefHeight="40.0" prefWidth="102.0" text="Security Room">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label alignment="TOP_LEFT" prefHeight="100.0" prefWidth="135.0" text="This room " textAlignment="JUSTIFY" wrapText="true" />
+                                                   </children>
+                                                </VBox>
+                                                <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                                                <VBox prefHeight="150.0" prefWidth="100.0">
+                                                   <children>
+                                                      <Label prefHeight="40.0" prefWidth="102.0" text="Vault Room">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label alignment="TOP_LEFT" prefHeight="100.0" prefWidth="135.0" text="This is the room that contains all the vaults that the player is trying to unlock" textAlignment="JUSTIFY" wrapText="true" />
                                                    </children>
                                                 </VBox>
                                              </children>
