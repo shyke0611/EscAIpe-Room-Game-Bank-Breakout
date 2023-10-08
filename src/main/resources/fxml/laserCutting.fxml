@@ -26,25 +26,15 @@
             <Image url="@../images/silverDoor.png" />
          </image>
       </ImageView>
-      <Label layoutX="170.0" layoutY="69.0" prefHeight="47.0" prefWidth="717.0" text="Cut  the door within the dotted lines" textFill="#27c350" underline="true">
+      <Label layoutX="170.0" layoutY="69.0" prefHeight="47.0" prefWidth="717.0" text="Cut  the door within the dotted lines">
          <font>
             <Font name="American Typewriter" size="40.0" />
          </font>
       </Label>
       <Circle fx:id="innerCircle" centerX="500.0" centerY="350.0" fill="#1f93ff00" radius="106.0" stroke="BLACK" strokeDashOffset="10.0" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="3.0" style="-fx-stroke-dash-array: 5;" />
-      <Circle fx:id="outerCircle" centerX="500.0" centerY="350.0" fill="#1f93ff00" radius="121.0" stroke="BLACK" strokeDashOffset="10.0" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="3.0" style="-fx-stroke-dash-array: 5;" />
+      <Circle fx:id="outerCircle" centerX="500.0" centerY="350.0" fill="#1f93ff00" radius="125.0" stroke="BLACK" strokeDashOffset="10.0" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="3.0" style="-fx-stroke-dash-array: 5;" />
       <Circle fx:id="blackCircle" fill="#1f93ff00" layoutX="499.0" layoutY="349.0" radius="119.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="10.0" visible="false" />
       <Canvas fx:id="canvas" height="700.0" onMouseDragged="#draw" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" visible="false" width="1000.0" />
-      <ImageView fx:id="laserGun" fitHeight="177.0" fitWidth="318.0" layoutX="46.0" layoutY="481.0" onMouseClicked="#laserGunClicked" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/LaserGun.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="equipLaserGun" layoutX="96.0" layoutY="436.0" text="Equip Laser Gun" textFill="#3ad33c">
-         <font>
-            <Font name="American Typewriter" size="25.0" />
-         </font>
-      </Label>
       <StackPane alignment="TOP_RIGHT" layoutX="52.0" layoutY="45.0" prefHeight="30.0" prefWidth="894.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d3d3" height="30.0" stroke="BLACK" strokeType="INSIDE" translateY="-2.0" width="899.0" />
@@ -66,11 +56,6 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Label layoutX="258.0" layoutY="113.0" prefHeight="47.0" prefWidth="543.0" text="drag while clicked around it" textFill="#27c350" underline="true">
-         <font>
-            <Font name="American Typewriter" size="40.0" />
-         </font>
-      </Label>
       <ImageView fx:id="insideVault" fitHeight="218.0" fitWidth="218.0" layoutX="390.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/vecteezy_vector-bank-vault-with-open-safe-door_23869823-modified.png" />
