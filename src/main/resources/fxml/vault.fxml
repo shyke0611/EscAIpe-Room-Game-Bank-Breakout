@@ -203,7 +203,12 @@
          <children>
             <StackPane prefHeight="338.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="silverDoor" fitHeight="231.0" fitWidth="221.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onLaserCuttingScene" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="222.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/openvault2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="silverDoor" fitHeight="221.0" fitWidth="222.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onLaserCuttingScene" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/silverDoor.png" />
                      </image>
@@ -212,11 +217,16 @@
             </StackPane>
          </children>
       </HBox>
-      <HBox fx:id="bronzeDoorHolder" layoutX="621.0" layoutY="221.0" prefHeight="329.0" prefWidth="325.0" stylesheets="@../css/rooms.css">
+      <HBox fx:id="bronzeDoorHolder" layoutX="609.0" layoutY="221.0" prefHeight="329.0" prefWidth="339.0" stylesheets="@../css/rooms.css">
          <children>
             <StackPane prefHeight="150.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="bronzeDoor" fitHeight="332.0" fitWidth="329.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onSwitchToChemicalMixing" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="327.0" fitWidth="334.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/openvault1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="bronzeDoor" fitHeight="329.0" fitWidth="327.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onSwitchToChemicalMixing" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/bronzeDoor.png" />
                      </image>
@@ -225,16 +235,16 @@
             </StackPane>
          </children>
       </HBox>
-      <HBox fx:id="goldDoorHolder" layoutX="437.0" layoutY="279.0" prefHeight="218.0" prefWidth="265.0" stylesheets="@../css/rooms.css">
+      <HBox fx:id="goldDoorHolder" layoutX="424.0" layoutY="274.0" prefHeight="279.0" prefWidth="282.0" stylesheets="@../css/rooms.css">
          <children>
             <StackPane prefHeight="150.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="goldDoor" fitHeight="266.0" fitWidth="265.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onSwitchToEyeScanner" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="288.0" fitWidth="282.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/goldDoor.png" />
+                        <Image url="@../images/openvault3.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="goldDoor1" fitHeight="266.0" fitWidth="265.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onSwitchToEyeScanner" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="goldDoor" fitHeight="288.0" fitWidth="280.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onSwitchToEyeScanner" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/goldDoor.png" />
                      </image>
