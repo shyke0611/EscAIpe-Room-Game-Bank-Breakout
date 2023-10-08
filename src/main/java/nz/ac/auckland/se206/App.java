@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.controllers.ComputerController;
 import nz.ac.auckland.se206.controllers.GameFinishController;
+import nz.ac.auckland.se206.controllers.InstructionsController;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
@@ -48,10 +49,12 @@ public class App extends Application {
   }
 
   public static void setUI(Scenes newUi) {
+    // Update stats if going to end screen
     if (newUi == Scenes.GAMEFINISH) {
       ((GameFinishController) SceneManager.getController(newUi)).setStatLabels();
     }
 
+    // Update last room variable when going to a room
     if (newUi == Scenes.LOBBY || newUi == Scenes.SECURITY || newUi == Scenes.VAULT) {
       SceneManager.setLastRoom(newUi);
     }
@@ -59,8 +62,14 @@ public class App extends Application {
     scene.setRoot(SceneManager.getUiRoot(newUi));
     SceneManager.setActiveController(SceneManager.getController(newUi));
 
+    // Adjust focus upon entering computer
     if (newUi == Scenes.COMPUTER) {
       ((ComputerController) SceneManager.getController(newUi)).setFocus();
+    }
+
+    // Scroll to top of instructions upon entering
+    if (newUi == Scenes.INSTRUCTIONS) {
+      ((InstructionsController) SceneManager.getController(newUi)).goGeneralInformation();
     }
   }
 
@@ -135,13 +144,14 @@ public class App extends Application {
     SceneManager.addController(SceneManager.Scenes.CONNECTDOTS, null);
     SceneManager.addController(SceneManager.Scenes.WIRECUTTING, null);
     SceneManager.addController(SceneManager.Scenes.LASERCUTTING, null);
+    SceneManager.addController(SceneManager.Scenes.INSTRUCTIONS, null);
 
     loadAllScenes();
 
     // DONT DELETE, ensures object starts on find keys which is important for ai to work
     // GameManager.completeObjective();
 
-    Parent root = SceneManager.getUiRoot(Scenes.MAIN_MENU);
+    Parent root = SceneManager.getUiRoot(Scenes.INSTRUCTIONS);
 
     scene = new Scene(root, 1000, 700);
     stage.setScene(scene);
@@ -166,6 +176,7 @@ public class App extends Application {
   private void loadAllScenes() throws IOException {
     // Add scenes to SceneManager
     SceneManager.addUi(SceneManager.Scenes.MAIN_MENU, loadFxml("mainmenu"));
+    SceneManager.addUi(SceneManager.Scenes.INSTRUCTIONS, loadFxml("instructions"));
     SceneManager.addUi(SceneManager.Scenes.DIFFICULTYPAGE, loadFxml("difficultypage"));
     SceneManager.addUi(SceneManager.Scenes.GAMEFINISH, loadFxml("gamefinish"));
     loadGameScenes();
