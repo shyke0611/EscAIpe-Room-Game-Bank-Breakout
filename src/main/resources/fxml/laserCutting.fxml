@@ -134,5 +134,10 @@
          </image>
       </ImageView>
 </Button>
+      <Label fx:id="timerLabel" layoutX="305.0" layoutY="518.0" prefHeight="53.0" prefWidth="404.0" text="Time Remaining: 2 Minutes 34 Seconds" textFill="WHITE">
+         <font>
+            <Font name="Copperplate" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
