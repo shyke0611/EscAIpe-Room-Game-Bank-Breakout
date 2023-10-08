@@ -118,7 +118,7 @@
             </Label>
          </children>
       </HBox>
-      <VBox layoutX="718.0" layoutY="122.0" prefHeight="559.0" prefWidth="232.0">
+      <VBox layoutX="718.0" layoutY="94.0" prefHeight="580.0" prefWidth="262.0">
          <children>
             <HBox prefHeight="164.0" prefWidth="171.0">
                <children>
@@ -137,9 +137,9 @@
                      </children>
                   </StackPane>
                </children></HBox>
-            <HBox fx:id="guard" prefHeight="334.0" prefWidth="224.0" styleClass="guard" stylesheets="@../css/rooms.css">
+            <HBox fx:id="guard" prefHeight="511.0" prefWidth="273.0" styleClass="guard" stylesheets="@../css/rooms.css">
                <children>
-                  <ImageView fitHeight="397.0" fitWidth="299.0" onMousePressed="#onGuardPressed" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="458.0" fitWidth="278.0" onMousePressed="#onGuardPressed" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/securityguard.png" />
                      </image>
@@ -338,9 +338,9 @@
             </DropShadow>
          </effect>
       </HBox>
-      <HBox fx:id="guardeyes" layoutX="828.0" layoutY="315.0" onMousePressed="#onGuardEyes" prefHeight="32.0" prefWidth="61.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
+      <HBox fx:id="guardeyes" layoutX="833.0" layoutY="290.0" onMousePressed="#onGuardEyes" prefHeight="39.0" prefWidth="41.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
          <children>
-            <ImageView fitHeight="61.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="39.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/sunglasses.png" />
                </image>
