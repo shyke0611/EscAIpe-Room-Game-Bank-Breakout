@@ -9,6 +9,7 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -23,7 +24,7 @@
 
 <AnchorPane fx:id="LobbyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LobbyController">
    <children>
-      <ImageView fx:id="lobbybackground" fitHeight="704.0" fitWidth="1234.0" layoutX="-40.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="lobbybackground" fitHeight="715.0" fitWidth="1024.0" layoutX="-3.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/banklobby.png" />
          </image>
@@ -112,7 +113,7 @@
             </Label>
          </children>
       </HBox>
-      <VBox layoutX="757.0" layoutY="211.0" prefHeight="475.0" prefWidth="168.0">
+      <VBox layoutX="718.0" layoutY="122.0" prefHeight="559.0" prefWidth="232.0">
          <children>
             <HBox prefHeight="164.0" prefWidth="171.0">
                <children>
@@ -131,9 +132,9 @@
                      </children>
                   </StackPane>
                </children></HBox>
-            <HBox fx:id="guard" prefHeight="325.0" prefWidth="213.0" styleClass="guard" stylesheets="@../css/rooms.css">
+            <HBox fx:id="guard" prefHeight="334.0" prefWidth="224.0" styleClass="guard" stylesheets="@../css/rooms.css">
                <children>
-                  <ImageView fitHeight="325.0" fitWidth="226.0" onMousePressed="#onGuardPressed" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="397.0" fitWidth="299.0" onMousePressed="#onGuardPressed" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/securityguard.png" />
                      </image>
@@ -142,29 +143,29 @@
             </HBox>
          </children>
       </VBox>
-      <HBox fx:id="key1" alignment="BOTTOM_LEFT" layoutX="615.0" layoutY="145.0" onMousePressed="#onKeyLocationPressed" prefHeight="69.0" prefWidth="80.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
+      <HBox fx:id="key1" alignment="BOTTOM_LEFT" layoutX="174.0" layoutY="313.0" onMousePressed="#onKeyLocationPressed" prefHeight="54.0" prefWidth="43.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
          <children>
-            <ImageView fitHeight="138.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="55.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/vase1.png" />
+                  <Image url="@../images/keylocation1.png" />
                </image>
             </ImageView>
          </children>
       </HBox>
-      <HBox fx:id="guardpocket" alignment="CENTER" layoutX="879.0" layoutY="478.0" onMousePressed="#onGuardPocket" prefHeight="28.0" prefWidth="17.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
+      <HBox fx:id="guardpocket" alignment="CENTER" layoutX="869.0" layoutY="423.0" onMousePressed="#onGuardPocket" prefHeight="38.0" prefWidth="26.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
          <children>
-            <ImageView fx:id="guardpocket2" fitHeight="24.0" fitWidth="11.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="guardpocket2" fitHeight="36.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/guardpocket.png" />
                </image>
             </ImageView>
          </children>
       </HBox>
-      <HBox fx:id="key3" alignment="CENTER" layoutX="838.0" layoutY="562.0" onMousePressed="#onKeyLocationPressed" prefHeight="32.0" prefWidth="19.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
+      <HBox fx:id="key3" alignment="CENTER" layoutX="264.0" layoutY="272.0" onMousePressed="#onKeyLocationPressed" prefHeight="9.0" prefWidth="43.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
          <children>
-            <ImageView fx:id="guardpocket1" fitHeight="28.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="guardpocket1" fitHeight="51.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/guardpocket1.png" />
+                  <Image url="@../images/keycomponent2.png" />
                </image>
             </ImageView>
          </children></HBox>
@@ -235,11 +236,11 @@
                </children></VBox>
          </children>
       </HBox>
-      <HBox fx:id="drawerHolder" layoutX="628.0" layoutY="359.0" onMousePressed="#onDrawerPressed" prefHeight="100.0" prefWidth="102.0" styleClass="drawer" stylesheets="@../css/rooms.css">
+      <HBox fx:id="drawerHolder" layoutX="569.0" layoutY="281.0" onMousePressed="#onDrawerPressed" prefHeight="113.0" prefWidth="102.0" styleClass="drawer" stylesheets="@../css/rooms.css">
          <children>
             <StackPane prefHeight="150.0" prefWidth="150.0">
                <children>
-                  <ImageView fx:id="openDrawer" fitHeight="114.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="openDrawer" fitHeight="115.0" fitWidth="119.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../images/opendrawer.png" />
                      </image>
@@ -247,7 +248,7 @@
                         <DropShadow height="15.1" radius="4.84" width="6.26" />
                      </effect>
                   </ImageView>
-                  <ImageView fx:id="drawer" fitHeight="102.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="drawer" fitHeight="117.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/drawer.png" />
                      </image>
@@ -258,6 +259,20 @@
                </children>
             </StackPane>
          </children>
+         <effect>
+            <Lighting specularConstant="1.64" specularExponent="19.54" surfaceScale="0.69">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant>
+                     <color>
+                        <Color red="1.0" green="0.9814814925193787" blue="0.9814814925193787" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
       </HBox>
       <HBox fx:id="credentialsBook" layoutX="653.0" layoutY="404.0" onMousePressed="#onCredentialsBookPressed" prefHeight="23.0" prefWidth="58.0" styleClass="credentials" stylesheets="@../css/rooms.css" visible="false">
          <children>
@@ -268,7 +283,7 @@
             </ImageView>
          </children>
       </HBox>
-      <HBox fx:id="key4" layoutX="335.0" layoutY="416.0" onMousePressed="#onKeyLocationPressed" prefHeight="55.0" prefWidth="76.0" stylesheets="@../css/rooms.css">
+      <HBox fx:id="key4" layoutX="453.0" layoutY="354.0" onMousePressed="#onKeyLocationPressed" prefHeight="53.0" prefWidth="74.0" stylesheets="@../css/rooms.css">
          <children>
             <ImageView fitHeight="52.0" fitWidth="441.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -280,68 +295,24 @@
             <String fx:value="items" />
             <String fx:value="keylocations" />
          </styleClass>
+         <effect>
+            <Lighting diffuseConstant="1.02" specularConstant="0.6" specularExponent="40.0" surfaceScale="0.0">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant>
+                     <color>
+                        <Color red="1.0" green="0.9212962985038757" blue="0.9212962985038757" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
       </HBox>
-      <HBox fx:id="credentialsNote" layoutX="297.0" layoutY="331.0" prefHeight="243.0" prefWidth="306.0" visible="false">
+      <HBox fx:id="key" disable="true" layoutX="439.0" layoutY="420.0" onMousePressed="#onKeyPressed" opacity="0.0" prefHeight="131.0" prefWidth="106.0">
          <children>
-            <VBox prefHeight="179.0" prefWidth="306.0">
-               <children>
-                  <StackPane alignment="TOP_LEFT" prefHeight="330.0" prefWidth="272.0">
-                     <children>
-                        <ImageView fitHeight="203.0" fitWidth="306.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/passcodeNote.jpg" />
-                           </image>
-                        </ImageView>
-                        <VBox alignment="CENTER" prefHeight="240.0" prefWidth="306.0">
-                           <children>
-                              <Label text="#CONFIDENTIAL#">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="Apple LiGothic Medium" size="22.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="titleLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="71.0" prefWidth="258.0" style="-fx-text-alignment: center;" text="Security Room Computer Log In:" wrapText="true">
-                                 <font>
-                                    <Font name="Apple LiGothic Medium" size="23.0" />
-                                 </font>
-                              </Label>
-                              <StackPane prefHeight="118.0" prefWidth="306.0">
-                                 <children>
-                                    <Label fx:id="usernameLbl" contentDisplay="CENTER" prefHeight="21.0" prefWidth="166.0" text="Username:" translateY="-35.0">
-                                       <font>
-                                          <Font name="HanziPen SC Regular" size="15.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="passwordLbl" contentDisplay="CENTER" prefHeight="21.0" prefWidth="169.0" text="Password:" translateY="-15.0">
-                                       <font>
-                                          <Font name="HanziPen SC Regular" size="15.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="orderLabel" contentDisplay="CENTER" prefHeight="118.0" prefWidth="102.0" text="Order" translateX="20.0" translateY="-23.0" visible="false" wrapText="true">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </StackPane>
-                           </children>
-                        </VBox>
-                        <Button fx:id="closeNoteBtn" mnemonicParsing="false" onAction="#onCloseNote" prefHeight="18.0" prefWidth="31.0" styleClass="close-button" stylesheets="@../css/rooms.css" text="X" textFill="#ff0404">
-                           <StackPane.margin>
-                              <Insets left="10.0" top="20.0" />
-                           </StackPane.margin>
-                        </Button>
-                     </children>
-                  </StackPane>
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-      <HBox fx:id="key" disable="true" layoutX="466.0" layoutY="376.0" onMousePressed="#onKeyPressed" opacity="0.0" prefHeight="139.0" prefWidth="131.0">
-         <children>
-            <ImageView fitHeight="166.0" fitWidth="131.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="131.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/key.png" />
                </image>
@@ -362,24 +333,89 @@
             </DropShadow>
          </effect>
       </HBox>
-      <HBox fx:id="guardeyes" layoutX="844.0" layoutY="385.0" onMousePressed="#onGuardEyes" prefHeight="49.0" prefWidth="53.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
+      <HBox fx:id="guardeyes" layoutX="828.0" layoutY="315.0" onMousePressed="#onGuardEyes" prefHeight="32.0" prefWidth="61.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
          <children>
-            <ImageView fitHeight="52.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="61.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/sunglasses.png" />
                </image>
             </ImageView>
          </children>
       </HBox>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="496.0" layoutY="338.0" prefHeight="41.0" prefWidth="114.0" text="Lorem Ipsum" textFill="#ffffff82">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="381.0" layoutY="248.0" prefHeight="57.0" prefWidth="155.0" text="Lorem Ipsum" textFill="#ffffff82">
          <font>
             <Font name="Impact" size="21.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="609.0" layoutY="502.0" prefHeight="44.0" prefWidth="90.0" text="Since 1967" textFill="#fdff6a82">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="513.0" layoutY="447.0" prefHeight="65.0" prefWidth="136.0" text="Since 1967" textFill="#fdff6a82">
          <font>
             <Font name="Impact" size="17.0" />
          </font>
       </Label>
+      <HBox fx:id="credentialsNote" layoutX="350.0" layoutY="200.0" prefHeight="144.0" prefWidth="306.0" visible="false">
+         <children>
+            <VBox prefHeight="179.0" prefWidth="306.0">
+               <children>
+                  <StackPane alignment="TOP_LEFT" prefHeight="330.0" prefWidth="272.0">
+                     <children>
+                        <ImageView fitHeight="203.0" fitWidth="306.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/passcodeNote.jpg" />
+                           </image>
+                           <effect>
+                              <DropShadow height="65.22" radius="35.057500000000005" width="77.01">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </ImageView>
+                        <VBox alignment="CENTER" prefHeight="240.0" prefWidth="306.0">
+                           <children>
+                              <Label prefHeight="29.0" prefWidth="137.0" text="#CONFIDENTIAL#">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="Apple LiGothic Medium" size="22.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="titleLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="258.0" style="-fx-text-alignment: center;" text="Security Room Computer Log In:" wrapText="true">
+                                 <font>
+                                    <Font name="Apple LiGothic Medium" size="17.0" />
+                                 </font>
+                              </Label>
+                              <StackPane prefHeight="84.0" prefWidth="306.0">
+                                 <children>
+                                    <Label fx:id="usernameLbl" contentDisplay="CENTER" prefHeight="18.0" prefWidth="166.0" text="Username:" translateY="-35.0">
+                                       <font>
+                                          <Font name="HanziPen SC Regular" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="passwordLbl" contentDisplay="CENTER" prefHeight="24.0" prefWidth="160.0" text="Password:" translateY="-15.0">
+                                       <font>
+                                          <Font name="HanziPen SC Regular" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="orderLabel" contentDisplay="CENTER" prefHeight="118.0" prefWidth="102.0" text="Order" translateX="20.0" translateY="-23.0" visible="false" wrapText="true">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </VBox>
+                        <Button fx:id="closeNoteBtn" mnemonicParsing="false" onAction="#onCloseNote" prefHeight="20.0" prefWidth="29.0" styleClass="credentials-button" stylesheets="@../css/rooms.css" text="X" textFill="WHITE">
+                           <StackPane.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </StackPane.margin>
+                        </Button>
+                     </children>
+                  </StackPane>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
