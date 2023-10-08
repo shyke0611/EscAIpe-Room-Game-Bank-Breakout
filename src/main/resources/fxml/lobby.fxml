@@ -446,15 +446,6 @@
             </DropShadow>
          </effect>
       </HBox>
-      <HBox fx:id="guardeyes" layoutX="844.0" layoutY="385.0" onMousePressed="#onGuardEyes" prefHeight="49.0" prefWidth="53.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
-         <children>
-            <ImageView fitHeight="52.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/sunglasses.png" />
-               </image>
-            </ImageView>
-         </children>
-      </HBox>
 
    </children>
 </AnchorPane>
