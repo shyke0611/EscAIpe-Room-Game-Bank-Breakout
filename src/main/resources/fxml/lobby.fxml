@@ -288,9 +288,9 @@
             </ImageView>
          </children>
       </HBox>
-      <HBox fx:id="key4" layoutX="453.0" layoutY="354.0" onMousePressed="#onKeyLocationPressed" prefHeight="53.0" prefWidth="74.0" stylesheets="@../css/rooms.css">
+      <HBox fx:id="key4" layoutX="497.0" layoutY="307.0" onMousePressed="#onKeyLocationPressed" prefHeight="102.0" prefWidth="0.0" stylesheets="@../css/rooms.css">
          <children>
-            <ImageView fitHeight="52.0" fitWidth="441.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="102.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/alarmclock.png" />
                </image>
@@ -423,9 +423,9 @@
          </children>
       </HBox>
 
-      <HBox fx:id="key" disable="true" layoutX="466.0" layoutY="384.0" onMousePressed="#onKeyPressed" opacity="0.0" prefHeight="116.0" prefWidth="116.0">
+      <HBox fx:id="key" disable="true" layoutX="424.0" layoutY="401.0" onMousePressed="#onKeyPressed" opacity="0.0" prefHeight="149.0" prefWidth="96.0" rotate="-89.3">
          <children>
-            <ImageView fitHeight="166.0" fitWidth="131.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="166.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/key.png" />
                </image>
