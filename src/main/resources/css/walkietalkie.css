@@ -1,0 +1,62 @@
+.walkietalkie {
+    -fx-background-color: #8ac1f5;
+    -fx-background-radius: 70 0 0 70;
+    -fx-border-color: #328add;
+    -fx-border-radius: 70 0 0 70;
+
+}
+
+.walkietalkie:hover {
+    -fx-cursor: hand;
+    -fx-background-color: #9fd7ff;
+    -fx-effect: innershadow(gaussian, rgba(13, 70, 148, 0.3), 10, 0.5, 0, 0);
+    -fx-cursor: hand;
+
+}
+
+.text-area {
+    -fx-control-inner-background: black;
+    -fx-control-inner-border: black;
+    -fx-border-color: black;
+    -fx-background-color: black;
+    -fx-text-fill: rgb(17, 221, 51);
+}
+
+.text-field {
+    -fx-background-color: black;
+    -fx-border-radius: 0;
+    -fx-text-fill: rgb(17, 221, 51);
+    -fx-prompt-text-fill: rgb(17, 221, 51);
+    -fx-background-radius: 0;
+}
+
+.component1 {
+    -fx-control-inner-background: black;
+    -fx-control-inner-border: black;
+    -fx-background-color: black;
+    -fx-background-radius: 0 20 0 0;
+
+}
+
+.component2 {
+    -fx-control-inner-background: black;
+    -fx-control-inner-border: black;
+    -fx-background-color: black;
+    -fx-background-radius: 0 0 20 0;
+}
+
+.button {
+    -fx-background-color: rgb(0, 0, 0);
+    -fx-border-color: rgb(17, 221, 51);
+    -fx-text-fill: rgb(17, 221, 51);
+    -fx-border-radius: 30;
+
+}
+
+.button:hover {
+    -fx-border-radius: 30;
+    -fx-border-color: rgb(0, 255, 42);
+    -fx-text-fill: rgb(0, 255, 42);
+    -fx-cursor: hand;
+
+}

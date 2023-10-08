@@ -22,7 +22,6 @@ import nz.ac.auckland.se206.StyleManager.HoverColour;
 /** Controller class for the Wire Cutting scene. */
 public class WireCuttingController extends Controller {
 
-  @FXML private HBox wirecutter;
 
   @FXML private HBox bluewire;
   @FXML private HBox greenwire;
@@ -36,7 +35,6 @@ public class WireCuttingController extends Controller {
   @FXML private Label wirecutterLbl;
   @FXML private ImageView wirecuttingbackground;
 
-  private boolean isWireCutterSelected = false;
   private StyleManager styleManager = StyleManager.getInstance();
   private List<HBox> wiresCut;
 
@@ -52,9 +50,6 @@ public class WireCuttingController extends Controller {
     styleManager.addItems(
         redwire, greenwire, bluewire, yellowwire, wirecuttingbackground, wirecuttingorderLbl);
     RandomnessGenerate.addWires(bluewire, yellowwire, greenwire, redwire);
-    styleManager.setItemsMessage(
-        "use the wirecutter", "bluewire", "yellowwire", "greenwire", "redwire");
-    setUpListener(wirecutter);
   }
 
   /**
@@ -76,29 +71,27 @@ public class WireCuttingController extends Controller {
    */
   @FXML
   private void onWireClicked(MouseEvent event) {
-    if (isWireCutterSelected == true) {
       HBox clickedWire = (HBox) event.getSource();
       clickedWire.setVisible(false);
       wiresCut.add(clickedWire);
       checkWireCombination();
-    }
   }
 
-  /**
-   * Handle the wire cutter click event. Sets the wire cutter as selected and updates the wire
-   * colors accordingly.
-   *
-   * @param event The MouseEvent triggered by clicking the wire cutter.
-   */
-  @FXML
-  private void onWireCutterClicked(MouseEvent event) {
-    wirecutter.setVisible(false);
-    wirecutterLbl.setVisible(false);
-    isWireCutterSelected = true;
-    // setting/removing relevant styles
-    styleManager.removeItemsMessage("redwire", "greenwire", "bluewire", "yellowwire");
-    styleManager.setItemsState(HoverColour.GREEN, "redwire", "greenwire", "bluewire", "yellowwire");
-  }
+  // /**
+  //  * Handle the wire cutter click event. Sets the wire cutter as selected and updates the wire
+  //  * colors accordingly.
+  //  *
+  //  * @param event The MouseEvent triggered by clicking the wire cutter.
+  //  */
+  // @FXML
+  // private void onWireCutterClicked(MouseEvent event) {
+  //   wirecutter.setVisible(false);
+  //   wirecutterLbl.setVisible(false);
+  //   isWireCutterSelected = true;
+  //   // setting/removing relevant styles
+  //   styleManager.removeItemsMessage("redwire", "greenwire", "bluewire", "yellowwire");
+  //   styleManager.setItemsState(HoverColour.GREEN, "redwire", "greenwire", "bluewire", "yellowwire");
+  // }
 
   /**
    * Handle the retry button click event. Resets the wire cutting puzzle.
@@ -160,7 +153,6 @@ public class WireCuttingController extends Controller {
     retryBtn.setDisable(true);
     styleManager.setClueHover("bomblayer", true);
     styleManager.setClueHover("lobbyRoomSwitch", false);
-    styleManager.getItem("realvaultbackground").setVisible(false);
     styleManager.setClueHover("electricityBox", false);
     GameManager.completeObjective();
     App.textToSpeech("Alarm Disabled");

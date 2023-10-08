@@ -6,6 +6,7 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
@@ -15,41 +16,36 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="securityPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SecurityController">
    <children>
-      <ImageView fx:id="securitybackground" fitHeight="706.0" fitWidth="1019.0" layoutX="-2.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="securitybackground" fitHeight="705.0" fitWidth="1022.0" layoutX="-7.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/secuirty%20room.png" />
+            <Image url="@../images/securityroom.png" />
          </image>
          <effect>
-            <Lighting>
+            <Lighting diffuseConstant="1.05" specularConstant="0.0" specularExponent="22.77" surfaceScale="1.04">
                <bumpInput>
                   <Shadow />
                </bumpInput>
                <light>
-                  <Light.Distant />
+                  <Light.Distant>
+                     <color>
+                        <Color red="0.7894737124443054" green="0.7785087823867798" blue="0.7785087823867798" />
+                     </color></Light.Distant>
                </light>
             </Lighting>
          </effect>
       </ImageView>
-      <HBox fx:id="electricityBox" layoutX="665.0" layoutY="368.0" onMousePressed="#onWireCutting" prefHeight="175.0" prefWidth="179.0" styleClass="drawer" stylesheets="@../css/rooms.css">
+      <StackPane layoutX="367.0" layoutY="14.0" prefHeight="93.0" prefWidth="269.0" rotate="-0.5">
          <children>
-            <ImageView fitHeight="189.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true" rotate="4.0">
-               <image>
-                  <Image url="@../images/electricityBox.png" />
-               </image>
-            </ImageView>
-         </children>
-      </HBox>
-      <StackPane layoutX="407.0" layoutY="94.0" prefHeight="154.0" prefWidth="274.0" rotate="-0.5">
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcbcbc" height="148.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" width="271.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcbcbc" height="104.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" width="225.0" />
             <Label fx:id="timerLabel" text="0:00" translateY="15.0">
                <font>
-                  <Font size="64.0" />
+                  <Font name="Courier" size="64.0" />
                </font>
             </Label>
             <Label text="Time Remaining:" translateY="-40.0">
@@ -59,16 +55,69 @@
             </Label>
          </children>
       </StackPane>
-      <HBox fx:id="computer" alignment="CENTER" layoutX="132.0" layoutY="299.0" onMousePressed="#onClickComputer" prefHeight="256.0" prefWidth="280.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
+      <HBox fx:id="computer" alignment="CENTER" layoutX="525.0" layoutY="322.0" onMousePressed="#onClickComputer" prefHeight="140.0" prefWidth="115.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
          <children>
-            <ImageView fitHeight="280.0" fitWidth="434.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="144.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/computerIcon.png" />
+                  <Image url="@../images/compiuter2.png" />
                </image>
+               <effect>
+                  <InnerShadow height="102.45" radius="38.3775" width="53.06" />
+               </effect>
             </ImageView>
          </children>
       </HBox>
-      <HBox fx:id="logInScreen" layoutX="200.0" layoutY="210.0" prefHeight="453.0" prefWidth="688.0" style="-fx-border-color: #eccb0f;" visible="false">
+      <HBox fx:id="electricityBox" layoutX="272.0" layoutY="419.0" onMousePressed="#onWireCutting" prefHeight="114.0" prefWidth="56.0" styleClass="drawer" stylesheets="@../css/rooms.css">
+         <children>
+            <StackPane prefHeight="114.0" prefWidth="54.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#586772" height="114.0" opacity="0.78" stroke="BLACK" strokeType="INSIDE" width="59.0" />
+                  <ImageView fitHeight="59.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/electricty.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" disable="true" layoutX="673.0" layoutY="340.0" prefHeight="132.0" prefWidth="89.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
+         <children>
+            <ImageView fitHeight="138.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/computer3.png" />
+               </image>
+               <effect>
+                  <InnerShadow height="102.45" radius="38.3775" width="53.06" />
+               </effect>
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" disable="true" layoutX="826.0" layoutY="365.0" prefHeight="145.0" prefWidth="146.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
+         <children>
+            <ImageView fitHeight="156.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/computer4.png" />
+               </image>
+               <effect>
+                  <InnerShadow height="102.45" radius="38.3775" width="53.06" />
+               </effect>
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" disable="true" layoutX="361.0" layoutY="308.0" prefHeight="166.0" prefWidth="165.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
+         <children>
+            <ImageView fitHeight="168.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/computer1.png" />
+               </image>
+               <effect>
+                  <InnerShadow height="102.45" radius="38.3775" width="53.06" />
+               </effect>
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox fx:id="logInScreen" layoutX="166.0" layoutY="168.0" prefHeight="446.0" prefWidth="683.0" style="-fx-border-color: #eccb0f;" visible="false">
          <children>
             <VBox prefHeight="510.0" prefWidth="392.0">
                <children>
@@ -193,7 +242,7 @@
       </HBox>
       <HBox layoutX="15.0" layoutY="539.0" prefHeight="150.0" prefWidth="665.0">
          <children>
-            <VBox fx:id="securitywalkietalkie" onMousePressed="#onWalkieTalkie" prefHeight="200.0" prefWidth="100.0" styleClass="walkietalkie" stylesheets="@../css/rooms.css">
+            <VBox fx:id="securitywalkietalkie" onMousePressed="#onWalkieTalkie" prefHeight="200.0" prefWidth="100.0" styleClass="walkietalkie" stylesheets="@../css/walkietalkie.css">
                <children>
                   <ImageView fx:id="securityWalkieTalkie" fitHeight="141.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -206,11 +255,12 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="512.0">
                      <children>
-                        <TextArea fx:id="securityTextArea" editable="false" prefHeight="99.0" prefWidth="391.0" stylesheets="@../css/rooms.css" wrapText="true">
+                        <TextArea fx:id="securityTextArea" editable="false" prefHeight="126.0" prefWidth="408.0" stylesheets="@../css/walkietalkie.css" wrapText="true">
                            <font>
                               <Font size="19.0" />
-                           </font></TextArea>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="component2" stylesheets="@../css/rooms.css">
+                           </font>
+                        </TextArea>
+                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="107.0" styleClass="component1" stylesheets="@../css/walkietalkie.css">
                            <children>
                               <Button fx:id="viewHistoryBtn" mnemonicParsing="false" onAction="#onSwitchToHacker" text="View History">
                                  <VBox.margin>
@@ -224,19 +274,19 @@
                   </HBox>
                   <HBox prefHeight="51.0" prefWidth="512.0">
                      <children>
-                        <TextField fx:id="securityInputField" onKeyPressed="#onInvokeHacker" prefHeight="51.0" prefWidth="392.0" promptText="Bzzz... type here" stylesheets="@../css/rooms.css">
+                        <TextField fx:id="securityInputField" onKeyPressed="#onInvokeHacker" prefHeight="51.0" prefWidth="420.0" promptText="Bzzz... type here" stylesheets="@../css/walkietalkie.css">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </TextField>
-                        <VBox fx:id="myVBox" prefHeight="200.0" prefWidth="100.0" stylesheets="@../css/rooms.css">
+                        <VBox fx:id="myVBox" prefHeight="51.0" prefWidth="121.0" stylesheets="@../css/rooms.css">
                            <children>
                               <StackPane prefHeight="150.0" prefWidth="200.0">
                                  <children>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" height="51.0" stroke="BLACK" strokeType="INSIDE" width="101.0" />
+                                    <HBox prefHeight="100.0" prefWidth="62.0" styleClass="component2" stylesheets="@../css/walkietalkie.css" />
                                     <Label fx:id="numberOfHints" alignment="TOP_CENTER" text="Unlimited" textFill="#1bcd2a" wrapText="true">
                                        <font>
-                                          <Font size="20.0" />
+                                          <Font size="16.0" />
                                        </font>
                                        <StackPane.margin>
                                           <Insets top="15.0" />
@@ -244,7 +294,7 @@
                                     </Label>
                                     <Label alignment="TOP_CENTER" prefHeight="26.0" prefWidth="92.0" text="Hints Left:" textFill="#1bcd2a" wrapText="true">
                                        <font>
-                                          <Font size="20.0" />
+                                          <Font size="16.0" />
                                        </font>
                                        <StackPane.margin>
                                           <Insets bottom="25.0" />

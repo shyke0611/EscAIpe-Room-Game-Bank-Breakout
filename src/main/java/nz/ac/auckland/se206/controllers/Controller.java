@@ -150,7 +150,6 @@ public abstract class Controller {
     if (GameState.isAlarmDisabled) {
       // Show the bomb holder and disable certain doors
       styleManager.getItem("bombHolder").setVisible(true);
-      styleManager.setDisable(true, "bronzeDoor", "silverDoor", "goldDoor");
       // Disable the clue hover effect for the vault room switch
       styleManager.setClueHover("vaultRoomSwitch", false);
     }

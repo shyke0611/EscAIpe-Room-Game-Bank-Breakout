@@ -35,8 +35,6 @@ public class LaserCuttingController extends Controller {
   @FXML private Circle innerCircle;
   @FXML private Circle blackCircle;
 
-  @FXML private Button takeLootBtn;
-
   @FXML private ImageView insideVault;
   @FXML private ImageView laserGun;
 
@@ -181,7 +179,6 @@ public class LaserCuttingController extends Controller {
       if (totalAngle > 2 * Math.PI
           || totalAngle < -(2 * Math.PI)) { // Adjust the threshold as needed
         // Reset the points and angles for the next circle
-        takeLootBtn.setVisible(true);
         GameState.isLaserCuttingBypassed = true;
         // $10 Million
         GameManager.increaseMoneyToGain(10000000);
