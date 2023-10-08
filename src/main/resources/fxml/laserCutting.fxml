@@ -55,16 +55,7 @@
       <Circle fx:id="blackCircle" fill="#1f93ff00" layoutX="499.0" layoutY="349.0" radius="119.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="10.0" visible="false" />
       <Canvas fx:id="canvas" height="700.0" onMouseDragged="#draw" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" visible="false" width="1000.0" />
 
-      <ImageView fx:id="laserGun" fitHeight="63.0" fitWidth="169.0" layoutX="46.0" layoutY="481.0" onMouseClicked="#laserGunClicked" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/LaserGun.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="equipLaserGun" layoutX="29.0" layoutY="445.0" prefHeight="31.0" prefWidth="204.0" text="Equip Laser Gun" textFill="#3ad33c">
-         <font>
-            <Font name="American Typewriter" size="25.0" />
-         </font>
-      </Label>
+     
       <StackPane alignment="TOP_RIGHT" layoutX="52.0" layoutY="45.0" prefHeight="30.0" prefWidth="894.0" />
       <ImageView fx:id="insideVault" fitHeight="218.0" fitWidth="218.0" layoutX="390.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
@@ -142,6 +133,6 @@
             <Image url="@../images/vecteezy_vector-bank-vault-with-open-safe-door_23869823-modified.png" />
          </image>
       </ImageView>
-
+</Button>
    </children>
 </AnchorPane>
