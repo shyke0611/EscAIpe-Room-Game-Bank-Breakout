@@ -41,6 +41,7 @@ public class SecurityController extends Controller {
   @FXML private VBox vaultRoomSwitch;
   @FXML private VBox lobbyRoomSwitch;
   @FXML private Button logInBtn;
+  @FXML private Button quickHintBtn;
   @FXML private HBox logInScreen;
   @FXML private HBox electricityBox;
   @FXML private Label loginMsgLbl;
@@ -71,6 +72,7 @@ public class SecurityController extends Controller {
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     WalkieTalkieManager.addWalkieTalkieImage(this, securityWalkieTalkie);
     WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
+    WalkieTalkieManager.addQuickHintBtn(this, quickHintBtn);
 
     // Add style items and set messages
     styleManager.addItems(
@@ -94,7 +96,6 @@ public class SecurityController extends Controller {
   @FXML
   private void onSwitchToHacker() {
     // setting relevant method for hacker scene
-    SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.LOBBY);
     HackerVanController vanController =
         (HackerVanController) SceneManager.getController(Scenes.HACKERVAN);
     // loading relevant information
@@ -108,10 +109,6 @@ public class SecurityController extends Controller {
   private void onWireCutting(MouseEvent event) {
     // if wire not cur and alarm is tripped
     if (!GameState.isWiresCut && GameState.isAlarmTripped) {
-      // when wire order are not found yet
-      if (!GameState.isWireCredentialsFound) {
-        App.textToSpeech("you need to find wire cutting order");
-      }
       App.setUI(Scenes.WIRECUTTING);
       // when wire is cut
     } else if (GameState.isWiresCut) {
@@ -253,5 +250,12 @@ public class SecurityController extends Controller {
     hackerAiManager.storeQuickHint();
     // Set the Walkie-Talkie text to the hint
     walkieTalkieManager.setWalkieTalkieText(new ChatMessage("user", hint));
+  }
+
+  @FXML
+  public void onEnterPressed(KeyEvent event) {
+    if (event.getCode() == KeyCode.ENTER) {
+      checkLogin();
+    }
   }
 }

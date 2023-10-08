@@ -104,20 +104,18 @@ public class DifficultyController extends Controller {
       handleDifficultySelection(easyVbox, easyAlarmImage, "Easy");
       easyVboxClicked = true;
       difficulty = Difficulties.EASY;
-      initialiseHacker(difficulty);
-      GameManager.completeObjective();
+
       // handle if difficulty is medium
     } else if (event.getSource() == mediumVbox) {
       handleDifficultySelection(mediumVbox, mediumAlarmImage, "Medium");
       mediumVboxClicked = true;
       difficulty = Difficulties.MEDIUM;
-      initialiseHacker(difficulty);
+
     } else {
       // handle if difficulty is hard
       handleDifficultySelection(hardVbox, hardAlarmImage, "Hard");
       hardVboxClicked = true;
       difficulty = Difficulties.HARD;
-      initialiseHacker(difficulty);
     }
   }
 
@@ -132,7 +130,7 @@ public class DifficultyController extends Controller {
           }
         };
 
-   // new thread for hacker
+    // new thread for hacker
     Thread aiThread3 = new Thread(aiTask3);
     aiThread3.setDaemon(true);
     aiThread3.start();
@@ -159,6 +157,8 @@ public class DifficultyController extends Controller {
   private void onStartHeist(ActionEvent event) {
     // setting relevant methods to start game
     int timerValue = (int) timerSlider.getValue();
+    initialiseHacker(difficulty);
+    GameManager.completeObjective();
     GameManager.createGame(difficulty, timerValue);
     TimerControl.runTimer();
     App.setUI(Scenes.LOBBY);
@@ -186,7 +186,7 @@ public class DifficultyController extends Controller {
     mediumVbox.getStyleClass().remove("clicked-container");
     hardVbox.getStyleClass().remove("clicked-container");
 
-    //setting visibility to each difficulty box
+    // setting visibility to each difficulty box
     easyAlarmImage.setVisible(false);
     mediumAlarmImage.setVisible(false);
     hardAlarmImage.setVisible(false);

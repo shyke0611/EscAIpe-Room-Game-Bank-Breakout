@@ -1,5 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -30,6 +32,8 @@ public class HackerVanController extends Controller {
   private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
   private WalkieTalkieManager walkieTalkieManage = WalkieTalkieManager.getInstance();
 
+  private ChatMessage responce;
+
   public void initialize() {
     SceneManager.setController(Scenes.HACKERVAN, this);
     super.setTimerLabel(timerLabel, 3);
@@ -39,7 +43,7 @@ public class HackerVanController extends Controller {
 
   @FXML
   private void onGoBack() {
-    App.setUI(SceneManager.getPreviousScene(Scenes.HACKERVAN));
+    App.setUI(SceneManager.getLastRoom());
   }
 
   @FXML
@@ -49,13 +53,31 @@ public class HackerVanController extends Controller {
       // fetch message from field and add it to chat history
       ChatMessage msg = new ChatMessage("user", hackerVanInput.getText());
       hackerAiManager.addChatHistory(msg.getContent());
+      printChatHistory();
 
-      ChatMessage responce = hackerAiManager.processInput(msg);
-      hackerAiManager.addChatHistory(responce.getContent());
-      walkieTalkieManage.setWalkieTalkieText(responce);
+      Task<Void> aiTask3 =
+          new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+              responce = hackerAiManager.processInput(msg);
+
+              Platform.runLater(
+                  () -> {
+                    hackerAiManager.addChatHistory(responce.getContent());
+                    printChatHistory();
+                    walkieTalkieManage.setWalkieTalkieText(responce);
+                  });
+
+              return null;
+            }
+          };
+
+      // new thread for hacker
+      Thread threadHackerVan = new Thread(aiTask3);
+      threadHackerVan.setDaemon(true);
+      threadHackerVan.start();
 
       hackerVanInput.clear();
-      printChatHistory();
     }
   }
 

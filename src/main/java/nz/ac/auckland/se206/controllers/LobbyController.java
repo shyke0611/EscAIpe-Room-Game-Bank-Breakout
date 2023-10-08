@@ -86,6 +86,7 @@ public class LobbyController extends Controller {
     WalkieTalkieManager.addWalkieTalkieImage(this, lobbyWalkieTalkie);
     WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
+    WalkieTalkieManager.addQuickHintBtn(this, quickHintBtn);
     super.setTimerLabel(timerLabel, 1);
     // set random components
     RandomnessGenerate.generateRandomCredentials();
@@ -136,7 +137,6 @@ public class LobbyController extends Controller {
   @FXML
   private void onSwitchToHacker() {
     // setting relevant method for hacker scene
-    SceneManager.setPreviousScene(Scenes.HACKERVAN, Scenes.LOBBY);
     HackerVanController vanController =
         (HackerVanController) SceneManager.getController(Scenes.HACKERVAN);
     // loading relevant information
@@ -266,6 +266,7 @@ public class LobbyController extends Controller {
     // updating game state
     GameState.isKeyFound = true;
     GameManager.completeObjective();
+    walkieTalkieManager.enableQuickHintBtns();
     key.setVisible(false);
     // setting style
     styleManager.setItemsState(HoverColour.GREEN, "drawerHolder");

@@ -26,7 +26,6 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
-import nz.ac.auckland.se206.StyleManager.HoverColour;
 
 public class LaserCuttingController extends Controller {
 
@@ -70,20 +69,19 @@ public class LaserCuttingController extends Controller {
     cursorLine.setStroke(Color.RED);
     // applying effects on the gun
     applyGlowEffect(cursorLine);
-    setUpListener(laserGun);
-    styleManager.addItems(laserGun);
-    styleManager.setItemsState(HoverColour.GREEN, "laserGun");
+
+    canvas.setVisible(true);
     formatBlackCirlce();
   }
 
-  @FXML
-  private void laserGunClicked() {
-    // handling when the user clicks on the laser gun
-    gunEquppied = true;
-    canvas.setVisible(true);
-    laserGun.setVisible(false);
-    equipLaserGun.setVisible(false);
-  }
+  // @FXML
+  // private void laserGunClicked() {
+  //   // handling when the user clicks on the laser gun
+  //   gunEquppied = true;
+  //   canvas.setVisible(true);
+  //   laserGun.setVisible(false);
+  //   equipLaserGun.setVisible(false);
+  // }
 
   @FXML
   private void mouseReleased(MouseEvent event) {
@@ -104,8 +102,7 @@ public class LaserCuttingController extends Controller {
     // Create a Point2D object to represent the current mouse position
     Point2D mousePosition = new Point2D(x, y);
     // Check if a gun is equipped and the mouse is inside a specific region
-    if (gunEquppied
-        && isMouseInsideLargerCircleOutsideSmallerCircle(mousePosition, outerCircle, innerCircle)) {
+    if (isMouseInsideLargerCircleOutsideSmallerCircle(mousePosition, outerCircle, innerCircle)) {
       // Update the cursor line's end coordinates to follow the mouse
       cursorLine.setEndX(x);
       cursorLine.setEndY(y);

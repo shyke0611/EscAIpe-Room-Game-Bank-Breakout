@@ -36,6 +36,11 @@
             </Lighting>
          </effect>
       </ImageView>
+      <Label layoutX="835.0" layoutY="300.0" text="Since 1967" textFill="#fdff6a82">
+         <font>
+            <Font name="Impact" size="17.0" />
+         </font>
+      </Label>
       <HBox layoutX="27.0" layoutY="30.0" prefHeight="128.0" prefWidth="300.0" styleClass="roomswitchback" stylesheets="@../css/rooms.css">
          <children>
             <VBox fx:id="lobbyRoomSwitch" alignment="CENTER" prefHeight="129.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
@@ -417,5 +422,39 @@
             </VBox>
          </children>
       </HBox>
+
+      <HBox fx:id="key" disable="true" layoutX="466.0" layoutY="384.0" onMousePressed="#onKeyPressed" opacity="0.0" prefHeight="116.0" prefWidth="116.0">
+         <children>
+            <ImageView fitHeight="166.0" fitWidth="131.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/key.png" />
+               </image>
+               <effect>
+                  <DropShadow height="174.29500000000002" radius="79.27625" spread="0.72" width="144.81">
+                     <color>
+                        <Color red="1.0" green="0.9833333492279053" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </ImageView>
+         </children>
+         <effect>
+            <DropShadow spread="0.39">
+               <color>
+                  <Color red="0.13657407462596893" green="0.7763158082962036" blue="0.30717185139656067" />
+               </color>
+            </DropShadow>
+         </effect>
+      </HBox>
+      <HBox fx:id="guardeyes" layoutX="844.0" layoutY="385.0" onMousePressed="#onGuardEyes" prefHeight="49.0" prefWidth="53.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/sunglasses.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+
    </children>
 </AnchorPane>

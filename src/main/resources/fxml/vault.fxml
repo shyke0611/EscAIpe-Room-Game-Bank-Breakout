@@ -96,7 +96,10 @@
       </HBox>
       <HBox fx:id="walkietalkieHolder" layoutX="15.0" layoutY="539.0" prefHeight="150.0" prefWidth="665.0">
          <children>
+
             <VBox fx:id="vaultwalkietalkie" onMouseClicked="#onWalkieTalkie" onMousePressed="#onWalkieTalkie" prefHeight="200.0" prefWidth="100.0" styleClass="walkietalkie" stylesheets="@../css/walkietalkie.css">
+
+
                <children>
                   <ImageView fx:id="vaultWalkieTalkie" fitHeight="141.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -163,6 +166,94 @@
             </VBox>
          </children>
       </HBox>
+
+      <HBox fx:id="doorHolder" layoutX="66.0" layoutY="185.0" prefHeight="299.0" prefWidth="914.0" spacing="50.0">
+         <children>
+            <HBox fx:id="silverDoorHolder" prefHeight="100.0" prefWidth="200.0" stylesheets="@../css/rooms.css">
+               <children>
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="251.0" fitWidth="282.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/moneybackground.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="268.0" fitWidth="243.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/opensilverdoor.png" />
+                           </image></ImageView>
+                        <ImageView fx:id="silverDoor" fitHeight="266.0" fitWidth="265.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onLaserCuttingScene" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/silverDoor.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+               </children>
+            </HBox>
+            <HBox fx:id="goldDoorHolder" prefHeight="100.0" prefWidth="200.0" stylesheets="@../css/rooms.css">
+               <children>
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="257.0" fitWidth="297.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/moneybackground.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="255.0" fitWidth="269.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/opengolddoor.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="goldDoor" fitHeight="266.0" fitWidth="265.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onSwitchToEyeScanner" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/goldDoor.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+               </children>
+            </HBox>
+            <HBox fx:id="bronzeDoorHolder" prefHeight="100.0" prefWidth="200.0" stylesheets="@../css/rooms.css">
+               <children>
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="249.0" fitWidth="248.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/moneybackground.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="252.0" fitWidth="261.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/openbronzedoor.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="bronzeDoor" fitHeight="299.0" fitWidth="299.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onSwitchToChemicalMixing" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/bronzeDoor.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+               </children></HBox>
+         </children>
+      </HBox>
+      <Label layoutX="155.0" layoutY="190.0" prefHeight="21.0" prefWidth="56.0" text="Vault 2" textFill="#00000055">
+         <font>
+            <Font name="Impact" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="790.0" layoutY="190.0" text="Vault 3" textFill="#00000055">
+         <font>
+            <Font name="Impact" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="470.0" layoutY="190.0" text="Vault 1" textFill="#00000055">
+         <font>
+            <Font name="Impact" size="16.0" />
+         </font>
+      </Label>
+
       <Rectangle fx:id="dialogueBox" arcHeight="40.0" arcWidth="40.0" fill="#000000ac" height="88.0" layoutX="726.0" layoutY="28.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="260.0" />
       <Label fx:id="moneyValue" layoutX="742.0" layoutY="43.0" text="Money: $20,000,000" textFill="WHITE" visible="false">
          <font>
@@ -254,6 +345,7 @@
                   </Label>
                </children>
             </HBox>
+
             <StackPane alignment="CENTER_LEFT" prefHeight="308.0" prefWidth="697.0">
                <children>
                   <ImageView fitHeight="344.0" fitWidth="690.0" pickOnBounds="true" preserveRatio="true">
@@ -262,6 +354,20 @@
                      </image>
                   </ImageView>
                   <VBox prefHeight="344.0" prefWidth="720.0">
+
+            <VBox fx:id="bombPuzzle" layoutX="94.0" layoutY="84.0" onKeyPressed="#onBombTyped" prefHeight="404.0" prefWidth="681.0" visible="false">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="112.0" prefWidth="610.0">
+                     <children>
+                        <Label fx:id="givencode" style="-fx-background-color: black; -fx-border-color: green;" text="Code To Input:" textFill="#27b927">
+                           <font>
+                              <Font size="48.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <StackPane alignment="CENTER_LEFT" focusTraversable="true" prefHeight="308.0" prefWidth="697.0">
+
                      <children>
                         <VBox alignment="CENTER" prefHeight="134.0" prefWidth="680.0">
                            <children>

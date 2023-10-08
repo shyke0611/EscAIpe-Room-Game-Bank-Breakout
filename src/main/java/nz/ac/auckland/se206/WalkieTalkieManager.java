@@ -7,6 +7,7 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -30,6 +31,7 @@ public class WalkieTalkieManager {
   private static HashMap<Controller, Label> walkieTalkieHints = new HashMap<>();
   private static boolean walkieTalkieOpen = false;
   private static WalkieTalkieManager instance = new WalkieTalkieManager();
+  private static HashMap<Controller, Button> quickHintBtns = new HashMap<>();
 
   // Static Methods
   public static void addWalkieTalkie(Controller controller, VBox walkietalkie) {
@@ -44,16 +46,26 @@ public class WalkieTalkieManager {
     walkieTalkieImageMap.put(controller, walkietalkie);
   }
 
+  public static void addQuickHintBtn(Controller controller, Button btn) {
+    quickHintBtns.put(controller, btn);
+  }
+
   public static WalkieTalkieManager getInstance() {
     return instance;
   }
 
   public static void toggleWalkieTalkie() {
     walkieTalkieOpen = !walkieTalkieOpen;
+    Controller activeController = SceneManager.getActiveController();
 
     // Iterate through the map and update the visibility of all VBoxes
     for (VBox vertBox : walkieTalkieMap.values()) {
       vertBox.setVisible(walkieTalkieOpen);
+    }
+
+    VBox activeWalkieTalkie = walkieTalkieMap.get(activeController);
+    if (walkieTalkieOpen && activeWalkieTalkie != null) {
+      ((HBox) activeWalkieTalkie.getChildren().get(1)).getChildren().get(0).requestFocus();
     }
   }
 
@@ -61,6 +73,7 @@ public class WalkieTalkieManager {
     walkieTalkieOpen = false;
     walkieTalkieMap.clear();
     walkieTalkieImageMap.clear();
+    walkieTalkieHints.clear();
   }
 
   // Instance Fields
@@ -181,5 +194,32 @@ public class WalkieTalkieManager {
         image.setImage(new Image("images/walkietalkie.png"));
       }
     }
+  }
+
+  public void disableQuickHintBtns() {
+    for (Button btn : quickHintBtns.values()) {
+      btn.setDisable(true);
+    }
+  }
+
+  public void enableQuickHintBtns() {
+    for (Button btn : quickHintBtns.values()) {
+      btn.setDisable(false);
+    }
+  }
+
+  public Boolean isQuickHintBtnsVisible() {
+    for (Button btn : quickHintBtns.values()) {
+      if (btn.isDisable()) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    return false;
+  }
+
+  public static boolean getWalkieTalkieOpen() {
+    return walkieTalkieOpen;
   }
 }
