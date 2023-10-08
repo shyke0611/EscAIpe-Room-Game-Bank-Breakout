@@ -18,7 +18,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.WireCuttingController">
    <children>
-      <ImageView fx:id="wirecuttingbackground" fitHeight="789.0" fitWidth="1211.0" layoutX="-214.0" pickOnBounds="true" preserveRatio="true" scaleX="1.01">
+      <ImageView fx:id="wirecuttingbackground" fitHeight="705.0" fitWidth="1022.0" layoutX="-7.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/securityroom.png" />
          </image>
@@ -264,19 +264,19 @@
             <Font name="Copperplate" size="22.0" />
          </font>
       </Label>
-      <Label fx:id="timerLabel" alignment="CENTER" layoutX="344.0" layoutY="108.0" prefHeight="24.0" prefWidth="318.0" text="0 Minutes and 0 Seconds" textFill="WHITE">
+      <Label fx:id="timerLabel" alignment="CENTER" layoutX="344.0" layoutY="108.0" prefHeight="24.0" prefWidth="318.0" text="0 Minutes 0 Seconds" textFill="WHITE">
          <font>
             <Font name="Copperplate" size="22.0" />
          </font>
       </Label>
-      <Label fx:id="taskLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="514.0" layoutY="595.0" prefHeight="42.0" prefWidth="141.0" textFill="#ffebeb">
+      <Label fx:id="taskLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="416.0" layoutY="492.0" prefHeight="48.0" prefWidth="178.0" textFill="#ffebeb">
          <font>
-            <Font size="26.0" />
+            <Font name="Copperplate" size="26.0" />
          </font>
       </Label>
-      <Button fx:id="retryBtn" layoutX="353.0" layoutY="589.0" mnemonicParsing="false" onAction="#onRetry" prefHeight="54.0" prefWidth="100.0" styleClass="close-button" stylesheets="@../css/rooms.css" text="Retry">
+      <Button fx:id="retryBtn" layoutX="460.0" layoutY="591.0" mnemonicParsing="false" onAction="#onRetry" prefHeight="43.0" prefWidth="97.0" styleClass="close-button" stylesheets="@../css/rooms.css" text="Retry">
          <font>
-            <Font size="22.0" />
+            <Font size="18.0" />
          </font>
       </Button>
    </children>

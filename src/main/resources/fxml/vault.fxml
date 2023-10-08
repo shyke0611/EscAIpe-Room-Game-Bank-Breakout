@@ -15,6 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="VaultPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.VaultController">
    <children>
@@ -108,11 +109,11 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="512.0">
                      <children>
-                        <TextArea fx:id="vaultTextArea" editable="false" prefHeight="99.0" prefWidth="398.0" stylesheets="@../css/walkietalkie.css" wrapText="true">
+                        <TextArea fx:id="vaultTextArea" editable="false" prefHeight="126.0" prefWidth="408.0" stylesheets="@../css/walkietalkie.css" wrapText="true">
                            <font>
                               <Font size="19.0" />
                            </font></TextArea>
-                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="114.0" styleClass="component1" stylesheets="@../css/walkietalkie.css">
+                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="107.0" styleClass="component1" stylesheets="@../css/walkietalkie.css">
                            <children>
                               <Button fx:id="viewHistoryBtn" mnemonicParsing="false" onAction="#onSwitchToHacker" text="View History">
                                  <VBox.margin>
@@ -124,9 +125,9 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox prefHeight="51.0" prefWidth="526.0" stylesheets="@../css/rooms.css">
+                  <HBox prefHeight="51.0" prefWidth="512.0" stylesheets="@../css/rooms.css">
                      <children>
-                        <TextField fx:id="vaultTextField" onKeyPressed="#onInvokeHacker" prefHeight="51.0" prefWidth="405.0" promptText="Bzzz... type here" stylesheets="@../css/walkietalkie.css">
+                        <TextField fx:id="vaultTextField" onKeyPressed="#onInvokeHacker" prefHeight="51.0" prefWidth="417.0" promptText="Bzzz... type here" stylesheets="@../css/walkietalkie.css">
                            <font>
                               <Font size="22.0" />
                            </font>
@@ -135,10 +136,10 @@
                            <children>
                               <StackPane prefHeight="51.0" prefWidth="164.0">
                                  <children>
-                                    <HBox prefHeight="51.0" prefWidth="134.0" styleClass="component2" stylesheets="@../css/walkietalkie.css" />
-                                    <Label fx:id="numberOfHints" alignment="TOP_CENTER" prefHeight="26.0" prefWidth="86.0" text="Unlimited" textFill="#1bcd2a" wrapText="true">
+                                    <HBox prefHeight="51.0" prefWidth="62.0" styleClass="component2" stylesheets="@../css/walkietalkie.css" />
+                                    <Label fx:id="numberOfHints" alignment="TOP_CENTER" prefHeight="0.0" prefWidth="432.0" text="Unlimited" textFill="#1bcd2a" wrapText="true">
                                        <font>
-                                          <Font size="20.0" />
+                                          <Font size="16.0" />
                                        </font>
                                        <StackPane.margin>
                                           <Insets top="15.0" />
@@ -146,7 +147,7 @@
                                     </Label>
                                     <Label alignment="TOP_CENTER" prefHeight="26.0" prefWidth="92.0" text="Hints Left:" textFill="#1bcd2a" wrapText="true">
                                        <font>
-                                          <Font size="20.0" />
+                                          <Font size="16.0" />
                                        </font>
                                        <StackPane.margin>
                                           <Insets bottom="25.0" />
@@ -187,26 +188,6 @@
             </HBox>
          </children>
       </HBox>
-      <VBox fx:id="lootBtnHolder" alignment="CENTER" layoutX="331.0" layoutY="128.0" prefHeight="68.0" prefWidth="381.0" visible="false">
-         <children>
-            <Label fx:id="lootLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="453.0" text="Collect Loot Now or Open More Vaults" textFill="#3cff2b">
-               <font>
-                  <Font name="Chalkboard" size="21.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </Label>
-            <Button fx:id="lootBtn" mnemonicParsing="false" onAction="#onLootCollected" onMouseEntered="#showMoneyCollected" onMouseExited="#clearInfo" prefHeight="26.0" prefWidth="117.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="Collect Loot">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
-         </children>
-         <effect>
-            <DropShadow height="29.84" radius="10.735" spread="0.2" width="15.1" />
-         </effect>
-      </VBox>
       <StackPane fx:id="timerClock" layoutX="460.0" layoutY="41.0" prefHeight="72.0" prefWidth="99.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#888d7d" height="64.0" stroke="BLACK" strokeType="INSIDE" width="99.0" />
@@ -326,6 +307,35 @@
                         </HBox>
                      </children>
                   </VBox>
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
+      <VBox fx:id="lootBtnHolder" alignment="CENTER" layoutX="1.0" layoutY="305.0" prefHeight="251.0" prefWidth="325.0" visible="false">
+         <children>
+            <StackPane prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="266.0" fitWidth="334.0" opacity="0.86" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/collectLoot.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="lootBtn" mnemonicParsing="false" onAction="#onLootCollected" onMouseEntered="#showMoneyCollected" onMouseExited="#clearInfo" prefHeight="22.0" prefWidth="73.0" styleClass="tech-button" stylesheets="@../css/rooms.css" text="Collect Loot">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets left="30.0" top="60.0" />
+                     </StackPane.margin>
+                  </Button>
+                  <Text fx:id="lootLbl" fill="#9c61d0" strokeType="OUTSIDE" strokeWidth="0.0" text="Collect Loot Now or Open More Vaults" wrappingWidth="141.67347717285156">
+                     <font>
+                        <Font name="Copperplate" size="19.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets bottom="30.0" right="-85.0" />
+                     </StackPane.margin>
+                  </Text>
                </children>
             </StackPane>
          </children>

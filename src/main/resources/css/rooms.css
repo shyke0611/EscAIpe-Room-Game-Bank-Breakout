@@ -97,6 +97,18 @@
     -fx-background-color: rgb(242, 232, 232);
 }
 
+.tech-button {
+    -fx-background-color: transparent;
+    -fx-border-color: #9485e8;
+    -fx-font-family: 'Apple LiGothic';
+    -fx-text-fill: #9485e8;
+}
+
+.tech-button:hover {
+    -fx-cursor: hand;
+    -fx-background-color: #aea0fa;
+}
+
 .computer-button {
     -fx-background-color: #000000;
     -fx-background-radius: 20;

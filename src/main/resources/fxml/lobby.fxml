@@ -205,7 +205,7 @@
                   </HBox>
                   <HBox prefHeight="51.0" prefWidth="512.0">
                      <children>
-                        <TextField fx:id="lobbyTextInput" onKeyPressed="#onInvokeHacker" prefHeight="51.0" prefWidth="516.0" promptText="Bzzz... type here" stylesheets="@../css/walkietalkie.css">
+                        <TextField fx:id="lobbyTextInput" onKeyPressed="#onInvokeHacker" prefHeight="51.0" prefWidth="497.0" promptText="Bzzz... type here" stylesheets="@../css/walkietalkie.css">
                            <font>
                               <Font size="22.0" />
                            </font>
@@ -274,7 +274,7 @@
             </Lighting>
          </effect>
       </HBox>
-      <HBox fx:id="credentialsBook" layoutX="653.0" layoutY="404.0" onMousePressed="#onCredentialsBookPressed" prefHeight="23.0" prefWidth="58.0" styleClass="credentials" stylesheets="@../css/rooms.css" visible="false">
+      <HBox fx:id="credentialsBook" layoutX="598.0" layoutY="329.0" onMousePressed="#onCredentialsBookPressed" prefHeight="27.0" prefWidth="54.0" styleClass="credentials" stylesheets="@../css/rooms.css" visible="false">
          <children>
             <ImageView fitHeight="27.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -385,9 +385,9 @@
                                     <Font name="Apple LiGothic Medium" size="17.0" />
                                  </font>
                               </Label>
-                              <StackPane prefHeight="84.0" prefWidth="306.0">
+                              <StackPane prefHeight="118.0" prefWidth="291.0">
                                  <children>
-                                    <Label fx:id="usernameLbl" contentDisplay="CENTER" prefHeight="18.0" prefWidth="166.0" text="Username:" translateY="-35.0">
+                                    <Label fx:id="usernameLbl" contentDisplay="CENTER" prefHeight="12.0" prefWidth="166.0" text="Username:" translateY="-35.0">
                                        <font>
                                           <Font name="HanziPen SC Regular" size="15.0" />
                                        </font>

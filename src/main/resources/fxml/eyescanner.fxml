@@ -183,10 +183,13 @@
                               <Label fx:id="blueValue" prefHeight="17.0" prefWidth="29.0" text="0" textFill="#1928ff" translateX="20.0" translateY="2.0" />
                            </children>
                         </HBox>
-                        <Button fx:id="compareBtn" disable="true" mnemonicParsing="false" onMouseClicked="#onCompareSample" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: transparent; -fx-border-color: #9485e8;" text="Compare" textFill="#9485e8" translateX="150.0">
+                        <Button fx:id="compareBtn" disable="true" mnemonicParsing="false" onMouseClicked="#onCompareSample" prefHeight="26.0" prefWidth="75.0" styleClass="tech-button" stylesheets="@../css/rooms.css" text="Compare" textFill="#9485e8" translateX="150.0">
                            <VBox.margin>
                               <Insets left="-10.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="Apple LiGothic Medium" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </VBox>
@@ -230,17 +233,17 @@
                   <Font size="31.0" />
                </font>
             </Label>
-            <ImageView fitHeight="155.0" fitWidth="443.0" layoutX="69.0" layoutY="-42.0" opacity="0.9" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="173.0" fitWidth="506.0" layoutX="69.0" layoutY="-42.0" opacity="0.9" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/minigametext.png" />
                </image>
             </ImageView>
-            <Label alignment="CENTER" layoutX="-93.0" layoutY="-19.0" prefHeight="45.0" prefWidth="809.0" text="Eye Scanner" textAlignment="CENTER" textFill="#864bda">
+            <Label alignment="CENTER" layoutX="243.0" layoutY="-4.0" prefHeight="30.0" prefWidth="228.0" text="Eye Scanner" textAlignment="CENTER" textFill="#864bda">
                <font>
                   <Font name="Copperplate" size="29.0" />
                </font>
             </Label>
-            <Label fx:id="timerLabel" layoutX="161.0" layoutY="51.0" prefHeight="21.0" prefWidth="306.0" text="Time Remaining: 2 Minutes 34 Seconds" textFill="#864bda">
+            <Label fx:id="timerLabel" layoutX="174.0" layoutY="64.0" prefHeight="16.0" prefWidth="383.0" text="Time Remaining: 2 Minutes 34 Seconds" textFill="#864bda">
                <font>
                   <Font name="Copperplate" size="14.0" />
                </font>

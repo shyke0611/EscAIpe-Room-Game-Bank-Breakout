@@ -18,6 +18,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameManager;
@@ -49,7 +50,7 @@ public class VaultController extends Controller {
 
   @FXML private Rectangle dialogueBox;
   @FXML private Label moneyValue;
-  @FXML private Label lootLbl;
+  @FXML private Text lootLbl;
   @FXML private Label difficultyValue;
   @FXML private HBox exitHolder;
 

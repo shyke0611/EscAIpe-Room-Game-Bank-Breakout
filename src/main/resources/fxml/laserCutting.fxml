@@ -103,7 +103,7 @@
             <Font size="39.0" />
          </font>
       </Button>
-      <Label fx:id="timerLabel" layoutX="305.0" layoutY="530.0" prefHeight="38.0" prefWidth="400.0" text="Time Remaining: 0 Minutes 0 Seconds" textFill="#d0c4c4">
+      <Label fx:id="timerLabel" layoutX="310.0" layoutY="530.0" prefHeight="38.0" prefWidth="395.0" text="Time Remaining: 0 Minutes and 0 Seconds" textFill="#d0c4c4">
          <font>
             <Font name="Copperplate" size="17.0" />
          </font>
