@@ -135,13 +135,14 @@ public class App extends Application {
     SceneManager.addController(SceneManager.Scenes.CONNECTDOTS, null);
     SceneManager.addController(SceneManager.Scenes.WIRECUTTING, null);
     SceneManager.addController(SceneManager.Scenes.LASERCUTTING, null);
+    SceneManager.addController(SceneManager.Scenes.INSTRUCTIONS, null);
 
     loadAllScenes();
 
     // DONT DELETE, ensures object starts on find keys which is important for ai to work
     // GameManager.completeObjective();
 
-    Parent root = SceneManager.getUiRoot(Scenes.MAIN_MENU);
+    Parent root = SceneManager.getUiRoot(Scenes.INSTRUCTIONS);
 
     scene = new Scene(root, 1000, 700);
     stage.setScene(scene);
@@ -166,6 +167,7 @@ public class App extends Application {
   private void loadAllScenes() throws IOException {
     // Add scenes to SceneManager
     SceneManager.addUi(SceneManager.Scenes.MAIN_MENU, loadFxml("mainmenu"));
+    SceneManager.addUi(SceneManager.Scenes.INSTRUCTIONS, loadFxml("instructions"));
     SceneManager.addUi(SceneManager.Scenes.DIFFICULTYPAGE, loadFxml("difficultypage"));
     SceneManager.addUi(SceneManager.Scenes.GAMEFINISH, loadFxml("gamefinish"));
     loadGameScenes();

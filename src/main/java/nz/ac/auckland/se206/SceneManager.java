@@ -13,6 +13,7 @@ public class SceneManager {
     LOBBY,
     SECURITY,
     MAIN_MENU,
+    INSTRUCTIONS,
     DIFFICULTYPAGE,
     COMPUTER,
     HACKERVAN,
