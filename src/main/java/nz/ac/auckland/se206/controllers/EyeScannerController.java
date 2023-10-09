@@ -57,7 +57,7 @@ public class EyeScannerController extends Controller {
   public void initialize() {
 
     // set relevant method on initialisation
-    styleManager.addItems(compareBtn);
+    // styleManager.addItems(compareBtn);
     SceneManager.setController(Scenes.EYESCANNER, this);
     super.setTimerLabel(timerLabel, 3);
     accessGranted.setVisible(false);
@@ -68,7 +68,7 @@ public class EyeScannerController extends Controller {
     greenValue.textProperty().bind(greenSlider.valueProperty().asString("%.0f"));
     blueValue.textProperty().bind(blueSlider.valueProperty().asString("%.0f"));
 
-    styleManager.addItems(geteyesampleLbl);
+    // styleManager.addItems(geteyesampleLbl);
 
     // Adjust the colour of the artificial eye and adjust slider colour based on the sliders
 

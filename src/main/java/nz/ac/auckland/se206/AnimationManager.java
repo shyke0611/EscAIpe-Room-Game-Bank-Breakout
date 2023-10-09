@@ -75,21 +75,21 @@ public class AnimationManager {
     }
   }
 
-  public static void slideDoorsAnimation(Node node) {
-    if (!isSlideAnimationPlayed) {
-      TranslateTransition transition = new TranslateTransition();
-      transition.setDuration(Duration.seconds(2));
-      transition.setNode(node);
-      transition.setByX(-1052);
-      transition.play();
+  // public static void slideDoorsAnimation(Node node) {
+  //   if (!isSlideAnimationPlayed) {
+  //     TranslateTransition transition = new TranslateTransition();
+  //     transition.setDuration(Duration.seconds(2));
+  //     transition.setNode(node);
+  //     transition.setByX(-1052);
+  //     transition.play();
 
-      transition.setOnFinished(
-          event -> {
-            isSlideAnimationPlayed = true; // Animation has finished
-          });
-      transition.play();
-    }
-  }
+  //     transition.setOnFinished(
+  //         event -> {
+  //           isSlideAnimationPlayed = true; // Animation has finished
+  //         });
+  //     transition.play();
+  //   }
+  // }
 
   public static void delayAnimation(Node node, Node node1) {
     // Delay the animation for 3 seconds

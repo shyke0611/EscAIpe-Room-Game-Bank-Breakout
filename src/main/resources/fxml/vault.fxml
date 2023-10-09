@@ -87,7 +87,7 @@
             </HBox>
          </children>
       </HBox>
-      <HBox fx:id="silverDoorHolder" layoutX="246.0" layoutY="282.0" prefHeight="229.0" prefWidth="223.0" stylesheets="@../css/rooms.css">
+      <HBox fx:id="silverDoorHolder" layoutX="246.0" layoutY="282.0" prefHeight="229.0" prefWidth="223.0" styleClass="drawer" stylesheets="@../css/rooms.css">
          <children>
             <StackPane prefHeight="338.0" prefWidth="200.0">
                <children>
@@ -125,7 +125,7 @@
             </StackPane>
          </children>
       </HBox>
-      <HBox fx:id="bronzeDoorHolder" layoutX="609.0" layoutY="221.0" prefHeight="329.0" prefWidth="339.0" stylesheets="@../css/rooms.css">
+      <HBox fx:id="bronzeDoorHolder" layoutX="609.0" layoutY="221.0" prefHeight="329.0" prefWidth="339.0" styleClass="drawer" stylesheets="@../css/rooms.css">
          <children>
             <StackPane prefHeight="150.0" prefWidth="200.0">
                <children>
@@ -163,7 +163,7 @@
             </StackPane>
          </children>
       </HBox>
-      <HBox fx:id="goldDoorHolder" layoutX="424.0" layoutY="274.0" prefHeight="279.0" prefWidth="282.0" stylesheets="@../css/rooms.css">
+      <HBox fx:id="goldDoorHolder" layoutX="424.0" layoutY="274.0" prefHeight="279.0" prefWidth="282.0" styleClass="drawer" stylesheets="@../css/rooms.css">
          <children>
             <StackPane prefHeight="150.0" prefWidth="200.0">
                <children>
