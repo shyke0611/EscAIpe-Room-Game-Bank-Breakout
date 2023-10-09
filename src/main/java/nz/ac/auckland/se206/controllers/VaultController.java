@@ -353,12 +353,12 @@ public class VaultController extends Controller {
               // Perform AI-related operations here
               // Create a ChatMessage from the user's input
               ChatMessage msg = new ChatMessage("user", vaultTextField.getText());
-              // Add the user's input to the chat history managed by the hackerAiManager
-              hackerAiManager.addChatHistory(msg.getContent());
+
+              hackerAiManager.addChatHistory("User: " + msg.getContent());
               walkieTalkieManager.clearWalkieTalkie();
               // Process the user's input with the hackerAiManager and get a response
               ChatMessage response = hackerAiManager.processInput(msg);
-              hackerAiManager.addChatHistory(response.getContent());
+              hackerAiManager.addChatHistory("Cipher: " + response.getContent());
               // Use Platform.runLater to update the UI on the JavaFX Application Thread
               Platform.runLater(
                   () -> {
