@@ -172,6 +172,7 @@ public class VaultController extends Controller {
       // setting style
       StyleManager.setItemsMessage("Collect guard eye sample", "guardeyes");
       StyleManager.setItemsHoverColour(HoverColour.GREEN, "guardeyes");
+      StyleManager.setClueHover("guardeyes", true);
     }
   }
 

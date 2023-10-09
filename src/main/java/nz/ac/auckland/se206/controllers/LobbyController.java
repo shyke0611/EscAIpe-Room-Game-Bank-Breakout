@@ -211,6 +211,7 @@ public class LobbyController extends Controller {
 
   @FXML
   private void onGuardEyes(MouseEvent event) {
+    StyleManager.setClueHover("guardeyes", false);
     // execute only if eye scanner puzzle is pressed
     if (GameState.isEyeScannerEntered) {
       guardeyes.setDisable(true);
@@ -229,7 +230,7 @@ public class LobbyController extends Controller {
     passwordLbl.setText("Password: " + randomPassword);
     usernameLbl.setText("Username: " + randomUsername);
     StyleManager.removeItemsMessage("credentialsBook");
-    
+
     GameState.isCredentialsFound = true;
     GameManager.completeObjective();
     StyleManager.setClueHover("computer", true);
