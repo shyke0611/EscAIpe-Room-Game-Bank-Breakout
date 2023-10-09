@@ -22,3 +22,12 @@
           -track-color;
 }
 
+.sliders{
+    -fx-background-color: radial-gradient( center 50% 50%, radius 100%,rgba(43, 30, 84,0.9) 20%,rgba(255,0,0,0) 60% );
+    
+}
+
+.eyes{
+    -fx-background-color: radial-gradient( center 50% 50%, radius 100%,rgba(43, 30, 84,0.9) 30%,rgba(255,0,0,0) 50% );
+}
+
