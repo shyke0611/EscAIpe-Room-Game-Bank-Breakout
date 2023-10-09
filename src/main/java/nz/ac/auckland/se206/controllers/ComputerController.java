@@ -206,6 +206,9 @@ public class ComputerController extends Controller {
             if (message.trim().equalsIgnoreCase("yes")) {
               riddleStarted = true;
               lastMsg = getRiddle();
+              if (lastMsg == null) {
+                startConnectDots();
+              }
             } else if (!riddleStarted) {
               ChatMessage msg =
                   new ChatMessage("user", "Please type yes to start the authentication process");
