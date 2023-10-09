@@ -58,6 +58,8 @@ public class ComputerController extends Controller {
   private StyleManager styleManager = StyleManager.getInstance();
 
   private Timeline timeline;
+  private Boolean riddleStarted;
+  private Boolean authenticationStarted;
 
   public void initialize() throws ApiProxyException {
     // initialising all the relevant methods
@@ -69,12 +71,18 @@ public class ComputerController extends Controller {
     // creating new timeline
     timeline = new Timeline(new KeyFrame(Duration.seconds(0.6), e -> updateLabel()));
     timeline.setCycleCount(Timeline.INDEFINITE);
+
+    chatCompletionRequest =
+        new ChatCompletionRequest().setN(1).setTemperature(0.4).setTopP(1).setMaxTokens(256);
+    riddleStarted = false;
+    authenticationStarted = false;
     // setting chat message
     ChatMessage msg =
         new ChatMessage(
             "user",
             "Welcome to Lorem Ipsum, where security is our top priority, please type 'yes' to start"
                 + " the authentication process");
+    lastMsg = new ChatMessage("user", "");
 
     if (msg != null) {
       messageQueue.add(msg);
@@ -96,143 +104,105 @@ public class ComputerController extends Controller {
   private ChatMessage getRiddle() {
     // setting new chat completion request
     try {
-      chatCompletionRequest =
-          new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(1).setMaxTokens(256);
-      // getting riddle for computer ai
+
       ChatMessage response =
           runGpt(new ChatMessage("assistant", GptPromptEngineering.getRiddleWithGivenWord()));
       if (!(response == null)) {
-        App.textToSpeech("Welcome user, Starting Authentication");
+        App.textToSpeech("Welcome, Starting Captcha test");
       }
+      messageQueue.add(response);
+
       return response;
     } catch (Exception e) {
-      System.out.println("start dots");
-      startConnectDots();
-      // e.printStackTrace();
-    }
-    return null;
-  }
 
-  @FXML
-  private ChatMessage startAuthentication() {
-    try {
-      // Add logging here to trace the flow and variable values
-      chatCompletionRequest =
-          new ChatCompletionRequest().setN(1).setTemperature(0.4).setTopP(1).setMaxTokens(256);
-      System.out.println("Starting Authentication...");
-      String ceoName = RandomnessGenerate.getCurrentCeoName();
-      ChatMessage response =
-          runGpt(new ChatMessage("user", GptPromptEngineering.initiliseComputer(ceoName)));
-      messageQueue.add(response);
-      // Add more logging to check response and its properties
-      System.out.println("Authentication Response: " + response);
-      // return what computer ai says
-      return response;
-    } catch (ApiProxyException e) {
       e.printStackTrace();
     }
     return null;
   }
 
   @FXML
+  private void startAuthentication() {
+    try {
+      // Add logging here to trace the flow and variable values
+      System.out.println("Starting Authentication...");
+      String ceoName = RandomnessGenerate.getCurrentCeoName();
+      ChatMessage response =
+          runGpt(new ChatMessage("user", GptPromptEngineering.initiliseComputer(ceoName)));
+      messageQueue.add(response);
+      appendChatMessage();
+      authenticationStarted = true;
+
+      // return what computer ai says
+
+    } catch (ApiProxyException e) {
+      e.printStackTrace();
+    }
+  }
+
+  @FXML
   private void onSend(ActionEvent event) throws ApiProxyException, IOException {
-    // creating new task for the thread
+    if (sendBtn.isDisable()) {
+      return;
+    }
     Task<Void> task =
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
             securityTextArea.appendText("\n");
+            sendBtn.setDisable(true);
             // getting the message the user inputs
             String message = inputTextField.getText();
-            ChatMessage msg = new ChatMessage("user", message);
-            messageQueue.add(msg);
             inputTextField.clear();
-            appendChatMessage();
-            // setting relevant methods
             Platform.runLater(
                 () -> {
                   timeline.play();
                 });
 
-            // if input is empty then return null
-            if (message.trim().isEmpty()) {
-              return null;
+            messageQueue.add(new ChatMessage("user", message));
+
+            if (authenticationStarted) {
+              lastMsg = runGpt(new ChatMessage("user", message));
+
+              if (lastMsg.getRole().equals("assistant")
+                  && lastMsg.getContent().contains("security")) {
+                accessLevelThree();
+                return null;
+
+              } else if (lastMsg.getRole().equals("assistant")
+                  && lastMsg.getContent().startsWith("Authenticated")) {
+                accessLevelTwo();
+                return null;
+              } else {
+                App.textToSpeech("Authentication failed, Access Denied");
+                messageQueue.add(new ChatMessage("user", "Authentication Failed"));
+                startConnectDots();
+                appendChatMessage();
+
+                return null;
+              }
             }
 
-            // if the message is yes, then start the authentication process
+            if (riddleStarted) {
+              lastMsg = runGpt(new ChatMessage("user", message));
+              if (checkRiddle(lastMsg.getContent())) {
+                startAuthentication();
+              }
+            }
+
             if (message.trim().equalsIgnoreCase("yes")) {
+              riddleStarted = true;
               lastMsg = getRiddle();
-              System.out.println("message recived");
-              messageQueue.add(lastMsg);
-              // else
-            } else {
-              lastMsg = runGpt(msg);
-              messageQueue.add(lastMsg);
-            }
-
-            if (lastMsg == null) {
-              startConnectDots();
+            } else if (!riddleStarted) {
+              ChatMessage msg =
+                  new ChatMessage("user", "Please type yes to start the authentication process");
+              messageQueue.add(msg);
+              sendBtn.setDisable(false);
               return null;
+              // else
             }
+            appendChatMessage();
 
-            // if the message is correct then increment the number of messages correct
-            if (lastMsg.getRole().equals("assistant") && lastMsg.getContent().startsWith("Correct")
-                || lastMsg.getContent().startsWith("correct")) {
-              startAuthentication();
-            }
-            // if the computer authenticates access
-            if (lastMsg.getRole().equals("assistant")
-                && lastMsg.getContent().contains("security")) {
-              // WalkieTalkieManager.toggleWalkieTalkie();
-              walkieTalkieManager.setWalkieTalkieText(
-                  // setting the walkie talkie text when firewall disabled
-                  new ChatMessage(
-                      "user", "FireWall Disabled, you can now see what is behind each vault door"));
-
-              styleManager.getItem("goldDoor").setStyle("");
-              styleManager.getItem("silverDoor").setStyle("");
-              styleManager.getItem("bronzeDoor").setStyle("");
-              styleManager.removeItemsMessage("goldDoor", "silverDoor", "bronzeDoor");
-              styleManager.setItemsState(HoverColour.GREEN, "goldDoor", "silverDoor", "bronzeDoor");
-
-              GameState.isFirewallDisabled = true;
-              GameState.isSecondRiddleSolved = true;
-              App.textToSpeech("Security Disabled, Level 3 Vault Access Granted");
-
-            } else if (lastMsg.getRole().equals("assistant")
-                && lastMsg.getContent().startsWith("Authenticated")) {
-              System.out.println("Authenticated");
-              // setting the walkie talkie text when firewall disabled
-              // WalkieTalkieManager.toggleWalkieTalkie();
-              walkieTalkieManager.setWalkieTalkieText(
-                  new ChatMessage(
-                      "user", "FireWall Disabled, you can now see what is behind each vault door"));
-
-              styleManager.getItem("goldDoor").setStyle("");
-              styleManager.getItem("silverDoor").setStyle("");
-              styleManager.getItem("bronzeDoor").setStyle("");
-              styleManager.removeItemsMessage("goldDoor", "silverDoor", "bronzeDoor");
-              styleManager.setItemsState(HoverColour.GREEN, "silverDoor", "bronzeDoor");
-              GameState.isFirewallDisabled = true;
-              GameManager.completeObjective();
-              App.textToSpeech("Security Disabled, Level 2 Vault Access Granted");
-            }
-
-            // when authentication fails
-            if (lastMsg.getRole().equals("assistant")
-                && lastMsg.getContent().contains("Authentication failed")) {
-              System.out.println("authetication failed");
-              App.textToSpeech("Authentication failed, Access Denied");
-              startConnectDots();
-              // Logic to start connect dots mini game
-            }
             // handle relevant methods
-            Platform.runLater(
-                () -> {
-                  processingLabel.setText("");
-                  timeline.stop();
-                  appendChatMessage();
-                });
 
             return null;
           }
@@ -242,6 +212,163 @@ public class ComputerController extends Controller {
     Thread searchThreadDave = new Thread(task, "Search Thread Bob");
     searchThreadDave.start();
   }
+
+  private Boolean checkRiddle(String message) {
+    if (lastMsg.getRole().equals("assistant") && lastMsg.getContent().startsWith("Correct")
+        || lastMsg.getContent().startsWith("correct")) {
+      return true;
+    } else {
+
+      return false;
+    }
+  }
+
+  private void accessLevelTwo() {
+    System.out.println("Authenticated");
+    walkieTalkieManager.setWalkieTalkieText(
+        new ChatMessage(
+            "user", "FireWall Disabled, you can now see what is behind each vault door"));
+
+    styleManager.removeItemsMessage("goldDoor", "silverDoor", "bronzeDoor");
+    styleManager.setItemsState(HoverColour.GREEN, "silverDoor", "bronzeDoor");
+    GameState.isFirewallDisabled = true;
+    GameManager.completeObjective();
+    messageQueue.add(
+        new ChatMessage("assistant", "Security Disabled, Level 2 Vault Access Granted"));
+    appendChatMessage();
+    App.textToSpeech("Security Disabled, Level 2 Vault Access Granted");
+  }
+
+  private void accessLevelThree() {
+
+    walkieTalkieManager.setWalkieTalkieText(
+        // setting the walkie talkie text when firewall disabled
+        new ChatMessage(
+            "user", "FireWall Disabled, you can now see what is behind each vault door"));
+
+    styleManager.removeItemsMessage("goldDoor", "silverDoor", "bronzeDoor");
+    styleManager.setItemsState(HoverColour.GREEN, "goldDoor", "silverDoor", "bronzeDoor");
+
+    GameState.isFirewallDisabled = true;
+    GameState.isSecondRiddleSolved = true;
+    messageQueue.add(
+        new ChatMessage("assistant", "Security Disabled, Level 3 Vault Access Granted"));
+    appendChatMessage();
+    App.textToSpeech("Security Disabled, Level 3 Vault Access Granted");
+  }
+
+  // @FXML
+  // private void send(ActionEvent event) throws ApiProxyException, IOException {
+  //   // creating new task for the thread
+  //   Task<Void> task =
+  //       new Task<Void>() {
+  //         @Override
+  //         protected Void call() throws Exception {
+  //           securityTextArea.appendText("\n");
+  //           // getting the message the user inputs
+  //           String message = inputTextField.getText();
+  //           ChatMessage msg = new ChatMessage("user", message);
+  //           messageQueue.add(msg);
+  //           inputTextField.clear();
+  //           appendChatMessage();
+  //           // setting relevant methods
+  //           Platform.runLater(
+  //               () -> {
+  //                 timeline.play();
+  //               });
+
+  //           // if input is empty then return null
+  //           if (message.trim().isEmpty()) {
+  //             return null;
+  //           }
+
+  //           // if the message is yes, then start the authentication process
+  //           if (message.trim().equalsIgnoreCase("yes")) {
+  //             lastMsg = getRiddle();
+  //             System.out.println("message recived");
+  //             messageQueue.add(lastMsg);
+  //             // else
+  //           } else {
+  //             lastMsg = runGpt(msg);
+  //             messageQueue.add(lastMsg);
+  //           }
+
+  //           if (lastMsg == null) {
+  //             startConnectDots();
+  //             return null;
+  //           }
+
+  //           // if the message is correct then increment the number of messages correct
+  //           if (lastMsg.getRole().equals("assistant") &&
+  // lastMsg.getContent().startsWith("Correct")
+  //               || lastMsg.getContent().startsWith("correct")) {
+  //             startAuthentication();
+  //           }
+  //           // if the computer authenticates access
+  //           if (lastMsg.getRole().equals("assistant")
+  //               && lastMsg.getContent().contains("security")) {
+  //             // WalkieTalkieManager.toggleWalkieTalkie();
+  //             walkieTalkieManager.setWalkieTalkieText(
+  //                 // setting the walkie talkie text when firewall disabled
+  //                 new ChatMessage(
+  //                     "user", "FireWall Disabled, you can now see what is behind each vault
+  // door"));
+
+  //             styleManager.getItem("goldDoor").setStyle("");
+  //             styleManager.getItem("silverDoor").setStyle("");
+  //             styleManager.getItem("bronzeDoor").setStyle("");
+  //             styleManager.removeItemsMessage("goldDoor", "silverDoor", "bronzeDoor");
+  //             styleManager.setItemsState(HoverColour.GREEN, "goldDoor", "silverDoor",
+  // "bronzeDoor");
+
+  //             GameState.isFirewallDisabled = true;
+  //             GameState.isSecondRiddleSolved = true;
+  //             App.textToSpeech("Security Disabled, Level 3 Vault Access Granted");
+
+  //           } else if (lastMsg.getRole().equals("assistant")
+  //               && lastMsg.getContent().startsWith("Authenticated")) {
+  //             System.out.println("Authenticated");
+  //             // setting the walkie talkie text when firewall disabled
+  //             // WalkieTalkieManager.toggleWalkieTalkie();
+  //             walkieTalkieManager.setWalkieTalkieText(
+  //                 new ChatMessage(
+  //                     "user", "FireWall Disabled, you can now see what is behind each vault
+  // door"));
+
+  //             styleManager.getItem("goldDoor").setStyle("");
+  //             styleManager.getItem("silverDoor").setStyle("");
+  //             styleManager.getItem("bronzeDoor").setStyle("");
+  //             styleManager.removeItemsMessage("goldDoor", "silverDoor", "bronzeDoor");
+  //             styleManager.setItemsState(HoverColour.GREEN, "silverDoor", "bronzeDoor");
+  //             GameState.isFirewallDisabled = true;
+  //             GameManager.completeObjective();
+  //             App.textToSpeech("Security Disabled, Level 2 Vault Access Granted");
+  //           }
+
+  //           // when authentication fails
+  //           if (lastMsg.getRole().equals("assistant")
+  //               && lastMsg.getContent().contains("Authentication failed")) {
+  //             System.out.println("authetication failed");
+  //             App.textToSpeech("Authentication failed, Access Denied");
+  //             startConnectDots();
+  //             // Logic to start connect dots mini game
+  //           }
+  //           // handle relevant methods
+  //           Platform.runLater(
+  //               () -> {
+  //                 processingLabel.setText("");
+  //                 timeline.stop();
+  //                 appendChatMessage();
+  //               });
+
+  //           return null;
+  //         }
+  //       };
+
+  //   // thread for the task
+  //   Thread searchThreadDave = new Thread(task, "Search Thread Bob");
+  //   searchThreadDave.start();
+  // }
 
   @FXML
   private void onSwitchToHacker() {
@@ -269,7 +396,7 @@ public class ComputerController extends Controller {
   @FXML
   private void startConnectDots() {
     // setting the walkie talkie text on when they fail all three riddles
-    // WalkieTalkieManager.toggleWalkieTalkie();
+    walkieTalkieManager.toggleWalkieTalkie();
     walkieTalkieManager.setWalkieTalkieText(
         new ChatMessage(
             "user", "Authentication failed, plug in the usbstick to bypass the firewall"));
@@ -286,18 +413,25 @@ public class ComputerController extends Controller {
 
   private void appendChatMessage() {
     // if the message queue is not empty then append the chat message
+
     if (!messageQueue.isEmpty()) {
       ChatMessage nextMessage = messageQueue.poll();
       String content = nextMessage.getContent();
 
       // Add typing effect (delay)
-      int delay = 30; // Adjust this value to control the typing speed (in milliseconds)
+      int delay = 20; // Adjust this value to control the typing speed (in milliseconds)
 
-      // create new task for the thread
+      // create new task for thexs thread
       Task<Void> task =
           new Task<Void>() {
             @Override
             protected Void call() throws Exception {
+              Platform.runLater(
+                  () -> {
+                    processingLabel.setText("");
+                    timeline.stop();
+                  });
+
               // Perform typing operations here
               for (int i = 0; i < content.length(); i++) {
                 char c = content.charAt(i);
@@ -313,6 +447,7 @@ public class ComputerController extends Controller {
                     //
                     appendChatMessage(); // Continue with the next message in the queue
                     securityTextArea.appendText("\n");
+                    sendBtn.setDisable(false);
                   });
 
               return null;

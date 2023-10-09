@@ -556,14 +556,14 @@
             <Image url="@../images/CEOPainting.png" />
          </image>
       </ImageView>
-      <StackPane layoutX="248.0" layoutY="426.0" prefHeight="167.0" prefWidth="278.0">
+      <StackPane fx:id="plaqueandlabel" layoutX="248.0" layoutY="426.0" prefHeight="167.0" prefWidth="278.0" visible="false">
          <children>
-            <ImageView fx:id="largePlaque" fitHeight="190.0" fitWidth="464.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="largePlaque" fitHeight="190.0" fitWidth="464.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/plaque-removebg-preview.png" />
                </image>
             </ImageView>
-            <Label fx:id="johnIpsumLbl" text="John Ipsum" visible="false">
+            <Label fx:id="johnIpsumLbl" text="John Ipsum">
                <font>
                   <Font name="AppleMyungjo Regular" size="50.0" />
                </font>
