@@ -297,7 +297,7 @@
             <Font name="Impact" size="21.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="513.0" layoutY="447.0" prefHeight="65.0" prefWidth="136.0" text="Since 1967" textFill="#fdff6a82">
+      <Label fx:id="foundingDate" alignment="CENTER" contentDisplay="CENTER" layoutX="513.0" layoutY="447.0" prefHeight="65.0" prefWidth="136.0" text="Since 1967" textFill="#fdff6a82">
          <font>
             <Font name="Impact" size="17.0" />
          </font>
@@ -532,6 +532,44 @@
             </StackPane>
          </children>
       </VBox>
+      <StackPane layoutX="-78.0" layoutY="254.0" opacity="0.88" prefHeight="150.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="102.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/CEOPainting.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ceoPainting" fitHeight="106.0" fitWidth="106.0" onMouseEntered="#enlargePainting" onMouseExited="#hidePainting" opacity="0.32" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/pictureFrame.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <ImageView fitHeight="24.0" fitWidth="54.0" layoutX="-5.0" layoutY="382.0" opacity="0.89" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/plaque-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="enlargedPainting" fitHeight="440.0" fitWidth="454.0" layoutX="252.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/CEOPainting.png" />
+         </image>
+      </ImageView>
+      <StackPane fx:id="plaqueandlabel" layoutX="248.0" layoutY="426.0" prefHeight="167.0" prefWidth="278.0" visible="false">
+         <children>
+            <ImageView fx:id="largePlaque" fitHeight="190.0" fitWidth="464.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/plaque-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="johnIpsumLbl" text="John Ipsum">
+               <font>
+                  <Font name="AppleMyungjo Regular" size="50.0" />
+               </font>
+            </Label>
+         </children>
+      </StackPane>
 
    </children>
 </AnchorPane>
