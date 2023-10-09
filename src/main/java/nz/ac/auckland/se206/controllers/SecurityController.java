@@ -15,6 +15,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import nz.ac.auckland.se206.App;
@@ -55,6 +56,9 @@ public class SecurityController extends Controller {
   @FXML private TextArea securityTextArea;
   @FXML private TextField securityInputField;
   @FXML private ImageView securityWalkieTalkie;
+  @FXML private StackPane wallEmployee;
+  @FXML private StackPane hoverEmployee;
+  @FXML private Label employeeName;
 
   // Managers and controllers
   private StyleManager styleManager = StyleManager.getInstance();
@@ -67,6 +71,10 @@ public class SecurityController extends Controller {
 
     // Set the timer label
     super.setTimerLabel(timerLabel, 1);
+
+    // Set the employee name
+    employeeName.setText(RandomnessGenerate.getRandomEmployeeName());
+    System.out.println(employeeName.getText());
 
     // Add walkie talkie elements to the scene
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
@@ -261,5 +269,15 @@ public class SecurityController extends Controller {
     if (event.getCode() == KeyCode.ENTER) {
       checkLogin();
     }
+  }
+
+  @FXML
+  private void onHoverEmployee(MouseEvent event) {
+    hoverEmployee.setVisible(true);
+  }
+
+  @FXML
+  private void onHoverEmployeeExit(MouseEvent event) {
+    hoverEmployee.setVisible(false);
   }
 }

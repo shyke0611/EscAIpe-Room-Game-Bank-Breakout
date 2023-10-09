@@ -17,6 +17,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.AnimationManager;
@@ -63,13 +64,18 @@ public class LobbyController extends Controller {
   @FXML private ImageView zzz2;
   @FXML private ImageView drawer;
   @FXML private ImageView openDrawer;
+  @FXML private ImageView largePlaque;
+  @FXML private ImageView enlargedPainting;
   @FXML private HBox credentialsBook;
+  @FXML private StackPane plaqueandlabel;
 
   @FXML private Label numberOfHints;
   @FXML private Label titleLbl;
   @FXML private Label passwordLbl;
   @FXML private Label usernameLbl;
   @FXML private Label orderLabel;
+  @FXML private Label johnIpsumLbl;
+  @FXML private Label foundingDate;
 
   // Other fields
   private String randomUsername;
@@ -128,6 +134,14 @@ public class LobbyController extends Controller {
     styleManager.setItemsMessage("Put him to sleep", "guard");
     // styleManager.setClueHover("guard", true);
     setUpListener(key);
+
+    String plaqueName = RandomnessGenerate.getRandomCeoName();
+    System.out.println(plaqueName);
+    johnIpsumLbl.setText(plaqueName + " Ipsum");
+
+    String date = RandomnessGenerate.getRandomFoundingDate();
+    System.out.println(date);
+    foundingDate.setText("SINCE " + date);
   }
 
   // Handling mouse events on walkie talkie
@@ -350,5 +364,21 @@ public class LobbyController extends Controller {
     hackerAiManager.storeQuickHint();
     // Set the Walkie-Talkie text to the hint
     walkieTalkieManager.setWalkieTalkieText(new ChatMessage("user", hint));
+  }
+
+  @FXML
+  private void enlargePainting() {
+    enlargedPainting.setVisible(true);
+    plaqueandlabel.setVisible(true);
+    largePlaque.setVisible(true);
+    johnIpsumLbl.setVisible(true);
+  }
+
+  @FXML
+  private void hidePainting() {
+    enlargedPainting.setVisible(false);
+    plaqueandlabel.setVisible(false);
+    largePlaque.setVisible(false);
+    johnIpsumLbl.setVisible(false);
   }
 }

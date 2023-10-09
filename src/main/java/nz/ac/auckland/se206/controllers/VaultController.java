@@ -239,6 +239,7 @@ public class VaultController extends Controller {
     Button button = (Button) event.getSource();
     String buttonText = button.getText();
     updateCode(buttonText);
+    bombPuzzle.requestFocus();
   }
 
   private void updateCode(String text) {
@@ -251,6 +252,10 @@ public class VaultController extends Controller {
     // check bomb code
     String code = givencode.getText().substring("Code: ".length());
     // handle correct input
+    if (inputLbl.getText() == null) {
+      return;
+    }
+
     if (inputLbl.getText().equals(code)) {
       statusLbl.setText("Success, press x to Activate bomb");
       inputLbl.setText("");
@@ -395,7 +400,6 @@ public class VaultController extends Controller {
 
     // If enter is pressed, check the code
     if (event.getCode() == KeyCode.ENTER) {
-      System.out.println("Enter pressed");
       onCheckCode();
       return;
     }

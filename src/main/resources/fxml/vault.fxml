@@ -201,7 +201,7 @@
             </StackPane>
          </children>
       </HBox>
-      <VBox fx:id="bombPuzzle" layoutX="192.0" layoutY="169.0" prefHeight="406.0" prefWidth="618.0" style="-fx-background-color: black; -fx-border-color: white;" visible="false">
+      <VBox fx:id="bombPuzzle" layoutX="192.0" layoutY="169.0" onKeyPressed="#onBombTyped" prefHeight="406.0" prefWidth="618.0" style="-fx-background-color: black; -fx-border-color: white;" visible="false">
          <children>
             <HBox alignment="CENTER" prefHeight="112.0" prefWidth="610.0">
                <children>
@@ -223,12 +223,12 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="134.0" prefWidth="680.0">
                            <children>
-                              <Label fx:id="statusLbl" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="74.0" prefWidth="171.0" textAlignment="CENTER" textFill="#0be059" translateY="25.0" wrapText="true">
+                              <Label fx:id="statusLbl" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="74.0" prefWidth="181.0" textAlignment="CENTER" textFill="#0be059" translateX="15.0" translateY="25.0" wrapText="true">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="inputLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="160.0" text="Enter Code" translateY="-15.0">
+                              <Label fx:id="inputLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="180.0" text="Enter Code" translateX="15.0" translateY="-15.0">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
