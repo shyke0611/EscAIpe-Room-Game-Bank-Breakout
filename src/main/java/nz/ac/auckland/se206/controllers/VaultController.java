@@ -105,7 +105,7 @@ public class VaultController extends Controller {
         goldDoor,
         lootBtnHolder,
         lootLbl,
-        realvaultbackground);
+        realvaultbackground,bombHolder,switchHolder,vaultwalkietalkie,walkietalkieText);
 
     // adding relevant items to the stylemanager list
     // styleManager.addItems(
@@ -164,9 +164,8 @@ public class VaultController extends Controller {
     GameManager.completeObjective();
 
     // setting style for relevant items
-    bomblogo.setVisible(false);
-    bombHolder.setDisable(true);
     exitHolder.setVisible(true);
+    styleManager.setVisible(false, "switchHolder", "vaultwalkietalkie","walkietalkieText", "bombHolder");
     // styleManager.removeItemsMessage("bombHolder");
     // styleManager.setClueHover("bomblayer", false);
     // styleManager.setVisible(false, "switchHolder");
@@ -225,11 +224,6 @@ public class VaultController extends Controller {
       GameManager.completeObjective();
       lootBtnHolder.setVisible(false);
       GameManager.collectMoney();
-      // StyleManager.setClueHover("guardpocket", true);
-      // StyleManager.setItemsMessage("something is inside", "guardpocket");
-      // StyleManager.setClueHover("electricityBox", true);
-      // StyleManager.setItemsMessage("wire cutting..?", "electricityBox");
-      // StyleManager.setItemsHoverColour(HoverColour.GREEN, "guardpocket", "electricityBox");
     }
   }
 
@@ -284,7 +278,6 @@ public class VaultController extends Controller {
     bombPuzzle.setVisible(false);
     // execute when bomb is activated
     if (GameState.isBombActivated) {
-      // styleManager.setVisible(false, "switchHolder", "walkietalkieHolder", "bombHolder");
       // set animation for bomb
       AnimationManager.toggleAlarmAnimation(exitHolder, true, 0.5);
       AnimationManager.delayAnimation(exitHolder, escapeDoor);

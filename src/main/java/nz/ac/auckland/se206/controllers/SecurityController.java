@@ -82,16 +82,8 @@ public class SecurityController extends Controller {
     WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
     WalkieTalkieManager.addQuickHintBtn(this, quickHintBtn);
 
+    // add styling
     styleManager.addHoverItems(computer, electricityBox, wallEmployee, securitybackground);
-
-    // Add style items and set messages
-    // styleManager.addItems(
-    //     computer,
-    //     electricityBox,
-    //     securitybackground,
-    //     vaultRoomSwitch,
-    //     lobbyRoomSwitch,
-    //     securityRoomSwitch);
     StyleManager.setItemsMessage("A computer...?", "computer");
     StyleManager.setItemsMessage("no need to open this right now", "electricityBox");
     StyleManager.setItemsMessage("Employee of the month..?", "wallEmployee");
@@ -173,7 +165,6 @@ public class SecurityController extends Controller {
     if (areCredentialsValid(enteredUsername, enteredPassword, randomUsername, randomPassword)) {
       handleSuccessfulLogin();
       logInScreen.setVisible(false);
-      // styleManager.setItemsState(HoverColour.GREEN, "computer");
     } else if (areCredentialsEmpty()) {
       handleEmptyCredentials();
     } else {

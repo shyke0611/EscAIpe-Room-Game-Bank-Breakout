@@ -188,9 +188,7 @@ public class LobbyController extends Controller {
       orderLabel.setVisible(true);
       titleLbl.setText("Wire Cutting Order");
       titleLbl.setPrefHeight(35);
-      // setting style
-      // styleManager.getItem("wirecuttingorderLbl").setVisible(false);
-      // styleManager.setClueHover("guardpocket", false);
+
       GameState.isWireCredentialsFound = true;
     }
   }
@@ -231,12 +229,7 @@ public class LobbyController extends Controller {
     passwordLbl.setText("Password: " + randomPassword);
     usernameLbl.setText("Username: " + randomUsername);
     StyleManager.removeItemsMessage("credentialsBook");
-    // set glow effect
-    // if (!GameState.isSecurityRoomHoverPressed) {
-    //   // styleManager.setClueHover("securityRoomSwitch", true);
-    // }
-    // GameState.isSecurityRoomHoverPressed = true;
-    // update game state
+    
     GameState.isCredentialsFound = true;
     GameManager.completeObjective();
     StyleManager.setClueHover("computer", true);

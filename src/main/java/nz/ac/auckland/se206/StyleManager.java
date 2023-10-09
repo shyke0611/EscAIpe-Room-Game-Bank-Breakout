@@ -158,6 +158,7 @@ public class StyleManager {
         if (includeIds.contains(itemId)) {
           item.setDisable(true);
           item.setStyle(null);
+          setClueHover(itemId.toString(), false);
         }
         // If the item is the background, animate it
         if (itemId.endsWith("background")) {

@@ -11,7 +11,6 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
-import nz.ac.auckland.se206.StyleManager.HoverColour;
 
 public abstract class Controller {
   private Label timerLabel;
@@ -36,31 +35,31 @@ public abstract class Controller {
   protected void setVault(MouseEvent event) {
     // handle visibility if laser cutting is bypassed
     if (GameState.isLaserCuttingBypassed) {
-      styleManager.getHoverItem("silverDoor").setVisible(false);
-      styleManager.getHoverItem("silverDoorHolder").setDisable(true);
+      StyleManager.getHoverItem("silverDoor").setVisible(false);
+      StyleManager.getHoverItem("silverDoorHolder").setDisable(true);
     }
     // handle visibility if chemical mixing is bypassed
     if (GameState.isChemicalMixingBypassed) {
-      styleManager.getHoverItem("bronzeDoor").setVisible(false);
-      styleManager.getHoverItem("bronzeDoorHolder").setDisable(true);
+      StyleManager.getHoverItem("bronzeDoor").setVisible(false);
+      StyleManager.getHoverItem("bronzeDoorHolder").setDisable(true);
     }
     // handle visibility if eye scanner is bypassed
     if (GameState.isEyeScannerBypassed) {
-      styleManager.getHoverItem("goldDoor").setVisible(false);
-      styleManager.getHoverItem("goldDoorHolder").setDisable(true);
+      StyleManager.getHoverItem("goldDoor").setVisible(false);
+      StyleManager.getHoverItem("goldDoorHolder").setDisable(true);
     }
     // handle visibility if any door is bypassed
     if (GameState.isLaserCuttingBypassed
         || GameState.isChemicalMixingBypassed
         || GameState.isEyeScannerBypassed) {
-      styleManager.getHoverItem("lootBtnHolder").setVisible(true);
+      StyleManager.getHoverItem("lootBtnHolder").setVisible(true);
       GameState.isAnyDoorOpen = true;
     }
     // handle visibility if all door is bypassed
     if (GameState.isLaserCuttingBypassed
         && GameState.isChemicalMixingBypassed
         && GameState.isEyeScannerBypassed) {
-      Text label = (Text) styleManager.getHoverItem("lootLbl");
+      Text label = (Text) StyleManager.getHoverItem("lootLbl");
       label.setText("Collect all the loot and escape");
     }
     App.setUI(Scenes.VAULT);
@@ -81,7 +80,6 @@ public abstract class Controller {
   @FXML
   protected void switchToSecurity() {
     App.setUI(Scenes.SECURITY);
-    // if the computer is not logged in and credentials not found set style
   }
 
   @FXML
@@ -92,15 +90,11 @@ public abstract class Controller {
 
   @FXML
   protected void switchToVault() {
-    // If the alarm has been disabled, configure Vault scene elements
-    if (GameState.isAlarmDisabled) {
-      // Show the bomb holder and disable certain doors
-      // styleManager.getItem("bombHolder").setVisible(true);
-      // Disable the clue hover effect for the vault room switch
-      // styleManager.setClueHover("vaultRoomSwitch", false);
-    }
     // Switch the scene to the Vault
     App.setUI(Scenes.VAULT);
+    if (GameState.isAlarmDisabled) {
+      styleManager.setVisible(true,"bombHolder");
+    }
   }
 
 }
