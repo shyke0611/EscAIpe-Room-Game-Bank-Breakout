@@ -1,17 +1,6 @@
-.walkietalkie {
-    -fx-background-color: #8ac1f5;
-    -fx-background-radius: 70 0 0 70;
-    -fx-border-color: #328add;
-    -fx-border-radius: 70 0 0 70;
-
-}
-
 .walkietalkie:hover {
     -fx-cursor: hand;
-    -fx-background-color: #9fd7ff;
-    -fx-effect: innershadow(gaussian, rgba(13, 70, 148, 0.3), 10, 0.5, 0, 0);
-    -fx-cursor: hand;
-
+    -fx-effect: innershadow(gaussian, rgb(255, 255, 255), 10, 0.5, 0, 0);
 }
 
 .text-area {
