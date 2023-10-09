@@ -252,6 +252,7 @@ public class ComputerController extends Controller {
 
     App.textToSpeech("Security Disabled, Level 2 Vault Access Granted");
     GameState.isFirewallDisabled = true;
+    GameState.isFirstRiddleSolved = true;
     GameManager.completeObjective();
     setLevelTwoStyle();
   }
@@ -306,6 +307,7 @@ public class ComputerController extends Controller {
     // set the second authentication method to visible
     usbStick.setVisible(true);
     // styleManager.setClueHover("usbStick", true);
+    GameState.isFirstRiddleSolved = true;
     setLevelTwoStyle();
   }
 

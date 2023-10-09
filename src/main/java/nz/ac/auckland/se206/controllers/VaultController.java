@@ -28,7 +28,6 @@ import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
-import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.TimerControl;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -96,7 +95,8 @@ public class VaultController extends Controller {
     WalkieTalkieManager.addQuickHintBtn(this, quickHintBtn);
     super.setTimerLabel(timerLabel, 1);
 
-    styleManager.addHoverItems(bronzeDoorHolder,silverDoorHolder,goldDoorHolder);
+    styleManager.addHoverItems(
+        bronzeDoorHolder, silverDoorHolder, goldDoorHolder, bronzeDoor, silverDoor, goldDoor,lootBtnHolder,lootLbl);
 
     // adding relevant items to the stylemanager list
     // styleManager.addItems(
@@ -304,7 +304,7 @@ public class VaultController extends Controller {
       String difficultyText = "Difficulty: ";
 
       // setting style for relevant vaults
-      if (door.contains("goldDoor")) {
+      if (door.contains("goldDoor") && !GameState.isFirstRiddleSolved) {
         setInfoText(moneyText + "20,000,000", difficultyText + "★★★★★");
       } else if (door.contains("silverDoor")) {
         setInfoText(moneyText + "10,000,000", difficultyText + "★★★☆☆");
