@@ -105,7 +105,7 @@ public class VaultController extends Controller {
         goldDoor,
         lootBtnHolder,
         lootLbl,
-        realvaultbackground,bombHolder,switchHolder,vaultwalkietalkie,walkietalkieText);
+        realvaultbackground,bombHolder,switchHolder,vaultwalkietalkie,walkietalkieText,bomblogo);
 
     // adding relevant items to the stylemanager list
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);

@@ -48,6 +48,7 @@ public class WireCuttingController extends Controller {
     // generating relevant methods on initialise
     styleManager.addHoverItems(wirecuttingbackground,wirecuttingorderLbl);
     RandomnessGenerate.addWires(bluewire, yellowwire, greenwire, redwire);
+    styleManager.addHoverItems(bluewire, yellowwire, greenwire, redwire);
   }
 
   /**
@@ -99,7 +100,7 @@ public class WireCuttingController extends Controller {
   @FXML
   private void onRetry(ActionEvent event) {
     wiresCut.clear();
-    // styleManager.setVisible(true, "yellowwire", "redwire", "bluewire", "greenwire");
+    styleManager.setVisible(true, "yellowwire", "redwire", "bluewire", "greenwire");
     taskLbl.setText(null);
   }
 

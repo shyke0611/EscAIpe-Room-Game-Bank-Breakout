@@ -7,7 +7,6 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
@@ -27,19 +26,6 @@
          <image>
             <Image url="@../images/securityroom.png" />
          </image>
-         <effect>
-            <Lighting diffuseConstant="1.05" specularConstant="0.0" specularExponent="22.77" surfaceScale="1.04">
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant>
-                     <color>
-                        <Color red="0.7894737124443054" green="0.7785087823867798" blue="0.7785087823867798" />
-                     </color></Light.Distant>
-               </light>
-            </Lighting>
-         </effect>
       </ImageView>
       <HBox fx:id="computer" alignment="CENTER" layoutX="525.0" layoutY="322.0" onMousePressed="#onClickComputer" prefHeight="140.0" prefWidth="115.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
          <children>
@@ -47,24 +33,41 @@
                <image>
                   <Image url="@../images/compiuter2.png" />
                </image>
-               <effect>
-                  <InnerShadow height="102.45" radius="38.3775" width="53.06" />
-               </effect>
             </ImageView>
          </children>
       </HBox>
-      <StackPane fx:id="wallEmployee" layoutX="385.0" layoutY="230.0" onMouseEntered="#onHoverEmployee" onMouseExited="#onHoverEmployeeExit" opacity="0.85" prefHeight="97.0" prefWidth="141.0">
+      <StackPane fx:id="wallEmployee" layoutX="388.0" layoutY="230.0" onMouseEntered="#onHoverEmployee" onMouseExited="#onHoverEmployeeExit" opacity="0.85" prefHeight="97.0" prefWidth="113.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="82.0" onMouseEntered="#onHoverEmployee" onMouseExited="#onHoverEmployeeExit" opacity="0.58" stroke="BLACK" strokeType="INSIDE" width="74.0" />
             <ImageView fitHeight="51.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" style="-fx-border: 3;">
                <image>
                   <Image url="@../images/EmployeePortrait.jpg" />
                </image>
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
             </ImageView>
             <ImageView fitHeight="84.0" fitWidth="116.0" onMouseEntered="#onHoverEmployee" onMouseExited="#onHoverEmployeeExit" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                <image>
                   <Image url="@../images/black-frame-transparent-background-16.png" />
                </image>
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
             </ImageView>
          </children>
       </StackPane>
@@ -82,42 +85,9 @@
             </StackPane>
          </children>
       </HBox>
-      <HBox alignment="CENTER" disable="true" layoutX="673.0" layoutY="340.0" prefHeight="132.0" prefWidth="89.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
-         <children>
-            <ImageView fitHeight="138.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/computer3.png" />
-               </image>
-               <effect>
-                  <InnerShadow height="102.45" radius="38.3775" width="53.06" />
-               </effect>
-            </ImageView>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" disable="true" layoutX="826.0" layoutY="365.0" prefHeight="145.0" prefWidth="146.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
-         <children>
-            <ImageView fitHeight="156.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/computer4.png" />
-               </image>
-               <effect>
-                  <InnerShadow height="102.45" radius="38.3775" width="53.06" />
-               </effect>
-            </ImageView>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" disable="true" layoutX="361.0" layoutY="308.0" prefHeight="166.0" prefWidth="165.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
-         <children>
-            <ImageView fitHeight="168.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/computer1.png" />
-               </image>
-               <effect>
-                  <InnerShadow height="102.45" radius="38.3775" width="53.06" />
-               </effect>
-            </ImageView>
-         </children>
-      </HBox>
+      <HBox alignment="CENTER" disable="true" layoutX="673.0" layoutY="340.0" prefHeight="132.0" prefWidth="89.0" styleClass="keylocations" stylesheets="@../css/rooms.css" />
+      <HBox alignment="CENTER" disable="true" layoutX="826.0" layoutY="365.0" prefHeight="145.0" prefWidth="146.0" styleClass="keylocations" stylesheets="@../css/rooms.css" />
+      <HBox alignment="CENTER" disable="true" layoutX="361.0" layoutY="308.0" prefHeight="166.0" prefWidth="165.0" styleClass="keylocations" stylesheets="@../css/rooms.css" />
       <HBox fx:id="logInScreen" layoutX="166.0" layoutY="168.0" prefHeight="446.0" prefWidth="683.0" style="-fx-border-color: #eccb0f;" visible="false">
          <children>
             <VBox prefHeight="510.0" prefWidth="392.0">
@@ -407,42 +377,86 @@
             </StackPane>
          </children>
       </VBox>
-      <StackPane fx:id="hoverEmployee" layoutX="508.0" layoutY="106.0" prefHeight="488.0" prefWidth="460.0" visible="false">
+      <StackPane fx:id="hoverEmployee" layoutX="508.0" layoutY="115.0" prefHeight="479.0" prefWidth="415.0" visible="false">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="424.0" stroke="BLACK" strokeType="INSIDE" width="344.0" />
-            <ImageView fitHeight="276.0" fitWidth="210.0" pickOnBounds="true" preserveRatio="true" style="-fx-border: 3;">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="386.0" stroke="BLACK" strokeType="INSIDE" width="313.0">
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect></Rectangle>
+            <ImageView fitHeight="162.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true" style="-fx-border: 3;">
                <image>
                   <Image url="@../images/EmployeePortrait.jpg" />
                </image>
+               <effect>
+                  <Lighting diffuseConstant="1.16">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+               <StackPane.margin>
+                  <Insets left="20.0" />
+               </StackPane.margin>
             </ImageView>
-            <ImageView fitHeight="414.0" fitWidth="559.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+            <ImageView fitHeight="338.0" fitWidth="450.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                <image>
                   <Image url="@../images/black-frame-transparent-background-16.png" />
                </image>
             </ImageView>
-            <Label text="Employee Of The ">
-               <padding>
-                  <Insets bottom="350.0" />
-               </padding>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="268.0" text="Employee Of The ">
                <font>
-                  <Font size="30.0" />
+                  <Font name="Copperplate" size="26.0" />
                </font>
+               <StackPane.margin>
+                  <Insets top="-290.0" />
+               </StackPane.margin>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </DropShadow>
+               </effect>
             </Label>
-            <Label text="MONTH">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="48.0" prefWidth="147.0" text="MONTH">
                <font>
-                  <Font name="System Bold" size="40.0" />
+                  <Font name="Copperplate" size="34.0" />
                </font>
-               <padding>
-                  <Insets bottom="260.0" />
-               </padding>
+               <StackPane.margin>
+                  <Insets top="-225.0" />
+               </StackPane.margin>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </DropShadow>
+               </effect>
             </Label>
-            <Label fx:id="employeeName" text="Jessica !">
+            <Label fx:id="employeeName" alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="181.0" text="Jessica !">
                <font>
-                  <Font name="System Bold" size="40.0" />
+                  <Font name="Copperplate" size="40.0" />
                </font>
-               <padding>
-                  <Insets top="260.0" />
-               </padding>
+               <StackPane.margin>
+                  <Insets left="10.0" top="240.0" />
+               </StackPane.margin>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </DropShadow>
+               </effect>
             </Label>
          </children>
       </StackPane>

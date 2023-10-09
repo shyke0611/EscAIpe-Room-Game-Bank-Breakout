@@ -27,16 +27,6 @@
          <image>
             <Image url="@../images/realvaultbackground.png" />
          </image>
-         <effect>
-            <Lighting>
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
-         </effect>
       </ImageView>
       <HBox fx:id="exitHolder" layoutX="16.0" layoutY="328.0" onMousePressed="#onBombPlaced" prefHeight="65.0" prefWidth="130.0" styleClass="guard" stylesheets="@../css/rooms.css" visible="false">
          <children>
@@ -62,31 +52,18 @@
             </ImageView>
          </children>
       </HBox>
-      <Rectangle fx:id="dialogueBox" arcHeight="40.0" arcWidth="40.0" fill="#000000ac" height="88.0" layoutX="335.0" layoutY="28.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="242.0" />
-      <Label fx:id="moneyValue" layoutX="341.0" layoutY="43.0" prefHeight="28.0" prefWidth="236.0" text="Money: $20,000,000" textFill="WHITE" visible="false">
+      <Rectangle fx:id="dialogueBox" arcHeight="40.0" arcWidth="40.0" fill="#000000ac" height="82.0" layoutX="431.0" layoutY="143.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="251.0" />
+      <Label fx:id="moneyValue" alignment="CENTER" contentDisplay="CENTER" layoutX="442.0" layoutY="146.0" prefHeight="39.0" prefWidth="234.0" text="Money: $20,000,000" textFill="WHITE" visible="false">
          <font>
             <Font name="American Typewriter" size="23.0" />
          </font>
       </Label>
-      <Label fx:id="difficultyValue" layoutX="350.0" layoutY="73.0" prefHeight="28.0" prefWidth="215.0" text="Difficulty: ★★★☆☆" textFill="WHITE" visible="false">
+      <Label fx:id="difficultyValue" alignment="CENTER" contentDisplay="CENTER" layoutX="438.0" layoutY="177.0" prefHeight="44.0" prefWidth="242.0" text="Difficulty: ★★★☆☆" textFill="WHITE" visible="false">
          <font>
             <Font name="American Typewriter" size="23.0" />
          </font>
       </Label>
       <Rectangle fx:id="whiteBackground" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="710.0" layoutX="-7.0" layoutY="-7.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="1009.0" />
-      <HBox fx:id="bombHolder" alignment="CENTER" layoutX="777.0" layoutY="539.0" onMousePressed="#onBombPressed" prefHeight="153.0" prefWidth="201.0" styleClass="bomb" stylesheets="@../css/rooms.css" visible="false">
-         <children>
-            <HBox fx:id="bomblayer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="guard" stylesheets="@../css/rooms.css">
-               <children>
-                  <ImageView fx:id="bomblogo" fitHeight="101.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/bomb.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
-         </children>
-      </HBox>
       <HBox fx:id="silverDoorHolder" layoutX="246.0" layoutY="282.0" prefHeight="229.0" prefWidth="223.0" styleClass="drawer" stylesheets="@../css/rooms.css">
          <children>
             <StackPane prefHeight="338.0" prefWidth="200.0">
@@ -510,6 +487,26 @@
             </Label>
          </children>
       </StackPane>
+      <HBox fx:id="bombHolder" alignment="CENTER" layoutX="405.0" layoutY="316.0" onMousePressed="#onBombPressed" prefHeight="220.0" prefWidth="171.0" visible="false">
+         <children>
+            <HBox fx:id="bomblayer" alignment="CENTER" prefHeight="220.0" prefWidth="130.0" styleClass="guard" stylesheets="@../css/rooms.css">
+               <children>
+                  <ImageView fx:id="bomblogo" fitHeight="217.0" fitWidth="186.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/bomb.png" />
+                     </image>
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.5789473652839661" green="0.35112085938453674" blue="0.35112085938453674" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
 
    </children>
 </AnchorPane>

@@ -4,6 +4,7 @@ import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.AnimationManager;
@@ -94,6 +95,8 @@ public abstract class Controller {
     App.setUI(Scenes.VAULT);
     if (GameState.isAlarmDisabled) {
       styleManager.setVisible(true,"bombHolder");
+      ImageView bomblogo = (ImageView) StyleManager.getHoverItem("bomblogo");
+      AnimationManager.fadeTransition(bomblogo, 2);
     }
   }
 
