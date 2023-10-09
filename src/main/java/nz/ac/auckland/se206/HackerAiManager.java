@@ -191,7 +191,7 @@ public class HackerAiManager {
     // Check if the hint is unique
     if (!hintHistory.contains(hint)) {
 
-      hintHistory.add(hint);
+      hintHistory.add(hintNumber + ". " + hint);
       hintNumber++;
     }
   }
@@ -268,7 +268,6 @@ public class HackerAiManager {
       // System.out.println("typing");
       if (userNeedsHelp) {
         walkieTalkieManager.disableQuickHintBtns();
-
         currentStage = GameManager.getObjectiveString();
         hint = getHintForCurrentStage(currentStage);
         gptCall =
