@@ -108,34 +108,13 @@ public class VaultController extends Controller {
         realvaultbackground,bombHolder,switchHolder,vaultwalkietalkie,walkietalkieText);
 
     // adding relevant items to the stylemanager list
-    // styleManager.addItems(
-    //     goldDoor,
-    //     silverDoor,
-    //     bronzeDoor,
-    //     exitHolder,
-    //     bombHolder,
-    //     bombPuzzle,
-    //     vaultwalkietalkie,
-    //     walkietalkieHolder,
-    //     switchHolder,
-    //     escapeDoor,
-    //     lootBtnHolder,
-    //     lootLbl,
-    //     bronzeDoorHolder,
-    //     silverDoorHolder,
-    //     goldDoorHolder,
-    //     lobbyRoomSwitch,
-    //     bomblayer,
-    //     realvaultbackground,
-    //     vaultRoomSwitch,
-    //     securityRoomSwitch);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     givencode.setText("Code: " + RandomnessGenerate.getPasscode());
 
-    // setting setyle for the items
-    // styleManager.setItemsMessage("set bomb down", "exitHolder");
-    // styleManager.setItemsMessage("escape", "escapeDoor");
-    // styleManager.setItemsMessage("activate bomb", "bombHolder");
+    // setting style for the items
+    StyleManager.setItemsMessage("set bomb down", "exitHolder");
+    StyleManager.setItemsMessage("A way out!", "escapeDoor");
+    StyleManager.setItemsMessage("activate bomb", "bombHolder");
     StyleManager.setItemsMessage(
         "Need to disable firewall from blocking us",
         "bronzeDoorHolder",
@@ -156,19 +135,11 @@ public class VaultController extends Controller {
 
   @FXML
   private void onBombPressed(MouseEvent event) {
-    // // setting sliding animation
-    // AnimationManager.slideDoorsAnimation(doorHolder);
-    // AnimationManager.slideDoorsAnimation(vaultbackground);
-    // AnimationManager.slideDoorsAnimation(slidePane);
-
     GameManager.completeObjective();
-
     // setting style for relevant items
     exitHolder.setVisible(true);
     styleManager.setVisible(false, "switchHolder", "vaultwalkietalkie","walkietalkieText", "bombHolder");
-    // styleManager.removeItemsMessage("bombHolder");
-    // styleManager.setClueHover("bomblayer", false);
-    // styleManager.setVisible(false, "switchHolder");
+
   }
 
   @FXML
