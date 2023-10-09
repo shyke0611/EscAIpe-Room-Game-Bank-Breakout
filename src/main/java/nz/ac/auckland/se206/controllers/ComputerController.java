@@ -22,6 +22,7 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameManager;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
@@ -119,8 +120,9 @@ public class ComputerController extends Controller {
       chatCompletionRequest =
           new ChatCompletionRequest().setN(1).setTemperature(0.4).setTopP(1).setMaxTokens(256);
       System.out.println("Starting Authentication...");
+      String ceoName = RandomnessGenerate.getCurrentCeoName();
       ChatMessage response =
-          runGpt(new ChatMessage("user", GptPromptEngineering.initiliseComputer()));
+          runGpt(new ChatMessage("user", GptPromptEngineering.initiliseComputer(ceoName)));
       messageQueue.add(response);
       // Add more logging to check response and its properties
       System.out.println("Authentication Response: " + response);

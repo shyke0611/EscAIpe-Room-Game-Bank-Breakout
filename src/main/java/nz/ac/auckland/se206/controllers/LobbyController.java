@@ -63,6 +63,8 @@ public class LobbyController extends Controller {
   @FXML private ImageView zzz2;
   @FXML private ImageView drawer;
   @FXML private ImageView openDrawer;
+  @FXML private ImageView largePlaque;
+  @FXML private ImageView enlargedPainting;
   @FXML private HBox credentialsBook;
 
   @FXML private Label numberOfHints;
@@ -70,6 +72,7 @@ public class LobbyController extends Controller {
   @FXML private Label passwordLbl;
   @FXML private Label usernameLbl;
   @FXML private Label orderLabel;
+  @FXML private Label johnIpsumLbl;
 
   // Other fields
   private String randomUsername;
@@ -125,6 +128,9 @@ public class LobbyController extends Controller {
     styleManager.setItemsMessage("Put him to sleep", "guard");
     styleManager.setClueHover("guard", true);
     setUpListener(key);
+
+    String plaqueName = RandomnessGenerate.getRandomCeoName();
+    johnIpsumLbl.setText(plaqueName + " Ipsum");
   }
 
   // Handling mouse events on walkie talkie
@@ -345,5 +351,19 @@ public class LobbyController extends Controller {
     hackerAiManager.storeQuickHint();
     // Set the Walkie-Talkie text to the hint
     walkieTalkieManager.setWalkieTalkieText(new ChatMessage("user", hint));
+  }
+
+  @FXML
+  private void enlargePainting() {
+    enlargedPainting.setVisible(true);
+    largePlaque.setVisible(true);
+    johnIpsumLbl.setVisible(true);
+  }
+
+  @FXML
+  private void hidePainting() {
+    enlargedPainting.setVisible(false);
+    largePlaque.setVisible(false);
+    johnIpsumLbl.setVisible(false);
   }
 }

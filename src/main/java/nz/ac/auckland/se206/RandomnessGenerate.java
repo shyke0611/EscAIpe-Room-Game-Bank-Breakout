@@ -10,6 +10,7 @@ import javafx.scene.layout.HBox;
 public class RandomnessGenerate {
   private static List<String> passcodeList;
   private static List<String> usernameList;
+  private static List<String> CeoNames;
   private static List<HBox> keyLocationList = new ArrayList<>();
   private static List<String> partsAmount;
   private static List<HBox> wiresList = new ArrayList<>();
@@ -19,6 +20,7 @@ public class RandomnessGenerate {
   private static String randomPassword;
   private static HBox randomKeyLocation;
   private static String randomChemialAmount;
+  private static String ceoName;
 
   static {
     // Initialize the lists when the class is loaded and stores all the possible passwords and
@@ -27,6 +29,7 @@ public class RandomnessGenerate {
     usernameList =
         Arrays.asList("username1", "username2", "username3", "username4", "username5", "username6");
     partsAmount = Arrays.asList("1", "2", "3", "4");
+    CeoNames = Arrays.asList("John", "Jack", "James", "Bob", "Will", "Jerry");
   }
 
   // generating random login credentials for security computer log in
@@ -46,6 +49,17 @@ public class RandomnessGenerate {
   // method to get random wires list
   public static List<HBox> getRandomWires() {
     return wiresList;
+  }
+
+  public static String getRandomCeoName() {
+    int randomCeoNameIndex = random.nextInt(CeoNames.size());
+    ceoName = CeoNames.get(randomCeoNameIndex);
+
+    return ceoName;
+  }
+
+  public static String getCurrentCeoName() {
+    return ceoName;
   }
 
   // Method to add HBox elements to the keyLocationList
