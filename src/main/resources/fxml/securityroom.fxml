@@ -317,7 +317,7 @@
             </Label>
          </children>
       </StackPane>
-      <VBox fx:id="walkietalkieText" layoutX="189.0" layoutY="521.0" prefHeight="150.0" prefWidth="512.0">
+      <VBox fx:id="walkietalkieText" layoutX="189.0" layoutY="521.0" prefHeight="150.0" prefWidth="512.0" visible="false">
          <children>
             <HBox prefHeight="100.0" prefWidth="512.0">
                <children>

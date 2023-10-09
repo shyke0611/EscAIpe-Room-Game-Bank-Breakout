@@ -458,7 +458,7 @@
             </Label>
          </children>
       </StackPane>
-      <VBox fx:id="walkietalkieText" layoutX="189.0" layoutY="521.0" prefHeight="150.0" prefWidth="512.0" stylesheets="@../css/walkietalkie.css">
+      <VBox fx:id="walkietalkieText" layoutX="189.0" layoutY="521.0" prefHeight="150.0" prefWidth="512.0" stylesheets="@../css/walkietalkie.css" visible="false">
          <children>
             <HBox fx:id="textAreaBox" prefHeight="100.0" prefWidth="512.0">
                <children>

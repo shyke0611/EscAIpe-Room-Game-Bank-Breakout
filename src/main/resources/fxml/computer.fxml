@@ -81,73 +81,11 @@
                   </VBox>
                   <Label fx:id="timerLabel" alignment="CENTER" layoutX="346.0" layoutY="408.0" prefHeight="31.0" prefWidth="78.0" text="0:00" textFill="#99ab12">
                      <font>
-                        <Font name="Agency FB" size="36.0" />
+                        <Font size="40.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
-         </children>
-      </HBox>
-      <HBox layoutX="15.0" layoutY="539.0" prefHeight="150.0" prefWidth="665.0">
-         <children>
-            <VBox fx:id="walkietalkie" onMousePressed="#onWalkieTalkie" prefHeight="200.0" prefWidth="100.0" styleClass="walkietalkie" stylesheets="@../css/walkietalkie.css">
-               <children>
-                  <ImageView fitHeight="141.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/walkietalkie.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </VBox>
-            <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0" visible="false">
-               <children>
-                  <HBox prefHeight="100.0" prefWidth="528.0">
-                     <children>
-                        <TextArea editable="false" prefHeight="126.0" prefWidth="408.0" stylesheets="@../css/walkietalkie.css" wrapText="true" />
-                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="107.0" styleClass="component1" stylesheets="@../css/walkietalkie.css">
-                           <children>
-                              <Button fx:id="viewHistoryBtn" mnemonicParsing="false" onAction="#onSwitchToHacker" stylesheets="@../css/walkietalkie.css" text="View History">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin>
-                              </Button>
-                              <Button fx:id="quickHintBtn" mnemonicParsing="false" stylesheets="@../css/walkietalkie.css" text="Quick Hint" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="51.0" prefWidth="512.0">
-                     <children>
-                        <TextField prefHeight="51.0" prefWidth="411.0" promptText="Bzzz... type here" stylesheets="@../css/walkietalkie.css">
-                           <font>
-                              <Font size="22.0" />
-                           </font>
-                        </TextField>
-                        <StackPane prefHeight="51.0" prefWidth="111.0">
-                           <children>
-                              <HBox prefHeight="51.0" prefWidth="62.0" styleClass="component2" stylesheets="@../css/walkietalkie.css" />
-                              <Label fx:id="numberOfHints" alignment="TOP_CENTER" text="Unlimited" textFill="#1bcd2a" wrapText="true">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                                 <StackPane.margin>
-                                    <Insets top="15.0" />
-                                 </StackPane.margin>
-                              </Label>
-                              <Label alignment="TOP_CENTER" prefHeight="26.0" prefWidth="92.0" text="Hints Left:" textFill="#1bcd2a" wrapText="true">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                                 <StackPane.margin>
-                                    <Insets bottom="25.0" />
-                                 </StackPane.margin>
-                              </Label>
-                           </children>
-                        </StackPane>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
          </children>
       </HBox>
       <Label fx:id="processingLabel" layoutX="172.0" layoutY="361.0" prefHeight="28.0" prefWidth="217.0">
@@ -160,5 +98,72 @@
             <Image url="@../images/vecteezy_usb-flash-drive-illustration-clean-icon-design-element-on_20526300-removebg-preview.png" />
          </image>
       </ImageView>
+      <VBox fx:id="walkietalkieText" layoutX="189.0" layoutY="521.0" prefHeight="150.0" prefWidth="512.0" visible="false">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="528.0">
+               <children>
+                  <TextArea editable="false" prefHeight="126.0" prefWidth="408.0" stylesheets="@../css/walkietalkie.css" wrapText="true" />
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="107.0" styleClass="component1" stylesheets="@../css/walkietalkie.css">
+                     <children>
+                        <Button fx:id="viewHistoryBtn" mnemonicParsing="false" onAction="#onSwitchToHacker" stylesheets="@../css/walkietalkie.css" text="View History">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="quickHintBtn" mnemonicParsing="false" stylesheets="@../css/walkietalkie.css" text="Quick Hint" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="51.0" prefWidth="512.0">
+               <children>
+                  <TextField prefHeight="51.0" prefWidth="411.0" promptText="Bzzz... type here" stylesheets="@../css/walkietalkie.css">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </TextField>
+                  <StackPane prefHeight="51.0" prefWidth="111.0">
+                     <children>
+                        <HBox prefHeight="51.0" prefWidth="62.0" styleClass="component2" stylesheets="@../css/walkietalkie.css" />
+                        <Label fx:id="numberOfHints" alignment="TOP_CENTER" text="Unlimited" textFill="#1bcd2a" wrapText="true">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets top="15.0" />
+                           </StackPane.margin>
+                        </Label>
+                        <Label alignment="TOP_CENTER" prefHeight="26.0" prefWidth="92.0" text="Hints Left:" textFill="#1bcd2a" wrapText="true">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets bottom="25.0" />
+                           </StackPane.margin>
+                        </Label>
+                     </children>
+                  </StackPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox fx:id="walkietalkie" alignment="CENTER" layoutX="10.0" layoutY="490.0" onMousePressed="#onWalkieTalkie" prefHeight="144.0" prefWidth="208.0" styleClass="walkietalkie" stylesheets="@../css/walkietalkie.css">
+         <children>
+            <StackPane prefHeight="214.0" prefWidth="218.0">
+               <children>
+                  <ImageView fitHeight="214.0" fitWidth="211.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/walkietalkiepad.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="lobbyWalkieTalkie" fitHeight="121.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/walkietalkie.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
