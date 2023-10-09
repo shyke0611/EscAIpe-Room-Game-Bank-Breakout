@@ -17,7 +17,6 @@ import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
-import nz.ac.auckland.se206.StyleManager.HoverColour;
 
 /** Controller class for the Wire Cutting scene. */
 public class WireCuttingController extends Controller {
@@ -47,9 +46,9 @@ public class WireCuttingController extends Controller {
     super.setTimerLabel(timerLabel, 2);
     wiresCut = new ArrayList<>();
     // generating relevant methods on initialise
-    // styleManager.addItems(
-    //     redwire, greenwire, bluewire, yellowwire, wirecuttingbackground, wirecuttingorderLbl);
+    styleManager.addHoverItems(wirecuttingbackground,wirecuttingorderLbl);
     RandomnessGenerate.addWires(bluewire, yellowwire, greenwire, redwire);
+    styleManager.addHoverItems(bluewire, yellowwire, greenwire, redwire);
   }
 
   /**
@@ -101,7 +100,7 @@ public class WireCuttingController extends Controller {
   @FXML
   private void onRetry(ActionEvent event) {
     wiresCut.clear();
-    // styleManager.setVisible(true, "yellowwire", "redwire", "bluewire", "greenwire");
+    styleManager.setVisible(true, "yellowwire", "redwire", "bluewire", "greenwire");
     taskLbl.setText(null);
   }
 
@@ -144,12 +143,12 @@ public class WireCuttingController extends Controller {
     taskLbl.setText("Success");
     taskLbl.setTextFill(Color.GREEN);
     GameState.isWiresCut = true;
-    // StyleManager.setAlarm(false);
+    StyleManager.setAlarm(false);
     GameState.isAlarmDisabled = true;
     // setting relevant styles
-    // styleManager.setDisable(true, "electricityBox");
-    // styleManager.setDisable(true, "guardpocket");
-    // styleManager.setVisible(false, "credentialsNote");
+    styleManager.setDisable(true, "electricityBox");
+    styleManager.setDisable(true, "guardpocket");
+    styleManager.setVisible(false, "credentialsNote");
     retryBtn.setDisable(true);
     // styleManager.setClueHover("bomblayer", true);
     // styleManager.setClueHover("lobbyRoomSwitch", false);

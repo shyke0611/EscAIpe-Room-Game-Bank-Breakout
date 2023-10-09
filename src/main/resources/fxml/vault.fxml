@@ -27,28 +27,29 @@
          <image>
             <Image url="@../images/realvaultbackground.png" />
          </image>
-         <effect>
-            <Lighting>
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
-         </effect>
       </ImageView>
-      <HBox fx:id="exitHolder" layoutX="16.0" layoutY="328.0" onMousePressed="#onBombPlaced" prefHeight="65.0" prefWidth="130.0" styleClass="guard" stylesheets="@../css/rooms.css" visible="false">
+      <HBox fx:id="exitHolder" layoutX="11.0" layoutY="412.0" onMousePressed="#onBombPlaced" prefHeight="129.0" prefWidth="140.0" styleClass="guard" stylesheets="@../css/rooms.css" visible="false">
          <children>
-            <ImageView fitHeight="118.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/bomb.png" />
-               </image>
-            </ImageView>
+            <StackPane prefHeight="150.0" prefWidth="145.0">
+               <children>
+                  <ImageView fitHeight="129.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/bomb.png" />
+                     </image>
+                     <effect>
+                        <Lighting diffuseConstant="1.35" specularConstant="0.18" specularExponent="40.0" surfaceScale="3.23">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </ImageView>
+               </children>
+            </StackPane>
          </children>
-         <effect>
-            <DropShadow />
-         </effect>
       </HBox>
       <HBox fx:id="escapeDoor" layoutX="8.0" layoutY="308.0" onMousePressed="#onEscape" prefHeight="141.0" prefWidth="141.0" styleClass="guard" stylesheets="@../css/rooms.css" visible="false">
          <children>
@@ -62,31 +63,18 @@
             </ImageView>
          </children>
       </HBox>
-      <Rectangle fx:id="dialogueBox" arcHeight="40.0" arcWidth="40.0" fill="#000000ac" height="88.0" layoutX="335.0" layoutY="28.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="242.0" />
-      <Label fx:id="moneyValue" layoutX="341.0" layoutY="43.0" prefHeight="28.0" prefWidth="236.0" text="Money: $20,000,000" textFill="WHITE" visible="false">
+      <Rectangle fx:id="dialogueBox" arcHeight="40.0" arcWidth="40.0" fill="#000000ac" height="82.0" layoutX="431.0" layoutY="143.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="251.0" />
+      <Label fx:id="moneyValue" alignment="CENTER" contentDisplay="CENTER" layoutX="442.0" layoutY="146.0" prefHeight="39.0" prefWidth="234.0" text="Money: $20,000,000" textFill="WHITE" visible="false">
          <font>
             <Font name="American Typewriter" size="23.0" />
          </font>
       </Label>
-      <Label fx:id="difficultyValue" layoutX="350.0" layoutY="73.0" prefHeight="28.0" prefWidth="215.0" text="Difficulty: ★★★☆☆" textFill="WHITE" visible="false">
+      <Label fx:id="difficultyValue" alignment="CENTER" contentDisplay="CENTER" layoutX="438.0" layoutY="177.0" prefHeight="44.0" prefWidth="242.0" text="Difficulty: ★★★☆☆" textFill="WHITE" visible="false">
          <font>
             <Font name="American Typewriter" size="23.0" />
          </font>
       </Label>
       <Rectangle fx:id="whiteBackground" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="710.0" layoutX="-7.0" layoutY="-7.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="1009.0" />
-      <HBox fx:id="bombHolder" alignment="CENTER" layoutX="777.0" layoutY="539.0" onMousePressed="#onBombPressed" prefHeight="153.0" prefWidth="201.0" styleClass="bomb" stylesheets="@../css/rooms.css" visible="false">
-         <children>
-            <HBox fx:id="bomblayer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="guard" stylesheets="@../css/rooms.css">
-               <children>
-                  <ImageView fx:id="bomblogo" fitHeight="101.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/bomb.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
-         </children>
-      </HBox>
       <HBox fx:id="silverDoorHolder" layoutX="246.0" layoutY="282.0" prefHeight="229.0" prefWidth="223.0" styleClass="drawer" stylesheets="@../css/rooms.css">
          <children>
             <StackPane prefHeight="338.0" prefWidth="200.0">
@@ -201,74 +189,108 @@
             </StackPane>
          </children>
       </HBox>
-      <VBox fx:id="bombPuzzle" layoutX="192.0" layoutY="169.0" onKeyPressed="#onBombTyped" prefHeight="406.0" prefWidth="618.0" style="-fx-background-color: black; -fx-border-color: white;" visible="false">
+      <StackPane fx:id="bombPuzzle" layoutX="147.0" layoutY="155.0" prefHeight="365.0" prefWidth="698.0" visible="false">
          <children>
-            <HBox alignment="CENTER" prefHeight="112.0" prefWidth="610.0">
+            <ImageView fitHeight="363.0" fitWidth="351.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/bombpasscode.png" />
+               </image>
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
+               <effect>
+                  <DropShadow height="135.97" radius="57.167500000000004" spread="0.61" width="94.7" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/bombbutton.png" />
+               </image>
+               <effect>
+                  <DropShadow height="28.37" radius="14.0525" spread="0.79" width="29.84" />
+               </effect>
+               <StackPane.margin>
+                  <Insets left="500.0" />
+               </StackPane.margin>
+            </ImageView>
+            <VBox alignment="CENTER" opacity="0.51" prefHeight="65.0" prefWidth="343.0" style="-fx-background-color: black; -fx-background-radius: 10;">
+               <StackPane.margin>
+                  <Insets bottom="35.0" left="250.0" right="260.0" top="265.0" />
+               </StackPane.margin>
+            </VBox>
+            <Label fx:id="inputLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="33.0" prefWidth="204.0" text="Enter Code" textFill="#289e42" StackPane.alignment="CENTER">
+               <font>
+                  <Font name="Copperplate" size="31.0" />
+               </font>
+               <StackPane.margin>
+                  <Insets left="190.0" right="210.0" top="215.0" />
+               </StackPane.margin>
+               <effect>
+                  <DropShadow height="23.95" radius="12.9475" spread="0.4" width="29.84">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Label>
+            <Label fx:id="statusLbl" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="371.0" textAlignment="CENTER" textFill="#0be059" wrapText="true">
+               <StackPane.margin>
+                  <Insets left="185.0" right="195.0" top="325.0" />
+               </StackPane.margin>
+               <font>
+                  <Font name="Copperplate" size="17.0" />
+               </font>
+               <effect>
+                  <DropShadow height="25.42" radius="11.842500000000001" spread="0.32" width="23.95" />
+               </effect>
+            </Label>
+            <Button fx:id="redBtn" disable="true" mnemonicParsing="false" onAction="#onExitBomb" prefHeight="39.0" prefWidth="38.0" styleClass="red-button" stylesheets="@../css/rooms.css">
+               <font>
+                  <Font size="8.0" />
+               </font>
+               <StackPane.margin>
+                  <Insets left="503.0" />
+               </StackPane.margin>
+            </Button>
+            <Label fx:id="givencode" alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="177.0" style="-fx-background-color: black; -fx-border-color: green;" text="Code To Input:" textFill="#27b927">
+               <font>
+                  <Font size="28.0" />
+               </font>
+               <StackPane.margin>
+                  <Insets right="10.0" top="-230.0" />
+               </StackPane.margin>
+            </Label>
+            <Pane prefHeight="245.0" prefWidth="228.0">
                <children>
-                  <Label fx:id="givencode" style="-fx-background-color: black; -fx-border-color: green;" text="Code To Input:" textFill="#27b927">
+                  <Button fx:id="button" layoutX="-13.0" layoutY="-12.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="34.0" prefWidth="42.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="1" />
+                  <Button fx:id="button" layoutX="32.0" layoutY="-13.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="34.0" prefWidth="38.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="2" />
+                  <Button fx:id="button" layoutX="180.0" layoutY="-13.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="34.0" prefWidth="34.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="6" />
+                  <Button fx:id="button" layoutX="71.0" layoutY="-14.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="35.0" prefWidth="35.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="3" />
+                  <Button fx:id="button" layoutX="145.0" layoutY="-14.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="35.0" prefWidth="33.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="5" />
+                  <Button fx:id="button" layoutX="108.0" layoutY="-14.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="35.0" prefWidth="34.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="4" />
+                  <Button fx:id="checkBtn" layoutX="72.0" layoutY="38.0" mnemonicParsing="false" onAction="#onCheckCode" prefHeight="36.0" prefWidth="72.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="Check">
                      <font>
-                        <Font size="48.0" />
+                        <Font size="9.0" />
                      </font>
-                  </Label>
+                  </Button>
                </children>
-            </HBox>
-            <StackPane alignment="CENTER_LEFT" prefHeight="308.0" prefWidth="697.0">
-               <children>
-                  <ImageView fitHeight="344.0" fitWidth="690.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/bomb.png" />
-                     </image>
-                  </ImageView>
-                  <VBox prefHeight="344.0" prefWidth="720.0">
-                     <children>
-                        <VBox alignment="CENTER" prefHeight="134.0" prefWidth="680.0">
-                           <children>
-                              <Label fx:id="statusLbl" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="74.0" prefWidth="181.0" textAlignment="CENTER" textFill="#0be059" translateX="15.0" translateY="25.0" wrapText="true">
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="inputLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="180.0" text="Enter Code" translateX="15.0" translateY="-15.0">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <HBox alignment="CENTER" prefHeight="110.0" prefWidth="787.0">
-                           <children>
-                              <Pane prefHeight="128.0" prefWidth="202.0">
-                                 <children>
-                                    <Button fx:id="button" layoutX="10.0" layoutY="15.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="1" />
-                                    <Button fx:id="button" layoutX="155.0" layoutY="52.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="0" />
-                                    <Button fx:id="button" layoutX="48.0" layoutY="15.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="2" />
-                                    <Button fx:id="button" layoutX="48.0" layoutY="52.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="7" />
-                                    <Button fx:id="button" layoutX="10.0" layoutY="52.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="6" />
-                                    <Button fx:id="button" layoutX="84.0" layoutY="52.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="8" />
-                                    <Button fx:id="button" layoutX="120.0" layoutY="52.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="9" />
-                                    <Button fx:id="button" layoutX="84.0" layoutY="15.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="3" />
-                                    <Button fx:id="button" layoutX="155.0" layoutY="15.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="5" />
-                                    <Button fx:id="button" layoutX="120.0" layoutY="15.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="22.0" prefWidth="30.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="4" />
-                                    <Button fx:id="checkBtn" layoutX="72.0" layoutY="84.0" mnemonicParsing="false" onAction="#onCheckCode" prefHeight="19.0" prefWidth="55.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="Check">
-                                       <font>
-                                          <Font size="9.0" />
-                                       </font>
-                                    </Button>
-                                    <Button layoutX="193.0" layoutY="6.0" mnemonicParsing="false" onAction="#onExitBomb" prefHeight="15.0" prefWidth="17.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="X">
-                                       <font>
-                                          <Font size="8.0" />
-                                       </font>
-                                    </Button>
-                                 </children>
-                              </Pane>
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-               </children>
-            </StackPane>
+               <StackPane.margin>
+                  <Insets left="265.0" right="200.0" top="120.0" />
+               </StackPane.margin>
+            </Pane>
+            <ImageView fitHeight="211.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/bomb.png" />
+               </image>
+               <effect>
+                  <DropShadow spread="0.58" />
+               </effect>
+               <StackPane.margin>
+                  <Insets right="600.0" />
+               </StackPane.margin>
+            </ImageView>
          </children>
-      </VBox>
+      </StackPane>
       <VBox fx:id="lootBtnHolder" alignment="CENTER" layoutX="1.0" layoutY="305.0" prefHeight="251.0" prefWidth="325.0" visible="false">
          <children>
             <StackPane prefHeight="150.0" prefWidth="200.0">
@@ -298,7 +320,6 @@
             </StackPane>
          </children>
       </VBox>
-      <HBox fx:id="walkietalkieHolder" layoutX="597.0" layoutY="-78.0" prefHeight="49.0" prefWidth="123.0" />
       <VBox fx:id="walkietalkieText" layoutX="189.0" layoutY="521.0" prefHeight="150.0" prefWidth="512.0" visible="false">
          <children>
             <HBox prefHeight="100.0" prefWidth="512.0">
@@ -511,6 +532,26 @@
             </Label>
          </children>
       </StackPane>
+      <HBox fx:id="bombHolder" alignment="CENTER" layoutX="405.0" layoutY="268.0" onMousePressed="#onBombPressed" prefHeight="199.0" prefWidth="224.0" visible="false">
+         <children>
+            <HBox fx:id="bomblayer" alignment="CENTER" prefHeight="220.0" prefWidth="130.0" styleClass="guard" stylesheets="@../css/rooms.css">
+               <children>
+                  <ImageView fx:id="bomblogo" fitHeight="237.0" fitWidth="224.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/bomb.png" />
+                     </image>
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.5789473652839661" green="0.35112085938453674" blue="0.35112085938453674" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
 
    </children>
 </AnchorPane>

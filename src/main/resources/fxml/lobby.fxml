@@ -23,15 +23,8 @@
    <children>
       <ImageView fx:id="lobbybackground" fitHeight="715.0" fitWidth="1024.0" layoutX="-3.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/banklobby.png" />
+            <Image url="@../images/banklobbybackground.png" />
          </image>
-         <effect>
-            <Lighting bumpInput="$null" diffuseConstant="0.92" specularConstant="0.0" specularExponent="28.79" surfaceScale="0.0">
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
-         </effect>
       </ImageView>
       <HBox layoutX="5.0" layoutY="12.0" prefHeight="122.0" prefWidth="318.0">
          <children>
@@ -538,7 +531,7 @@
             </StackPane>
          </children>
       </VBox>
-      <StackPane layoutX="-78.0" layoutY="254.0" opacity="0.88" prefHeight="150.0" prefWidth="200.0">
+      <StackPane layoutX="-7.0" layoutY="254.0" opacity="0.88" prefHeight="150.0" prefWidth="129.0">
          <children>
             <ImageView fitHeight="102.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -549,29 +542,39 @@
                <image>
                   <Image url="@../images/pictureFrame.png" />
                </image>
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
             </ImageView>
          </children>
       </StackPane>
-      <ImageView fitHeight="24.0" fitWidth="54.0" layoutX="-5.0" layoutY="382.0" opacity="0.89" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="38.0" fitWidth="54.0" layoutX="28.0" layoutY="367.0" opacity="0.89" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/plaque-removebg-preview.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="enlargedPainting" fitHeight="440.0" fitWidth="454.0" layoutX="252.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="enlargedPainting" fitHeight="329.0" fitWidth="356.0" layoutX="340.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/CEOPainting.png" />
          </image>
       </ImageView>
-      <StackPane fx:id="plaqueandlabel" layoutX="248.0" layoutY="426.0" prefHeight="167.0" prefWidth="278.0" visible="false">
+      <StackPane fx:id="plaqueandlabel" layoutX="287.0" layoutY="410.0" prefHeight="107.0" prefWidth="435.0" visible="false">
          <children>
-            <ImageView fx:id="largePlaque" fitHeight="190.0" fitWidth="464.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="largePlaque" fitHeight="118.0" fitWidth="262.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/plaque-removebg-preview.png" />
                </image>
             </ImageView>
             <Label fx:id="johnIpsumLbl" text="John Ipsum">
                <font>
-                  <Font name="AppleMyungjo Regular" size="50.0" />
+                  <Font name="AppleMyungjo Regular" size="33.0" />
                </font>
             </Label>
          </children>

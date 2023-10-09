@@ -25,6 +25,7 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -250,9 +251,10 @@ public class ComputerController extends Controller {
         new ChatMessage("assistant", "Security Disabled, Level 2 Vault Access Granted"));
 
     App.textToSpeech("Security Disabled, Level 2 Vault Access Granted");
-
     GameState.isFirewallDisabled = true;
+    GameState.isFirstRiddleSolved = true;
     GameManager.completeObjective();
+    setLevelTwoStyle();
   }
 
   private void accessLevelThree() {
@@ -268,6 +270,7 @@ public class ComputerController extends Controller {
         new ChatMessage("assistant", "Security Disabled, Level 3 Vault Access Granted"));
 
     App.textToSpeech("Security Disabled, Level 3 Vault Access Granted");
+   setLevelThreeStyle();
   }
 
   @FXML
@@ -304,6 +307,25 @@ public class ComputerController extends Controller {
     // set the second authentication method to visible
     usbStick.setVisible(true);
     // styleManager.setClueHover("usbStick", true);
+    GameState.isFirstRiddleSolved = true;
+    setLevelTwoStyle();
+  }
+
+  private void setLevelTwoStyle() {
+    // set disability
+     styleManager.setDisable(true, "computer","ceoPainting","wallEmployee");
+    // setting vault style
+    StyleManager.setItemsHoverColour(HoverColour.GREEN, "silverDoorHolder", "bronzeDoorHolder");
+    StyleManager.setItemsMessage("Access granted", "bronzeDoorHolder","silverDoorHolder");
+    StyleManager.setItemsMessage("No access", "goldDoorHolder");
+  }
+
+  private void setLevelThreeStyle() {
+     //disabling items
+    styleManager.setDisable(true, "computer","ceoPainting","wallEmployee");
+    // setting vault style
+    StyleManager.setItemsHoverColour(HoverColour.GREEN, "silverDoorHolder", "bronzeDoorHolder","goldDoorHolder");
+    StyleManager.setItemsMessage("Access granted", "bronzeDoorHolder","silverDoorHolder","goldDoorHolder");
   }
 
   @FXML

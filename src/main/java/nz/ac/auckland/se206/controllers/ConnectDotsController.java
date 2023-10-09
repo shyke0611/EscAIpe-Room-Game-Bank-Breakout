@@ -356,4 +356,12 @@ public class ConnectDotsController extends Controller {
     }
     App.setUI(Scenes.SECURITY);
   }
+
+  @FXML
+  protected void grantAccess() {
+    // setting style for when access is granted by disabling firewall
+    GameState.isFirewallDisabled = true;
+    App.setUI(Scenes.SECURITY);
+  }
+  
 }

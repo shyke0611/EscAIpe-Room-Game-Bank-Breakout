@@ -5,7 +5,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
@@ -66,7 +65,7 @@ public class AnimationManager {
       Timeline animation =
           new Timeline(
               new KeyFrame(Duration.ZERO, new KeyValue(dropShadow.spreadProperty(), 0)),
-              new KeyFrame(duration, new KeyValue(dropShadow.spreadProperty(), 2)));
+              new KeyFrame(duration, new KeyValue(dropShadow.spreadProperty(), 1)));
       animation.setCycleCount(Timeline.INDEFINITE);
       animation.play();
     } else {

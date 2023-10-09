@@ -35,6 +35,18 @@
     -fx-cursor: hand;
 }
 
+.red-button {
+    -fx-background-color: rgb(130, 10, 10);
+    -fx-background-radius: 90;
+
+}
+
+.red-button:hover {
+    -fx-cursor: hand;
+    -fx-background-color: rgb(102, 4, 4);
+
+}
+
 .genbutton {
     -fx-background-color: black;
     -fx-border-color: green;

@@ -29,8 +29,7 @@ public class StyleManager {
 
   private StyleManager() {}
 
-
-   private String getRgbaForHoverColour(HoverColour colour) {
+  private static String getRgbaForHoverColour(HoverColour colour) {
     // return the rgba value for the given colour
     switch (colour) {
       case RED:
@@ -53,7 +52,7 @@ public class StyleManager {
   }
 
   // get specified node
-  public Node getHoverItem(String node) {
+  public static Node getHoverItem(String node) {
     for (Node item : hoverItemsList) {
       if (item.getId().toString().equals(node)) {
         return item;
@@ -63,7 +62,7 @@ public class StyleManager {
   }
 
   // set hover items for multiple items
-   public void setItemsHoverColour(HoverColour colour, String... items) {
+  public static void setItemsHoverColour(HoverColour colour, String... items) {
     // Get the rgba value for the given colour
     String rgba = getRgbaForHoverColour(colour);
     // For each item add a hover glow effect
@@ -92,7 +91,7 @@ public class StyleManager {
     }
   }
 
-  public void setItemsMessage(String message, String... items) {
+  public static void setItemsMessage(String message, String... items) {
     // Go through each item
     for (String item : items) {
       Node node = getHoverItem(item);
@@ -110,7 +109,7 @@ public class StyleManager {
   }
 
   // Remove tooltips for multiple items
-  public void removeItemsMessage(String... items) {
+  public static void removeItemsMessage(String... items) {
     for (String item : items) {
       Node node = getHoverItem(item);
       Tooltip tooltip = tooltipMap.get(node);
@@ -121,80 +120,72 @@ public class StyleManager {
     }
   }
 
+  public static void setAlarm(boolean on) {
+    if (on) {
+      App.textToSpeech("Alarm Triggered");
+      setAlarmStyle();
+    }
+    // Create a set of items to include
+    Set<String> includeIds =
+        new HashSet<>(
+            Arrays.asList(
+                "guard",
+                "drawerHolder",
+                "drawer",
+                "credentialsNote",
+                "computer",
+                "doorHolder",
+                "guardeyes",
+                "key1",
+                "key3",
+                "key4",
+                "ceoPainting",
+                "wallEmployee",
+                "silverDoorHolder",
+                "bronzeDoorHolder",
+                "goldDoorHolder"));
 
+    // Go through all items
+    for (Node item : hoverItemsList) {
+      if (item == null) {
+        continue; // Skip null items
+      }
+      String itemId = item.getId();
+      System.out.println("Item ID: " + itemId);
 
-
-
-
-
-
-
-
-
-
-
-
-
-  public static void reset() {
-    // tooltipMap.clear();
-    // itemsList.clear();
+      if (itemId != null) {
+        // If the item is in the set, disable it
+        if (includeIds.contains(itemId)) {
+          item.setDisable(true);
+          item.setStyle(null);
+          setClueHover(itemId.toString(), false);
+        }
+        // If the item is the background, animate it
+        if (itemId.endsWith("background")) {
+          AnimationManager.toggleAlarmAnimation(item, on, 0.7);
+        }
+      }
+    }
   }
 
-  // public static void setAlarm(boolean on) {
-  //   if (on) {
-  //     App.textToSpeech("Alarm Triggered");
-  //   }
+  public static void setClueHover(String item, boolean isOn) {
+    for (Node node : hoverItemsList) {
+      if (node.getId().equals(item)) {
+        AnimationManager.toggleHoverAnimation(node, isOn, 1);
+      }
+    }
+  }
 
-  //   // Create a set of items to include
-  //   Set<String> includeIds =
-  //       new HashSet<>(
-  //           Arrays.asList(
-  //               "guard",
-  //               "drawerHolder",
-  //               "drawer",
-  //               "credentialsNote",
-  //               "computer",
-  //               "doorHolder",
-  //               "guardeyes",
-  //               "key1",
-  //               "key3",
-  //               "key4"));
+  private static void setAlarmStyle() {
+    setClueHover("guardpocket", true);
+    setItemsMessage("something is inside", "guardpocket");
+    setClueHover("electricityBox", true);
+    setItemsMessage("wire cutting..?", "electricityBox");
+    setItemsHoverColour(HoverColour.GREEN, "guardpocket", "electricityBox");
+  }
 
-  //   // Go through all items
-  //   for (Node item : itemsList) {
-  //     if (item == null) {
-  //       continue; // Skip null items
-  //     }
-  //     String itemId = item.getId();
-  //     System.out.println("Item ID: " + itemId);
-
-  //     if (itemId != null) {
-  //       // If the item is in the set, disable it
-  //       if (includeIds.contains(itemId)) {
-  //         item.setDisable(true);
-  //         item.setStyle(null);
-  //       }
-  //       // If the item is the background, animate it
-  //       if (itemId.endsWith("background")) {
-  //         AnimationManager.toggleAlarmAnimation(item, on, 0.7);
-  //       }
-  //     }
-  //   }
-  // }
-
-
-
-
-
-  // public void setClueHover(String item, boolean isOn) {
-  //   for (Node node : itemsList) {
-  //     if (node.getId().equals(item)) {
-  //       AnimationManager.toggleHoverAnimation(node, isOn, 1);
-  //     }
-  //   }
-  // }
-
-
-
-
+  public static void reset() {
+    tooltipMap.clear();
+    hoverItemsList.clear();
+  }
 }
