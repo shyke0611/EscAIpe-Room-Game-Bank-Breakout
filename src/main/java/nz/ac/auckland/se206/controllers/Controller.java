@@ -81,25 +81,13 @@ public abstract class Controller {
   @FXML
   protected void switchToSecurity() {
     App.setUI(Scenes.SECURITY);
-    // styleManager.setClueHover("securityRoomSwitch", false);
     // if the computer is not logged in and credentials not found set style
-    if (!GameState.isSecurityComputerLoggedIn && GameState.isCredentialsFound) {
-      handleComputerHover("computer");
-      // GameState.isComputerHoverPressed = true;
-      // handle alarm tripped scenario
-    } else if (GameState.isAlarmTripped) {
-      handleElectricityHover("electricityBox");
-    }
   }
 
   @FXML
   protected void switchToLobby() {
     // Switch the scene to the Lobby
     App.setUI(Scenes.LOBBY);
-    // If the alarm has been tripped, handle the guard pocket hover
-    if (GameState.isAlarmTripped) {
-      handleGuardPocketHover("guardpocket");
-    }
   }
 
   @FXML
@@ -113,38 +101,6 @@ public abstract class Controller {
     }
     // Switch the scene to the Vault
     App.setUI(Scenes.VAULT);
-  }
-
-  // Handle hovering over the computer item
-  private void handleComputerHover(String item) {
-    // Check if the computer hover action hasn't been pressed yet
-    // if (!GameState.isComputerHoverPressed) {
-    //   // Set the hover effect and mark as pressed
-    //   // styleManager.setClueHover(item, true);
-    //   GameState.isComputerHoverPressed = true;
-    //   // Set the item's state to green (assuming it represents a clue)
-    //   styleManager.setItemsState(HoverColour.GREEN, item);
-    }
-  
-
-  // Handle hovering over the electricity item
-  private void handleElectricityHover(String item) {
-    // Check if the electricity hover action hasn't been pressed yet
-    // if (!GameState.isElectricityHoverPressed) {
-    //   // Set the hover effect and mark as pressed
-    //   // styleManager.setClueHover(item, true);
-    //   GameState.isElectricityHoverPressed = true;
-    // }
-  }
-
-  // Handle hovering over the guard pocket item
-  private void handleGuardPocketHover(String item) {
-    // Check if the guard pocket hover action hasn't been pressed yet
-    // if (!GameState.isGuardPocketHoverPressed) {
-    //   // Set the hover effect and mark as pressed
-    //   // styleManager.setClueHover(item, true);
-    //   GameState.isGuardPocketHoverPressed = true;
-    // }
   }
 
 }

@@ -82,7 +82,7 @@ public class SecurityController extends Controller {
     WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
     WalkieTalkieManager.addQuickHintBtn(this, quickHintBtn);
 
-    styleManager.addHoverItems(computer, electricityBox, wallEmployee);
+    styleManager.addHoverItems(computer, electricityBox, wallEmployee, securitybackground);
 
     // Add style items and set messages
     // styleManager.addItems(
@@ -92,9 +92,9 @@ public class SecurityController extends Controller {
     //     vaultRoomSwitch,
     //     lobbyRoomSwitch,
     //     securityRoomSwitch);
-    styleManager.setItemsMessage("A computer...?", "computer");
-    styleManager.setItemsMessage("no need to open this right now", "electricityBox");
-    styleManager.setItemsMessage("Employee of the month..?", "wallEmployee");
+    StyleManager.setItemsMessage("A computer...?", "computer");
+    StyleManager.setItemsMessage("no need to open this right now", "electricityBox");
+    StyleManager.setItemsMessage("Employee of the month..?", "wallEmployee");
   }
 
   // Handling mouse events on walkie talkie - opens and closes when walkie talkie is clicked
@@ -120,6 +120,8 @@ public class SecurityController extends Controller {
   private void onWireCutting(MouseEvent event) {
     // if wire not cur and alarm is tripped
     if (!GameState.isWiresCut && GameState.isAlarmTripped) {
+      StyleManager.setClueHover("electricityBox", false);
+      StyleManager.removeItemsMessage("electricityBox");
       App.setUI(Scenes.WIRECUTTING);
       // when wire is cut
     } else if (GameState.isWiresCut) {
@@ -142,18 +144,19 @@ public class SecurityController extends Controller {
   // Opening computer log in screen
   @FXML
   private void onClickComputer(MouseEvent event) {
-    // styleManager.setClueHover("computer", false);
-    // If already logged in, skip log in stage
+    StyleManager.setClueHover("computer", false);
+    // If not already logged in, go to log in screen
     if (!GameState.isSecurityComputerLoggedIn) {
       logInScreen.setVisible(true);
       // if connect the dot puzzle is reached
     } else if (GameState.isConnectDotreached) {
       App.setUI(Scenes.CONNECTDOTS);
     } else {
+      // go straight to computer scene
       logInScreen.setVisible(false);
       GameManager.completeObjective();
       App.setUI(Scenes.COMPUTER);
-      // styleManager.removeItemsMessage("computer");
+      StyleManager.removeItemsMessage("computer");
     }
   }
 
@@ -201,8 +204,8 @@ public class SecurityController extends Controller {
     GameState.isSecurityComputerLoggedIn = true;
     App.setUI(Scenes.COMPUTER);
     // setting style
-    styleManager.setItemsHoverColour(HoverColour.GREEN, "computer");
-    styleManager.removeItemsMessage("computer");
+    StyleManager.setItemsHoverColour(HoverColour.GREEN, "computer");
+    StyleManager.removeItemsMessage("computer");
     styleManager.setDisable(true, "credentialsBook");
     styleManager.setVisible(false, "credentialsNote");
   }

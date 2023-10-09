@@ -315,17 +315,17 @@ public class ComputerController extends Controller {
     // set disability
      styleManager.setDisable(true, "computer","ceoPainting","wallEmployee");
     // setting vault style
-    styleManager.setItemsHoverColour(HoverColour.GREEN, "silverDoorHolder", "bronzeDoorHolder");
-    styleManager.setItemsMessage("Access granted", "bronzeDoorHolder","silverDoorHolder");
-    styleManager.setItemsMessage("No access", "goldDoorHolder");
+    StyleManager.setItemsHoverColour(HoverColour.GREEN, "silverDoorHolder", "bronzeDoorHolder");
+    StyleManager.setItemsMessage("Access granted", "bronzeDoorHolder","silverDoorHolder");
+    StyleManager.setItemsMessage("No access", "goldDoorHolder");
   }
 
   private void setLevelThreeStyle() {
      //disabling items
     styleManager.setDisable(true, "computer","ceoPainting","wallEmployee");
     // setting vault style
-    styleManager.setItemsHoverColour(HoverColour.GREEN, "silverDoorHolder", "bronzeDoorHolder","goldDoorHolder");
-    styleManager.setItemsMessage("Access granted", "bronzeDoorHolder","silverDoorHolder","goldDoorHolder");
+    StyleManager.setItemsHoverColour(HoverColour.GREEN, "silverDoorHolder", "bronzeDoorHolder","goldDoorHolder");
+    StyleManager.setItemsMessage("Access granted", "bronzeDoorHolder","silverDoorHolder","goldDoorHolder");
   }
 
   @FXML

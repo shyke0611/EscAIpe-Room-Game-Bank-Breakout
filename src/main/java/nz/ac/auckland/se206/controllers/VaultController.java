@@ -28,6 +28,7 @@ import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
+import nz.ac.auckland.se206.StyleManager.HoverColour;
 import nz.ac.auckland.se206.TimerControl;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -96,7 +97,15 @@ public class VaultController extends Controller {
     super.setTimerLabel(timerLabel, 1);
 
     styleManager.addHoverItems(
-        bronzeDoorHolder, silverDoorHolder, goldDoorHolder, bronzeDoor, silverDoor, goldDoor,lootBtnHolder,lootLbl);
+        bronzeDoorHolder,
+        silverDoorHolder,
+        goldDoorHolder,
+        bronzeDoor,
+        silverDoor,
+        goldDoor,
+        lootBtnHolder,
+        lootLbl,
+        realvaultbackground);
 
     // adding relevant items to the stylemanager list
     // styleManager.addItems(
@@ -127,7 +136,7 @@ public class VaultController extends Controller {
     // styleManager.setItemsMessage("set bomb down", "exitHolder");
     // styleManager.setItemsMessage("escape", "escapeDoor");
     // styleManager.setItemsMessage("activate bomb", "bombHolder");
-    styleManager.setItemsMessage(
+    StyleManager.setItemsMessage(
         "Need to disable firewall from blocking us",
         "bronzeDoorHolder",
         "silverDoorHolder",
@@ -191,8 +200,8 @@ public class VaultController extends Controller {
       App.setUI(Scenes.EYESCANNER);
       GameState.isEyeScannerEntered = true;
       // setting style
-      // styleManager.setItemsMessage("Get guard eye colour", "guardeyes");
-      // styleManager.setItemsState(HoverColour.GREEN, "guardeyes");
+      StyleManager.setItemsMessage("Collect guard eye sample", "guardeyes");
+      StyleManager.setItemsHoverColour(HoverColour.GREEN, "guardeyes");
     }
   }
 
@@ -210,20 +219,17 @@ public class VaultController extends Controller {
     // execute when firewall is disabled and any vault is opened
     if (GameState.isFirewallDisabled && GameState.isAnyDoorOpen) {
       if (!GameState.isAlarmTripped) {
-        // StyleManager.setAlarm(true);
+        StyleManager.setAlarm(true);
         GameState.isAlarmTripped = true;
       }
-
       GameManager.completeObjective();
-
-      // setting style to relevant items
-      // styleManager.setItemsState(HoverColour.GREEN, "electricityBox");
-      // styleManager.setItemsState(HoverColour.GREEN, "guardpocket");
-      // styleManager.setItemsMessage("Something seems odd?", "guardpocket");
-      // styleManager.setItemsMessage("Alarm Wires...?", "electricityBox");
-      // lootBtnHolder.setVisible(false);
-      // styleManager.setDisable(true, "bronzeDoor", "silverDoor", "goldDoor");
+      lootBtnHolder.setVisible(false);
       GameManager.collectMoney();
+      // StyleManager.setClueHover("guardpocket", true);
+      // StyleManager.setItemsMessage("something is inside", "guardpocket");
+      // StyleManager.setClueHover("electricityBox", true);
+      // StyleManager.setItemsMessage("wire cutting..?", "electricityBox");
+      // StyleManager.setItemsHoverColour(HoverColour.GREEN, "guardpocket", "electricityBox");
     }
   }
 

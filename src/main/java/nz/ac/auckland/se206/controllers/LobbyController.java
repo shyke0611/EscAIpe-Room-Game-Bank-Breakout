@@ -102,39 +102,16 @@ public class LobbyController extends Controller {
     RandomnessGenerate.addKeyLocation(key1, key3, key4);
     RandomnessGenerate.generateRandomKeyLocation();
 
-    styleManager.addHoverItems(key1,key3,key4,guard,guardpocket,guardeyes,drawerHolder,credentialsBook,credentialsNote,ceoPainting);
-
-    // adding relevant nodes (items) into the stylemanager list
-    // styleManager.addItems(
-    //     key,
-    //     key1,
-    //     key3,
-    //     key4,
-    //     credentialsBook,
-    //     credentialsNote,
-    //     guard,
-    //     guardpocket,
-    //     drawerHolder,
-    //     lobbybackground,
-    //     drawerHolder,
-    //     credentialsBook,
-    //     credentialsNote,
-    //     drawer,
-    //     openDrawer,
-    //     securityRoomSwitch,
-    //     vaultRoomSwitch,
-    //     lobbyRoomSwitch,
-    //     guardeyes);
+    styleManager.addHoverItems(key1,key3,key4,guard,guardpocket,guardeyes,drawerHolder,credentialsBook,credentialsNote,ceoPainting,lobbybackground);
   
-    // // setting style to items
-
-    styleManager.setItemsMessage(
+     // setting style to items
+    StyleManager.setItemsMessage(
         "Guard is watching...", "key1", "key3", "key4", "guardpocket", "guardeyes");
-    styleManager.setItemsMessage("It's locked...", "drawerHolder");
-    styleManager.setItemsMessage("A note?", "credentialsBook");
-    styleManager.setItemsMessage("Put him to sleep", "guard");
-    styleManager.setItemsMessage("CEO of the bank...?", "ceoPainting");
-    // styleManager.setClueHover("guard", true);
+    StyleManager.setItemsMessage("It's locked...", "drawerHolder");
+    StyleManager.setItemsMessage("A note?", "credentialsBook");
+    StyleManager.setItemsMessage("Put him to sleep", "guard");
+    StyleManager.setItemsMessage("CEO of the bank...?", "ceoPainting");
+    StyleManager.setClueHover("guard", true);
     setUpListener(key);
 
     String plaqueName = RandomnessGenerate.getRandomCeoName();
@@ -188,6 +165,8 @@ public class LobbyController extends Controller {
 
     // executes when alarm is tripped
     if (GameState.isAlarmTripped) {
+      StyleManager.setClueHover("guardpocket", false);
+      StyleManager.removeItemsMessage("guardpocket");
       // opening credentials note
       credentialsNote.setVisible(true);
       credentialsNote.setDisable(false);
@@ -238,7 +217,7 @@ public class LobbyController extends Controller {
     if (GameState.isEyeScannerEntered) {
       guardeyes.setDisable(true);
       // updating items
-      // styleManager.getItem("compareBtn").setDisable(false);
+      StyleManager.getHoverItem("compareBtn").setDisable(false);
       // styleManager.getItem("geteyesampleLbl").setVisible(false);
       ((EyeScannerController) SceneManager.getController(Scenes.EYESCANNER)).updateGuardEye();
     }
@@ -251,7 +230,7 @@ public class LobbyController extends Controller {
     // Set note text to the randomly generated credentials
     passwordLbl.setText("Password: " + randomPassword);
     usernameLbl.setText("Username: " + randomUsername);
-    styleManager.removeItemsMessage("credentialsBook");
+    StyleManager.removeItemsMessage("credentialsBook");
     // set glow effect
     // if (!GameState.isSecurityRoomHoverPressed) {
     //   // styleManager.setClueHover("securityRoomSwitch", true);
@@ -260,6 +239,8 @@ public class LobbyController extends Controller {
     // update game state
     GameState.isCredentialsFound = true;
     GameManager.completeObjective();
+    StyleManager.setClueHover("computer", true);
+    StyleManager.setItemsHoverColour(HoverColour.GREEN, "computer");
   }
 
   // Pressing any location of the keys
@@ -269,7 +250,7 @@ public class LobbyController extends Controller {
     // execute only when guard is distracted
     if (GameState.isGuardDistracted) {
       Node clickedKeyLocation = (HBox) event.getSource();
-      styleManager.setItemsMessage("Already looked here...", clickedKeyLocation.getId().toString());
+      StyleManager.setItemsMessage("Already looked here...", clickedKeyLocation.getId().toString());
       // get the clicked key location and execute relevant methods
       if (clickedKeyLocation == RandomnessGenerate.getkeyLocation()) {
         // update game and item states
@@ -290,8 +271,8 @@ public class LobbyController extends Controller {
     walkieTalkieManager.enableQuickHintBtns();
     key.setVisible(false);
     // setting style
-    styleManager.setItemsHoverColour(HoverColour.GREEN, "drawerHolder");
-    styleManager.setItemsMessage("The key fits...", "drawerHolder");
+    StyleManager.setItemsHoverColour(HoverColour.GREEN, "drawerHolder");
+    StyleManager.setItemsMessage("The key fits...", "drawerHolder");
   }
 
   @FXML
@@ -301,11 +282,11 @@ public class LobbyController extends Controller {
     sleepingAnimation();
     guard.setDisable(true);
     // setting style when guard is pressed
-    // styleManager.setClueHover("guard", false);
-    styleManager.setItemsHoverColour(HoverColour.GREEN, "key1", "key3", "key4");
-    styleManager.setItemsHoverColour(HoverColour.ORANGE, "guardpocket", "guardeyes");
-    styleManager.setItemsMessage("Something seems odd here...", "key1", "key3", "key4");
-    styleManager.setItemsMessage("Seems dangerous for now", "guardpocket", "guardeyes");
+    StyleManager.setClueHover("guard", false);
+    StyleManager.setItemsHoverColour(HoverColour.GREEN, "key1", "key3", "key4");
+    StyleManager.setItemsHoverColour(HoverColour.ORANGE, "guardpocket", "guardeyes");
+    StyleManager.setItemsMessage("Something seems odd here...", "key1", "key3", "key4");
+    StyleManager.setItemsMessage("Seems dangerous for now", "guardpocket", "guardeyes");
   }
 
   private void toggleImageViews() {

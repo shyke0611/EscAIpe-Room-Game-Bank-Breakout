@@ -57,7 +57,7 @@ public class EyeScannerController extends Controller {
   public void initialize() {
 
     // set relevant method on initialisation
-    // styleManager.addItems(compareBtn);
+    styleManager.addHoverItems(compareBtn);
     SceneManager.setController(Scenes.EYESCANNER, this);
     super.setTimerLabel(timerLabel, 3);
     accessGranted.setVisible(false);
