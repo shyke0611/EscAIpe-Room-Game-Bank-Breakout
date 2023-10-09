@@ -201,7 +201,7 @@
             </StackPane>
          </children>
       </HBox>
-      <VBox fx:id="bombPuzzle" layoutX="192.0" layoutY="169.0" onKeyPressed="#onBombTyped" prefHeight="406.0" prefWidth="618.0" style="-fx-background-color: black; -fx-border-color: white;">
+      <VBox fx:id="bombPuzzle" layoutX="192.0" layoutY="169.0" onKeyPressed="#onBombTyped" prefHeight="406.0" prefWidth="618.0" style="-fx-background-color: black; -fx-border-color: white;" visible="false">
          <children>
             <HBox alignment="CENTER" prefHeight="112.0" prefWidth="610.0">
                <children>
