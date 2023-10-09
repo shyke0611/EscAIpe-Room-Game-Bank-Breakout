@@ -37,12 +37,12 @@
          <children>
             <VBox fx:id="lobbyRoomSwitch" alignment="CENTER" prefHeight="129.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
                <children>
-                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="100.0" fitWidth="100.0" onMouseClicked="#switchToLobby" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/robber1.png" />
                      </image>
                   </ImageView>
-                  <Label text="Lobby" textFill="WHITE">
+                  <Label text="Lobby">
                      <font>
                         <Font name="Copperplate" size="25.0" />
                      </font>
@@ -63,7 +63,7 @@
                         <Image url="@../images/robber3.png" />
                      </image>
                   </ImageView>
-                  <Label prefHeight="25.0" prefWidth="123.0" text="Security" textFill="WHITE">
+                  <Label prefHeight="25.0" prefWidth="123.0" text="Security">
                      <font>
                         <Font name="Copperplate" size="25.0" />
                      </font>
@@ -84,7 +84,7 @@
                         <Image url="@../images/robber2.png" />
                      </image>
                   </ImageView>
-                  <Label text="Vault" textFill="WHITE">
+                  <Label text="Vault">
                      <font>
                         <Font name="Copperplate" size="25.0" />
                      </font>
@@ -186,64 +186,6 @@
                </image>
             </ImageView>
          </children></HBox>
-      <HBox layoutX="189.0" layoutY="521.0" prefHeight="152.0" prefWidth="512.0">
-         <children>
-            <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0" stylesheets="@../css/walkietalkie.css" visible="false">
-               <children>
-                  <HBox fx:id="textAreaBox" prefHeight="100.0" prefWidth="512.0">
-                     <children>
-                        <TextArea fx:id="lobbyTextArea" editable="false" prefHeight="126.0" prefWidth="408.0" stylesheets="@../css/walkietalkie.css" wrapText="true">
-                           <font>
-                              <Font size="19.0" />
-                           </font></TextArea>
-                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="107.0" styleClass="component1" stylesheets="@../css/walkietalkie.css">
-                           <children>
-                              <Button fx:id="viewHistoryBtn" mnemonicParsing="false" onAction="#onSwitchToHacker" text="View History">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin>
-                              </Button>
-                              <Button fx:id="quickHintBtn" mnemonicParsing="false" onAction="#onQuickHint" text="Quick Hint" />
-                           </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="51.0" prefWidth="512.0">
-                     <children>
-                        <TextField fx:id="lobbyTextInput" onKeyPressed="#onInvokeHacker" prefHeight="51.0" prefWidth="497.0" promptText="Bzzz..." stylesheets="@../css/walkietalkie.css">
-                           <font>
-                              <Font size="22.0" />
-                           </font>
-                        </TextField>
-                        <StackPane prefHeight="150.0" prefWidth="200.0">
-                           <children>
-                              <HBox prefHeight="51.0" prefWidth="62.0" styleClass="component2" stylesheets="@../css/walkietalkie.css" />
-                              <Label fx:id="numberOfHints" alignment="TOP_CENTER" text="Unlimited" textFill="#1bcd2a" wrapText="true">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                                 <StackPane.margin>
-                                    <Insets top="15.0" />
-                                 </StackPane.margin>
-                              </Label>
-                              <Label alignment="TOP_CENTER" prefHeight="26.0" prefWidth="92.0" text="Hints Left:" textFill="#1bcd2a" wrapText="true">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                                 <StackPane.margin>
-                                    <Insets bottom="25.0" />
-                                 </StackPane.margin>
-                              </Label>
-                           </children>
-                        </StackPane>
-                     </children>
-                  </HBox>
-               </children></VBox>
-         </children>
-      </HBox>
       <HBox fx:id="drawerHolder" layoutX="569.0" layoutY="281.0" onMousePressed="#onDrawerPressed" prefHeight="113.0" prefWidth="102.0" styleClass="drawer" stylesheets="@../css/rooms.css">
          <children>
             <StackPane prefHeight="150.0" prefWidth="150.0">
@@ -516,6 +458,62 @@
             </Label>
          </children>
       </StackPane>
+      <VBox fx:id="walkietalkieText" layoutX="189.0" layoutY="521.0" prefHeight="150.0" prefWidth="512.0" stylesheets="@../css/walkietalkie.css" visible="false">
+         <children>
+            <HBox fx:id="textAreaBox" prefHeight="100.0" prefWidth="512.0">
+               <children>
+                  <TextArea fx:id="lobbyTextArea" editable="false" prefHeight="126.0" prefWidth="408.0" stylesheets="@../css/walkietalkie.css" wrapText="true">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </TextArea>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="107.0" styleClass="component1" stylesheets="@../css/walkietalkie.css">
+                     <children>
+                        <Button fx:id="viewHistoryBtn" mnemonicParsing="false" onAction="#onSwitchToHacker" text="View History">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="quickHintBtn" mnemonicParsing="false" onAction="#onQuickHint" text="Quick Hint" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="51.0" prefWidth="512.0">
+               <children>
+                  <TextField fx:id="lobbyTextInput" onKeyPressed="#onInvokeHacker" prefHeight="51.0" prefWidth="497.0" promptText="Bzzz..." stylesheets="@../css/walkietalkie.css">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </TextField>
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <HBox prefHeight="51.0" prefWidth="62.0" styleClass="component2" stylesheets="@../css/walkietalkie.css" />
+                        <Label fx:id="numberOfHints" alignment="TOP_CENTER" text="Unlimited" textFill="#1bcd2a" wrapText="true">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets top="15.0" />
+                           </StackPane.margin>
+                        </Label>
+                        <Label alignment="TOP_CENTER" prefHeight="26.0" prefWidth="92.0" text="Hints Left:" textFill="#1bcd2a" wrapText="true">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets bottom="25.0" />
+                           </StackPane.margin>
+                        </Label>
+                     </children>
+                  </StackPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
       <VBox fx:id="lobbywalkietalkie" alignment="CENTER" layoutX="10.0" layoutY="490.0" onMousePressed="#onWalkieTalkie" prefHeight="144.0" prefWidth="208.0" styleClass="walkietalkie" stylesheets="@../css/walkietalkie.css">
          <children>
             <StackPane prefHeight="214.0" prefWidth="218.0">

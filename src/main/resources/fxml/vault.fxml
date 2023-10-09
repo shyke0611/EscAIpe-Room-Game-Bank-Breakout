@@ -6,6 +6,9 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,6 +16,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -23,6 +27,16 @@
          <image>
             <Image url="@../images/realvaultbackground.png" />
          </image>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
       </ImageView>
       <HBox fx:id="exitHolder" layoutX="16.0" layoutY="328.0" onMousePressed="#onBombPlaced" prefHeight="65.0" prefWidth="130.0" styleClass="guard" stylesheets="@../css/rooms.css" visible="false">
          <children>
@@ -48,59 +62,13 @@
             </ImageView>
          </children>
       </HBox>
-      <HBox fx:id="switchHolder" layoutX="27.0" layoutY="30.0" prefHeight="128.0" prefWidth="300.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 10;">
-         <children>
-            <VBox fx:id="lobbyRoomSwitch" alignment="CENTER" prefHeight="129.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
-               <children>
-                  <ImageView fx:id="Lobby" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#switchToLobby" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/robber1.png" />
-                     </image>
-                  </ImageView>
-                  <Label text="Lobby">
-                     <font>
-                        <Font size="21.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
-            <VBox fx:id="securityRoomSwitch" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
-               <children>
-                  <ImageView fx:id="Security" fitHeight="111.0" fitWidth="100.0" onMouseClicked="#switchToSecurity" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/robber3.png" />
-                     </image>
-                  </ImageView>
-                  <Label text="Security">
-                     <font>
-                        <Font size="21.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
-            <VBox fx:id="vaultRoomSwitch" alignment="CENTER" prefHeight="110.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
-               <children>
-                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/robber2.png" />
-                     </image>
-                  </ImageView>
-                  <Label text="Vault">
-                     <font>
-                        <Font size="21.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-      <Rectangle fx:id="dialogueBox" arcHeight="40.0" arcWidth="40.0" fill="#000000ac" height="88.0" layoutX="726.0" layoutY="28.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="260.0" />
-      <Label fx:id="moneyValue" layoutX="742.0" layoutY="43.0" text="Money: $20,000,000" textFill="WHITE" visible="false">
+      <Rectangle fx:id="dialogueBox" arcHeight="40.0" arcWidth="40.0" fill="#000000ac" height="88.0" layoutX="335.0" layoutY="28.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="242.0" />
+      <Label fx:id="moneyValue" layoutX="341.0" layoutY="43.0" prefHeight="28.0" prefWidth="236.0" text="Money: $20,000,000" textFill="WHITE" visible="false">
          <font>
             <Font name="American Typewriter" size="23.0" />
          </font>
       </Label>
-      <Label fx:id="difficultyValue" layoutX="741.0" layoutY="73.0" text="Difficulty: ★★★☆☆" textFill="WHITE" visible="false">
+      <Label fx:id="difficultyValue" layoutX="350.0" layoutY="73.0" prefHeight="28.0" prefWidth="215.0" text="Difficulty: ★★★☆☆" textFill="WHITE" visible="false">
          <font>
             <Font name="American Typewriter" size="23.0" />
          </font>
@@ -119,17 +87,6 @@
             </HBox>
          </children>
       </HBox>
-      <StackPane fx:id="timerClock" layoutX="460.0" layoutY="41.0" prefHeight="72.0" prefWidth="99.0">
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#888d7d" height="64.0" stroke="BLACK" strokeType="INSIDE" width="99.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a7ab3d" height="52.0" stroke="BLACK" strokeType="INSIDE" width="79.0" />
-            <Label fx:id="timerLabel" alignment="CENTER" prefHeight="111.0" prefWidth="83.0" text="0:00">
-               <font>
-                  <Font name="Agency FB" size="36.0" />
-               </font>
-            </Label>
-         </children>
-      </StackPane>
       <HBox fx:id="silverDoorHolder" layoutX="246.0" layoutY="282.0" prefHeight="229.0" prefWidth="223.0" stylesheets="@../css/rooms.css">
          <children>
             <StackPane prefHeight="338.0" prefWidth="200.0">
@@ -138,11 +95,31 @@
                      <image>
                         <Image url="@../images/openvault2.png" />
                      </image>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
                   </ImageView>
                   <ImageView fx:id="silverDoor" fitHeight="221.0" fitWidth="222.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onLaserCuttingScene" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/silverDoor.png" />
                      </image>
+                     <effect>
+                        <Lighting specularConstant="0.21">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
                   </ImageView>
                </children>
             </StackPane>
@@ -156,11 +133,31 @@
                      <image>
                         <Image url="@../images/openvault1.png" />
                      </image>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
                   </ImageView>
                   <ImageView fx:id="bronzeDoor" fitHeight="329.0" fitWidth="327.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onSwitchToChemicalMixing" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/bronzeDoor.png" />
                      </image>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
                   </ImageView>
                </children>
             </StackPane>
@@ -174,11 +171,31 @@
                      <image>
                         <Image url="@../images/openvault3.png" />
                      </image>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
                   </ImageView>
                   <ImageView fx:id="goldDoor" fitHeight="288.0" fitWidth="280.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onSwitchToEyeScanner" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/goldDoor.png" />
                      </image>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
                   </ImageView>
                </children>
             </StackPane>
@@ -281,75 +298,219 @@
             </StackPane>
          </children>
       </VBox>
-      <HBox fx:id="walkietalkieHolder" layoutX="15.0" layoutY="539.0" prefHeight="150.0" prefWidth="665.0">
+      <HBox fx:id="walkietalkieHolder" layoutX="597.0" layoutY="-78.0" prefHeight="49.0" prefWidth="123.0" />
+      <VBox fx:id="walkietalkieText" layoutX="189.0" layoutY="521.0" prefHeight="150.0" prefWidth="512.0" visible="false">
          <children>
-            <VBox fx:id="vaultwalkietalkie" onMousePressed="#onWalkieTalkie" prefHeight="200.0" prefWidth="100.0" styleClass="walkietalkie" stylesheets="@../css/walkietalkie.css">
+            <HBox prefHeight="100.0" prefWidth="512.0">
                <children>
-                  <ImageView fx:id="vaultWalkieTalkie" fitHeight="141.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
+                  <TextArea fx:id="vaultTextArea" editable="false" prefHeight="126.0" prefWidth="408.0" stylesheets="@../css/walkietalkie.css" wrapText="true">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </TextArea>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="107.0" styleClass="component1" stylesheets="@../css/walkietalkie.css">
+                     <children>
+                        <Button fx:id="viewHistoryBtn" mnemonicParsing="false" onAction="#onSwitchToHacker" text="View History">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="quickHintBtn" mnemonicParsing="false" onAction="#onQuickHint" text="Quick Hint" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="51.0" prefWidth="512.0" stylesheets="@../css/rooms.css">
+               <children>
+                  <TextField fx:id="vaultTextField" onKeyPressed="#onInvokeHacker" prefHeight="51.0" prefWidth="417.0" promptText="Bzzz... type here" stylesheets="@../css/walkietalkie.css">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </TextField>
+                  <VBox fx:id="myVBox" prefHeight="51.0" prefWidth="116.0" stylesheets="@../css/rooms.css">
+                     <children>
+                        <StackPane prefHeight="51.0" prefWidth="164.0">
+                           <children>
+                              <HBox prefHeight="51.0" prefWidth="62.0" styleClass="component2" stylesheets="@../css/walkietalkie.css" />
+                              <Label fx:id="numberOfHints" alignment="TOP_CENTER" prefHeight="0.0" prefWidth="432.0" text="Unlimited" textFill="#1bcd2a" wrapText="true">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets top="15.0" />
+                                 </StackPane.margin>
+                              </Label>
+                              <Label alignment="TOP_CENTER" prefHeight="26.0" prefWidth="92.0" text="Hints Left:" textFill="#1bcd2a" wrapText="true">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets bottom="25.0" />
+                                 </StackPane.margin>
+                              </Label>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox fx:id="vaultwalkietalkie" alignment="CENTER" layoutX="10.0" layoutY="490.0" onMousePressed="#onWalkieTalkie" prefHeight="144.0" prefWidth="208.0" styleClass="walkietalkie" stylesheets="@../css/walkietalkie.css">
+         <children>
+            <StackPane prefHeight="214.0" prefWidth="218.0">
+               <children>
+                  <ImageView fitHeight="214.0" fitWidth="211.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/walkietalkiepad.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="lobbyWalkieTalkie" fitHeight="121.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/walkietalkie.png" />
                      </image>
                   </ImageView>
                </children>
-            </VBox>
-            <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0" visible="false">
+            </StackPane>
+         </children>
+      </VBox>
+      <HBox fx:id="switchHolder" layoutX="5.0" layoutY="12.0" prefHeight="122.0" prefWidth="318.0">
+         <children>
+            <VBox fx:id="lobbyRoomSwitch" alignment="CENTER" prefHeight="129.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="512.0">
-                     <children>
-                        <TextArea fx:id="vaultTextArea" editable="false" prefHeight="126.0" prefWidth="408.0" stylesheets="@../css/walkietalkie.css" wrapText="true">
-                           <font>
-                              <Font size="19.0" />
-                           </font></TextArea>
-                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="107.0" styleClass="component1" stylesheets="@../css/walkietalkie.css">
-                           <children>
-                              <Button fx:id="viewHistoryBtn" mnemonicParsing="false" onAction="#onSwitchToHacker" text="View History">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin>
-                              </Button>
-                              <Button fx:id="quickHintBtn" mnemonicParsing="false" onAction="#onQuickHint" text="Quick Hint" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="51.0" prefWidth="512.0" stylesheets="@../css/rooms.css">
-                     <children>
-                        <TextField fx:id="vaultTextField" onKeyPressed="#onInvokeHacker" prefHeight="51.0" prefWidth="417.0" promptText="Bzzz... type here" stylesheets="@../css/walkietalkie.css">
-                           <font>
-                              <Font size="22.0" />
-                           </font>
-                        </TextField>
-                        <VBox fx:id="myVBox" prefHeight="51.0" prefWidth="116.0" stylesheets="@../css/rooms.css">
-                           <children>
-                              <StackPane prefHeight="51.0" prefWidth="164.0">
-                                 <children>
-                                    <HBox prefHeight="51.0" prefWidth="62.0" styleClass="component2" stylesheets="@../css/walkietalkie.css" />
-                                    <Label fx:id="numberOfHints" alignment="TOP_CENTER" prefHeight="0.0" prefWidth="432.0" text="Unlimited" textFill="#1bcd2a" wrapText="true">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                       <StackPane.margin>
-                                          <Insets top="15.0" />
-                                       </StackPane.margin>
-                                    </Label>
-                                    <Label alignment="TOP_CENTER" prefHeight="26.0" prefWidth="92.0" text="Hints Left:" textFill="#1bcd2a" wrapText="true">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                       <StackPane.margin>
-                                          <Insets bottom="25.0" />
-                                       </StackPane.margin>
-                                    </Label>
-                                 </children>
-                              </StackPane>
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" onMouseClicked="#switchToLobby" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/robber1.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Lobby">
+                     <font>
+                        <Font name="Copperplate" size="25.0" />
+                     </font>
+                  </Label>
                </children>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </VBox>
+            <VBox fx:id="securityRoomSwitch" alignment="CENTER" prefHeight="126.0" prefWidth="115.0" styleClass="component" stylesheets="@../css/rooms.css">
+               <children>
+                  <ImageView fx:id="security" fitHeight="103.0" fitWidth="82.0" onMouseClicked="#switchToSecurity" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/robber3.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="25.0" prefWidth="123.0" text="Security">
+                     <font>
+                        <Font name="Copperplate" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </VBox>
+            <VBox fx:id="vaultRoomSwitch" alignment="CENTER" prefHeight="110.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
+               <children>
+                  <ImageView fx:id="Vault" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#switchToVault" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/robber2.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Vault">
+                     <font>
+                        <Font name="Copperplate" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </DropShadow>
+               </effect>
             </VBox>
          </children>
       </HBox>
+      <StackPane layoutX="560.0" layoutY="8.0" prefHeight="101.0" prefWidth="265.0">
+         <children>
+            <ImageView fitHeight="92.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/gameborder.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="113.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/clock.png" />
+               </image>
+               <StackPane.margin>
+                  <Insets right="140.0" />
+               </StackPane.margin>
+               <effect>
+                  <Lighting diffuseConstant="1.18" specularConstant="0.32">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </ImageView>
+            <Label fx:id="timerLabel" alignment="CENTER" prefHeight="70.0" prefWidth="114.0" text="0:00" textFill="WHITE">
+               <font>
+                  <Font name="HeadLineA Regular" size="47.0" />
+               </font>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </Label>
+         </children>
+      </StackPane>
+      <StackPane layoutX="771.0" layoutY="-4.0" prefHeight="136.0" prefWidth="209.0">
+         <children>
+            <ImageView fitHeight="81.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/gameborder.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="117.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/moneyimage.png" />
+               </image>
+               <effect>
+                  <Lighting diffuseConstant="1.28" specularConstant="0.0" specularExponent="10.29" surfaceScale="4.16">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+               <StackPane.margin>
+                  <Insets bottom="5.0" right="140.0" />
+               </StackPane.margin>
+            </ImageView>
+            <Label fx:id="moneyCount" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="147.0" text="0M" textFill="WHITE">
+               <font>
+                  <Font name="HeadLineA Regular" size="46.0" />
+               </font>
+            </Label>
+         </children>
+      </StackPane>
 
    </children>
 </AnchorPane>
