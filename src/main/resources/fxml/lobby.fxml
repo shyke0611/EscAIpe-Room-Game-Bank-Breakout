@@ -37,7 +37,7 @@
          <children>
             <VBox fx:id="lobbyRoomSwitch" alignment="CENTER" prefHeight="129.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
                <children>
-                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="100.0" fitWidth="100.0" onMouseClicked="#switchToLobby" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/robber1.png" />
                      </image>
