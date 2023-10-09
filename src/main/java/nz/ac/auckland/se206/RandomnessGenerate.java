@@ -11,6 +11,8 @@ public class RandomnessGenerate {
   private static List<String> passcodeList;
   private static List<String> usernameList;
   private static List<String> CeoNames;
+  private static List<String> employeeNames;
+  private static List<String> foundingDatesList;
   private static List<HBox> keyLocationList = new ArrayList<>();
   private static List<String> partsAmount;
   private static List<HBox> wiresList = new ArrayList<>();
@@ -21,6 +23,8 @@ public class RandomnessGenerate {
   private static HBox randomKeyLocation;
   private static String randomChemialAmount;
   private static String ceoName;
+  private static String employeeName;
+  private static String foundingDate;
 
   static {
     // Initialize the lists when the class is loaded and stores all the possible passwords and
@@ -30,6 +34,8 @@ public class RandomnessGenerate {
         Arrays.asList("username1", "username2", "username3", "username4", "username5", "username6");
     partsAmount = Arrays.asList("1", "2", "3", "4");
     CeoNames = Arrays.asList("John", "Jack", "James", "Bob", "Will", "Jerry");
+    employeeNames = Arrays.asList("Jessica", "Jenny", "Jasmine", "Jade", "Jenna", "Jill");
+    foundingDatesList = Arrays.asList("1967", "1862", "1813", "1932", "1902", "1888", "1756");
   }
 
   // generating random login credentials for security computer log in
@@ -60,6 +66,28 @@ public class RandomnessGenerate {
 
   public static String getCurrentCeoName() {
     return ceoName;
+  }
+
+  public static String getRandomFoundingDate() {
+    int randomFoundingDateIndex = random.nextInt(foundingDatesList.size());
+    foundingDate = foundingDatesList.get(randomFoundingDateIndex);
+
+    return foundingDate;
+  }
+
+  public static String getCurrentDate() {
+    return foundingDate;
+  }
+
+  public static String getRandomEmployeeName() {
+    int randomEmployeeNameIndex = random.nextInt(employeeNames.size());
+    employeeName = employeeNames.get(randomEmployeeNameIndex);
+
+    return employeeName;
+  }
+
+  public static String getCurrentEmployeeName() {
+    return employeeName;
   }
 
   // Method to add HBox elements to the keyLocationList

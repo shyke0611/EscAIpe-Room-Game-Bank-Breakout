@@ -53,6 +53,21 @@
             </ImageView>
          </children>
       </HBox>
+      <StackPane fx:id="wallEmployee" layoutX="385.0" layoutY="230.0" onMouseEntered="#onHoverEmployee" onMouseExited="#onHoverEmployeeExit" opacity="0.85" prefHeight="97.0" prefWidth="141.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="82.0" onMouseEntered="#onHoverEmployee" onMouseExited="#onHoverEmployeeExit" opacity="0.58" stroke="BLACK" strokeType="INSIDE" width="74.0" />
+            <ImageView fitHeight="51.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" style="-fx-border: 3;">
+               <image>
+                  <Image url="@../images/EmployeePortrait.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="84.0" fitWidth="116.0" onMouseEntered="#onHoverEmployee" onMouseExited="#onHoverEmployeeExit" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+               <image>
+                  <Image url="@../images/black-frame-transparent-background-16.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
       <HBox fx:id="electricityBox" layoutX="272.0" layoutY="419.0" onMousePressed="#onWireCutting" prefHeight="114.0" prefWidth="56.0" styleClass="drawer" stylesheets="@../css/rooms.css">
          <children>
             <StackPane prefHeight="114.0" prefWidth="54.0">
@@ -392,5 +407,44 @@
             </StackPane>
          </children>
       </VBox>
+      <StackPane fx:id="hoverEmployee" layoutX="508.0" layoutY="106.0" prefHeight="488.0" prefWidth="460.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="424.0" stroke="BLACK" strokeType="INSIDE" width="344.0" />
+            <ImageView fitHeight="276.0" fitWidth="210.0" pickOnBounds="true" preserveRatio="true" style="-fx-border: 3;">
+               <image>
+                  <Image url="@../images/EmployeePortrait.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="414.0" fitWidth="559.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+               <image>
+                  <Image url="@../images/black-frame-transparent-background-16.png" />
+               </image>
+            </ImageView>
+            <Label text="Employee Of The ">
+               <padding>
+                  <Insets bottom="350.0" />
+               </padding>
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label text="MONTH">
+               <font>
+                  <Font name="System Bold" size="40.0" />
+               </font>
+               <padding>
+                  <Insets bottom="260.0" />
+               </padding>
+            </Label>
+            <Label fx:id="employeeName" text="Jessica !">
+               <font>
+                  <Font name="System Bold" size="40.0" />
+               </font>
+               <padding>
+                  <Insets top="260.0" />
+               </padding>
+            </Label>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>

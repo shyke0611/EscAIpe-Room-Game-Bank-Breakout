@@ -75,6 +75,7 @@ public class LobbyController extends Controller {
   @FXML private Label usernameLbl;
   @FXML private Label orderLabel;
   @FXML private Label johnIpsumLbl;
+  @FXML private Label foundingDate;
 
   // Other fields
   private String randomUsername;
@@ -134,6 +135,10 @@ public class LobbyController extends Controller {
     String plaqueName = RandomnessGenerate.getRandomCeoName();
     System.out.println(plaqueName);
     johnIpsumLbl.setText(plaqueName + " Ipsum");
+
+    String date = RandomnessGenerate.getRandomFoundingDate();
+    System.out.println(date);
+    foundingDate.setText("SINCE " + date);
   }
 
   // Handling mouse events on walkie talkie
