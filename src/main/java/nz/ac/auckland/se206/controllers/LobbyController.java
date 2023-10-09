@@ -118,13 +118,14 @@ public class LobbyController extends Controller {
     //     vaultRoomSwitch,
     //     lobbyRoomSwitch,
     //     guardeyes);
-    // styleManager.setItemsMessage(
-    //     "Guard is watching...", "key1", "key3", "key4", "guardpocket", "guardeyes");
-
+  
     // // setting style to items
-    // styleManager.setItemsMessage("It's locked...", "drawerHolder");
-    // styleManager.setItemsMessage("A note?", "credentialsBook");
-    // styleManager.setItemsMessage("Put him to sleep", "guard");
+
+    styleManager.setItemsMessage(
+        "Guard is watching...", "key1", "key3", "key4", "guardpocket", "guardeyes");
+    styleManager.setItemsMessage("It's locked...", "drawerHolder");
+    styleManager.setItemsMessage("A note?", "credentialsBook");
+    styleManager.setItemsMessage("Put him to sleep", "guard");
     // styleManager.setClueHover("guard", true);
     setUpListener(key);
   }
@@ -234,7 +235,7 @@ public class LobbyController extends Controller {
     // Set note text to the randomly generated credentials
     passwordLbl.setText("Password: " + randomPassword);
     usernameLbl.setText("Username: " + randomUsername);
-    // styleManager.removeItemsMessage("credentialsBook");
+    styleManager.removeItemsMessage("credentialsBook");
     // set glow effect
     // if (!GameState.isSecurityRoomHoverPressed) {
     //   // styleManager.setClueHover("securityRoomSwitch", true);
@@ -252,7 +253,7 @@ public class LobbyController extends Controller {
     // execute only when guard is distracted
     if (GameState.isGuardDistracted) {
       Node clickedKeyLocation = (HBox) event.getSource();
-      // styleManager.setItemsMessage("Already looked here...", clickedKeyLocation.getId().toString());
+      styleManager.setItemsMessage("Already looked here...", clickedKeyLocation.getId().toString());
       // get the clicked key location and execute relevant methods
       if (clickedKeyLocation == RandomnessGenerate.getkeyLocation()) {
         // update game and item states
@@ -274,7 +275,7 @@ public class LobbyController extends Controller {
     key.setVisible(false);
     // setting style
     styleManager.setItemsHoverColour(HoverColour.GREEN, "drawerHolder");
-    // styleManager.setItemsMessage("The key fits...", "drawerHolder");
+    styleManager.setItemsMessage("The key fits...", "drawerHolder");
   }
 
   @FXML
@@ -287,8 +288,8 @@ public class LobbyController extends Controller {
     // styleManager.setClueHover("guard", false);
     styleManager.setItemsHoverColour(HoverColour.GREEN, "key1", "key3", "key4");
     styleManager.setItemsHoverColour(HoverColour.ORANGE, "guardpocket", "guardeyes");
-    // styleManager.setItemsMessage("Something seems odd here...", "key1", "key3", "key4");
-    // styleManager.setItemsMessage("Seems dangerous for now", "guardpocket", "guardeyes");
+    styleManager.setItemsMessage("Something seems odd here...", "key1", "key3", "key4");
+    styleManager.setItemsMessage("Seems dangerous for now", "guardpocket", "guardeyes");
   }
 
   private void toggleImageViews() {

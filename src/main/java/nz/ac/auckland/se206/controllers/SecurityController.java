@@ -84,8 +84,8 @@ public class SecurityController extends Controller {
     //     vaultRoomSwitch,
     //     lobbyRoomSwitch,
     //     securityRoomSwitch);
-    // styleManager.setItemsMessage("A computer...?", "computer");
-    // styleManager.setItemsMessage("no need to open this right now", "electricityBox");
+    styleManager.setItemsMessage("A computer...?", "computer");
+    styleManager.setItemsMessage("no need to open this right now", "electricityBox");
   }
 
   // Handling mouse events on walkie talkie - opens and closes when walkie talkie is clicked
@@ -193,6 +193,7 @@ public class SecurityController extends Controller {
     App.setUI(Scenes.COMPUTER);
     // setting style
     styleManager.setItemsHoverColour(HoverColour.GREEN, "computer");
+    styleManager.removeItemsMessage("computer");
     styleManager.setDisable(true, "credentialsBook");
     styleManager.setVisible(false, "credentialsNote");
   }
