@@ -96,6 +96,8 @@ public class VaultController extends Controller {
     WalkieTalkieManager.addQuickHintBtn(this, quickHintBtn);
     super.setTimerLabel(timerLabel, 1);
 
+    styleManager.addHoverItems(bronzeDoorHolder,silverDoorHolder,goldDoorHolder);
+
     // adding relevant items to the stylemanager list
     // styleManager.addItems(
     //     goldDoor,
@@ -125,11 +127,11 @@ public class VaultController extends Controller {
     // styleManager.setItemsMessage("set bomb down", "exitHolder");
     // styleManager.setItemsMessage("escape", "escapeDoor");
     // styleManager.setItemsMessage("activate bomb", "bombHolder");
-    // //styleManager.setItemsMessage(
-    //     "Need to disable firewall from blocking us",
-    //     "bronzeDoorHolder",
-    //     "silverDoorHolder",
-    //     "goldDoorHolder");
+    styleManager.setItemsMessage(
+        "Need to disable firewall from blocking us",
+        "bronzeDoorHolder",
+        "silverDoorHolder",
+        "goldDoorHolder");
   }
 
   public void showMoneyCollected() {

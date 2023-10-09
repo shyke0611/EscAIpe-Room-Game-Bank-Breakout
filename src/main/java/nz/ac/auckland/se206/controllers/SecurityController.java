@@ -82,7 +82,7 @@ public class SecurityController extends Controller {
     WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
     WalkieTalkieManager.addQuickHintBtn(this, quickHintBtn);
 
-    styleManager.addHoverItems(computer,electricityBox);
+    styleManager.addHoverItems(computer, electricityBox, wallEmployee);
 
     // Add style items and set messages
     // styleManager.addItems(
@@ -94,6 +94,7 @@ public class SecurityController extends Controller {
     //     securityRoomSwitch);
     styleManager.setItemsMessage("A computer...?", "computer");
     styleManager.setItemsMessage("no need to open this right now", "electricityBox");
+    styleManager.setItemsMessage("Employee of the month..?", "wallEmployee");
   }
 
   // Handling mouse events on walkie talkie - opens and closes when walkie talkie is clicked

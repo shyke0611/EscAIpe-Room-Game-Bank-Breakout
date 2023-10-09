@@ -66,6 +66,7 @@ public class LobbyController extends Controller {
   @FXML private ImageView openDrawer;
   @FXML private ImageView largePlaque;
   @FXML private ImageView enlargedPainting;
+  @FXML private ImageView ceoPainting;
   @FXML private HBox credentialsBook;
   @FXML private StackPane plaqueandlabel;
 
@@ -101,7 +102,7 @@ public class LobbyController extends Controller {
     RandomnessGenerate.addKeyLocation(key1, key3, key4);
     RandomnessGenerate.generateRandomKeyLocation();
 
-    styleManager.addHoverItems(key1,key3,key4,guardpocket,guardeyes,drawerHolder,credentialsBook,credentialsNote);
+    styleManager.addHoverItems(key1,key3,key4,guard,guardpocket,guardeyes,drawerHolder,credentialsBook,credentialsNote,ceoPainting);
 
     // adding relevant nodes (items) into the stylemanager list
     // styleManager.addItems(
@@ -132,6 +133,7 @@ public class LobbyController extends Controller {
     styleManager.setItemsMessage("It's locked...", "drawerHolder");
     styleManager.setItemsMessage("A note?", "credentialsBook");
     styleManager.setItemsMessage("Put him to sleep", "guard");
+    styleManager.setItemsMessage("CEO of the bank...?", "ceoPainting");
     // styleManager.setClueHover("guard", true);
     setUpListener(key);
 
