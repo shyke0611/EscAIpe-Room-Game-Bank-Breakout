@@ -95,35 +95,37 @@ public class LobbyController extends Controller {
     RandomnessGenerate.addKeyLocation(key1, key3, key4);
     RandomnessGenerate.generateRandomKeyLocation();
 
-    // adding relevant nodes (items) into the stylemanager list
-    styleManager.addItems(
-        key,
-        key1,
-        key3,
-        key4,
-        credentialsBook,
-        credentialsNote,
-        guard,
-        guardpocket,
-        drawerHolder,
-        lobbybackground,
-        drawerHolder,
-        credentialsBook,
-        credentialsNote,
-        drawer,
-        openDrawer,
-        securityRoomSwitch,
-        vaultRoomSwitch,
-        lobbyRoomSwitch,
-        guardeyes);
-    styleManager.setItemsMessage(
-        "Guard is watching...", "key1", "key3", "key4", "guardpocket", "guardeyes");
+    styleManager.addHoverItems(key1,key3,key4,guardpocket,guardeyes,drawerHolder,credentialsBook,credentialsNote);
 
-    // setting style to items
-    styleManager.setItemsMessage("It's locked...", "drawerHolder");
-    styleManager.setItemsMessage("A note?", "credentialsBook");
-    styleManager.setItemsMessage("Put him to sleep", "guard");
-    styleManager.setClueHover("guard", true);
+    // adding relevant nodes (items) into the stylemanager list
+    // styleManager.addItems(
+    //     key,
+    //     key1,
+    //     key3,
+    //     key4,
+    //     credentialsBook,
+    //     credentialsNote,
+    //     guard,
+    //     guardpocket,
+    //     drawerHolder,
+    //     lobbybackground,
+    //     drawerHolder,
+    //     credentialsBook,
+    //     credentialsNote,
+    //     drawer,
+    //     openDrawer,
+    //     securityRoomSwitch,
+    //     vaultRoomSwitch,
+    //     lobbyRoomSwitch,
+    //     guardeyes);
+    // styleManager.setItemsMessage(
+    //     "Guard is watching...", "key1", "key3", "key4", "guardpocket", "guardeyes");
+
+    // // setting style to items
+    // styleManager.setItemsMessage("It's locked...", "drawerHolder");
+    // styleManager.setItemsMessage("A note?", "credentialsBook");
+    // styleManager.setItemsMessage("Put him to sleep", "guard");
+    // styleManager.setClueHover("guard", true);
     setUpListener(key);
   }
 
@@ -157,9 +159,10 @@ public class LobbyController extends Controller {
     // Opens only when key is found to the drawer
     if (GameState.isKeyFound) {
       // setting visibility
-      styleManager.setVisible(false, "drawer");
-      styleManager.setVisible(true, "openDrawer", "credentialsBook");
-      styleManager.setDisable(true, "drawerHolder");
+      drawer.setVisible(false);
+      openDrawer.setVisible(true);
+      credentialsBook.setVisible(true);
+      drawerHolder.setDisable(true);
     }
   }
 
@@ -190,8 +193,8 @@ public class LobbyController extends Controller {
       titleLbl.setText("Wire Cutting Order");
       titleLbl.setPrefHeight(35);
       // setting style
-      styleManager.getItem("wirecuttingorderLbl").setVisible(false);
-      styleManager.setClueHover("guardpocket", false);
+      // styleManager.getItem("wirecuttingorderLbl").setVisible(false);
+      // styleManager.setClueHover("guardpocket", false);
       GameState.isWireCredentialsFound = true;
     }
   }
@@ -218,8 +221,8 @@ public class LobbyController extends Controller {
     if (GameState.isEyeScannerEntered) {
       guardeyes.setDisable(true);
       // updating items
-      styleManager.getItem("compareBtn").setDisable(false);
-      styleManager.getItem("geteyesampleLbl").setVisible(false);
+      // styleManager.getItem("compareBtn").setDisable(false);
+      // styleManager.getItem("geteyesampleLbl").setVisible(false);
       ((EyeScannerController) SceneManager.getController(Scenes.EYESCANNER)).updateGuardEye();
     }
   }
@@ -231,12 +234,12 @@ public class LobbyController extends Controller {
     // Set note text to the randomly generated credentials
     passwordLbl.setText("Password: " + randomPassword);
     usernameLbl.setText("Username: " + randomUsername);
-    styleManager.removeItemsMessage("credentialsBook");
+    // styleManager.removeItemsMessage("credentialsBook");
     // set glow effect
-    if (!GameState.isSecurityRoomHoverPressed) {
-      styleManager.setClueHover("securityRoomSwitch", true);
-    }
-    GameState.isSecurityRoomHoverPressed = true;
+    // if (!GameState.isSecurityRoomHoverPressed) {
+    //   // styleManager.setClueHover("securityRoomSwitch", true);
+    // }
+    // GameState.isSecurityRoomHoverPressed = true;
     // update game state
     GameState.isCredentialsFound = true;
     GameManager.completeObjective();
@@ -249,13 +252,14 @@ public class LobbyController extends Controller {
     // execute only when guard is distracted
     if (GameState.isGuardDistracted) {
       Node clickedKeyLocation = (HBox) event.getSource();
-      styleManager.setItemsMessage("Already looked here...", clickedKeyLocation.getId().toString());
+      // styleManager.setItemsMessage("Already looked here...", clickedKeyLocation.getId().toString());
       // get the clicked key location and execute relevant methods
       if (clickedKeyLocation == RandomnessGenerate.getkeyLocation()) {
+        // update game and item states
         GameState.isKeyLocationFound = true;
         AnimationManager.fadeTransition(key, 2);
-        styleManager.setDisable(false, "key");
         styleManager.setDisable(true, "key1", "key3", "key4");
+        key.setDisable(false);
       }
     }
   }
@@ -269,8 +273,8 @@ public class LobbyController extends Controller {
     walkieTalkieManager.enableQuickHintBtns();
     key.setVisible(false);
     // setting style
-    styleManager.setItemsState(HoverColour.GREEN, "drawerHolder");
-    styleManager.setItemsMessage("The key fits...", "drawerHolder");
+    styleManager.setItemsHoverColour(HoverColour.GREEN, "drawerHolder");
+    // styleManager.setItemsMessage("The key fits...", "drawerHolder");
   }
 
   @FXML
@@ -280,11 +284,11 @@ public class LobbyController extends Controller {
     sleepingAnimation();
     guard.setDisable(true);
     // setting style when guard is pressed
-    styleManager.setClueHover("guard", false);
-    styleManager.setItemsState(HoverColour.GREEN, "key1", "key3", "key4");
-    styleManager.setItemsState(HoverColour.RED, "guardpocket", "guardeyes");
-    styleManager.setItemsMessage("Something seems odd here...", "key1", "key3", "key4");
-    styleManager.setItemsMessage("Seems dangerous for now", "guardpocket", "guardeyes");
+    // styleManager.setClueHover("guard", false);
+    styleManager.setItemsHoverColour(HoverColour.GREEN, "key1", "key3", "key4");
+    styleManager.setItemsHoverColour(HoverColour.ORANGE, "guardpocket", "guardeyes");
+    // styleManager.setItemsMessage("Something seems odd here...", "key1", "key3", "key4");
+    // styleManager.setItemsMessage("Seems dangerous for now", "guardpocket", "guardeyes");
   }
 
   private void toggleImageViews() {

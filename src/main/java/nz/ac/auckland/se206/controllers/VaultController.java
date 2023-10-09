@@ -97,34 +97,34 @@ public class VaultController extends Controller {
     super.setTimerLabel(timerLabel, 1);
 
     // adding relevant items to the stylemanager list
-    styleManager.addItems(
-        goldDoor,
-        silverDoor,
-        bronzeDoor,
-        exitHolder,
-        bombHolder,
-        bombPuzzle,
-        vaultwalkietalkie,
-        walkietalkieHolder,
-        switchHolder,
-        escapeDoor,
-        lootBtnHolder,
-        lootLbl,
-        bronzeDoorHolder,
-        silverDoorHolder,
-        goldDoorHolder,
-        lobbyRoomSwitch,
-        bomblayer,
-        realvaultbackground,
-        vaultRoomSwitch,
-        securityRoomSwitch);
+    // styleManager.addItems(
+    //     goldDoor,
+    //     silverDoor,
+    //     bronzeDoor,
+    //     exitHolder,
+    //     bombHolder,
+    //     bombPuzzle,
+    //     vaultwalkietalkie,
+    //     walkietalkieHolder,
+    //     switchHolder,
+    //     escapeDoor,
+    //     lootBtnHolder,
+    //     lootLbl,
+    //     bronzeDoorHolder,
+    //     silverDoorHolder,
+    //     goldDoorHolder,
+    //     lobbyRoomSwitch,
+    //     bomblayer,
+    //     realvaultbackground,
+    //     vaultRoomSwitch,
+    //     securityRoomSwitch);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     givencode.setText("Code: " + RandomnessGenerate.getPasscode());
 
     // setting setyle for the items
-    styleManager.setItemsMessage("set bomb down", "exitHolder");
-    styleManager.setItemsMessage("escape", "escapeDoor");
-    styleManager.setItemsMessage("activate bomb", "bombHolder");
+    // styleManager.setItemsMessage("set bomb down", "exitHolder");
+    // styleManager.setItemsMessage("escape", "escapeDoor");
+    // styleManager.setItemsMessage("activate bomb", "bombHolder");
     // //styleManager.setItemsMessage(
     //     "Need to disable firewall from blocking us",
     //     "bronzeDoorHolder",
@@ -156,9 +156,9 @@ public class VaultController extends Controller {
     bomblogo.setVisible(false);
     bombHolder.setDisable(true);
     exitHolder.setVisible(true);
-    styleManager.removeItemsMessage("bombHolder");
-    styleManager.setClueHover("bomblayer", false);
-    styleManager.setVisible(false, "switchHolder");
+    // styleManager.removeItemsMessage("bombHolder");
+    // styleManager.setClueHover("bomblayer", false);
+    // styleManager.setVisible(false, "switchHolder");
   }
 
   @FXML
@@ -189,8 +189,8 @@ public class VaultController extends Controller {
       App.setUI(Scenes.EYESCANNER);
       GameState.isEyeScannerEntered = true;
       // setting style
-      styleManager.setItemsMessage("Get guard eye colour", "guardeyes");
-      styleManager.setItemsState(HoverColour.GREEN, "guardeyes");
+      // styleManager.setItemsMessage("Get guard eye colour", "guardeyes");
+      // styleManager.setItemsState(HoverColour.GREEN, "guardeyes");
     }
   }
 
@@ -208,19 +208,19 @@ public class VaultController extends Controller {
     // execute when firewall is disabled and any vault is opened
     if (GameState.isFirewallDisabled && GameState.isAnyDoorOpen) {
       if (!GameState.isAlarmTripped) {
-        StyleManager.setAlarm(true);
+        // StyleManager.setAlarm(true);
         GameState.isAlarmTripped = true;
       }
 
       GameManager.completeObjective();
 
       // setting style to relevant items
-      styleManager.setItemsState(HoverColour.GREEN, "electricityBox");
-      styleManager.setItemsState(HoverColour.GREEN, "guardpocket");
-      styleManager.setItemsMessage("Something seems odd?", "guardpocket");
-      styleManager.setItemsMessage("Alarm Wires...?", "electricityBox");
-      lootBtnHolder.setVisible(false);
-      styleManager.setDisable(true, "bronzeDoor", "silverDoor", "goldDoor");
+      // styleManager.setItemsState(HoverColour.GREEN, "electricityBox");
+      // styleManager.setItemsState(HoverColour.GREEN, "guardpocket");
+      // styleManager.setItemsMessage("Something seems odd?", "guardpocket");
+      // styleManager.setItemsMessage("Alarm Wires...?", "electricityBox");
+      // lootBtnHolder.setVisible(false);
+      // styleManager.setDisable(true, "bronzeDoor", "silverDoor", "goldDoor");
       GameManager.collectMoney();
     }
   }
@@ -271,7 +271,7 @@ public class VaultController extends Controller {
     bombPuzzle.setVisible(false);
     // execute when bomb is activated
     if (GameState.isBombActivated) {
-      styleManager.setVisible(false, "switchHolder", "walkietalkieHolder", "bombHolder");
+      // styleManager.setVisible(false, "switchHolder", "walkietalkieHolder", "bombHolder");
       // set animation for bomb
       AnimationManager.toggleAlarmAnimation(exitHolder, true, 0.5);
       AnimationManager.delayAnimation(exitHolder, escapeDoor);

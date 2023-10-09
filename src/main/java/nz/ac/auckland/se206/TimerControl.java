@@ -95,7 +95,7 @@ public class TimerControl {
                   GameState.isAlarmTripped = true;
                   GameManager.completeObjective();
                   System.out.println(GameManager.getCurrentObjective());
-                  StyleManager.setAlarm(true);
+                  // StyleManager.setAlarm(true);
                 }
               }
               int format = SceneManager.getActiveController().getFormat();

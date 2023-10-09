@@ -352,7 +352,7 @@ public class ConnectDotsController extends Controller {
   public void switchToSecurity() {
     // handle switch methods
     if (GameState.isSecondUserAuthenticated) {
-      styleManager.getItem("computer").setDisable(true);
+      styleManager.setDisable(true, "computer");
     }
     App.setUI(Scenes.SECURITY);
   }

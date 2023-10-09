@@ -74,16 +74,18 @@ public class SecurityController extends Controller {
     WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
     WalkieTalkieManager.addQuickHintBtn(this, quickHintBtn);
 
+    styleManager.addHoverItems(computer,electricityBox);
+
     // Add style items and set messages
-    styleManager.addItems(
-        computer,
-        electricityBox,
-        securitybackground,
-        vaultRoomSwitch,
-        lobbyRoomSwitch,
-        securityRoomSwitch);
-    styleManager.setItemsMessage("A computer...?", "computer");
-    styleManager.setItemsMessage("no need to open this right now", "electricityBox");
+    // styleManager.addItems(
+    //     computer,
+    //     electricityBox,
+    //     securitybackground,
+    //     vaultRoomSwitch,
+    //     lobbyRoomSwitch,
+    //     securityRoomSwitch);
+    // styleManager.setItemsMessage("A computer...?", "computer");
+    // styleManager.setItemsMessage("no need to open this right now", "electricityBox");
   }
 
   // Handling mouse events on walkie talkie - opens and closes when walkie talkie is clicked
@@ -131,7 +133,7 @@ public class SecurityController extends Controller {
   // Opening computer log in screen
   @FXML
   private void onClickComputer(MouseEvent event) {
-    styleManager.setClueHover("computer", false);
+    // styleManager.setClueHover("computer", false);
     // If already logged in, skip log in stage
     if (!GameState.isSecurityComputerLoggedIn) {
       logInScreen.setVisible(true);
@@ -142,7 +144,7 @@ public class SecurityController extends Controller {
       logInScreen.setVisible(false);
       GameManager.completeObjective();
       App.setUI(Scenes.COMPUTER);
-      styleManager.removeItemsMessage("computer");
+      // styleManager.removeItemsMessage("computer");
     }
   }
 
@@ -159,7 +161,7 @@ public class SecurityController extends Controller {
     if (areCredentialsValid(enteredUsername, enteredPassword, randomUsername, randomPassword)) {
       handleSuccessfulLogin();
       logInScreen.setVisible(false);
-      styleManager.setItemsState(HoverColour.GREEN, "computer");
+      // styleManager.setItemsState(HoverColour.GREEN, "computer");
     } else if (areCredentialsEmpty()) {
       handleEmptyCredentials();
     } else {
@@ -190,6 +192,7 @@ public class SecurityController extends Controller {
     GameState.isSecurityComputerLoggedIn = true;
     App.setUI(Scenes.COMPUTER);
     // setting style
+    styleManager.setItemsHoverColour(HoverColour.GREEN, "computer");
     styleManager.setDisable(true, "credentialsBook");
     styleManager.setVisible(false, "credentialsNote");
   }

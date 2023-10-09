@@ -169,12 +169,22 @@
             </ImageView>
          </children>
       </HBox>
-      <HBox fx:id="guardpocket" alignment="CENTER" layoutX="869.0" layoutY="423.0" onMousePressed="#onGuardPocket" prefHeight="38.0" prefWidth="26.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
+      <HBox fx:id="guardpocket" alignment="CENTER" layoutX="845.0" layoutY="362.0" onMousePressed="#onGuardPocket" prefHeight="42.0" prefWidth="38.0" styleClass="drawer" stylesheets="@../css/rooms.css">
          <children>
-            <ImageView fx:id="guardpocket2" fitHeight="36.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="guardpocket2" fitHeight="49.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/guardpocket.png" />
                </image>
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
             </ImageView>
          </children>
       </HBox>
@@ -230,6 +240,16 @@
                <image>
                   <Image url="@../images/paper.jpg" />
                </image>
+               <effect>
+                  <Lighting specularConstant="0.55" specularExponent="8.44">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
             </ImageView>
          </children>
       </HBox>
@@ -260,7 +280,7 @@
             </Lighting>
          </effect>
       </HBox>
-      <HBox fx:id="key" disable="true" layoutX="439.0" layoutY="420.0" onMousePressed="#onKeyPressed" opacity="0.0" prefHeight="131.0" prefWidth="106.0">
+      <HBox fx:id="key" disable="true" layoutX="439.0" layoutY="400.0" onMousePressed="#onKeyPressed" opacity="0.0" prefHeight="131.0" prefWidth="50.0" rotate="-88.1">
          <children>
             <ImageView fitHeight="131.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -283,7 +303,7 @@
             </DropShadow>
          </effect>
       </HBox>
-      <HBox fx:id="guardeyes" layoutX="833.0" layoutY="290.0" onMousePressed="#onGuardEyes" prefHeight="39.0" prefWidth="41.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
+      <HBox fx:id="guardeyes" layoutX="833.0" layoutY="290.0" onMousePressed="#onGuardEyes" prefHeight="39.0" prefWidth="41.0" styleClass="drawer" stylesheets="@../css/rooms.css">
          <children>
             <ImageView fitHeight="39.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -302,9 +322,9 @@
             <Font name="Impact" size="17.0" />
          </font>
       </Label>
-      <HBox fx:id="credentialsNote" layoutX="350.0" layoutY="200.0" prefHeight="144.0" prefWidth="306.0" visible="false">
+      <HBox fx:id="credentialsNote" layoutX="336.0" layoutY="269.0" prefHeight="198.0" prefWidth="236.0" visible="false">
          <children>
-            <VBox prefHeight="179.0" prefWidth="306.0">
+            <VBox prefHeight="140.0" prefWidth="306.0">
                <children>
                   <StackPane alignment="TOP_LEFT" prefHeight="330.0" prefWidth="272.0">
                      <children>
@@ -322,6 +342,11 @@
                         </ImageView>
                         <VBox alignment="CENTER" prefHeight="240.0" prefWidth="306.0">
                            <children>
+                              <Button fx:id="closeNoteBtn" mnemonicParsing="false" onAction="#onCloseNote" prefHeight="24.0" prefWidth="29.0" styleClass="credentials-button" stylesheets="@../css/rooms.css" text="X">
+                                 <VBox.margin>
+                                    <Insets right="250.0" top="20.0" />
+                                 </VBox.margin>
+                              </Button>
                               <Label prefHeight="29.0" prefWidth="137.0" text="#CONFIDENTIAL#">
                                  <VBox.margin>
                                     <Insets />
@@ -356,39 +381,20 @@
                               </StackPane>
                            </children>
                         </VBox>
-                        <Button fx:id="closeNoteBtn" mnemonicParsing="false" onAction="#onCloseNote" prefHeight="20.0" prefWidth="29.0" styleClass="credentials-button" stylesheets="@../css/rooms.css" text="X" textFill="WHITE">
-                           <StackPane.margin>
-                              <Insets left="15.0" top="20.0" />
-                           </StackPane.margin>
-                        </Button>
                      </children>
                   </StackPane>
                </children>
             </VBox>
          </children>
-      </HBox>
-
-      <HBox fx:id="key" disable="true" layoutX="424.0" layoutY="401.0" onMousePressed="#onKeyPressed" opacity="0.0" prefHeight="149.0" prefWidth="96.0" rotate="-89.3">
-         <children>
-            <ImageView fitHeight="166.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/key.png" />
-               </image>
-               <effect>
-                  <DropShadow height="174.29500000000002" radius="79.27625" spread="0.72" width="144.81">
-                     <color>
-                        <Color red="1.0" green="0.9833333492279053" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </ImageView>
-         </children>
          <effect>
-            <DropShadow spread="0.39">
-               <color>
-                  <Color red="0.13657407462596893" green="0.7763158082962036" blue="0.30717185139656067" />
-               </color>
-            </DropShadow>
+            <Lighting diffuseConstant="1.23" specularConstant="0.0" specularExponent="40.0">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
          </effect>
       </HBox>
       <StackPane layoutX="771.0" layoutY="-4.0" prefHeight="136.0" prefWidth="209.0">

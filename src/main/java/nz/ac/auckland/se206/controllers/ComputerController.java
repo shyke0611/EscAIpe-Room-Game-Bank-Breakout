@@ -64,7 +64,7 @@ public class ComputerController extends Controller {
     super.setTimerLabel(timerLabel, 1);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     walkieTalkieManager = WalkieTalkieManager.getInstance();
-    styleManager.addItems(usbStick);
+    // styleManager.addItems(usbStick);
     // creating new timeline
     timeline = new Timeline(new KeyFrame(Duration.seconds(0.6), e -> updateLabel()));
     timeline.setCycleCount(Timeline.INDEFINITE);
@@ -187,11 +187,11 @@ public class ComputerController extends Controller {
                   new ChatMessage(
                       "user", "FireWall Disabled, you can now see what is behind each vault door"));
 
-              styleManager.getItem("goldDoor").setStyle("");
-              styleManager.getItem("silverDoor").setStyle("");
-              styleManager.getItem("bronzeDoor").setStyle("");
-              styleManager.removeItemsMessage("goldDoor", "silverDoor", "bronzeDoor");
-              styleManager.setItemsState(HoverColour.GREEN, "goldDoor", "silverDoor", "bronzeDoor");
+              // styleManager.getItem("goldDoor").setStyle("");
+              // styleManager.getItem("silverDoor").setStyle("");
+              // styleManager.getItem("bronzeDoor").setStyle("");
+              // styleManager.removeItemsMessage("goldDoor", "silverDoor", "bronzeDoor");
+              // styleManager.setItemsState(HoverColour.GREEN, "goldDoor", "silverDoor", "bronzeDoor");
 
               GameState.isFirewallDisabled = true;
               GameState.isSecondRiddleSolved = true;
@@ -206,11 +206,11 @@ public class ComputerController extends Controller {
                   new ChatMessage(
                       "user", "FireWall Disabled, you can now see what is behind each vault door"));
 
-              styleManager.getItem("goldDoor").setStyle("");
-              styleManager.getItem("silverDoor").setStyle("");
-              styleManager.getItem("bronzeDoor").setStyle("");
-              styleManager.removeItemsMessage("goldDoor", "silverDoor", "bronzeDoor");
-              styleManager.setItemsState(HoverColour.GREEN, "silverDoor", "bronzeDoor");
+              // styleManager.getItem("goldDoor").setStyle("");
+              // styleManager.getItem("silverDoor").setStyle("");
+              // styleManager.getItem("bronzeDoor").setStyle("");
+              // styleManager.removeItemsMessage("goldDoor", "silverDoor", "bronzeDoor");
+              // styleManager.setItemsState(HoverColour.GREEN, "silverDoor", "bronzeDoor");
               GameState.isFirewallDisabled = true;
               GameManager.completeObjective();
               App.textToSpeech("Security Disabled, Level 2 Vault Access Granted");
@@ -274,7 +274,7 @@ public class ComputerController extends Controller {
 
     // set the second authentication method to visible
     usbStick.setVisible(true);
-    styleManager.setClueHover("usbStick", true);
+    // styleManager.setClueHover("usbStick", true);
   }
 
   @FXML

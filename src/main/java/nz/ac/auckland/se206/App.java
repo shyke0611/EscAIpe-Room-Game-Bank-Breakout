@@ -187,7 +187,7 @@ public class App extends Application {
     SceneManager.addUi(SceneManager.Scenes.VAULT, loadFxml("vault"));
     SceneManager.addUi(SceneManager.Scenes.LOBBY, loadFxml("lobby"));
     SceneManager.addUi(SceneManager.Scenes.SECURITY, loadFxml("securityroom"));
-    // Add scenes within game to SceneManager
+    // // Add scenes within game to SceneManager
     SceneManager.addUi(SceneManager.Scenes.WIRECUTTING, loadFxml("wirecutting"));
     SceneManager.addUi(SceneManager.Scenes.COMPUTER, loadFxml("computer"));
     SceneManager.addUi(SceneManager.Scenes.HACKERVAN, loadFxml("hackervan"));
