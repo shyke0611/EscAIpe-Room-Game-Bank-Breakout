@@ -29,7 +29,7 @@ public class RandomnessGenerate {
   static {
     // Initialize the lists when the class is loaded and stores all the possible passwords and
     // usernames to choose from
-    passcodeList = Arrays.asList("206", "281", "282", "284", "274", "234", "598", "101");
+    passcodeList = Arrays.asList("2062", "2314", "2556", "2144", "2246", "2341", "1142", "1012");
     usernameList =
         Arrays.asList("username1", "username2", "username3", "username4", "username5", "username6");
     partsAmount = Arrays.asList("1", "2", "3", "4");

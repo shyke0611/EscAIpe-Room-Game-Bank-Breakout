@@ -61,7 +61,7 @@ public class VaultController extends Controller {
   @FXML private VBox walkietalkieText;
   @FXML private HBox bombHolder;
   @FXML private HBox bomblayer;
-  @FXML private VBox bombPuzzle;
+  @FXML private StackPane bombPuzzle;
   @FXML private VBox lobbyRoomSwitch;
   @FXML private VBox securityRoomSwitch;
   @FXML private VBox vaultRoomSwitch;
@@ -75,6 +75,7 @@ public class VaultController extends Controller {
   @FXML private HBox escapeDoor;
   @FXML private Pane slidePane;
   @FXML private Button lootBtn;
+  @FXML private Button redBtn;
   @FXML private StackPane timerClock;
   @FXML private Label numberOfHints;
 
@@ -137,18 +138,24 @@ public class VaultController extends Controller {
   private void onBombPressed(MouseEvent event) {
     GameManager.completeObjective();
     // setting style for relevant items
-    exitHolder.setVisible(true);
+    bombPuzzle.setVisible(true);
+      bombPuzzle.requestFocus();
     styleManager.setVisible(false, "switchHolder", "vaultwalkietalkie","walkietalkieText", "bombHolder");
 
   }
 
   @FXML
   private void onBombPlaced(MouseEvent event) {
-    if (!GameState.isBombActivated) {
+      AnimationManager.toggleAlarmAnimation(exitHolder, true, 0.5);
+      AnimationManager.delayAnimation(exitHolder, escapeDoor);
+      exitHolder.setDisable(true);
+  }
+
+  @FXML
+  private void onExitBomb() {
       GameManager.completeObjective();
-      bombPuzzle.setVisible(true);
-      bombPuzzle.requestFocus();
-    }
+      exitHolder.setVisible(true);
+      bombPuzzle.setVisible(false);
   }
 
   @FXML
@@ -231,10 +238,10 @@ public class VaultController extends Controller {
     }
 
     if (inputLbl.getText().equals(code)) {
-      statusLbl.setText("Success, press x to Activate bomb");
+      statusLbl.setText("Success, press red button to Activate");
       inputLbl.setText("");
       statusLbl.setTextFill(Color.GREEN);
-      GameState.isBombActivated = true;
+      redBtn.setDisable(false);
 
       // handle incorrect input
     } else {
@@ -245,17 +252,6 @@ public class VaultController extends Controller {
     labelText.setLength(0);
   }
 
-  @FXML
-  private void onExitBomb() {
-    bombPuzzle.setVisible(false);
-    // execute when bomb is activated
-    if (GameState.isBombActivated) {
-      // set animation for bomb
-      AnimationManager.toggleAlarmAnimation(exitHolder, true, 0.5);
-      AnimationManager.delayAnimation(exitHolder, escapeDoor);
-      exitHolder.setDisable(true);
-    }
-  }
 
   @FXML
   private void onEscape() {
