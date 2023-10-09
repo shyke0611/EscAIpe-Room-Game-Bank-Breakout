@@ -5,49 +5,56 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../css/computer.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ComputerController">
    <children>
-      <ImageView fx:id="securitybackground" fitHeight="715.0" fitWidth="1005.0" layoutX="-2.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="705.0" fitWidth="1022.0" layoutX="-7.0" onMouseClicked="#onGoBack" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/secuirty%20room.png" />
+            <Image url="@../images/securityroom.png" />
          </image>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
       </ImageView>
-      <ImageView fitHeight="707.0" fitWidth="1000.0" onMouseClicked="#onGoBack" opacity="0.58" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/secuirty%20room.png" />
-         </image>
-      </ImageView>
-      <HBox layoutX="29.0" layoutY="55.0" prefHeight="602.0" prefWidth="817.0" stylesheets="@../css/computer.css">
+      <HBox layoutX="108.0" layoutY="55.0" prefHeight="602.0" prefWidth="859.0" stylesheets="@../css/computer.css">
          <children>
-            <AnchorPane prefHeight="602.0" prefWidth="1011.0" stylesheets="@../css/computer.css">
+            <AnchorPane prefHeight="602.0" prefWidth="857.0" stylesheets="@../css/computer.css">
                <children>
-                  <ImageView fitHeight="602.0" fitWidth="936.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="599.0" fitWidth="816.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/computer.png" />
                      </image>
                   </ImageView>
-                  <VBox layoutX="88.0" layoutY="21.0" prefHeight="383.0" prefWidth="761.0" stylesheets="@../css/computer.css">
+                  <VBox layoutX="55.0" layoutY="64.0" prefHeight="337.0" prefWidth="655.0" stylesheets="@../css/computer.css">
                      <children>
-                        <StackPane prefHeight="327.0" prefWidth="761.0">
+                        <StackPane prefHeight="333.0" prefWidth="655.0">
                            <children>
-                              <TextArea fx:id="securityTextArea" editable="false" prefHeight="299.0" prefWidth="761.0" wrapText="true">
+                              <TextArea fx:id="securityTextArea" editable="false" prefHeight="286.0" prefWidth="652.0" wrapText="true">
                                  <StackPane.margin>
                                     <Insets bottom="3.0" />
                                  </StackPane.margin></TextArea>
                            </children>
                         </StackPane>
-                        <HBox alignment="CENTER_LEFT" prefHeight="54.0" prefWidth="713.0" style="-fx-background-color: white; -fx-background-radius: 100;">
+                        <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <TextField fx:id="inputTextField" onKeyPressed="#onEnterPressed" prefHeight="54.0" prefWidth="494.0" promptText="type here..." stylesheets="@../css/computer.css">
+                              <TextField fx:id="inputTextField" onKeyPressed="#onEnterPressed" prefHeight="48.0" prefWidth="470.0" promptText="type here..." stylesheets="@../css/computer.css">
                                  <font>
                                     <Font size="29.0" />
                                  </font>
@@ -66,28 +73,17 @@
                               <Button fx:id="goBackBtn" mnemonicParsing="false" onAction="#onGoBack" prefHeight="48.0" prefWidth="112.0" text="Go back" textFill="WHITE">
                                  <font>
                                     <Font size="20.0" />
-                                 </font></Button>
+                                 </font>
+                              </Button>
                            </children>
-                           <VBox.margin>
-                              <Insets left="2.0" right="2.0" />
-                           </VBox.margin>
-                           <effect>
-                           </effect>
                         </HBox>
                      </children>
                   </VBox>
-                  <StackPane layoutX="750.0" layoutY="481.0" prefHeight="47.0" prefWidth="128.0">
-                     <children>
-                        <Rectangle arcHeight="5.0" arcWidth="15.0" fill="#4a4a4a" height="10.0" stroke="BLACK" strokeType="INSIDE" translateX="25.0" translateY="-25.0" width="30.0" />
-                        <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#909090" height="52.0" stroke="BLACK" strokeType="INSIDE" width="97.0" />
-                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#52544b" height="36.0" stroke="BLACK" strokeType="INSIDE" width="79.0" />
-                        <Label fx:id="timerLabel" alignment="CENTER" prefHeight="29.0" prefWidth="100.0" text="0:00" textFill="#99ab12" translateX="2.0" translateY="-1.0">
-                           <font>
-                              <Font name="Agency FB" size="36.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </StackPane>
+                  <Label fx:id="timerLabel" alignment="CENTER" layoutX="346.0" layoutY="408.0" prefHeight="31.0" prefWidth="78.0" text="0:00" textFill="#99ab12">
+                     <font>
+                        <Font name="Agency FB" size="36.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>
@@ -133,7 +129,7 @@
             </VBox>
          </children>
       </HBox>
-      <Label fx:id="processingLabel" layoutX="130.0" layoutY="361.0" prefHeight="28.0" prefWidth="206.0">
+      <Label fx:id="processingLabel" layoutX="172.0" layoutY="361.0" prefHeight="28.0" prefWidth="217.0">
          <font>
             <Font size="19.0" />
          </font>
