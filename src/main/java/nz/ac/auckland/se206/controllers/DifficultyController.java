@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameManager;
 import nz.ac.auckland.se206.HackerAiManager;
@@ -101,7 +102,7 @@ public class DifficultyController extends Controller {
     // handle if difficulty is not chosen
     if (!difficultySelected) {
       difficultySelected = true;
-      playBtn.setDisable(false);
+      AnimationManager.fadeTransition(playBtn, 1, 0.0, 1.0);
     }
 
     // handle if difficulty is easy

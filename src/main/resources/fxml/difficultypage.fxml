@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1000.0" prefHeight="400.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.DifficultyController">
@@ -32,7 +31,7 @@
       </ImageView>
       <AnchorPane fx:id="itemContainer" opacity="0.0" prefHeight="700.0" prefWidth="1000.0">
          <children>
-            <HBox prefHeight="327.0" prefWidth="776.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="197.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="124.0" AnchorPane.topAnchor="176.0">
+            <HBox layoutX="106.0" layoutY="150.0" prefHeight="352.0" prefWidth="793.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="198.0" AnchorPane.leftAnchor="106.0" AnchorPane.rightAnchor="101.0" AnchorPane.topAnchor="150.0">
                <children>
                   <VBox fx:id="easyVbox" alignment="TOP_CENTER" onMouseEntered="#onDifficultyEntered" onMouseExited="#onDifficultyExited" onMousePressed="#onDifficultyClicked" prefHeight="305.0" prefWidth="225.0" styleClass="container" stylesheets="@../css/difficulty.css">
                      <children>
@@ -70,7 +69,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="24.0" prefWidth="225.0" spacing="10.0">
                            <children>
-                              <Label alignment="TOP_CENTER" prefHeight="38.0" prefWidth="30.0" text="∞" textFill="#4d4f54" translateY="-10.0">
+                              <Label alignment="TOP_CENTER" prefHeight="38.0" prefWidth="62.0" text="∞" textFill="#4d4f54" translateY="-10.0">
                                  <font>
                                     <Font size="34.0" />
                                  </font>
@@ -114,7 +113,7 @@
                               </ImageView>
                            </children>
                         </StackPane>
-                        <HBox alignment="CENTER" prefHeight="42.0" prefWidth="225.0" spacing="10.0">
+                        <HBox alignment="CENTER" prefHeight="48.0" prefWidth="225.0" spacing="10.0">
                            <children>
                               <Label alignment="CENTER" prefHeight="35.0" prefWidth="189.0" text="Hints Allowed:" textFill="#4d4f54">
                                  <font>
@@ -123,7 +122,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="24.0" prefWidth="225.0" spacing="10.0">
+                        <HBox alignment="CENTER" prefHeight="13.0" prefWidth="225.0" spacing="10.0">
                            <children>
                               <Label text="5" textFill="#4d4f54">
                                  <font>
@@ -131,6 +130,9 @@
                                  </font>
                               </Label>
                            </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
                         </HBox>
                      </children>
                      <effect>
@@ -201,82 +203,95 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="243.0" layoutY="106.0" prefHeight="72.0" prefWidth="480.0" style="-fx-background-color: white; -fx-background-radius: 50;">
+            <HBox alignment="CENTER" layoutX="27.0" layoutY="494.0" prefHeight="80.0" prefWidth="949.0">
                <children>
-                  <Label prefHeight="57.0" prefWidth="238.0" text="Difficulty Chosen:" textFill="#305dae">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
+                  <ImageView fitHeight="55.0" fitWidth="203.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Timer.png" />
+                     </image>
+                     <effect>
+                        <DropShadow spread="1.0" />
+                     </effect>
                      <HBox.margin>
-                        <Insets left="10.0" />
+                        <Insets right="30.0" />
                      </HBox.margin>
-                  </Label>
-                  <Label fx:id="difficultyLabel" alignment="CENTER" prefHeight="59.0" prefWidth="184.0" style="-fx-background-color: #8ac1f5; -fx-background-radius: 30;" text="None" textFill="#305dae">
-                     <font>
-                        <Font name="BM KIRANGHAERANG OTF" size="48.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="20.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-               <effect>
-                  <DropShadow height="9.2" radius="4.84" spread="0.03" width="12.16">
-                     <input>
-                        <InnerShadow height="53.43" radius="31.372500000000002" width="74.06" />
-                     </input>
-                  </DropShadow>
-               </effect>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="153.0" layoutY="494.0" prefHeight="80.0" prefWidth="719.0" style="-fx-background-color: white; -fx-background-radius: 50;">
-               <children>
-                  <Label prefHeight="80.0" prefWidth="150.0" text="Timer:" textFill="#305dae">
-                     <font>
-                        <Font size="48.0" />
-                     </font>
-                  </Label>
-                  <StackPane prefHeight="80.0" prefWidth="281.0">
+                  </ImageView>
+                  <StackPane prefHeight="42.0" prefWidth="331.0">
                      <children>
-                        <Line endY="560.0" startY="540.0" stroke="#305dae" strokeWidth="4.0" translateX="-135.0" translateY="5.0" />
-                        <Line endY="560.0" startY="540.0" stroke="#305dae" strokeWidth="4.0" translateY="5.0" />
-                        <Line endY="560.0" startY="540.0" stroke="#305dae" strokeWidth="4.0" translateX="135.0" translateY="5.0" />
-                        <Slider fx:id="timerSlider" blockIncrement="2.0" majorTickUnit="2.0" max="6.0" min="2.0" minorTickCount="0" onMouseReleased="#onSliderChanged" prefHeight="38.0" prefWidth="335.0" snapToTicks="true" style="-fx-control-inner-background: #305dae;" styleClass="-" translateY="5.0" />
-                        <Label prefHeight="35.0" prefWidth="311.0" text="2" textFill="#305dae" translateY="-20.0">
+                        <Label prefHeight="32.0" prefWidth="325.0" text="2" textFill="WHITE" translateY="-20.0">
                            <font>
                               <Font size="24.0" />
                            </font>
+                           <effect>
+                              <DropShadow spread="0.91" />
+                           </effect>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="311.0" text="4" textFill="#305dae" translateY="-20.0">
+                        <Label alignment="CENTER_RIGHT" prefHeight="1.0" prefWidth="324.0" text="6" textFill="WHITE" translateY="-20.0">
                            <font>
                               <Font size="24.0" />
                            </font>
+                           <effect>
+                              <DropShadow spread="0.94" />
+                           </effect>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="311.0" text="6" textFill="#305dae" translateY="-20.0">
+                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="45.0" text="4" textFill="WHITE" translateY="-20.0">
                            <font>
                               <Font size="24.0" />
                            </font>
+                           <effect>
+                              <DropShadow spread="0.95" />
+                           </effect>
                         </Label>
+                        <Slider fx:id="timerSlider" blockIncrement="2.0" majorTickUnit="2.0" max="6.0" min="2.0" minorTickCount="0" onMouseReleased="#onSliderChanged" prefHeight="38.0" prefWidth="335.0" showTickMarks="true" snapToTicks="true" stylesheets="@../css/mainmenu.css" translateY="5.0">
+                           <effect>
+                              <DropShadow spread="0.73" />
+                           </effect></Slider>
                      </children>
                   </StackPane>
-                  <Label fx:id="timerLabel" alignment="CENTER" prefHeight="70.0" prefWidth="227.0" text="2 Minutes" textFill="#305dae">
+                  <Label fx:id="timerLabel" alignment="CENTER" prefHeight="70.0" prefWidth="227.0" text="2 Minutes" textFill="WHITE">
                      <font>
                         <Font name="BM KIRANGHAERANG OTF" size="48.0" />
                      </font>
+                     <effect>
+                        <DropShadow spread="1.0" />
+                     </effect>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
                   </Label>
                </children>
-               <effect>
-                  <DropShadow height="9.2" radius="4.84" spread="0.03" width="12.16">
-                     <input>
-                        <InnerShadow height="53.43" radius="31.372500000000002" width="74.06" />
-                     </input>
-                  </DropShadow>
-               </effect>
             </HBox>
-            <Button fx:id="playBtn" disable="true" layoutX="374.0" layoutY="603.0" mnemonicParsing="false" onAction="#onStartHeist" prefHeight="56.0" prefWidth="220.0" style="-fx-background-radius: 30;" text="Start Heist">
+            <Button fx:id="playBtn" layoutX="302.0" layoutY="587.0" mnemonicParsing="false" onAction="#onStartHeist" opacity="0.0" prefHeight="79.0" prefWidth="414.0" stylesheets="@../css/mainmenu.css">
                <font>
                   <Font name="BM KIRANGHAERANG OTF" size="30.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="94.0" fitWidth="323.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Startheist.png" />
+                     </image>
+                     <effect>
+                        <DropShadow spread="1.0" />
+                     </effect>
+                  </ImageView>
+               </graphic>
             </Button>
+            <Label fx:id="difficultyLabel" alignment="CENTER" layoutX="420.0" layoutY="92.0" prefHeight="76.0" prefWidth="184.0" style="-fx-background-radius: 30;" text="None" textFill="WHITE">
+               <font>
+                  <Font name="BM KIRANGHAERANG OTF" size="48.0" />
+               </font>
+               <effect>
+                  <DropShadow spread="1.0" />
+               </effect>
+            </Label>
+            <ImageView fitHeight="72.0" fitWidth="464.0" layoutX="276.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/difficulty.png" />
+               </image>
+               <effect>
+                  <DropShadow spread="1.0" />
+               </effect>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>
