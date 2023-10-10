@@ -8,12 +8,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameManager;
 import nz.ac.auckland.se206.HackerAiManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.TimerControl;
 import nz.ac.auckland.se206.difficulties.Difficulty.Difficulties;
 
@@ -34,6 +36,7 @@ public class DifficultyController extends Controller {
   @FXML private Button startBtn;
   @FXML private Button playBtn;
   @FXML private Slider timerSlider;
+  @FXML private AnchorPane itemContainer;
 
   private boolean easyVboxClicked = false;
   private boolean mediumVboxClicked = false;
@@ -41,6 +44,7 @@ public class DifficultyController extends Controller {
   private Difficulties difficulty;
   private boolean difficultySelected = false;
   private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
+  private StyleManager styleManager = StyleManager.getInstance();
 
   /**
    * Initialize the Difficulty Selection controller. It sets the controller for the Difficulty
@@ -48,6 +52,7 @@ public class DifficultyController extends Controller {
    */
   public void initialize() {
     SceneManager.setController(Scenes.DIFFICULTYPAGE, this);
+    styleManager.addHoverItems(itemContainer);
   }
 
   /**

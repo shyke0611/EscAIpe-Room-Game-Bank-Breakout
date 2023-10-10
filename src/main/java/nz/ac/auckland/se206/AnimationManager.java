@@ -3,8 +3,11 @@ package nz.ac.auckland.se206;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
+import javafx.animation.PauseTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
@@ -16,10 +19,10 @@ import javafx.util.Duration;
 public class AnimationManager {
   private static boolean isSlideAnimationPlayed = false;
 
-  public static void fadeTransition(Node node, double seconds) {
+  public static void fadeTransition(Node node, double seconds,double from,double to) {
     FadeTransition fadeIn = new FadeTransition(Duration.seconds(seconds), node);
-    fadeIn.setFromValue(0.0);
-    fadeIn.setToValue(1.0);
+    fadeIn.setFromValue(from);
+    fadeIn.setToValue(to);
     fadeIn.play();
   }
 
