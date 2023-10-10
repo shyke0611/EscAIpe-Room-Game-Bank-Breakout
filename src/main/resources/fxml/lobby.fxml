@@ -315,15 +315,15 @@
             <Font name="Impact" size="17.0" />
          </font>
       </Label>
-      <HBox fx:id="credentialsNote" layoutX="336.0" layoutY="269.0" prefHeight="198.0" prefWidth="236.0" visible="false">
+      <HBox fx:id="credentialsNote" layoutX="336.0" layoutY="269.0" prefHeight="181.0" prefWidth="306.0" visible="false">
          <children>
-            <VBox prefHeight="140.0" prefWidth="306.0">
+            <VBox prefHeight="262.0" prefWidth="306.0">
                <children>
-                  <StackPane alignment="TOP_LEFT" prefHeight="330.0" prefWidth="272.0">
+                  <StackPane prefHeight="330.0" prefWidth="272.0">
                      <children>
                         <ImageView fitHeight="203.0" fitWidth="306.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/passcodeNote.jpg" />
+                              <Image url="@../images/passcodeNote.png" />
                            </image>
                            <effect>
                               <DropShadow height="65.22" radius="35.057500000000005" width="77.01">
@@ -333,47 +333,72 @@
                               </DropShadow>
                            </effect>
                         </ImageView>
-                        <VBox alignment="CENTER" prefHeight="240.0" prefWidth="306.0">
+                        <VBox alignment="CENTER" prefHeight="273.0" prefWidth="306.0">
                            <children>
-                              <Button fx:id="closeNoteBtn" mnemonicParsing="false" onAction="#onCloseNote" prefHeight="24.0" prefWidth="29.0" styleClass="credentials-button" stylesheets="@../css/rooms.css" text="X">
-                                 <VBox.margin>
-                                    <Insets right="250.0" top="20.0" />
-                                 </VBox.margin>
-                              </Button>
-                              <Label prefHeight="29.0" prefWidth="137.0" text="#CONFIDENTIAL#">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="Apple LiGothic Medium" size="22.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="titleLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="258.0" style="-fx-text-alignment: center;" text="Security Room Computer Log In:" wrapText="true">
-                                 <font>
-                                    <Font name="Apple LiGothic Medium" size="17.0" />
-                                 </font>
-                              </Label>
-                              <StackPane prefHeight="118.0" prefWidth="291.0">
+                              <StackPane prefHeight="179.0" prefWidth="306.0">
                                  <children>
-                                    <Label fx:id="usernameLbl" contentDisplay="CENTER" prefHeight="12.0" prefWidth="166.0" text="Username:" translateY="-35.0">
+                                    <Button fx:id="closeNoteBtn" mnemonicParsing="false" onAction="#onCloseNote" prefHeight="53.0" prefWidth="61.0" styleClass="credentials-button" stylesheets="@../css/rooms.css" text="X">
+                                       <StackPane.margin>
+                                          <Insets left="270.0" top="-150.0" />
+                                       </StackPane.margin>
+                                       <font>
+                                          <Font size="19.0" />
+                                       </font>
+                                    </Button>
+                                    <Label fx:id="titleLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="323.0" style="-fx-text-alignment: center;" text="Security Room Computer Log In:" underline="true" wrapText="true">
+                                       <font>
+                                          <Font name="Copperplate" size="15.0" />
+                                       </font>
+                                       <StackPane.margin>
+                                          <Insets top="-45.0" />
+                                       </StackPane.margin>
+                                       <effect>
+                                          <DropShadow height="2.95" radius="0.23750000000000004" width="0.0" />
+                                       </effect>
+                                    </Label>
+                                    <Label fx:id="usernameLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="23.0" prefWidth="292.0" text="Username:" translateY="-35.0">
                                        <font>
                                           <Font name="HanziPen SC Regular" size="15.0" />
                                        </font>
+                                       <StackPane.margin>
+                                          <Insets top="100.0" />
+                                       </StackPane.margin>
                                     </Label>
-                                    <Label fx:id="passwordLbl" contentDisplay="CENTER" prefHeight="24.0" prefWidth="160.0" text="Password:" translateY="-15.0">
+                                    <Label fx:id="passwordLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="265.0" text="Password:" translateY="-15.0">
                                        <font>
                                           <Font name="HanziPen SC Regular" size="15.0" />
                                        </font>
+                                       <StackPane.margin>
+                                          <Insets top="110.0" />
+                                       </StackPane.margin>
                                     </Label>
-                                    <Label fx:id="orderLabel" contentDisplay="CENTER" prefHeight="118.0" prefWidth="102.0" text="Order" translateX="20.0" translateY="-23.0" visible="false" wrapText="true">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
+                                    <ImageView fitHeight="93.0" fitWidth="192.0" pickOnBounds="true" preserveRatio="true" rotate="15.0">
+                                       <image>
+                                          <Image url="@../images/confidentialstamp.png" />
+                                       </image>
+                                       <StackPane.margin>
+                                          <Insets bottom="110.0" />
+                                       </StackPane.margin>
+                                       <effect>
+                                          <DropShadow height="6.26" radius="1.155" spread="0.02" width="0.36">
+                                             <color>
+                                                <Color red="0.9210526347160339" green="0.49037525057792664" blue="0.49037525057792664" />
+                                             </color>
+                                          </DropShadow>
+                                       </effect>
+                                    </ImageView>
                                  </children>
                               </StackPane>
                            </children>
                         </VBox>
+                        <Label fx:id="orderLabel" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="182.0" prefWidth="310.0" text="Order" visible="false" wrapText="true">
+                           <font>
+                              <Font name="HanziPen SC Regular" size="14.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets top="85.0" />
+                           </StackPane.margin>
+                        </Label>
                      </children>
                   </StackPane>
                </children>
