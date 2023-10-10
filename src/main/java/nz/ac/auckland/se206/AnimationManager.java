@@ -16,7 +16,7 @@ import javafx.util.Duration;
 public class AnimationManager {
   private static boolean isSlideAnimationPlayed = false;
 
-  public static void fadeTransition(Node node, int seconds) {
+  public static void fadeTransition(Node node, double seconds) {
     FadeTransition fadeIn = new FadeTransition(Duration.seconds(seconds), node);
     fadeIn.setFromValue(0.0);
     fadeIn.setToValue(1.0);

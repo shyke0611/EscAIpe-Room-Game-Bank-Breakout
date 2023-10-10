@@ -6,6 +6,7 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.controllers.ComputerController;
@@ -115,6 +116,7 @@ public class App extends Application {
     instance = this;
     // initialise the randomiser for all random components
     RandomnessGenerate.generateRandomCredentials();
+  
 
     // HackerAiManager hackerAiManager = HackerAiManager.getInstance();
     // hackerAiManager.initialiseHacker(Difficulties.EASY);
