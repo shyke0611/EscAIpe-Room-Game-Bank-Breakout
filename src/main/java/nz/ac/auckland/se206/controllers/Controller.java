@@ -16,7 +16,6 @@ import nz.ac.auckland.se206.StyleManager;
 public abstract class Controller {
   private Label timerLabel;
   private int format;
-  private StyleManager styleManager = StyleManager.getInstance();
 
   public void setTimerLabel(Label timerLabel, int format) {
     // setting timer label
@@ -94,7 +93,7 @@ public abstract class Controller {
     // Switch the scene to the Vault
     App.setUI(Scenes.VAULT);
     if (GameState.isAlarmDisabled) {
-      styleManager.setVisible(true,"bombHolder");
+      StyleManager.setVisible(true,"bombHolder");
       ImageView bomblogo = (ImageView) StyleManager.getHoverItem("bomblogo");
       AnimationManager.fadeTransition(bomblogo, 2,0.0,1.0);
     }

@@ -250,7 +250,7 @@ public class LobbyController extends Controller {
         // update game and item states
         GameState.isKeyLocationFound = true;
         AnimationManager.fadeTransition(key, 2,0.0,1.0);
-        styleManager.setDisable(true, "key1", "key3", "key4");
+        StyleManager.setDisable(true, "key1", "key3", "key4");
         key.setDisable(false);
       }
     }

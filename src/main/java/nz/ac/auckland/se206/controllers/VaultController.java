@@ -140,7 +140,7 @@ public class VaultController extends Controller {
     // setting style for relevant items
     bombPuzzle.setVisible(true);
       bombPuzzle.requestFocus();
-    styleManager.setVisible(false, "switchHolder", "vaultwalkietalkie","walkietalkieText", "bombHolder");
+    StyleManager.setVisible(false, "switchHolder", "vaultwalkietalkie","walkietalkieText", "bombHolder");
 
   }
 

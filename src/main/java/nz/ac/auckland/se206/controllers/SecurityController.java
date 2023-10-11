@@ -197,8 +197,8 @@ public class SecurityController extends Controller {
     // setting style
     StyleManager.setItemsHoverColour(HoverColour.GREEN, "computer");
     StyleManager.removeItemsMessage("computer");
-    styleManager.setDisable(true, "credentialsBook");
-    styleManager.setVisible(false, "credentialsNote");
+    StyleManager.setDisable(true, "credentialsBook");
+    StyleManager.setVisible(false, "credentialsNote");
   }
 
   // Mechanics for empty credential input

@@ -99,7 +99,7 @@ public class WireCuttingController extends Controller {
   @FXML
   private void onRetry(ActionEvent event) {
     wiresCut.clear();
-    styleManager.setVisible(true, "yellowwire", "redwire", "bluewire", "greenwire");
+    StyleManager.setVisible(true, "yellowwire", "redwire", "bluewire", "greenwire");
     taskLbl.setText(null);
   }
 
@@ -145,9 +145,9 @@ public class WireCuttingController extends Controller {
     StyleManager.setAlarm(false);
     GameState.isAlarmDisabled = true;
     // setting relevant styles
-    styleManager.setDisable(true, "electricityBox");
-    styleManager.setDisable(true, "guardpocket");
-    styleManager.setVisible(false, "credentialsNote");
+    StyleManager.setDisable(true, "electricityBox");
+    StyleManager.setDisable(true, "guardpocket");
+    StyleManager.setVisible(false, "credentialsNote");
     retryBtn.setDisable(true);
     // styleManager.setClueHover("bomblayer", true);
     // styleManager.setClueHover("lobbyRoomSwitch", false);
