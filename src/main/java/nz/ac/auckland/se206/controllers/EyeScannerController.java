@@ -59,7 +59,7 @@ public class EyeScannerController extends Controller {
     // set relevant method on initialisation
     styleManager.addHoverItems(compareBtn);
     SceneManager.setController(Scenes.EYESCANNER, this);
-    super.setTimerLabel(timerLabel, 3);
+    super.setTimerLabel(timerLabel, 1);
     accessGranted.setVisible(false);
     accessDenied.setVisible(false);
 
@@ -136,7 +136,7 @@ public class EyeScannerController extends Controller {
             });
 
     // Sync Background walkie talkie
-    WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
+    // WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
   }
 
   /** Update the guard's eye color with a random color. */
