@@ -390,7 +390,7 @@
                      </light>
                   </Lighting>
                </effect></Rectangle>
-            <ImageView fitHeight="162.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true" style="-fx-border: 3;">
+            <ImageView fitHeight="162.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/EmployeePortrait.jpg" />
                </image>
@@ -443,7 +443,7 @@
                   </DropShadow>
                </effect>
             </Label>
-            <Label fx:id="employeeName" alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="181.0" text="Jessica !">
+            <Label fx:id="employeeName" alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="181.0" text="Jessica">
                <font>
                   <Font name="Copperplate" size="40.0" />
                </font>
@@ -458,6 +458,11 @@
                   </DropShadow>
                </effect>
             </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#11192200" height="164.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="4.0" width="164.0">
+               <StackPane.margin>
+                  <Insets left="17.0" />
+               </StackPane.margin>
+            </Rectangle>
          </children>
       </StackPane>
    </children>

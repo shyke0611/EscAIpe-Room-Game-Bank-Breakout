@@ -310,9 +310,9 @@
             <Font name="Impact" size="21.0" />
          </font>
       </Label>
-      <Label fx:id="foundingDate" alignment="CENTER" contentDisplay="CENTER" layoutX="513.0" layoutY="447.0" prefHeight="65.0" prefWidth="136.0" text="Since 1967" textFill="#fdff6a82">
+      <Label fx:id="foundingDate" alignment="CENTER" contentDisplay="CENTER" layoutX="513.0" layoutY="447.0" prefHeight="65.0" prefWidth="136.0" text="Since 1967" textFill="#fefff782">
          <font>
-            <Font name="Impact" size="17.0" />
+            <Font name="Avenir Next Condensed Bold" size="25.0" />
          </font>
       </Label>
       <HBox fx:id="credentialsNote" layoutX="336.0" layoutY="269.0" prefHeight="198.0" prefWidth="236.0" visible="false">
@@ -538,7 +538,7 @@
                   <Image url="@../images/CEOPainting.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="ceoPainting" fitHeight="106.0" fitWidth="106.0" onMouseEntered="#enlargePainting" onMouseExited="#hidePainting" opacity="0.32" pickOnBounds="true">
+            <ImageView fx:id="ceoPainting" fitHeight="106.0" fitWidth="106.0" onMouseEntered="#enlargePainting" onMouseExited="#hidePainting" opacity="0.6" pickOnBounds="true">
                <image>
                   <Image url="@../images/pictureFrame.png" />
                </image>
