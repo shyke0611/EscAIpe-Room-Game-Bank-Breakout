@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
@@ -20,7 +21,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="securityPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SecurityController">
+<AnchorPane fx:id="securityPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SecurityController">
    <children>
       <ImageView fx:id="securitybackground" fitHeight="705.0" fitWidth="1022.0" layoutX="-7.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -88,80 +89,76 @@
       <HBox alignment="CENTER" disable="true" layoutX="673.0" layoutY="340.0" prefHeight="132.0" prefWidth="89.0" styleClass="keylocations" stylesheets="@../css/rooms.css" />
       <HBox alignment="CENTER" disable="true" layoutX="826.0" layoutY="365.0" prefHeight="145.0" prefWidth="146.0" styleClass="keylocations" stylesheets="@../css/rooms.css" />
       <HBox alignment="CENTER" disable="true" layoutX="361.0" layoutY="308.0" prefHeight="166.0" prefWidth="165.0" styleClass="keylocations" stylesheets="@../css/rooms.css" />
-      <HBox fx:id="logInScreen" layoutX="166.0" layoutY="168.0" prefHeight="446.0" prefWidth="683.0" style="-fx-border-color: #eccb0f;" visible="false">
+      <HBox fx:id="logInScreen" layoutX="270.0" layoutY="168.0" prefHeight="298.0" prefWidth="432.0">
          <children>
-            <VBox prefHeight="510.0" prefWidth="392.0">
+            <VBox alignment="CENTER" opacity="0.87" prefHeight="398.0" prefWidth="445.0" style="-fx-background-color: grey; -fx-border-color: white; -fx-background-radius: 40; -fx-border-radius: 40;">
                <children>
-                  <StackPane alignment="TOP_CENTER" prefHeight="450.0" prefWidth="447.0">
-                     <children>
-                        <ImageView fitHeight="469.0" fitWidth="466.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/banklogo.jpg" />
-                           </image>
-                        </ImageView>
-                        <Label alignment="CENTER" prefHeight="69.0" prefWidth="448.0" text="206 Bank Computer" textFill="#eccb0f">
-                           <font>
-                              <Font name="BM KIRANGHAERANG OTF" size="47.0" />
-                           </font>
-                           <StackPane.margin>
-                              <Insets top="10.0" />
-                           </StackPane.margin>
-                        </Label>
-                     </children>
-                  </StackPane>
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="466.0" prefWidth="234.0" style="-fx-background-color: black;">
-               <children>
-                  <ImageView fitHeight="107.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/lock.jpg" />
-                     </image>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </ImageView>
-                  <Label fx:id="loginMsgLbl" alignment="CENTER" prefHeight="61.0" prefWidth="205.0" style="-fx-text-alignment: center;" textFill="#f20808" wrapText="true">
+                  <Label fx:id="loginMsgLbl" alignment="CENTER" prefHeight="35.0" prefWidth="205.0" style="-fx-text-alignment: center;" text="success" textFill="#f20808" wrapText="true">
                      <font>
-                        <Font name="Avenir Next Condensed Bold" size="13.0" />
+                        <Font name="Game Plan game plan" size="24.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Username:" textFill="#eccb0f">
+                  <TextField fx:id="usernameField" prefHeight="40.0" prefWidth="350.0" promptText="Enter Username" style="-fx-background-color: white;" styleClass="text">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="40.0" right="40.0" />
+                     </VBox.margin>
                      <font>
-                        <Font name="Weibei SC Bold" size="26.0" />
+                        <Font name="Game Plan game plan" size="13.0" />
                      </font>
+                     <effect>
+                        <Glow />
+                     </effect>
+                  </TextField>
+                  <PasswordField fx:id="passwordField" onKeyPressed="#onEnterPressed" prefHeight="40.0" prefWidth="350.0" promptText="Enter Password:" styleClass="text">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="40.0" right="40.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Game Plan game plan" size="13.0" />
+                     </font>
+                  </PasswordField>
+                  <HBox prefHeight="4.0" prefWidth="430.0">
+                     <children>
+                        <HBox fx:id="logInBtn" onMousePressed="#onLogIn" prefHeight="0.0" prefWidth="140.0">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/loginbtn.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="60.0" />
+                           </HBox.margin>
+                        </HBox>
+                        <HBox fx:id="onLogOff" prefHeight="0.0" prefWidth="140.0">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/logoutbtn.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </HBox>
+                     </children>
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
-                  </Label>
-                  <TextField fx:id="usernameField" prefHeight="26.0" prefWidth="199.0" promptText="Enter Username" styleClass="text" stylesheets="@../css/rooms.css">
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Label text="Password:" textFill="#eccb0f">
-                     <font>
-                        <Font name="Weibei SC Bold" size="26.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <PasswordField fx:id="passwordField" onKeyPressed="#onEnterPressed" promptText="Enter Password:" styleClass="text" stylesheets="@../css/rooms.css">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" />
-                     </VBox.margin>
-                  </PasswordField>
-                  <Button fx:id="logInBtn" mnemonicParsing="false" onAction="#onLogIn" prefHeight="34.0" prefWidth="73.0" styleClass="computer-button" stylesheets="@../css/rooms.css" text="log in" />
-                  <Button fx:id="logOffBtn" mnemonicParsing="false" onAction="#onLogOff" styleClass="computer-button" stylesheets="@../css/rooms.css" text="log off">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </Button>
+                  </HBox>
                </children>
+               <effect>
+                  <DropShadow spread="0.43">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </DropShadow>
+               </effect>
             </VBox>
          </children>
       </HBox>

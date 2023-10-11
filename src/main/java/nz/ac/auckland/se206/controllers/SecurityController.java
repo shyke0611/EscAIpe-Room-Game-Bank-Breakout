@@ -129,7 +129,7 @@ public class SecurityController extends Controller {
 
   // Check log in details before logging in
   @FXML
-  private void onLogIn(ActionEvent event) {
+  private void onLogIn(MouseEvent event) {
     checkLogin();
   }
 
