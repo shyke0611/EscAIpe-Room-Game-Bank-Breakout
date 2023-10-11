@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
@@ -15,6 +16,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
@@ -89,79 +91,6 @@
       <HBox alignment="CENTER" disable="true" layoutX="673.0" layoutY="340.0" prefHeight="132.0" prefWidth="89.0" styleClass="keylocations" stylesheets="@../css/rooms.css" />
       <HBox alignment="CENTER" disable="true" layoutX="826.0" layoutY="365.0" prefHeight="145.0" prefWidth="146.0" styleClass="keylocations" stylesheets="@../css/rooms.css" />
       <HBox alignment="CENTER" disable="true" layoutX="361.0" layoutY="308.0" prefHeight="166.0" prefWidth="165.0" styleClass="keylocations" stylesheets="@../css/rooms.css" />
-      <HBox fx:id="logInScreen" layoutX="270.0" layoutY="168.0" prefHeight="298.0" prefWidth="432.0">
-         <children>
-            <VBox alignment="CENTER" opacity="0.87" prefHeight="398.0" prefWidth="445.0" style="-fx-background-color: grey; -fx-border-color: white; -fx-background-radius: 40; -fx-border-radius: 40;">
-               <children>
-                  <Label fx:id="loginMsgLbl" alignment="CENTER" prefHeight="35.0" prefWidth="205.0" style="-fx-text-alignment: center;" text="success" textFill="#f20808" wrapText="true">
-                     <font>
-                        <Font name="Game Plan game plan" size="24.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="usernameField" prefHeight="40.0" prefWidth="350.0" promptText="Enter Username" style="-fx-background-color: white;" styleClass="text">
-                     <VBox.margin>
-                        <Insets bottom="20.0" left="40.0" right="40.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="Game Plan game plan" size="13.0" />
-                     </font>
-                     <effect>
-                        <Glow />
-                     </effect>
-                  </TextField>
-                  <PasswordField fx:id="passwordField" onKeyPressed="#onEnterPressed" prefHeight="40.0" prefWidth="350.0" promptText="Enter Password:" styleClass="text">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="40.0" right="40.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="Game Plan game plan" size="13.0" />
-                     </font>
-                  </PasswordField>
-                  <HBox prefHeight="4.0" prefWidth="430.0">
-                     <children>
-                        <HBox fx:id="logInBtn" onMousePressed="#onLogIn" prefHeight="0.0" prefWidth="140.0">
-                           <children>
-                              <ImageView fitHeight="80.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/loginbtn.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                           <HBox.margin>
-                              <Insets left="60.0" />
-                           </HBox.margin>
-                        </HBox>
-                        <HBox fx:id="onLogOff" prefHeight="0.0" prefWidth="140.0">
-                           <children>
-                              <ImageView fitHeight="80.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/logoutbtn.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                           <HBox.margin>
-                              <Insets left="30.0" />
-                           </HBox.margin>
-                        </HBox>
-                     </children>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </HBox>
-               </children>
-               <effect>
-                  <DropShadow spread="0.43">
-                     <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </VBox>
-         </children>
-      </HBox>
       <HBox layoutX="5.0" layoutY="12.0" prefHeight="122.0" prefWidth="318.0">
          <children>
             <VBox fx:id="lobbyRoomSwitch" alignment="CENTER" prefHeight="129.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
@@ -462,5 +391,111 @@
             </Rectangle>
          </children>
       </StackPane>
+      <Pane fx:id="logInScreen" layoutX="460.0" layoutY="335.0" prefHeight="101.0" prefWidth="142.0" visible="false">
+         <children>
+            <VBox alignment="CENTER" layoutX="-166.0" layoutY="-163.0" prefHeight="342.0" prefWidth="430.0" style="-fx-background-color: #0c3a51; -fx-border-color: white; -fx-background-radius: 40; -fx-border-radius: 40;">
+               <children>
+                  <Label fx:id="loginMsgLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="438.0" style="-fx-text-alignment: center;" textFill="#528ba8" wrapText="true">
+                     <font>
+                        <Font name="Game Plan game plan" size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="20.0" />
+                     </VBox.margin>
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.9210526347160339" green="0.8698830604553223" blue="0.8698830604553223" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Label>
+                  <TextField fx:id="usernameField" focusTraversable="false" prefHeight="40.0" prefWidth="350.0" promptText="Enter Username:" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 0 20 20 0;" styleClass="text" stylesheets="@../css/rooms.css">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="40.0" right="40.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Game Plan game plan" size="13.0" />
+                     </font>
+                     <effect>
+                        <Glow />
+                     </effect>
+                  </TextField>
+                  <PasswordField fx:id="passwordField" focusTraversable="false" onKeyPressed="#onEnterPressed" prefHeight="40.0" prefWidth="350.0" promptText="Enter Password:" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 0 20 20 0;" styleClass="text" stylesheets="@../css/rooms.css">
+                     <VBox.margin>
+                        <Insets bottom="40.0" left="40.0" right="40.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Game Plan game plan" size="13.0" />
+                     </font>
+                  </PasswordField>
+                  <HBox prefHeight="4.0" prefWidth="430.0">
+                     <children>
+                        <HBox fx:id="logInBtn" onMousePressed="#onLogIn" prefHeight="0.0" prefWidth="140.0" styleClass="button" stylesheets="@../css/mainmenu.css">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/loginbtn.png" />
+                                 </image>
+                                 <effect>
+                                    <InnerShadow height="71.12" radius="22.53">
+                                       <color>
+                                          <Color red="0.01568627543747425" green="0.12941177189350128" blue="0.35686275362968445" />
+                                       </color>
+                                    </InnerShadow>
+                                 </effect>
+                              </ImageView>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="50.0" />
+                           </HBox.margin>
+                        </HBox>
+                        <HBox fx:id="logOffBtn" onMousePressed="#onLogOff" prefHeight="56.0" prefWidth="128.0" styleClass="button" stylesheets="@../css/mainmenu.css">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/logoutbtn.png" />
+                                 </image>
+                                 <effect>
+                                    <InnerShadow height="71.12" radius="22.53">
+                                       <color>
+                                          <Color red="0.01568627543747425" green="0.12941177189350128" blue="0.35686275362968445" />
+                                       </color>
+                                    </InnerShadow>
+                                 </effect>
+                              </ImageView>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </HBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+               <effect>
+                  <DropShadow spread="0.43">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </VBox>
+            <ImageView fitHeight="158.0" fitWidth="140.0" layoutX="-18.0" layoutY="-243.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/loginprofile.png" />
+               </image>
+               <effect>
+                  <DropShadow spread="0.46">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </ImageView>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
