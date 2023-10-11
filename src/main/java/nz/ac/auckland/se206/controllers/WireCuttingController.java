@@ -43,12 +43,11 @@ public class WireCuttingController extends Controller {
   public void initialize() {
     SceneManager.setController(Scenes.WIRECUTTING, this);
     // setting timer
-    super.setTimerLabel(timerLabel, 2);
+    super.setTimerLabel(timerLabel, 1);
     wiresCut = new ArrayList<>();
     // generating relevant methods on initialise
-    styleManager.addHoverItems(wirecuttingbackground,wirecuttingorderLbl);
+    styleManager.addHoverItems(wirecuttingbackground,wirecuttingorderLbl,bluewire,redwire,yellowwire,greenwire);
     RandomnessGenerate.addWires(bluewire, yellowwire, greenwire, redwire);
-    styleManager.addHoverItems(bluewire, yellowwire, greenwire, redwire);
   }
 
   /**

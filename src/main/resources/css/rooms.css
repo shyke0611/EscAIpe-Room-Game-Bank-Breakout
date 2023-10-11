@@ -79,32 +79,25 @@
 }
 
 .close-button {
-    -fx-background-color: black;
-    -fx-background-radius: 50;
-    -fx-border-radius: 50;
-    -fx-border-color: white;
+    -fx-background-color: transparent;
     -fx-font-family: 'Baoli SC';
-    -fx-text-fill: #eb1717;
+    -fx-text-fill: white;
 }
 
 .close-button:hover {
     -fx-cursor: hand;
-    -fx-border-color: red;
+    -fx-effect: dropshadow(gaussian, rgba(234, 14, 14, 0.994), 5, 5, 0, 0);
 }
 
 .credentials-button {
-    -fx-background-color: white;
-    -fx-background-radius: 50;
-    -fx-border-radius: 50;
-    -fx-border-color: grey;
+    -fx-background-color: transparent;
     -fx-font-family: 'Baoli SC';
     -fx-text-fill: black;
 }
 
 .credentials-button:hover {
     -fx-cursor: hand;
-    -fx-text-fill: rgb(32, 31, 31);
-    -fx-background-color: rgb(242, 232, 232);
+    -fx-effect: dropshadow(gaussian, rgba(234, 14, 14, 0.994), 5, 5, 0, 0);
 }
 
 .tech-button {
