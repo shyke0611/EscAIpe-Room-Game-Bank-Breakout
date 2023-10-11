@@ -20,7 +20,7 @@
             <Image url="@../images/hackerVanBackground.png" />
          </image>
       </ImageView>
-      <VBox layoutX="25.0" layoutY="25.0" prefHeight="650.0" prefWidth="950.0">
+      <VBox layoutX="25.0" layoutY="15.0" prefHeight="660.0" prefWidth="950.0">
          <children>
             <StackPane prefHeight="27.0" prefWidth="950.0">
                <children>
@@ -55,7 +55,7 @@
                   </StackPane>
                </children>
             </HBox>
-            <ScrollPane fx:id="instructionsScroll" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="569.0" prefWidth="950.0" styleClass="edge-to-edge" stylesheets="@../css/instructions.css" vbarPolicy="ALWAYS" vmax="30.0" vvalue="30.0">
+            <ScrollPane fx:id="instructionsScroll" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="569.0" prefWidth="950.0" styleClass="edge-to-edge" stylesheets="@../css/instructions.css" vbarPolicy="ALWAYS" vmax="30.0" vvalue="14.0">
                <content>
                   <AnchorPane prefHeight="1120.0" prefWidth="900.0">
                      <children>
@@ -171,6 +171,9 @@
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
                                           </Label>
                                           <Label prefWidth="927.0" styleClass="Text" text="Clickable objects will be highlighted with a coloured glow and display tooltips when hovered over to indicate their current usability." />
                                           <HBox prefWidth="200.0">
@@ -222,8 +225,7 @@
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
-                                          <Label alignment="TOP_LEFT" prefWidth="918.0" styleClass="Text" text="The game features three interconnected rooms that players must traverse to complete the heist successfully. There is a bank lobby, a security room and a vault room." />
-                                          <Label alignment="TOP_LEFT" prefWidth="931.0" styleClass="Text" text="To change rooms, players simply click on the robber icon that corresponds to their desired destination." textAlignment="JUSTIFY" wrapText="true" />
+                                          <Label alignment="TOP_LEFT" prefWidth="918.0" styleClass="Text" text="The game features three interconnected rooms that players must traverse to complete the heist successfully. There is a bank lobby, a security room and a vault room. To change rooms, players simply click on the robber icon that corresponds to their desired destination." wrapText="true" />
                                           <VBox prefWidth="918.0">
                                              <children>
                                                 <HBox prefWidth="200.0">
@@ -538,6 +540,7 @@
                                                 </VBox>
                                              </children>
                                           </HBox>
+                                          <Label prefHeight="90.0" text="Label" visible="false" />
                                        </children>
                                     </VBox>
                                  </children>

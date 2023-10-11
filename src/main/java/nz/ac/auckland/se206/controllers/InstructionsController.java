@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -32,6 +33,20 @@ public class InstructionsController extends Controller {
     SceneManager.setController(Scenes.INSTRUCTIONS, this);
     setGeneralInformation();
     goGeneralInformation();
+
+    instructionsScroll
+        .vvalueProperty()
+        .addListener(
+            (ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
+              double vertValue = newValue.doubleValue();
+              if (vertValue < 11) {
+                setActiveTab(generalInfoTab);
+              } else if (vertValue > 29) {
+                setActiveTab(puzzlesTab);
+              } else {
+                setActiveTab(gameMechanicsTab);
+              }
+            });
   }
 
   private void setGeneralInformation() {
@@ -81,7 +96,7 @@ public class InstructionsController extends Controller {
 
   @FXML
   private void goGameMechanics() {
-    instructionsScroll.setVvalue(11);
+    instructionsScroll.setVvalue(11.8);
     setActiveTab(gameMechanicsTab);
   }
 
@@ -109,6 +124,7 @@ public class InstructionsController extends Controller {
       activeText.getStyleClass().clear();
       activeText.getStyleClass().add("activeTab");
 
+      // Remove the styling on old active tab
       if (activeTab != null) {
         ObservableList<Node> children2 = activeTab.getChildren();
         Node otherRectangle = children2.get(0);
