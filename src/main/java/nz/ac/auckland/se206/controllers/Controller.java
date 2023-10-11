@@ -96,7 +96,7 @@ public abstract class Controller {
     if (GameState.isAlarmDisabled) {
       styleManager.setVisible(true,"bombHolder");
       ImageView bomblogo = (ImageView) StyleManager.getHoverItem("bomblogo");
-      AnimationManager.fadeTransition(bomblogo, 2);
+      AnimationManager.fadeTransition(bomblogo, 2,0.0,1.0);
     }
   }
 

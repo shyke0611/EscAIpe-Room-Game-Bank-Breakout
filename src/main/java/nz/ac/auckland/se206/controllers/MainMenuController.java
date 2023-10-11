@@ -1,26 +1,30 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
+import javafx.animation.SequentialTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
+import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.StyleManager;
 
 /** Controller class for the Main Menu scene. */
 public class MainMenuController extends Controller {
 
-  @FXML private Label titleLabel1;
-  @FXML private Label titleLabel2;
   @FXML private VBox buttonsContainer;
   @FXML private Button quitBtn;
   @FXML private Button newGameBtn;
   @FXML private Button instructionsBtn;
+  @FXML private ImageView title;
 
-  /** Initialize the Main Menu controller. It sets the controller for the Main Menu scene. */
   public void initialize() {
     SceneManager.setController(Scenes.MAIN_MENU, this);
   }
@@ -33,7 +37,16 @@ public class MainMenuController extends Controller {
    */
   @FXML
   private void onNewGameBtnClicked(ActionEvent event) {
-    App.setUI(Scenes.DIFFICULTYPAGE);
+    // animation settings for smooth play
+    PauseTransition pause = new PauseTransition(Duration.seconds(2));
+        pause.setOnFinished(e -> {
+          App.setUI(Scenes.DIFFICULTYPAGE); // Change scene
+          AnimationManager.fadeTransition(StyleManager.getHoverItem("itemContainer"), 2,0,1);
+      });
+      pause.play();
+    buttonsContainer.setDisable(true);
+    AnimationManager.fadeTransition(title, 2, 1.0, 0.0);
+    AnimationManager.fadeTransition(buttonsContainer, 2, 1.0, 0.0);
   }
 
   /**
