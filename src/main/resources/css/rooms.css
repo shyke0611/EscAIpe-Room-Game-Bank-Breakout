@@ -136,10 +136,7 @@
 }
 
 .text {
-    -fx-background-color: #000000;
-    -fx-border-color: #eccb0f;
-    -fx-text-fill: #eccb0f;
-    -fx-prompt-text-fill: #eccb0f;
+    -fx-text-fill: white;
 
 }
 
