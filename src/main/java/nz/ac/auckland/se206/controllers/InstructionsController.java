@@ -1,13 +1,23 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.StackPane;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
 public class InstructionsController extends Controller {
+
+  // Tab Headers
+  @FXML private StackPane generalInfoTab;
+  @FXML private StackPane gameMechanicsTab;
+  @FXML private StackPane puzzlesTab;
+
+  private StackPane activeTab;
 
   // General Information labels
   @FXML private Label contextParagraph;
@@ -21,6 +31,7 @@ public class InstructionsController extends Controller {
   public void initialize() {
     SceneManager.setController(Scenes.INSTRUCTIONS, this);
     setGeneralInformation();
+    goGeneralInformation();
   }
 
   private void setGeneralInformation() {
@@ -65,20 +76,49 @@ public class InstructionsController extends Controller {
   @FXML
   public void goGeneralInformation() {
     instructionsScroll.setVvalue(0);
+    setActiveTab(generalInfoTab);
   }
 
   @FXML
   private void goGameMechanics() {
     instructionsScroll.setVvalue(11);
+    setActiveTab(gameMechanicsTab);
   }
 
   @FXML
   private void goPuzzles() {
     instructionsScroll.setVvalue(30);
+    setActiveTab(puzzlesTab);
   }
 
   @FXML
   private void onSwitchToMain() {
     App.setUI(Scenes.MAIN_MENU);
+  }
+
+  private void setActiveTab(StackPane newActiveTab) {
+
+    // Change old active tab to normal tab styling
+    if (activeTab != newActiveTab) {
+      // Set new tab to active tab styling
+      ObservableList<Node> children = newActiveTab.getChildren();
+      Node activeRectangle = children.get(0);
+      activeRectangle.getStyleClass().clear();
+      activeRectangle.getStyleClass().add("activeRectangle");
+      Node activeText = children.get(1);
+      activeText.getStyleClass().clear();
+      activeText.getStyleClass().add("activeTab");
+
+      if (activeTab != null) {
+        ObservableList<Node> children2 = activeTab.getChildren();
+        Node otherRectangle = children2.get(0);
+        otherRectangle.getStyleClass().clear();
+        otherRectangle.getStyleClass().add("Rectangle");
+        Node otherText = children2.get(1);
+        otherText.getStyleClass().clear();
+        otherText.getStyleClass().add("tab");
+      }
+      activeTab = newActiveTab;
+    }
   }
 }
