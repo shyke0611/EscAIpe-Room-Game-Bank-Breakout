@@ -29,16 +29,16 @@
             </StackPane>
             <HBox prefHeight="29.0" prefWidth="950.0">
                <children>
-                  <StackPane fx:id="generalInfoTab" onMouseClicked="#goGeneralInformation" prefHeight="30.0" prefWidth="160.0">
+                  <StackPane fx:id="generalInfoTab" onMouseClicked="#goGeneralInformation" prefHeight="29.0" prefWidth="174.0">
                      <children>
-                        <Rectangle fill="#c9c9c9" height="28.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="Rectangle" width="160.0" StackPane.alignment="BOTTOM_CENTER" />
-                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="150.0" styleClass="tab" text="GENERAL INFORMATION" textFill="WHITE" />
+                        <Rectangle fill="#c9c9c9" height="28.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="Rectangle" width="185.0" StackPane.alignment="BOTTOM_CENTER" />
+                        <Label alignment="CENTER" prefHeight="29.0" prefWidth="172.0" styleClass="tab" text="GENERAL INFORMATION" textFill="WHITE" />
                      </children>
                   </StackPane>
                   <StackPane fx:id="gameMechanicsTab" onMouseClicked="#goGameMechanics" prefHeight="150.0" prefWidth="150.0">
                      <children>
-                        <Rectangle fill="#c9c9c9" height="28.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="Rectangle" width="160.0" StackPane.alignment="BOTTOM_CENTER" />
-                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="150.0" styleClass="tab" text="GAME MECHANICS" textFill="WHITE" />
+                        <Rectangle fill="#c9c9c9" height="28.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="Rectangle" width="185.0" StackPane.alignment="BOTTOM_CENTER" />
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="175.0" styleClass="tab" text="GAME MECHANICS" textFill="WHITE" />
                      </children>
                      <HBox.margin>
                         <Insets left="5.0" />
@@ -46,8 +46,8 @@
                   </StackPane>
                   <StackPane fx:id="puzzlesTab" onMouseClicked="#goPuzzles" prefHeight="150.0" prefWidth="150.0">
                      <children>
-                        <Rectangle fill="#c9c9c9" height="28.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="Rectangle" width="160.0" StackPane.alignment="BOTTOM_CENTER" />
-                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="150.0" styleClass="tab" text="PUZZLES AND MINIGAMES" textFill="WHITE" />
+                        <Rectangle fill="#c9c9c9" height="28.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="Rectangle" width="185.0" StackPane.alignment="BOTTOM_CENTER" />
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="175.0" styleClass="tab" text="PUZZLES AND MINIGAMES" textFill="WHITE" />
                      </children>
                      <HBox.margin>
                         <Insets left="5.0" />
@@ -55,44 +55,44 @@
                   </StackPane>
                </children>
             </HBox>
-            <ScrollPane fx:id="instructionsScroll" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="569.0" prefWidth="950.0" styleClass="edge-to-edge" stylesheets="@../css/instructions.css" vbarPolicy="ALWAYS" vmax="30.0">
+            <ScrollPane fx:id="instructionsScroll" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="569.0" prefWidth="950.0" styleClass="edge-to-edge" stylesheets="@../css/instructions.css" vbarPolicy="ALWAYS" vmax="30.0" vvalue="30.0">
                <content>
                   <AnchorPane prefHeight="1120.0" prefWidth="900.0">
                      <children>
-                        <VBox layoutX="8.0" prefHeight="2050.0" prefWidth="892.0">
+                        <VBox layoutX="8.0" prefWidth="890.0">
                            <children>
-                              <VBox prefHeight="559.0" prefWidth="918.0">
+                              <VBox prefWidth="890.0">
                                  <children>
-                                    <Label prefHeight="41.0" prefWidth="918.0" styleClass="h1" text="GENERAL INFORMATION">
+                                    <Label styleClass="h1" text="GENERAL INFORMATION">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
                                     </Label>
-                                    <Label prefHeight="30.0" styleClass="h2" text="Context:">
+                                    <Label styleClass="h2" text="Context:">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="contextParagraph" alignment="TOP_LEFT" prefHeight="80.0" prefWidth="918.0" styleClass="text" text="context paragraph" wrapText="true" />
-                                    <VBox prefHeight="375.0" prefWidth="918.0">
+                                    <Label fx:id="contextParagraph" alignment="TOP_LEFT" styleClass="Text" text="context paragraph" wrapText="true" />
+                                    <VBox prefWidth="918.0">
                                        <children>
-                                          <Label prefHeight="25.0" prefWidth="264.0" styleClass="h2" text="Storyline:">
+                                          <Label styleClass="h2" text="Storyline:">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="storylineParagraph" alignment="TOP_LEFT" prefHeight="22.0" prefWidth="918.0" styleClass="text" text="storyline paragraph" wrapText="true" />
-                                          <VBox prefHeight="100.0" prefWidth="918.0">
+                                          <Label fx:id="storylineParagraph" alignment="TOP_LEFT" styleClass="Text" text="storyline paragraph" wrapText="true" />
+                                          <VBox prefWidth="918.0">
                                              <children>
-                                                <Label prefHeight="20.0" prefWidth="275.0" styleClass="h3" text="Phase 1: Disabling Security">
+                                                <Label styleClass="h3" text="Phase 1: Disabling Security">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <HBox prefHeight="68.0" prefWidth="918.0">
+                                                <HBox prefWidth="918.0">
                                                    <children>
                                                       <ImageView fitHeight="100.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true" />
-                                                      <Label fx:id="disableSecurityParagraph" alignment="TOP_LEFT" prefHeight="80.0" prefWidth="697.0" styleClass="text" text="disable security paragraph" wrapText="true">
+                                                      <Label fx:id="disableSecurityParagraph" alignment="TOP_LEFT" styleClass="Text" text="disable security paragraph" wrapText="true">
                                                          <padding>
                                                             <Insets left="10.0" />
                                                          </padding>
@@ -100,18 +100,24 @@
                                                    </children>
                                                 </HBox>
                                              </children>
+                                             <padding>
+                                                <Insets top="2.0" />
+                                             </padding>
+                                             <VBox.margin>
+                                                <Insets top="2.0" />
+                                             </VBox.margin>
                                           </VBox>
-                                          <VBox prefHeight="100.0" prefWidth="100.0">
+                                          <VBox prefWidth="100.0">
                                              <children>
-                                                <Label prefHeight="20.0" prefWidth="156.0" styleClass="h3" text="Phase 2: Executing Heist">
+                                                <Label styleClass="h3" text="Phase 2: Executing Heist">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <HBox prefHeight="68.0" prefWidth="918.0">
+                                                <HBox>
                                                    <children>
                                                       <ImageView fitHeight="100.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true" />
-                                                      <Label fx:id="executingHeistParagraph" alignment="TOP_LEFT" prefHeight="80.0" prefWidth="697.0" styleClass="text" text="executing heist paragraph" wrapText="true">
+                                                      <Label fx:id="executingHeistParagraph" alignment="TOP_LEFT" prefWidth="697.0" styleClass="Text" text="executing heist paragraph" wrapText="true">
                                                          <padding>
                                                             <Insets left="10.0" />
                                                          </padding>
@@ -119,18 +125,21 @@
                                                    </children>
                                                 </HBox>
                                              </children>
+                                             <VBox.margin>
+                                                <Insets top="2.0" />
+                                             </VBox.margin>
                                           </VBox>
-                                          <VBox prefHeight="100.0" prefWidth="918.0">
+                                          <VBox prefWidth="918.0">
                                              <children>
-                                                <Label prefHeight="20.0" prefWidth="183.0" styleClass="h3" text="Phase 3: Escaping">
+                                                <Label styleClass="h3" text="Phase 3: Escaping">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <HBox prefHeight="68.0" prefWidth="918.0">
+                                                <HBox prefWidth="918.0">
                                                    <children>
                                                       <ImageView fitHeight="100.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true" />
-                                                      <Label fx:id="escapingParagraph" alignment="TOP_LEFT" prefHeight="80.0" prefWidth="697.0" styleClass="text" text="escaping paragraph" wrapText="true">
+                                                      <Label fx:id="escapingParagraph" alignment="TOP_LEFT" prefWidth="697.0" styleClass="Text" text="escaping paragraph" wrapText="true">
                                                          <padding>
                                                             <Insets left="10.0" />
                                                          </padding>
@@ -138,91 +147,100 @@
                                                    </children>
                                                 </HBox>
                                              </children>
+                                             <VBox.margin>
+                                                <Insets top="2.0" />
+                                             </VBox.margin>
                                           </VBox>
                                        </children>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
                                     </VBox>
                                  </children>
                               </VBox>
-                              <VBox prefHeight="938.0" prefWidth="918.0">
+                              <VBox prefWidth="918.0">
                                  <children>
                                     <Label styleClass="h1" text="GAME MECHANICS">
                                        <font>
                                           <Font name="System Bold" size="24.0" />
                                        </font>
                                     </Label>
-                                    <VBox prefHeight="200.0" prefWidth="100.0">
+                                    <VBox prefWidth="100.0">
                                        <children>
-                                          <Label prefHeight="27.0" prefWidth="225.0" styleClass="h2" text="Interactability:">
+                                          <Label styleClass="h2" text="Interactability:">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
-                                          <Label prefHeight="17.0" prefWidth="927.0" styleClass="text" text="Clickable objects will be highlighted with a coloured glow and display tooltips when hovered over to indicate their current usability." />
-                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                          <Label prefWidth="927.0" styleClass="Text" text="Clickable objects will be highlighted with a coloured glow and display tooltips when hovered over to indicate their current usability." />
+                                          <HBox prefWidth="200.0">
                                              <children>
-                                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                                                <VBox prefHeight="150.0" prefWidth="100.0">
+                                                <ImageView fitHeight="150.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true" />
+                                                <VBox prefWidth="100.0">
                                                    <children>
-                                                      <Label prefHeight="40.0" prefWidth="102.0" styleClass="h3" text="Green Glow">
+                                                      <Label styleClass="h3" text="Green Glow">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label alignment="TOP_LEFT" prefHeight="100.0" prefWidth="135.0" styleClass="text" text="Players currently can interact with this object." textAlignment="JUSTIFY" wrapText="true" />
+                                                      <Label alignment="TOP_LEFT" prefWidth="135.0" styleClass="Text" text="Players currently can interact with this object." textAlignment="JUSTIFY" wrapText="true" />
                                                    </children>
                                                 </VBox>
-                                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                                                <VBox prefHeight="150.0" prefWidth="100.0">
+                                                <ImageView fitHeight="150.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true" />
+                                                <VBox prefWidth="100.0">
                                                    <children>
-                                                      <Label prefHeight="40.0" prefWidth="120.0" styleClass="h3" text="Orange Glow">
+                                                      <Label styleClass="h3" text="Orange Glow">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label alignment="TOP_LEFT" prefHeight="100.0" prefWidth="121.0" styleClass="text" text="Players may need to interact with this object in future." textAlignment="JUSTIFY" wrapText="true" />
+                                                      <Label alignment="TOP_LEFT" prefWidth="121.0" styleClass="Text" text="Players may need to interact with this object in future." textAlignment="JUSTIFY" wrapText="true" />
                                                    </children>
                                                 </VBox>
-                                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                                                <VBox prefHeight="150.0" prefWidth="100.0">
+                                                <ImageView fitHeight="150.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true" />
+                                                <VBox prefWidth="100.0">
                                                    <children>
-                                                      <Label prefHeight="40.0" prefWidth="107.0" styleClass="h3" text="Red Glow">
+                                                      <Label styleClass="h3" text="Red Glow">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label alignment="TOP_LEFT" prefHeight="100.0" prefWidth="112.0" styleClass="text" text="Players currently can not interact with this object" textAlignment="JUSTIFY" wrapText="true" />
+                                                      <Label alignment="TOP_LEFT" prefWidth="112.0" styleClass="Text" text="Players currently can not interact with this object" textAlignment="JUSTIFY" wrapText="true" />
                                                    </children>
                                                 </VBox>
                                              </children>
                                           </HBox>
                                        </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
                                     </VBox>
-                                    <VBox prefHeight="410.0" prefWidth="918.0">
+                                    <VBox prefWidth="918.0">
                                        <children>
-                                          <Label prefHeight="27.0" prefWidth="144.0" styleClass="h2" text="Switching Rooms:">
+                                          <Label styleClass="h2" text="Switching Rooms:">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
-                                          <Label alignment="TOP_LEFT" prefHeight="15.0" prefWidth="918.0" styleClass="text" text="The game features three interconnected rooms that players must traverse to complete the heist successfully. There is a bank lobby, a security room and a vault room." />
-                                          <Label alignment="TOP_LEFT" prefHeight="19.0" prefWidth="931.0" styleClass="text" text="To change rooms, players simply click on the robber icon that corresponds to their desired destination." textAlignment="JUSTIFY" wrapText="true" />
-                                          <VBox prefHeight="296.0" prefWidth="918.0">
+                                          <Label alignment="TOP_LEFT" prefWidth="918.0" styleClass="Text" text="The game features three interconnected rooms that players must traverse to complete the heist successfully. There is a bank lobby, a security room and a vault room." />
+                                          <Label alignment="TOP_LEFT" prefWidth="931.0" styleClass="Text" text="To change rooms, players simply click on the robber icon that corresponds to their desired destination." textAlignment="JUSTIFY" wrapText="true" />
+                                          <VBox prefWidth="918.0">
                                              <children>
-                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                <HBox prefWidth="200.0">
                                                    <children>
                                                       <ImageView fitHeight="130.0" fitWidth="200.0" pickOnBounds="true">
                                                          <image>
                                                             <Image url="@../images/bankInterior.jpg" />
                                                          </image>
                                                       </ImageView>
-                                                      <VBox prefHeight="150.0" prefWidth="195.0">
+                                                      <VBox prefWidth="195.0">
                                                          <children>
-                                                            <Label prefHeight="40.0" prefWidth="102.0" styleClass="h3" text="Room Switching">
+                                                            <Label styleClass="h3" text="Room Switching">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
                                                             </Label>
-                                                            <Label alignment="TOP_LEFT" prefHeight="92.0" prefWidth="181.0" styleClass="text" text="Select the icon corresponding to destination to switch rooms." wrapText="true" />
+                                                            <Label alignment="TOP_LEFT" prefWidth="181.0" styleClass="Text" text="Select the icon corresponding to destination to switch rooms." wrapText="true" />
                                                          </children>
                                                          <HBox.margin>
                                                             <Insets left="10.0" />
@@ -233,14 +251,14 @@
                                                             <Image url="@../images/banklobbybackground.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <VBox prefHeight="150.0" prefWidth="195.0">
+                                                      <VBox prefWidth="195.0">
                                                          <children>
-                                                            <Label prefHeight="40.0" prefWidth="102.0" styleClass="h3" text="Bank Lobby">
+                                                            <Label styleClass="h3" text="Bank Lobby">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
                                                             </Label>
-                                                            <Label alignment="TOP_LEFT" prefHeight="95.0" prefWidth="188.0" styleClass="text" text="In this room players gather puzzle-related information." wrapText="true" />
+                                                            <Label alignment="TOP_LEFT" prefWidth="188.0" styleClass="Text" text="In this room players gather puzzle-related information." wrapText="true" />
                                                          </children>
                                                          <HBox.margin>
                                                             <Insets left="10.0" />
@@ -251,21 +269,21 @@
                                                       <Insets bottom="5.0" top="10.0" />
                                                    </VBox.margin>
                                                 </HBox>
-                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                <HBox prefWidth="200.0">
                                                    <children>
                                                       <ImageView fitHeight="130.0" fitWidth="200.0" pickOnBounds="true">
                                                          <image>
                                                             <Image url="@../images/securityroom.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <VBox prefHeight="141.0" prefWidth="195.0">
+                                                      <VBox prefWidth="195.0">
                                                          <children>
-                                                            <Label prefHeight="40.0" prefWidth="102.0" styleClass="h3" text="Security Room">
+                                                            <Label styleClass="h3" text="Security Room">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
                                                             </Label>
-                                                            <Label alignment="TOP_LEFT" prefHeight="102.0" prefWidth="187.0" styleClass="text" text="In this room, players disable and bypass security  " wrapText="true">
+                                                            <Label alignment="TOP_LEFT" prefWidth="187.0" styleClass="Text" text="In this room, players disable and bypass security  " wrapText="true">
                                                                <VBox.margin>
                                                                   <Insets />
                                                                </VBox.margin>
@@ -280,14 +298,14 @@
                                                             <Image url="@../images/realvaultbackground.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <VBox prefHeight="141.0" prefWidth="195.0">
+                                                      <VBox prefWidth="195.0">
                                                          <children>
-                                                            <Label prefHeight="40.0" prefWidth="102.0" styleClass="h3" text="Vault Room">
+                                                            <Label styleClass="h3" text="Vault Room">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
                                                             </Label>
-                                                            <Label alignment="TOP_LEFT" prefHeight="95.0" prefWidth="190.0" styleClass="text" text="This is the room that contains all the vaults that the player is trying to unlock" wrapText="true" />
+                                                            <Label alignment="TOP_LEFT" prefWidth="190.0" styleClass="Text" text="This is the room that contains all the vaults that the player is trying to unlock" wrapText="true" />
                                                          </children>
                                                          <HBox.margin>
                                                             <Insets left="10.0" />
@@ -299,30 +317,33 @@
                                                    </VBox.margin>
                                                 </HBox>
                                              </children>
+                                             <VBox.margin>
+                                                <Insets top="2.0" />
+                                             </VBox.margin>
                                           </VBox>
                                        </children>
                                     </VBox>
-                                    <VBox prefHeight="345.0" prefWidth="918.0">
+                                    <VBox prefWidth="918.0">
                                        <children>
-                                          <Label prefHeight="27.0" prefWidth="144.0" styleClass="h2" text="Walkie-Talkie:">
+                                          <Label styleClass="h2" text="Walkie-Talkie:">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
-                                          <Label alignment="TOP_LEFT" prefHeight="26.0" prefWidth="918.0" styleClass="text" text="The game includes a walkie-talkie for player-hacker communication, allowing technical assistance and vital information exchange within the game." />
-                                          <VBox prefHeight="275.0" prefWidth="918.0">
+                                          <Label alignment="TOP_LEFT" prefWidth="918.0" styleClass="Text" text="The game includes a walkie-talkie for player-hacker communication, allowing technical assistance and vital information exchange within the game." />
+                                          <VBox prefWidth="918.0">
                                              <children>
-                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                <HBox prefWidth="200.0">
                                                    <children>
                                                       <ImageView fitHeight="130.0" fitWidth="200.0" pickOnBounds="true" />
-                                                      <VBox prefHeight="150.0" prefWidth="195.0">
+                                                      <VBox prefWidth="195.0">
                                                          <children>
-                                                            <Label prefHeight="40.0" styleClass="h3" text="Player Communication">
+                                                            <Label styleClass="h3" text="Player Communication">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
                                                             </Label>
-                                                            <Label alignment="TOP_LEFT" prefHeight="57.0" styleClass="text" text="Players can type messages to the hacker via the walkie-talkie for any inquiries." wrapText="true" />
+                                                            <Label alignment="TOP_LEFT" styleClass="Text" text="Players can type messages to the hacker via the walkie-talkie for any inquiries." wrapText="true" />
                                                          </children>
                                                          <HBox.margin>
                                                             <Insets />
@@ -332,14 +353,14 @@
                                                          </padding>
                                                       </VBox>
                                                       <ImageView fitHeight="130.0" fitWidth="200.0" pickOnBounds="true" />
-                                                      <VBox prefHeight="150.0" prefWidth="195.0">
+                                                      <VBox prefWidth="195.0">
                                                          <children>
-                                                            <Label prefHeight="40.0" styleClass="h3" text="Hacker Communication">
+                                                            <Label styleClass="h3" text="Hacker Communication">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
                                                             </Label>
-                                                            <Label alignment="TOP_LEFT" prefHeight="80.0" prefWidth="195.0" styleClass="text" text="The hacker communicates game-related information through the walkie-talkie as the game progresses." wrapText="true" />
+                                                            <Label alignment="TOP_LEFT" prefWidth="195.0" styleClass="Text" text="The hacker communicates game-related information through the walkie-talkie as the game progresses." wrapText="true" />
                                                          </children>
                                                          <HBox.margin>
                                                             <Insets />
@@ -353,31 +374,31 @@
                                                       <Insets bottom="5.0" top="10.0" />
                                                    </VBox.margin>
                                                 </HBox>
-                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                <HBox prefWidth="200.0">
                                                    <children>
                                                       <ImageView fitHeight="130.0" fitWidth="200.0" pickOnBounds="true" />
-                                                      <VBox prefHeight="150.0" prefWidth="195.0">
+                                                      <VBox prefWidth="195.0">
                                                          <children>
-                                                            <Label prefHeight="40.0" styleClass="h3" text="Quick Hint">
+                                                            <Label styleClass="h3" text="Quick Hint">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
                                                             </Label>
-                                                            <Label alignment="TOP_LEFT" prefHeight="100.0" styleClass="text" text="The player can quickly get a hint on the current objective." wrapText="true" />
+                                                            <Label alignment="TOP_LEFT" styleClass="Text" text="The player can quickly get a hint on the current objective." wrapText="true" />
                                                          </children>
                                                          <padding>
                                                             <Insets left="10.0" />
                                                          </padding>
                                                       </VBox>
                                                       <ImageView fitHeight="130.0" fitWidth="200.0" pickOnBounds="true" />
-                                                      <VBox prefHeight="150.0" prefWidth="195.0">
+                                                      <VBox prefWidth="195.0">
                                                          <children>
-                                                            <Label prefHeight="40.0" styleClass="h3" text="Chat History">
+                                                            <Label styleClass="h3" text="Chat History">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
                                                             </Label>
-                                                            <Label alignment="TOP_LEFT" prefHeight="100.0" styleClass="text" text="Players can view their entire chat history and hint history with the hacker." wrapText="true" />
+                                                            <Label alignment="TOP_LEFT" styleClass="Text" text="Players can view their entire chat history and hint history with the hacker." wrapText="true" />
                                                          </children>
                                                          <padding>
                                                             <Insets left="10.0" />
@@ -396,27 +417,30 @@
                                        </VBox.margin>
                                     </VBox>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
                               </VBox>
-                              <VBox prefHeight="481.0" prefWidth="918.0">
+                              <VBox prefWidth="918.0">
                                  <children>
-                                    <Label prefHeight="88.0" prefWidth="963.0" styleClass="h1" text="PUZZLES AND MINIGAMES">
+                                    <Label styleClass="h1" text="PUZZLES AND MINIGAMES">
                                        <font>
                                           <Font name="System Bold" size="24.0" />
                                        </font>
                                     </Label>
-                                    <VBox prefHeight="300.0" prefWidth="918.0">
+                                    <VBox prefWidth="918.0">
                                        <children>
-                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                          <HBox prefWidth="200.0">
                                              <children>
                                                 <ImageView fitHeight="130.0" fitWidth="200.0" pickOnBounds="true" />
-                                                <VBox prefHeight="150.0" prefWidth="195.0">
+                                                <VBox prefWidth="195.0">
                                                    <children>
-                                                      <Label prefHeight="40.0" styleClass="h3" text="Connect The Dots">
+                                                      <Label styleClass="h3" text="Connect The Dots">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label alignment="TOP_LEFT" prefHeight="57.0" styleClass="text" text="The player must connect the dots such that there is a path between all corresponding pairs" wrapText="true" />
+                                                      <Label alignment="TOP_LEFT" styleClass="Text" text="The player must connect the dots such that there is a path between all corresponding pairs" wrapText="true" />
                                                    </children>
                                                    <HBox.margin>
                                                       <Insets />
@@ -426,14 +450,14 @@
                                                    </padding>
                                                 </VBox>
                                                 <ImageView fitHeight="130.0" fitWidth="200.0" pickOnBounds="true" />
-                                                <VBox prefHeight="150.0" prefWidth="195.0">
+                                                <VBox prefWidth="195.0">
                                                    <children>
-                                                      <Label prefHeight="40.0" styleClass="h3" text="Laser Cutting">
+                                                      <Label styleClass="h3" text="Laser Cutting">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label alignment="TOP_LEFT" prefHeight="80.0" prefWidth="195.0" styleClass="text" text="The player must keep the laser within the bounds to cut open the vault" wrapText="true" />
+                                                      <Label alignment="TOP_LEFT" prefWidth="195.0" styleClass="Text" text="The player must keep the laser within the bounds to cut open the vault" wrapText="true" />
                                                    </children>
                                                    <HBox.margin>
                                                       <Insets />
@@ -447,31 +471,31 @@
                                                 <Insets bottom="5.0" top="10.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                          <HBox prefWidth="200.0">
                                              <children>
                                                 <ImageView fitHeight="130.0" fitWidth="200.0" pickOnBounds="true" />
-                                                <VBox prefHeight="150.0" prefWidth="195.0">
+                                                <VBox prefWidth="195.0">
                                                    <children>
-                                                      <Label prefHeight="40.0" styleClass="h3" text="Chemical Mixing">
+                                                      <Label styleClass="h3" text="Chemical Mixing">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label alignment="TOP_LEFT" prefHeight="100.0" styleClass="text" text="The player must pour the right amount of each chemical to melt the vault door." wrapText="true" />
+                                                      <Label alignment="TOP_LEFT" styleClass="Text" text="The player must pour the right amount of each chemical to melt the vault door." wrapText="true" />
                                                    </children>
                                                    <padding>
                                                       <Insets left="10.0" />
                                                    </padding>
                                                 </VBox>
                                                 <ImageView fitHeight="130.0" fitWidth="200.0" pickOnBounds="true" />
-                                                <VBox prefHeight="150.0" prefWidth="195.0">
+                                                <VBox prefWidth="195.0">
                                                    <children>
-                                                      <Label prefHeight="40.0" styleClass="h3" text="Eye Scanner">
+                                                      <Label styleClass="h3" text="Eye Scanner">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label alignment="TOP_LEFT" prefHeight="100.0" styleClass="text" text="The player must try and match the artificial eye colour to the guards eye colour to pass the biometrics on vault." wrapText="true" />
+                                                      <Label alignment="TOP_LEFT" styleClass="Text" text="The player must try and match the artificial eye colour to the guards eye colour to pass the biometrics on vault." wrapText="true" />
                                                    </children>
                                                    <padding>
                                                       <Insets left="10.0" />
@@ -482,31 +506,31 @@
                                                 <Insets bottom="10.0" top="10.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                          <HBox prefWidth="200.0">
                                              <children>
                                                 <ImageView fitHeight="130.0" fitWidth="200.0" pickOnBounds="true" />
-                                                <VBox prefHeight="150.0" prefWidth="195.0">
+                                                <VBox prefWidth="195.0">
                                                    <children>
-                                                      <Label prefHeight="40.0" styleClass="h3" text="Wirecutting">
+                                                      <Label styleClass="h3" text="Wirecutting">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label alignment="TOP_LEFT" prefHeight="100.0" styleClass="text" text="The player must cut the wires in the correct order." wrapText="true" />
+                                                      <Label alignment="TOP_LEFT" styleClass="Text" text="The player must cut the wires in the correct order." wrapText="true" />
                                                    </children>
                                                    <padding>
                                                       <Insets left="10.0" />
                                                    </padding>
                                                 </VBox>
                                                 <ImageView fitHeight="130.0" fitWidth="200.0" pickOnBounds="true" />
-                                                <VBox prefHeight="150.0" prefWidth="195.0">
+                                                <VBox prefWidth="195.0">
                                                    <children>
-                                                      <Label prefHeight="40.0" styleClass="h3" text="Other">
+                                                      <Label styleClass="h3" text="Other">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label alignment="TOP_LEFT" prefHeight="100.0" styleClass="text" text="To solve puzzles, players need to execute the correct action sequences or utilize discovered information." wrapText="true" />
+                                                      <Label alignment="TOP_LEFT" styleClass="Text" text="To solve puzzles, players need to execute the correct action sequences or utilize discovered information." wrapText="true" />
                                                    </children>
                                                    <padding>
                                                       <Insets left="10.0" />
