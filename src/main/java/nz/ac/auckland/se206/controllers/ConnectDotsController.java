@@ -26,7 +26,6 @@ public class ConnectDotsController extends Controller {
   @FXML private Label timerLabel;
   @FXML private Button resetButton;
 
-  private StyleManager styleManager = StyleManager.getInstance();
 
   // 0 = empty, negative = node
   private int[][] grid = new int[6][6];
@@ -352,7 +351,7 @@ public class ConnectDotsController extends Controller {
   public void switchToSecurity() {
     // handle switch methods
     if (GameState.isSecondUserAuthenticated) {
-      styleManager.setDisable(true, "computer");
+      StyleManager.setDisable(true, "computer");
     }
     App.setUI(Scenes.SECURITY);
   }

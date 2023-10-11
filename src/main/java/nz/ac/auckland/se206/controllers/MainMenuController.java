@@ -1,8 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
-import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
-import javafx.animation.SequentialTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -62,5 +60,11 @@ public class MainMenuController extends Controller {
   @FXML
   private void onInstructions() {
     App.setUI(Scenes.INSTRUCTIONS);
+  }
+
+  public void reset() {
+    buttonsContainer.setDisable(false);
+    title.setOpacity(1.0);
+    buttonsContainer.setOpacity(1.0);
   }
 }

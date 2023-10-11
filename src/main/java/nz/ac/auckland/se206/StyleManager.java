@@ -78,14 +78,14 @@ public class StyleManager {
   }
 
   // toggles disability of specified items
-  public void setDisable(boolean value, String... items) {
+  public static void setDisable(boolean value, String... items) {
     for (String item : items) {
       getHoverItem(item).setDisable(value);
     }
   }
 
   // toggles visibility of specified items
-  public void setVisible(boolean value, String... items) {
+  public static void setVisible(boolean value, String... items) {
     for (String item : items) {
       getHoverItem(item).setVisible(value);
     }

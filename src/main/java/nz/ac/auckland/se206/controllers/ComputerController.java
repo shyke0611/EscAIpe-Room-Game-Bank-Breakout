@@ -55,7 +55,6 @@ public class ComputerController extends Controller {
   private int dotCount = 0;
   private Queue<ChatMessage> messageQueue = new LinkedList<>();
   private WalkieTalkieManager walkieTalkieManager;
-  private StyleManager styleManager = StyleManager.getInstance();
 
   private Timeline timeline;
   private Boolean riddleStarted;
@@ -330,7 +329,7 @@ public class ComputerController extends Controller {
 
   private void setLevelTwoStyle() {
     // set disability
-    styleManager.setDisable(true, "computer", "ceoPainting", "wallEmployee");
+    StyleManager.setDisable(true, "computer", "ceoPainting", "wallEmployee");
     // setting vault style
     StyleManager.setItemsHoverColour(HoverColour.GREEN, "silverDoorHolder", "bronzeDoorHolder");
     StyleManager.setItemsMessage("Access granted", "bronzeDoorHolder", "silverDoorHolder");
@@ -339,7 +338,7 @@ public class ComputerController extends Controller {
 
   private void setLevelThreeStyle() {
     // disabling items
-    styleManager.setDisable(true, "computer", "ceoPainting", "wallEmployee");
+    StyleManager.setDisable(true, "computer", "ceoPainting", "wallEmployee");
     // setting vault style
     StyleManager.setItemsHoverColour(
         HoverColour.GREEN, "silverDoorHolder", "bronzeDoorHolder", "goldDoorHolder");
