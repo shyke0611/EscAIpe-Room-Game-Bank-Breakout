@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,6 +21,7 @@ public class MainMenuController extends Controller {
   @FXML private Button newGameBtn;
   @FXML private Button instructionsBtn;
   @FXML private ImageView title;
+  @FXML private ImageView robbersimage;
 
   public void initialize() {
     SceneManager.setController(Scenes.MAIN_MENU, this);
@@ -36,15 +36,12 @@ public class MainMenuController extends Controller {
   @FXML
   private void onNewGameBtnClicked(ActionEvent event) {
     // animation settings for smooth play
-    PauseTransition pause = new PauseTransition(Duration.seconds(2));
-        pause.setOnFinished(e -> {
-          App.setUI(Scenes.DIFFICULTYPAGE); // Change scene
-          AnimationManager.fadeTransition(StyleManager.getHoverItem("itemContainer"), 2,0,1);
-      });
-      pause.play();
+    AnimationManager.roomSwitchAnimation(
+        Duration.seconds(2),
+        () -> App.setUI(Scenes.DIFFICULTYPAGE),
+        () -> AnimationManager.fadeTransition(StyleManager.getHoverItem("itemContainer"), 2, 0, 1));
     buttonsContainer.setDisable(true);
-    AnimationManager.fadeTransition(title, 2, 1.0, 0.0);
-    AnimationManager.fadeTransition(buttonsContainer, 2, 1.0, 0.0);
+    mainMenuAnimationPlay();
   }
 
   /**
@@ -59,12 +56,23 @@ public class MainMenuController extends Controller {
 
   @FXML
   private void onInstructions() {
-    App.setUI(Scenes.INSTRUCTIONS);
+    AnimationManager.roomSwitchAnimation(
+        Duration.seconds(2),
+        () -> App.setUI(Scenes.INSTRUCTIONS));
+    buttonsContainer.setDisable(true);
+    mainMenuAnimationPlay();
   }
 
   public void reset() {
     buttonsContainer.setDisable(false);
     title.setOpacity(1.0);
     buttonsContainer.setOpacity(1.0);
+  }
+
+  public void mainMenuAnimationPlay() {
+    buttonsContainer.setDisable(true);
+    AnimationManager.fadeTransition(title, 2, 1.0, 0.0);
+    AnimationManager.fadeTransition(buttonsContainer, 2, 1.0, 0.0);
+    AnimationManager.fadeTransition(robbersimage, 2, 1.0, 0.0);
   }
 }
