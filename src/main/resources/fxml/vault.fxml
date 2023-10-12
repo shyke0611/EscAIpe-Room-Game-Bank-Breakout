@@ -13,7 +13,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
@@ -21,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="VaultPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.VaultController">
+<AnchorPane fx:id="VaultPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.VaultController">
    <children>
       <ImageView fx:id="realvaultbackground" fitHeight="704.0" fitWidth="1008.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -47,7 +46,7 @@
             </Lighting>
          </effect>
       </HBox>
-      <HBox fx:id="exitHolder" layoutX="11.0" layoutY="412.0" prefHeight="129.0" prefWidth="140.0" styleClass="guard" stylesheets="@../css/rooms.css" visible="false">
+      <HBox fx:id="exitHolder" layoutX="11.0" layoutY="398.0" prefHeight="119.0" prefWidth="140.0" styleClass="guard" stylesheets="@../css/rooms.css" visible="false">
          <children>
             <StackPane prefHeight="150.0" prefWidth="145.0">
                <children>
@@ -212,27 +211,56 @@
          <children>
             <StackPane prefHeight="150.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="266.0" fitWidth="334.0" opacity="0.86" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="166.0" fitWidth="310.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/collectLoot.png" />
+                        <Image url="@../images/minigamebackground.png" />
                      </image>
+                     <effect>
+                        <Lighting diffuseConstant="2.0" specularExponent="4.74" surfaceScale="1.85">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant>
+                                 <color>
+                                    <Color red="0.032407406717538834" green="0.9354938268661499" blue="1.0" />
+                                 </color>
+                              </Light.Distant>
+                           </light>
+                        </Lighting>
+                     </effect>
                   </ImageView>
-                  <Button fx:id="lootBtn" mnemonicParsing="false" onAction="#onLootCollected" onMouseEntered="#showMoneyCollected" onMouseExited="#clearInfo" prefHeight="22.0" prefWidth="73.0" styleClass="tech-button" stylesheets="@../css/rooms.css" text="Collect Loot">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                     <StackPane.margin>
-                        <Insets left="30.0" top="60.0" />
-                     </StackPane.margin>
-                  </Button>
-                  <Text fx:id="lootLbl" fill="#9c61d0" strokeType="OUTSIDE" strokeWidth="0.0" text="Collect Loot Now or Open More Vaults" wrappingWidth="141.67347717285156">
+                  <Text fx:id="lootLbl" fill="#90f6ff" strokeType="OUTSIDE" strokeWidth="0.0" text="Collect Loot Now or Open More Vaults" textAlignment="CENTER" wrappingWidth="311.2114562988281">
                      <font>
                         <Font name="Copperplate" size="19.0" />
                      </font>
                      <StackPane.margin>
-                        <Insets bottom="30.0" right="-85.0" />
+                        <Insets bottom="40.0" />
                      </StackPane.margin>
                   </Text>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/eyescannerarrow.png" />
+                     </image>
+                     <StackPane.margin>
+                        <Insets right="135.0" top="140.0" />
+                     </StackPane.margin>
+                     <effect>
+                        <DropShadow spread="0.17">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </ImageView>
+                  <Button fx:id="lootBtn" mnemonicParsing="false" onAction="#onLootCollected" onMouseEntered="#showMoneyCollected" onMouseExited="#clearInfo" prefHeight="23.0" prefWidth="110.0" styleClass="tech1-button" stylesheets="@../css/rooms.css" text="Collect Loot">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets top="40.0" />
+                     </StackPane.margin>
+                  </Button>
                </children>
             </StackPane>
          </children>
@@ -449,7 +477,7 @@
             </Label>
          </children>
       </StackPane>
-      <HBox fx:id="bombHolder" alignment="CENTER" layoutX="405.0" layoutY="268.0" onMousePressed="#onBombPressed" prefHeight="199.0" prefWidth="224.0" visible="false">
+      <HBox fx:id="bombHolder" alignment="CENTER" layoutX="405.0" layoutY="377.0" onMousePressed="#onBombPressed" prefHeight="214.0" prefWidth="224.0" visible="false">
          <children>
             <HBox fx:id="bomblayer" alignment="CENTER" prefHeight="220.0" prefWidth="130.0" styleClass="guard" stylesheets="@../css/rooms.css">
                <children>
@@ -469,63 +497,144 @@
             </HBox>
          </children>
       </HBox>
-      <Pane fx:id="bombPuzzle" layoutX="435.0" layoutY="280.0" prefHeight="198.0" prefWidth="336.0" visible="false">
+      <VBox fx:id="bombPuzzle" alignment="CENTER" layoutX="435.0" layoutY="177.0" prefHeight="321.0" prefWidth="651.0" visible="false">
          <children>
-            <ImageView fitHeight="658.0" fitWidth="617.0" layoutX="-206.0" layoutY="-257.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/bomb.png" />
-               </image>
-               <effect>
-                  <DropShadow spread="0.58" />
-               </effect>
-            </ImageView>
-            <VBox alignment="CENTER" layoutX="-6.0" layoutY="167.0" opacity="0.51" prefHeight="45.0" prefWidth="125.0" style="-fx-background-color: black; -fx-background-radius: 10;" />
-            <Pane layoutX="-50.0" layoutY="60.0" prefHeight="180.0" prefWidth="374.0">
+            <StackPane fx:id="bombpuzzlestackpane" opacity="0.0" prefHeight="324.0" prefWidth="572.0">
                <children>
-                  <Button fx:id="button" layoutX="-13.0" layoutY="-12.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="34.0" prefWidth="42.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="1" />
-                  <Button fx:id="button" layoutX="32.0" layoutY="-13.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="34.0" prefWidth="38.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="2" />
-                  <Button fx:id="button" layoutX="180.0" layoutY="-13.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="34.0" prefWidth="34.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="6" />
-                  <Button fx:id="button" layoutX="71.0" layoutY="-14.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="35.0" prefWidth="35.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="3" />
-                  <Button fx:id="button" layoutX="145.0" layoutY="-14.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="35.0" prefWidth="33.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="5" />
-                  <Button fx:id="button" layoutX="108.0" layoutY="-14.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="35.0" prefWidth="34.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="4" />
-                  <Button fx:id="checkBtn" layoutX="72.0" layoutY="38.0" mnemonicParsing="false" onAction="#onCheckCode" prefHeight="36.0" prefWidth="72.0" styleClass="genbutton" stylesheets="@../css/rooms.css" text="Check">
-                     <font>
-                        <Font size="9.0" />
-                     </font>
-                  </Button>
-                  <Label fx:id="inputLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="46.0" layoutY="109.0" prefHeight="33.0" prefWidth="120.0" textFill="#289e42">
-                     <font>
-                        <Font name="Copperplate" size="31.0" />
-                     </font>
+                  <ImageView fitHeight="214.0" fitWidth="423.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/minigamebackground.png" />
+                     </image>
                      <effect>
-                        <DropShadow height="23.95" radius="12.9475" spread="0.4" width="29.84">
+                        <Lighting diffuseConstant="2.0" specularExponent="4.74" surfaceScale="1.85">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant>
+                                 <color>
+                                    <Color red="0.032407406717538834" green="0.9354938268661499" blue="1.0" />
+                                 </color>
+                              </Light.Distant>
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </ImageView>
+                  <Text fx:id="lootLbl1" fill="#90f6ff" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Passcode:" textAlignment="CENTER" wrappingWidth="311.2114562988281">
+                     <font>
+                        <Font name="Copperplate" size="19.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets bottom="150.0" />
+                     </StackPane.margin>
+                  </Text>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#90f6ff" height="50.0" opacity="0.41" stroke="WHITE" strokeType="INSIDE" width="200.0">
+                     <StackPane.margin>
+                        <Insets bottom="90.0" top="20.0" />
+                     </StackPane.margin>
+                  </Rectangle>
+                  <ImageView fitHeight="137.0" fitWidth="255.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/eyescannerarrow.png" />
+                     </image>
+                     <StackPane.margin>
+                        <Insets right="400.0" top="200.0" />
+                     </StackPane.margin>
+                     <effect>
+                        <DropShadow spread="0.17">
                            <color>
                               <Color red="1.0" green="1.0" blue="1.0" />
                            </color>
                         </DropShadow>
                      </effect>
-                  </Label>
-                  <Label fx:id="statusLbl" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="-98.0" layoutY="74.0" prefHeight="20.0" prefWidth="281.0" textAlignment="CENTER" textFill="#0be059" wrapText="true">
+                  </ImageView>
+                  <Text fx:id="inputLbl" fill="#90f6ff" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="197.65951538085938">
                      <font>
-                        <Font name="Copperplate" size="17.0" />
+                        <Font name="Copperplate" size="19.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets bottom="110.0" top="30.0" />
+                     </StackPane.margin>
+                  </Text>
+                  <Label fx:id="statusLbl" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="320.0" textAlignment="CENTER" textFill="#74eef5" wrapText="true">
+                     <font>
+                        <Font name="Copperplate" size="13.0" />
                      </font>
                      <effect>
                         <DropShadow height="25.42" radius="11.842500000000001" spread="0.32" width="23.95" />
                      </effect>
+                     <StackPane.margin>
+                        <Insets bottom="85.0" top="40.0" />
+                     </StackPane.margin>
                   </Label>
+                  <Button fx:id="redBtn" disable="true" mnemonicParsing="false" onAction="#onExitBomb" prefHeight="23.0" prefWidth="80.0" styleClass="tech1-button" stylesheets="@../css/rooms.css" text="activate">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets left="90.0" top="100.0" />
+                     </StackPane.margin>
+                  </Button>
+                  <Button fx:id="checkBtn" mnemonicParsing="false" onAction="#onCheckCode" prefHeight="23.0" prefWidth="80.0" styleClass="tech1-button" stylesheets="@../css/rooms.css" text="Check">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets right="90.0" top="100.0" />
+                     </StackPane.margin>
+                  </Button>
+                  <Button fx:id="button" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="23.0" prefWidth="29.0" styleClass="tech1-button" stylesheets="@../css/rooms.css" text="4">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets left="40.0" top="20.0" />
+                     </StackPane.margin>
+                  </Button>
+                  <Button fx:id="button" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="23.0" prefWidth="29.0" styleClass="tech1-button" stylesheets="@../css/rooms.css" text="3">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets right="40.0" top="20.0" />
+                     </StackPane.margin>
+                  </Button>
+                  <Button fx:id="button" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="23.0" prefWidth="29.0" styleClass="tech1-button" stylesheets="@../css/rooms.css" text="5">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets left="120.0" top="20.0" />
+                     </StackPane.margin>
+                  </Button>
+                  <Button fx:id="button" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="23.0" prefWidth="29.0" styleClass="tech1-button" stylesheets="@../css/rooms.css" text="2">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets right="120.0" top="20.0" />
+                     </StackPane.margin>
+                  </Button>
+                  <Button fx:id="button" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="23.0" prefWidth="29.0" styleClass="tech1-button" stylesheets="@../css/rooms.css" text="6">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets left="200.0" top="20.0" />
+                     </StackPane.margin>
+                  </Button>
+                  <Button fx:id="button" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="23.0" prefWidth="29.0" styleClass="tech1-button" stylesheets="@../css/rooms.css" text="1">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets right="200.0" top="20.0" />
+                     </StackPane.margin>
+                  </Button>
                </children>
-            </Pane>
-            <Label fx:id="givencode" alignment="CENTER" contentDisplay="CENTER" layoutX="-23.0" layoutY="-11.0" prefHeight="38.0" prefWidth="177.0" style="-fx-background-color: black; -fx-border-color: green;" text="Code To Input:" textFill="#27b927">
-               <font>
-                  <Font size="28.0" />
-               </font>
-            </Label>
-            <Button fx:id="redBtn" disable="true" layoutX="183.0" layoutY="123.0" mnemonicParsing="false" onAction="#onExitBomb" prefHeight="22.0" prefWidth="20.0" styleClass="red-button" stylesheets="@../css/rooms.css">
-               <font>
-                  <Font size="8.0" />
-               </font>
-            </Button>
-         </children></Pane>
+            </StackPane>
+         </children>
+      </VBox>
 
    </children>
 </AnchorPane>

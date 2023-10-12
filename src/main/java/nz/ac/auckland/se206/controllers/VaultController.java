@@ -70,14 +70,14 @@ public class VaultController extends Controller {
   @FXML private Button checkBtn;
   @FXML private Button quickHintBtn;
   @FXML private VBox lootBtnHolder;
-  @FXML private Label inputLbl;
+  @FXML private Text inputLbl;
   @FXML private Label statusLbl;
-  @FXML private Label givencode;
   @FXML private HBox escapeDoor;
   @FXML private Pane slidePane;
   @FXML private Button lootBtn;
   @FXML private Button redBtn;
   @FXML private StackPane timerClock;
+  @FXML private StackPane bombpuzzlestackpane;
   @FXML private Label numberOfHints;
 
   @FXML private HBox switchHolder;
@@ -116,8 +116,7 @@ public class VaultController extends Controller {
 
     // adding relevant items to the stylemanager list
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
-    WalkieTalkieManager.addWalkieTalkieTextArea(this, vaultTextArea);
-    givencode.setText("Code: " + RandomnessGenerate.getPasscode());
+
 
     // setting style for the items
     StyleManager.setItemsMessage("It's locked tight", "exitDoor");
@@ -147,9 +146,12 @@ public class VaultController extends Controller {
     GameManager.completeObjective();
     // setting style for relevant items
     bombPuzzle.setVisible(true);
+    AnimationManager.fadeTransition(bombpuzzlestackpane, 1, 0.0,1.0);
     bombPuzzle.requestFocus();
-    bombHolder.setVisible(false);
     exitDoor.setDisable(true);
+    lootBtnHolder.setVisible(true);
+    lootBtn.setVisible(false);
+    lootLbl.setText("Code: " + RandomnessGenerate.getPasscode());
   }
 
   // @FXML
@@ -166,7 +168,10 @@ public class VaultController extends Controller {
     bombPuzzle.setVisible(false);
     AnimationManager.toggleAlarmAnimation(exitHolder, true, 0.5);
     AnimationManager.delayAnimation(exitHolder, escapeDoor);
+    lootBtnHolder.setVisible(false);
     exitHolder.setDisable(true);
+    bombHolder.setVisible(false);
+    vaultwalkietalkie.setVisible(false);
   }
 
   @FXML
@@ -247,23 +252,23 @@ public class VaultController extends Controller {
   @FXML
   private void onCheckCode() {
     // check bomb code
-    String code = givencode.getText().substring("Code: ".length());
+    String code = lootLbl.getText().substring("Code: ".length());
     // handle correct input
     if (inputLbl.getText() == null) {
       return;
     }
 
     if (inputLbl.getText().equals(code)) {
-      statusLbl.setText("Success, press red button to Activate");
+      statusLbl.setText("Success, Activate Bomb");
       inputLbl.setText("");
-      statusLbl.setTextFill(Color.GREEN);
       redBtn.setDisable(false);
+      checkBtn.setDisable(true);
+      inputLbl.setVisible(false);
 
       // handle incorrect input
     } else {
       statusLbl.setText("Wrong Try Again");
       inputLbl.setText(null);
-      statusLbl.setTextFill(Color.RED);
     }
     labelText.setLength(0);
   }
