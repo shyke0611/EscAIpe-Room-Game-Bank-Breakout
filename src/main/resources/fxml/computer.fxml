@@ -102,7 +102,7 @@
          <children>
             <HBox prefHeight="100.0" prefWidth="528.0">
                <children>
-                  <TextArea editable="false" prefHeight="126.0" prefWidth="408.0" stylesheets="@../css/walkietalkie.css" wrapText="true" />
+                  <TextArea fx:id="computerTextArea" editable="false" prefHeight="126.0" prefWidth="408.0" stylesheets="@../css/walkietalkie.css" wrapText="true" />
                   <VBox alignment="CENTER" prefHeight="100.0" prefWidth="107.0" styleClass="component1" stylesheets="@../css/walkietalkie.css">
                      <children>
                         <Button fx:id="viewHistoryBtn" mnemonicParsing="false" onAction="#onSwitchToHacker" stylesheets="@../css/walkietalkie.css" text="View History">

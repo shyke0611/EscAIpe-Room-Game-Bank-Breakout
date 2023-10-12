@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Blend;
 import javafx.scene.effect.BlendMode;
@@ -44,7 +43,6 @@ public class LaserCuttingController extends Controller {
   @FXML private GraphicsContext gc;
   @FXML private Label timerLabel;
 
-  private Boolean gunEquppied = false;
   private double prevY;
   private double prevX;
   private double totalAngle = 0.0;

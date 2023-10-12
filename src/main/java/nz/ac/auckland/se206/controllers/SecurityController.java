@@ -81,6 +81,7 @@ public class SecurityController extends Controller {
     WalkieTalkieManager.addWalkieTalkieImage(this, securityWalkieTalkie);
     WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
     WalkieTalkieManager.addQuickHintBtn(this, quickHintBtn);
+    WalkieTalkieManager.addWalkieTalkieTextArea(this, securityTextArea);
 
     // add styling
     styleManager.addHoverItems(computer, electricityBox, wallEmployee, securitybackground);

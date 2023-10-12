@@ -323,7 +323,16 @@ public class HackerAiManager {
 
     // Define an array of keywords to check for
     String[] keywords = {
-      "help", "hint", "assist", "support", "clue", "pointer", "aid", "guide", "give me a hand"
+      "help",
+      "hint",
+      "assist",
+      "support",
+      "clue",
+      "pointer",
+      "aid",
+      "guide",
+      "give me a hand",
+      "how do i do that"
     };
 
     // Check if any of the keywords is present in the message
