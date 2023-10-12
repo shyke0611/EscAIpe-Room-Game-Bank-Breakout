@@ -27,6 +27,7 @@ public class WalkieTalkieManager {
 
   // Static Fields
   private static HashMap<Controller, VBox> walkieTalkieMap = new HashMap<>();
+  private static HashMap<Controller, TextArea> walkieTalkieTextAreas = new HashMap<>();
   private static HashMap<Controller, ImageView> walkieTalkieImageMap = new HashMap<>();
   private static HashMap<Controller, Label> walkieTalkieHints = new HashMap<>();
   private static boolean walkieTalkieOpen = false;
@@ -36,6 +37,10 @@ public class WalkieTalkieManager {
   // Static Methods
   public static void addWalkieTalkie(Controller controller, VBox walkietalkie) {
     walkieTalkieMap.put(controller, walkietalkie);
+  }
+
+  public static void addWalkieTalkieTextArea(Controller controller, TextArea textArea) {
+    walkieTalkieTextAreas.put(controller, textArea);
   }
 
   public static void addWalkieTalkieHint(Controller controller, Label hint) {
@@ -52,6 +57,21 @@ public class WalkieTalkieManager {
 
   public static WalkieTalkieManager getInstance() {
     return instance;
+  }
+
+  public static void setWalkieTalkieOpen() {
+    Controller activeController = SceneManager.getActiveController();
+    walkieTalkieOpen = true;
+
+    // Iterate through the map and update the visibility of all VBoxes
+    for (VBox vertBox : walkieTalkieMap.values()) {
+      vertBox.setVisible(true);
+    }
+
+    VBox activeWalkieTalkie = walkieTalkieMap.get(activeController);
+    if (walkieTalkieOpen && activeWalkieTalkie != null) {
+      ((HBox) activeWalkieTalkie.getChildren().get(1)).getChildren().get(0).requestFocus();
+    }
   }
 
   public static void toggleWalkieTalkie() {
@@ -104,6 +124,7 @@ public class WalkieTalkieManager {
   }
 
   public void clearWalkieTalkie() {
+
     for (VBox vertBox : walkieTalkieMap.values()) {
       // Iterate through the children of the VBox (assuming they are HBox containers)
       ObservableList<Node> children = vertBox.getChildren();
@@ -125,24 +146,29 @@ public class WalkieTalkieManager {
   }
 
   public void setWalkieTalkieText(ChatMessage msg) {
-    for (VBox vertBox : walkieTalkieMap.values()) {
-      // Iterate through the children of the VBox (assuming they are HBox containers)
-      ObservableList<Node> children = vertBox.getChildren();
-      for (Node node : children) {
-        if (node instanceof HBox) {
-          HBox hbox = (HBox) node;
 
-          // Now, iterate through the children of the HBox to find the TextArea
-          ObservableList<Node> hboxChildren = hbox.getChildren();
-          for (Node hboxChild : hboxChildren) {
-            if (hboxChild instanceof TextArea) {
-              TextArea textArea = (TextArea) hboxChild;
-              textArea.setText(msg.getContent()); // Set the text to the desired message
-            }
-          }
-        }
-      }
+    for (TextArea textArea : walkieTalkieTextAreas.values()) {
+      textArea.setText(msg.getContent());
     }
+
+    // for (VBox vertBox : walkieTalkieMap.values()) {
+    //   // Iterate through the children of the VBox (assuming they are HBox containers)
+    //   ObservableList<Node> children = vertBox.getChildren();
+    //   for (Node node : children) {
+    //     if (node instanceof HBox) {
+    //       HBox hbox = (HBox) node;
+
+    //       // Now, iterate through the children of the HBox to find the TextArea
+    //       ObservableList<Node> hboxChildren = hbox.getChildren();
+    //       for (Node hboxChild : hboxChildren) {
+    //         if (hboxChild instanceof TextArea) {
+    //           TextArea textArea = (TextArea) hboxChild;
+    //           textArea.setText(msg.getContent()); // Set the text to the desired message
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
   }
 
   public void setHintText(String hintCount) {

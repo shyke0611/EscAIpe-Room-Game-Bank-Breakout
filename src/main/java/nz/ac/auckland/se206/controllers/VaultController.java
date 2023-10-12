@@ -117,6 +117,7 @@ public class VaultController extends Controller {
     // adding relevant items to the stylemanager list
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
 
+
     // setting style for the items
     StyleManager.setItemsMessage("It's locked tight", "exitDoor");
     StyleManager.setItemsMessage("set bomb down", "exitHolder");
@@ -210,10 +211,15 @@ public class VaultController extends Controller {
   @FXML
   private void onLootCollected(ActionEvent event) {
     // execute when firewall is disabled and any vault is opened
+
     if (GameState.isFirewallDisabled && GameState.isAnyDoorOpen) {
+
       if (!GameState.isAlarmTripped) {
         StyleManager.setAlarm(true);
         GameState.isAlarmTripped = true;
+        WalkieTalkieManager.setWalkieTalkieOpen();
+        walkieTalkieManager.setWalkieTalkieText(
+            new ChatMessage("user", "Uh Oh! You better find a way to turn that off quick"));
       }
       GameManager.completeObjective();
       lootBtnHolder.setVisible(false);

@@ -3,6 +3,7 @@ package nz.ac.auckland.se206.controllers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -18,6 +19,8 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
+import nz.ac.auckland.se206.WalkieTalkieManager;
+import nz.ac.auckland.se206.gpt.ChatMessage;
 
 public class ConnectDotsController extends Controller {
 
@@ -25,7 +28,6 @@ public class ConnectDotsController extends Controller {
   @FXML private StackPane disableSecurity;
   @FXML private Label timerLabel;
   @FXML private Button resetButton;
-
 
   // 0 = empty, negative = node
   private int[][] grid = new int[6][6];
@@ -43,6 +45,8 @@ public class ConnectDotsController extends Controller {
 
   private boolean nodeSelected = false;
   private int nodeValue = 0;
+
+  private WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
 
   public void initialize() {
     // initialising the methods to play this puzzle
@@ -138,6 +142,14 @@ public class ConnectDotsController extends Controller {
       resetButton.setDisable(true);
       GameManager.completeObjective();
       App.textToSpeech("Security Disabled, Level 1 Vault Access Granted");
+      Platform.runLater(
+          () -> {
+            WalkieTalkieManager.setWalkieTalkieOpen();
+            walkieTalkieManager.setWalkieTalkieText(
+                new ChatMessage(
+                    "assistant",
+                    "Nice job! 2 out of the 3 vault security systems have now been disabled"));
+          });
     }
   }
 
@@ -360,7 +372,7 @@ public class ConnectDotsController extends Controller {
   protected void grantAccess() {
     // setting style for when access is granted by disabling firewall
     GameState.isFirewallDisabled = true;
+
     App.setUI(Scenes.SECURITY);
   }
-  
 }
