@@ -94,6 +94,7 @@ public abstract class Controller {
     App.setUI(Scenes.VAULT);
     if (GameState.isAlarmDisabled) {
       StyleManager.setVisible(true,"bombHolder");
+      StyleManager.setVisible(false, "switchHolder", "vaultwalkietalkie","walkietalkieText");
       ImageView bomblogo = (ImageView) StyleManager.getHoverItem("bomblogo");
       AnimationManager.fadeTransition(bomblogo, 2,0.0,1.0);
     }

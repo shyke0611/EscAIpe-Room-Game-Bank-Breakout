@@ -30,6 +30,12 @@
 
 }
 
+.escape:hover {
+    -fx-effect: dropshadow(gaussian, rgba(34, 255, 0, 0.7), 1, 0.8, 0, 0);
+    -fx-cursor: hand;
+
+}
+
 .drawer:hover {
     -fx-effect: dropshadow(gaussian, rgba(255, 0, 0, 0.7), 5, 5, 0, 0);
     -fx-cursor: hand;
