@@ -49,6 +49,7 @@ public class ComputerController extends Controller {
   @FXML private Label timerLabel;
   @FXML private Label processingLabel;
   @FXML private ImageView usbStick;
+  @FXML private TextArea computerTextArea;
 
   private ChatCompletionRequest chatCompletionRequest;
   private ChatMessage lastMsg;
@@ -70,8 +71,9 @@ public class ComputerController extends Controller {
     // initialising all the relevant methods
     SceneManager.setController(Scenes.COMPUTER, this);
     super.setTimerLabel(timerLabel, 1);
-    WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     walkieTalkieManager = WalkieTalkieManager.getInstance();
+    WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
+    WalkieTalkieManager.addWalkieTalkieTextArea(this, computerTextArea);
     // styleManager.addItems(usbStick);
     // creating new timeline
     timeline = new Timeline(new KeyFrame(Duration.seconds(0.6), e -> updateLabel()));
@@ -265,6 +267,15 @@ public class ComputerController extends Controller {
         GameState.isFirewallDisabled = true;
         GameState.isSecondRiddleSolved = true;
         App.textToSpeech("Security Disabled, Level 3 Vault Access Granted");
+
+        WalkieTalkieManager.setWalkieTalkieOpen();
+        Platform.runLater(
+            () -> {
+              walkieTalkieManager.setWalkieTalkieText(
+                  new ChatMessage("assistant", "Nice work! Now you have access to all 3 vaults"));
+            });
+
+        GameManager.completeObjective();
         setLevelThreeStyle();
 
       } else if (questionsCorrect >= 1) {
@@ -274,11 +285,30 @@ public class ComputerController extends Controller {
         GameState.isFirewallDisabled = true;
         GameState.isFirstRiddleSolved = true;
         GameManager.completeObjective();
+        Platform.runLater(
+            () -> {
+              WalkieTalkieManager.setWalkieTalkieOpen();
+              walkieTalkieManager.setWalkieTalkieText(
+                  new ChatMessage(
+                      "assistant",
+                      "Nice job! 2 out of the 3 vault security systems have now been disabled"));
+            });
+
         setLevelTwoStyle();
 
       } else if (questionsCorrect == 0) {
         messageQueue.add(
             new ChatMessage("assistant", "Authentication failed, no vault access granted"));
+        Platform.runLater(
+            () -> {
+              WalkieTalkieManager.setWalkieTalkieOpen();
+              walkieTalkieManager.setWalkieTalkieText(
+                  new ChatMessage(
+                      "assistant",
+                      "Unfortuantly you failed authentication, but dont worry there is a plan B,"
+                          + " plug in the USB i gave you"));
+            });
+
         startConnectDots();
       }
     }

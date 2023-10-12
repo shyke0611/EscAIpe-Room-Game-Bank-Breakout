@@ -94,6 +94,8 @@ public class LobbyController extends Controller {
     WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     WalkieTalkieManager.addQuickHintBtn(this, quickHintBtn);
+    WalkieTalkieManager.addWalkieTalkieTextArea(this, lobbyTextArea);
+
     super.setTimerLabel(timerLabel, 1);
     // set random components
     RandomnessGenerate.generateRandomCredentials();
@@ -129,11 +131,12 @@ public class LobbyController extends Controller {
     System.out.println(plaqueName);
     johnIpsumLbl.setText(plaqueName + " Ipsum");
 
-    walkieTalkieManager.toggleWalkieTalkie();
+    WalkieTalkieManager.setWalkieTalkieOpen();
     walkieTalkieManager.setWalkieTalkieText(
         new ChatMessage(
             "user",
-            "First things first, we need to find a way to get into the AI security system"));
+            "Nice work, you made it inside! First things first, we need to find a way to access the"
+                + " computer in security"));
 
     String date = RandomnessGenerate.getRandomFoundingDate();
     System.out.println(date);
@@ -247,6 +250,12 @@ public class LobbyController extends Controller {
     passwordLbl.setText("Password: " + randomPassword);
     usernameLbl.setText("Username: " + randomUsername);
     StyleManager.removeItemsMessage("credentialsBook");
+    WalkieTalkieManager.setWalkieTalkieOpen();
+    walkieTalkieManager.setWalkieTalkieText(
+        new ChatMessage(
+            "user",
+            "Great you found the log in credentials! Now log in and try to convince the AI you are"
+                + " an employee"));
 
     GameState.isCredentialsFound = true;
     GameManager.completeObjective();
