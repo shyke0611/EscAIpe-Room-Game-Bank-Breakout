@@ -257,6 +257,7 @@ public class VaultController extends Controller {
       inputLbl.setText("");
       redBtn.setDisable(false);
       checkBtn.setDisable(true);
+      inputLbl.setVisible(false);
 
       // handle incorrect input
     } else {

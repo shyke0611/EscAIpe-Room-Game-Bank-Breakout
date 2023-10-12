@@ -528,9 +528,9 @@
                         <Insets bottom="150.0" />
                      </StackPane.margin>
                   </Text>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#90f6ff" height="41.0" opacity="0.41" stroke="WHITE" strokeType="INSIDE" width="200.0">
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#90f6ff" height="50.0" opacity="0.41" stroke="WHITE" strokeType="INSIDE" width="200.0">
                      <StackPane.margin>
-                        <Insets bottom="90.0" />
+                        <Insets bottom="90.0" top="20.0" />
                      </StackPane.margin>
                   </Rectangle>
                   <ImageView fitHeight="137.0" fitWidth="255.0" pickOnBounds="true" preserveRatio="true">
@@ -553,7 +553,7 @@
                         <Font name="Copperplate" size="19.0" />
                      </font>
                      <StackPane.margin>
-                        <Insets bottom="85.0" />
+                        <Insets bottom="110.0" top="30.0" />
                      </StackPane.margin>
                   </Text>
                   <Label fx:id="statusLbl" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="320.0" textAlignment="CENTER" textFill="#74eef5" wrapText="true">
@@ -564,7 +564,7 @@
                         <DropShadow height="25.42" radius="11.842500000000001" spread="0.32" width="23.95" />
                      </effect>
                      <StackPane.margin>
-                        <Insets bottom="110.0" />
+                        <Insets bottom="85.0" top="40.0" />
                      </StackPane.margin>
                   </Label>
                   <Button fx:id="redBtn" disable="true" mnemonicParsing="false" onAction="#onExitBomb" prefHeight="23.0" prefWidth="80.0" styleClass="tech1-button" stylesheets="@../css/rooms.css" text="activate">
@@ -588,7 +588,7 @@
                         <Font size="12.0" />
                      </font>
                      <StackPane.margin>
-                        <Insets left="40.0" />
+                        <Insets left="40.0" top="20.0" />
                      </StackPane.margin>
                   </Button>
                   <Button fx:id="button" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="23.0" prefWidth="29.0" styleClass="tech1-button" stylesheets="@../css/rooms.css" text="3">
@@ -596,7 +596,7 @@
                         <Font size="12.0" />
                      </font>
                      <StackPane.margin>
-                        <Insets right="40.0" />
+                        <Insets right="40.0" top="20.0" />
                      </StackPane.margin>
                   </Button>
                   <Button fx:id="button" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="23.0" prefWidth="29.0" styleClass="tech1-button" stylesheets="@../css/rooms.css" text="5">
@@ -604,7 +604,7 @@
                         <Font size="12.0" />
                      </font>
                      <StackPane.margin>
-                        <Insets left="120.0" />
+                        <Insets left="120.0" top="20.0" />
                      </StackPane.margin>
                   </Button>
                   <Button fx:id="button" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="23.0" prefWidth="29.0" styleClass="tech1-button" stylesheets="@../css/rooms.css" text="2">
@@ -612,7 +612,7 @@
                         <Font size="12.0" />
                      </font>
                      <StackPane.margin>
-                        <Insets right="120.0" />
+                        <Insets right="120.0" top="20.0" />
                      </StackPane.margin>
                   </Button>
                   <Button fx:id="button" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="23.0" prefWidth="29.0" styleClass="tech1-button" stylesheets="@../css/rooms.css" text="6">
@@ -620,7 +620,7 @@
                         <Font size="12.0" />
                      </font>
                      <StackPane.margin>
-                        <Insets left="200.0" />
+                        <Insets left="200.0" top="20.0" />
                      </StackPane.margin>
                   </Button>
                   <Button fx:id="button" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="23.0" prefWidth="29.0" styleClass="tech1-button" stylesheets="@../css/rooms.css" text="1">
@@ -628,7 +628,7 @@
                         <Font size="12.0" />
                      </font>
                      <StackPane.margin>
-                        <Insets right="200.0" />
+                        <Insets right="200.0" top="20.0" />
                      </StackPane.margin>
                   </Button>
                </children>
