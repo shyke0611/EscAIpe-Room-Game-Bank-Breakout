@@ -1,0 +1,13 @@
+
+.bottom-rectangle{
+    -fx-background-color: linear-gradient(to bottom, rgba(255, 0, 0, 0.675) 0%, rgba(13, 206, 13, 0.773) 40%, rgba(1, 92, 167, 0.778) 65%, rgba(255, 255, 74, 0.752) 100%);
+ 
+    -fx-background-radius: 0 0 40 40;
+   
+    
+}
+
+#myRectangle{
+    -fx-fill: #9fd7ff;
+    
+}
