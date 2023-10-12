@@ -27,11 +27,10 @@ public class WireCuttingController extends Controller {
   @FXML private HBox greenwire;
   @FXML private HBox redwire;
   @FXML private HBox yellowwire;
-  @FXML private Button retryBtn;
+  @FXML private HBox retryBtn;
 
   @FXML private Label taskLbl;
   @FXML private Label timerLabel;
-  @FXML private Label wirecuttingorderLbl;
   @FXML private Label wirecutterLbl;
   @FXML private ImageView wirecuttingbackground;
 
@@ -49,7 +48,7 @@ public class WireCuttingController extends Controller {
     wiresCut = new ArrayList<>();
     // generating relevant methods on initialise
     styleManager.addHoverItems(
-        wirecuttingbackground, wirecuttingorderLbl, bluewire, redwire, yellowwire, greenwire);
+        wirecuttingbackground, bluewire, redwire, yellowwire, greenwire);
     RandomnessGenerate.addWires(bluewire, yellowwire, greenwire, redwire);
   }
 
@@ -59,7 +58,7 @@ public class WireCuttingController extends Controller {
    * @param event The ActionEvent triggered by clicking the "Go Back" button.
    */
   @FXML
-  private void onGoBack(ActionEvent event) {
+  private void onGoBack(MouseEvent event) {
     App.setUI(Scenes.SECURITY);
     // styleManager.setClueHover("electricityBox", false);
   }
@@ -101,7 +100,7 @@ public class WireCuttingController extends Controller {
    * @param event The ActionEvent triggered by clicking the retry button.
    */
   @FXML
-  private void onRetry(ActionEvent event) {
+  private void onRetry(MouseEvent event) {
     wiresCut.clear();
     StyleManager.setVisible(true, "yellowwire", "redwire", "bluewire", "greenwire");
     taskLbl.setText(null);
