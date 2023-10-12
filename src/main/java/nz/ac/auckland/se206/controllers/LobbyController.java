@@ -102,9 +102,20 @@ public class LobbyController extends Controller {
     RandomnessGenerate.addKeyLocation(key1, key3, key4);
     RandomnessGenerate.generateRandomKeyLocation();
 
-    styleManager.addHoverItems(key1,key3,key4,guard,guardpocket,guardeyes,drawerHolder,credentialsBook,credentialsNote,ceoPainting,lobbybackground);
-  
-     // setting style to items
+    styleManager.addHoverItems(
+        key1,
+        key3,
+        key4,
+        guard,
+        guardpocket,
+        guardeyes,
+        drawerHolder,
+        credentialsBook,
+        credentialsNote,
+        ceoPainting,
+        lobbybackground);
+
+    // setting style to items
     StyleManager.setItemsMessage(
         "Guard is watching...", "key1", "key3", "key4", "guardpocket", "guardeyes");
     StyleManager.setItemsMessage("It's locked...", "drawerHolder");
@@ -117,6 +128,12 @@ public class LobbyController extends Controller {
     String plaqueName = RandomnessGenerate.getRandomCeoName();
     System.out.println(plaqueName);
     johnIpsumLbl.setText(plaqueName + " Ipsum");
+
+    walkieTalkieManager.toggleWalkieTalkie();
+    walkieTalkieManager.setWalkieTalkieText(
+        new ChatMessage(
+            "user",
+            "First things first, we need to find a way to get into the AI security system"));
 
     String date = RandomnessGenerate.getRandomFoundingDate();
     System.out.println(date);
@@ -249,7 +266,7 @@ public class LobbyController extends Controller {
       if (clickedKeyLocation == RandomnessGenerate.getkeyLocation()) {
         // update game and item states
         GameState.isKeyLocationFound = true;
-        AnimationManager.fadeTransition(key, 2,0.0,1.0);
+        AnimationManager.fadeTransition(key, 2, 0.0, 1.0);
         StyleManager.setDisable(true, "key1", "key3", "key4");
         key.setDisable(false);
       }
@@ -271,6 +288,7 @@ public class LobbyController extends Controller {
 
   @FXML
   private void onGuardPressed(MouseEvent event) {
+
     GameState.isGuardDistracted = true;
     // setting relevant animation for guard is sleeping
     sleepingAnimation();
