@@ -51,11 +51,9 @@ public class LaserCuttingController extends Controller {
   private List<Double> angles = new ArrayList<>();
   private List<Point2D> points = new ArrayList<>();
 
-  private StyleManager styleManager = StyleManager.getInstance();
-
   public void initialize() {
     SceneManager.setController(Scenes.LASERCUTTING, this);
-    super.setTimerLabel(timerLabel, 3);
+    super.setTimerLabel(timerLabel, 1);
     gc = canvas.getGraphicsContext2D();
     root.getChildren().add(cursorLine);
     // Set the cursor line's start and end points to the same point
