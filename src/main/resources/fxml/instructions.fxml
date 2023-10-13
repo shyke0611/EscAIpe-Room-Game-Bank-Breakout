@@ -57,7 +57,7 @@
                   </StackPane>
                </children>
             </HBox>
-            <ScrollPane fx:id="instructionsScroll" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="562.0" prefWidth="950.0" styleClass="edge-to-edge" stylesheets="@../css/instructions.css" vbarPolicy="ALWAYS" vvalue="1.0">
+            <ScrollPane fx:id="instructionsScroll" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="562.0" prefWidth="950.0" styleClass="edge-to-edge" stylesheets="@../css/instructions.css" vbarPolicy="ALWAYS" vvalue="0.71">
                <content>
                   <AnchorPane prefHeight="1120.0" prefWidth="900.0">
                      <children>
@@ -419,7 +419,7 @@
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
-                                          <Label alignment="TOP_LEFT" prefWidth="918.0" styleClass="Text" text="The game includes a walkie-talkie for player-hacker communication, allowing technical assistance and vital information exchange within the game." />
+                                          <Label alignment="TOP_LEFT" prefWidth="918.0" styleClass="Text" text="The game includes a walkie-talkie for player-hacker communication, allowing technical assistance and information exchange within the game." wrapText="true" />
                                           <VBox prefWidth="918.0">
                                              <children>
                                                 <HBox prefWidth="200.0">
