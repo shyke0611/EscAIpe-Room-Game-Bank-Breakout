@@ -111,7 +111,7 @@ public class VaultController extends Controller {
         switchHolder,
         vaultwalkietalkie,
         walkietalkieText,
-        bomblogo);
+        bomblogo,exitDoor,exitHolder);
 
     // adding relevant items to the stylemanager list
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
