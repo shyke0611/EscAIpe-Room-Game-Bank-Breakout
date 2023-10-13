@@ -21,7 +21,6 @@ public class MainMenuController extends Controller {
   @FXML private Button newGameBtn;
   @FXML private Button instructionsBtn;
   @FXML private ImageView title;
-  @FXML private ImageView robbersimage;
 
   public void initialize() {
     SceneManager.setController(Scenes.MAIN_MENU, this);
@@ -67,8 +66,8 @@ public class MainMenuController extends Controller {
 
   public void mainMenuAnimationPlay() {
     buttonsContainer.setDisable(true);
-    AnimationManager.fadeTransition(title, 1, 1.0, 0.0);
-    AnimationManager.fadeTransition(buttonsContainer, 1, 1.0, 0.0);
-    AnimationManager.fadeTransition(robbersimage, 1, 1.0, 0.0);
+    AnimationManager.fadeTransition(title, 2, 1.0, 0.0);
+    AnimationManager.fadeTransition(buttonsContainer, 2, 1.0, 0.0);
+
   }
 }

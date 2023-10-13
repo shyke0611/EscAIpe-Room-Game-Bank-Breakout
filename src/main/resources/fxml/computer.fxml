@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ComputerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ComputerController">
    <children>
       <ImageView fitHeight="705.0" fitWidth="1022.0" layoutX="-7.0" onMouseClicked="#onGoBack" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -93,11 +93,6 @@
             <Font size="19.0" />
          </font>
       </Label>
-      <ImageView fx:id="usbStick" fitHeight="218.0" fitWidth="290.0" layoutX="406.0" layoutY="132.0" onMouseClicked="#connectDots" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../images/vecteezy_usb-flash-drive-illustration-clean-icon-design-element-on_20526300-removebg-preview.png" />
-         </image>
-      </ImageView>
       <VBox fx:id="walkietalkieText" layoutX="189.0" layoutY="521.0" prefHeight="150.0" prefWidth="512.0" visible="false">
          <children>
             <HBox prefHeight="100.0" prefWidth="528.0">
@@ -165,5 +160,14 @@
             </StackPane>
          </children>
       </VBox>
+      <HBox fx:id="usbStick" layoutX="397.0" layoutY="147.0" prefHeight="222.0" prefWidth="170.0" styleClass="guard" stylesheets="@../css/rooms.css" visible="false">
+         <children>
+            <ImageView fitHeight="222.0" fitWidth="231.0" onMouseClicked="#connectDots" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/vecteezy_usb-flash-drive-illustration-clean-icon-design-element-on_20526300-removebg-preview.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

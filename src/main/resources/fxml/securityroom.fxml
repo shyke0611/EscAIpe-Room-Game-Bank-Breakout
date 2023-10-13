@@ -23,7 +23,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="securityPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SecurityController">
+<AnchorPane fx:id="securityPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SecurityController">
    <children>
       <ImageView fx:id="securitybackground" fitHeight="705.0" fitWidth="1022.0" layoutX="-7.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -391,7 +391,7 @@
             </Rectangle>
          </children>
       </StackPane>
-      <Pane fx:id="logInScreen" layoutX="460.0" layoutY="335.0" prefHeight="101.0" prefWidth="142.0">
+      <Pane fx:id="logInScreen" layoutX="460.0" layoutY="335.0" prefHeight="101.0" prefWidth="142.0" visible="false">
          <children>
             <VBox alignment="CENTER" layoutX="-166.0" layoutY="-163.0" prefHeight="342.0" prefWidth="430.0" style="-fx-background-color: #0c3a51; -fx-border-color: white; -fx-background-radius: 40; -fx-border-radius: 40;">
                <children>

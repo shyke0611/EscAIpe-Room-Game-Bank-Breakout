@@ -107,14 +107,6 @@
                   </Button>
                </children>
             </VBox>
-            <ImageView fx:id="robbersimage" fitHeight="375.0" fitWidth="393.0" layoutX="580.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/robberrs.png" />
-               </image>
-               <effect>
-                  <DropShadow height="50.48" radius="26.95" spread="0.18" width="59.32" />
-               </effect>
-            </ImageView>
          </children>
       </AnchorPane>
    </children>
