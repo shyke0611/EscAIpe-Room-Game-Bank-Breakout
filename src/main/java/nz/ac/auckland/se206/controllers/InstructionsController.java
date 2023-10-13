@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
@@ -21,8 +22,6 @@ public class InstructionsController extends Controller {
 
   private StackPane activeTab;
 
-  @FXML private Button closeButton;
-
   // General Information labels
   @FXML private Label contextParagraph;
   @FXML private Label storylineParagraph;
@@ -31,11 +30,29 @@ public class InstructionsController extends Controller {
   @FXML private Label escapingParagraph;
 
   @FXML private ScrollPane instructionsScroll;
+  @FXML private Button closeButton;
+  @FXML private VBox gameMechanics;
+
+  private double gameMechanicsVertValue = 0;
 
   public void initialize() {
     SceneManager.setController(Scenes.INSTRUCTIONS, this);
     setGeneralInformation();
     goGeneralInformation();
+
+    // Update layout bounds
+    instructionsScroll.requestFocus();
+    instructionsScroll.layout();
+    gameMechanics.getParent().getParent().layout();
+    gameMechanics.getParent().layout();
+    gameMechanics.getParent().layout();
+    gameMechanics.layout();
+
+    // calculate relative position of game mechanics section
+    double totalHeight = instructionsScroll.getContent().getBoundsInLocal().getMaxY();
+    double vertPosition = gameMechanics.getBoundsInParent().getMinY();
+    vertPosition += 0.47 * instructionsScroll.getPrefHeight();
+    gameMechanicsVertValue = (vertPosition / totalHeight);
 
     instructionsScroll
         .vvalueProperty()
@@ -99,13 +116,13 @@ public class InstructionsController extends Controller {
 
   @FXML
   private void goGameMechanics() {
-    instructionsScroll.setVvalue(11.8);
+    instructionsScroll.setVvalue(gameMechanicsVertValue);
     setActiveTab(gameMechanicsTab);
   }
 
   @FXML
   private void goPuzzles() {
-    instructionsScroll.setVvalue(30);
+    instructionsScroll.setVvalue(1);
     setActiveTab(puzzlesTab);
   }
 

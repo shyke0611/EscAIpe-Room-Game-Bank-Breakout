@@ -55,7 +55,7 @@
                   </StackPane>
                </children>
             </HBox>
-            <ScrollPane fx:id="instructionsScroll" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="569.0" prefWidth="950.0" styleClass="edge-to-edge" stylesheets="@../css/instructions.css" vbarPolicy="ALWAYS" vmax="30.0" vvalue="14.0">
+            <ScrollPane fx:id="instructionsScroll" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="562.0" prefWidth="950.0" styleClass="edge-to-edge" stylesheets="@../css/instructions.css" vbarPolicy="ALWAYS" vvalue="1.0">
                <content>
                   <AnchorPane prefHeight="1120.0" prefWidth="900.0">
                      <children>
@@ -158,7 +158,7 @@
                                     </VBox>
                                  </children>
                               </VBox>
-                              <VBox prefWidth="918.0">
+                              <VBox fx:id="gameMechanics" prefWidth="918.0">
                                  <children>
                                     <Label styleClass="h1" text="GAME MECHANICS">
                                        <font>
