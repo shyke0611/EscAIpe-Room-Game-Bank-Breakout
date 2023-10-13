@@ -17,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
@@ -48,7 +49,7 @@ public class ComputerController extends Controller {
   @FXML private Button dotGameBtn;
   @FXML private Label timerLabel;
   @FXML private Label processingLabel;
-  @FXML private ImageView usbStick;
+  @FXML private HBox usbStick;
   @FXML private TextArea computerTextArea;
 
   private ChatCompletionRequest chatCompletionRequest;
@@ -56,6 +57,7 @@ public class ComputerController extends Controller {
   private int dotCount = 0;
   private Queue<ChatMessage> messageQueue = new LinkedList<>();
   private WalkieTalkieManager walkieTalkieManager;
+  private StyleManager styleManager = StyleManager.getInstance();
 
   private Timeline timeline;
   private Boolean riddleStarted;
@@ -74,6 +76,7 @@ public class ComputerController extends Controller {
     walkieTalkieManager = WalkieTalkieManager.getInstance();
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     WalkieTalkieManager.addWalkieTalkieTextArea(this, computerTextArea);
+    styleManager.addHoverItems(usbStick);
     // styleManager.addItems(usbStick);
     // creating new timeline
     timeline = new Timeline(new KeyFrame(Duration.seconds(0.6), e -> updateLabel()));
@@ -352,15 +355,23 @@ public class ComputerController extends Controller {
 
     // set the second authentication method to visible
     usbStick.setVisible(true);
-    // styleManager.setClueHover("usbStick", true);
+    StyleManager.setClueHover("usbStick", true);
     GameState.isFirstRiddleSolved = true;
-    setLevelTwoStyle();
+    setConnectdotsStyle();
+  }
+
+  private void setConnectdotsStyle() {
+    setVaultStyleLevelTwo();
   }
 
   private void setLevelTwoStyle() {
     // set disability
-    StyleManager.setDisable(true, "computer", "ceoPainting", "wallEmployee");
+    StyleManager.setDisable(true,"computer","ceoPainting", "wallEmployee");
     // setting vault style
+    setVaultStyleLevelTwo();
+  }
+
+  private void setVaultStyleLevelTwo() {
     StyleManager.setItemsHoverColour(HoverColour.GREEN, "silverDoorHolder", "bronzeDoorHolder");
     StyleManager.setItemsMessage("Access granted", "bronzeDoorHolder", "silverDoorHolder");
     StyleManager.setItemsMessage("No access", "goldDoorHolder");
@@ -378,6 +389,7 @@ public class ComputerController extends Controller {
 
   @FXML
   private void connectDots() {
+    GameState.isConnectDotreached = true;
     App.setUI(Scenes.CONNECTDOTS);
   }
 

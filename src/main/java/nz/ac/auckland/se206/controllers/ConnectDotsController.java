@@ -28,6 +28,7 @@ public class ConnectDotsController extends Controller {
   @FXML private StackPane disableSecurity;
   @FXML private Label timerLabel;
   @FXML private Button resetButton;
+   @FXML private Label closebtn;
 
   // 0 = empty, negative = node
   private int[][] grid = new int[6][6];
@@ -138,8 +139,9 @@ public class ConnectDotsController extends Controller {
     if (isGameComplete()) {
       // handle the relevant methods
       disableSecurity.setVisible(true);
-      GameState.isSecondUserAuthenticated = true;
+      GameState.isConnectDotsSolved = true;
       resetButton.setDisable(true);
+       closebtn.setDisable(true);
       GameManager.completeObjective();
       App.textToSpeech("Security Disabled, Level 1 Vault Access Granted");
       Platform.runLater(
@@ -361,18 +363,16 @@ public class ConnectDotsController extends Controller {
   }
 
   public void switchToSecurity() {
-    // handle switch methods
-    if (GameState.isSecondUserAuthenticated) {
-      StyleManager.setDisable(true, "computer");
-    }
     App.setUI(Scenes.SECURITY);
   }
 
   @FXML
   protected void grantAccess() {
+     if (GameState.isConnectDotsSolved) {
+      StyleManager.setDisable(true, "computer");
+    }
     // setting style for when access is granted by disabling firewall
     GameState.isFirewallDisabled = true;
-
     App.setUI(Scenes.SECURITY);
   }
 }

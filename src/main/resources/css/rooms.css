@@ -54,28 +54,22 @@
 }
 
 .genbutton {
+    -fx-font-family: 'Copperplate';
     -fx-background-color: black;
-    -fx-border-color: green;
-    -fx-text-fill: green;
+    -fx-border-color: #15d73c;
+    -fx-text-fill: #15d73c;
 }
 
 .genbutton:hover {
+    -fx-border-color: #2b873d;
+    -fx-text-fill: #1e9035;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.7), 5, 5, 0, 0);
     -fx-cursor: hand;
-    -fx-background-color: rgb(33, 31, 31);
 
 }
 
-.gen1button {
-    -fx-background-color: grey;
-    -fx-text-fill: black;
-    -fx-background-radius: 10 30 30 10;
-
-}
-
-.gen1button:hover {
-    -fx-background-color: rgb(141, 141, 141);
-    -fx-border-radius: 10 30 30 10;
-    -fx-border-color: black;
+.genbutton:pressed {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 5, 5, 0, 0);
 
 }
 
