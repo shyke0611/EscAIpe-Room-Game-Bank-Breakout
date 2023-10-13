@@ -127,6 +127,16 @@ public class AnimationManager {
     scaleTransition.play();
   }
 
+  public static void roomSwitchAnimation(Duration duration, Runnable... actions) {
+    PauseTransition pause = new PauseTransition(duration);
+    pause.setOnFinished(e -> {
+        for (Runnable action : actions) {
+            action.run();
+        }
+    });
+    pause.play();
+}
+
   public static void reset() {
     isSlideAnimationPlayed = false;
   }

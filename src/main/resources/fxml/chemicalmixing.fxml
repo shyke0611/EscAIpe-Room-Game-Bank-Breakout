@@ -1,164 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
-<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChemicalMixingController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../css/chemicals.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChemicalMixingController">
    <children>
+      <Region prefHeight="200.0" prefWidth="200.0" styleClass="region" stylesheets="@../css/chemicals.css" />
       <ImageView fitHeight="704.0" fitWidth="1008.0" onMouseClicked="#setVault" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/realvaultbackground.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="610.0" layoutX="42.0" layoutY="24.0" stroke="WHITE" strokeType="INSIDE" translateX="28.0" translateY="23.0" width="860.0" />
-      <Text fill="#1c15eb" layoutX="262.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mix the chemicals" underline="true">
-         <font>
-            <Font name="American Typewriter" size="59.0" />
-         </font>
-      </Text>
-      <ImageView fx:id="yellowVile" fitHeight="150.0" fitWidth="74.0" layoutX="564.0" layoutY="179.0" onMouseClicked="#onPourChemical" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/chemicalIcons/Screenshot%202023-09-16%20at%207.24.01%20PM.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="redVile" fitHeight="150.0" fitWidth="74.0" layoutX="646.0" layoutY="177.0" onMouseClicked="#onPourChemical" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/chemicalIcons/Screenshot%202023-09-16%20at%207.24.51%20PM.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="greenVile" fitHeight="150.0" fitWidth="74.0" layoutX="725.0" layoutY="177.0" onMouseClicked="#onPourChemical" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/chemicalIcons/Screenshot%202023-09-16%20at%207.24.39%20PM.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="blueVile" fitHeight="150.0" fitWidth="74.0" layoutX="801.0" layoutY="179.0" onMouseClicked="#onPourChemical" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/chemicalIcons/Screenshot%202023-09-16%20at%207.24.22%20PM.png" />
-         </image>
-      </ImageView>
-      <VBox fx:id="credentialsNote" layoutX="147.0" layoutY="158.0" prefHeight="179.0" prefWidth="306.0">
-         <children>
-            <StackPane alignment="TOP_LEFT" prefHeight="330.0" prefWidth="272.0">
-               <children>
-                  <ImageView fitHeight="214.0" fitWidth="327.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/passcodeNote.jpg" />
-                     </image>
-                  </ImageView>
-                  <VBox alignment="TOP_CENTER" maxHeight="193.0" prefHeight="193.0" prefWidth="306.0">
-                     <children>
-                        <Label text="Recipe">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <font>
-                              <Font name="Noteworthy Light" size="30.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="yellowParts" text="Yellow: 1 part">
-                           <font>
-                              <Font name="Noteworthy Light" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="redParts" text="Red: 1 part">
-                           <font>
-                              <Font name="Noteworthy Light" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="greenParts" text="Green: 1 part">
-                           <font>
-                              <Font name="Noteworthy Light" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="blueParts" text="Blue: 1 part">
-                           <VBox.margin>
-                              <Insets bottom="20.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font name="Noteworthy Light" size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <padding>
-                        <Insets left="10.0" top="5.0" />
-                     </padding>
-                  </VBox>
-               </children>
-            </StackPane>
-         </children>
-      </VBox>
-      <Slider fx:id="slider" blockIncrement="1.0" layoutX="571.0" layoutY="417.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" prefHeight="54.0" prefWidth="284.0" showTickMarks="true" value="1.0">
-         <effect>
-            <ColorAdjust brightness="-1.0" contrast="1.0" />
-         </effect>
-      </Slider>
-      <Button id="pourBtn" fx:id="stopButton" layoutX="609.0" layoutY="508.0" mnemonicParsing="false" onAction="#onStopSlider" prefHeight="49.0" prefWidth="114.0" stylesheets="@../css/rooms.css" text="Pour">
-         <font>
-            <Font name="Apple LiSung Light" size="28.0" />
-         </font>
-      </Button>
-      <Label fx:id="currentVile" layoutX="638.0" layoutY="344.0" prefHeight="33.0" prefWidth="172.0" text="Pick a vial" textFill="#1c15eb">
-         <font>
-            <Font name="American Typewriter" size="35.0" />
-         </font>
-      </Label>
-      <Label layoutX="608.0" layoutY="455.0" text="1">
-         <font>
-            <Font size="26.0" />
-         </font>
-      </Label>
-      <Label layoutX="810.0" layoutY="455.0" text="4">
-         <font>
-            <Font size="26.0" />
-         </font>
-      </Label>
-      <Label layoutX="745.0" layoutY="455.0" text="3">
-         <font>
-            <Font size="26.0" />
-         </font>
-      </Label>
-      <Label layoutX="674.0" layoutY="455.0" text="2">
-         <font>
-            <Font size="26.0" />
-         </font>
-      </Label>
-      <Rectangle fx:id="firstPour" arcHeight="80.0" arcWidth="80.0" fill="#21b1ff" height="82.0" layoutX="193.0" layoutY="553.0" stroke="TRANSPARENT" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeType="INSIDE" visible="false" width="234.0" />
-      <Rectangle fx:id="whiteRectangle" fill="WHITE" height="60.0" layoutX="193.0" layoutY="523.0" stroke="TRANSPARENT" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeType="INSIDE" width="234.0" />
-      <Rectangle fx:id="secondPour" fill="#34f86f" height="60.0" layoutX="192.0" layoutY="523.0" stroke="TRANSPARENT" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeType="INSIDE" visible="false" width="234.0" />
-      <Rectangle fx:id="thirdPour" fill="#f27377" height="60.0" layoutX="191.0" layoutY="471.0" stroke="TRANSPARENT" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeType="INSIDE" visible="false" width="234.0" />
-      <Rectangle fx:id="fourthPour" fill="#ffd45e" height="60.0" layoutX="192.0" layoutY="420.0" stroke="TRANSPARENT" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeType="INSIDE" visible="false" width="234.0" />
-      <Button id="retryBtn" fx:id="retryButton" layoutX="742.0" layoutY="505.0" mnemonicParsing="false" onAction="#onRetryButtonClicked" prefHeight="53.0" prefWidth="116.0" stylesheets="@../css/rooms.css" text="Retry">
-         <font>
-            <Font name="Apple LiSung Light" size="29.0" />
-         </font>
-      </Button>
-      <Button fx:id="continueBtn" layoutX="662.0" layoutY="575.0" mnemonicParsing="false" onMouseClicked="#setVault" text="Continue" visible="false">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000d4" height="610.0" layoutX="42.0" layoutY="24.0" stroke="WHITE" strokeType="INSIDE" translateX="28.0" translateY="23.0" width="860.0" />
+      <Button fx:id="continueBtn" layoutX="430.0" layoutY="575.0" mnemonicParsing="false" onMouseClicked="#setVault" text="Continue" visible="false">
          <font>
             <Font size="23.0" />
          </font>
       </Button>
-      <Label fx:id="winLabel" layoutX="600.0" layoutY="509.0" text="Nice job! you mixed it right" visible="false">
+      <Label fx:id="winLabel" layoutX="360.0" layoutY="509.0" text="Nice job! you mixed it right" textFill="WHITE" visible="false">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <ImageView fitHeight="544.0" fitWidth="564.0" layoutX="38.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/vecteezy_cup-glass-lab-icon-vector-illustration-logo-template_11837679-modified.png" />
-         </image>
-      </ImageView>
-      <StackPane alignment="TOP_RIGHT" layoutX="69.0" layoutY="46.0" prefHeight="27.0" prefWidth="862.0">
+      <StackPane alignment="TOP_RIGHT" layoutX="69.0" layoutY="46.0" prefHeight="27.0" prefWidth="862.0" stylesheets="@../css/chemicals.css">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d3d3" height="30.0" stroke="BLACK" strokeType="INSIDE" translateY="-1.0" width="861.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="30.0" stroke="BLACK" strokeType="INSIDE" translateX="1.0" translateY="-1.0" width="40.0" />
@@ -174,5 +52,181 @@
             </Label>
          </children>
       </StackPane>
+      <StackPane layoutX="601.0" layoutY="365.0" prefHeight="249.0" prefWidth="270.0">
+         <children>
+            <ImageView fitHeight="263.0" fitWidth="263.0" pickOnBounds="true" preserveRatio="true" styleClass="chemicalPouch">
+               <image>
+                  <Image url="@../images/chemicalIcons/vialPouchEmpty.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="redVial" fitHeight="39.0" fitWidth="49.0" onMouseClicked="#onVialClicked" pickOnBounds="true" preserveRatio="true" translateX="-27.0" translateY="-18.0">
+               <image>
+                  <Image url="@../images/chemicalIcons/RedVial.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="blueVial" fitHeight="40.0" fitWidth="53.0" layoutX="50.0" onMouseClicked="#onVialClicked" pickOnBounds="true" preserveRatio="true" translateX="70.0" translateY="-28.0">
+               <image>
+                  <Image url="@../images/chemicalIcons/BlueVial.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="greenVial" fitHeight="39.0" fitWidth="41.0" onMouseClicked="#onVialClicked" pickOnBounds="true" preserveRatio="true" translateX="32.0" translateY="-14.0">
+               <image>
+                  <Image url="@../images/chemicalIcons/GreenVial.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="yellowVial" fitHeight="39.0" fitWidth="43.0" onMouseClicked="#onVialClicked" pickOnBounds="true" preserveRatio="true" translateX="-77.0" translateY="-30.0">
+               <image>
+                  <Image url="@../images/chemicalIcons/YellowVial.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <Button fx:id="pourBtn" layoutX="201.0" layoutY="325.0" mnemonicParsing="false" onAction="#onPourChemical" prefHeight="54.0" prefWidth="89.0" text="Pour" />
+      <StackPane layoutX="371.0" layoutY="404.0" prefHeight="238.0" prefWidth="101.0">
+         <children>
+            <ImageView fx:id="largeVialGreen" fitHeight="215.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../images/chemicalIcons/largeVialGreen.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="largeVialYellow" fitHeight="220.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../images/chemicalIcons/largeVialYellow.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="largeVialRed" fitHeight="220.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../images/chemicalIcons/largeVialRed.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="emptyVial" fitHeight="217.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/chemicalIcons/emptyVial.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="largeVialBlue" fitHeight="224.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true" translateY="5.0" visible="false">
+               <image>
+                  <Image url="@../images/chemicalIcons/largeVialBlue.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <Button fx:id="retryButton" layoutX="333.0" layoutY="325.0" mnemonicParsing="false" onAction="#onRetryButtonClicked" prefHeight="54.0" prefWidth="89.0" text="Reset" />
+      <StackPane layoutX="596.0" layoutY="126.0" prefHeight="150.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="313.0" fitWidth="280.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/passcodeNote.png" />
+               </image>
+               <rotationAxis>
+                  <Point3D y="32.0" z="60.0" />
+               </rotationAxis>
+            </ImageView>
+            <Label text="Chemical Recipe" translateX="-40.0" translateY="-60.0">
+               <font>
+                  <Font name="Chalkduster" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelOne" text="Label" translateX="-85.0" translateY="-30.0">
+               <font>
+                  <Font name="Chalkduster" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelFour" text="Label" translateX="-85.0" translateY="50.0">
+               <font>
+                  <Font name="Chalkduster" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelThree" text="Label" translateX="-85.0" translateY="20.0">
+               <font>
+                  <Font name="Chalkduster" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelTwo" text="Label" translateX="-85.0" translateY="-5.0">
+               <font>
+                  <Font name="Chalkduster" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </StackPane>
+      <Label layoutX="90.0" layoutY="83.0" text="Mix The" textFill="WHITE">
+         <font>
+            <Font name="Courier New Bold" size="50.0" />
+         </font>
+      </Label>
+      <Label layoutX="196.0" layoutY="129.0" text="CHEMICALS" textFill="WHITE">
+         <font>
+            <Font name="Courier New Bold" size="60.0" />
+         </font>
+      </Label>
+      <Slider fx:id="slider" blockIncrement="1.0" layoutX="201.0" layoutY="262.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" prefHeight="16.0" prefWidth="229.0" showTickMarks="true" value="1.0" />
+      <HBox layoutX="212.0" layoutY="288.0" prefHeight="28.0" prefWidth="200.0">
+         <children>
+            <Label text="1" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" right="40.0" />
+               </padding>
+            </Label>
+            <Label text="2" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets right="40.0" />
+               </padding>
+            </Label>
+            <Label text="3" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets right="40.0" />
+               </padding>
+            </Label>
+            <Label text="4" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <StackPane layoutX="126.0" layoutY="424.0" prefHeight="150.0" prefWidth="200.0">
+         <children>
+            <Rectangle fx:id="fourthPour" arcHeight="10.0" arcWidth="10.0" height="42.0" stroke="TRANSPARENT" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeType="INSIDE" translateY="-38.0" visible="false" width="170.0">
+               <fill>
+                  <LinearGradient endX="1.0" startX="1.0" startY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" green="0.9333333373069763" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.006711409395973154">
+                           <color>
+                              <Color red="1.0" green="0.9333333373069763" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="0.6090090274810791" opacity="0.8299999833106995" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
+            <Rectangle fx:id="secondPour" arcHeight="10.0" arcWidth="10.0" fill="#34f86f" height="44.0" stroke="TRANSPARENT" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeType="INSIDE" translateY="35.0" visible="false" width="170.0" />
+            <Rectangle fx:id="thirdPour" fill="#f27377" height="38.0" stroke="TRANSPARENT" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeType="INSIDE" visible="false" width="170.0" />
+            <ImageView fitHeight="219.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/GlassBottle.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <Region fx:id="firstPour" layoutX="141.0" layoutY="583.0" opacity="0.9" prefHeight="42.0" prefWidth="169.0" styleClass="bottom-rectangle" visible="false" />
    </children>
 </AnchorPane>

@@ -442,7 +442,7 @@
             </ImageView>
             <Label fx:id="moneyCount" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="147.0" text="0M" textFill="WHITE">
                <font>
-                  <Font name="HeadLineA Regular" size="46.0" />
+                  <Font name="Tahoma" size="46.0" />
                </font>
             </Label>
          </children>

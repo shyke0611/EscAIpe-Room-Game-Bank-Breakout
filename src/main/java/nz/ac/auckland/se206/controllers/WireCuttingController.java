@@ -17,10 +17,11 @@ import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
+import nz.ac.auckland.se206.WalkieTalkieManager;
+import nz.ac.auckland.se206.gpt.ChatMessage;
 
 /** Controller class for the Wire Cutting scene. */
 public class WireCuttingController extends Controller {
-
 
   @FXML private HBox bluewire;
   @FXML private HBox greenwire;
@@ -36,6 +37,7 @@ public class WireCuttingController extends Controller {
 
   private StyleManager styleManager = StyleManager.getInstance();
   private List<HBox> wiresCut;
+  private WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
 
   /**
    * Initialize the Wire Cutting controller. It sets up the initial state of the Wire Cutting scene.
@@ -46,7 +48,8 @@ public class WireCuttingController extends Controller {
     super.setTimerLabel(timerLabel, 1);
     wiresCut = new ArrayList<>();
     // generating relevant methods on initialise
-    styleManager.addHoverItems(wirecuttingbackground,wirecuttingorderLbl,bluewire,redwire,yellowwire,greenwire);
+    styleManager.addHoverItems(
+        wirecuttingbackground, wirecuttingorderLbl, bluewire, redwire, yellowwire, greenwire);
     RandomnessGenerate.addWires(bluewire, yellowwire, greenwire, redwire);
   }
 
@@ -69,10 +72,10 @@ public class WireCuttingController extends Controller {
    */
   @FXML
   private void onWireClicked(MouseEvent event) {
-      HBox clickedWire = (HBox) event.getSource();
-      clickedWire.setVisible(false);
-      wiresCut.add(clickedWire);
-      checkWireCombination();
+    HBox clickedWire = (HBox) event.getSource();
+    clickedWire.setVisible(false);
+    wiresCut.add(clickedWire);
+    checkWireCombination();
   }
 
   // /**
@@ -88,7 +91,8 @@ public class WireCuttingController extends Controller {
   //   isWireCutterSelected = true;
   //   // setting/removing relevant styles
   //   styleManager.removeItemsMessage("redwire", "greenwire", "bluewire", "yellowwire");
-  //   styleManager.setItemsState(HoverColour.GREEN, "redwire", "greenwire", "bluewire", "yellowwire");
+  //   styleManager.setItemsState(HoverColour.GREEN, "redwire", "greenwire", "bluewire",
+  // "yellowwire");
   // }
 
   /**
@@ -154,6 +158,9 @@ public class WireCuttingController extends Controller {
     // styleManager.setClueHover("electricityBox", false);
     GameManager.completeObjective();
     App.textToSpeech("Alarm Disabled");
+    WalkieTalkieManager.setWalkieTalkieOpen();
+    walkieTalkieManager.setWalkieTalkieText(
+        new ChatMessage("user", "That was fast! Now get back to the vault and escape quickly!"));
   }
 
   /** Handle the incorrect wire combination. Sets the fail message. */

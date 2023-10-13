@@ -30,6 +30,12 @@
 
 }
 
+.escape:hover {
+    -fx-effect: dropshadow(gaussian, rgba(34, 255, 0, 0.7), 1, 0.8, 0, 0);
+    -fx-cursor: hand;
+
+}
+
 .drawer:hover {
     -fx-effect: dropshadow(gaussian, rgba(255, 0, 0, 0.7), 5, 5, 0, 0);
     -fx-cursor: hand;
@@ -103,14 +109,29 @@
 .tech-button {
     -fx-background-color: transparent;
     -fx-border-color: #9485e8;
-    -fx-font-family: 'Apple LiGothic';
+    -fx-font-family: 'copperplate';
     -fx-text-fill: #9485e8;
 }
 
 .tech-button:hover {
     -fx-cursor: hand;
-    -fx-background-color: #aea0fa;
+    -fx-border-color: #8471ed;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.994), 1, 0.9, 0, 0);
 }
+
+.tech1-button {
+    -fx-background-color: transparent;
+    -fx-border-color: #90f6ff;
+    -fx-font-family: 'copperplate';
+    -fx-text-fill: #90f6ff;
+}
+
+.tech1-button:hover {
+    -fx-cursor: hand;
+    -fx-border-color: #59e8f5;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.994), 1, 0.9, 0, 0);
+}
+
 
 .computer-button {
     -fx-background-color: #000000;
@@ -136,10 +157,7 @@
 }
 
 .text {
-    -fx-background-color: #000000;
-    -fx-border-color: #eccb0f;
-    -fx-text-fill: #eccb0f;
-    -fx-prompt-text-fill: #eccb0f;
+    -fx-text-fill: white;
 
 }
 

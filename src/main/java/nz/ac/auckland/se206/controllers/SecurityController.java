@@ -15,9 +15,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameManager;
 import nz.ac.auckland.se206.GameState;
@@ -36,14 +36,14 @@ public class SecurityController extends Controller {
   // FXML elements
   @FXML private Label timerLabel;
   @FXML private Label numberOfHints;
-  @FXML private Button logOffBtn;
+  @FXML private HBox logOffBtn;
   @FXML private AnchorPane securityPane;
   @FXML private VBox securityRoomSwitch;
   @FXML private VBox vaultRoomSwitch;
   @FXML private VBox lobbyRoomSwitch;
-  @FXML private Button logInBtn;
+  @FXML private HBox logInBtn;
   @FXML private Button quickHintBtn;
-  @FXML private HBox logInScreen;
+  @FXML private Pane logInScreen;
   @FXML private HBox electricityBox;
   @FXML private Label loginMsgLbl;
   @FXML private PasswordField passwordField;
@@ -81,6 +81,7 @@ public class SecurityController extends Controller {
     WalkieTalkieManager.addWalkieTalkieImage(this, securityWalkieTalkie);
     WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
     WalkieTalkieManager.addQuickHintBtn(this, quickHintBtn);
+    WalkieTalkieManager.addWalkieTalkieTextArea(this, securityTextArea);
 
     // add styling
     styleManager.addHoverItems(computer, electricityBox, wallEmployee, securitybackground);
@@ -123,13 +124,13 @@ public class SecurityController extends Controller {
 
   // Set visibility of the log in screen off (log off computer)
   @FXML
-  private void onLogOff(ActionEvent event) {
+  private void onLogOff(MouseEvent event) {
     logInScreen.setVisible(false);
   }
 
   // Check log in details before logging in
   @FXML
-  private void onLogIn(ActionEvent event) {
+  private void onLogIn(MouseEvent event) {
     checkLogin();
   }
 
@@ -166,9 +167,9 @@ public class SecurityController extends Controller {
       handleSuccessfulLogin();
       logInScreen.setVisible(false);
     } else if (areCredentialsEmpty()) {
-      handleEmptyCredentials();
+      loginMsgLbl.setText("Enter your credentials");
     } else {
-      handleFailedLogin();
+      loginMsgLbl.setText("Wrong username or password");
     }
   }
 
@@ -191,7 +192,6 @@ public class SecurityController extends Controller {
   private void handleSuccessfulLogin() {
     // sets relevant method for when credentials are correct
     loginMsgLbl.setText("Success");
-    loginMsgLbl.setTextFill(Color.GREEN);
     GameState.isSecurityComputerLoggedIn = true;
     App.setUI(Scenes.COMPUTER);
     // setting style
@@ -201,17 +201,15 @@ public class SecurityController extends Controller {
     StyleManager.setVisible(false, "credentialsNote");
   }
 
-  // Mechanics for empty credential input
-  private void handleEmptyCredentials() {
-    loginMsgLbl.setText("Enter your credentials");
-    loginMsgLbl.setTextFill(Color.ORANGE);
-  }
+  // // Mechanics for empty credential input
+  // private void handleEmptyCredentials() {
+  //   loginMsgLbl.setText("Enter your credentials");
+  // }
 
-  // Mechanics for when login fails
-  private void handleFailedLogin() {
-    loginMsgLbl.setText("Wrong username or password");
-    loginMsgLbl.setTextFill(Color.RED);
-  }
+  // // Mechanics for when login fails
+  // private void handleFailedLogin() {
+  //   loginMsgLbl.setText("Wrong username or password");
+  // }
 
   @FXML
   private void onInvokeHacker(KeyEvent event) throws ApiProxyException {

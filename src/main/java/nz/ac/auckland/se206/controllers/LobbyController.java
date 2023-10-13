@@ -94,6 +94,8 @@ public class LobbyController extends Controller {
     WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     WalkieTalkieManager.addQuickHintBtn(this, quickHintBtn);
+    WalkieTalkieManager.addWalkieTalkieTextArea(this, lobbyTextArea);
+
     super.setTimerLabel(timerLabel, 1);
     // set random components
     RandomnessGenerate.generateRandomCredentials();
@@ -102,9 +104,20 @@ public class LobbyController extends Controller {
     RandomnessGenerate.addKeyLocation(key1, key3, key4);
     RandomnessGenerate.generateRandomKeyLocation();
 
-    styleManager.addHoverItems(key1,key3,key4,guard,guardpocket,guardeyes,drawerHolder,credentialsBook,credentialsNote,ceoPainting,lobbybackground);
-  
-     // setting style to items
+    styleManager.addHoverItems(
+        key1,
+        key3,
+        key4,
+        guard,
+        guardpocket,
+        guardeyes,
+        drawerHolder,
+        credentialsBook,
+        credentialsNote,
+        ceoPainting,
+        lobbybackground);
+
+    // setting style to items
     StyleManager.setItemsMessage(
         "Guard is watching...", "key1", "key3", "key4", "guardpocket", "guardeyes");
     StyleManager.setItemsMessage("It's locked...", "drawerHolder");
@@ -117,6 +130,13 @@ public class LobbyController extends Controller {
     String plaqueName = RandomnessGenerate.getRandomCeoName();
     System.out.println(plaqueName);
     johnIpsumLbl.setText(plaqueName + " Ipsum");
+
+    WalkieTalkieManager.setWalkieTalkieOpen();
+    walkieTalkieManager.setWalkieTalkieText(
+        new ChatMessage(
+            "user",
+            "Nice work, you made it inside! First things first, we need to find a way to access the"
+                + " computer in security"));
 
     String date = RandomnessGenerate.getRandomFoundingDate();
     System.out.println(date);
@@ -230,6 +250,12 @@ public class LobbyController extends Controller {
     passwordLbl.setText("Password: " + randomPassword);
     usernameLbl.setText("Username: " + randomUsername);
     StyleManager.removeItemsMessage("credentialsBook");
+    WalkieTalkieManager.setWalkieTalkieOpen();
+    walkieTalkieManager.setWalkieTalkieText(
+        new ChatMessage(
+            "user",
+            "Great you found the log in credentials! Now log in and try to convince the AI you are"
+                + " an employee"));
 
     GameState.isCredentialsFound = true;
     GameManager.completeObjective();
@@ -249,7 +275,7 @@ public class LobbyController extends Controller {
       if (clickedKeyLocation == RandomnessGenerate.getkeyLocation()) {
         // update game and item states
         GameState.isKeyLocationFound = true;
-        AnimationManager.fadeTransition(key, 2,0.0,1.0);
+        AnimationManager.fadeTransition(key, 2, 0.0, 1.0);
         StyleManager.setDisable(true, "key1", "key3", "key4");
         key.setDisable(false);
       }
@@ -271,6 +297,7 @@ public class LobbyController extends Controller {
 
   @FXML
   private void onGuardPressed(MouseEvent event) {
+
     GameState.isGuardDistracted = true;
     // setting relevant animation for guard is sleeping
     sleepingAnimation();

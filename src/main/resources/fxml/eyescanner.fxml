@@ -4,9 +4,10 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -26,78 +27,138 @@
             <Image url="@../images/realvaultbackground.png" />
          </image>
       </ImageView>
-      <HBox layoutX="25.0" layoutY="549.0" opacity="0.5" prefHeight="150.0" prefWidth="665.0">
+      <StackPane layoutX="560.0" layoutY="9.0" prefHeight="101.0" prefWidth="265.0">
          <children>
-            <VBox fx:id="walkietalkieText" prefHeight="150.0" prefWidth="512.0" visible="false">
-               <children>
-                  <HBox prefHeight="100.0" prefWidth="528.0">
-                     <children>
-                        <TextArea editable="false" prefHeight="100.0" prefWidth="425.0" stylesheets="@../css/rooms.css" />
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="component2" stylesheets="@../css/rooms.css">
-                           <children>
-                              <Button mnemonicParsing="false" text="View History">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin>
-                              </Button>
-                              <Button mnemonicParsing="false" text="Quick Hint" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="51.0" prefWidth="512.0">
-                     <children>
-                        <TextField prefHeight="58.0" prefWidth="512.0" promptText="Bzzz... type here" stylesheets="@../css/rooms.css">
-                           <font>
-                              <Font size="22.0" />
-                           </font>
-                        </TextField>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
+            <ImageView fitHeight="92.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/gameborder.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="113.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/clock.png" />
+               </image>
+               <StackPane.margin>
+                  <Insets right="140.0" />
+               </StackPane.margin>
+               <effect>
+                  <Lighting diffuseConstant="1.18" specularConstant="0.32">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </ImageView>
+            <Label fx:id="timerLabel" alignment="CENTER" prefHeight="70.0" prefWidth="114.0" text="0:00" textFill="WHITE">
+               <font>
+                  <Font name="HeadLineA Regular" size="47.0" />
+               </font>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </Label>
          </children>
-      </HBox>
-      <Pane layoutX="70.0" layoutY="50.0" prefHeight="610.0" prefWidth="860.0">
+      </StackPane>
+      <StackPane layoutX="771.0" layoutY="-4.0" prefHeight="136.0" prefWidth="209.0">
          <children>
-            <ImageView fitHeight="748.0" fitWidth="858.0" layoutX="5.0" layoutY="-73.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="81.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/gameborder.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="117.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/moneyimage.png" />
+               </image>
+               <effect>
+                  <Lighting diffuseConstant="1.28" specularConstant="0.0" specularExponent="10.29" surfaceScale="4.16">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+               <StackPane.margin>
+                  <Insets bottom="5.0" right="140.0" />
+               </StackPane.margin>
+            </ImageView>
+            <Label fx:id="moneyCount" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="147.0" text="0M" textFill="WHITE">
+               <font>
+                  <Font name="HeadLineA Regular" size="46.0" />
+               </font>
+            </Label>
+         </children>
+      </StackPane>
+      <ImageView fitHeight="425.0" fitWidth="467.0" layoutX="53.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/eyescannervault.png" />
+         </image>
+         <effect>
+            <DropShadow spread="0.43" />
+         </effect>
+      </ImageView>
+      <Pane layoutX="142.0" layoutY="120.0" prefHeight="531.0" prefWidth="788.0">
+         <children>
+            <ImageView fitHeight="415.0" fitWidth="782.0" layoutX="32.0" layoutY="54.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/minigamebackground.png" />
                </image>
+               <effect>
+                  <Lighting diffuseConstant="2.0" specularConstant="2.0" specularExponent="18.15" surfaceScale="1.38">
+                     <bumpInput>
+                        <Shadow height="255.0" radius="127.0" width="255.0" />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant>
+                           <color>
+                              <Color red="0.2916666567325592" green="0.8111110925674438" blue="1.0" />
+                           </color>
+                        </Light.Distant>
+                     </light>
+                  </Lighting>
+               </effect>
             </ImageView>
-            <VBox layoutX="505.0" layoutY="94.0" prefHeight="238.0" prefWidth="265.0" styleClass="eyes" stylesheets="@../css/eyescanner.css">
+            <VBox layoutX="437.0" layoutY="104.0" prefHeight="235.0" prefWidth="284.0" styleClass="eyes">
                <children>
-                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="400.0" text="Guards Eye" textAlignment="CENTER" textFill="#33f86e">
+                  <Label alignment="CENTER" prefHeight="0.0" prefWidth="284.0" text="Guards Eye" textAlignment="CENTER" textFill="#90f6ff">
                      <font>
                         <Font name="Copperplate" size="18.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
                   </Label>
-                  <StackPane prefHeight="150.0" prefWidth="200.0" translateY="10.0">
+                  <StackPane prefHeight="143.0" prefWidth="265.0" translateY="10.0">
                      <children>
-                        <Circle fill="WHITE" radius="89.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fx:id="guardEye" blendMode="SRC_ATOP" radius="65.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="WHITE" opacity="0.52" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" translateX="-43.0" translateY="-43.0" />
-                        <StackPane blendMode="MULTIPLY" opacity="0.1" prefHeight="150.0" prefWidth="200.0">
+                        <Circle fill="WHITE" radius="68.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="guardEye" blendMode="SRC_ATOP" radius="45.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="WHITE" opacity="0.52" radius="12.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" translateX="-43.0" translateY="-43.0" />
+                        <StackPane blendMode="MULTIPLY" opacity="0.1" prefHeight="153.0" prefWidth="265.0">
                            <children>
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="10.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="20.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="30.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="40.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="50.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="60.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="70.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="80.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="90.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="100.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="110.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="120.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="130.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="140.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="150.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="160.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="170.0" startX="-100.0" />
+                              <Line endX="-123.43504333496094" endY="-128.86761474609375" startX="-108.0679931640625" startY="-47.23039245605469" />
+                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="10.0" startX="-109.54889678955078" startY="-47.60979461669922" />
+                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="20.0" startX="-110.85819244384766" startY="-44.634056091308594" />
+                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="30.0" startX="-106.74989318847656" startY="-41.52252960205078" />
+                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="40.0" startX="-106.82551574707031" startY="-42.56444549560547" />
+                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="50.0" startX="-104.90949249267578" startY="-45.29215621948242" />
+                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="60.0" startX="-106.01097106933594" startY="-49.914283752441406" />
+                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="70.0" startX="-105.54336547851562" startY="-39.310157775878906" />
+                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="80.0" startX="-106.47360229492188" startY="-44.260623931884766" />
+                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="90.0" startX="-109.02763366699219" startY="-39.78947830200195" />
+                              <Line endX="-115.04206085205078" endY="-86.65576934814453" rotate="100.0" startX="-100.0" />
+                              <Line endX="-112.48063659667969" endY="-87.56330871582031" rotate="110.0" startX="-100.0" />
+                              <Line endX="-115.79412841796875" endY="-90.49972534179688" rotate="120.0" startX="-100.0" />
+                              <Line endX="-114.3287124633789" endY="-86.52481842041016" rotate="130.0" startX="-100.0" />
+                              <Line endX="-112.62715148925781" endY="-90.30133056640625" rotate="140.0" startX="-100.0" />
+                              <Line endX="-114.11237335205078" endY="-87.26161193847656" rotate="150.0" startX="-100.0" />
+                              <Line endX="-115.16879272460938" endY="-78.50411224365234" rotate="160.0" startX="-100.0" />
+                              <Line endX="-118.04483032226562" endY="-82.98968505859375" rotate="170.0" startX="-100.0" />
                            </children>
                         </StackPane>
                         <Label fx:id="mystery" text="?" textFill="WHITE">
@@ -109,51 +170,70 @@
                   </StackPane>
                   <Label fx:id="error" alignment="CENTER" prefHeight="17.0" prefWidth="402.0" text="ERROR: Sample Not Found" textFill="RED" translateY="20.0">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Copperplate" size="15.0" />
                      </font>
+                     <effect>
+                        <DropShadow spread="0.27">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </DropShadow>
+                     </effect>
                   </Label>
                </children>
             </VBox>
-            <VBox layoutX="133.0" layoutY="93.0" prefHeight="313.0" prefWidth="369.0">
+            <VBox layoutX="61.0" layoutY="103.0" prefHeight="259.0" prefWidth="372.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="403.0" text="Artificial Eye" textAlignment="CENTER" textFill="#33f86e">
+                  <Label alignment="CENTER" prefHeight="21.0" prefWidth="372.0" text="Artificial Eye" textAlignment="CENTER" textFill="#90f6ff">
                      <font>
                         <Font name="Copperplate" size="18.0" />
                      </font>
                   </Label>
-                  <StackPane prefHeight="180.0" prefWidth="382.0" styleClass="eyes" stylesheets="@../css/eyescanner.css" translateY="10.0">
+                  <StackPane prefHeight="180.0" prefWidth="382.0" stylesheets="@../css/eyescanner.css" translateY="10.0">
                      <children>
-                        <Circle fill="WHITE" radius="90.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fx:id="artificialEye" blendMode="SRC_ATOP" fill="#005cff" radius="65.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="WHITE" opacity="0.52" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" translateX="-43.0" translateY="-43.0" />
-                        <StackPane blendMode="MULTIPLY" opacity="0.1" prefHeight="164.0" prefWidth="369.0">
+                        <Circle fill="WHITE" radius="68.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="artificialEye" blendMode="SRC_ATOP" fill="#005cff" radius="45.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="WHITE" opacity="0.52" radius="12.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" translateX="-30.0" translateY="-30.0" />
+                        <StackPane blendMode="MULTIPLY" opacity="0.1" prefHeight="168.0" prefWidth="369.0">
                            <children>
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="10.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="20.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="30.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="40.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="50.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="60.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="70.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="80.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="90.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="100.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="110.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="120.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="130.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="140.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="150.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="160.0" startX="-100.0" />
-                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="170.0" startX="-100.0" />
+                              <Line endX="-123.43504333496094" endY="-128.86761474609375" startX="-109.10491943359375" startY="-43.48606872558594" />
+                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="10.0" startX="-109.29976654052734" startY="-46.06453323364258" />
+                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="20.0" startX="-108.83065795898438" startY="-40.18722915649414" />
+                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="30.0" startX="-107.73467254638672" startY="-44.56291580200195" />
+                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="40.0" startX="-107.94756317138672" startY="-48.37211608886719" />
+                              <Line endX="-123.43504333496094" endY="-128.86761474609375" rotate="50.0" startX="-109.96040344238281" startY="-42.525272369384766" />
+                              <Line endX="-114.7310791015625" endY="-87.11852264404297" rotate="60.0" startX="-100.0" />
+                              <Line endX="-113.0" endY="-86.0" rotate="70.0" startX="-100.0" />
+                              <Line endX="-113.95240783691406" endY="-88.34992218017578" rotate="80.0" startX="-100.0" />
+                              <Line endX="-114.75880432128906" endY="-87.78297424316406" rotate="90.0" startX="-100.0" />
+                              <Line endX="-114.52112579345703" endY="-86.27491760253906" rotate="100.0" startX="-100.0" />
+                              <Line endX="-115.78060913085938" endY="-88.6537857055664" rotate="120.0" startX="-100.0" />
+                              <Line endX="-115.20594787597656" endY="-89.62805938720703" rotate="130.0" startX="-100.0" />
+                              <Line endX="-99.51658630371094" endY="-84.78977966308594" rotate="140.0" startX="-84.98050689697266" startY="3.3792688846588135" />
+                              <Line endX="-115.80340576171875" endY="-87.63258361816406" rotate="150.0" startX="-100.0" />
+                              <Line endX="-113.45464324951172" endY="-88.49422454833984" rotate="160.0" startX="-100.0" />
+                              <Line endX="-114.57902526855469" endY="-85.3394775390625" rotate="170.0" startX="-100.0" />
+                              <Line endX="-114.91265106201172" endY="-89.31040954589844" rotate="110.0" startX="-100.0" />
                            </children>
                         </StackPane>
+                        <ImageView fitHeight="48.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/eyescanneryes.png" />
+                           </image>
+                           <effect>
+                              <DropShadow spread="0.38">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </ImageView>
                      </children>
                   </StackPane>
-                  <VBox prefHeight="151.0" prefWidth="369.0" stylesheets="@../css/eyescanner.css" translateX="10.0">
+                  <VBox prefHeight="283.0" prefWidth="372.0" stylesheets="@../css/eyescanner.css" translateX="10.0">
                      <children>
-                        <HBox prefHeight="33.0" prefWidth="316.0" styleClass="sliders">
+                        <HBox prefHeight="1.0" prefWidth="372.0">
                            <children>
                               <Label prefHeight="17.0" prefWidth="50.0" text="Red:" textFill="RED">
                                  <font>
@@ -163,35 +243,35 @@
                               <Label fx:id="redValue" prefHeight="17.0" prefWidth="29.0" text="0" textFill="#ff2200" translateX="20.0" translateY="2.0" />
                            </children>
                            <VBox.margin>
-                              <Insets />
+                              <Insets top="5.0" />
                            </VBox.margin>
                            <padding>
                               <Insets top="10.0" />
                            </padding>
                         </HBox>
-                        <HBox prefHeight="50.0" prefWidth="200.0" styleClass="sliders">
+                        <HBox prefHeight="2.0" prefWidth="372.0">
                            <children>
                               <Label prefHeight="17.0" prefWidth="50.0" text="Green:" textFill="#05ff05">
                                  <font>
                                     <Font name="Copperplate" size="13.0" />
                                  </font></Label>
-                              <Slider fx:id="greenSlider" blockIncrement="5.0" majorTickUnit="255.0" max="255.0" minorTickCount="50" prefHeight="33.0" prefWidth="239.0" showTickLabels="true" snapToTicks="true" />
+                              <Slider fx:id="greenSlider" blockIncrement="5.0" majorTickUnit="255.0" max="255.0" minorTickCount="50" prefHeight="0.0" prefWidth="239.0" showTickLabels="true" snapToTicks="true" />
                               <Label fx:id="greenValue" prefHeight="17.0" prefWidth="29.0" text="0" textFill="#22fc2d" translateX="20.0" translateY="2.0" />
                            </children>
                         </HBox>
-                        <HBox prefHeight="50.0" prefWidth="200.0" styleClass="sliders">
+                        <HBox prefHeight="1.0" prefWidth="372.0">
                            <children>
                               <Label prefHeight="17.0" prefWidth="50.0" text="Blue:" textFill="#0520ff">
                                  <font>
                                     <Font name="Copperplate" size="13.0" />
                                  </font></Label>
-                              <Slider fx:id="blueSlider" blockIncrement="5.0" majorTickUnit="255.0" max="255.0" minorTickCount="50" prefHeight="33.0" prefWidth="237.0" showTickLabels="true" snapToTicks="true" />
+                              <Slider fx:id="blueSlider" blockIncrement="5.0" majorTickUnit="255.0" max="255.0" minorTickCount="50" prefHeight="7.0" prefWidth="237.0" showTickLabels="true" snapToTicks="true" />
                               <Label fx:id="blueValue" prefHeight="17.0" prefWidth="29.0" text="0" textFill="#1928ff" translateX="20.0" translateY="2.0" />
                            </children>
                         </HBox>
-                        <Button fx:id="compareBtn" disable="true" mnemonicParsing="false" onMouseClicked="#onCompareSample" prefHeight="26.0" prefWidth="75.0" styleClass="tech-button" stylesheets="@../css/rooms.css" text="Compare" textFill="#9485e8" translateX="150.0">
+                        <Button fx:id="compareBtn" disable="true" mnemonicParsing="false" onMouseClicked="#onCompareSample" prefHeight="24.0" prefWidth="93.0" styleClass="tech1-button" stylesheets="@../css/rooms.css" text="Compare" textFill="#9485e8" translateX="150.0">
                            <VBox.margin>
-                              <Insets left="-10.0" />
+                              <Insets left="-20.0" />
                            </VBox.margin>
                            <font>
                               <Font name="Apple LiGothic Medium" size="13.0" />
@@ -199,80 +279,116 @@
                         </Button>
                      </children>
                      <VBox.margin>
-                        <Insets top="14.0" />
+                        <Insets />
                      </VBox.margin>
                      <padding>
                         <Insets top="6.0" />
                      </padding>
+                     <effect>
+                        <DropShadow spread="0.26">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </DropShadow>
+                     </effect>
                   </VBox>
                </children>
             </VBox>
-            <VBox fx:id="accessGranted" layoutX="451.0" layoutY="324.0" prefHeight="162.0" prefWidth="330.0">
+            <VBox fx:id="accessGranted" layoutX="459.0" layoutY="288.0" opacity="0.8" prefHeight="94.0" prefWidth="248.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="64.0" prefWidth="391.0" text="Access Granted" textAlignment="CENTER" textFill="#3aff00">
+                  <Label alignment="CENTER" prefHeight="31.0" prefWidth="244.0" text="Access Granted" textAlignment="CENTER" textFill="#3aff00">
                      <font>
-                        <Font size="38.0" />
+                        <Font name="Copperplate" size="28.0" />
                      </font>
                   </Label>
                   <Label alignment="CENTER" prefHeight="27.0" prefWidth="391.0" text="A match has been found " textFill="#04dd00">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Copperplate" size="15.0" />
                      </font>
                   </Label>
                </children>
-            </VBox>
-            <VBox fx:id="accessDenied" layoutX="451.0" layoutY="331.0" prefHeight="199.0" prefWidth="325.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="32.0" prefWidth="334.0" text="Access Denied" textAlignment="CENTER" textFill="RED">
-                     <font>
-                        <Font size="38.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="391.0" text="No match found" textFill="#f20000">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="39.0" prefWidth="325.0" text="Please try again" textAlignment="CENTER" textFill="RED">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
-            <Label fx:id="geteyesampleLbl" alignment="CENTER" layoutX="212.0" layoutY="-57.0" prefHeight="38.0" prefWidth="509.0" text="Get eye colour sample from the guard" textAlignment="CENTER" textFill="#f81212">
-               <font>
-                  <Font size="31.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="173.0" fitWidth="506.0" layoutX="69.0" layoutY="-42.0" opacity="0.9" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/minigametext.png" />
-               </image>
-            </ImageView>
-            <Label alignment="CENTER" layoutX="243.0" layoutY="-4.0" prefHeight="30.0" prefWidth="228.0" text="Eye Scanner" textAlignment="CENTER" textFill="#864bda">
-               <font>
-                  <Font name="Copperplate" size="29.0" />
-               </font>
-            </Label>
-            <Label fx:id="timerLabel" layoutX="174.0" layoutY="64.0" prefHeight="16.0" prefWidth="383.0" text="Time Remaining: 2 Minutes 34 Seconds" textFill="#864bda">
-               <font>
-                  <Font name="Copperplate" size="14.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="131.0" fitWidth="173.0" layoutX="700.0" layoutY="-12.0" onMouseClicked="#setVault" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/minigameexitbtn.png" />
-               </image>
                <effect>
-                  <DropShadow blurType="ONE_PASS_BOX" height="78.49" radius="36.9025" width="71.12">
+                  <DropShadow spread="0.15">
                      <color>
-                        <Color red="1.0" green="0.9528549313545227" blue="0.9398148059844971" />
+                        <Color red="1.0" green="1.0" blue="1.0" />
                      </color>
                   </DropShadow>
                </effect>
-            </ImageView>
+            </VBox>
+            <VBox fx:id="accessDenied" layoutX="440.0" layoutY="284.0" opacity="0.8" prefHeight="152.0" prefWidth="288.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="32.0" prefWidth="367.0" text="Access Denied" textAlignment="CENTER" textFill="RED">
+                     <font>
+                        <Font name="Copperplate" size="28.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="371.0" text="No match found" textFill="#f20000">
+                     <font>
+                        <Font name="Copperplate" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="342.0" text="Please try again" textAlignment="CENTER" textFill="RED">
+                     <font>
+                        <Font name="Copperplate" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <DropShadow spread="0.16">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </VBox>
+            <Label alignment="CENTER" layoutX="293.0" layoutY="72.0" prefHeight="46.0" prefWidth="251.0" text="Eye Scanner" textAlignment="CENTER" textFill="#90f6ff">
+               <font>
+                  <Font name="Copperplate" size="32.0" />
+               </font>
+               <effect>
+                  <DropShadow radius="9.91" spread="0.2" width="20.64">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Label>
+            <HBox layoutX="689.0" layoutY="84.0" prefHeight="70.0" prefWidth="79.0" styleClass="button" stylesheets="@../css/mainmenu.css">
+               <children>
+                  <ImageView fitHeight="65.0" fitWidth="64.0" onMouseClicked="#setVault" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/minigameexitbtn.png" />
+                     </image>
+                     <effect>
+                        <Lighting diffuseConstant="2.0" specularConstant="0.84" specularExponent="8.56" surfaceScale="1.49">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant>
+                                 <color>
+                                    <Color red="0.05999999865889549" green="0.8816655874252319" blue="1.0" />
+                                 </color>
+                              </Light.Distant>
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </ImageView>
+               </children>
+            </HBox>
          </children>
       </Pane>
+      <ImageView fitHeight="152.0" fitWidth="298.0" layoutX="8.0" layoutY="252.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/eyescannerarrow.png" />
+         </image>
+         <effect>
+            <DropShadow spread="0.18">
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+      </ImageView>
    </children>
 </AnchorPane>
