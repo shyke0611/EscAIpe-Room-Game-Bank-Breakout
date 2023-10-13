@@ -159,6 +159,7 @@ public class VaultController extends Controller {
   //     exitHolder.setDisable(true);
   // }
 
+
   @FXML
   private void onExitBomb() {
     GameManager.completeObjective();
@@ -379,20 +380,21 @@ public class VaultController extends Controller {
 
   @FXML
   private void onBombTyped(KeyEvent event) {
+    KeyCode code = event.getCode();
 
     // If esc is pressed, close the bomb
-    if (event.getCode() == KeyCode.ESCAPE) {
+    if (code == KeyCode.ESCAPE) {
       onExitBomb();
     }
 
     // If enter is pressed, check the code
-    if (event.getCode() == KeyCode.ENTER) {
+    if (code == KeyCode.ENTER) {
       onCheckCode();
       return;
     }
 
     // If backspace is pressed, remove the last character from the input label
-    if (event.getCode() == KeyCode.BACK_SPACE) {
+    if (code == KeyCode.BACK_SPACE) {
       if (labelText.length() > 0) {
         labelText.deleteCharAt(labelText.length() - 1);
         inputLbl.setText(labelText.toString());
@@ -400,12 +402,12 @@ public class VaultController extends Controller {
     }
 
     // If number is pressed, add it to the input label
-    if (event.getCode().isDigitKey() && !event.getCode().equals(KeyCode.ENTER)) {
+    if (code.isDigitKey() && !event.getCode().equals(KeyCode.ENTER)) {
       updateCode(event.getText());
     }
 
     // if x is pressed, close the bomb
-    if (event.getCode() == KeyCode.X) {
+    if (code == KeyCode.X) {
       onExitBomb();
     }
   }

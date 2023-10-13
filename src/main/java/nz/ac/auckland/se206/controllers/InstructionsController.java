@@ -1,13 +1,26 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
 public class InstructionsController extends Controller {
+
+  // Tab Headers
+  @FXML private StackPane generalInfoTab;
+  @FXML private StackPane gameMechanicsTab;
+  @FXML private StackPane puzzlesTab;
+
+  private StackPane activeTab;
 
   // General Information labels
   @FXML private Label contextParagraph;
@@ -17,10 +30,43 @@ public class InstructionsController extends Controller {
   @FXML private Label escapingParagraph;
 
   @FXML private ScrollPane instructionsScroll;
+  @FXML private Button closeButton;
+  @FXML private VBox gameMechanics;
+
+  private double gameMechanicsVertValue = 0;
 
   public void initialize() {
     SceneManager.setController(Scenes.INSTRUCTIONS, this);
     setGeneralInformation();
+    goGeneralInformation();
+
+    // Update layout bounds
+    instructionsScroll.requestFocus();
+    instructionsScroll.layout();
+    gameMechanics.getParent().getParent().layout();
+    gameMechanics.getParent().layout();
+    gameMechanics.getParent().layout();
+    gameMechanics.layout();
+
+    // calculate relative position of game mechanics section
+    double totalHeight = instructionsScroll.getContent().getBoundsInLocal().getMaxY();
+    double vertPosition = gameMechanics.getBoundsInParent().getMinY();
+    vertPosition += 0.47 * instructionsScroll.getPrefHeight();
+    gameMechanicsVertValue = (vertPosition / totalHeight);
+
+    instructionsScroll
+        .vvalueProperty()
+        .addListener(
+            (ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
+              double vertValue = newValue.doubleValue();
+              if (vertValue < 11) {
+                setActiveTab(generalInfoTab);
+              } else if (vertValue > 29) {
+                setActiveTab(puzzlesTab);
+              } else {
+                setActiveTab(gameMechanicsTab);
+              }
+            });
   }
 
   private void setGeneralInformation() {
@@ -65,20 +111,62 @@ public class InstructionsController extends Controller {
   @FXML
   public void goGeneralInformation() {
     instructionsScroll.setVvalue(0);
+    setActiveTab(generalInfoTab);
   }
 
   @FXML
   private void goGameMechanics() {
-    instructionsScroll.setVvalue(11);
+    instructionsScroll.setVvalue(gameMechanicsVertValue);
+    setActiveTab(gameMechanicsTab);
   }
 
   @FXML
   private void goPuzzles() {
-    instructionsScroll.setVvalue(30);
+    instructionsScroll.setVvalue(1);
+    setActiveTab(puzzlesTab);
   }
 
   @FXML
   private void onSwitchToMain() {
     App.setUI(Scenes.MAIN_MENU);
+  }
+
+  @FXML
+  private void hoverButtonEntry() {
+    closeButton.getStyleClass().clear();
+    closeButton.getStyleClass().add("hoverCloseButton");
+  }
+
+  @FXML
+  private void hoverButtonExit() {
+    closeButton.getStyleClass().clear();
+    closeButton.getStyleClass().add("closeButton");
+  }
+
+  private void setActiveTab(StackPane newActiveTab) {
+
+    // Change old active tab to normal tab styling
+    if (activeTab != newActiveTab) {
+      // Set new tab to active tab styling
+      ObservableList<Node> children = newActiveTab.getChildren();
+      Node activeRectangle = children.get(0);
+      activeRectangle.getStyleClass().clear();
+      activeRectangle.getStyleClass().add("activeRectangle");
+      Node activeText = children.get(1);
+      activeText.getStyleClass().clear();
+      activeText.getStyleClass().add("activeTab");
+
+      // Remove the styling on old active tab
+      if (activeTab != null) {
+        ObservableList<Node> children2 = activeTab.getChildren();
+        Node otherRectangle = children2.get(0);
+        otherRectangle.getStyleClass().clear();
+        otherRectangle.getStyleClass().add("Rectangle");
+        Node otherText = children2.get(1);
+        otherText.getStyleClass().clear();
+        otherText.getStyleClass().add("tab");
+      }
+      activeTab = newActiveTab;
+    }
   }
 }
