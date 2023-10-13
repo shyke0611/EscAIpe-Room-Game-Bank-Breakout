@@ -67,7 +67,7 @@
 .genbutton:hover {
     -fx-border-color: #2b873d;
     -fx-text-fill: #1e9035;
-    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.7), 5, 5, 0, 0);
+    -fx-effect: dropshadow(gaussian, rgba(10, 244, 41, 0.7), 4, 4, 0, 0);
     -fx-cursor: hand;
 
 }

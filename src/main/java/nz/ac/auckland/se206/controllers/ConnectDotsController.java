@@ -255,10 +255,10 @@ public class ConnectDotsController extends Controller {
   private int getIndex(double coordinate, boolean isRow) {
     if (isRow) {
       // 80 is the cell height
-      return (int) Math.floor(coordinate / 80);
+      return (int) Math.floor(coordinate / 40);
     }
     // 90 is the cell width
-    return (int) Math.floor(coordinate / 90);
+    return (int) Math.floor(coordinate / 40);
   }
 
   private Rectangle getNodeFromGridPane(GridPane gridPane, int row, int col) {
