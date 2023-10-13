@@ -1,6 +1,6 @@
 
 .bottom-rectangle{
-    -fx-background-color: linear-gradient(#9fd7ff, #9fd7ff);
+    -fx-background-color: radial-gradient(focus-angle 0deg, focus-distance 50%, center 50% 50%, radius 100%, reflect, #1619de, derive(#2247fe, 30%));
     -fx-background-radius: 0 0 35 35;
 
    
@@ -8,11 +8,11 @@
 }
 
 .slider .thumb {
-    -fx-background-color: linear-gradient(to right, #FF5733, #FFA07A);
+    -fx-background-color: linear-gradient(to right, #f74848c1, #FFA07A);
 }
 
 .slider .track {
-    -fx-background-color: linear-gradient(to right, #15ed20 10%, #ff0000, #e84c4c 70%, #ed1515);
+    -fx-background-color: linear-gradient(to right, #0dea18 10%, #f44c4c9d, #e84c4c 70%, #eb5151c2);
 }
 
 /* .chemicalPouch{
