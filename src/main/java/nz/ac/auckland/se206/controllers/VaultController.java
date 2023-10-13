@@ -16,7 +16,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.AnimationManager;
@@ -62,7 +61,7 @@ public class VaultController extends Controller {
   @FXML private VBox walkietalkieText;
   @FXML private HBox bombHolder;
   @FXML private HBox bomblayer;
-  @FXML private Pane bombPuzzle;
+  @FXML private VBox bombPuzzle;
   @FXML private VBox lobbyRoomSwitch;
   @FXML private VBox securityRoomSwitch;
   @FXML private VBox vaultRoomSwitch;
@@ -117,7 +116,6 @@ public class VaultController extends Controller {
     // adding relevant items to the stylemanager list
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
 
-
     // setting style for the items
     StyleManager.setItemsMessage("It's locked tight", "exitDoor");
     StyleManager.setItemsMessage("set bomb down", "exitHolder");
@@ -146,7 +144,7 @@ public class VaultController extends Controller {
     GameManager.completeObjective();
     // setting style for relevant items
     bombPuzzle.setVisible(true);
-    AnimationManager.fadeTransition(bombpuzzlestackpane, 1, 0.0,1.0);
+    AnimationManager.fadeTransition(bombpuzzlestackpane, 1, 0.0, 1.0);
     bombPuzzle.requestFocus();
     exitDoor.setDisable(true);
     lootBtnHolder.setVisible(true);
