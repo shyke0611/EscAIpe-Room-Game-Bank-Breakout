@@ -6,7 +6,6 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.controllers.ComputerController;
@@ -116,7 +115,6 @@ public class App extends Application {
     instance = this;
     // initialise the randomiser for all random components
     RandomnessGenerate.generateRandomCredentials();
-  
 
     // HackerAiManager hackerAiManager = HackerAiManager.getInstance();
     // hackerAiManager.initialiseHacker(Difficulties.EASY);
@@ -153,7 +151,7 @@ public class App extends Application {
     // DONT DELETE, ensures object starts on find keys which is important for ai to work
     // GameManager.completeObjective();
 
-    Parent root = SceneManager.getUiRoot(Scenes.MAIN_MENU);
+    Parent root = SceneManager.getUiRoot(Scenes.CHEMICALMIXING);
 
     scene = new Scene(root, 1000, 700);
     stage.setScene(scene);
