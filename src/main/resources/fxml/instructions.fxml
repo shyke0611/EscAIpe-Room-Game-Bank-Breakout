@@ -553,6 +553,9 @@
             </ScrollPane>
          </children>
       </VBox>
-      <Button layoutX="925.0" layoutY="70.0" mnemonicParsing="false" onMouseClicked="#onSwitchToMain" text="Close" />
+      <Button fx:id="closeButton" layoutX="920.0" layoutY="70.0" mnemonicParsing="false" onMouseClicked="#onSwitchToMain" onMouseEntered="#hoverButtonEntry" onMouseExited="#hoverButtonExit" prefHeight="29.0" prefWidth="56.0" styleClass="closeButton" text="CLOSE">
+         <font>
+            <Font name="Trebuchet MS" size="12.0" />
+         </font></Button>
    </children>
 </AnchorPane>

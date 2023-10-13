@@ -4,6 +4,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.StackPane;
@@ -19,6 +20,8 @@ public class InstructionsController extends Controller {
   @FXML private StackPane puzzlesTab;
 
   private StackPane activeTab;
+
+  @FXML private Button closeButton;
 
   // General Information labels
   @FXML private Label contextParagraph;
@@ -109,6 +112,18 @@ public class InstructionsController extends Controller {
   @FXML
   private void onSwitchToMain() {
     App.setUI(Scenes.MAIN_MENU);
+  }
+
+  @FXML
+  private void hoverButtonEntry() {
+    closeButton.getStyleClass().clear();
+    closeButton.getStyleClass().add("hoverCloseButton");
+  }
+
+  @FXML
+  private void hoverButtonExit() {
+    closeButton.getStyleClass().clear();
+    closeButton.getStyleClass().add("closeButton");
   }
 
   private void setActiveTab(StackPane newActiveTab) {
