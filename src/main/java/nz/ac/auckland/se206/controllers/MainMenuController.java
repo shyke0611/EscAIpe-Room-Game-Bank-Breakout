@@ -37,7 +37,7 @@ public class MainMenuController extends Controller {
   private void onNewGameBtnClicked(ActionEvent event) {
     // animation settings for smooth play
     AnimationManager.roomSwitchAnimation(
-        Duration.seconds(2),
+        Duration.seconds(1),
         () -> App.setUI(Scenes.DIFFICULTYPAGE),
         () -> AnimationManager.fadeTransition(StyleManager.getHoverItem("itemContainer"), 2, 0, 1));
     buttonsContainer.setDisable(true);
@@ -56,11 +56,7 @@ public class MainMenuController extends Controller {
 
   @FXML
   private void onInstructions() {
-    AnimationManager.roomSwitchAnimation(
-        Duration.seconds(2),
-        () -> App.setUI(Scenes.INSTRUCTIONS));
-    buttonsContainer.setDisable(true);
-    mainMenuAnimationPlay();
+    App.setUI(Scenes.INSTRUCTIONS);
   }
 
   public void reset() {
@@ -71,8 +67,8 @@ public class MainMenuController extends Controller {
 
   public void mainMenuAnimationPlay() {
     buttonsContainer.setDisable(true);
-    AnimationManager.fadeTransition(title, 2, 1.0, 0.0);
-    AnimationManager.fadeTransition(buttonsContainer, 2, 1.0, 0.0);
-    AnimationManager.fadeTransition(robbersimage, 2, 1.0, 0.0);
+    AnimationManager.fadeTransition(title, 1, 1.0, 0.0);
+    AnimationManager.fadeTransition(buttonsContainer, 1, 1.0, 0.0);
+    AnimationManager.fadeTransition(robbersimage, 1, 1.0, 0.0);
   }
 }
