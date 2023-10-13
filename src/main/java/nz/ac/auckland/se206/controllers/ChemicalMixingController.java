@@ -260,6 +260,10 @@ public class ChemicalMixingController extends Controller {
   private void checkWin() {
     // set visibility
     emptyVial.setVisible(false);
+    largeVialBlue.setVisible(false);
+    largeVialGreen.setVisible(false);
+    largeVialRed.setVisible(false);
+    largeVialYellow.setVisible(false);
     retryButton.setVisible(false);
     pourBtn.setVisible(false);
     continueBtn.setVisible(true);

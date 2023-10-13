@@ -31,7 +31,7 @@
             <Font size="23.0" />
          </font>
       </Button>
-      <Label fx:id="winLabel" layoutX="360.0" layoutY="509.0" text="Nice job! you mixed it right" visible="false">
+      <Label fx:id="winLabel" layoutX="360.0" layoutY="509.0" text="Nice job! you mixed it right" textFill="WHITE" visible="false">
          <font>
             <Font size="22.0" />
          </font>
