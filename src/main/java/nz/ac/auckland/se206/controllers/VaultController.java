@@ -106,7 +106,12 @@ public class VaultController extends Controller {
         goldDoor,
         lootBtnHolder,
         lootLbl,
-        realvaultbackground,bombHolder,switchHolder,vaultwalkietalkie,walkietalkieText,bomblogo);
+        realvaultbackground,
+        bombHolder,
+        switchHolder,
+        vaultwalkietalkie,
+        walkietalkieText,
+        bomblogo);
 
     // adding relevant items to the stylemanager list
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
@@ -139,23 +144,23 @@ public class VaultController extends Controller {
     GameManager.completeObjective();
     // setting style for relevant items
     bombPuzzle.setVisible(true);
-      bombPuzzle.requestFocus();
-    StyleManager.setVisible(false, "switchHolder", "vaultwalkietalkie","walkietalkieText", "bombHolder");
-
+    bombPuzzle.requestFocus();
+    StyleManager.setVisible(
+        false, "switchHolder", "vaultwalkietalkie", "walkietalkieText", "bombHolder");
   }
 
   @FXML
   private void onBombPlaced(MouseEvent event) {
-      AnimationManager.toggleAlarmAnimation(exitHolder, true, 0.5);
-      AnimationManager.delayAnimation(exitHolder, escapeDoor);
-      exitHolder.setDisable(true);
+    AnimationManager.toggleAlarmAnimation(exitHolder, true, 0.5);
+    AnimationManager.delayAnimation(exitHolder, escapeDoor);
+    exitHolder.setDisable(true);
   }
 
   @FXML
   private void onExitBomb() {
-      GameManager.completeObjective();
-      exitHolder.setVisible(true);
-      bombPuzzle.setVisible(false);
+    GameManager.completeObjective();
+    exitHolder.setVisible(true);
+    bombPuzzle.setVisible(false);
   }
 
   @FXML
@@ -251,7 +256,6 @@ public class VaultController extends Controller {
     }
     labelText.setLength(0);
   }
-
 
   @FXML
   private void onEscape() {
@@ -361,20 +365,21 @@ public class VaultController extends Controller {
 
   @FXML
   private void onBombTyped(KeyEvent event) {
+    KeyCode code = event.getCode();
 
     // If esc is pressed, close the bomb
-    if (event.getCode() == KeyCode.ESCAPE) {
+    if (code == KeyCode.ESCAPE) {
       onExitBomb();
     }
 
     // If enter is pressed, check the code
-    if (event.getCode() == KeyCode.ENTER) {
+    if (code == KeyCode.ENTER) {
       onCheckCode();
       return;
     }
 
     // If backspace is pressed, remove the last character from the input label
-    if (event.getCode() == KeyCode.BACK_SPACE) {
+    if (code == KeyCode.BACK_SPACE) {
       if (labelText.length() > 0) {
         labelText.deleteCharAt(labelText.length() - 1);
         inputLbl.setText(labelText.toString());
@@ -382,12 +387,12 @@ public class VaultController extends Controller {
     }
 
     // If number is pressed, add it to the input label
-    if (event.getCode().isDigitKey() && !event.getCode().equals(KeyCode.ENTER)) {
+    if (code.isDigitKey() && !event.getCode().equals(KeyCode.ENTER)) {
       updateCode(event.getText());
     }
 
     // if x is pressed, close the bomb
-    if (event.getCode() == KeyCode.X) {
+    if (code == KeyCode.X) {
       onExitBomb();
     }
   }
