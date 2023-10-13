@@ -23,6 +23,10 @@
     -fx-cursor: hand;
 }
 
+.keylocations:pressed {
+    -fx-effect: null;
+}
+
 
 .guard:hover {
     -fx-effect: dropshadow(gaussian, rgba(34, 255, 0, 0.7), 5, 5, 0, 0);
