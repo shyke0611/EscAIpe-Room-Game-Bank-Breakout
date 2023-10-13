@@ -51,7 +51,7 @@ public class InstructionsController extends Controller {
     // calculate relative position of game mechanics section
     double totalHeight = instructionsScroll.getContent().getBoundsInLocal().getMaxY();
     double vertPosition = gameMechanics.getBoundsInParent().getMinY();
-    vertPosition += 0.47 * instructionsScroll.getPrefHeight();
+    vertPosition += .52 * instructionsScroll.getPrefHeight();
     gameMechanicsVertValue = (vertPosition / totalHeight);
 
     instructionsScroll
@@ -59,9 +59,9 @@ public class InstructionsController extends Controller {
         .addListener(
             (ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
               double vertValue = newValue.doubleValue();
-              if (vertValue < 11) {
+              if (vertValue < gameMechanicsVertValue - 0.03) {
                 setActiveTab(generalInfoTab);
-              } else if (vertValue > 29) {
+              } else if (vertValue > 0.93) {
                 setActiveTab(puzzlesTab);
               } else {
                 setActiveTab(gameMechanicsTab);
