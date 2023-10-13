@@ -38,6 +38,7 @@ public class ChemicalMixingController extends Controller {
   @FXML private ImageView largeVialGreen;
   @FXML private ImageView largeVialRed;
   @FXML private ImageView largeVialYellow;
+  @FXML private ImageView emptyVial;
 
   @FXML private Label labelOne;
   @FXML private Label labelTwo;
@@ -46,7 +47,7 @@ public class ChemicalMixingController extends Controller {
   @FXML private Label currentVial;
   @FXML private Label winLabel;
 
-  @FXML private Rectangle firstPour;
+  @FXML private Region firstPour;
   @FXML private Rectangle secondPour;
   @FXML private Rectangle thirdPour;
   @FXML private Rectangle fourthPour;
@@ -57,7 +58,7 @@ public class ChemicalMixingController extends Controller {
   private String randomRed;
   private String randomBlue;
   private String randomGreen;
-  private String vileColour;
+  private String vialColour;
 
   private int pourCount;
 
@@ -105,35 +106,46 @@ public class ChemicalMixingController extends Controller {
   public void onVialClicked(MouseEvent event) {
     ImageView image = (ImageView) event.getSource();
     String id = image.getId();
+    sliderAnimation.play();
+    pourBtn.setDisable(false);
+    emptyVial.setVisible(false);
 
     switch (id) {
       case "yellowVial":
+        vialColour = "yellow";
         largeVialYellow.setVisible(true);
         largeVialBlue.setVisible(false);
         largeVialRed.setVisible(false);
         largeVialGreen.setVisible(false);
         setSliderGraident(Integer.parseInt(randomYellow));
+
         break;
       case "redVial":
+        vialColour = "red";
         largeVialRed.setVisible(true);
         largeVialBlue.setVisible(false);
         largeVialYellow.setVisible(false);
         largeVialGreen.setVisible(false);
         setSliderGraident(Integer.parseInt(randomRed));
+
         break;
       case "blueVial":
+        vialColour = "blue";
         largeVialBlue.setVisible(true);
         largeVialGreen.setVisible(false);
         largeVialRed.setVisible(false);
         largeVialYellow.setVisible(false);
         setSliderGraident(Integer.parseInt(randomBlue));
+
         break;
       case "greenVial":
+        vialColour = "green";
         largeVialGreen.setVisible(true);
         largeVialBlue.setVisible(false);
         largeVialRed.setVisible(false);
         largeVialYellow.setVisible(false);
         setSliderGraident(Integer.parseInt(randomGreen));
+
         break;
     }
   }
@@ -144,91 +156,53 @@ public class ChemicalMixingController extends Controller {
    * @param event The MouseEvent triggered by pouring a vile.
    */
   @FXML
-  private void onPourChemical(MouseEvent event) {
+  private void onPourChemical(ActionEvent event) {
 
-    ImageView image = (ImageView) event.getSource();
-    image.setStyle("-fx-cursor: hand;");
-
-    // Resume the slider animation
-    if (!sliderMoving) {
-      sliderAnimation.play();
-      sliderMoving = true;
-    }
-
-    // Setting the current vile label and saving current clicked colour
-    // this is for yellow vile
-    if (image.getId().equals("yellowVial")) {
-      currentVial.setText("Yellow Vial");
-      vileColour = "yellow";
-      // this is for red vile
-    } else if (image.getId().equals("redVial")) {
-      currentVial.setText("Red Vial");
-      vileColour = "red";
-      // this is for blue vile
-    } else if (image.getId().equals("blueVial")) {
-      currentVial.setText("Blue Vial");
-      vileColour = "blue";
-      // this is for #15ed20 vile
-    } else if (image.getId().equals("greenVial")) {
-      currentVial.setText("Green Vial");
-      vileColour = "#15ed20";
-    }
-
-    sliderAnimation.play();
-    pourBtn.setDisable(false);
+    // sliderAnimation.play();
 
     // Pour button was clicked
-    pourBtn.setOnAction(
-        e -> {
-          onStopSlider();
-          pourBtn.setDisable(true);
-          currentVial.setText("Pick a vial");
 
-          int value = (int) Math.floor(slider.getValue());
+    onStopSlider();
+    pourBtn.setDisable(true);
 
-          // Ugly code to determine if user was correct, please help refactor if you know a better
-          // wayy
-          // filling beaker for yellow
-          if (vileColour == "yellow" && value == Integer.parseInt(randomYellow)) {
-            value = 1;
-            pourCount++;
-            fillBeaker(value, pourCount);
-            yellowVial.setDisable(true);
-            yellowVial.setOpacity(0.5);
-            // filling beaker for red
-          } else if (vileColour == "red" && value == Integer.parseInt(randomRed)) {
-            value = 2;
-            pourCount++;
-            fillBeaker(value, pourCount);
-            redVial.setDisable(true);
-            redVial.setOpacity(0.5);
-            // filling beaker for blue
-          } else if (vileColour == "blue" && value == Integer.parseInt(randomBlue)) {
-            value = 3;
-            pourCount++;
-            fillBeaker(value, pourCount);
-            blueVial.setDisable(true);
-            blueVial.setOpacity(0.5);
-            // filling beaker for #15ed20
-          } else if (vileColour == "#15ed20" && value == Integer.parseInt(randomGreen)) {
-            value = 4;
-            pourCount++;
-            fillBeaker(value, pourCount);
-            greenVial.setDisable(true);
-            greenVial.setOpacity(0.5);
-          } else {
-            // setting properties to the viles and buttons
-            retryButton.setDisable(false);
-            yellowVial.setDisable(true);
-            redVial.setDisable(true);
-            blueVial.setDisable(true);
-            greenVial.setDisable(true);
-            yellowVial.setOpacity(0.5);
-            redVial.setOpacity(0.5);
-            blueVial.setOpacity(0.5);
-            greenVial.setOpacity(0.5);
-          }
-        });
+    int value = (int) Math.floor(slider.getValue());
+
+    // Ugly code to determine if user was correct, please help refactor if you know a better
+    // wayy
+    // filling beaker for yellow
+    if (vialColour.equals("yellow") && value == Integer.parseInt(randomYellow)) {
+      value = 1;
+      pourCount++;
+      fillBeaker(value, pourCount);
+      yellowVial.setVisible(false);
+      emptyVial.setVisible(true);
+
+      // filling beaker for red
+    } else if (vialColour.equals("red") && value == Integer.parseInt(randomRed)) {
+      value = 2;
+      pourCount++;
+      fillBeaker(value, pourCount);
+      redVial.setVisible(false);
+      emptyVial.setVisible(true);
+      // filling beaker for blue
+    } else if (vialColour.equals("blue") && value == Integer.parseInt(randomBlue)) {
+      value = 3;
+      pourCount++;
+      fillBeaker(value, pourCount);
+      blueVial.setVisible(false);
+      emptyVial.setVisible(true);
+      // filling beaker for #15ed20
+    } else if (vialColour.equals("green") && value == Integer.parseInt(randomGreen)) {
+      value = 4;
+      pourCount++;
+      fillBeaker(value, pourCount);
+      greenVial.setVisible(false);
+      emptyVial.setVisible(true);
+    } else {
+      // setting properties to the viles and buttons
+      emptyVial.setVisible(true);
+      onRetryButtonClicked(event);
+    }
   }
 
   /**
@@ -256,8 +230,7 @@ public class ChemicalMixingController extends Controller {
     // setting paint colour for the first vile selected
     if (pourCount == 1) {
       firstPour.setVisible(true);
-      firstPour.setFill(currentColour);
-      whiteRectangle.setVisible(true);
+      firstPour.setStyle("-fx-background-color: " + currentColour);
       // setting paint colour for the second vile selected
     } else if (pourCount == 2) {
       secondPour.setVisible(true);
@@ -275,10 +248,10 @@ public class ChemicalMixingController extends Controller {
     }
   }
 
-  @FXML
-  public void Pour(ActionEvent event) {
-    ChemicalLiquid.setPrefHeight(ChemicalLiquid.getPrefHeight() + 50);
-  }
+  // @FXML
+  // public void Pour(ActionEvent event) {
+  //   ChemicalLiquid.setPrefHeight(ChemicalLiquid.getPrefHeight() + 50);
+  // }
 
   /**
    * Checks if the player has successfully completed the chemical mixing challenge. If successful,
@@ -286,6 +259,7 @@ public class ChemicalMixingController extends Controller {
    */
   private void checkWin() {
     // set visibility
+    emptyVial.setVisible(false);
     retryButton.setVisible(false);
     pourBtn.setVisible(false);
     continueBtn.setVisible(true);
@@ -303,26 +277,26 @@ public class ChemicalMixingController extends Controller {
   @FXML
   private void onRetryButtonClicked(ActionEvent event) {
     // Reset all necessary variables and elements
-    currentVial.setText("");
+
     pourBtn.setDisable(true);
+    largeVialBlue.setVisible(false);
+    largeVialGreen.setVisible(false);
+    largeVialRed.setVisible(false);
+    largeVialYellow.setVisible(false);
     pourCount = 0;
     firstPour.setVisible(false); // Hide pour rectangles
     secondPour.setVisible(false);
     thirdPour.setVisible(false);
     fourthPour.setVisible(false);
     // Reset all the viles
-    yellowVial.setDisable(false);
-    yellowVial.setOpacity(1);
-    redVial.setDisable(false);
-    redVial.setOpacity(1);
-    blueVial.setDisable(false);
-    blueVial.setOpacity(1);
-    greenVial.setDisable(false);
-    greenVial.setOpacity(1);
-    // Clear the vileColour
-    vileColour = null;
+    yellowVial.setVisible(true);
+    redVial.setVisible(true);
+    blueVial.setVisible(true);
+    greenVial.setVisible(true);
+
+    // Clear the vialColour
+    vialColour = null;
     retryButton.setDisable(true);
-    currentVial.setText("Pick a vial");
   }
 
   /** stops or resumes the slider animation when the "Stop" button is pressed. */
@@ -345,19 +319,19 @@ public class ChemicalMixingController extends Controller {
 
     switch (partNumber) {
       case 1:
-        style += "#15ed20 0%, #15ed20 20%, red 33%, red 100%)";
+        style += "#15ed20 0%, #15ed20 20%, #ed1515 33%, #ed1515 100%)";
         break;
       case 2:
-        style += "red 0%, red 20%, #15ed20 30%, #15ed20 45%, red 57%, red 100%)";
+        style += "#ed1515 0%, #ed1515 20%, #15ed20 30%, #15ed20 45%, #ed1515 57%, #ed1515 100%)";
         break;
       case 3:
-        style += "red 0%, red 40%, #15ed20 52%, #15ed20 70%, red 83%, red 100%)";
+        style += "#ed1515 0%, #ed1515 40%, #15ed20 52%, #15ed20 70%, #ed1515 83%, #ed1515 100%)";
         break;
       case 4:
-        style += "red 0%, red 67%, #15ed20 83%, #15ed20 100%)";
+        style += "#ed1515 0%, #ed1515 67%, #15ed20 83%, #15ed20 100%)";
         break;
       default:
-        style += "red 0%, red 100%)";
+        style += "#ed1515 0%, #ed1515 100%)";
         break;
     }
 

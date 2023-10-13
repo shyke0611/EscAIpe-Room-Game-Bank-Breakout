@@ -1,7 +1,8 @@
 
 .bottom-rectangle{
     -fx-background-color: linear-gradient(#9fd7ff, #9fd7ff);
-    -fx-background-radius: 0 0 40 40;
+    -fx-background-radius: 0 0 35 35;
+
    
     
 }
@@ -11,8 +12,13 @@
 }
 
 .slider .track {
-    -fx-background-color: linear-gradient(to right, #15ed20 10%, #ff0000, #ff0000 70%, #ed1515);
+    -fx-background-color: linear-gradient(to right, #15ed20 10%, #ff0000, #e84c4c 70%, #ed1515);
 }
+
+/* .chemicalPouch{
+    fx-effect: dropshadow(three-pass-box, red, 10, 0, 0, 0);
+    -fx-visibility: true;
+} */
 
 
 

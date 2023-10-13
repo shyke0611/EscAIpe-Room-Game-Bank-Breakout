@@ -11,6 +11,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -23,12 +26,12 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000d4" height="610.0" layoutX="42.0" layoutY="24.0" stroke="WHITE" strokeType="INSIDE" translateX="28.0" translateY="23.0" width="860.0" />
-      <Button fx:id="continueBtn" layoutX="662.0" layoutY="575.0" mnemonicParsing="false" onMouseClicked="#setVault" text="Continue" visible="false">
+      <Button fx:id="continueBtn" layoutX="430.0" layoutY="575.0" mnemonicParsing="false" onMouseClicked="#setVault" text="Continue" visible="false">
          <font>
             <Font size="23.0" />
          </font>
       </Button>
-      <Label fx:id="winLabel" layoutX="600.0" layoutY="509.0" text="Nice job! you mixed it right" visible="false">
+      <Label fx:id="winLabel" layoutX="360.0" layoutY="509.0" text="Nice job! you mixed it right" visible="false">
          <font>
             <Font size="22.0" />
          </font>
@@ -51,7 +54,7 @@
       </StackPane>
       <StackPane layoutX="601.0" layoutY="365.0" prefHeight="249.0" prefWidth="270.0">
          <children>
-            <ImageView fitHeight="263.0" fitWidth="263.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="263.0" fitWidth="263.0" pickOnBounds="true" preserveRatio="true" styleClass="chemicalPouch">
                <image>
                   <Image url="@../images/chemicalIcons/vialPouchEmpty.png" />
                </image>
@@ -78,38 +81,37 @@
             </ImageView>
          </children>
       </StackPane>
-      <Region fx:id="ChemicalLiquid" layoutX="155.0" layoutY="596.0" opacity="0.9" prefHeight="32.0" prefWidth="157.0" styleClass="bottom-rectangle" />
-      <ImageView fitHeight="218.0" fitWidth="184.0" layoutX="142.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/GlassBottle.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="pourBtn" layoutX="201.0" layoutY="325.0" mnemonicParsing="false" onAction="#Pour" prefHeight="54.0" prefWidth="89.0" text="Pour" />
-      <StackPane layoutX="361.0" layoutY="400.0" prefHeight="238.0" prefWidth="138.0">
+      <Button fx:id="pourBtn" layoutX="201.0" layoutY="325.0" mnemonicParsing="false" onAction="#onPourChemical" prefHeight="54.0" prefWidth="89.0" text="Pour" />
+      <StackPane layoutX="371.0" layoutY="404.0" prefHeight="238.0" prefWidth="101.0">
          <children>
-            <ImageView fx:id="largeVialGreen" fitHeight="248.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="largeVialGreen" fitHeight="215.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../images/chemicalIcons/largeVialGreen.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="largeVialYellow" fitHeight="255.0" fitWidth="127.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="largeVialYellow" fitHeight="220.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../images/chemicalIcons/largeVialYellow.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="largeVialRed" fitHeight="253.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="largeVialRed" fitHeight="220.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../images/chemicalIcons/largeVialRed.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="largeVialBlue" fitHeight="255.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true" translateY="5.0" visible="false">
+            <ImageView fx:id="emptyVial" fitHeight="217.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/chemicalIcons/emptyVial.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="largeVialBlue" fitHeight="224.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true" translateY="5.0" visible="false">
                <image>
                   <Image url="@../images/chemicalIcons/largeVialBlue.png" />
                </image>
             </ImageView>
          </children>
       </StackPane>
-      <Button fx:id="retryButton" layoutX="333.0" layoutY="325.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="89.0" text="Reset" />
+      <Button fx:id="retryButton" layoutX="333.0" layoutY="325.0" mnemonicParsing="false" onAction="#onRetryButtonClicked" prefHeight="54.0" prefWidth="89.0" text="Reset" />
       <StackPane layoutX="596.0" layoutY="126.0" prefHeight="150.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="313.0" fitWidth="280.0" pickOnBounds="true" preserveRatio="true">
@@ -157,7 +159,7 @@
             <Font name="Courier New Bold" size="60.0" />
          </font>
       </Label>
-      <Slider fx:id="slider" blockIncrement="1.0" layoutX="201.0" layoutY="262.0" majorTickUnit="1.0" max="4.0" minorTickCount="0" prefHeight="16.0" prefWidth="229.0" showTickMarks="true" />
+      <Slider fx:id="slider" blockIncrement="1.0" layoutX="201.0" layoutY="262.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" prefHeight="16.0" prefWidth="229.0" showTickMarks="true" value="1.0" />
       <HBox layoutX="212.0" layoutY="288.0" prefHeight="28.0" prefWidth="200.0">
          <children>
             <Label text="1" textFill="WHITE">
@@ -191,5 +193,40 @@
             </Label>
          </children>
       </HBox>
+      <StackPane layoutX="126.0" layoutY="424.0" prefHeight="150.0" prefWidth="200.0">
+         <children>
+            <Rectangle fx:id="fourthPour" arcHeight="10.0" arcWidth="10.0" height="42.0" stroke="TRANSPARENT" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeType="INSIDE" translateY="-38.0" visible="false" width="170.0">
+               <fill>
+                  <LinearGradient endX="1.0" startX="1.0" startY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" green="0.9333333373069763" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.006711409395973154">
+                           <color>
+                              <Color red="1.0" green="0.9333333373069763" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="0.6090090274810791" opacity="0.8299999833106995" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
+            <Rectangle fx:id="secondPour" arcHeight="10.0" arcWidth="10.0" fill="#34f86f" height="44.0" stroke="TRANSPARENT" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeType="INSIDE" translateY="35.0" visible="false" width="170.0" />
+            <Rectangle fx:id="thirdPour" fill="#f27377" height="38.0" stroke="TRANSPARENT" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeType="INSIDE" visible="false" width="170.0" />
+            <ImageView fitHeight="219.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/GlassBottle.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <Region fx:id="firstPour" layoutX="141.0" layoutY="583.0" opacity="0.9" prefHeight="42.0" prefWidth="169.0" styleClass="bottom-rectangle" visible="false" />
    </children>
 </AnchorPane>
