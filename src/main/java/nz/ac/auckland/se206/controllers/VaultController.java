@@ -78,6 +78,7 @@ public class VaultController extends Controller {
   @FXML private StackPane timerClock;
   @FXML private StackPane bombpuzzlestackpane;
   @FXML private Label numberOfHints;
+  @FXML private Label moneyCount;
 
   @FXML private HBox switchHolder;
   @FXML private HBox walkietalkieHolder;
@@ -119,6 +120,7 @@ public class VaultController extends Controller {
 
     // adding relevant items to the stylemanager list
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
+    GameManager.addMoneyGainedLabel(this, moneyCount);
 
     // setting style for the items
     StyleManager.setItemsMessage("It's locked tight", "exitDoor");

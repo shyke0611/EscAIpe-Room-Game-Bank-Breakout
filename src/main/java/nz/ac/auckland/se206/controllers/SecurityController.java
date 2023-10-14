@@ -59,6 +59,7 @@ public class SecurityController extends Controller {
   @FXML private StackPane wallEmployee;
   @FXML private StackPane hoverEmployee;
   @FXML private Label employeeName;
+  @FXML private Label moneyCount;
 
   // Managers and controllers
   private StyleManager styleManager = StyleManager.getInstance();
@@ -82,6 +83,7 @@ public class SecurityController extends Controller {
     WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
     WalkieTalkieManager.addQuickHintBtn(this, quickHintBtn);
     WalkieTalkieManager.addWalkieTalkieTextArea(this, securityTextArea);
+    GameManager.addMoneyGainedLabel(this, moneyCount);
 
     // add styling
     styleManager.addHoverItems(computer, electricityBox, wallEmployee, securitybackground);

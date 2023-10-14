@@ -304,8 +304,10 @@ public class ChemicalMixingController extends Controller {
     continueBtn.setVisible(true);
     winLabel.setVisible(true);
     GameManager.completeObjective();
+
     // $5 Million
     GameManager.increaseMoneyToGain(5000000);
+    GameManager.setMoneyGained();
   }
 
   /**

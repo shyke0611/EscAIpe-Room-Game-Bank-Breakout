@@ -13,7 +13,6 @@ import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
-import nz.ac.auckland.se206.WalkieTalkieManager;
 
 /** Controller class for the Eye Scanner scene. */
 public class EyeScannerController extends Controller {
@@ -34,6 +33,7 @@ public class EyeScannerController extends Controller {
   @FXML private Label redValue;
   @FXML private Label greenValue;
   @FXML private Label blueValue;
+  @FXML private Label moneyCount;
 
   @FXML private VBox walkietalkieText;
   @FXML private Label timerLabel;
@@ -59,6 +59,7 @@ public class EyeScannerController extends Controller {
     // set relevant method on initialisation
     styleManager.addHoverItems(compareBtn);
     SceneManager.setController(Scenes.EYESCANNER, this);
+    GameManager.addMoneyGainedLabel(null, moneyCount);
     super.setTimerLabel(timerLabel, 1);
     accessGranted.setVisible(false);
     accessDenied.setVisible(false);
@@ -170,6 +171,7 @@ public class EyeScannerController extends Controller {
       // $20 Million
       GameManager.completeObjective();
       GameManager.increaseMoneyToGain(20000000);
+      GameManager.setMoneyGained();
     } else {
       accessGranted.setVisible(false);
       accessDenied.setVisible(true);

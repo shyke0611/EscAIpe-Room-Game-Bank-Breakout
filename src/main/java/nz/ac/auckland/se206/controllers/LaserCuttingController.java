@@ -24,7 +24,6 @@ import nz.ac.auckland.se206.GameManager;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
-import nz.ac.auckland.se206.StyleManager;
 
 public class LaserCuttingController extends Controller {
 
@@ -38,6 +37,7 @@ public class LaserCuttingController extends Controller {
   @FXML private ImageView laserGun;
 
   @FXML private Label equipLaserGun;
+  @FXML private Label moneyCount;
 
   @FXML private Canvas canvas;
   @FXML private GraphicsContext gc;
@@ -53,6 +53,8 @@ public class LaserCuttingController extends Controller {
 
   public void initialize() {
     SceneManager.setController(Scenes.LASERCUTTING, this);
+    GameManager.addMoneyGainedLabel(null, moneyCount);
+
     super.setTimerLabel(timerLabel, 1);
     gc = canvas.getGraphicsContext2D();
     root.getChildren().add(cursorLine);
@@ -178,6 +180,7 @@ public class LaserCuttingController extends Controller {
         GameState.isLaserCuttingBypassed = true;
         // $10 Million
         GameManager.increaseMoneyToGain(10000000);
+        GameManager.setMoneyGained();
         GameManager.completeObjective();
         // updateMoneyStolen(5000000);
         points.clear();
