@@ -6,9 +6,6 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.InnerShadow?>
-<?import javafx.scene.effect.Light.Distant?>
-<?import javafx.scene.effect.Lighting?>
-<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,25 +14,15 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.GameFinishController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.GameFinishController">
    <children>
-      <AnchorPane fx:id="successPage" layoutY="-4.0" prefHeight="1324.0" prefWidth="1035.0">
+      <ImageView fitHeight="707.0" fitWidth="1007.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/titlepage.png" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="successPage" layoutY="-4.0" prefHeight="429.0" prefWidth="1035.0">
          <children>
-            <ImageView fitHeight="783.0" fitWidth="1035.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/successbackground.png" />
-               </image>
-               <effect>
-                  <Lighting diffuseConstant="1.18" specularConstant="0.14" specularExponent="38.03" surfaceScale="2.77">
-                     <bumpInput>
-                        <Shadow />
-                     </bumpInput>
-                     <light>
-                        <Light.Distant />
-                     </light>
-                  </Lighting>
-               </effect>
-            </ImageView>
             <ImageView fitHeight="185.0" fitWidth="460.0" layoutX="294.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/success.png" />
@@ -47,21 +34,6 @@
          </children></AnchorPane>
       <AnchorPane fx:id="failPage" prefHeight="702.0" prefWidth="984.0">
          <children>
-            <ImageView fitHeight="716.0" fitWidth="1023.0" layoutX="-3.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/failbackground.png" />
-               </image>
-               <effect>
-                  <Lighting diffuseConstant="1.14" specularConstant="0.14" specularExponent="40.0" surfaceScale="6.12">
-                     <bumpInput>
-                        <Shadow />
-                     </bumpInput>
-                     <light>
-                        <Light.Distant />
-                     </light>
-                  </Lighting>
-               </effect>
-            </ImageView>
             <ImageView fitHeight="177.0" fitWidth="388.0" layoutX="325.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/fail.png" />
@@ -72,11 +44,70 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <HBox alignment="CENTER" layoutY="268.0" prefHeight="101.0" prefWidth="1009.0">
+      <HBox alignment="BOTTOM_CENTER" layoutX="1.0" layoutY="594.0" prefHeight="89.0" prefWidth="1000.0">
          <children>
-            <VBox prefHeight="84.0" prefWidth="220.0" style="-fx-border-radius: 20 0 0 20; -fx-border-color: white;">
+            <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExit" prefHeight="96.0" prefWidth="236.0" stylesheets="@../css/mainmenu.css">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+               <graphic>
+                  <ImageView fitHeight="59.0" fitWidth="173.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/quit.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="mainmenuBtn" mnemonicParsing="false" onAction="#onSwitchToMainMenu" prefHeight="96.0" prefWidth="421.0" stylesheets="@../css/mainmenu.css">
+               <font>
+                  <Font size="26.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="46.0" fitWidth="342.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/mainmenu.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <Label alignment="CENTER" layoutX="104.0" layoutY="188.0" prefHeight="80.0" prefWidth="394.0" text="Your Score:" textFill="WHITE">
+         <font>
+            <Font name="Copperplate" size="48.0" />
+         </font>
+         <effect>
+            <DropShadow height="29.84" radius="19.58" spread="0.55" width="50.48">
+               <color>
+                  <Color red="0.6184210777282715" green="0.5668859481811523" blue="0.5668859481811523" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Label>
+      <TextArea layoutX="554.0" layoutY="272.0" prefHeight="270.0" prefWidth="303.0" />
+      <Label alignment="CENTER" layoutX="515.0" layoutY="191.0" prefHeight="79.0" prefWidth="356.0" text="ScoreBoard:" textFill="WHITE">
+         <font>
+            <Font name="Copperplate" size="48.0" />
+         </font>
+         <effect>
+            <DropShadow height="29.84" radius="19.58" spread="0.55" width="50.48">
+               <color>
+                  <Color red="0.6184210777282715" green="0.5668859481811523" blue="0.5668859481811523" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Label>
+      <VBox layoutX="93.0" layoutY="271.0" prefHeight="289.0" prefWidth="405.0">
+         <children>
+            <VBox prefHeight="84.0" prefWidth="220.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="329.0" text="Time Chosen:" textFill="WHITE" underline="true">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="493.0" text="Time Chosen:" textFill="WHITE" underline="true">
                      <font>
                         <Font name="Copperplate" size="27.0" />
                      </font>
@@ -100,13 +131,10 @@
                      </color>
                   </InnerShadow>
                </effect>
-               <HBox.margin>
-                  <Insets right="5.0" />
-               </HBox.margin>
             </VBox>
-            <VBox prefHeight="59.0" prefWidth="220.0" style="-fx-border-color: white;">
+            <VBox prefHeight="59.0" prefWidth="220.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="329.0" text="Time Taken: " textFill="WHITE" underline="true">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="28.0" prefWidth="495.0" text="Time Taken: " textFill="WHITE" underline="true">
                      <font>
                         <Font name="Copperplate" size="27.0" />
                      </font>
@@ -130,13 +158,10 @@
                      </color>
                   </InnerShadow>
                </effect>
-               <HBox.margin>
-                  <Insets right="5.0" />
-               </HBox.margin>
             </VBox>
-            <VBox prefHeight="59.0" prefWidth="220.0" style="-fx-border-color: white;">
+            <VBox prefHeight="59.0" prefWidth="220.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="399.0" text="Money Stolen:" textFill="WHITE" underline="true">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="28.0" prefWidth="488.0" text="Money Stolen:" textFill="WHITE" underline="true">
                      <font>
                         <Font name="Copperplate" size="27.0" />
                      </font>
@@ -160,13 +185,10 @@
                      </color>
                   </InnerShadow>
                </effect>
-               <HBox.margin>
-                  <Insets right="5.0" />
-               </HBox.margin>
             </VBox>
-            <VBox prefHeight="59.0" prefWidth="220.0" style="-fx-border-color: white; -fx-border-radius: 0 20 20 0;">
+            <VBox prefHeight="59.0" prefWidth="220.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="399.0" text="Difficulty:" textFill="WHITE" underline="true">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="28.0" prefWidth="533.0" text="Difficulty:" textFill="WHITE" underline="true">
                      <font>
                         <Font name="Copperplate" size="27.0" />
                      </font>
@@ -192,48 +214,6 @@
                </effect>
             </VBox>
          </children>
-      </HBox>
-      <HBox alignment="BOTTOM_CENTER" layoutX="256.0" layoutY="595.0" prefHeight="67.0" prefWidth="555.0">
-         <children>
-            <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExit" prefHeight="96.0" prefWidth="236.0" stylesheets="@../css/mainmenu.css" text="Exit">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="mainmenuBtn" mnemonicParsing="false" onAction="#onSwitchToMainMenu" prefHeight="96.0" prefWidth="236.0" stylesheets="@../css/mainmenu.css" text="Main Menu">
-               <font>
-                  <Font size="26.0" />
-               </font>
-            </Button>
-         </children>
-      </HBox>
-      <Label alignment="CENTER" layoutX="260.0" layoutY="188.0" prefHeight="80.0" prefWidth="506.0" text="Your Score:" textFill="WHITE">
-         <font>
-            <Font name="Copperplate" size="48.0" />
-         </font>
-         <effect>
-            <DropShadow height="29.84" radius="19.58" spread="0.55" width="50.48">
-               <color>
-                  <Color red="0.6184210777282715" green="0.5668859481811523" blue="0.5668859481811523" />
-               </color>
-            </DropShadow>
-         </effect>
-      </Label>
-      <TextArea layoutX="211.0" layoutY="437.0" prefHeight="144.0" prefWidth="614.0" />
-      <Label alignment="CENTER" layoutX="278.0" layoutY="380.0" prefHeight="49.0" prefWidth="461.0" text="ScoreBoard:" textFill="WHITE">
-         <font>
-            <Font name="Copperplate" size="48.0" />
-         </font>
-         <effect>
-            <DropShadow height="29.84" radius="19.58" spread="0.55" width="50.48">
-               <color>
-                  <Color red="0.6184210777282715" green="0.5668859481811523" blue="0.5668859481811523" />
-               </color>
-            </DropShadow>
-         </effect>
-      </Label>
+      </VBox>
    </children>
 </AnchorPane>
