@@ -3,7 +3,6 @@ package nz.ac.auckland.se206.controllers;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -12,7 +11,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Paint;
+import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.GameManager;
@@ -27,8 +26,8 @@ public class ChemicalMixingController extends Controller {
 
   @FXML private Label timerLabel;
   @FXML private Slider slider;
-  @FXML private Button pourBtn;
-  @FXML private Button retryButton;
+  @FXML private StackPane pourBtn;
+  @FXML private StackPane retryButton;
   @FXML private Button continueBtn;
   @FXML private ImageView greenVial;
   @FXML private ImageView redVial;
@@ -39,6 +38,8 @@ public class ChemicalMixingController extends Controller {
   @FXML private ImageView largeVialRed;
   @FXML private ImageView largeVialYellow;
   @FXML private ImageView emptyVial;
+  @FXML private ImageView redArrow;
+  @FXML private StackPane largeVialPane;
 
   @FXML private Label labelOne;
   @FXML private Label labelTwo;
@@ -46,6 +47,7 @@ public class ChemicalMixingController extends Controller {
   @FXML private Label labelFour;
   @FXML private Label currentVial;
   @FXML private Label winLabel;
+  @FXML private Label selectVialLabel;
 
   @FXML private Region firstPour;
   @FXML private Rectangle secondPour;
@@ -82,7 +84,10 @@ public class ChemicalMixingController extends Controller {
     initializeRecipe();
 
     pourBtn.setDisable(true);
+    pourBtn.setOpacity(0.5);
+
     retryButton.setDisable(true);
+    retryButton.setOpacity(0.5);
 
     pourCount = 0;
 
@@ -108,7 +113,16 @@ public class ChemicalMixingController extends Controller {
     String id = image.getId();
     sliderAnimation.play();
     pourBtn.setDisable(false);
+    pourBtn.setOpacity(1);
     emptyVial.setVisible(false);
+
+    redArrow.setVisible(false);
+    retryButton.setDisable(false);
+    retryButton.setOpacity(1);
+    selectVialLabel.setVisible(false);
+
+    Node track = slider.lookup(".thumb");
+    track.setStyle("-fx-background-color: white");
 
     switch (id) {
       case "yellowVial":
@@ -156,14 +170,20 @@ public class ChemicalMixingController extends Controller {
    * @param event The MouseEvent triggered by pouring a vile.
    */
   @FXML
-  private void onPourChemical(ActionEvent event) {
+  private void onPourChemical(MouseEvent event) {
 
     // sliderAnimation.play();
-
+    selectVialLabel.setVisible(true);
     // Pour button was clicked
+    if (vialColour == null) {
+
+      redArrow.setVisible(true);
+      return;
+    }
 
     onStopSlider();
     pourBtn.setDisable(true);
+    pourBtn.setOpacity(0.5);
 
     int value = (int) Math.floor(slider.getValue());
 
@@ -200,7 +220,8 @@ public class ChemicalMixingController extends Controller {
       emptyVial.setVisible(true);
     } else {
       // setting properties to the viles and buttons
-      emptyVial.setVisible(true);
+
+      emptyVial.setVisible(false);
       onRetryButtonClicked(event);
     }
   }
@@ -215,16 +236,28 @@ public class ChemicalMixingController extends Controller {
 
     // More ugly code to determine which rectangle to fill and what colour
 
-    Paint currentColour;
+    String currentColour;
     // setting paint colour ro the rectangles in beaker
     if (value == 1) {
-      currentColour = Paint.valueOf("#ffd45e");
+      // yellow
+      currentColour =
+          "radial-gradient(focus-angle 0deg, focus-distance 50%, center 50% 50%, radius 100%, "
+              + " yellow, derive(yellow, 50%), derive(yellow, 150%))";
     } else if (value == 2) {
-      currentColour = Paint.valueOf("#f27377");
+      // red
+      currentColour =
+          "radial-gradient(focus-angle 0deg, focus-distance 50%, center 50% 50%, radius 100%, "
+              + " red, derive(red, 50%), derive(red, 150%));";
     } else if (value == 3) {
-      currentColour = Paint.valueOf("#21b1ff");
+      // blue
+      currentColour =
+          "radial-gradient(focus-angle 0deg, focus-distance 50%, center 50% 50%, radius 100%, blue,"
+              + " derive(blue, 50%), derive(blue, 150%))";
     } else {
-      currentColour = Paint.valueOf("#34f86f");
+      // green
+      currentColour =
+          "radial-gradient(focus-angle 0deg, focus-distance 50%, center 50% 50%, radius 100%,"
+              + "    green, derive(green, 50%), derive(green, 150%))";
     }
 
     // setting paint colour for the first vile selected
@@ -234,15 +267,15 @@ public class ChemicalMixingController extends Controller {
       // setting paint colour for the second vile selected
     } else if (pourCount == 2) {
       secondPour.setVisible(true);
-      secondPour.setFill(currentColour);
+      secondPour.setStyle("-fx-fill: " + currentColour);
       // setting paint colour for the third vile selected
     } else if (pourCount == 3) {
       thirdPour.setVisible(true);
-      thirdPour.setFill(currentColour);
+      thirdPour.setStyle("-fx-fill: " + currentColour);
       // setting paint colour for the last vile selected
     } else if (pourCount == 4) {
       fourthPour.setVisible(true);
-      fourthPour.setFill(currentColour);
+      fourthPour.setStyle("-fx-fill: " + currentColour);
       checkWin();
       GameState.isChemicalMixingBypassed = true;
     }
@@ -259,6 +292,7 @@ public class ChemicalMixingController extends Controller {
    */
   private void checkWin() {
     // set visibility
+    largeVialPane.setVisible(false);
     emptyVial.setVisible(false);
     largeVialBlue.setVisible(false);
     largeVialGreen.setVisible(false);
@@ -266,6 +300,7 @@ public class ChemicalMixingController extends Controller {
     largeVialYellow.setVisible(false);
     retryButton.setVisible(false);
     pourBtn.setVisible(false);
+
     continueBtn.setVisible(true);
     winLabel.setVisible(true);
     GameManager.completeObjective();
@@ -279,10 +314,13 @@ public class ChemicalMixingController extends Controller {
    * @param event The ActionEvent triggered by clicking the "Retry" button.
    */
   @FXML
-  private void onRetryButtonClicked(ActionEvent event) {
+  private void onRetryButtonClicked(MouseEvent event) {
     // Reset all necessary variables and elements
-
+    sliderAnimation.pause();
+    emptyVial.setVisible(false);
+    selectVialLabel.setVisible(true);
     pourBtn.setDisable(true);
+    pourBtn.setOpacity(0.5);
     largeVialBlue.setVisible(false);
     largeVialGreen.setVisible(false);
     largeVialRed.setVisible(false);
@@ -323,19 +361,21 @@ public class ChemicalMixingController extends Controller {
 
     switch (partNumber) {
       case 1:
-        style += "#15ed20 0%, #15ed20 20%, #ed1515 33%, #ed1515 100%)";
+        style += "#15ed20 0%, #15ed20 20%, #f44c4c9d 33%, #f44c4c9d 100%)";
         break;
       case 2:
-        style += "#ed1515 0%, #ed1515 20%, #15ed20 30%, #15ed20 45%, #ed1515 57%, #ed1515 100%)";
+        style +=
+            "#f44c4c9d 0%, #f44c4c9d 20%, #15ed20 30%, #15ed20 45%, #f44c4c9d 57%, #f44c4c9d 100%)";
         break;
       case 3:
-        style += "#ed1515 0%, #ed1515 40%, #15ed20 52%, #15ed20 70%, #ed1515 83%, #ed1515 100%)";
+        style +=
+            "#f44c4c9d 0%, #f44c4c9d 40%, #15ed20 52%, #15ed20 70%, #f44c4c9d 83%, #f44c4c9d 100%)";
         break;
       case 4:
-        style += "#ed1515 0%, #ed1515 67%, #15ed20 83%, #15ed20 100%)";
+        style += "#f44c4c9d 0%, #f44c4c9d 67%, #15ed20 83%, #15ed20 100%)";
         break;
       default:
-        style += "#ed1515 0%, #ed1515 100%)";
+        style += "#f44c4c9d 0%, #f44c4c9d 100%)";
         break;
     }
 

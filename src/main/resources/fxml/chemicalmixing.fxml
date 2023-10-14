@@ -12,28 +12,28 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../css/chemicals.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChemicalMixingController">
    <children>
-      <Region prefHeight="200.0" prefWidth="200.0" styleClass="region" stylesheets="@../css/chemicals.css" />
-      <ImageView fitHeight="704.0" fitWidth="1008.0" onMouseClicked="#setVault" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="704.0" fitWidth="1008.0" onMouseClicked="#setVault" pickOnBounds="true" preserveRatio="true" style="-fx-effect: black;">
          <image>
             <Image url="@../images/realvaultbackground.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000d4" height="610.0" layoutX="42.0" layoutY="24.0" stroke="WHITE" strokeType="INSIDE" translateX="28.0" translateY="23.0" width="860.0" />
-      <Button fx:id="continueBtn" layoutX="430.0" layoutY="575.0" mnemonicParsing="false" onMouseClicked="#setVault" text="Continue" visible="false">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000c9" height="610.0" layoutX="42.0" layoutY="24.0" stroke="#ffffff00" strokeType="INSIDE" translateX="28.0" translateY="23.0" width="860.0" />
+      <Button fx:id="continueBtn" layoutX="423.0" layoutY="571.0" mnemonicParsing="false" onMouseClicked="#setVault" text="Melt Door" visible="false">
          <font>
             <Font size="23.0" />
          </font>
       </Button>
-      <Label fx:id="winLabel" layoutX="360.0" layoutY="509.0" text="Nice job! you mixed it right" textFill="WHITE" visible="false">
+      <Label fx:id="winLabel" layoutX="426.0" layoutY="534.0" text="CORRECT!" textFill="WHITE" visible="false">
          <font>
-            <Font size="22.0" />
+            <Font name="Courier New Bold" size="23.0" />
          </font>
       </Label>
       <StackPane alignment="TOP_RIGHT" layoutX="69.0" layoutY="46.0" prefHeight="27.0" prefWidth="862.0" stylesheets="@../css/chemicals.css">
@@ -52,7 +52,7 @@
             </Label>
          </children>
       </StackPane>
-      <StackPane layoutX="601.0" layoutY="365.0" prefHeight="249.0" prefWidth="270.0">
+      <StackPane layoutX="589.0" layoutY="382.0" prefHeight="249.0" prefWidth="270.0">
          <children>
             <ImageView fitHeight="263.0" fitWidth="263.0" pickOnBounds="true" preserveRatio="true" styleClass="chemicalPouch">
                <image>
@@ -81,8 +81,7 @@
             </ImageView>
          </children>
       </StackPane>
-      <Button fx:id="pourBtn" layoutX="201.0" layoutY="325.0" mnemonicParsing="false" onAction="#onPourChemical" prefHeight="54.0" prefWidth="89.0" text="Pour" />
-      <StackPane layoutX="371.0" layoutY="404.0" prefHeight="238.0" prefWidth="101.0">
+      <StackPane fx:id="largeVialPane" layoutX="371.0" layoutY="404.0" prefHeight="238.0" prefWidth="101.0">
          <children>
             <ImageView fx:id="largeVialGreen" fitHeight="215.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
@@ -99,7 +98,7 @@
                   <Image url="@../images/chemicalIcons/largeVialRed.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="emptyVial" fitHeight="217.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="emptyVial" fitHeight="217.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../images/chemicalIcons/emptyVial.png" />
                </image>
@@ -111,8 +110,7 @@
             </ImageView>
          </children>
       </StackPane>
-      <Button fx:id="retryButton" layoutX="333.0" layoutY="325.0" mnemonicParsing="false" onAction="#onRetryButtonClicked" prefHeight="54.0" prefWidth="89.0" text="Reset" />
-      <StackPane layoutX="596.0" layoutY="126.0" prefHeight="150.0" prefWidth="200.0">
+      <StackPane alignment="CENTER_LEFT" layoutX="591.0" layoutY="112.0" prefHeight="181.0" prefWidth="256.0">
          <children>
             <ImageView fitHeight="313.0" fitWidth="280.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -122,29 +120,29 @@
                   <Point3D y="32.0" z="60.0" />
                </rotationAxis>
             </ImageView>
-            <Label text="Chemical Recipe" translateX="-40.0" translateY="-60.0">
+            <Label text="Chemical Recipe" translateX="10.0" translateY="-60.0">
                <font>
                   <Font name="Chalkduster" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="labelOne" text="Label" translateX="-85.0" translateY="-30.0">
+            <Label fx:id="labelOne" text="Label" translateX="10.0" translateY="-30.0">
                <font>
-                  <Font name="Chalkduster" size="13.0" />
+                  <Font name="Chalkduster" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="labelFour" text="Label" translateX="-85.0" translateY="50.0">
+            <Label fx:id="labelFour" text="Label" translateX="10.0" translateY="45.0">
                <font>
-                  <Font name="Chalkduster" size="13.0" />
+                  <Font name="Chalkduster" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="labelThree" text="Label" translateX="-85.0" translateY="20.0">
+            <Label fx:id="labelThree" text="Label" translateX="10.0" translateY="20.0">
                <font>
-                  <Font name="Chalkduster" size="13.0" />
+                  <Font name="Chalkduster" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="labelTwo" text="Label" translateX="-85.0" translateY="-5.0">
+            <Label fx:id="labelTwo" text="Label" translateX="10.0" translateY="-5.0">
                <font>
-                  <Font name="Chalkduster" size="13.0" />
+                  <Font name="Chalkduster" size="18.0" />
                </font>
             </Label>
          </children>
@@ -193,11 +191,12 @@
             </Label>
          </children>
       </HBox>
+      <Region fx:id="firstPour" layoutX="141.0" layoutY="583.0" prefHeight="42.0" prefWidth="169.0" styleClass="bottom-rectangle" visible="false" />
       <StackPane layoutX="126.0" layoutY="424.0" prefHeight="150.0" prefWidth="200.0">
          <children>
             <Rectangle fx:id="fourthPour" arcHeight="10.0" arcWidth="10.0" height="42.0" stroke="TRANSPARENT" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeType="INSIDE" translateY="-38.0" visible="false" width="170.0">
                <fill>
-                  <LinearGradient endX="1.0" startX="1.0" startY="1.0">
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                      <stops>
                         <Stop>
                            <color>
@@ -215,11 +214,55 @@
                            </color>
                         </Stop>
                      </stops>
-                  </LinearGradient>
+                  </RadialGradient>
                </fill>
             </Rectangle>
-            <Rectangle fx:id="secondPour" arcHeight="10.0" arcWidth="10.0" fill="#34f86f" height="44.0" stroke="TRANSPARENT" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeType="INSIDE" translateY="35.0" visible="false" width="170.0" />
-            <Rectangle fx:id="thirdPour" fill="#f27377" height="38.0" stroke="TRANSPARENT" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeType="INSIDE" visible="false" width="170.0" />
+            <Rectangle fx:id="secondPour" arcHeight="10.0" arcWidth="10.0" height="44.0" stroke="TRANSPARENT" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeType="INSIDE" translateY="35.0" visible="false" width="170.0">
+               <fill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.28298887610435486" green="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.006711409395973154">
+                           <color>
+                              <Color red="0.28298887610435486" green="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.021900000050663948" green="0.7300000190734863" blue="0.021900000050663948" opacity="0.7648183703422546" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </fill>
+            </Rectangle>
+            <Rectangle fx:id="thirdPour" height="38.0" stroke="TRANSPARENT" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeType="INSIDE" visible="false" width="170.0">
+               <fill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" blue="0.18124006688594818" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.006711409395973154">
+                           <color>
+                              <Color red="1.0" blue="0.18124006688594818" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.7300000190734863" green="0.021900000050663948" blue="0.17725421488285065" opacity="0.7599999904632568" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </fill>
+            </Rectangle>
             <ImageView fitHeight="219.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/GlassBottle.png" />
@@ -227,6 +270,45 @@
             </ImageView>
          </children>
       </StackPane>
-      <Region fx:id="firstPour" layoutX="141.0" layoutY="583.0" opacity="0.9" prefHeight="42.0" prefWidth="169.0" styleClass="bottom-rectangle" visible="false" />
+      <Label fx:id="selectVialLabel" layoutX="605.0" layoutY="344.0" text="Select a vial" textFill="WHITE">
+         <font>
+            <Font name="Courier New Bold" size="30.0" />
+         </font>
+      </Label>
+      <StackPane fx:id="pourBtn" layoutX="155.0" layoutY="281.0" prefHeight="150.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="109.0" fitWidth="81.0" onMouseClicked="#onPourChemical" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/chemicalIcons/greenButton.png" />
+               </image>
+            </ImageView>
+            <Label text="POUR" textFill="WHITE">
+               <font>
+                  <Font name="Impact" size="18.0" />
+               </font>
+            </Label>
+            <Circle fill="#1f93ff00" onMouseClicked="#onPourChemical" radius="39.0" stroke="#e5dada00" strokeType="INSIDE" />
+         </children>
+      </StackPane>
+      <StackPane fx:id="retryButton" layoutX="275.0" layoutY="283.0" prefHeight="150.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="85.0" fitWidth="77.0" onMouseClicked="#onRetryButtonClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/chemicalIcons/redButtton.png" />
+               </image>
+            </ImageView>
+            <Label text="RESET" textFill="WHITE">
+               <font>
+                  <Font name="Impact" size="18.0" />
+               </font>
+            </Label>
+            <Circle fill="#1f93ff00" onMouseClicked="#onRetryButtonClicked" radius="39.0" stroke="#e5dada00" strokeType="INSIDE" />
+         </children>
+      </StackPane>
+      <ImageView fx:id="redArrow" fitHeight="73.0" fitWidth="105.0" layoutX="533.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true" rotate="50.0" visible="false">
+         <image>
+            <Image url="@../images/chemicalIcons/redArrow.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
