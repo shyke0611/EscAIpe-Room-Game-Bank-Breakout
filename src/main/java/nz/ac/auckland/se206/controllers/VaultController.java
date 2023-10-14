@@ -95,6 +95,8 @@ public class VaultController extends Controller {
     WalkieTalkieManager.addWalkieTalkieImage(this, vaultWalkieTalkie);
     WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
     WalkieTalkieManager.addQuickHintBtn(this, quickHintBtn);
+    WalkieTalkieManager.addWalkieTalkieTextArea(this, vaultTextArea);
+
     super.setTimerLabel(timerLabel, 1);
 
     styleManager.addHoverItems(
@@ -111,7 +113,9 @@ public class VaultController extends Controller {
         switchHolder,
         vaultwalkietalkie,
         walkietalkieText,
-        bomblogo,exitDoor,exitHolder);
+        bomblogo,
+        exitDoor,
+        exitHolder);
 
     // adding relevant items to the stylemanager list
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
@@ -158,7 +162,6 @@ public class VaultController extends Controller {
   //     AnimationManager.delayAnimation(exitHolder, escapeDoor);
   //     exitHolder.setDisable(true);
   // }
-
 
   @FXML
   private void onExitBomb() {
