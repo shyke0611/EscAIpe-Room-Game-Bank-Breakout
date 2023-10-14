@@ -13,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -271,9 +270,9 @@ public class ComputerController extends Controller {
         GameState.isSecondRiddleSolved = true;
         App.textToSpeech("Security Disabled, Level 3 Vault Access Granted");
 
-        WalkieTalkieManager.setWalkieTalkieOpen();
         Platform.runLater(
             () -> {
+              WalkieTalkieManager.setWalkieTalkieOpen();
               walkieTalkieManager.setWalkieTalkieText(
                   new ChatMessage("assistant", "Nice work! Now you have access to all 3 vaults"));
             });
@@ -366,7 +365,7 @@ public class ComputerController extends Controller {
 
   private void setLevelTwoStyle() {
     // set disability
-    StyleManager.setDisable(true,"computer","ceoPainting", "wallEmployee");
+    StyleManager.setDisable(true, "computer", "ceoPainting", "wallEmployee");
     // setting vault style
     setVaultStyleLevelTwo();
   }
