@@ -27,6 +27,7 @@ public class App extends Application {
   private static Scene scene;
   private static ChatMessage message;
   private static App instance;
+  private static boolean isAudioOn = true;
 
   public static void main(final String[] args) {
     launch();
@@ -78,6 +79,11 @@ public class App extends Application {
   }
 
   public static void textToSpeech(String string) {
+
+    if (!isAudioOn) {
+      return;
+    }
+
     // Create a text-to-speech task
     Task<Void> speechTask =
         new Task<Void>() {
@@ -99,6 +105,10 @@ public class App extends Application {
 
   public static void reloadScenes() throws IOException {
     instance.loadAllScenes();
+  }
+
+  public static void setAudio(boolean audio) {
+    isAudioOn = audio;
   }
 
   private ChatCompletionRequest chatCompletionRequest;
