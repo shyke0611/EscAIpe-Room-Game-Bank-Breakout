@@ -314,7 +314,7 @@ public class GameManager {
 
   public static void setMoneyGained() {
     for (Label label : moneyGainedLabels.values()) {
-      label.setText(moneyToGain / 1000000 + " M");
+      label.setText(moneyToGain / 1000000 + "M");
     }
   }
 

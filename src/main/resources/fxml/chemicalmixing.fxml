@@ -5,6 +5,9 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,14 +21,14 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../css/chemicals.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChemicalMixingController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../css/chemicals.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChemicalMixingController">
    <children>
       <ImageView fitHeight="704.0" fitWidth="1008.0" onMouseClicked="#setVault" pickOnBounds="true" preserveRatio="true" style="-fx-effect: black;">
          <image>
             <Image url="@../images/realvaultbackground.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000c9" height="610.0" layoutX="42.0" layoutY="24.0" stroke="#ffffff00" strokeType="INSIDE" translateX="28.0" translateY="23.0" width="860.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000c9" height="525.0" layoutX="42.0" layoutY="109.0" stroke="#ffffff00" strokeType="INSIDE" translateX="28.0" translateY="23.0" width="869.0" />
       <Button fx:id="continueBtn" layoutX="423.0" layoutY="571.0" mnemonicParsing="false" onMouseClicked="#setVault" text="Melt Door" visible="false">
          <font>
             <Font size="23.0" />
@@ -36,18 +39,12 @@
             <Font name="Courier New Bold" size="23.0" />
          </font>
       </Label>
-      <StackPane alignment="TOP_RIGHT" layoutX="69.0" layoutY="46.0" prefHeight="27.0" prefWidth="862.0" stylesheets="@../css/chemicals.css">
+      <StackPane alignment="TOP_RIGHT" layoutX="895.0" layoutY="143.0" prefHeight="25.0" prefWidth="40.0" stylesheets="@../css/chemicals.css">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d3d3" height="30.0" stroke="BLACK" strokeType="INSIDE" translateY="-1.0" width="861.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="30.0" stroke="BLACK" strokeType="INSIDE" translateX="1.0" translateY="-1.0" width="40.0" />
-            <Label alignment="CENTER" onMouseClicked="#setVault" prefHeight="25.0" prefWidth="40.0" text="X">
+            <Label alignment="CENTER" onMouseClicked="#setVault" prefHeight="25.0" prefWidth="40.0" stylesheets="@../css/mainmenu.css" text="X">
                <font>
                   <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <Label fx:id="timerLabel" prefHeight="30.0" prefWidth="348.0" text="Time Remaining: 0 Minutes 0 Seconds" translateX="-500.0">
-               <font>
-                  <Font size="14.0" />
                </font>
             </Label>
          </children>
@@ -110,7 +107,7 @@
             </ImageView>
          </children>
       </StackPane>
-      <StackPane alignment="CENTER_LEFT" layoutX="591.0" layoutY="112.0" prefHeight="181.0" prefWidth="256.0">
+      <StackPane alignment="CENTER_LEFT" layoutX="591.0" layoutY="156.0" prefHeight="171.0" prefWidth="280.0">
          <children>
             <ImageView fitHeight="313.0" fitWidth="280.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -120,39 +117,39 @@
                   <Point3D y="32.0" z="60.0" />
                </rotationAxis>
             </ImageView>
-            <Label text="Chemical Recipe" translateX="10.0" translateY="-60.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="28.0" prefWidth="254.0" text="Chemical Recipe" textAlignment="CENTER" translateX="10.0" translateY="-60.0">
                <font>
                   <Font name="Chalkduster" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="labelOne" text="Label" translateX="10.0" translateY="-30.0">
+            <Label fx:id="labelOne" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="250.0" text="Label" translateX="10.0" translateY="-30.0">
                <font>
                   <Font name="Chalkduster" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="labelFour" text="Label" translateX="10.0" translateY="45.0">
+            <Label fx:id="labelFour" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="253.0" text="Label" translateX="10.0" translateY="45.0">
                <font>
                   <Font name="Chalkduster" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="labelThree" text="Label" translateX="10.0" translateY="20.0">
+            <Label fx:id="labelThree" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="250.0" text="Label" translateX="10.0" translateY="20.0">
                <font>
                   <Font name="Chalkduster" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="labelTwo" text="Label" translateX="10.0" translateY="-5.0">
+            <Label fx:id="labelTwo" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="250.0" text="Label" translateX="10.0" translateY="-5.0">
                <font>
                   <Font name="Chalkduster" size="18.0" />
                </font>
             </Label>
          </children>
       </StackPane>
-      <Label layoutX="90.0" layoutY="83.0" text="Mix The" textFill="WHITE">
+      <Label layoutX="90.0" layoutY="153.0" prefHeight="38.0" prefWidth="211.0" text="Mix The" textFill="WHITE">
          <font>
             <Font name="Courier New Bold" size="50.0" />
          </font>
       </Label>
-      <Label layoutX="196.0" layoutY="129.0" text="CHEMICALS" textFill="WHITE">
+      <Label layoutX="196.0" layoutY="200.0" prefHeight="57.0" prefWidth="325.0" text="CHEMICALS" textFill="WHITE">
          <font>
             <Font name="Courier New Bold" size="60.0" />
          </font>
@@ -310,5 +307,72 @@
             <Image url="@../images/chemicalIcons/redArrow.png" />
          </image>
       </ImageView>
+      <StackPane layoutX="560.0" layoutY="8.0" prefHeight="101.0" prefWidth="265.0">
+         <children>
+            <ImageView fitHeight="92.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/gameborder.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="113.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/clock.png" />
+               </image>
+               <StackPane.margin>
+                  <Insets right="140.0" />
+               </StackPane.margin>
+               <effect>
+                  <Lighting diffuseConstant="1.18" specularConstant="0.32">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </ImageView>
+            <Label fx:id="timerLabel" alignment="CENTER" prefHeight="70.0" prefWidth="114.0" text="0:00" textFill="WHITE">
+               <font>
+                  <Font name="HeadLineA Regular" size="47.0" />
+               </font>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </Label>
+         </children>
+      </StackPane>
+      <StackPane layoutX="771.0" layoutY="-4.0" prefHeight="136.0" prefWidth="209.0">
+         <children>
+            <ImageView fitHeight="81.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/gameborder.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="117.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/moneyimage.png" />
+               </image>
+               <effect>
+                  <Lighting diffuseConstant="1.28" specularConstant="0.0" specularExponent="10.29" surfaceScale="4.16">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+               <StackPane.margin>
+                  <Insets bottom="5.0" right="140.0" />
+               </StackPane.margin>
+            </ImageView>
+            <Label fx:id="moneyCount" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="147.0" text="0M" textFill="WHITE">
+               <font>
+                  <Font name="HeadLineA Regular" size="46.0" />
+               </font>
+            </Label>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>

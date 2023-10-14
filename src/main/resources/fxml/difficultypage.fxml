@@ -173,16 +173,16 @@
                                     <Image url="@../images/MediumAlarm.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/emptyAlarm.png" />
                                  </image>
                               </ImageView>
                            </children>
                         </StackPane>
-                        <HBox alignment="CENTER" prefHeight="48.0" prefWidth="225.0" spacing="10.0">
+                        <HBox alignment="CENTER" prefHeight="0.0" prefWidth="225.0" spacing="10.0">
                            <children>
-                              <Label alignment="CENTER" prefHeight="35.0" prefWidth="189.0" text="Hints Allowed:" textFill="#4d4f54">
+                              <Label alignment="CENTER" prefHeight="11.0" prefWidth="189.0" text="Hints Allowed:" textFill="#4d4f54">
                                  <font>
                                     <Font name="BM KIRANGHAERANG OTF" size="24.0" />
                                  </font>
@@ -238,9 +238,9 @@
                               </ImageView>
                            </children>
                         </StackPane>
-                        <HBox alignment="CENTER" prefHeight="42.0" prefWidth="225.0" spacing="10.0">
+                        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="225.0" spacing="10.0">
                            <children>
-                              <Label alignment="CENTER" prefHeight="35.0" prefWidth="180.0" text="Hints Allowed:" textFill="#4d4f54">
+                              <Label alignment="CENTER" prefHeight="9.0" prefWidth="180.0" text="Hints Allowed:" textFill="#4d4f54">
                                  <font>
                                     <Font name="BM KIRANGHAERANG OTF" size="24.0" />
                                  </font>
