@@ -2,17 +2,19 @@
 .bottom-rectangle{
     -fx-background-color: radial-gradient(focus-angle 0deg, focus-distance 50%, center 50% 50%, radius 100%, reflect, #1619de, derive(#2247fe, 30%));
     -fx-background-radius: 0 0 35 35;
-
-   
     
 }
 
 .slider .thumb {
-    -fx-background-color: linear-gradient(to right, #f74848c1, #FFA07A);
+    -fx-background-color: black;
 }
 
 .slider .track {
-    -fx-background-color: linear-gradient(to right, #0dea18 10%, #f44c4c9d, #e84c4c 70%, #eb5151c2);
+    -fx-background-color: black;
+}
+.slider .axis .axis-tick-mark {
+    -fx-fill: null;
+    -fx-stroke: rgb(255, 255, 255);
 }
 
 /* Base Button Style */
@@ -34,28 +36,9 @@
 
 /* Hover Effect */
 .button:hover {
-    -fx-background-color: linear-gradient(to bottom, #3E88A6, #5C85A4);
-}
-
-/* Pressed Effect */
-.button:pressed {
-    -fx-background-color: linear-gradient(to bottom, #3E88A6, #5C85A4);
-    -fx-background-insets: 1, 2;
-    -fx-padding: 6 21 6 21;
+    -fx-background-color: linear-gradient(to bottom, #006805, #004a16);
 }
 
 
 
-/* .chemicalPouch{
-    fx-effect: dropshadow(three-pass-box, red, 10, 0, 0, 0);
-    -fx-visibility: true;
-} */
 
-
-
-/* #myRectangle{
-    -fx-fill: #9fd7ffs;
-    
-}
-
- */

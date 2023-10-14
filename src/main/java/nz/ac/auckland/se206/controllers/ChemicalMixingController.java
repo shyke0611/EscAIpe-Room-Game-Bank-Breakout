@@ -121,6 +121,9 @@ public class ChemicalMixingController extends Controller {
     retryButton.setOpacity(1);
     selectVialLabel.setVisible(false);
 
+    Node track = slider.lookup(".thumb");
+    track.setStyle("-fx-background-color: white");
+
     switch (id) {
       case "yellowVial":
         vialColour = "yellow";
