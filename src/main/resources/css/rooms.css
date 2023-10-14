@@ -67,7 +67,7 @@
 .genbutton:hover {
     -fx-border-color: #2b873d;
     -fx-text-fill: #1e9035;
-    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.7), 5, 5, 0, 0);
+    -fx-effect: dropshadow(gaussian, rgba(10, 244, 41, 0.7), 4, 4, 0, 0);
     -fx-cursor: hand;
 
 }
@@ -117,6 +117,12 @@
     -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.994), 1, 0.9, 0, 0);
 }
 
+.tech-button:pressed {
+    -fx-cursor: hand;
+    -fx-border-color: #6d5dc7;
+    -fx-effect: dropshadow(gaussian, rgba(128, 28, 195, 0.994), 1, 0.9, 0, 0);
+}
+
 .tech1-button {
     -fx-background-color: transparent;
     -fx-border-color: #90f6ff;
@@ -128,6 +134,11 @@
     -fx-cursor: hand;
     -fx-border-color: #59e8f5;
     -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.994), 1, 0.9, 0, 0);
+}
+.tech1-button:pressed {
+    -fx-cursor: hand;
+    -fx-border-color: #47b7c1;
+    -fx-effect: dropshadow(gaussian, rgba(32, 204, 190, 0.994), 1, 0.9, 0, 0);
 }
 
 
