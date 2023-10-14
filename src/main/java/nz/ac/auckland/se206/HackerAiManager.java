@@ -332,7 +332,8 @@ public class HackerAiManager {
       "aid",
       "guide",
       "give me a hand",
-      "how do i do that"
+      "how do i do that",
+      "what next"
     };
 
     // Check if any of the keywords is present in the message

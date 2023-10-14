@@ -150,25 +150,6 @@ public class WalkieTalkieManager {
     for (TextArea textArea : walkieTalkieTextAreas.values()) {
       textArea.setText(msg.getContent());
     }
-
-    // for (VBox vertBox : walkieTalkieMap.values()) {
-    //   // Iterate through the children of the VBox (assuming they are HBox containers)
-    //   ObservableList<Node> children = vertBox.getChildren();
-    //   for (Node node : children) {
-    //     if (node instanceof HBox) {
-    //       HBox hbox = (HBox) node;
-
-    //       // Now, iterate through the children of the HBox to find the TextArea
-    //       ObservableList<Node> hboxChildren = hbox.getChildren();
-    //       for (Node hboxChild : hboxChildren) {
-    //         if (hboxChild instanceof TextArea) {
-    //           TextArea textArea = (TextArea) hboxChild;
-    //           textArea.setText(msg.getContent()); // Set the text to the desired message
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
   }
 
   public void setHintText(String hintCount) {
