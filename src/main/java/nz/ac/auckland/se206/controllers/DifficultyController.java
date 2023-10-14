@@ -5,10 +5,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
@@ -36,8 +38,12 @@ public class DifficultyController extends Controller {
   @FXML private Label timerLabel;
   @FXML private Button startBtn;
   @FXML private Button playBtn;
+  @FXML private RadioButton audiobtn;
   @FXML private Slider timerSlider;
   @FXML private AnchorPane itemContainer;
+  @FXML private StackPane audioholder;
+  @FXML private ImageView mutebtn;
+  @FXML private ImageView unmutebtn;
 
   private boolean easyVboxClicked = false;
   private boolean mediumVboxClicked = false;
@@ -103,6 +109,7 @@ public class DifficultyController extends Controller {
     if (!difficultySelected) {
       difficultySelected = true;
       AnimationManager.fadeTransition(playBtn, 1, 0.0, 1.0);
+      AnimationManager.fadeTransition(audioholder, 1, 0.0, 1.0);
     }
 
     // handle if difficulty is easy
@@ -152,6 +159,22 @@ public class DifficultyController extends Controller {
   private void onSliderChanged(MouseEvent event) {
     int timerValue = (int) timerSlider.getValue();
     timerLabel.setText(Integer.toString(timerValue) + " Minutes");
+  }
+
+  // toggling tts button
+  @FXML
+  private void onSoundOn() {
+    if (audiobtn.isSelected()) {
+      App.setAudio(true);
+      audiobtn.setText("Sound On");
+      unmutebtn.setVisible(true);
+      mutebtn.setVisible(false);
+    } else {
+      App.setAudio(false);
+      audiobtn.setText("Sound Off");
+      unmutebtn.setVisible(false);
+      mutebtn.setVisible(true);
+    }
   }
 
   /**
