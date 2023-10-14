@@ -53,6 +53,7 @@ public class LobbyController extends Controller {
   @FXML private TextField lobbyTextInput;
   @FXML private TextArea lobbyTextArea;
   @FXML private ImageView lobbyWalkieTalkie;
+  @FXML private Label moneyCount;
 
   @FXML private HBox key1;
   @FXML private HBox key3;
@@ -95,6 +96,8 @@ public class LobbyController extends Controller {
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     WalkieTalkieManager.addQuickHintBtn(this, quickHintBtn);
     WalkieTalkieManager.addWalkieTalkieTextArea(this, lobbyTextArea);
+
+    GameManager.addMoneyGainedLabel(this, moneyCount);
 
     super.setTimerLabel(timerLabel, 1);
     // set random components

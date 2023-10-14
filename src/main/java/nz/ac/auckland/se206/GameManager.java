@@ -1,9 +1,10 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
-
+import java.util.HashMap;
+import javafx.scene.control.Label;
 import nz.ac.auckland.se206.SceneManager.Scenes;
-import nz.ac.auckland.se206.controllers.GameFinishController;
+import nz.ac.auckland.se206.controllers.Controller;
 import nz.ac.auckland.se206.controllers.MainMenuController;
 import nz.ac.auckland.se206.difficulties.Difficulty;
 import nz.ac.auckland.se206.difficulties.Difficulty.Difficulties;
@@ -54,6 +55,7 @@ public class GameManager {
   private static Objectives activeObjective = Objectives.START_GAME;
   private static DoorObjectives activeDoorObjective = null;
   private static WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
+  private static HashMap<Controller, Label> moneyGainedLabels = new HashMap<>();
 
   private static int moneyGained = 0;
   private static int moneyToGain = 0;
@@ -84,6 +86,10 @@ public class GameManager {
     TimerControl.setTimer(minutes);
   }
 
+  public static void addMoneyGainedLabel(Controller controller, Label label) {
+    moneyGainedLabels.put(controller, label);
+  }
+
   public static GameManager getInstance() {
     return instance;
   }
@@ -97,8 +103,7 @@ public class GameManager {
     WalkieTalkieManager.reset();
     GameState.resetGameState();
     AnimationManager.reset();
-    ((MainMenuController) SceneManager.getController(Scenes.MAIN_MENU))
-                  .reset();
+    ((MainMenuController) SceneManager.getController(Scenes.MAIN_MENU)).reset();
     new HackerAiManager();
     // Reload the scenes so they are reset
     try {
@@ -305,6 +310,12 @@ public class GameManager {
 
   public static String getMoneyToGain() {
     return formatMoney(moneyToGain);
+  }
+
+  public static void setMoneyGained() {
+    for (Label label : moneyGainedLabels.values()) {
+      label.setText(moneyToGain / 1000000 + " M");
+    }
   }
 
   private static String formatMoney(int money) {
