@@ -26,14 +26,14 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000c9" height="610.0" layoutX="42.0" layoutY="24.0" stroke="#ffffff00" strokeType="INSIDE" translateX="28.0" translateY="23.0" width="860.0" />
-      <Button fx:id="continueBtn" layoutX="430.0" layoutY="575.0" mnemonicParsing="false" onMouseClicked="#setVault" text="Continue" visible="false">
+      <Button fx:id="continueBtn" layoutX="423.0" layoutY="571.0" mnemonicParsing="false" onMouseClicked="#setVault" text="Melt Door">
          <font>
             <Font size="23.0" />
          </font>
       </Button>
-      <Label fx:id="winLabel" layoutX="360.0" layoutY="509.0" text="Nice job! you mixed it right" textFill="WHITE" visible="false">
+      <Label fx:id="winLabel" layoutX="426.0" layoutY="534.0" text="CORRECT!" textFill="WHITE">
          <font>
-            <Font size="22.0" />
+            <Font name="Courier New Bold" size="23.0" />
          </font>
       </Label>
       <StackPane alignment="TOP_RIGHT" layoutX="69.0" layoutY="46.0" prefHeight="27.0" prefWidth="862.0" stylesheets="@../css/chemicals.css">
@@ -270,7 +270,7 @@
             </ImageView>
          </children>
       </StackPane>
-      <Label layoutX="605.0" layoutY="344.0" text="Select a vial" textFill="WHITE">
+      <Label fx:id="selectVialLabel" layoutX="605.0" layoutY="344.0" text="Select a vial" textFill="WHITE">
          <font>
             <Font name="Courier New Bold" size="30.0" />
          </font>

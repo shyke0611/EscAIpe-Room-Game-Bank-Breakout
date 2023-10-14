@@ -15,6 +15,37 @@
     -fx-background-color: linear-gradient(to right, #0dea18 10%, #f44c4c9d, #e84c4c 70%, #eb5151c2);
 }
 
+/* Base Button Style */
+.button {
+    -fx-padding: 8 15 15 15;
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 8;
+    -fx-background-color: 
+        linear-gradient(from 0% 93% to 0% 100%, #25b708 0%, #057e19 100%),
+        #87df1a,
+        #045e0f,
+        radial-gradient(center 50% 50%, radius 100%, #48dc23, #00910a);
+    -fx-effect: dropshadow( gaussian , rgba(17, 210, 36, 0.75) , 4,0,0,1 );
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+    -fx-font-family: "Courier New";
+    -fx-text-fill: white;
+}
+
+/* Hover Effect */
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #3E88A6, #5C85A4);
+}
+
+/* Pressed Effect */
+.button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #3E88A6, #5C85A4);
+    -fx-background-insets: 1, 2;
+    -fx-padding: 6 21 6 21;
+}
+
+
+
 /* .chemicalPouch{
     fx-effect: dropshadow(three-pass-box, red, 10, 0, 0, 0);
     -fx-visibility: true;

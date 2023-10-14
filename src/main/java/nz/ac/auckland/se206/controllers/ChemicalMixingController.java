@@ -47,6 +47,7 @@ public class ChemicalMixingController extends Controller {
   @FXML private Label labelFour;
   @FXML private Label currentVial;
   @FXML private Label winLabel;
+  @FXML private Label selectVialLabel;
 
   @FXML private Region firstPour;
   @FXML private Rectangle secondPour;
@@ -113,10 +114,12 @@ public class ChemicalMixingController extends Controller {
     sliderAnimation.play();
     pourBtn.setDisable(false);
     pourBtn.setOpacity(1);
+    emptyVial.setVisible(false);
 
     redArrow.setVisible(false);
     retryButton.setDisable(false);
     retryButton.setOpacity(1);
+    selectVialLabel.setVisible(false);
 
     switch (id) {
       case "yellowVial":
@@ -167,9 +170,10 @@ public class ChemicalMixingController extends Controller {
   private void onPourChemical(MouseEvent event) {
 
     // sliderAnimation.play();
-
+    selectVialLabel.setVisible(true);
     // Pour button was clicked
     if (vialColour == null) {
+
       redArrow.setVisible(true);
       return;
     }
@@ -213,7 +217,8 @@ public class ChemicalMixingController extends Controller {
       emptyVial.setVisible(true);
     } else {
       // setting properties to the viles and buttons
-      emptyVial.setVisible(true);
+
+      emptyVial.setVisible(false);
       onRetryButtonClicked(event);
     }
   }
@@ -259,15 +264,15 @@ public class ChemicalMixingController extends Controller {
       // setting paint colour for the second vile selected
     } else if (pourCount == 2) {
       secondPour.setVisible(true);
-      secondPour.setStyle("-fx-background-color: " + currentColour);
+      secondPour.setStyle("-fx-fill: " + currentColour);
       // setting paint colour for the third vile selected
     } else if (pourCount == 3) {
       thirdPour.setVisible(true);
-      thirdPour.setStyle("-fx-background-color: " + currentColour);
+      thirdPour.setStyle("-fx-fill: " + currentColour);
       // setting paint colour for the last vile selected
     } else if (pourCount == 4) {
       fourthPour.setVisible(true);
-      fourthPour.setStyle("-fx-background-color: " + currentColour);
+      fourthPour.setStyle("-fx-fill: " + currentColour);
       checkWin();
       GameState.isChemicalMixingBypassed = true;
     }
@@ -309,6 +314,8 @@ public class ChemicalMixingController extends Controller {
   private void onRetryButtonClicked(MouseEvent event) {
     // Reset all necessary variables and elements
     sliderAnimation.pause();
+    emptyVial.setVisible(false);
+    selectVialLabel.setVisible(true);
     pourBtn.setDisable(true);
     pourBtn.setOpacity(0.5);
     largeVialBlue.setVisible(false);
