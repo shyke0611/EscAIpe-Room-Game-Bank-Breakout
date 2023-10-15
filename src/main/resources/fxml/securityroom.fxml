@@ -243,9 +243,9 @@
                         <Font size="19.0" />
                      </font>
                   </TextArea>
-                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="107.0" styleClass="component1" stylesheets="@../css/walkietalkie.css">
+                  <VBox alignment="CENTER" prefHeight="96.0" prefWidth="138.0" styleClass="component1" stylesheets="@../css/walkietalkie.css">
                      <children>
-                        <Button fx:id="viewHistoryBtn" mnemonicParsing="false" onAction="#onSwitchToHacker" text="View History">
+                        <Button fx:id="viewHistoryBtn" mnemonicParsing="false" onAction="#onSwitchToHacker" prefHeight="29.0" prefWidth="119.0" text="View History">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
@@ -257,14 +257,14 @@
             </HBox>
             <HBox prefHeight="51.0" prefWidth="512.0">
                <children>
-                  <TextField fx:id="securityInputField" onKeyPressed="#onInvokeHacker" prefHeight="51.0" prefWidth="420.0" promptText="Bzzz... type here" stylesheets="@../css/walkietalkie.css">
+                  <TextField fx:id="securityInputField" onKeyPressed="#onInvokeHacker" prefHeight="47.0" prefWidth="383.0" promptText="Bzzz... type here" stylesheets="@../css/walkietalkie.css">
                      <font>
-                        <Font size="22.0" />
+                        <Font name="Courier New Bold" size="22.0" />
                      </font>
                   </TextField>
                   <VBox fx:id="myVBox" prefHeight="51.0" prefWidth="121.0" stylesheets="@../css/rooms.css">
                      <children>
-                        <StackPane prefHeight="150.0" prefWidth="200.0">
+                        <StackPane prefHeight="47.0" prefWidth="113.0">
                            <children>
                               <HBox prefHeight="100.0" prefWidth="62.0" styleClass="component2" stylesheets="@../css/walkietalkie.css" />
                               <Label fx:id="numberOfHints" alignment="TOP_CENTER" text="Unlimited" textFill="#1bcd2a" wrapText="true">
@@ -275,7 +275,7 @@
                                     <Insets top="15.0" />
                                  </StackPane.margin>
                               </Label>
-                              <Label alignment="TOP_CENTER" prefHeight="26.0" prefWidth="92.0" text="Hints Left:" textFill="#1bcd2a" wrapText="true">
+                              <Label alignment="TOP_CENTER" prefHeight="22.0" prefWidth="112.0" text="Hints Left:" textFill="#1bcd2a" wrapText="true">
                                  <font>
                                     <Font size="16.0" />
                                  </font>

@@ -4,13 +4,14 @@
 }
 
 .text-area {
-    -fx-background-image: "src/main/resources/images/minigamebackground.png";
+ 
     -fx-control-inner-background: transparent;
     -fx-control-inner-border: rgb(0, 0, 0);
     /* -fx-border-width: 1px;
     -fx-border-color: rgb(244, 244, 244); */
     -fx-background-color: transparent;
     -fx-text-fill: rgb(255, 255, 255);
+    -fx-font-family: "Courier New Bold";
 }
 
 .text-area .scroll-pane {
@@ -42,6 +43,7 @@
     -fx-control-inner-border: rgb(59, 242, 255);
     -fx-background-color: transparent;
     -fx-background-radius: 0 20 0 0;
+    -fx-font-family: "Courier New Bold";
     /* -fx-border-width: 4px;
     -fx-border-color: rgb(24, 176, 237); */
 
@@ -55,6 +57,7 @@
     -fx-border-width: 1px;
     -fx-border-color: rgb(24, 176, 237);
     -fx-border-radius: 0 0 20 0;
+    -fx-font-family: "Courier New Bold";
 }
 
 .button {
@@ -63,6 +66,7 @@
     -fx-border-width: 2px;
     -fx-border-color: rgb(24, 176, 237);
     -fx-border-radius: 30;
+    -fx-font-family: "Courier New Bold";
 
 }
 
@@ -89,5 +93,5 @@
 
 .label{
     -fx-text-fill: rgb(255, 255, 255);
-    -fx-font-family: "Tahoma";
+    -fx-font-family: "Courier New Bold";
 }
