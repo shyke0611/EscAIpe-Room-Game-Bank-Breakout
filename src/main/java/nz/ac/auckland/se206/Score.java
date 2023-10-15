@@ -5,10 +5,10 @@ import nz.ac.auckland.se206.difficulties.Difficulty.Difficulties;
 public class Score {
   private Difficulties difficulty;
   private String timeChosen;
-  private String timeTaken;
+  private Integer timeTaken;
   private Integer moneyStolen;
 
-  public Score(Difficulties difficulty, String timechosen, String timeTaken, Integer moneyStolen) {
+  public Score(Difficulties difficulty, String timechosen, Integer timeTaken, Integer moneyStolen) {
     this.difficulty = difficulty;
     this.timeChosen = timechosen;
     this.timeTaken = timeTaken;
@@ -31,11 +31,11 @@ public class Score {
     this.timeChosen = timeChosen;
   }
 
-  public String getTimeTaken() {
+  public Integer getTimeTaken() {
     return timeTaken;
   }
 
-  public void setTimeTaken(String timeTaken) {
+  public void setTimeTaken(Integer timeTaken) {
     this.timeTaken = timeTaken;
   }
 

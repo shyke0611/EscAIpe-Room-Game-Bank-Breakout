@@ -138,7 +138,12 @@ public class TimerControl {
     timer.purge();
   }
 
-  public static String getTimeTaken() {
+  public static int getTimeTaken() {
+    // if fail to escape return 600 - a number that will be at the bottom of the leaderboard
+    return initialCount - count == initialCount ? 600 : initialCount - count;
+  }
+
+  public static String formatTimeTaken() {
     int timeTaken = initialCount - count;
     if (timeTaken == initialCount) {
       return "Failed to Escape";

@@ -36,17 +36,18 @@ public class GameFinishController extends Controller {
   @FXML private TableView<Score> scoreTable;
   @FXML private TableColumn<Score, Difficulties> difficultyColumn;
   @FXML private TableColumn<Score, String> timeChosenColumn;
-  @FXML private TableColumn<Score, String> timeTakenColumn;
+  @FXML private TableColumn<Score, Number> timeTakenColumn;
   @FXML private TableColumn<Score, Number> moneyStolenColumn;
 
   public void initialize() {
     // initialize the controller for the current scene
     SceneManager.setController(Scenes.GAMEFINISH, this);
 
+    // set the table columns
     difficultyColumn.setCellValueFactory(
         new PropertyValueFactory<Score, Difficulties>("difficulty"));
     timeChosenColumn.setCellValueFactory(new PropertyValueFactory<Score, String>("timeChosen"));
-    timeTakenColumn.setCellValueFactory(new PropertyValueFactory<Score, String>("timeTaken"));
+    timeTakenColumn.setCellValueFactory(new PropertyValueFactory<Score, Number>("timeTaken"));
     moneyStolenColumn.setCellValueFactory(new PropertyValueFactory<Score, Number>("moneyStolen"));
 
     // Format all values in the difficulty column to be formatted as a string
@@ -60,6 +61,22 @@ public class GameFinishController extends Controller {
                 setText(null);
               } else {
                 setText(Difficulty.toStringEnum(item));
+              }
+            }
+          };
+        });
+
+    // Format all values in the time taken column to be formatted
+    timeTakenColumn.setCellFactory(
+        column -> {
+          return new javafx.scene.control.TableCell<Score, Number>() {
+            @Override
+            protected void updateItem(Number item, boolean empty) {
+              super.updateItem(item, empty);
+              if (item == null || empty) {
+                setText(null);
+              } else {
+                setText(TimerControl.formatTimeTaken());
               }
             }
           };
@@ -111,12 +128,12 @@ public class GameFinishController extends Controller {
     // set the labels for the statistics
     Difficulties difficulty = GameManager.getDifficulty();
     String timeChosen = TimerControl.getInitialTime() + " Minutes";
-    String timeTaken = TimerControl.getTimeTaken();
+    int timeTaken = TimerControl.getTimeTaken();
     int moneyCollected = GameManager.getMoneyGained();
 
     difficultyLbl.setText(Difficulty.toStringEnum(difficulty));
     timeChosenLbl.setText(timeChosen);
-    timeLbl.setText(timeTaken);
+    timeLbl.setText(TimerControl.formatTimeTaken());
     moneyLbl.setText(GameManager.formatMoney(moneyCollected));
 
     Score newScore = new Score(difficulty, timeChosen, timeTaken, moneyCollected);
