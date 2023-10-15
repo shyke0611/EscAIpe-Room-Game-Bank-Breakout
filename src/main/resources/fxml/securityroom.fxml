@@ -188,11 +188,14 @@
             </ImageView>
             <Label fx:id="timerLabel" alignment="CENTER" prefHeight="70.0" prefWidth="114.0" text="0:00" textFill="WHITE">
                <font>
-                  <Font name="HeadLineA Regular" size="47.0" />
+                  <Font name="Copperplate" size="35.0" />
                </font>
                <padding>
                   <Insets left="30.0" />
                </padding>
+               <StackPane.margin>
+                  <Insets right="2.0" />
+               </StackPane.margin>
             </Label>
          </children>
       </StackPane>
@@ -223,8 +226,11 @@
             </ImageView>
             <Label fx:id="moneyCount" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="147.0" text="0M" textFill="WHITE">
                <font>
-                  <Font name="HeadLineA Regular" size="46.0" />
+                  <Font name="Copperplate" size="35.0" />
                </font>
+               <StackPane.margin>
+                  <Insets left="20.0" />
+               </StackPane.margin>
             </Label>
          </children>
       </StackPane>

@@ -26,8 +26,7 @@ public class AnimationManager {
   public static void toggleAlarmAnimation(Node node, boolean isOn, double time) {
     Duration duration = Duration.seconds(time);
 
-    if (isOn) {
-      InnerShadow innerShadow = new InnerShadow();
+     InnerShadow innerShadow = new InnerShadow();
       innerShadow.setColor(Color.RED);
 
       // Create a Lighting effect
@@ -44,9 +43,12 @@ public class AnimationManager {
               new KeyFrame(Duration.ZERO, new KeyValue(innerShadow.radiusProperty(), 0)),
               new KeyFrame(duration, new KeyValue(innerShadow.radiusProperty(), 200)));
       animation.setCycleCount(Timeline.INDEFINITE);
+
+    if (isOn) {
       animation.play();
     } else {
-      node.setEffect(null);
+      // node.setEffect(null);
+      animation.stop();
     }
   }
 

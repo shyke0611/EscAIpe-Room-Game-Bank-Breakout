@@ -363,6 +363,7 @@ public class ComputerController extends Controller {
 
   private void setConnectdotsStyle() {
     setVaultStyleLevelTwo();
+    StyleManager.setDisable(true, "ceoPainting", "wallEmployee");
   }
 
   private void setLevelTwoStyle() {
