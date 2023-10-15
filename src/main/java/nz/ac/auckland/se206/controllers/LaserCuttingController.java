@@ -21,6 +21,7 @@ import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import nz.ac.auckland.se206.GameManager;
+import nz.ac.auckland.se206.GameManager.Objectives;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
@@ -181,7 +182,7 @@ public class LaserCuttingController extends Controller {
         // $10 Million
         GameManager.increaseMoneyToGain(10000000);
         GameManager.setMoneyGained();
-        GameManager.completeObjective();
+        GameManager.setCurrentObjective(Objectives.SELECT_VAULT_DOOR);
         // updateMoneyStolen(5000000);
         points.clear();
         angles.clear();

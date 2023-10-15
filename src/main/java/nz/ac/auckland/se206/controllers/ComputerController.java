@@ -21,6 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameManager;
+import nz.ac.auckland.se206.GameManager.Objectives;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
@@ -272,12 +273,12 @@ public class ComputerController extends Controller {
 
         Platform.runLater(
             () -> {
-              WalkieTalkieManager.setWalkieTalkieOpen();
+              WalkieTalkieManager.setWalkieTalkieNotifcationOn();
               walkieTalkieManager.setWalkieTalkieText(
                   new ChatMessage("assistant", "Nice work! Now you have access to all 3 vaults"));
             });
 
-        GameManager.completeObjective();
+        GameManager.setCurrentObjective(Objectives.SELECT_VAULT_DOOR);
         setLevelThreeStyle();
 
       } else if (questionsCorrect >= 1) {
@@ -286,10 +287,10 @@ public class ComputerController extends Controller {
         App.textToSpeech("Security Disabled, Level 2 Vault Access Granted");
         GameState.isFirewallDisabled = true;
         GameState.isFirstRiddleSolved = true;
-        GameManager.completeObjective();
+        GameManager.setCurrentObjective(Objectives.SELECT_VAULT_DOOR);
         Platform.runLater(
             () -> {
-              WalkieTalkieManager.setWalkieTalkieOpen();
+              WalkieTalkieManager.setWalkieTalkieNotifcationOn();
               walkieTalkieManager.setWalkieTalkieText(
                   new ChatMessage(
                       "assistant",
@@ -303,7 +304,7 @@ public class ComputerController extends Controller {
             new ChatMessage("assistant", "Authentication failed, no vault access granted"));
         Platform.runLater(
             () -> {
-              WalkieTalkieManager.setWalkieTalkieOpen();
+              WalkieTalkieManager.setWalkieTalkieNotifcationOn();
               walkieTalkieManager.setWalkieTalkieText(
                   new ChatMessage(
                       "assistant",
@@ -356,6 +357,7 @@ public class ComputerController extends Controller {
     usbStick.setVisible(true);
     StyleManager.setClueHover("usbStick", true);
     GameState.isFirstRiddleSolved = true;
+    StyleManager.setClueHover("computer", false);
     setConnectdotsStyle();
   }
 
@@ -366,6 +368,7 @@ public class ComputerController extends Controller {
   private void setLevelTwoStyle() {
     // set disability
     StyleManager.setDisable(true, "computer", "ceoPainting", "wallEmployee");
+    StyleManager.setClueHover("computer", false);
     // setting vault style
     setVaultStyleLevelTwo();
   }
@@ -379,6 +382,7 @@ public class ComputerController extends Controller {
   private void setLevelThreeStyle() {
     // disabling items
     StyleManager.setDisable(true, "computer", "ceoPainting", "wallEmployee");
+    StyleManager.setClueHover("computer", false);
     // setting vault style
     StyleManager.setItemsHoverColour(
         HoverColour.GREEN, "silverDoorHolder", "bronzeDoorHolder", "goldDoorHolder");

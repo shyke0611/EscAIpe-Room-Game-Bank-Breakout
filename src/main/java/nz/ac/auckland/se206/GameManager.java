@@ -22,6 +22,9 @@ public class GameManager {
     FIND_ESCAPE,
     ESCAPE,
     GAME_OVER,
+    CHEMICAL_MIXING,
+    LAZER_CUTTING,
+    EYE_SCANNER,
   }
 
   // The different objectives for the doors
@@ -154,8 +157,13 @@ public class GameManager {
     }
   }
 
-  public static void completeObjective() {
+  public static void setCurrentObjective(Objectives objective) {
     walkieTalkieManager.enableQuickHintBtns();
+    activeObjective = objective;
+  }
+
+  public static void completeObjective() {
+
     switch (activeObjective) {
       case START_GAME:
         activeObjective = Objectives.GET_KEYS;
@@ -192,7 +200,6 @@ public class GameManager {
         break;
 
       case DOOR_OBJECTIVES:
-
         // If they are already going through the extra security layer
         if (activeDoorObjective == DoorObjectives.FIND_EXTRA_PASSCODE) {
           if (selectedDoor == Doors.EASY) {
@@ -265,37 +272,22 @@ public class GameManager {
         return "Find Keys";
       case FIND_PASSCODE:
         return "Find Passcode";
-      case LOGIN:
-        return "Login";
       case DISABLE_FIREWALL:
         return "Disable Firewall";
       case COMPLETE_MINIGAME:
         return "Complete Minigame";
       case SELECT_VAULT_DOOR:
         return "Select Vault Door";
-
-      case DOOR_OBJECTIVES:
-        // Return the objective for the door as a string
-        if (activeDoorObjective == DoorObjectives.FIND_EXTRA_PASSCODE) {
-          return "Find Extra Passcode";
-        } else if (activeDoorObjective == DoorObjectives.CHEMICAL_MIXING) {
-          return "Mix Chemicals";
-        } else if (activeDoorObjective == DoorObjectives.LAZER_CUTTING) {
-          return "Cut Through Lasers";
-        } else if (activeDoorObjective == DoorObjectives.EYE_SCANNER) {
-          return "Scan Eye";
-        } else {
-          return null;
-        }
-
-      case ALARM_TRIPPED:
-        return "Alarm Tripped";
+      case CHEMICAL_MIXING:
+        return "Mix Chemicals";
+      case LAZER_CUTTING:
+        return "Cut Through Lasers";
+      case EYE_SCANNER:
+        return "Scan Eye";
       case DISABLE_LASERTRAP:
         return "Disable Laser Trap";
       case FIND_ESCAPE:
         return "Find Escape";
-      case ESCAPE:
-        return "Escape";
       case GAME_OVER:
         return null;
       default:

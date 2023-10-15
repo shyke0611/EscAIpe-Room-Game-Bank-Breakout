@@ -15,6 +15,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameManager;
+import nz.ac.auckland.se206.GameManager.Objectives;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
@@ -28,7 +29,7 @@ public class ConnectDotsController extends Controller {
   @FXML private StackPane disableSecurity;
   @FXML private Label timerLabel;
   @FXML private Button resetButton;
-   @FXML private Label closebtn;
+  @FXML private Label closebtn;
 
   // 0 = empty, negative = node
   private int[][] grid = new int[6][6];
@@ -141,12 +142,12 @@ public class ConnectDotsController extends Controller {
       disableSecurity.setVisible(true);
       GameState.isConnectDotsSolved = true;
       resetButton.setDisable(true);
-       closebtn.setDisable(true);
-      GameManager.completeObjective();
+      closebtn.setDisable(true);
+      GameManager.setCurrentObjective(Objectives.SELECT_VAULT_DOOR);
       App.textToSpeech("Security Disabled, Level 1 Vault Access Granted");
       Platform.runLater(
           () -> {
-            WalkieTalkieManager.setWalkieTalkieOpen();
+            WalkieTalkieManager.setWalkieTalkieNotifcationOn();
             walkieTalkieManager.setWalkieTalkieText(
                 new ChatMessage(
                     "assistant",
@@ -368,7 +369,7 @@ public class ConnectDotsController extends Controller {
 
   @FXML
   protected void grantAccess() {
-     if (GameState.isConnectDotsSolved) {
+    if (GameState.isConnectDotsSolved) {
       StyleManager.setDisable(true, "computer");
     }
     // setting style for when access is granted by disabling firewall

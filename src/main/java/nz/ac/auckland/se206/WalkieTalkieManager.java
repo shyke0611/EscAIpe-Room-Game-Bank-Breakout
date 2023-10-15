@@ -4,6 +4,7 @@ import java.util.HashMap;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -30,13 +31,26 @@ public class WalkieTalkieManager {
   private static HashMap<Controller, TextArea> walkieTalkieTextAreas = new HashMap<>();
   private static HashMap<Controller, ImageView> walkieTalkieImageMap = new HashMap<>();
   private static HashMap<Controller, Label> walkieTalkieHints = new HashMap<>();
+  private static HashMap<Controller, ImageView> walkieTalkieNotifications = new HashMap<>();
   private static boolean walkieTalkieOpen = false;
   private static WalkieTalkieManager instance = new WalkieTalkieManager();
   private static HashMap<Controller, Button> quickHintBtns = new HashMap<>();
+  private static TranslateTransition translateTransition;
+
+  public WalkieTalkieManager() {
+    translateTransition = new TranslateTransition(Duration.millis(300));
+    translateTransition.setByY(10); // Move 10 pixels vertically
+    translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
+    translateTransition.setAutoReverse(true);
+  }
 
   // Static Methods
   public static void addWalkieTalkie(Controller controller, VBox walkietalkie) {
     walkieTalkieMap.put(controller, walkietalkie);
+  }
+
+  public static void addWalkieTalkieNotification(Controller controller, ImageView notification) {
+    walkieTalkieNotifications.put(controller, notification);
   }
 
   public static void addWalkieTalkieTextArea(Controller controller, TextArea textArea) {
@@ -59,6 +73,14 @@ public class WalkieTalkieManager {
     return instance;
   }
 
+  public static void setWalkieTalkieNotifcationOn() {
+
+    for (ImageView image : walkieTalkieNotifications.values()) {
+
+      image.setVisible(true);
+    }
+  }
+
   public static void setWalkieTalkieOpen() {
     Controller activeController = SceneManager.getActiveController();
     walkieTalkieOpen = true;
@@ -77,6 +99,10 @@ public class WalkieTalkieManager {
   public static void toggleWalkieTalkie() {
     walkieTalkieOpen = !walkieTalkieOpen;
     Controller activeController = SceneManager.getActiveController();
+
+    for (ImageView image : walkieTalkieNotifications.values()) {
+      image.setVisible(false);
+    }
 
     // Iterate through the map and update the visibility of all VBoxes
     for (VBox vertBox : walkieTalkieMap.values()) {

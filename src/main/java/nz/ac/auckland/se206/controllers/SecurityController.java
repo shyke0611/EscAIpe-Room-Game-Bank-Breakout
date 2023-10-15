@@ -60,6 +60,7 @@ public class SecurityController extends Controller {
   @FXML private StackPane hoverEmployee;
   @FXML private Label employeeName;
   @FXML private Label moneyCount;
+  @FXML private ImageView securityNotification;
 
   // Managers and controllers
   private StyleManager styleManager = StyleManager.getInstance();
@@ -83,6 +84,7 @@ public class SecurityController extends Controller {
     WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
     WalkieTalkieManager.addQuickHintBtn(this, quickHintBtn);
     WalkieTalkieManager.addWalkieTalkieTextArea(this, securityTextArea);
+    WalkieTalkieManager.addWalkieTalkieNotification(this, securityNotification);
     GameManager.addMoneyGainedLabel(this, moneyCount);
 
     // add styling
@@ -149,7 +151,7 @@ public class SecurityController extends Controller {
     } else {
       // go straight to computer scene
       logInScreen.setVisible(false);
-      GameManager.completeObjective();
+      GameManager.setCurrentObjective(GameManager.Objectives.DISABLE_FIREWALL);
       App.setUI(Scenes.COMPUTER);
       StyleManager.removeItemsMessage("computer");
     }
