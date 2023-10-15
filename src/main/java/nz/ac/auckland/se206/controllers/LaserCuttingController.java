@@ -20,6 +20,7 @@ import javafx.scene.paint.RadialGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameManager;
 import nz.ac.auckland.se206.GameManager.Objectives;
 import nz.ac.auckland.se206.GameState;
@@ -32,7 +33,7 @@ public class LaserCuttingController extends Controller {
 
   @FXML private Circle outerCircle;
   @FXML private Circle innerCircle;
-  @FXML private Circle blackCircle;
+  @FXML private Circle meltedEdge;
 
   @FXML private ImageView insideVault;
   @FXML private ImageView laserGun;
@@ -70,7 +71,6 @@ public class LaserCuttingController extends Controller {
     applyGlowEffect(cursorLine);
 
     canvas.setVisible(true);
-    formatBlackCirlce();
   }
 
   // @FXML
@@ -116,8 +116,9 @@ public class LaserCuttingController extends Controller {
     // Check if a specific condition is met while the user is drawing
     if (whileUserisDrawing(mousePosition)) {
       // Toggle the visibility of certain UI elements
-      blackCircle.setVisible(true);
+
       insideVault.setVisible(true);
+      meltedEdge.setVisible(true);
       outerCircle.setVisible(false);
       innerCircle.setVisible(false);
       // Clear the canvas
@@ -179,6 +180,8 @@ public class LaserCuttingController extends Controller {
           || totalAngle < -(2 * Math.PI)) { // Adjust the threshold as needed
         // Reset the points and angles for the next circle
         GameState.isLaserCuttingBypassed = true;
+        meltedEdge.setVisible(true);
+        insideVault.setVisible(true);
         // $10 Million
         GameManager.increaseMoneyToGain(10000000);
         GameManager.setMoneyGained();
@@ -250,10 +253,10 @@ public class LaserCuttingController extends Controller {
     RadialGradient gradient =
         new RadialGradient(0, 0, 0.5, 0.5, 1, true, CycleMethod.NO_CYCLE, stops);
     // Set the gradient fill as the circle's fill
-    blackCircle.setFill(gradient);
-    blackCircle.setEffect(dropShadow);
-    blackCircle.setStroke(gradientOutside);
-    blackCircle.setStrokeWidth(10);
+    // blackCircle.setFill(gradient);
+    // blackCircle.setEffect(dropShadow);
+    // blackCircle.setStroke(gradientOutside);
+    // blackCircle.setStrokeWidth(10);
   }
 
   private void applyGlowEffect(Line line) {
@@ -263,5 +266,10 @@ public class LaserCuttingController extends Controller {
     blend.setMode(BlendMode.ADD);
     blend.setTopInput(blur);
     line.setEffect(blend);
+  }
+
+  @FXML
+  public void setVault() {
+    App.setUI(Scenes.VAULT);
   }
 }

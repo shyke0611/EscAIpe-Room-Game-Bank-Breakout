@@ -4,7 +4,6 @@ import java.util.HashMap;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -35,14 +34,6 @@ public class WalkieTalkieManager {
   private static boolean walkieTalkieOpen = false;
   private static WalkieTalkieManager instance = new WalkieTalkieManager();
   private static HashMap<Controller, Button> quickHintBtns = new HashMap<>();
-  private static TranslateTransition translateTransition;
-
-  public WalkieTalkieManager() {
-    translateTransition = new TranslateTransition(Duration.millis(300));
-    translateTransition.setByY(10); // Move 10 pixels vertically
-    translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
-    translateTransition.setAutoReverse(true);
-  }
 
   // Static Methods
   public static void addWalkieTalkie(Controller controller, VBox walkietalkie) {
@@ -76,8 +67,9 @@ public class WalkieTalkieManager {
   public static void setWalkieTalkieNotifcationOn() {
 
     for (ImageView image : walkieTalkieNotifications.values()) {
-
-      image.setVisible(true);
+      if (image != null) {
+        image.setVisible(true);
+      }
     }
   }
 
@@ -101,7 +93,9 @@ public class WalkieTalkieManager {
     Controller activeController = SceneManager.getActiveController();
 
     for (ImageView image : walkieTalkieNotifications.values()) {
-      image.setVisible(false);
+      if (image != null) {
+        image.setVisible(false);
+      }
     }
 
     // Iterate through the map and update the visibility of all VBoxes
