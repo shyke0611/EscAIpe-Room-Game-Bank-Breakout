@@ -58,16 +58,9 @@ public class MainMenuController extends Controller {
     App.setUI(Scenes.INSTRUCTIONS);
   }
 
-  public void reset() {
-    buttonsContainer.setDisable(false);
-    title.setOpacity(1.0);
-    buttonsContainer.setOpacity(1.0);
-  }
-
   public void mainMenuAnimationPlay() {
     buttonsContainer.setDisable(true);
     AnimationManager.fadeTransition(title, 2, 1.0, 0.0);
     AnimationManager.fadeTransition(buttonsContainer, 2, 1.0, 0.0);
-
   }
 }

@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.controllers.ComputerController;
 import nz.ac.auckland.se206.controllers.GameFinishController;
-import nz.ac.auckland.se206.controllers.InstructionsController;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
@@ -67,11 +66,6 @@ public class App extends Application {
     if (newUi == Scenes.COMPUTER) {
       ((ComputerController) SceneManager.getController(newUi)).setFocus();
     }
-
-    // Scroll to top of instructions upon entering
-    if (newUi == Scenes.INSTRUCTIONS) {
-      ((InstructionsController) SceneManager.getController(newUi)).goGeneralInformation();
-    }
   }
 
   public static ChatMessage getStartMessage() {
@@ -104,7 +98,7 @@ public class App extends Application {
   }
 
   public static void reloadScenes() throws IOException {
-    instance.loadAllScenes();
+    instance.loadReloadScenes();
   }
 
   public static void setAudio(boolean audio) {
@@ -143,6 +137,22 @@ public class App extends Application {
     SceneManager.addController(SceneManager.Scenes.LASERCUTTING, null);
     SceneManager.addController(SceneManager.Scenes.INSTRUCTIONS, null);
 
+    // Initialise Scenes hashmap to SceneManager
+    SceneManager.addUi(SceneManager.Scenes.MAIN_MENU, null);
+    SceneManager.addUi(SceneManager.Scenes.DIFFICULTYPAGE, null);
+    SceneManager.addUi(SceneManager.Scenes.INSTRUCTIONS, null);
+    SceneManager.addUi(SceneManager.Scenes.GAMEFINISH, null);
+    SceneManager.addUi(SceneManager.Scenes.VAULT, null);
+    SceneManager.addUi(SceneManager.Scenes.SECURITY, null);
+    SceneManager.addUi(SceneManager.Scenes.LOBBY, null);
+    SceneManager.addUi(SceneManager.Scenes.WIRECUTTING, null);
+    SceneManager.addUi(SceneManager.Scenes.COMPUTER, null);
+    SceneManager.addUi(SceneManager.Scenes.HACKERVAN, null);
+    SceneManager.addUi(SceneManager.Scenes.EYESCANNER, null);
+    SceneManager.addUi(SceneManager.Scenes.CHEMICALMIXING, null);
+    SceneManager.addUi(SceneManager.Scenes.CONNECTDOTS, null);
+    SceneManager.addUi(SceneManager.Scenes.LASERCUTTING, null);
+
     loadAllScenes();
 
     // DONT DELETE, ensures object starts on find keys which is important for ai to work
@@ -171,27 +181,27 @@ public class App extends Application {
   }
 
   private void loadAllScenes() throws IOException {
-    // Add scenes to SceneManager
-    SceneManager.addUi(SceneManager.Scenes.MAIN_MENU, loadFxml("mainmenu"));
-    SceneManager.addUi(SceneManager.Scenes.INSTRUCTIONS, loadFxml("instructions"));
-    SceneManager.addUi(SceneManager.Scenes.DIFFICULTYPAGE, loadFxml("difficultypage"));
-    SceneManager.addUi(SceneManager.Scenes.GAMEFINISH, loadFxml("gamefinish"));
-    loadGameScenes();
+    // Add scenes that don't need reloading to SceneManager
+    SceneManager.changeUi(SceneManager.Scenes.INSTRUCTIONS, loadFxml("instructions"));
+    SceneManager.changeUi(SceneManager.Scenes.GAMEFINISH, loadFxml("gamefinish"));
+    loadReloadScenes();
   }
 
-  private void loadGameScenes() throws IOException {
+  private void loadReloadScenes() throws IOException {
+    // Add main menu scenes to SceneManager
+    SceneManager.changeUi(SceneManager.Scenes.MAIN_MENU, loadFxml("mainmenu"));
+    SceneManager.changeUi(SceneManager.Scenes.DIFFICULTYPAGE, loadFxml("difficultypage"));
     // Add main room scenes to SceneManager
-    SceneManager.addUi(SceneManager.Scenes.VAULT, loadFxml("vault"));
-
-    SceneManager.addUi(SceneManager.Scenes.SECURITY, loadFxml("securityroom"));
-    SceneManager.addUi(SceneManager.Scenes.LOBBY, loadFxml("lobby"));
+    SceneManager.changeUi(SceneManager.Scenes.VAULT, loadFxml("vault"));
+    SceneManager.changeUi(SceneManager.Scenes.SECURITY, loadFxml("securityroom"));
+    SceneManager.changeUi(SceneManager.Scenes.LOBBY, loadFxml("lobby"));
     // // Add scenes within game to SceneManager
-    SceneManager.addUi(SceneManager.Scenes.WIRECUTTING, loadFxml("wirecutting"));
-    SceneManager.addUi(SceneManager.Scenes.COMPUTER, loadFxml("computer"));
-    SceneManager.addUi(SceneManager.Scenes.HACKERVAN, loadFxml("hackervan"));
-    SceneManager.addUi(SceneManager.Scenes.EYESCANNER, loadFxml("eyescanner"));
-    SceneManager.addUi(SceneManager.Scenes.CHEMICALMIXING, loadFxml("chemicalmixing"));
-    SceneManager.addUi(SceneManager.Scenes.CONNECTDOTS, loadFxml("connectdots"));
-    SceneManager.addUi(SceneManager.Scenes.LASERCUTTING, loadFxml("laserCutting"));
+    SceneManager.changeUi(SceneManager.Scenes.WIRECUTTING, loadFxml("wirecutting"));
+    SceneManager.changeUi(SceneManager.Scenes.COMPUTER, loadFxml("computer"));
+    SceneManager.changeUi(SceneManager.Scenes.HACKERVAN, loadFxml("hackervan"));
+    SceneManager.changeUi(SceneManager.Scenes.EYESCANNER, loadFxml("eyescanner"));
+    SceneManager.changeUi(SceneManager.Scenes.CHEMICALMIXING, loadFxml("chemicalmixing"));
+    SceneManager.changeUi(SceneManager.Scenes.CONNECTDOTS, loadFxml("connectdots"));
+    SceneManager.changeUi(SceneManager.Scenes.LASERCUTTING, loadFxml("laserCutting"));
   }
 }

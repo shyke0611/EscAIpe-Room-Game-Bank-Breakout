@@ -3,14 +3,8 @@ package nz.ac.auckland.se206;
 import java.io.IOException;
 import java.util.HashMap;
 import javafx.scene.control.Label;
-import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.controllers.Controller;
-import nz.ac.auckland.se206.controllers.MainMenuController;
-import nz.ac.auckland.se206.difficulties.Difficulty;
 import nz.ac.auckland.se206.difficulties.Difficulty.Difficulties;
-import nz.ac.auckland.se206.difficulties.EasyDifficulty;
-import nz.ac.auckland.se206.difficulties.HardDifficulty;
-import nz.ac.auckland.se206.difficulties.MediumDifficulty;
 
 public class GameManager {
 
@@ -49,7 +43,7 @@ public class GameManager {
     HARD
   }
 
-  private static Difficulty difficulty;
+  private static Difficulties difficulty;
 
   private static int questionsCorrect = 0;
   private static Doors selectedDoor;
@@ -67,18 +61,18 @@ public class GameManager {
     // Create the difficulty
     switch (difficulty) {
       case EASY:
-        GameManager.difficulty = new EasyDifficulty();
+        GameManager.difficulty = difficulty;
         walkieTalkieManager.setHintText("Unlimited");
         break;
 
       case MEDIUM:
-        GameManager.difficulty = new MediumDifficulty();
+        GameManager.difficulty = difficulty;
         walkieTalkieManager.setHintText("5");
 
         break;
 
       case HARD:
-        GameManager.difficulty = new HardDifficulty();
+        GameManager.difficulty = difficulty;
         walkieTalkieManager.setHintText("0");
         break;
 
@@ -100,13 +94,12 @@ public class GameManager {
   public static void resetGame() {
     // Reset the game and all variables/classes
     resetGameManager();
-    SceneManager.clearScenes();
     RandomnessGenerate.reset();
     StyleManager.reset();
     WalkieTalkieManager.reset();
     GameState.resetGameState();
     AnimationManager.reset();
-    ((MainMenuController) SceneManager.getController(Scenes.MAIN_MENU)).reset();
+    // ((MainMenuController) SceneManager.getController(Scenes.MAIN_MENU)).reset();
     new HackerAiManager();
     // Reload the scenes so they are reset
     try {
@@ -141,7 +134,7 @@ public class GameManager {
     GameManager.selectedDoor = selectedDoor;
   }
 
-  public static Difficulty getDifficulty() {
+  public static Difficulties getDifficulty() {
     return difficulty;
   }
 
@@ -296,8 +289,8 @@ public class GameManager {
     moneyGained = 0;
   }
 
-  public static String getMoneyGained() {
-    return formatMoney(moneyGained);
+  public static int getMoneyGained() {
+    return moneyGained;
   }
 
   public static String getMoneyToGain() {
@@ -310,7 +303,7 @@ public class GameManager {
     }
   }
 
-  private static String formatMoney(int money) {
+  public static String formatMoney(int money) {
     if (money == 0) {
       return "$0";
     }
@@ -319,7 +312,7 @@ public class GameManager {
     return "$" + millions + ",000,000";
   }
 
-  public void setDifficulty(Difficulty d) {
+  public void setDifficulty(Difficulties d) {
     difficulty = d;
   }
 }

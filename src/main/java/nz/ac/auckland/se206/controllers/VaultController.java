@@ -260,11 +260,12 @@ public class VaultController extends Controller {
   private void onCheckCode() {
     // check bomb code
     String code = lootLbl.getText().substring("Code: ".length());
-    // handle correct input
+
     if (inputLbl.getText() == null) {
       return;
     }
 
+    // handle correct input
     if (inputLbl.getText().equals(code)) {
       statusLbl.setText("Success, Activate Bomb");
       inputLbl.setText("");
@@ -392,7 +393,10 @@ public class VaultController extends Controller {
 
     // If esc is pressed, close the bomb
     if (code == KeyCode.ESCAPE) {
-      onExitBomb();
+      if (!redBtn.isDisable()) {
+        onExitBomb();
+      }
+      return;
     }
 
     // If enter is pressed, check the code
@@ -407,16 +411,12 @@ public class VaultController extends Controller {
         labelText.deleteCharAt(labelText.length() - 1);
         inputLbl.setText(labelText.toString());
       }
+      return;
     }
 
     // If number is pressed, add it to the input label
     if (code.isDigitKey() && !event.getCode().equals(KeyCode.ENTER)) {
       updateCode(event.getText());
-    }
-
-    // if x is pressed, close the bomb
-    if (code == KeyCode.X) {
-      onExitBomb();
     }
   }
 }
