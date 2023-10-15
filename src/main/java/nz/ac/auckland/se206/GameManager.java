@@ -97,7 +97,6 @@ public class GameManager {
   public static void resetGame() {
     // Reset the game and all variables/classes
     resetGameManager();
-    SceneManager.clearScenes();
     RandomnessGenerate.reset();
     StyleManager.reset();
     WalkieTalkieManager.reset();

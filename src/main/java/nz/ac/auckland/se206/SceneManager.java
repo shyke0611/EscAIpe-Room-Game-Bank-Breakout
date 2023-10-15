@@ -35,6 +35,11 @@ public class SceneManager {
     sceneMap.put(appUi, uiRoot);
   }
 
+  // Change a scene in the scene map
+  public static void changeUi(Scenes appUi, Parent uiRoot) {
+    sceneMap.replace(appUi, uiRoot);
+  }
+
   // Get a scene from the scene map and set the active controller
   public static Parent getUiRoot(Scenes appUi) {
     activeController = controllerMap.get(appUi);
@@ -82,9 +87,5 @@ public class SceneManager {
 
   public static Scenes getLastRoom() {
     return lastRoom;
-  }
-
-  public static void clearScenes() {
-    sceneMap.clear();
   }
 }

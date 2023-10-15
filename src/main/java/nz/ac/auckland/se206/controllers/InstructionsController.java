@@ -129,6 +129,7 @@ public class InstructionsController extends Controller {
   @FXML
   private void onSwitchToMain() {
     App.setUI(Scenes.MAIN_MENU);
+    goGeneralInformation();
   }
 
   @FXML

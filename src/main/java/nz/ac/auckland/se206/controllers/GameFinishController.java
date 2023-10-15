@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameManager;
@@ -16,6 +17,7 @@ import nz.ac.auckland.se206.Score;
 import nz.ac.auckland.se206.TimerControl;
 
 public class GameFinishController extends Controller {
+
   @FXML private Button exitButton;
   @FXML private Button mainmenuBtn;
   @FXML private Label moneyLbl;
@@ -29,22 +31,31 @@ public class GameFinishController extends Controller {
   @FXML private TableColumn<Score, String> difficultyColumn;
   @FXML private TableColumn<Score, String> timeChosenColumn;
   @FXML private TableColumn<Score, String> timeTakenColumn;
-  @FXML private TableColumn<Score, String> moneyCollectedColumn;
+  @FXML private TableColumn<Score, String> moneyStolenColumn;
 
   public void initialize() {
     // initialize the controller for the current scene
     SceneManager.setController(Scenes.GAMEFINISH, this);
-  }
 
-  public void setDifficultyLabel(String difficulty) {
-    difficultyLbl.setText(difficulty);
+    difficultyColumn.setCellValueFactory(new PropertyValueFactory<Score, String>("difficulty"));
+    timeChosenColumn.setCellValueFactory(new PropertyValueFactory<Score, String>("timeChosen"));
+    timeTakenColumn.setCellValueFactory(new PropertyValueFactory<Score, String>("timeTaken"));
+    moneyStolenColumn.setCellValueFactory(new PropertyValueFactory<Score, String>("moneyStolen"));
   }
 
   public void setStatLabels() {
     // set the labels for the statistics
-    timeChosenLbl.setText(TimerControl.getInitialTime() + " Minutes");
-    timeLbl.setText(TimerControl.getTimeTaken());
-    moneyLbl.setText(GameManager.getMoneyGained());
+    String difficulty = GameManager.getDifficulty().toString();
+    String timeChosen = TimerControl.getInitialTime() + " Minutes";
+    String timeTaken = TimerControl.getTimeTaken();
+    String moneyCollected = GameManager.getMoneyGained();
+
+    difficultyLbl.setText(difficulty);
+    timeChosenLbl.setText(timeChosen);
+    timeLbl.setText(timeTaken);
+    moneyLbl.setText(moneyCollected);
+
+    scoreTable.getItems().add(new Score(difficulty, timeChosen, timeTaken, moneyCollected));
   }
 
   public void setGameLostPage() {
@@ -71,5 +82,6 @@ public class GameFinishController extends Controller {
     mainmenuBtn.setDisable(true);
     // reset game code here
     GameManager.resetGame();
+    mainmenuBtn.setDisable(false);
   }
 }
