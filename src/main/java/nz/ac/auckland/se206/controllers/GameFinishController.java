@@ -78,10 +78,10 @@ public class GameFinishController extends Controller {
 
   @FXML
   private void onSwitchToMainMenu(ActionEvent event) {
-    App.setUI(Scenes.MAIN_MENU);
     mainmenuBtn.setDisable(true);
     // reset game code here
     GameManager.resetGame();
+    App.setUI(Scenes.MAIN_MENU);
     mainmenuBtn.setDisable(false);
   }
 }

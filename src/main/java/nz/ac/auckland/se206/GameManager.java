@@ -3,9 +3,7 @@ package nz.ac.auckland.se206;
 import java.io.IOException;
 import java.util.HashMap;
 import javafx.scene.control.Label;
-import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.controllers.Controller;
-import nz.ac.auckland.se206.controllers.MainMenuController;
 import nz.ac.auckland.se206.difficulties.Difficulty;
 import nz.ac.auckland.se206.difficulties.Difficulty.Difficulties;
 import nz.ac.auckland.se206.difficulties.EasyDifficulty;
@@ -102,7 +100,7 @@ public class GameManager {
     WalkieTalkieManager.reset();
     GameState.resetGameState();
     AnimationManager.reset();
-    ((MainMenuController) SceneManager.getController(Scenes.MAIN_MENU)).reset();
+    // ((MainMenuController) SceneManager.getController(Scenes.MAIN_MENU)).reset();
     new HackerAiManager();
     // Reload the scenes so they are reset
     try {
