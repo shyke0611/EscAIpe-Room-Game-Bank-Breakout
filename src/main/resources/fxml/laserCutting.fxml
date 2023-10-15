@@ -11,7 +11,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Circle?>
@@ -19,25 +18,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#draw" onMousePressed="#mousePressed" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LaserCuttingController">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#draw" onMousePressed="#mousePressed" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LaserCuttingController">
    <children>
-      <HBox layoutX="152.0" layoutY="477.0" prefHeight="100.0" prefWidth="200.0" />
       <ImageView fitHeight="704.0" fitWidth="1008.0" onMouseClicked="#setVault" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/realvaultbackground.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2c2727" height="466.0" layoutX="269.0" layoutY="135.0" stroke="#0d0d0d" strokeType="INSIDE" width="457.0">
-         <effect>
-            <Lighting diffuseConstant="1.07" specularConstant="1.53" specularExponent="11.21" surfaceScale="10.0">
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
-         </effect></Rectangle>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000c9" height="525.0" layoutX="52.0" layoutY="119.0" stroke="#ffffff00" strokeType="INSIDE" width="869.0" />
       <ImageView fitHeight="401.0" fitWidth="395.0" layoutX="316.0" layoutY="178.0" opacity="0.73" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="302.0">
          <image>
             <Image url="@../images/lasercuttingvault.png" />
@@ -66,96 +54,6 @@
             <Image url="@../images/vecteezy_vector-bank-vault-with-open-safe-door_23869823-modified.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#111111" height="8.0" layoutX="274.0" layoutY="161.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="455.0">
-         <effect>
-            <Lighting specularConstant="1.81" surfaceScale="6.01">
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
-         </effect></Rectangle>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#111111" height="8.0" layoutX="273.0" layoutY="131.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="455.0">
-         <effect>
-            <Lighting specularConstant="1.41" specularExponent="10.29" surfaceScale="6.01">
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
-         </effect></Rectangle>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#111111" height="8.0" layoutX="271.0" layoutY="590.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="455.0">
-         <effect>
-            <Lighting specularConstant="1.55" specularExponent="12.14" surfaceScale="6.24">
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
-         </effect></Rectangle>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#111111" height="8.0" layoutX="271.0" layoutY="570.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="455.0">
-         <effect>
-            <Lighting specularConstant="1.83" specularExponent="17.22" surfaceScale="6.0">
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
-         </effect></Rectangle>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#111111" height="407.0" layoutX="296.0" layoutY="165.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="9.0">
-         <effect>
-            <Lighting specularConstant="1.66" specularExponent="15.84" surfaceScale="6.01">
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
-         </effect></Rectangle>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#111111" height="407.0" layoutX="698.0" layoutY="165.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="9.0">
-         <effect>
-            <Lighting specularConstant="1.66" specularExponent="15.84" surfaceScale="6.01">
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
-         </effect></Rectangle>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4e5154" height="475.0" layoutX="259.0" layoutY="127.0" stroke="BLACK" strokeType="INSIDE" width="28.0">
-         <effect>
-            <Lighting specularConstant="1.13" specularExponent="12.6" surfaceScale="4.62">
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
-         </effect>
-      </Rectangle>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4e5154" height="474.0" layoutX="715.0" layoutY="128.0" stroke="BLACK" strokeType="INSIDE" width="28.0">
-         <effect>
-            <Lighting specularConstant="1.13" specularExponent="12.6" surfaceScale="4.62">
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
-         </effect>
-      </Rectangle>
       <Button layoutX="768.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#setVault" prefHeight="79.0" prefWidth="0.0" styleClass="close-button" stylesheets="@../css/rooms.css" text="X">
 
       <StackPane alignment="TOP_RIGHT" layoutX="52.0" layoutY="45.0" prefHeight="30.0" prefWidth="894.0">
@@ -268,7 +166,7 @@
             </Label>
          </children>
       </StackPane>
-      <ImageView fitHeight="425.0" fitWidth="467.0" layoutX="63.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="218.0" fitWidth="124.0" layoutX="63.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/eyescannervault.png" />
          </image>
@@ -276,7 +174,7 @@
             <DropShadow spread="0.43" />
          </effect>
       </ImageView>
-      <ImageView fitHeight="210.0" fitWidth="354.0" layoutX="35.0" layoutY="120.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="104.0" fitWidth="246.0" layoutX="35.0" layoutY="120.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/minigamebackground.png" />
          </image>
@@ -295,7 +193,7 @@
             </Lighting>
          </effect>
       </ImageView>
-      <ImageView fitHeight="169.0" fitWidth="334.0" layoutX="-5.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="63.0" fitWidth="249.0" layoutX="-5.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/eyescannerarrow.png" />
          </image>
@@ -307,11 +205,21 @@
             </DropShadow>
          </effect>
       </ImageView>
-      <Text fill="#90f6ff" layoutX="87.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Laser cut around the dotted lines" wrappingWidth="245.87286376953125" AnchorPane.topAnchor="150.0">
+      <Text fill="#90f6ff" layoutX="14.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Laser cut around the dotted lines" wrappingWidth="258.87286376953125" AnchorPane.topAnchor="67.16200065612793">
          <font>
             <Font name="Copperplate Bold" size="26.0" />
          </font>
       </Text>
       <Circle layoutX="497.0" layoutY="369.0" opacity="0.54" radius="200.0" stroke="BLACK" strokeType="INSIDE" />
+      <StackPane alignment="TOP_RIGHT" layoutX="905.0" layoutY="153.0" prefHeight="25.0" prefWidth="40.0" stylesheets="@../css/chemicals.css">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="30.0" stroke="BLACK" strokeType="INSIDE" translateX="1.0" translateY="-1.0" width="40.0" />
+            <Label alignment="CENTER" onMouseClicked="#setVault" prefHeight="25.0" prefWidth="40.0" stylesheets="@../css/mainmenu.css" text="X">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>

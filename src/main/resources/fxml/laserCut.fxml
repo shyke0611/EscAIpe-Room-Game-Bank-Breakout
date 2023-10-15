@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#draw" onMousePressed="#mousePressed" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LaserCuttingController">
+   <children>
+      <ImageView fitHeight="704.0" fitWidth="1008.0" onMouseClicked="#setVault" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/realvaultbackground.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000c9" height="525.0" layoutX="52.0" layoutY="119.0" stroke="#ffffff00" strokeType="INSIDE" width="869.0" />
+      <ImageView fitHeight="401.0" fitWidth="395.0" layoutX="306.0" layoutY="181.0" opacity="0.9" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="299.5380554199219">
+         <image>
+            <Image url="@../images/lasercuttingvault.png" />
+         </image>
+         <effect>
+            <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="40.0" surfaceScale="0.46">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant>
+                     <color>
+                        <Color red="0.9736841917037964" green="0.9331140518188477" blue="0.9331140518188477" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
+      </ImageView>
+      <Circle fx:id="innerCircle" centerX="503.0" centerY="375.0" fill="#1f93ff00" radius="90.0" stroke="BLACK" strokeDashOffset="10.0" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="3.0" style="-fx-stroke-dash-array: 5;" />
+      <Circle fx:id="outerCircle" centerX="503.0" centerY="375.0" fill="#1f93ff00" layoutX="2.0" layoutY="-2.0" radius="109.0" stroke="BLACK" strokeDashOffset="10.0" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="3.0" style="-fx-stroke-dash-array: 5;" />
+      <Circle fx:id="blackCircle" fill="#1f93ff00" layoutX="499.0" layoutY="349.0" radius="119.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="10.0" visible="false" />
+      <Canvas fx:id="canvas" height="700.0" onMouseDragged="#draw" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" visible="false" width="1000.0" />
+      <ImageView fx:id="insideVault" fitHeight="218.0" fitWidth="218.0" layoutX="390.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/vecteezy_vector-bank-vault-with-open-safe-door_23869823-modified.png" />
+         </image>
+      </ImageView>
+      <StackPane layoutX="560.0" layoutY="8.0" prefHeight="101.0" prefWidth="265.0">
+         <children>
+            <ImageView fitHeight="92.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/gameborder.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="113.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/clock.png" />
+               </image>
+               <StackPane.margin>
+                  <Insets right="140.0" />
+               </StackPane.margin>
+               <effect>
+                  <Lighting diffuseConstant="1.18" specularConstant="0.32">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </ImageView>
+            <Label fx:id="timerLabel" alignment="CENTER" prefHeight="70.0" prefWidth="114.0" text="0:00" textFill="WHITE">
+               <font>
+                  <Font name="HeadLineA Regular" size="47.0" />
+               </font>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </Label>
+         </children>
+      </StackPane>
+      <StackPane layoutX="771.0" layoutY="-4.0" prefHeight="136.0" prefWidth="209.0">
+         <children>
+            <ImageView fitHeight="81.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/gameborder.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="117.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/moneyimage.png" />
+               </image>
+             
+               <StackPane.margin>
+                  <Insets bottom="5.0" right="140.0" />
+               </StackPane.margin>
+            </ImageView>
+            <Label fx:id="moneyCount" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="147.0" text="0M" textFill="WHITE">
+               <font>
+                  <Font name="HeadLineA Regular" size="46.0" />
+               </font>
+            </Label>
+         </children>
+      </StackPane>
+      <ImageView fitHeight="218.0" fitWidth="124.0" layoutX="63.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/eyescannervault.png" />
+         </image>
+         <effect>
+            <DropShadow spread="0.43" />
+         </effect>
+      </ImageView>
+      <ImageView fitHeight="104.0" fitWidth="246.0" layoutX="35.0" layoutY="120.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/minigamebackground.png" />
+         </image>
+        
+      </ImageView>
+      <ImageView fitHeight="63.0" fitWidth="249.0" layoutX="-5.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/eyescannerarrow.png" />
+         </image>
+         <effect>
+            <DropShadow spread="0.18">
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+      </ImageView>
+      <Text fill="#90f6ff" layoutX="14.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Laser cut around the dotted lines" wrappingWidth="258.87286376953125" AnchorPane.topAnchor="67.16200065612793">
+         <font>
+            <Font name="Copperplate Bold" size="26.0" />
+         </font>
+      </Text>
+      <StackPane alignment="TOP_RIGHT" layoutX="881.0" layoutY="117.0" prefHeight="25.0" prefWidth="40.0" stylesheets="@../css/chemicals.css">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="30.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Label alignment="CENTER" onMouseClicked="#setVault" prefHeight="25.0" prefWidth="40.0" stylesheets="@../css/mainmenu.css" text="X">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>
