@@ -139,7 +139,6 @@ public class SecurityController extends Controller {
   // Opening computer log in screen
   @FXML
   private void onClickComputer(MouseEvent event) {
-    StyleManager.setClueHover("computer", false);
     // If not already logged in, go to log in screen
     if (!GameState.isSecurityComputerLoggedIn) {
       logInScreen.setVisible(true);
@@ -153,6 +152,7 @@ public class SecurityController extends Controller {
       App.setUI(Scenes.COMPUTER);
       StyleManager.removeItemsMessage("computer");
     }
+    StyleManager.setClueHover("computer", false);
   }
 
   // Method that handles overall login mechanics
