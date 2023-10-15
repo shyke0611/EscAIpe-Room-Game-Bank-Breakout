@@ -53,7 +53,7 @@ public class ConnectDotsController extends Controller {
   public void initialize() {
     // initialising the methods to play this puzzle
     SceneManager.setController(Scenes.CONNECTDOTS, this);
-    super.setTimerLabel(timerLabel, 3);
+    super.setTimerLabel(timerLabel, 1);
     disableSecurity.setVisible(false);
     setSolution();
     randomiseColours();

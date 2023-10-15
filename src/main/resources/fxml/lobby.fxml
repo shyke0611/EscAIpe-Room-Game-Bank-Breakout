@@ -19,7 +19,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="LobbyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LobbyController">
+<AnchorPane fx:id="LobbyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LobbyController">
    <children>
       <ImageView fx:id="lobbybackground" fitHeight="715.0" fitWidth="1024.0" layoutX="-3.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -442,8 +442,11 @@
             </ImageView>
             <Label fx:id="moneyCount" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="147.0" text="0M" textFill="WHITE">
                <font>
-                  <Font name="Tahoma" size="46.0" />
+                  <Font name="Copperplate" size="35.0" />
                </font>
+               <StackPane.margin>
+                  <Insets left="20.0" />
+               </StackPane.margin>
             </Label>
          </children>
       </StackPane>
@@ -474,11 +477,14 @@
             </ImageView>
             <Label fx:id="timerLabel" alignment="CENTER" prefHeight="70.0" prefWidth="114.0" text="0:00" textFill="WHITE">
                <font>
-                  <Font name="HeadLineA Regular" size="47.0" />
+                  <Font name="Copperplate" size="35.0" />
                </font>
                <padding>
                   <Insets left="30.0" />
                </padding>
+               <StackPane.margin>
+                  <Insets right="2.0" />
+               </StackPane.margin>
             </Label>
          </children>
       </StackPane>
