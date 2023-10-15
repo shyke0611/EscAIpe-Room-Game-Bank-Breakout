@@ -265,7 +265,7 @@
             </StackPane>
          </children>
       </VBox>
-      <VBox fx:id="walkietalkieText" layoutX="189.0" layoutY="521.0" prefHeight="150.0" prefWidth="512.0" visible="false">
+      <VBox fx:id="walkietalkieText" layoutX="189.0" layoutY="521.0" prefHeight="150.0" prefWidth="512.0" styleClass="totalWalkieTalkie" stylesheets="@../css/walkietalkie.css" visible="false">
          <children>
             <HBox prefHeight="100.0" prefWidth="512.0">
                <children>
@@ -322,11 +322,11 @@
             </HBox>
          </children>
       </VBox>
-      <VBox fx:id="vaultwalkietalkie" alignment="CENTER" layoutX="10.0" layoutY="490.0" onMousePressed="#onWalkieTalkie" prefHeight="144.0" prefWidth="208.0" styleClass="walkietalkie" stylesheets="@../css/walkietalkie.css">
+      <VBox fx:id="vaultwalkietalkie" alignment="CENTER" layoutX="7.0" layoutY="479.0" onMousePressed="#onWalkieTalkie" prefHeight="144.0" prefWidth="208.0" styleClass="walkietalkie" stylesheets="@../css/walkietalkie.css">
          <children>
             <StackPane prefHeight="214.0" prefWidth="218.0">
                <children>
-                  <ImageView fitHeight="214.0" fitWidth="211.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="225.0" fitWidth="218.0" layoutX="7.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/walkietalkiepad.png" />
                      </image>
@@ -334,6 +334,11 @@
                   <ImageView fx:id="lobbyWalkieTalkie" fitHeight="121.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/walkietalkie.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="vaultNotification" fitHeight="70.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" translateX="-30.0" translateY="-30.0" visible="false">
+                     <image>
+                        <Image url="@../images/notificationIcon.png" />
                      </image>
                   </ImageView>
                </children>

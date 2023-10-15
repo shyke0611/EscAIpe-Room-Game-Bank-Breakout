@@ -27,7 +27,7 @@ public class App extends Application {
   private static Scene scene;
   private static ChatMessage message;
   private static App instance;
-  private static boolean isAudioOn = true;
+  private static boolean isAudioOn = false;
 
   public static void main(final String[] args) {
     launch();

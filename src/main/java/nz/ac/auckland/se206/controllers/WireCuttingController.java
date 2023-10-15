@@ -27,6 +27,7 @@ public class WireCuttingController extends Controller {
   @FXML private HBox redwire;
   @FXML private HBox yellowwire;
   @FXML private HBox retryBtn;
+  @FXML private Label moneyCount;
 
   @FXML private Label taskLbl;
   @FXML private Label timerLabel;
@@ -42,6 +43,7 @@ public class WireCuttingController extends Controller {
    */
   public void initialize() {
     SceneManager.setController(Scenes.WIRECUTTING, this);
+    GameManager.addMoneyGainedLabel(this, moneyCount);
     // setting timer
     super.setTimerLabel(timerLabel, 1);
     wiresCut = new ArrayList<>();
@@ -155,7 +157,7 @@ public class WireCuttingController extends Controller {
     // styleManager.setClueHover("electricityBox", false);
     GameManager.setCurrentObjective(Objectives.FIND_ESCAPE);
     App.textToSpeech("Alarm Disabled");
-    WalkieTalkieManager.setWalkieTalkieOpen();
+    WalkieTalkieManager.setWalkieTalkieNotifcationOn();
     walkieTalkieManager.setWalkieTalkieText(
         new ChatMessage("user", "That was fast! Now get back to the vault and escape quickly!"));
   }

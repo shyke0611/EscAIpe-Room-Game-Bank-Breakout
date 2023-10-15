@@ -47,6 +47,7 @@ public class VaultController extends Controller {
   @FXML private TextArea vaultTextArea;
   @FXML private TextField vaultTextField;
   @FXML private Label timerLabel;
+  @FXML private ImageView vaultNotification;
 
   @FXML private Rectangle dialogueBox;
   @FXML private Label moneyValue;
@@ -98,6 +99,7 @@ public class VaultController extends Controller {
     WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
     WalkieTalkieManager.addQuickHintBtn(this, quickHintBtn);
     WalkieTalkieManager.addWalkieTalkieTextArea(this, vaultTextArea);
+    WalkieTalkieManager.addWalkieTalkieNotification(this, vaultNotification);
 
     super.setTimerLabel(timerLabel, 1);
 

@@ -55,6 +55,7 @@ public class LobbyController extends Controller {
   @FXML private TextArea lobbyTextArea;
   @FXML private ImageView lobbyWalkieTalkie;
   @FXML private Label moneyCount;
+  @FXML private ImageView lobbyNotification;
 
   @FXML private HBox key1;
   @FXML private HBox key3;
@@ -97,6 +98,7 @@ public class LobbyController extends Controller {
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     WalkieTalkieManager.addQuickHintBtn(this, quickHintBtn);
     WalkieTalkieManager.addWalkieTalkieTextArea(this, lobbyTextArea);
+    WalkieTalkieManager.addWalkieTalkieNotification(this, lobbyNotification);
 
     GameManager.addMoneyGainedLabel(this, moneyCount);
 
@@ -135,7 +137,7 @@ public class LobbyController extends Controller {
     System.out.println(plaqueName);
     johnIpsumLbl.setText(plaqueName + " Ipsum");
 
-    WalkieTalkieManager.setWalkieTalkieOpen();
+    WalkieTalkieManager.setWalkieTalkieNotifcationOn();
     walkieTalkieManager.setWalkieTalkieText(
         new ChatMessage(
             "user",
@@ -254,7 +256,7 @@ public class LobbyController extends Controller {
     passwordLbl.setText("Password: " + randomPassword);
     usernameLbl.setText("Username: " + randomUsername);
     StyleManager.removeItemsMessage("credentialsBook");
-    WalkieTalkieManager.setWalkieTalkieOpen();
+    WalkieTalkieManager.setWalkieTalkieNotifcationOn();
     walkieTalkieManager.setWalkieTalkieText(
         new ChatMessage(
             "user",

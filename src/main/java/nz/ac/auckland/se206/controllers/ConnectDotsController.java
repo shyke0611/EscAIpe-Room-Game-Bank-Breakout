@@ -147,7 +147,7 @@ public class ConnectDotsController extends Controller {
       App.textToSpeech("Security Disabled, Level 1 Vault Access Granted");
       Platform.runLater(
           () -> {
-            WalkieTalkieManager.setWalkieTalkieOpen();
+            WalkieTalkieManager.setWalkieTalkieNotifcationOn();
             walkieTalkieManager.setWalkieTalkieText(
                 new ChatMessage(
                     "assistant",

@@ -60,6 +60,7 @@ public class SecurityController extends Controller {
   @FXML private StackPane hoverEmployee;
   @FXML private Label employeeName;
   @FXML private Label moneyCount;
+  @FXML private ImageView securityNotification;
 
   // Managers and controllers
   private StyleManager styleManager = StyleManager.getInstance();
@@ -83,6 +84,7 @@ public class SecurityController extends Controller {
     WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
     WalkieTalkieManager.addQuickHintBtn(this, quickHintBtn);
     WalkieTalkieManager.addWalkieTalkieTextArea(this, securityTextArea);
+    WalkieTalkieManager.addWalkieTalkieNotification(this, securityNotification);
     GameManager.addMoneyGainedLabel(this, moneyCount);
 
     // add styling
