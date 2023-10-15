@@ -15,13 +15,13 @@ import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameManager;
+import nz.ac.auckland.se206.GameManager.Difficulties;
 import nz.ac.auckland.se206.GameManager.Objectives;
 import nz.ac.auckland.se206.HackerAiManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.TimerControl;
-import nz.ac.auckland.se206.difficulties.Difficulty.Difficulties;
 
 /** Controller class for the Difficulty Selection scene. */
 public class DifficultyController extends Controller {

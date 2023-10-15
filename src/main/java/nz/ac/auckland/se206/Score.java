@@ -1,6 +1,6 @@
 package nz.ac.auckland.se206;
 
-import nz.ac.auckland.se206.difficulties.Difficulty.Difficulties;
+import nz.ac.auckland.se206.GameManager.Difficulties;
 
 public class Score {
   private Difficulties difficulty;
