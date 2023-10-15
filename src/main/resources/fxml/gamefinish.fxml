@@ -3,7 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
@@ -14,7 +15,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.GameFinishController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.GameFinishController">
    <children>
       <ImageView fitHeight="707.0" fitWidth="1007.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -90,7 +91,14 @@
             </DropShadow>
          </effect>
       </Label>
-      <TextArea layoutX="554.0" layoutY="272.0" prefHeight="270.0" prefWidth="303.0" />
+      <TableView layoutX="485.0" layoutY="272.0" prefHeight="270.0" prefWidth="400.0">
+        <columns>
+          <TableColumn editable="false" prefWidth="100.0" resizable="false" text="DIFFICULTY" />
+          <TableColumn editable="false" prefWidth="100.0" resizable="false" text="TIME CHOSEN" />
+            <TableColumn editable="false" prefWidth="100.0" resizable="false" text="TIME TAKEN" />
+            <TableColumn editable="false" prefWidth="100.0" resizable="false" text="MONEY STOLEN" />
+        </columns>
+      </TableView>
       <Label alignment="CENTER" layoutX="515.0" layoutY="191.0" prefHeight="79.0" prefWidth="356.0" text="ScoreBoard:" textFill="WHITE">
          <font>
             <Font name="Copperplate" size="48.0" />
@@ -105,6 +113,33 @@
       </Label>
       <VBox layoutX="93.0" layoutY="271.0" prefHeight="289.0" prefWidth="405.0">
          <children>
+            <VBox prefHeight="59.0" prefWidth="220.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="28.0" prefWidth="533.0" text="Difficulty:" textFill="WHITE" underline="true">
+                     <font>
+                        <Font name="Copperplate" size="27.0" />
+                     </font>
+                     <effect>
+                        <DropShadow spread="0.67" />
+                     </effect>
+                  </Label>
+                  <Label fx:id="difficultyLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="545.0" text="0" textFill="#e4e4e4">
+                     <font>
+                        <Font name="Silom" size="22.0" />
+                     </font>
+                     <effect>
+                        <DropShadow spread="0.77" />
+                     </effect>
+                  </Label>
+               </children>
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </VBox>
             <VBox prefHeight="84.0" prefWidth="220.0">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="493.0" text="Time Chosen:" textFill="WHITE" underline="true">
@@ -112,7 +147,7 @@
                         <Font name="Copperplate" size="27.0" />
                      </font>
                      <effect>
-                        <DropShadow spread="0.84" />
+                        <DropShadow spread="0.67" />
                      </effect>
                   </Label>
                   <Label fx:id="timeChosenLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="545.0" text="0" textFill="WHITE">
@@ -175,33 +210,6 @@
                      </font>
                      <effect>
                         <DropShadow spread="0.64" />
-                     </effect>
-                  </Label>
-               </children>
-               <effect>
-                  <InnerShadow>
-                     <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
-                     </color>
-                  </InnerShadow>
-               </effect>
-            </VBox>
-            <VBox prefHeight="59.0" prefWidth="220.0">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="28.0" prefWidth="533.0" text="Difficulty:" textFill="WHITE" underline="true">
-                     <font>
-                        <Font name="Copperplate" size="27.0" />
-                     </font>
-                     <effect>
-                        <DropShadow spread="0.67" />
-                     </effect>
-                  </Label>
-                  <Label fx:id="difficultyLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="545.0" text="0" textFill="#e4e4e4">
-                     <font>
-                        <Font name="Silom" size="22.0" />
-                     </font>
-                     <effect>
-                        <DropShadow spread="0.77" />
                      </effect>
                   </Label>
                </children>

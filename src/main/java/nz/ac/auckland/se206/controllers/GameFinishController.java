@@ -5,13 +5,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
-import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
-import nz.ac.auckland.se206.StyleManager;
+import nz.ac.auckland.se206.Score;
 import nz.ac.auckland.se206.TimerControl;
 
 public class GameFinishController extends Controller {
@@ -23,6 +24,12 @@ public class GameFinishController extends Controller {
   @FXML private Label timeChosenLbl;
   @FXML private AnchorPane successPage;
   @FXML private AnchorPane failPage;
+
+  @FXML private TableView<Score> scoreTable;
+  @FXML private TableColumn<Score, String> difficultyColumn;
+  @FXML private TableColumn<Score, String> timeChosenColumn;
+  @FXML private TableColumn<Score, String> timeTakenColumn;
+  @FXML private TableColumn<Score, String> moneyCollectedColumn;
 
   public void initialize() {
     // initialize the controller for the current scene
