@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameManager;
+import nz.ac.auckland.se206.GameManager.Objectives;
 import nz.ac.auckland.se206.HackerAiManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
@@ -187,7 +188,7 @@ public class DifficultyController extends Controller {
     // setting relevant methods to start game
     int timerValue = (int) timerSlider.getValue();
     initialiseHacker(difficulty);
-    GameManager.completeObjective();
+    GameManager.setCurrentObjective(Objectives.GET_KEYS);
     GameManager.createGame(difficulty, timerValue);
     TimerControl.runTimer();
     App.setUI(Scenes.LOBBY);

@@ -2,9 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -12,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameManager;
+import nz.ac.auckland.se206.GameManager.Objectives;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
@@ -47,8 +46,7 @@ public class WireCuttingController extends Controller {
     super.setTimerLabel(timerLabel, 1);
     wiresCut = new ArrayList<>();
     // generating relevant methods on initialise
-    styleManager.addHoverItems(
-        wirecuttingbackground, bluewire, redwire, yellowwire, greenwire);
+    styleManager.addHoverItems(wirecuttingbackground, bluewire, redwire, yellowwire, greenwire);
     RandomnessGenerate.addWires(bluewire, yellowwire, greenwire, redwire);
   }
 
@@ -155,7 +153,7 @@ public class WireCuttingController extends Controller {
     // styleManager.setClueHover("bomblayer", true);
     // styleManager.setClueHover("lobbyRoomSwitch", false);
     // styleManager.setClueHover("electricityBox", false);
-    GameManager.completeObjective();
+    GameManager.setCurrentObjective(Objectives.FIND_ESCAPE);
     App.textToSpeech("Alarm Disabled");
     WalkieTalkieManager.setWalkieTalkieOpen();
     walkieTalkieManager.setWalkieTalkieText(

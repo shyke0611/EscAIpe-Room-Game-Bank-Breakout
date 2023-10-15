@@ -8,6 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import nz.ac.auckland.se206.GameManager;
+import nz.ac.auckland.se206.GameManager.Objectives;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
@@ -169,7 +170,7 @@ public class EyeScannerController extends Controller {
       accessDenied.setVisible(false);
       GameState.isEyeScannerBypassed = true;
       // $20 Million
-      GameManager.completeObjective();
+      GameManager.setCurrentObjective(Objectives.SELECT_VAULT_DOOR);
       GameManager.increaseMoneyToGain(20000000);
       GameManager.setMoneyGained();
     } else {

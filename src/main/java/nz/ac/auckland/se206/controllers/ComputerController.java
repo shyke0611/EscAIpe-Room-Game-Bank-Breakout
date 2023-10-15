@@ -21,6 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameManager;
+import nz.ac.auckland.se206.GameManager.Objectives;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
@@ -277,7 +278,7 @@ public class ComputerController extends Controller {
                   new ChatMessage("assistant", "Nice work! Now you have access to all 3 vaults"));
             });
 
-        GameManager.completeObjective();
+        GameManager.setCurrentObjective(Objectives.SELECT_VAULT_DOOR);
         setLevelThreeStyle();
 
       } else if (questionsCorrect >= 1) {
@@ -286,7 +287,7 @@ public class ComputerController extends Controller {
         App.textToSpeech("Security Disabled, Level 2 Vault Access Granted");
         GameState.isFirewallDisabled = true;
         GameState.isFirstRiddleSolved = true;
-        GameManager.completeObjective();
+        GameManager.setCurrentObjective(Objectives.SELECT_VAULT_DOOR);
         Platform.runLater(
             () -> {
               WalkieTalkieManager.setWalkieTalkieOpen();

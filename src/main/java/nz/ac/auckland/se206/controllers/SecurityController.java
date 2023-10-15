@@ -149,7 +149,7 @@ public class SecurityController extends Controller {
     } else {
       // go straight to computer scene
       logInScreen.setVisible(false);
-      GameManager.completeObjective();
+      GameManager.setCurrentObjective(GameManager.Objectives.DISABLE_FIREWALL);
       App.setUI(Scenes.COMPUTER);
       StyleManager.removeItemsMessage("computer");
     }

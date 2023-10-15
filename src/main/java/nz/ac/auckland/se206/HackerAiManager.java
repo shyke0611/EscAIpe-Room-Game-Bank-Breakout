@@ -53,8 +53,12 @@ public class HackerAiManager {
         "Find Passcode", "The passcode is in the drawer on the wall, use the keys to unlock it");
     hintMappings.put(
         "Login", "Use the credentials on the note to login to the computer, in security.");
-    hintMappings.put("Disable Firewall", "Convince the AI you are an employee to log in");
+    hintMappings.put(
+        "Disable Firewall",
+        "Log into the computer and convince the AI you are an employee to log in");
     hintMappings.put("Complete Minigame", "Complete the connect dots minigame to proceed");
+    hintMappings.put(
+        "Select Vault Door", "Go to the vault and choose a door youd like to break into");
     hintMappings.put(
         "Scan Eye",
         "You must scan the guards eye and use it to match your fake eye so you can get through the"
@@ -63,7 +67,7 @@ public class HackerAiManager {
     hintMappings.put(
         "Cut Through Lasers", "You must use your laser gun to cut a hole and get through the door");
     hintMappings.put(
-        "Disable Lasertrap",
+        "Disable Laser Trap",
         "You must find the correct order of wires to cut in security, they are hidden in the guards"
             + " pocket");
     hintMappings.put("Find Escape", "Place the bomb in the vault and arm it to escape");

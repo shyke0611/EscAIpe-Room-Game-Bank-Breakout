@@ -15,6 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.GameManager;
+import nz.ac.auckland.se206.GameManager.Objectives;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
@@ -303,7 +304,7 @@ public class ChemicalMixingController extends Controller {
 
     continueBtn.setVisible(true);
     winLabel.setVisible(true);
-    GameManager.completeObjective();
+    GameManager.setCurrentObjective(Objectives.SELECT_VAULT_DOOR);
 
     // $5 Million
     GameManager.increaseMoneyToGain(5000000);

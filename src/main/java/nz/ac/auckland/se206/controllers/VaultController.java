@@ -21,6 +21,7 @@ import javafx.scene.text.Text;
 import nz.ac.auckland.se206.AnimationManager;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameManager;
+import nz.ac.auckland.se206.GameManager.Objectives;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.HackerAiManager;
 import nz.ac.auckland.se206.RandomnessGenerate;
@@ -147,7 +148,7 @@ public class VaultController extends Controller {
 
   @FXML
   private void onBombPressed(MouseEvent event) {
-    GameManager.completeObjective();
+    GameManager.setCurrentObjective(Objectives.GAME_OVER);
     // setting style for relevant items
     bombPuzzle.setVisible(true);
     AnimationManager.fadeTransition(bombpuzzlestackpane, 1, 0.0, 1.0);
@@ -167,7 +168,7 @@ public class VaultController extends Controller {
 
   @FXML
   private void onExitBomb() {
-    GameManager.completeObjective();
+    GameManager.setCurrentObjective(Objectives.GAME_OVER);
     exitHolder.setVisible(true);
     bombPuzzle.setVisible(false);
     AnimationManager.toggleAlarmAnimation(exitHolder, true, 0.5);
@@ -193,7 +194,7 @@ public class VaultController extends Controller {
   private void onSwitchToEyeScanner() {
     // when firewall is disabled execute
     if (GameState.isFirewallDisabled && GameState.isSecondRiddleSolved) {
-      GameManager.completeObjective();
+      GameManager.setCurrentObjective(Objectives.EYE_SCANNER);
       App.setUI(Scenes.EYESCANNER);
       GameState.isEyeScannerEntered = true;
       // setting style
@@ -207,7 +208,7 @@ public class VaultController extends Controller {
   private void onSwitchToChemicalMixing() {
     // when firewall is disabled execute
     if (GameState.isFirewallDisabled) {
-      GameManager.completeObjective();
+      GameManager.setCurrentObjective(Objectives.CHEMICAL_MIXING);
       App.setUI(Scenes.CHEMICALMIXING);
     }
   }
@@ -225,7 +226,7 @@ public class VaultController extends Controller {
         walkieTalkieManager.setWalkieTalkieText(
             new ChatMessage("user", "Uh Oh! You better find a way to turn that off quick"));
       }
-      GameManager.completeObjective();
+      GameManager.setCurrentObjective(Objectives.DISABLE_LASERTRAP);
       lootBtnHolder.setVisible(false);
       GameManager.collectMoney();
     }
@@ -235,7 +236,7 @@ public class VaultController extends Controller {
   private void onLaserCuttingScene() {
     // execute when firewall is disabled
     if (GameState.isFirewallDisabled) {
-      GameManager.completeObjective();
+      GameManager.setCurrentObjective(Objectives.LAZER_CUTTING);
       App.setUI(Scenes.LASERCUTTING);
     }
   }
