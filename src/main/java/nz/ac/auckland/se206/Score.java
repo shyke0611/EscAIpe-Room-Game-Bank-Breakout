@@ -1,23 +1,25 @@
 package nz.ac.auckland.se206;
 
+import nz.ac.auckland.se206.difficulties.Difficulty.Difficulties;
+
 public class Score {
-  private String difficulty;
+  private Difficulties difficulty;
   private String timeChosen;
   private String timeTaken;
-  private String moneyStolen;
+  private Integer moneyStolen;
 
-  public Score(String difficulty, String timechosen, String timeTaken, String moneyStolen) {
+  public Score(Difficulties difficulty, String timechosen, String timeTaken, Integer moneyStolen) {
     this.difficulty = difficulty;
     this.timeChosen = timechosen;
     this.timeTaken = timeTaken;
     this.moneyStolen = moneyStolen;
   }
 
-  public String getDifficulty() {
+  public Difficulties getDifficulty() {
     return difficulty;
   }
 
-  public void setDifficulty(String difficulty) {
+  public void setDifficulty(Difficulties difficulty) {
     this.difficulty = difficulty;
   }
 
@@ -37,11 +39,11 @@ public class Score {
     this.timeTaken = timeTaken;
   }
 
-  public String getMoneyStolen() {
+  public Integer getMoneyStolen() {
     return moneyStolen;
   }
 
-  public void setMoneyStolen(String moneyStolen) {
+  public void setMoneyStolen(Integer moneyStolen) {
     this.moneyStolen = moneyStolen;
   }
 }

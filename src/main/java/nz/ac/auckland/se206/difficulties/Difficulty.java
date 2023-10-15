@@ -4,9 +4,22 @@ public abstract class Difficulty {
 
   // The different difficulties
   public enum Difficulties {
-    EASY,
+    HARD,
     MEDIUM,
-    HARD
+    EASY
+  }
+
+  public static String toStringEnum(Difficulties difficulty) {
+    switch (difficulty) {
+      case EASY:
+        return "Easy";
+      case MEDIUM:
+        return "Medium";
+      case HARD:
+        return "Hard";
+      default:
+        return null;
+    }
   }
 
   protected int totalHints;
