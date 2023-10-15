@@ -77,23 +77,6 @@ public class WireCuttingController extends Controller {
     checkWireCombination();
   }
 
-  // /**
-  //  * Handle the wire cutter click event. Sets the wire cutter as selected and updates the wire
-  //  * colors accordingly.
-  //  *
-  //  * @param event The MouseEvent triggered by clicking the wire cutter.
-  //  */
-  // @FXML
-  // private void onWireCutterClicked(MouseEvent event) {
-  //   wirecutter.setVisible(false);
-  //   wirecutterLbl.setVisible(false);
-  //   isWireCutterSelected = true;
-  //   // setting/removing relevant styles
-  //   styleManager.removeItemsMessage("redwire", "greenwire", "bluewire", "yellowwire");
-  //   styleManager.setItemsState(HoverColour.GREEN, "redwire", "greenwire", "bluewire",
-  // "yellowwire");
-  // }
-
   /**
    * Handle the retry button click event. Resets the wire cutting puzzle.
    *

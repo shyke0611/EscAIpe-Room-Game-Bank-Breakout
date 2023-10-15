@@ -205,16 +205,6 @@ public class SecurityController extends Controller {
     StyleManager.setVisible(false, "credentialsNote");
   }
 
-  // // Mechanics for empty credential input
-  // private void handleEmptyCredentials() {
-  //   loginMsgLbl.setText("Enter your credentials");
-  // }
-
-  // // Mechanics for when login fails
-  // private void handleFailedLogin() {
-  //   loginMsgLbl.setText("Wrong username or password");
-  // }
-
   @FXML
   private void onInvokeHacker(KeyEvent event) throws ApiProxyException {
     // Check if the Enter key is pressed and the Walkie-Talkie is open

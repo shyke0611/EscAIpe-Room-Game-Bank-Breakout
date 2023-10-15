@@ -6,8 +6,6 @@ import javafx.animation.KeyValue;
 import javafx.animation.PauseTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
@@ -17,7 +15,6 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class AnimationManager {
-  private static boolean isSlideAnimationPlayed = false;
 
   public static void fadeTransition(Node node, double seconds,double from,double to) {
     FadeTransition fadeIn = new FadeTransition(Duration.seconds(seconds), node);
@@ -77,22 +74,6 @@ public class AnimationManager {
     }
   }
 
-  // public static void slideDoorsAnimation(Node node) {
-  //   if (!isSlideAnimationPlayed) {
-  //     TranslateTransition transition = new TranslateTransition();
-  //     transition.setDuration(Duration.seconds(2));
-  //     transition.setNode(node);
-  //     transition.setByX(-1052);
-  //     transition.play();
-
-  //     transition.setOnFinished(
-  //         event -> {
-  //           isSlideAnimationPlayed = true; // Animation has finished
-  //         });
-  //     transition.play();
-  //   }
-  // }
-
   public static void delayAnimation(Node node, Node node1) {
     // Delay the animation for 3 seconds
     Duration delay = Duration.seconds(3);
@@ -137,7 +118,4 @@ public class AnimationManager {
     pause.play();
 }
 
-  public static void reset() {
-    isSlideAnimationPlayed = false;
-  }
 }

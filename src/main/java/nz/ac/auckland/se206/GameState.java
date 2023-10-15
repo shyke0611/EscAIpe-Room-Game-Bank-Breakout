@@ -30,12 +30,6 @@ public class GameState {
   public static boolean isCredentialsFound = false;
   public static boolean isWireCredentialsFound = false;
 
-  // tracking record of if the green hover is pressed
-  // public static boolean isComputerHoverPressed = false;
-  // public static boolean isSecurityRoomHoverPressed = false;
-  // public static boolean isGuardPocketHoverPressed = false;
-  // public static boolean isElectricityHoverPressed = false;
-
   public static void resetGameState() {
     // Reset initial flow variables
     isRiddleResolved = false;
@@ -59,10 +53,5 @@ public class GameState {
     isConnectDotreached = false;
     isCredentialsFound = false;
     isWireCredentialsFound = false;
-    // Reset tracking record of green hover
-    // isComputerHoverPressed = false;
-    // isSecurityRoomHoverPressed = false;
-    // isGuardPocketHoverPressed = false;
-    // isElectricityHoverPressed = false;
   }
 }
