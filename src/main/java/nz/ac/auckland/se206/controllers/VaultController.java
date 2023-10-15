@@ -161,13 +161,6 @@ public class VaultController extends Controller {
     lootLbl.setText("Code: " + RandomnessGenerate.getPasscode());
   }
 
-  // @FXML
-  // private void onBombPlaced(MouseEvent event) {
-  //     AnimationManager.toggleAlarmAnimation(exitHolder, true, 0.5);
-  //     AnimationManager.delayAnimation(exitHolder, escapeDoor);
-  //     exitHolder.setDisable(true);
-  // }
-
   @FXML
   private void onExitBomb() {
     GameManager.setCurrentObjective(Objectives.GAME_OVER);

@@ -98,7 +98,6 @@ public class GameManager {
     StyleManager.reset();
     WalkieTalkieManager.reset();
     GameState.resetGameState();
-    AnimationManager.reset();
     // ((MainMenuController) SceneManager.getController(Scenes.MAIN_MENU)).reset();
     new HackerAiManager();
     // Reload the scenes so they are reset
