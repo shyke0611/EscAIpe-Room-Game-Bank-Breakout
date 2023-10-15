@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import javafx.scene.control.Label;
 import nz.ac.auckland.se206.controllers.Controller;
-import nz.ac.auckland.se206.difficulties.Difficulty.Difficulties;
 
 public class GameManager {
 
@@ -38,6 +37,13 @@ public class GameManager {
     EASY,
     MEDIUM,
     HARD
+  }
+
+  // The different difficulties
+  public enum Difficulties {
+    HARD,
+    MEDIUM,
+    EASY
   }
 
   private static Difficulties difficulty;
@@ -133,6 +139,19 @@ public class GameManager {
 
   public static Difficulties getDifficulty() {
     return difficulty;
+  }
+
+  public static String getDifficultyString(Difficulties difficulty) {
+    switch (difficulty) {
+      case EASY:
+        return "Easy";
+      case MEDIUM:
+        return "Medium";
+      case HARD:
+        return "Hard";
+      default:
+        return null;
+    }
   }
 
   public static void completeObjective() {

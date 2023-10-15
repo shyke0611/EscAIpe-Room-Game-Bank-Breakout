@@ -15,12 +15,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameManager;
+import nz.ac.auckland.se206.GameManager.Difficulties;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.Score;
 import nz.ac.auckland.se206.TimerControl;
-import nz.ac.auckland.se206.difficulties.Difficulty;
-import nz.ac.auckland.se206.difficulties.Difficulty.Difficulties;
 
 public class GameFinishController extends Controller {
 
@@ -60,7 +59,7 @@ public class GameFinishController extends Controller {
               if (item == null || empty) {
                 setText(null);
               } else {
-                setText(Difficulty.toStringEnum(item));
+                setText(GameManager.getDifficultyString(item));
               }
             }
           };
@@ -132,7 +131,7 @@ public class GameFinishController extends Controller {
     int moneyCollected = GameManager.getMoneyGained();
 
     // set the labels for the statistics
-    difficultyLbl.setText(Difficulty.toStringEnum(difficulty));
+    difficultyLbl.setText(GameManager.getDifficultyString(difficulty));
     timeChosenLbl.setText(timeChosen);
     timeLbl.setText(TimerControl.formatTimeTaken());
     moneyLbl.setText(GameManager.formatMoney(moneyCollected));
