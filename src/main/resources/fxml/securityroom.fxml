@@ -228,7 +228,7 @@
             </Label>
          </children>
       </StackPane>
-      <VBox fx:id="walkietalkieText" layoutX="189.0" layoutY="521.0" prefHeight="150.0" prefWidth="512.0" styleClass="totalWalkieTalkie" stylesheets="@../css/walkietalkie.css">
+      <VBox fx:id="walkietalkieText" layoutX="189.0" layoutY="521.0" prefHeight="150.0" prefWidth="512.0" styleClass="totalWalkieTalkie" stylesheets="@../css/walkietalkie.css" visible="false">
          <children>
             <HBox prefHeight="100.0" prefWidth="512.0">
                <children>
@@ -289,7 +289,7 @@
          <children>
             <StackPane prefHeight="214.0" prefWidth="218.0">
                <children>
-                  <ImageView fitHeight="225.0" fitWidth="218.0" opacity="0.95" pickOnBounds="true" preserveRatio="true" translateY="3.0">
+                  <ImageView fitHeight="225.0" fitWidth="218.0" opacity="0.95" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/walkietalkiepad.png" />
                      </image>
@@ -297,6 +297,11 @@
                   <ImageView fx:id="lobbyWalkieTalkie" fitHeight="121.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/walkietalkie.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="securityNotification" fitHeight="70.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" translateX="-30.0" translateY="-30.0" visible="false">
+                     <image>
+                        <Image url="@../images/notificationIcon.png" />
                      </image>
                   </ImageView>
                </children>

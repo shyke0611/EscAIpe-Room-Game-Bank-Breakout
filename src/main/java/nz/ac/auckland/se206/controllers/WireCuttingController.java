@@ -157,7 +157,7 @@ public class WireCuttingController extends Controller {
     // styleManager.setClueHover("electricityBox", false);
     GameManager.setCurrentObjective(Objectives.FIND_ESCAPE);
     App.textToSpeech("Alarm Disabled");
-    WalkieTalkieManager.setWalkieTalkieOpen();
+    WalkieTalkieManager.setWalkieTalkieNotifcationOn();
     walkieTalkieManager.setWalkieTalkieText(
         new ChatMessage("user", "That was fast! Now get back to the vault and escape quickly!"));
   }

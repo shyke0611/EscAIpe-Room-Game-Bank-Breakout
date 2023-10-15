@@ -273,7 +273,7 @@ public class ComputerController extends Controller {
 
         Platform.runLater(
             () -> {
-              WalkieTalkieManager.setWalkieTalkieOpen();
+              WalkieTalkieManager.setWalkieTalkieNotifcationOn();
               walkieTalkieManager.setWalkieTalkieText(
                   new ChatMessage("assistant", "Nice work! Now you have access to all 3 vaults"));
             });
@@ -290,7 +290,7 @@ public class ComputerController extends Controller {
         GameManager.setCurrentObjective(Objectives.SELECT_VAULT_DOOR);
         Platform.runLater(
             () -> {
-              WalkieTalkieManager.setWalkieTalkieOpen();
+              WalkieTalkieManager.setWalkieTalkieNotifcationOn();
               walkieTalkieManager.setWalkieTalkieText(
                   new ChatMessage(
                       "assistant",
@@ -304,7 +304,7 @@ public class ComputerController extends Controller {
             new ChatMessage("assistant", "Authentication failed, no vault access granted"));
         Platform.runLater(
             () -> {
-              WalkieTalkieManager.setWalkieTalkieOpen();
+              WalkieTalkieManager.setWalkieTalkieNotifcationOn();
               walkieTalkieManager.setWalkieTalkieText(
                   new ChatMessage(
                       "assistant",

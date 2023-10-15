@@ -482,7 +482,7 @@
             </Label>
          </children>
       </StackPane>
-      <VBox fx:id="walkietalkieText" layoutX="189.0" layoutY="521.0" prefHeight="150.0" prefWidth="512.0" styleClass="totalWalkieTalkie" stylesheets="@../css/walkietalkie.css">
+      <VBox fx:id="walkietalkieText" layoutX="189.0" layoutY="521.0" prefHeight="150.0" prefWidth="512.0" styleClass="totalWalkieTalkie" stylesheets="@../css/walkietalkie.css" visible="false">
          <children>
             <HBox fx:id="textAreaBox" prefHeight="100.0" prefWidth="512.0">
                <children>
@@ -552,7 +552,7 @@
                         <Image url="@../images/walkietalkie.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="lobbyWalkieTalkie1" fitHeight="70.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" translateX="-30.0" translateY="-30.0" visible="false">
+                  <ImageView fx:id="lobbyNotification" fitHeight="70.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" translateX="-30.0" translateY="-30.0" visible="false">
                      <image>
                         <Image url="@../images/notificationIcon.png" />
                      </image>
