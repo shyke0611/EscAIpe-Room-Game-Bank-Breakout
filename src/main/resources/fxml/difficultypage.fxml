@@ -35,32 +35,29 @@
       </ImageView>
       <AnchorPane fx:id="itemContainer" opacity="0.0" prefHeight="700.0" prefWidth="1000.0">
          <children>
-            <StackPane fx:id="audioholder" layoutX="363.0" layoutY="517.0" opacity="0.0" prefHeight="87.0" prefWidth="260.0">
+            <StackPane fx:id="audioholder" layoutX="214.0" layoutY="517.0" opacity="0.0" prefHeight="99.0" prefWidth="486.0">
                <children>
-                  <RadioButton fx:id="audiobtn" mnemonicParsing="false" onAction="#onSoundOn" text="Sound Off" textFill="WHITE">
+                  <RadioButton fx:id="audiobtn" mnemonicParsing="false" onAction="#onSoundOn" prefHeight="31.0" prefWidth="171.0" text="Sound Off" textFill="WHITE">
                      <font>
                         <Font name="Copperplate Light" size="23.0" />
                      </font>
-                     <effect>
-                        <DropShadow spread="0.97" />
-                     </effect>
                   </RadioButton>
                   <ImageView fx:id="unmutebtn" fitHeight="57.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../images/muteno.png" />
                      </image>
                      <StackPane.margin>
-                        <Insets bottom="100.0" />
+                        <Insets bottom="10.0" left="290.0" />
                      </StackPane.margin>
                      <effect>
-                        <Lighting>
+                        <Lighting specularConstant="2.0" specularExponent="0.0">
                            <bumpInput>
                               <Shadow />
                            </bumpInput>
                            <light>
                               <Light.Distant>
                                  <color>
-                                    <Color />
+                                    <Color red="1.0" green="0.9722222089767456" blue="0.9722222089767456" />
                                  </color>
                               </Light.Distant>
                            </light>
@@ -72,30 +69,22 @@
                         <Image url="@../images/mute.png" />
                      </image>
                      <StackPane.margin>
-                        <Insets bottom="100.0" left="0.3" />
+                        <Insets bottom="10.0" left="290.0" />
                      </StackPane.margin>
                      <effect>
-                        <Lighting>
+                        <Lighting diffuseConstant="2.0" specularConstant="2.0" specularExponent="0.0" surfaceScale="0.0">
                            <bumpInput>
                               <Shadow />
                            </bumpInput>
                            <light>
-                              <Light.Distant>
-                                 <color>
-                                    <Color />
-                                 </color>
-                              </Light.Distant>
+                              <Light.Distant />
                            </light>
                         </Lighting>
                      </effect>
                   </ImageView>
                </children>
                <effect>
-                  <DropShadow>
-                     <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
-                     </color>
-                  </DropShadow>
+                  <DropShadow spread="0.99" />
                </effect>
             </StackPane>
             <HBox layoutX="106.0" layoutY="137.0" prefHeight="325.0" prefWidth="793.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="244.0" AnchorPane.leftAnchor="106.0" AnchorPane.rightAnchor="101.0" AnchorPane.topAnchor="137.0">
