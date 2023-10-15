@@ -21,7 +21,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../css/chemicals.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChemicalMixingController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../css/chemicals.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChemicalMixingController">
    <children>
       <ImageView fitHeight="704.0" fitWidth="1008.0" onMouseClicked="#setVault" pickOnBounds="true" preserveRatio="true" style="-fx-effect: black;">
          <image>
@@ -51,7 +51,7 @@
       </StackPane>
       <StackPane layoutX="589.0" layoutY="382.0" prefHeight="249.0" prefWidth="270.0">
          <children>
-            <ImageView fitHeight="263.0" fitWidth="263.0" pickOnBounds="true" preserveRatio="true" styleClass="chemicalPouch">
+            <ImageView fitHeight="263.0" fitWidth="263.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/chemicalIcons/vialPouchEmpty.png" />
                </image>

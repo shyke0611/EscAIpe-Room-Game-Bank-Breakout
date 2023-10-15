@@ -4,48 +4,90 @@
 }
 
 .text-area {
-    -fx-control-inner-background: black;
-    -fx-control-inner-border: black;
-    -fx-border-color: black;
-    -fx-background-color: black;
-    -fx-text-fill: rgb(17, 221, 51);
+    -fx-background-image: "src/main/resources/images/minigamebackground.png";
+    -fx-control-inner-background: transparent;
+    -fx-control-inner-border: rgb(0, 0, 0);
+    /* -fx-border-width: 1px;
+    -fx-border-color: rgb(244, 244, 244); */
+    -fx-background-color: transparent;
+    -fx-text-fill: rgb(255, 255, 255);
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
 }
 
 .text-field {
-    -fx-background-color: black;
+    -fx-background-color: transparent;
     -fx-border-radius: 0;
-    -fx-text-fill: rgb(17, 221, 51);
-    -fx-prompt-text-fill: rgb(17, 221, 51);
+    
+    -fx-text-fill: rgb(255, 255, 255);
+    -fx-prompt-text-fill: rgb(255, 255, 255);
     -fx-background-radius: 0;
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(24, 176, 237);
 }
 
 .component1 {
-    -fx-control-inner-background: black;
-    -fx-control-inner-border: black;
-    -fx-background-color: black;
+    -fx-control-inner-background: rgba(26, 167, 218, 0.907);;
+    -fx-control-inner-border: rgb(59, 242, 255);
+    -fx-background-color: transparent;
     -fx-background-radius: 0 20 0 0;
+    /* -fx-border-width: 4px;
+    -fx-border-color: rgb(24, 176, 237); */
 
 }
 
 .component2 {
-    -fx-control-inner-background: black;
-    -fx-control-inner-border: black;
-    -fx-background-color: black;
+    -fx-control-inner-background: transparent;
+    -fx-control-inner-border: rgba(0, 0, 0, 0);
+    -fx-background-color: transparent;
     -fx-background-radius: 0 0 20 0;
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(24, 176, 237);
+    -fx-border-radius: 0 0 20 0;
 }
 
 .button {
-    -fx-background-color: rgb(0, 0, 0);
-    -fx-border-color: rgb(17, 221, 51);
-    -fx-text-fill: rgb(17, 221, 51);
+    -fx-background-color: transparent;
+    -fx-text-fill: rgb(251, 251, 251);
+    -fx-border-width: 2px;
+    -fx-border-color: rgb(24, 176, 237);
     -fx-border-radius: 30;
 
 }
 
+
 .button:hover {
     -fx-border-radius: 30;
-    -fx-border-color: rgb(0, 255, 42);
     -fx-text-fill: rgb(0, 255, 42);
     -fx-cursor: hand;
 
+}
+
+
+.totalWalkieTalkie{
+    
+    -fx-border-width: 4px;
+    -fx-border-color: rgb(24, 176, 237);
+    -fx-border-radius: 20 0 20 20;
+    -fx-background-color: rgba(3, 28, 64, 0.693);
+    -fx-background-radius: 20 0 20 20;
+
+
+
+}
+
+.label{
+    -fx-text-fill: rgb(255, 255, 255);
+    -fx-font-family: "Tahoma";
 }
