@@ -115,6 +115,7 @@ public class GameFinishController extends Controller {
   }
 
   public void resetSortOrder() {
+    // reset the sort order of the table
     scoreTable.getSortOrder().clear();
     scoreTable.getSortOrder().add(difficultyColumn);
     scoreTable.getSortOrder().add(moneyStolenColumn);
@@ -123,21 +124,23 @@ public class GameFinishController extends Controller {
   }
 
   public void setStatLabels() {
-    resetSortOrder();
 
-    // set the labels for the statistics
+    // Retrieve the statistics from the game
     Difficulties difficulty = GameManager.getDifficulty();
     String timeChosen = TimerControl.getInitialTime() + " Minutes";
     int timeTaken = TimerControl.getTimeTaken();
     int moneyCollected = GameManager.getMoneyGained();
 
+    // set the labels for the statistics
     difficultyLbl.setText(Difficulty.toStringEnum(difficulty));
     timeChosenLbl.setText(timeChosen);
     timeLbl.setText(TimerControl.formatTimeTaken());
     moneyLbl.setText(GameManager.formatMoney(moneyCollected));
 
+    // add the new score to the table and sort table
     Score newScore = new Score(difficulty, timeChosen, timeTaken, moneyCollected);
     scoreTable.getItems().add(newScore);
+    resetSortOrder();
     scoreTable.sort();
     scoreTable.getSelectionModel().select(newScore);
   }
