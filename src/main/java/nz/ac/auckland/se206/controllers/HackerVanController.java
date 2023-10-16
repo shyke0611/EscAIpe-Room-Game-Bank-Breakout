@@ -35,7 +35,7 @@ public class HackerVanController extends Controller {
 
   private ChatMessage responce;
 
-  /** Initialize the HackerVan Controller. Sets up the initial state of the Security scene. */
+  /** Initialize the HackerVan Controller. Sets up the initial state of the scene. */
   public void initialize() {
     SceneManager.setController(Scenes.HACKERVAN, this);
     super.setTimerLabel(timerLabel, 3);
@@ -72,6 +72,7 @@ public class HackerVanController extends Controller {
           new Task<Void>() {
             @Override
             protected Void call() throws Exception {
+              // process the input and get the response
               responce = hackerAiManager.processInput(msg);
 
               Platform.runLater(

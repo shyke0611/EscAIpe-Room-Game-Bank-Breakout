@@ -9,15 +9,11 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Blend;
 import javafx.scene.effect.BlendMode;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.RadialGradient;
-import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import nz.ac.auckland.se206.App;
@@ -54,6 +50,7 @@ public class LaserCuttingController extends Controller {
   private List<Double> angles = new ArrayList<>();
   private List<Point2D> points = new ArrayList<>();
 
+  /** Initialize the laser Cutting Controller. Sets up the initial state of the scene. */
   public void initialize() {
     SceneManager.setController(Scenes.LASERCUTTING, this);
     GameManager.addMoneyGainedLabel(null, moneyCount);
@@ -70,25 +67,25 @@ public class LaserCuttingController extends Controller {
     cursorLine.setStroke(Color.RED);
     // applying effects on the gun
     applyGlowEffect(cursorLine);
-
     canvas.setVisible(true);
   }
 
-  // @FXML
-  // private void laserGunClicked() {
-  //   // handling when the user clicks on the laser gun
-  //   gunEquppied = true;
-  //   canvas.setVisible(true);
-  //   laserGun.setVisible(false);
-  //   equipLaserGun.setVisible(false);
-  // }
-
+  /**
+   * Handles the mouse release event.
+   *
+   * @param event The MouseEvent object.
+   */
   @FXML
   private void mouseReleased(MouseEvent event) {
     clearCursorLine();
     gc.clearRect(0, 0, 1000, 700);
   }
 
+  /**
+   * Handles the drawing action with the mouse.
+   *
+   * @param event The MouseEvent object.
+   */
   @FXML
   private void draw(MouseEvent event) {
     // Get the current mouse coordinates (x, y)
@@ -130,12 +127,18 @@ public class LaserCuttingController extends Controller {
     prevY = y;
   }
 
+  /** Clears the cursor line. */
   private void clearCursorLine() {
     // Clear the cursor line by setting its end point to its start point
     cursorLine.setEndX(cursorLine.getStartX());
     cursorLine.setEndY(cursorLine.getStartY());
   }
 
+  /**
+   * Handles the mouse press event.
+   *
+   * @param event The MouseEvent object.
+   */
   @FXML
   private void mousePressed(MouseEvent event) {
     prevX = event.getX();
@@ -144,6 +147,15 @@ public class LaserCuttingController extends Controller {
     angles.clear();
   }
 
+  /**
+   * Checks if the mouse is inside the larger circle but outside the smaller circle.
+   *
+   * @param mousePosition The mouse position.
+   * @param largerCircle The larger circle.
+   * @param smallerCircle The smaller circle.
+   * @return true if the mouse is inside the larger circle but outside the smaller circle, false
+   *     otherwise.
+   */
   private boolean isMouseInsideLargerCircleOutsideSmallerCircle(
       Point2D mousePosition, Circle largerCircle, Circle smallerCircle) {
     // Calculate the distance from the mouse position to the center of the larger circle
@@ -159,6 +171,12 @@ public class LaserCuttingController extends Controller {
         && (distanceToSmallerCircle > smallerCircle.getRadius());
   }
 
+  /**
+   * Checks a condition while the user is drawing.
+   *
+   * @param mousePosition The current mouse position.
+   * @return true if a specific condition is met, false otherwise.
+   */
   private boolean whileUserisDrawing(Point2D mousePosition) {
     points.add(mousePosition);
 
@@ -197,6 +215,14 @@ public class LaserCuttingController extends Controller {
     return false;
   }
 
+  /**
+   * Calculates the angle between two points and the center of a circle.
+   *
+   * @param point1 The first point.
+   * @param point2 The second point.
+   * @param circle The circle.
+   * @return The angle between the two points and the center of the circle.
+   */
   private double calculateAngle(Point2D point1, Point2D point2, Circle circle) {
     double centerX = circle.getCenterX();
     double centerY = circle.getCenterY();
@@ -223,43 +249,11 @@ public class LaserCuttingController extends Controller {
     return angleDifference;
   }
 
-  @FXML
-  private void formatBlackCirlce() {
-    // create new gradient for the outside of the circle
-    RadialGradient gradientOutside =
-        new RadialGradient(
-            0,
-            0,
-            0.5,
-            0.5,
-            0.98,
-            true,
-            CycleMethod.NO_CYCLE,
-            new Stop(0, Color.ORANGERED),
-            new Stop(1, Color.BLACK));
-
-    // Apply a drop shadow effect for added depth
-    DropShadow dropShadow = new DropShadow();
-    dropShadow.setRadius(20);
-    dropShadow.setSpread(0.2);
-    dropShadow.setColor(Color.DARKRED);
-
-    Stop[] stops = {
-      new Stop(0, Color.TRANSPARENT), // Center color (transparent)
-      new Stop(0.9, Color.TRANSPARENT), // Hot color
-      new Stop(1, Color.RED) // Molten color
-    };
-
-    // Create a radial gradient fill
-    RadialGradient gradient =
-        new RadialGradient(0, 0, 0.5, 0.5, 1, true, CycleMethod.NO_CYCLE, stops);
-    // Set the gradient fill as the circle's fill
-    // blackCircle.setFill(gradient);
-    // blackCircle.setEffect(dropShadow);
-    // blackCircle.setStroke(gradientOutside);
-    // blackCircle.setStrokeWidth(10);
-  }
-
+  /**
+   * Applies a glow effect to the given line.
+   *
+   * @param line The Line to which the glow effect is applied.
+   */
   private void applyGlowEffect(Line line) {
     // Create a GaussianBlur effect
     GaussianBlur blur = new GaussianBlur(15);
@@ -269,6 +263,7 @@ public class LaserCuttingController extends Controller {
     line.setEffect(blend);
   }
 
+  /** Navigates to the Vault scene. */
   @FXML
   public void setVault() {
     App.setUi(Scenes.VAULT);

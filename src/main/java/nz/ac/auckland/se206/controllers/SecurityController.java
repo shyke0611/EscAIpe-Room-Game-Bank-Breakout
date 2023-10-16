@@ -69,7 +69,7 @@ public class SecurityController extends Controller {
   private WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
   private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
 
-  /** Initialize the Security Controller. Sets up the initial state of the Security scene. */
+  /** Initialize the Security Controller. Sets up the initial state of the scene. */
   public void initialize() {
     // Set the controller for the current scene
     SceneManager.setController(Scenes.SECURITY, this);
@@ -300,6 +300,12 @@ public class SecurityController extends Controller {
     walkieTalkieManager.setWalkieTalkieText(new ChatMessage("user", hint));
   }
 
+  /**
+   * Handles the event when the Enter key is pressed. If the Enter key is pressed, this method
+   * invokes the 'checkLogin()' function.
+   *
+   * @param event The KeyEvent associated with the key press event.
+   */
   @FXML
   public void onEnterPressed(KeyEvent event) {
     if (event.getCode() == KeyCode.ENTER) {
@@ -307,11 +313,23 @@ public class SecurityController extends Controller {
     }
   }
 
+  /**
+   * Handles the event when the mouse hovers over an employee element. It makes the 'hoverEmployee'
+   * element visible.
+   *
+   * @param event The MouseEvent associated with the mouse hover event.
+   */
   @FXML
   private void onHoverEmployee(MouseEvent event) {
     hoverEmployee.setVisible(true);
   }
 
+  /**
+   * Handles the event when the mouse exits from hovering over an employee element. It makes the
+   * 'hoverEmployee' element invisible.
+   *
+   * @param event The MouseEvent associated with the mouse exit event.
+   */
   @FXML
   private void onHoverEmployeeExit(MouseEvent event) {
     hoverEmployee.setVisible(false);

@@ -51,7 +51,7 @@ public class ConnectDotsController extends Controller {
 
   private WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
 
-  /** Initialize the Connect Dots Controller. Sets up the initial state of the Security scene. */
+  /** Initialize the Connect Dots Controller. Sets up the initial state of the scene. */
   public void initialize() {
     // initialising the methods to play this puzzle
     SceneManager.setController(Scenes.CONNECTDOTS, this);

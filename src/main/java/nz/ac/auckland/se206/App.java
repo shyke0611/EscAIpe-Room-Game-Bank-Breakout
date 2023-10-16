@@ -175,7 +175,7 @@ public class App extends Application {
     // DONT DELETE, ensures object starts on find keys which is important for ai to work
     // GameManager.completeObjective();
 
-    Parent root = SceneManager.getUiRoot(Scenes.LASERCUTTING);
+    Parent root = SceneManager.getUiRoot(Scenes.MAIN_MENU);
 
     scene = new Scene(root, 1000, 700);
     stage.setScene(scene);

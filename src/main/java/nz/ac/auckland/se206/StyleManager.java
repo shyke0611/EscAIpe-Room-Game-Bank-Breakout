@@ -209,6 +209,7 @@ public class StyleManager {
     }
   }
 
+
   /** Set the styling for everything needed when the alarm goes off */
   private static void setAlarmStyle() {
     setClueHover("guardpocket", true);
@@ -243,6 +244,7 @@ public class StyleManager {
             "goldDoorHolder",
             "exitDoor"));
   }
+
 
   /**
    * Apply or remove a lighting effect to the given item

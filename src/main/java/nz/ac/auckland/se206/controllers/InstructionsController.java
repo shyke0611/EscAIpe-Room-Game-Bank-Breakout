@@ -36,7 +36,7 @@ public class InstructionsController extends Controller {
 
   private double gameMechanicsVertValue = 0;
 
-  /** Initialize the Instructions Controller. Sets up the initial state of the Security scene. */
+  /** Initialize the Instructions Controller. Sets up the initial state of the scene. */
   public void initialize() {
     SceneManager.setController(Scenes.INSTRUCTIONS, this);
     setGeneralInformation();

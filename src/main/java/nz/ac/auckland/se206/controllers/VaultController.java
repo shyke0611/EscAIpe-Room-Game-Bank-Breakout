@@ -84,9 +84,14 @@ public class VaultController extends Controller {
   @FXML private HBox walkietalkieHolder;
   @FXML private ImageView vaultWalkieTalkie;
   @FXML private ImageView escapeDoorImage;
+
   @FXML private ImageView silverDoorImage;
   @FXML private ImageView goldDoorImage;
   @FXML private ImageView bronzeDoorImage;
+
+  @FXML private ImageView silverMoneyImage;
+  @FXML private ImageView goldMoneyImage;
+  @FXML private ImageView bronzeMoneyImage;
 
   // initialising instances
   private StyleManager styleManager = StyleManager.getInstance();
@@ -94,7 +99,7 @@ public class VaultController extends Controller {
   private WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
   private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
 
-  /** Initialize the Vault controller. Sets up the initial state of the Vault scene. */
+  /** Initialize the Vault controller. Sets up the initial state of the scene. */
   public void initialize() {
     // setting up walkietalkie and controller
     SceneManager.setController(Scenes.VAULT, this);
@@ -124,7 +129,11 @@ public class VaultController extends Controller {
         silverDoorImage,
         goldDoorImage,
         bronzeDoorImage,
-        escapeDoor);
+        escapeDoor,
+        silverMoneyImage,
+        goldMoneyImage,
+        bronzeMoneyImage);
+
 
     // adding relevant items to the stylemanager list
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
@@ -260,6 +269,7 @@ public class VaultController extends Controller {
         WalkieTalkieManager.setWalkieTalkieOpen();
         walkieTalkieManager.setWalkieTalkieText(
             new ChatMessage("user", "Uh Oh! You better find a way to turn that off quick"));
+        StyleManager.setVisible(false, "goldMoneyImage", "silverMoneyImage", "bronzeMoneyImage");
       }
       GameManager.setCurrentObjective(Objectives.DISABLE_LASERTRAP);
       lootBtnHolder.setVisible(false);

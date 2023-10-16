@@ -51,7 +51,7 @@ public class EyeScannerController extends Controller {
 
   private StyleManager styleManager = StyleManager.getInstance();
 
- /** Initialize the Eye Scanner Controller. Sets up the initial state of the Security scene. */
+  /** Initialize the Eye Scanner Controller. Sets up the initial state of the scene. */
   public void initialize() {
 
     // set relevant method on initialisation
@@ -176,7 +176,7 @@ public class EyeScannerController extends Controller {
     }
   }
 
-  /** Boolean to return if colour of eye colour matches with margin error */
+  /** Boolean to return if colour of eye colour matches with margin error. */
   private boolean isColourMatch(int colour, int guardColour) {
     if (colour >= guardColour - 35 && colour <= guardColour + 35) {
       return true;

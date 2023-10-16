@@ -53,6 +53,7 @@ public class AnimationManager {
     innerShadow.setInput(lighting);
     node.setEffect(innerShadow);
 
+
     // Create a Timeline animation
     Timeline animation =
         new Timeline(
@@ -163,6 +164,7 @@ public class AnimationManager {
    */
   public static void roomSwitchAnimation(Duration duration, Runnable... actions) {
     PauseTransition pause = new PauseTransition(duration);
+
     // When the pause transition is finished, run the actions
     pause.setOnFinished(
         e -> {

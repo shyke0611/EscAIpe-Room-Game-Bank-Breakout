@@ -39,7 +39,7 @@ public class GameFinishController extends Controller {
   @FXML private TableColumn<Score, Number> timeTakenColumn;
   @FXML private TableColumn<Score, Number> moneyStolenColumn;
 
-  /** Initialize the GameFinish Controller. Sets up the initial state of the Security scene. */
+  /** Initialize the GameFinish Controller. Sets up the initial state of the scene. */
   public void initialize() {
     // initialize the controller for the current scene
     SceneManager.setController(Scenes.GAMEFINISH, this);

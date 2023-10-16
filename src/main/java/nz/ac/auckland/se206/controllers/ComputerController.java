@@ -52,6 +52,7 @@ public class ComputerController extends Controller {
   @FXML private Label processingLabel;
   @FXML private HBox usbStick;
   @FXML private TextArea computerTextArea;
+  @FXML private TextField walkieTalkieTextField;
 
   private ChatCompletionRequest chatCompletionRequest;
   private ChatMessage lastMsg;
@@ -61,7 +62,7 @@ public class ComputerController extends Controller {
   private StyleManager styleManager = StyleManager.getInstance();
 
   private Timeline timeline;
-  private Boolean riddleStarted;
+  private Boolean riddleStarted = false;
   private Boolean authenticationStarted;
 
   private Boolean onQuestionThree = false;
@@ -70,7 +71,7 @@ public class ComputerController extends Controller {
   private Boolean questionsComplete = false;
   private int questionsCorrect = 0;
 
-  /** Initialize the Computer Controller. Sets up the initial state of the Security scene. */
+  /** Initialize the Computer Controller. Sets up the initial state of the scene. */
   public void initialize() throws ApiProxyException {
     // initialising all the relevant methods
     SceneManager.setController(Scenes.COMPUTER, this);
@@ -79,6 +80,7 @@ public class ComputerController extends Controller {
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     WalkieTalkieManager.addWalkieTalkieTextArea(this, computerTextArea);
     styleManager.addHoverItems(usbStick);
+
     // creating new timeline
     timeline = new Timeline(new KeyFrame(Duration.seconds(0.6), e -> updateLabel()));
     timeline.setCycleCount(Timeline.INDEFINITE);
@@ -98,6 +100,36 @@ public class ComputerController extends Controller {
       messageQueue.add(msg);
       appendChatMessage();
     }
+
+    inputTextField.setOnKeyPressed(
+        event -> {
+          if (event.getCode() == KeyCode.ENTER) {
+            try {
+              onSend(new ActionEvent());
+            } catch (ApiProxyException | IOException e) {
+              System.out.println("Failed to send");
+            }
+          }
+        });
+
+    // Create an event handler for text field 2
+    walkieTalkieTextField.setOnKeyPressed(
+        event -> {
+          if (event.getCode() == KeyCode.ENTER) {
+
+            askHacker(new ActionEvent());
+          }
+        });
+  }
+
+  private void askHacker(ActionEvent actionEvent) {
+    walkieTalkieTextField.clear();
+    ChatMessage msg =
+        new ChatMessage(
+            "user",
+            "I cant help you from here, look around for clues or just guess! Dont worry i have a"
+                + " plan b if you get them wrong");
+    walkieTalkieManager.setWalkieTalkieText(msg);
   }
 
   /** Set the focus to the input text field. */
@@ -152,7 +184,6 @@ public class ComputerController extends Controller {
                   "user", GptPromptEngineering.initiliseComputer(ceoName, employeeName, date)));
 
       messageQueue.add(response);
-      appendChatMessage();
       authenticationStarted = true;
 
       // return what computer ai says
@@ -230,10 +261,9 @@ public class ComputerController extends Controller {
                   new ChatMessage("user", "Please type yes to start the authentication process");
               messageQueue.add(msg);
               sendBtn.setDisable(false);
-              return null;
+
               // else
             }
-
             appendChatMessage();
 
             return null;
@@ -517,23 +547,6 @@ public class ComputerController extends Controller {
     } catch (ApiProxyException e) {
       e.printStackTrace();
       return null;
-    }
-  }
-
-  /**
-   * Handles the event when the Enter key is pressed in the input text field.
-   *
-   * @param event The KeyEvent triggered by pressing the Enter key.
-   */
-  @FXML
-  public void onEnterPressed(KeyEvent event) {
-    // if the enter key is pressed then send the message
-    if (event.getCode() == KeyCode.ENTER) {
-      try {
-        onSend(new ActionEvent());
-      } catch (ApiProxyException | IOException e) {
-        System.out.println("Failed to send");
-      }
     }
   }
 }
