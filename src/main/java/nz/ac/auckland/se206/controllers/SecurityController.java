@@ -68,17 +68,15 @@ public class SecurityController extends Controller {
   private WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
   private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
 
+  /** Initialize the Security Controller. Sets up the initial state of the Security scene. */
   public void initialize() {
     // Set the controller for the current scene
     SceneManager.setController(Scenes.SECURITY, this);
-
     // Set the timer label
     super.setTimerLabel(timerLabel, 1);
-
     // Set the employee name
     employeeName.setText(RandomnessGenerate.getRandomEmployeeName());
     System.out.println(employeeName.getText());
-
     // Add walkie talkie elements to the scene
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     WalkieTalkieManager.addWalkieTalkieImage(this, securityWalkieTalkie);
@@ -87,7 +85,6 @@ public class SecurityController extends Controller {
     WalkieTalkieManager.addWalkieTalkieTextArea(this, securityTextArea);
     WalkieTalkieManager.addWalkieTalkieNotification(this, securityNotification);
     GameManager.addMoneyGainedLabel(this, moneyCount);
-
     // add styling
     styleManager.addHoverItems(computer, electricityBox, wallEmployee, securitybackground);
     StyleManager.setItemsMessage("A computer...?", "computer");
@@ -95,13 +92,20 @@ public class SecurityController extends Controller {
     StyleManager.setItemsMessage("Employee of the month..?", "wallEmployee");
   }
 
-  // Handling mouse events on walkie talkie - opens and closes when walkie talkie is clicked
+  /**
+   * Handles the mouse click event on the Walkie-Talkie icon. Opens and closes the Walkie-Talkie.
+   *
+   * @param event The mouse click event.
+   */
   @FXML
   private void onWalkieTalkie(MouseEvent event) {
     WalkieTalkieManager.toggleWalkieTalkie();
   }
 
-  // Switch to Hacker scene when the button is clicked
+  /**
+   * Handles the event when switching to the Hacker scene. Loads relevant information for the
+   * HackerVan scene.
+   */
   @FXML
   private void onSwitchToHacker() {
     // setting relevant method for hacker scene
@@ -113,7 +117,12 @@ public class SecurityController extends Controller {
     App.setUI(Scenes.HACKERVAN);
   }
 
-  // Handling wire cutting when clicked
+  /**
+   * Handles the wire cutting event. If the wire is not cut and the alarm is tripped, it opens the
+   * Wire Cutting scene.
+   *
+   * @param event The mouse click event.
+   */
   @FXML
   private void onWireCutting(MouseEvent event) {
     // if wire not cur and alarm is tripped
@@ -127,19 +136,31 @@ public class SecurityController extends Controller {
     }
   }
 
-  // Set visibility of the log in screen off (log off computer)
+  /**
+   * Handles the log-off event. Sets the visibility of the log-in screen to off.
+   *
+   * @param event The mouse event.
+   */
   @FXML
   private void onLogOff(MouseEvent event) {
     logInScreen.setVisible(false);
   }
 
-  // Check log in details before logging in
+  /**
+   * Checks login credentials and handles the log-in event.
+   *
+   * @param event The mouse event.
+   */
   @FXML
   private void onLogIn(MouseEvent event) {
     checkLogin();
   }
 
-  // Opening computer log in screen
+  /**
+   * Opens the computer screen and handles login events.
+   *
+   * @param event The mouse event.
+   */
   @FXML
   private void onClickComputer(MouseEvent event) {
     // If not already logged in, go to log in screen
@@ -158,7 +179,7 @@ public class SecurityController extends Controller {
     StyleManager.setClueHover("computer", false);
   }
 
-  // Method that handles overall login mechanics
+  /** Validates user login credentials and handles the login process. */
   private void checkLogin() {
     // Get user input credentials
     String enteredUsername = usernameField.getText().toLowerCase();
@@ -178,7 +199,15 @@ public class SecurityController extends Controller {
     }
   }
 
-  // Check credentials
+  /**
+   * Checks if the entered credentials are valid.
+   *
+   * @param enteredUsername The entered username.
+   * @param enteredPassword The entered password.
+   * @param randomUsername The generated random username.
+   * @param randomPassword The generated random password.
+   * @return True if the entered credentials are valid, false otherwise.
+   */
   private boolean areCredentialsValid(
       String enteredUsername,
       String enteredPassword,
@@ -188,12 +217,16 @@ public class SecurityController extends Controller {
     return enteredUsername.equals(randomUsername) && enteredPassword.equals(randomPassword);
   }
 
-  // Check if credentials are empty
+  /**
+   * Checks if the login credentials are empty.
+   *
+   * @return True if both username and password fields are empty, false otherwise.
+   */
   private boolean areCredentialsEmpty() {
     return usernameField.getText().isEmpty() && passwordField.getText().isEmpty();
   }
 
-  // Mechanics for when login is successful
+  /** Handles actions when login is successful. */
   private void handleSuccessfulLogin() {
     // sets relevant method for when credentials are correct
     loginMsgLbl.setText("Success");
@@ -206,6 +239,13 @@ public class SecurityController extends Controller {
     StyleManager.setVisible(false, "credentialsNote");
   }
 
+  /**
+   * Handles the event when the Enter key is pressed in the Walkie-Talkie input field and the
+   * Walkie-Talkie is open. Initiates AI processing and communication.
+   *
+   * @param event The KeyEvent.
+   * @throws ApiProxyException If there is an issue with the API proxy.
+   */
   @FXML
   private void onInvokeHacker(KeyEvent event) throws ApiProxyException {
     // Check if the Enter key is pressed and the Walkie-Talkie is open
@@ -243,6 +283,12 @@ public class SecurityController extends Controller {
     }
   }
 
+  /**
+   * Handles the event when the Quick Hint button is pressed to request a quick hint from the AI.
+   * Sets the Walkie-Talkie text to the hint.
+   *
+   * @param event The action event.
+   */
   @FXML
   private void onQuickHint(ActionEvent event) {
     // Get a quick hint from the hackerAiManager

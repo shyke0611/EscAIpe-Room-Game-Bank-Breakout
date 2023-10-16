@@ -51,6 +51,7 @@ public class ConnectDotsController extends Controller {
 
   private WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
 
+  /** Initialize the Connect Dots Controller. Sets up the initial state of the Security scene. */
   public void initialize() {
     // initialising the methods to play this puzzle
     SceneManager.setController(Scenes.CONNECTDOTS, this);
@@ -63,6 +64,7 @@ public class ConnectDotsController extends Controller {
     copyStartEndNodes();
   }
 
+  /** Start a drag operation when the mouse is pressed. */
   public void startDrag(MouseEvent e) {
     // drag event for the puzzle
     initialColumn = getIndex(e.getX(), false);
@@ -76,6 +78,7 @@ public class ConnectDotsController extends Controller {
     }
   }
 
+  /** Handle dragging during the drag operation. */
   public void drag(MouseEvent e) {
     // if no node is selected
     if (!nodeSelected) {
@@ -99,6 +102,7 @@ public class ConnectDotsController extends Controller {
     node.setFill(getColour(nodeValue));
   }
 
+  /** End the drag operation and check for completion. */
   public void endDrag(MouseEvent e) {
     if (!nodeSelected) {
       return;
@@ -157,6 +161,7 @@ public class ConnectDotsController extends Controller {
     }
   }
 
+  /** Set the solution grid for the Connect Dots puzzle. */
   private void setSolution() {
     // 0 = empty, 1 = colour1, 2 = colour2, 3 = colour3, 4 = colour4, negative = node
     int[][] solution = {
@@ -171,6 +176,7 @@ public class ConnectDotsController extends Controller {
     this.solution = solution;
   }
 
+  /** Randomize the colors of the dots on the grid. */
   private void randomiseColours() {
     int i = 1;
     Random random = new Random();
@@ -187,6 +193,7 @@ public class ConnectDotsController extends Controller {
     }
   }
 
+  /** Randomly rotate the dots grid. */
   private void randomiseRotation() {
     Random random = new Random();
     int rotations = random.nextInt(4);
@@ -195,6 +202,7 @@ public class ConnectDotsController extends Controller {
     }
   }
 
+  /** Rotate the dots grid 90 degrees clockwise. */
   private void rotate90Clockwise() {
 
     int[][] rotation = new int[size][size];
@@ -208,6 +216,7 @@ public class ConnectDotsController extends Controller {
     solution = rotation;
   }
 
+  /** Flip the dots grid either horizontally or vertically randomly. */
   private void flipSolution() {
     Random random = new Random();
     // 0 = nothing, 1 = flip horizontally, 2 - flip vertically
@@ -240,6 +249,7 @@ public class ConnectDotsController extends Controller {
     }
   }
 
+  /** Copy start and end nodes from the solution to the grid. */
   private void copyStartEndNodes() {
     // Copy start/end nodes and colour them
     for (int i = 0; i < 6; i++) {
@@ -254,6 +264,13 @@ public class ConnectDotsController extends Controller {
     }
   }
 
+  /**
+   * Get the grid cell index based on the mouse coordinates.
+   *
+   * @param coordinate The mouse coordinate.
+   * @param isRow `true` if it's a row coordinate, `false` if it's a column coordinate.
+   * @return The index of the grid cell.
+   */
   private int getIndex(double coordinate, boolean isRow) {
     if (isRow) {
       // 80 is the cell height
@@ -263,6 +280,14 @@ public class ConnectDotsController extends Controller {
     return (int) Math.floor(coordinate / 40);
   }
 
+  /**
+   * Get the Rectangle node from the GridPane at the specified row and column.
+   *
+   * @param gridPane The GridPane containing the nodes.
+   * @param row The row index of the node.
+   * @param col The column index of the node.
+   * @return The Rectangle node at the specified row and column.
+   */
   private Rectangle getNodeFromGridPane(GridPane gridPane, int row, int col) {
     // Get the node from the gridpane
     for (Node node : gridPane.getChildren()) {
@@ -276,6 +301,13 @@ public class ConnectDotsController extends Controller {
     return null;
   }
 
+  /**
+   * Check if the current cell is a valid move during the drag operation.
+   *
+   * @param currentColumn The column index of the current cell.
+   * @param currentRow The row index of the current cell.
+   * @return `true` if the move is valid, `false` otherwise.
+   */
   private boolean isCellValid(int currentColumn, int currentRow) {
     int columnPathSize = columnPath.size();
     int rowPathSize = rowPath.size();
@@ -306,6 +338,12 @@ public class ConnectDotsController extends Controller {
     return false;
   }
 
+  /**
+   * Get the Paint object representing the color for the given value.
+   *
+   * @param value The value representing the color.
+   * @return The Paint object for the color.
+   */
   private Paint getColour(int value) {
     // 0 = empty, 1 = red, 2 = blue, 3 = green, 4 = purple, negative = node
     value = Math.abs(value);
@@ -330,6 +368,7 @@ public class ConnectDotsController extends Controller {
     return Paint.valueOf("white");
   }
 
+  /** Reset the game by clearing the grid. */
   public void resetGame() {
     // Reset grid for resetting game
     for (int i = 0; i < 6; i++) {
@@ -345,6 +384,11 @@ public class ConnectDotsController extends Controller {
     }
   }
 
+  /**
+   * Check if the Connect Dots game is complete by comparing the grid with the solution.
+   *
+   * @return `true` if the game is complete, `false` otherwise.
+   */
   private boolean isGameComplete() {
     // Check if the grid is the same as the solution
     for (int r = 0; r < 6; r++) {
@@ -364,10 +408,12 @@ public class ConnectDotsController extends Controller {
     return true;
   }
 
+  /** Switch to the Security scene. */
   public void switchToSecurity() {
     App.setUI(Scenes.SECURITY);
   }
 
+  /** Grant access and disable the firewall if the game is completed. */
   @FXML
   protected void grantAccess() {
     if (GameState.isConnectDotsSolved) {

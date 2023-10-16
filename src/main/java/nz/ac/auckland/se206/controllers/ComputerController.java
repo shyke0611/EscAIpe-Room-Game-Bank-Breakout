@@ -70,6 +70,7 @@ public class ComputerController extends Controller {
   private Boolean questionsComplete = false;
   private int questionsCorrect = 0;
 
+  /** Initialize the Computer Controller. Sets up the initial state of the Security scene. */
   public void initialize() throws ApiProxyException {
     // initialising all the relevant methods
     SceneManager.setController(Scenes.COMPUTER, this);
@@ -99,16 +100,26 @@ public class ComputerController extends Controller {
     }
   }
 
+  /** Set the focus to the input text field. */
   public void setFocus() {
     inputTextField.requestFocus();
   }
 
-  // exit computer view back to security room
+  /**
+   * Handles the "Go Back" button click event to return to the Security scene.
+   *
+   * @param event The ActionEvent triggered by clicking the "Go Back" button.
+   */
   @FXML
   private void onGoBack(ActionEvent event) {
     App.setUI(Scenes.SECURITY);
   }
 
+  /**
+   * Gets a riddle for authentication using GPT-3.
+   *
+   * @return The riddle message.
+   */
   @FXML
   private ChatMessage getRiddle() {
     // setting new chat completion request
@@ -125,6 +136,7 @@ public class ComputerController extends Controller {
     return null;
   }
 
+  /** Initiates the authentication process by starting the first step. */
   @FXML
   private void startAuthentication() {
     try {
@@ -150,6 +162,13 @@ public class ComputerController extends Controller {
     }
   }
 
+  /**
+   * Handles the event when the "Send" button is clicked to send a chat message to the computer.
+   *
+   * @param event The ActionEvent triggered by clicking the "Send" button.
+   * @throws ApiProxyException if there is an error communicating with the API proxy
+   * @throws IOException if there is an I/O error
+   */
   @FXML
   private void onSend(ActionEvent event) throws ApiProxyException, IOException {
     if (sendBtn.isDisable()) {
@@ -226,6 +245,11 @@ public class ComputerController extends Controller {
     searchThreadDave.start();
   }
 
+  /**
+   * Performs the authentication process by verifying user responses to security questions.
+   *
+   * @param msg The user's response to a security question.
+   */
   @FXML
   public void performAuthentication(String msg) {
     // handling authentication result message if they get three questions correct
@@ -262,6 +286,7 @@ public class ComputerController extends Controller {
     }
   }
 
+  /** Handles authentication results based on the number of correct answers. */
   private void authenticationResult() {
     // handling authentication complete messages based on number of questions correct
     if (questionsComplete) {
@@ -321,6 +346,12 @@ public class ComputerController extends Controller {
     }
   }
 
+  /**
+   * Checks if the given riddle answer is correct.
+   *
+   * @param message The message containing the riddle answer.
+   * @return true if the answer is correct, false otherwise.
+   */
   private Boolean checkRiddle(String message) {
     // checking if the riddle is correct
     if (lastMsg.getRole().equals("assistant") && lastMsg.getContent().startsWith("Correct")
@@ -332,12 +363,14 @@ public class ComputerController extends Controller {
     }
   }
 
+  /** Handles the event when the "Switch to Hacker" button is clicked. */
   @FXML
   private void onSwitchToHacker() {
     // switch to hacker van
     App.setUI(Scenes.HACKERVAN);
   }
 
+  /** Updates the "Processing" label with animation dots. */
   private void updateLabel() {
     // update label for the processing label
     dotCount = (dotCount % 3) + 1; // Cycle dots from 1 to 3
@@ -345,8 +378,11 @@ public class ComputerController extends Controller {
     processingLabel.setText("Processing" + dots);
   }
 
-  // Handling mouse events on walkie talkie
-  // Opens and closes when walkie talkie is clicked
+  /**
+   * Opens or closes the walkie talkie when clicked.
+   *
+   * @param event The MouseEvent triggered by clicking the walkie talkie.
+   */
   @FXML
   private void onWalkieTalkie(MouseEvent event) {
     // update walkie talkie
@@ -356,6 +392,7 @@ public class ComputerController extends Controller {
     }
   }
 
+  /** Initiates the second authentication method (connect the dots). */
   @FXML
   private void startConnectDots() {
     // set the second authentication method to visible
@@ -366,12 +403,14 @@ public class ComputerController extends Controller {
     setConnectdotsStyle();
   }
 
+  /** Sets the visual style for the second authentication method (connect the dots). */
   private void setConnectdotsStyle() {
     // setting the style for connect dots
     setVaultStyleLevelTwo();
     StyleManager.setDisable(true, "ceoPainting", "wallEmployee");
   }
 
+  /** Sets the visual style for level 2 authentication. */
   private void setLevelTwoStyle() {
     // set disability
     StyleManager.setDisable(true, "computer", "ceoPainting", "wallEmployee");
@@ -380,6 +419,7 @@ public class ComputerController extends Controller {
     setVaultStyleLevelTwo();
   }
 
+  /** Sets the visual style for level 2 vault authentication. */
   private void setVaultStyleLevelTwo() {
     // setting vault style for level 2 vault authentication
     StyleManager.setItemsHoverColour(HoverColour.GREEN, "silverDoorHolder", "bronzeDoorHolder");
@@ -387,6 +427,7 @@ public class ComputerController extends Controller {
     StyleManager.setItemsMessage("No access", "goldDoorHolder");
   }
 
+  /** Sets the visual style for level 3 vault authentication. */
   private void setLevelThreeStyle() {
     // disabling items
     StyleManager.setDisable(true, "computer", "ceoPainting", "wallEmployee");
@@ -398,12 +439,14 @@ public class ComputerController extends Controller {
         "Access granted", "bronzeDoorHolder", "silverDoorHolder", "goldDoorHolder");
   }
 
+  /** Initiates the "Connect Dots" authentication scene. */
   @FXML
   private void connectDots() {
     GameState.isConnectDotreached = true;
     App.setUI(Scenes.CONNECTDOTS);
   }
 
+  /** Appends chat messages to the computer's security text area with typing effect. */
   private void appendChatMessage() {
     // if the message queue is not empty then append the chat message
 
@@ -477,6 +520,11 @@ public class ComputerController extends Controller {
     }
   }
 
+  /**
+   * Handles the event when the Enter key is pressed in the input text field.
+   *
+   * @param event The KeyEvent triggered by pressing the Enter key.
+   */
   @FXML
   public void onEnterPressed(KeyEvent event) {
     // if the enter key is pressed then send the message

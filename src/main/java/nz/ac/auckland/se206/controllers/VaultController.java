@@ -410,7 +410,7 @@ public class VaultController extends Controller {
   /**
    * Handles the event when the Enter key is pressed in the Walkie-Talkie input field and the
    * Walkie-Talkie is open. Initiates AI processing and communication.
-   * 
+   *
    * @param event The KeyEvent.
    * @throws ApiProxyException If there is an issue with the API proxy.
    */
@@ -457,7 +457,7 @@ public class VaultController extends Controller {
   /**
    * Handles the event when the Quick Hint button is pressed to request a quick hint from the AI.
    * Sets the Walkie-Talkie text to the hint.
-   * 
+   *
    * @param event The action event.
    */
   @FXML
@@ -469,8 +469,9 @@ public class VaultController extends Controller {
     walkieTalkieManager.setWalkieTalkieText(new ChatMessage("user", hint));
   }
 
-  /** Handles key events when typing the bomb code.
-   * 
+  /**
+   * Handles key events when typing the bomb code.
+   *
    * @param event The KeyEvent.
    */
   @FXML

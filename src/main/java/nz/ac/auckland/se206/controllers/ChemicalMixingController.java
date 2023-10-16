@@ -67,12 +67,10 @@ public class ChemicalMixingController extends Controller {
   private StyleManager styleManager = StyleManager.getInstance();
 
   private Timeline sliderAnimation;
+
   // private boolean sliderMoving = false;
 
-  /**
-   * Initializes the Chemical Mixing controller and sets up the initial state of the scene. It also
-   * sets up hover animations for vile images and initializes the chemical recipe.
-   */
+  /** Initialize the Chemical Mixing Controller. Sets up the initial state of the Security scene. */
   public void initialize() {
     SceneManager.setController(Scenes.CHEMICALMIXING, this);
     super.setTimerLabel(timerLabel, 3);
@@ -100,6 +98,7 @@ public class ChemicalMixingController extends Controller {
     sliderAnimation.setCycleCount(Timeline.INDEFINITE); // Repeat indefinitely
   }
 
+  /** Set up hover animations for the chemical vial images. */
   private void setUpHover() {
     // Setting up hover animations
     styleManager.addHoverItems(yellowVial, redVial, blueVial, greenVial);
@@ -107,6 +106,11 @@ public class ChemicalMixingController extends Controller {
         StyleManager.HoverColour.GREEN, "yellowVial", "redVial", "blueVial", "greenVial");
   }
 
+  /**
+   * Handle the event when a chemical vial is clicked.
+   *
+   * @param event The MouseEvent triggered by clicking a vial.
+   */
   @FXML
   public void onVialClicked(MouseEvent event) {
     ImageView image = (ImageView) event.getSource();
@@ -351,6 +355,11 @@ public class ChemicalMixingController extends Controller {
     }
   }
 
+  /**
+   * Set the gradient color for the slider based on the chemical's part number.
+   *
+   * @param partNumber The part number representing the chemical.
+   */
   @FXML
   public void setSliderGraident(int partNumber) {
     Node track = slider.lookup(".track");

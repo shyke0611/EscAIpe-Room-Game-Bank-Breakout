@@ -22,6 +22,7 @@ public class MainMenuController extends Controller {
   @FXML private Button instructionsBtn;
   @FXML private ImageView title;
 
+  /** Initialize the Main Menu Controller. Sets up the initial state of the Security scene. */
   public void initialize() {
     SceneManager.setController(Scenes.MAIN_MENU, this);
   }
@@ -53,11 +54,13 @@ public class MainMenuController extends Controller {
     Platform.exit();
   }
 
+  /** Navigate to the Instructions scene when the "Instructions" button is clicked. */
   @FXML
   private void onGoToInstructions() {
     App.setUI(Scenes.INSTRUCTIONS);
   }
 
+  /** Play the main menu animation by fading out the title and buttons container. */
   public void mainMenuAnimationPlay() {
     buttonsContainer.setDisable(true);
     AnimationManager.fadeTransition(title, 2, 1.0, 0.0);

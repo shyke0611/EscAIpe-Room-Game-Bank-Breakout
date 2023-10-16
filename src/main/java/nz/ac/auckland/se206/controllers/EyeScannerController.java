@@ -51,10 +51,7 @@ public class EyeScannerController extends Controller {
 
   private StyleManager styleManager = StyleManager.getInstance();
 
-  /**
-   * Initialize the Eye Scanner controller. It sets up the initial state of the Eye Scanner scene,
-   * including sliders, color synchronization, and walkie-talkie management.
-   */
+ /** Initialize the Eye Scanner Controller. Sets up the initial state of the Security scene. */
   public void initialize() {
 
     // set relevant method on initialisation

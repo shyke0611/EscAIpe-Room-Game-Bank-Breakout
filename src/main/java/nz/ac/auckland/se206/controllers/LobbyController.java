@@ -90,19 +90,18 @@ public class LobbyController extends Controller {
   private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
   private boolean isZzz1Visible = false;
 
-  /** Initializes the LobbyController. */
+  /** Initialize the Lobby Controller. Sets up the initial state of the Security scene. */
   public void initialize() {
     // set method on initialisation
     SceneManager.setController(Scenes.LOBBY, this);
+    // setting walkie talkie components
     WalkieTalkieManager.addWalkieTalkieImage(this, lobbyWalkieTalkie);
     WalkieTalkieManager.addWalkieTalkieHint(this, numberOfHints);
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     WalkieTalkieManager.addQuickHintBtn(this, quickHintBtn);
     WalkieTalkieManager.addWalkieTalkieTextArea(this, lobbyTextArea);
     WalkieTalkieManager.addWalkieTalkieNotification(this, lobbyNotification);
-
     GameManager.addMoneyGainedLabel(this, moneyCount);
-
     super.setTimerLabel(timerLabel, 1);
     // set random components
     RandomnessGenerate.generateRandomCredentials();
@@ -110,7 +109,6 @@ public class LobbyController extends Controller {
     randomPassword = RandomnessGenerate.getPasscode();
     RandomnessGenerate.addKeyLocation(key1, key3, key4);
     RandomnessGenerate.generateRandomKeyLocation();
-
     styleManager.addHoverItems(
         key1,
         key3,
@@ -123,7 +121,6 @@ public class LobbyController extends Controller {
         credentialsNote,
         ceoPainting,
         lobbybackground);
-
     // setting style to items
     StyleManager.setItemsMessage(
         "Guard is watching...", "key1", "key3", "key4", "guardpocket", "guardeyes");
@@ -133,10 +130,14 @@ public class LobbyController extends Controller {
     StyleManager.setItemsMessage("CEO of the bank...?", "ceoPainting");
     StyleManager.setClueHover("guard", true);
     setUpListener(key);
-
+    // more random components
     String plaqueName = RandomnessGenerate.getRandomCeoName();
     System.out.println(plaqueName);
     johnIpsumLbl.setText(plaqueName + " Ipsum");
+
+    String date = RandomnessGenerate.getRandomFoundingDate();
+    System.out.println(date);
+    foundingDate.setText("SINCE " + date);
 
     WalkieTalkieManager.setWalkieTalkieNotifcationOn();
     walkieTalkieManager.setWalkieTalkieText(
@@ -144,19 +145,19 @@ public class LobbyController extends Controller {
             "user",
             "Nice work, you made it inside! First things first, we need to find a way to access the"
                 + " computer in security"));
-
-    String date = RandomnessGenerate.getRandomFoundingDate();
-    System.out.println(date);
-    foundingDate.setText("SINCE " + date);
   }
 
-  // Handling mouse events on walkie talkie
-  // Opens and closes when walkie talkie is clicked
+  /**
+   * Handles the event when the Walkie-Talkie is clicked, toggling its open/closed state.
+   *
+   * @param event The MouseEvent triggered by clicking the Walkie-Talkie.
+   */
   @FXML
   private void onWalkieTalkie(MouseEvent event) {
     WalkieTalkieManager.toggleWalkieTalkie();
   }
 
+  /** Switches to the Hacker scene when the corresponding button is clicked. */
   @FXML
   private void onSwitchToHacker() {
     // setting relevant method for hacker scene
@@ -168,13 +169,17 @@ public class LobbyController extends Controller {
     App.setUI(Scenes.HACKERVAN);
   }
 
-  // Closing credential notes
+  /** Closes the credential notes by setting visibility. */
   @FXML
   private void onCloseNote() {
     credentialsNote.setVisible(false);
   }
 
-  // Opening drawer to get credential notes
+  /**
+   * Opens the drawer to get credential notes, but only when the key is found.
+   *
+   * @param event The MouseEvent triggered by clicking the drawer.
+   */
   @FXML
   private void onDrawerPressed(MouseEvent event) {
     // Opens only when key is found to the drawer
@@ -187,6 +192,12 @@ public class LobbyController extends Controller {
     }
   }
 
+  /**
+   * Handles the event when the Guard's pocket is pressed, revealing the wire cutting order and
+   * credentials note.
+   *
+   * @param event The MouseEvent triggered by clicking the Guard's pocket.
+   */
   @FXML
   private void onGuardPocket(MouseEvent event) {
 
@@ -236,6 +247,11 @@ public class LobbyController extends Controller {
     return name;
   }
 
+  /**
+   * Handles the event when the Guard's eyes are pressed during the eye scanner puzzle.
+   *
+   * @param event The MouseEvent triggered by clicking the Guard's eyes.
+   */
   @FXML
   private void onGuardEyes(MouseEvent event) {
     StyleManager.setClueHover("guardeyes", false);
@@ -249,7 +265,11 @@ public class LobbyController extends Controller {
     }
   }
 
-  // Pressing book in drawer
+  /**
+   * Handles the event when the book in the drawer is pressed, displaying the credentials note.
+   *
+   * @param event The MouseEvent triggered by clicking the book in the drawer.
+   */
   @FXML
   private void onCredentialsBookPressed(MouseEvent event) {
     credentialsNote.setVisible(true);
@@ -270,8 +290,11 @@ public class LobbyController extends Controller {
     StyleManager.setItemsHoverColour(HoverColour.GREEN, "computer");
   }
 
-  // Pressing any location of the keys
-  // If key found it turns invisible (we can change mechanics later)
+  /**
+   * Handles the event when any key location is pressed, making the key visible if it's found.
+   *
+   * @param event The MouseEvent triggered by clicking a key location.
+   */
   @FXML
   private void onKeyLocationPressed(MouseEvent event) {
     // execute only when guard is distracted
@@ -289,7 +312,12 @@ public class LobbyController extends Controller {
     }
   }
 
-  // Pressing the key
+  /**
+   * Handles the event when the key is pressed, marking the key as found and enabling quick hint
+   * buttons.
+   *
+   * @param event The MouseEvent triggered by clicking the key.
+   */
   @FXML
   private void onKeyPressed(MouseEvent event) {
     // updating game state
@@ -302,6 +330,12 @@ public class LobbyController extends Controller {
     StyleManager.setItemsMessage("The key fits...", "drawerHolder");
   }
 
+  /**
+   * Handles the event when the Guard is pressed, making him distracted and initiating the sleeping
+   * animation.
+   *
+   * @param event The MouseEvent triggered by clicking the Guard.
+   */
   @FXML
   private void onGuardPressed(MouseEvent event) {
 
@@ -317,6 +351,7 @@ public class LobbyController extends Controller {
     StyleManager.setItemsMessage("Seems dangerous for now", "guardpocket", "guardeyes");
   }
 
+  /** Toggles between two sleeping animation images for the Guard. */
   private void toggleImageViews() {
     // method to use in sleeeping animation (toggles between two images)
     zzz1.setVisible(isZzz1Visible);
@@ -324,6 +359,7 @@ public class LobbyController extends Controller {
     isZzz1Visible = !isZzz1Visible;
   }
 
+  /** Initiates a sleeping animation for the Guard, simulating him sleeping. */
   private void sleepingAnimation() {
     // creating new timeline for sleeping animation
     Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), e -> toggleImageViews()));
@@ -331,6 +367,12 @@ public class LobbyController extends Controller {
     timeline.play();
   }
 
+  /**
+   * Handles the Enter key event for invoking the hacker AI when the Walkie-Talkie is open.
+   *
+   * @param event The KeyEvent triggered by pressing the Enter key.
+   * @throws ApiProxyException If there's an issue with the AI proxy.
+   */
   @FXML
   private void onInvokeHacker(KeyEvent event) throws ApiProxyException {
     // Check if the Enter key is pressed and the Walkie-Talkie is open
@@ -368,6 +410,11 @@ public class LobbyController extends Controller {
     }
   }
 
+  /**
+   * Retrieves and displays a quick hint from the hacker AI manager.
+   *
+   * @param event The ActionEvent triggered by clicking the quick hint button.
+   */
   @FXML
   private void onQuickHint(ActionEvent event) {
     // Get a quick hint from the hackerAiManager
@@ -377,6 +424,7 @@ public class LobbyController extends Controller {
     walkieTalkieManager.setWalkieTalkieText(new ChatMessage("user", hint));
   }
 
+  /** Enlarges the painting and displays additional information when the painting is clicked. */
   @FXML
   private void enlargePainting() {
     enlargedPainting.setVisible(true);
@@ -385,6 +433,7 @@ public class LobbyController extends Controller {
     johnIpsumLbl.setVisible(true);
   }
 
+  /** Hides the enlarged painting and additional information when the painting is clicked again. */
   @FXML
   private void hidePainting() {
     enlargedPainting.setVisible(false);

@@ -36,6 +36,7 @@ public class InstructionsController extends Controller {
 
   private double gameMechanicsVertValue = 0;
 
+  /** Initialize the Instructions Controller. Sets up the initial state of the Security scene. */
   public void initialize() {
     SceneManager.setController(Scenes.INSTRUCTIONS, this);
     setGeneralInformation();
@@ -70,6 +71,7 @@ public class InstructionsController extends Controller {
             });
   }
 
+  /** Sets the general information paragraphs with detailed instructions about the game. */
   private void setGeneralInformation() {
     // Set general information message
     String context =
@@ -118,42 +120,53 @@ public class InstructionsController extends Controller {
     escapingParagraph.setText(escaping);
   }
 
+  /** Switches to the General Information tab and scrolls to the top of the instructions. */
   @FXML
   public void goGeneralInformation() {
     instructionsScroll.setVvalue(0);
     setActiveTab(generalInfoTab);
   }
 
+  /** Switches to the Game Mechanics tab and scrolls to the relevant section in the instructions. */
   @FXML
   private void goGameMechanics() {
     instructionsScroll.setVvalue(gameMechanicsVertValue);
     setActiveTab(gameMechanicsTab);
   }
 
+  /** Switches to the Puzzles tab and scrolls to the end of the instructions. */
   @FXML
   private void goPuzzles() {
     instructionsScroll.setVvalue(1);
     setActiveTab(puzzlesTab);
   }
 
+  /** Switches to the Main Menu scene and returns to the General Information tab. */
   @FXML
   private void onSwitchToMain() {
     App.setUI(Scenes.MAIN_MENU);
     goGeneralInformation();
   }
 
+  /** Handles mouse hover entry on the Close Button. */
   @FXML
   private void hoverButtonEntry() {
     closeButton.getStyleClass().clear();
     closeButton.getStyleClass().add("hoverCloseButton");
   }
 
+  /** Handles mouse hover exit from the Close Button. */
   @FXML
   private void hoverButtonExit() {
     closeButton.getStyleClass().clear();
     closeButton.getStyleClass().add("closeButton");
   }
 
+  /**
+   * Sets the active tab in the instructions view and updates the tab styling.
+   *
+   * @param newActiveTab The StackPane representing the new active tab.
+   */
   private void setActiveTab(StackPane newActiveTab) {
 
     // Change old active tab to normal tab styling

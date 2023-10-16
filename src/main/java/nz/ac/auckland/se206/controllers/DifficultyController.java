@@ -54,10 +54,7 @@ public class DifficultyController extends Controller {
   private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
   private StyleManager styleManager = StyleManager.getInstance();
 
-  /**
-   * Initialize the Difficulty Selection controller. It sets the controller for the Difficulty
-   * Selection scene.
-   */
+  /** Initialize the Difficulty Controller. Sets up the initial state of the Security scene. */
   public void initialize() {
     SceneManager.setController(Scenes.DIFFICULTYPAGE, this);
     styleManager.addHoverItems(itemContainer);
