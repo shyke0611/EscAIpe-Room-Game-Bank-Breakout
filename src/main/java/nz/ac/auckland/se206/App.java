@@ -113,10 +113,20 @@ public class App extends Application {
     speechThread.start();
   }
 
+  /**
+   * Load all the fxml scenes that need reloading and store them in SceneManager.
+   *
+   * @throws IOException - If the fxml file is not found.s
+   */
   public static void reloadScenes() throws IOException {
     instance.loadReloadScenes();
   }
 
+  /**
+   * Set where the audio will be on or off.
+   *
+   * @param audio - Whether the audio should be on or off.
+   */
   public static void setAudio(boolean audio) {
     isAudioOn = audio;
   }

@@ -12,6 +12,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.effect.Lighting;
 import javafx.util.Duration;
 
+/** Class to manage the styling of all elements. */
 public class StyleManager {
 
   public enum HoverColour {
@@ -25,7 +26,7 @@ public class StyleManager {
   private static List<Node> hoverItemsList = new ArrayList<>();
 
   /**
-   * Get the instance of the StyleManager
+   * Get the instance of the StyleManager.
    *
    * @return
    */
@@ -34,7 +35,7 @@ public class StyleManager {
   }
 
   /**
-   * Get the rgba value for the given hover colour
+   * Get the rgba value for the given hover colour.
    *
    * @param colour - The colour to get the rgba value for
    * @return - The rgba value for the given colour
@@ -57,7 +58,7 @@ public class StyleManager {
   }
 
   /**
-   * Get the node with the given id
+   * Get the node with the given id.
    *
    * @param node - The id of the node to get
    * @return - The node with the given id
@@ -72,7 +73,7 @@ public class StyleManager {
   }
 
   /**
-   * Set the hover colour for multiple items
+   * Set the hover colour for multiple items.
    *
    * @param colour - The colour to set the hover effect to
    * @param items - The item ids for the items to set the hover effect to
@@ -93,7 +94,7 @@ public class StyleManager {
   }
 
   /**
-   * Set the disable value for multiple items
+   * Set the disable value for multiple items.
    *
    * @param value - The value to set the disable property to
    * @param items - The item ids for the items to set the disable property to
@@ -105,7 +106,7 @@ public class StyleManager {
   }
 
   /**
-   * Set the visible value for multiple items
+   * Set the visible value for multiple items.
    *
    * @param value - The value to set the visible property to
    * @param items - The item ids for the items to set the visible property to
@@ -117,7 +118,7 @@ public class StyleManager {
   }
 
   /**
-   * Set the tooltip message for multiple items
+   * Set the tooltip message for multiple items.
    *
    * @param message - The message to set
    * @param items - The item ids for the items to set the message to
@@ -140,7 +141,7 @@ public class StyleManager {
   }
 
   /**
-   * Remove tooltip messages for multiple items
+   * Remove tooltip messages for multiple items.
    *
    * @param items - The item ids for the items to remove the tooltips from
    */
@@ -156,7 +157,7 @@ public class StyleManager {
   }
 
   /**
-   * Toggle the hover animation for an item
+   * Toggle the hover animation for an item.
    *
    * @param item - The item to set the hover animation for
    * @param isOn - Whether the hover animation should be on or off
@@ -170,7 +171,7 @@ public class StyleManager {
   }
 
   /**
-   * Toggle the alarm for the game
+   * Toggle the alarm for the game.
    *
    * @param on - Whether the alarm should be on or off
    */
@@ -209,8 +210,7 @@ public class StyleManager {
     }
   }
 
-
-  /** Set the styling for everything needed when the alarm goes off */
+  /** Set the styling for everything needed when the alarm goes off. */
   private static void setAlarmStyle() {
     setClueHover("guardpocket", true);
     setItemsMessage("something is inside", "guardpocket");
@@ -220,7 +220,7 @@ public class StyleManager {
   }
 
   /**
-   * Create a set of items to disable when alarm is triggered
+   * Create a set of items to disable when alarm is triggered.
    *
    * @return - The set of items to disable when alarm is triggered
    */
@@ -245,9 +245,8 @@ public class StyleManager {
             "exitDoor"));
   }
 
-
   /**
-   * Apply or remove a lighting effect to the given item
+   * Apply or remove a lighting effect to the given item.
    *
    * @param item - The item to apply the lighting effect to
    * @param on - Whether the lighting effect should be on or off
@@ -266,7 +265,7 @@ public class StyleManager {
     }
   }
 
-  /** Reset the lists relating to one round */
+  /** Reset the lists relating to one round. */
   public static void reset() {
     tooltipMap.clear();
     hoverItemsList.clear();
@@ -275,7 +274,7 @@ public class StyleManager {
   private StyleManager() {}
 
   /**
-   * Add items to the hover items list
+   * Add items to the hover items list.
    *
    * @param items - The items to add
    */

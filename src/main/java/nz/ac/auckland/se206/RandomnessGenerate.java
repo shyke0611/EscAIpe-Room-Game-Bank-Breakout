@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 import javafx.scene.layout.HBox;
 
+/** Class to handle generating aspects of randomness. */
 public class RandomnessGenerate {
   private static List<String> passcodeList;
   private static List<String> usernameList;
@@ -38,7 +39,7 @@ public class RandomnessGenerate {
     foundingDatesList = Arrays.asList("1967", "1862", "1813", "1932", "1902", "1888", "1756");
   }
 
-  /** generate random login credentials for security computer log in */
+  /** generate random login credentials for security computer log in. */
   public static void generateRandomCredentials() {
     int randomPasswordIndex = random.nextInt(passcodeList.size());
     int randomUsernameIndex = random.nextInt(usernameList.size());
@@ -46,14 +47,14 @@ public class RandomnessGenerate {
     randomPassword = passcodeList.get(randomPasswordIndex);
   }
 
-  /*  generating random key location */
+  /*  generate a random key location. */
   public static void generateRandomKeyLocation() {
     int randomKeyLocationIndex = random.nextInt(keyLocationList.size());
     randomKeyLocation = keyLocationList.get(randomKeyLocationIndex);
   }
 
   /**
-   * method to get randomised list of wires
+   * method to get randomised list of wires.
    *
    * @return - list of wires
    */
@@ -62,7 +63,7 @@ public class RandomnessGenerate {
   }
 
   /**
-   * randomise the CEO's name
+   * randomise the CEO's name from a list of possible names.
    *
    * @return - randomised CEO name
    */
@@ -74,7 +75,7 @@ public class RandomnessGenerate {
   }
 
   /**
-   * get the current CEO name
+   * get the current CEO name of the bank.
    *
    * @return - current CEO name
    */
@@ -83,7 +84,7 @@ public class RandomnessGenerate {
   }
 
   /**
-   * Randomise the founding date
+   * Randomise the founding date of the bank.
    *
    * @return - randomised founding date
    */
@@ -95,7 +96,7 @@ public class RandomnessGenerate {
   }
 
   /**
-   * get the current founding date
+   * get the current founding date of the bank.
    *
    * @return - current founding date
    */
@@ -104,7 +105,7 @@ public class RandomnessGenerate {
   }
 
   /**
-   * Randomise the employee name
+   * Randomise the employee of the month name.
    *
    * @return - randomised employee name
    */
@@ -116,7 +117,7 @@ public class RandomnessGenerate {
   }
 
   /**
-   * get the current employee name
+   * get the current employee of the month name.
    *
    * @return - current employee name
    */
@@ -125,7 +126,7 @@ public class RandomnessGenerate {
   }
 
   /**
-   * add key location to the list
+   * add key location to the list.
    *
    * @param hboxes - HBox elements storing possible objects with key
    */
@@ -134,7 +135,7 @@ public class RandomnessGenerate {
   }
 
   /**
-   * Add wires to the list and shuffle them
+   * Add wires to the list and shuffle them.
    *
    * @param wires - HBox elements storing wires
    */
@@ -145,7 +146,7 @@ public class RandomnessGenerate {
   }
 
   /**
-   * get the passcode
+   * get the current randomised passcode.
    *
    * @return - passcode
    */
@@ -154,7 +155,7 @@ public class RandomnessGenerate {
   }
 
   /**
-   * get the username
+   * get the current randomised username.
    *
    * @return - username
    */
@@ -163,7 +164,7 @@ public class RandomnessGenerate {
   }
 
   /**
-   * get the key location
+   * get the randomised key location.
    *
    * @return - key location
    */
@@ -172,7 +173,7 @@ public class RandomnessGenerate {
   }
 
   /**
-   * get a random colour value between 0 and 255 for r g b values
+   * get a random colour value between 0 and 255 for r g b values.
    *
    * @return - random colour value
    */
@@ -181,7 +182,7 @@ public class RandomnessGenerate {
   }
 
   /**
-   * get a random chemical amount to be used in the chemical puzzle
+   * get a random chemical amount to be used in the chemical puzzle.
    *
    * @return - random chemical amount
    */
@@ -191,7 +192,7 @@ public class RandomnessGenerate {
     return randomChemialAmount;
   }
 
-  /** Clear the lists storing objects for this round */
+  /** Clear the lists storing objects for this round. */
   public static void reset() {
     keyLocationList.clear();
     wiresList.clear();

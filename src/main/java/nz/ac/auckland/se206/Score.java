@@ -2,6 +2,7 @@ package nz.ac.auckland.se206;
 
 import nz.ac.auckland.se206.GameManager.Difficulties;
 
+/** An object to keep the record score of each game. */
 public class Score {
   private Difficulties difficulty;
   private String timeChosen;
@@ -9,7 +10,7 @@ public class Score {
   private Integer moneyStolen;
 
   /**
-   * Constructor for a Score
+   * Constructor for a creating new Score.
    *
    * @param difficulty - The difficulty of the game
    * @param timechosen - The time chosen by the user
@@ -24,7 +25,7 @@ public class Score {
   }
 
   /**
-   * Get the difficulty of the game
+   * Get the difficulty of the game.
    *
    * @return - The difficulty of the game
    */
@@ -33,7 +34,7 @@ public class Score {
   }
 
   /**
-   * Set the difficulty of the game
+   * Set the difficulty of the game.
    *
    * @param difficulty - The difficulty of the game
    */
@@ -42,7 +43,7 @@ public class Score {
   }
 
   /**
-   * Get the time chosen by the user
+   * Get the time chosen by the user.
    *
    * @return - The time chosen by the user
    */
@@ -51,7 +52,7 @@ public class Score {
   }
 
   /**
-   * Set the time chosen by the user
+   * Set the time chosen by the user.
    *
    * @param timeChosen - The time chosen by the user
    */
@@ -60,7 +61,7 @@ public class Score {
   }
 
   /**
-   * Get the time taken to complete the game
+   * Get the time taken to complete the game.
    *
    * @return - The time taken to complete the game
    */
@@ -69,7 +70,7 @@ public class Score {
   }
 
   /**
-   * Set the time taken to complete the game
+   * Set the time taken to complete the game.
    *
    * @param timeTaken - The time taken to complete the game
    */
@@ -78,7 +79,7 @@ public class Score {
   }
 
   /**
-   * Get the amount of money stolen
+   * Get the amount of money stolen.
    *
    * @return - The amount of money stolen
    */
@@ -87,7 +88,7 @@ public class Score {
   }
 
   /**
-   * Set the amount of money stolen
+   * Set the amount of money stolen.
    *
    * @param moneyStolen - The amount of money stolen
    */

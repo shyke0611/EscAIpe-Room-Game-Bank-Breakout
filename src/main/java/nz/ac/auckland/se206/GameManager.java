@@ -5,6 +5,7 @@ import java.util.HashMap;
 import javafx.scene.control.Label;
 import nz.ac.auckland.se206.controllers.Controller;
 
+/** Class to manage all the game related information. */
 public class GameManager {
 
   // The different objectives
@@ -63,7 +64,7 @@ public class GameManager {
   private static int moneyToGain = 0;
 
   /**
-   * Set variables for a new game
+   * Set variables for a new game.
    *
    * @param difficulty - The difficulty of the game
    * @param minutes - The amount of minutes the game will last
@@ -95,7 +96,7 @@ public class GameManager {
   }
 
   /**
-   * Add a label to the money gained labels
+   * Add a label to the money gained labels.
    *
    * @param controller - The controller the label is in
    * @param label - The label to add
@@ -104,7 +105,7 @@ public class GameManager {
     moneyGainedLabels.put(controller, label);
   }
 
-  /** Reset the game and everthing related to that round */
+  /** Reset the game and everthing related to that round. */
   public static void resetGame() {
     // Reset the game and all variables/classes
     resetGameManager();
@@ -122,7 +123,7 @@ public class GameManager {
     }
   }
 
-  /** Reset the game manager */
+  /** Reset the game manager variable. */
   public static void resetGameManager() {
     questionsCorrect = 0;
     selectedDoor = null;
@@ -133,7 +134,7 @@ public class GameManager {
   }
 
   /**
-   * Get the number of questions correct
+   * Get the number of questions correct.
    *
    * @return - The number of questions correct
    */
@@ -142,7 +143,7 @@ public class GameManager {
   }
 
   /**
-   * Set the number of questions correct
+   * Set the number of questions correct.
    *
    * @param questionsCorrect - The number of questions correct
    */
@@ -151,7 +152,7 @@ public class GameManager {
   }
 
   /**
-   * Get the selected door
+   * Get the door that is selected.
    *
    * @return - The selected door
    */
@@ -160,7 +161,7 @@ public class GameManager {
   }
 
   /**
-   * Set the selected door
+   * Set the door that is selected.
    *
    * @param selectedDoor - The selected door
    */
@@ -169,7 +170,7 @@ public class GameManager {
   }
 
   /**
-   * Get the current difficulty
+   * Get the current difficulty of the game.
    *
    * @return - The current difficulty
    */
@@ -178,7 +179,7 @@ public class GameManager {
   }
 
   /**
-   * Get the difficulty as a string
+   * Get the difficulty as a string.
    *
    * @param difficulty - The difficulty to get as a string
    * @return - The difficulty as a string
@@ -198,7 +199,7 @@ public class GameManager {
   }
 
   /**
-   * Set the current objective
+   * Set the current objective of the game.
    *
    * @param objective - The objective to set
    */
@@ -207,7 +208,7 @@ public class GameManager {
     activeObjective = objective;
   }
 
-  /** Progress to the next objective depending on what the current objective is */
+  /** Progress to the next objective depending on what the current objective is. */
   public static void completeObjective() {
 
     switch (activeObjective) {
@@ -306,7 +307,7 @@ public class GameManager {
   }
 
   /**
-   * Get the current objective
+   * Get the current objective of the game.
    *
    * @return - The current objective
    */
@@ -315,14 +316,13 @@ public class GameManager {
   }
 
   /**
-   * Get the current objective as a string
+   * Get the current objective as a string.
    *
    * @return - A String of the current objective
    */
   public static String getObjectiveString() {
     // Return the objective as a string
     switch (activeObjective) {
-        // Initial game objectives
       case START_GAME:
         return "Start Game";
       case GET_KEYS:
@@ -357,7 +357,7 @@ public class GameManager {
   }
 
   /**
-   * Increase the money to gain
+   * Increase the money to gain.
    *
    * @param amount - The amount to increase the money to gain by
    */
@@ -365,19 +365,19 @@ public class GameManager {
     moneyToGain += amount;
   }
 
-  /** Collect all money to gain and reset money to gain */
+  /** Collect all money to gain and reset money to gain. */
   public static void collectMoney() {
     moneyGained = moneyToGain;
     moneyToGain = 0;
   }
 
-  /** Lose all money gained */
+  /** Lose all of the money gained. */
   public static void loseMoney() {
     moneyGained = 0;
   }
 
   /**
-   * Get the money gained
+   * Get the money gained value.
    *
    * @return - The money gained
    */
@@ -386,7 +386,7 @@ public class GameManager {
   }
 
   /**
-   * Get the money to gain
+   * Get the money to gain.
    *
    * @return - The money to gain formatted as a String
    */
@@ -394,7 +394,7 @@ public class GameManager {
     return formatMoney(moneyToGain);
   }
 
-  /** Set the labels for the money Gained so far */
+  /** Set the labels for the money Gained so far. */
   public static void setMoneyGained() {
     for (Label label : moneyGainedLabels.values()) {
       label.setText(moneyToGain / 1000000 + "M");
@@ -402,7 +402,7 @@ public class GameManager {
   }
 
   /**
-   * Format money as a string
+   * Format money as a string.
    *
    * @param money - The money to format
    * @return - The money formatted as a string
