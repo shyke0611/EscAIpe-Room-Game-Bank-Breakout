@@ -143,8 +143,7 @@ public class TimerControl {
     return initialCount - count == initialCount ? 600 : initialCount - count;
   }
 
-  public static String formatTimeTaken() {
-    int timeTaken = initialCount - count;
+  public static String formatTimeTaken(int timeTaken) {
     if (timeTaken == initialCount) {
       return "Failed to Escape";
     }

@@ -273,11 +273,13 @@ public class ConnectDotsController extends Controller {
    */
   private int getIndex(double coordinate, boolean isRow) {
     if (isRow) {
-      // 80 is the cell height
-      return (int) Math.floor(coordinate / 40);
+      // 45 is the cell height
+      return (int)
+          Math.floor(coordinate / gridPane.getChildren().get(0).getBoundsInParent().getHeight());
     }
-    // 90 is the cell width
-    return (int) Math.floor(coordinate / 40);
+    // 50 is the cell width
+    return (int)
+        Math.floor(coordinate / gridPane.getChildren().get(0).getBoundsInParent().getWidth());
   }
 
   /**
