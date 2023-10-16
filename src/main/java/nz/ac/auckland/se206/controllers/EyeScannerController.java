@@ -67,8 +67,6 @@ public class EyeScannerController extends Controller {
     greenValue.textProperty().bind(greenSlider.valueProperty().asString("%.0f"));
     blueValue.textProperty().bind(blueSlider.valueProperty().asString("%.0f"));
 
-    // styleManager.addItems(geteyesampleLbl);
-
     // Adjust the colour of the artificial eye and adjust slider colour based on the sliders
 
     // Red Slider
