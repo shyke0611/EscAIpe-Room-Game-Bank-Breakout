@@ -15,6 +15,7 @@ import javafx.util.Duration;
 /** Class to manage the styling of all elements. */
 public class StyleManager {
 
+  /** The different hover glow colours in the game */
   public enum HoverColour {
     RED,
     GREEN,
@@ -28,7 +29,7 @@ public class StyleManager {
   /**
    * Get the instance of the StyleManager.
    *
-   * @return
+   * @return - The instance of the StyleManager
    */
   public static StyleManager getInstance() {
     return instance;

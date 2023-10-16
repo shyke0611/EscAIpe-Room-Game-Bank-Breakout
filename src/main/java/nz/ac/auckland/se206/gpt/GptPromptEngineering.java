@@ -15,6 +15,14 @@ public class GptPromptEngineering {
         + " wrong tell them to try again";
   }
 
+  /**
+   * Get a GPT prompt engineering string for a initialising the computer ai.
+   *
+   * @param ceoName - the name of the ceo
+   * @param employeeName - the name of the employee
+   * @param date - the date the bank was founded
+   * @return - the prompt engineering string
+   */
   public static String initiliseComputer(String ceoName, String employeeName, String date) {
     // Provide the initial context for the AI and the authorisation questions
     return "You are a sentient computer ai security system for Loreum Ipsum bank. Start with your"
@@ -32,6 +40,11 @@ public class GptPromptEngineering {
         + " passed', if the user gets them all wrong say: Authentication failed";
   }
 
+  /**
+   * Get a GPT prompt engineering string for a initialising the hacker ai at an easy difficulty.
+   *
+   * @return - the prompt engineering string for the hacker for an easy difficulty
+   */
   public static String initisialiseHackerEasy() {
     // Context, hint, and limits
     return "You are part of a bank heist game built in Java fx, you do not need to say anything to"
@@ -44,6 +57,11 @@ public class GptPromptEngineering {
         + " to them.";
   }
 
+  /**
+   * Get a GPT prompt engineering string for a initialising the hacker ai at a medium difficulty.
+   *
+   * @return - the prompt engineering string for the hacker for a medium difficulty
+   */
   public static String intisialiseHackerMeidium() {
     // Context, hint, and limits
     return "You are part of a bank heist game built in Java fx, you do not need to say anything to"
@@ -56,6 +74,11 @@ public class GptPromptEngineering {
         + " to them.";
   }
 
+  /**
+   * Get a GPT prompt engineering string for a initialising the hacker ai at a hard difficulty.
+   *
+   * @return - the prompt engineering string for the hacker for a hard difficulty
+   */
   public static String intisialiseHackerHard() {
     // Context, hint, and limits
     return "You are part of a bank heist game built in Java fx, you do not need to say anything to"
