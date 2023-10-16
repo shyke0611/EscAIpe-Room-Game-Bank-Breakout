@@ -19,7 +19,7 @@ public class GameState {
   public static boolean isFirstRiddleSolved = false;
   public static boolean isSecondRiddleSolved = false;
   public static boolean isThirdRiddleSolved = false;
-  public static boolean isConnectDotsSolved= false;
+  public static boolean isConnectDotsSolved = false;
   public static boolean isBombActivated = false;
   public static boolean isEyeScannerEntered = false;
   public static boolean isEyeScannerBypassed = false;
