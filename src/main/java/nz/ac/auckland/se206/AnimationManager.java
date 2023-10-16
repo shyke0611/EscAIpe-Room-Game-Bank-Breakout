@@ -47,7 +47,7 @@ public class AnimationManager {
     if (isOn) {
       animation.play();
     } else {
-      // node.setEffect(null);
+      node.setEffect(null);
       animation.stop();
     }
   }
