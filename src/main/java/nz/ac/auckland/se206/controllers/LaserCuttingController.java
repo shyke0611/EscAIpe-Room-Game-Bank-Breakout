@@ -127,7 +127,7 @@ public class LaserCuttingController extends Controller {
     prevY = y;
   }
 
-  /** Clears the cursor line. */
+  /** Clears the cursor line by setting X and Y to start. */
   private void clearCursorLine() {
     // Clear the cursor line by setting its end point to its start point
     cursorLine.setEndX(cursorLine.getStartX());
@@ -135,7 +135,7 @@ public class LaserCuttingController extends Controller {
   }
 
   /**
-   * Handles the mouse press event.
+   * Handles the mouse press event on the dotted lines.
    *
    * @param event The MouseEvent object.
    */
