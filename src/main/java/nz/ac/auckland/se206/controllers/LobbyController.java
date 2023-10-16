@@ -126,7 +126,14 @@ public class LobbyController extends Controller {
         credentialsBook,
         credentialsNote,
         lobbypaintingImage,
-        lobbybackground,ceoPainting,key1Image,key3Image,key4Image,guardImage,openDrawerImage,drawerImage);
+        lobbybackground,
+        ceoPainting,
+        key1Image,
+        key3Image,
+        key4Image,
+        guardImage,
+        openDrawerImage,
+        drawerImage);
 
     // setting style to items
     StyleManager.setItemsMessage(
@@ -173,7 +180,7 @@ public class LobbyController extends Controller {
     // loading relevant information
     vanController.printChatHistory();
     vanController.loadQuickHints();
-    App.setUI(Scenes.HACKERVAN);
+    App.setUi(Scenes.HACKERVAN);
   }
 
   /** Closes the credential notes by setting visibility. */

@@ -84,7 +84,7 @@ public abstract class Controller {
       Text label = (Text) StyleManager.getHoverItem("lootLbl");
       label.setText("Collect all the loot and escape");
     }
-    App.setUI(Scenes.VAULT);
+    App.setUi(Scenes.VAULT);
   }
 
   /**
@@ -106,21 +106,21 @@ public abstract class Controller {
   /** Switch to the Security scene. */
   @FXML
   protected void switchToSecurity() {
-    App.setUI(Scenes.SECURITY);
+    App.setUi(Scenes.SECURITY);
   }
 
   /** Switch to the Lobby scene. */
   @FXML
   protected void switchToLobby() {
     // Switch the scene to the Lobby
-    App.setUI(Scenes.LOBBY);
+    App.setUi(Scenes.LOBBY);
   }
 
   /** Switch to the Vault scene. */
   @FXML
   protected void switchToVault() {
     // Switch the scene to the Vault
-    App.setUI(Scenes.VAULT);
+    App.setUi(Scenes.VAULT);
     if (GameState.isAlarmDisabled) {
       StyleManager.setVisible(true, "bombHolder");
       StyleManager.setVisible(false, "switchHolder", "walkietalkieText");

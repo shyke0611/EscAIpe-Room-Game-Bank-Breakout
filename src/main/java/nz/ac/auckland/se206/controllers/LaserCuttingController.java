@@ -271,6 +271,6 @@ public class LaserCuttingController extends Controller {
 
   @FXML
   public void setVault() {
-    App.setUI(Scenes.VAULT);
+    App.setUi(Scenes.VAULT);
   }
 }

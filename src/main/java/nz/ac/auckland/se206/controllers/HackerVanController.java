@@ -48,7 +48,7 @@ public class HackerVanController extends Controller {
    */
   @FXML
   private void onGoBack() {
-    App.setUI(SceneManager.getLastRoom());
+    App.setUi(SceneManager.getLastRoom());
   }
 
   /**

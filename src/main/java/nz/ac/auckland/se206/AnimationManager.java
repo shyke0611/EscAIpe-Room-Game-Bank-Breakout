@@ -16,7 +16,7 @@ import javafx.util.Duration;
 
 public class AnimationManager {
 
-  public static void fadeTransition(Node node, double seconds,double from,double to) {
+  public static void fadeTransition(Node node, double seconds, double from, double to) {
     FadeTransition fadeIn = new FadeTransition(Duration.seconds(seconds), node);
     fadeIn.setFromValue(from);
     fadeIn.setToValue(to);
@@ -26,23 +26,23 @@ public class AnimationManager {
   public static void toggleAlarmAnimation(Node node, boolean isOn, double time) {
     Duration duration = Duration.seconds(time);
 
-     InnerShadow innerShadow = new InnerShadow();
-      innerShadow.setColor(Color.RED);
+    InnerShadow innerShadow = new InnerShadow();
+    innerShadow.setColor(Color.RED);
 
-      // Create a Lighting effect
-      Lighting lighting = new Lighting();
-      lighting.setDiffuseConstant(0.4);
-      lighting.setSpecularConstant(0.1);
-      lighting.setSpecularExponent(3.0);
+    // Create a Lighting effect
+    Lighting lighting = new Lighting();
+    lighting.setDiffuseConstant(0.4);
+    lighting.setSpecularConstant(0.1);
+    lighting.setSpecularExponent(3.0);
 
-      innerShadow.setInput(lighting);
-      node.setEffect(innerShadow);
+    innerShadow.setInput(lighting);
+    node.setEffect(innerShadow);
 
-      Timeline animation =
-          new Timeline(
-              new KeyFrame(Duration.ZERO, new KeyValue(innerShadow.radiusProperty(), 0)),
-              new KeyFrame(duration, new KeyValue(innerShadow.radiusProperty(), 200)));
-      animation.setCycleCount(Timeline.INDEFINITE);
+    Timeline animation =
+        new Timeline(
+            new KeyFrame(Duration.ZERO, new KeyValue(innerShadow.radiusProperty(), 0)),
+            new KeyFrame(duration, new KeyValue(innerShadow.radiusProperty(), 200)));
+    animation.setCycleCount(Timeline.INDEFINITE);
 
     if (isOn) {
       animation.play();
@@ -112,12 +112,13 @@ public class AnimationManager {
 
   public static void roomSwitchAnimation(Duration duration, Runnable... actions) {
     PauseTransition pause = new PauseTransition(duration);
-    pause.setOnFinished(e -> {
-        for (Runnable action : actions) {
+    // When the pause transition is finished, run the actions
+    pause.setOnFinished(
+        e -> {
+          for (Runnable action : actions) {
             action.run();
-        }
-    });
+          }
+        });
     pause.play();
-}
-
+  }
 }

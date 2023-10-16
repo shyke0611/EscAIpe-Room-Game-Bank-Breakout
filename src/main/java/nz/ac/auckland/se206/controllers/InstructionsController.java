@@ -144,7 +144,7 @@ public class InstructionsController extends Controller {
   /** Switches to the Main Menu scene and returns to the General Information tab. */
   @FXML
   private void onSwitchToMain() {
-    App.setUI(Scenes.MAIN_MENU);
+    App.setUi(Scenes.MAIN_MENU);
     goGeneralInformation();
   }
 

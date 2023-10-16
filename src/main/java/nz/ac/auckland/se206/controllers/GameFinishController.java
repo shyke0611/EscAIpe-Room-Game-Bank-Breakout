@@ -183,7 +183,7 @@ public class GameFinishController extends Controller {
     mainmenuBtn.setDisable(true);
     // reset game code here
     GameManager.resetGame();
-    App.setUI(Scenes.MAIN_MENU);
+    App.setUi(Scenes.MAIN_MENU);
     mainmenuBtn.setDisable(false);
     resetSortOrder();
   }

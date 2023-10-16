@@ -59,7 +59,7 @@ public class WireCuttingController extends Controller {
    */
   @FXML
   private void onGoBack(MouseEvent event) {
-    App.setUI(Scenes.SECURITY);
+    App.setUi(Scenes.SECURITY);
   }
 
   /**

@@ -146,7 +146,7 @@ public class StyleManager {
       String itemId = item.getId();
 
       if (itemId != null) {
-         // If the item is in the set, disable it
+        // If the item is in the set, disable it
         if (disableIds.contains(itemId)) {
           item.setDisable(true);
           setClueHover(itemId.toString(), false);
@@ -154,7 +154,7 @@ public class StyleManager {
         // If the item is in the set, disable it
         if (itemId.endsWith("Image")) {
           item.setStyle(null);
-          applyLightingEffect(item,on);
+          applyLightingEffect(item, on);
         }
         // If the item is the background, animate it
         if (itemId.endsWith("background")) {
@@ -165,7 +165,7 @@ public class StyleManager {
   }
 
   // setting style for items when alarm is triggered
-   private static void setAlarmStyle() {
+  private static void setAlarmStyle() {
     setClueHover("guardpocket", true);
     setItemsMessage("something is inside", "guardpocket");
     setClueHover("electricityBox", true);
@@ -175,28 +175,40 @@ public class StyleManager {
 
   // set of items to disable when alarm triggers
   private static Set<String> createdisableIdSet() {
+    // Create a set of items to disable when alarm is triggered
     return new HashSet<>(
         Arrays.asList(
-            "guard", "drawerHolder", "credentialsNote",
-            "computer", "doorHolder", "guardeyes", "key1", "key3",
-            "key4", "ceoPainting", "wallEmployeeImage", "silverDoorHolder",
-            "bronzeDoorHolder", "goldDoorHolder", "exitDoor"
-        )
-    );
-}
+            "guard",
+            "drawerHolder",
+            "credentialsNote",
+            "computer",
+            "doorHolder",
+            "guardeyes",
+            "key1",
+            "key3",
+            "key4",
+            "ceoPainting",
+            "wallEmployeeImage",
+            "silverDoorHolder",
+            "bronzeDoorHolder",
+            "goldDoorHolder",
+            "exitDoor"));
+  }
 
-// applying lighting effect to specified items
-private static void applyLightingEffect(Node item,Boolean on) {
-  if (on) {
-   Lighting lighting = new Lighting();
+  // applying lighting effect to specified items
+  private static void applyLightingEffect(Node item, Boolean on) {
+    // Create a lighting effect when on
+    if (on) {
+      Lighting lighting = new Lighting();
       lighting.setDiffuseConstant(0.4);
       lighting.setSpecularConstant(0.1);
       lighting.setSpecularExponent(3.0);
       item.setEffect(lighting);
-  } else {
-    item.setEffect(null);
+    } else {
+      // Remove the effect when off
+      item.setEffect(null);
+    }
   }
-}
 
   public static void reset() {
     tooltipMap.clear();

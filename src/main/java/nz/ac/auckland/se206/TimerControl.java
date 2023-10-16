@@ -110,7 +110,7 @@ public class TimerControl {
               ((GameFinishController) SceneManager.getController(Scenes.GAMEFINISH))
                   .setGameLostPage();
               GameManager.loseMoney();
-              App.setUI(Scenes.GAMEFINISH);
+              App.setUi(Scenes.GAMEFINISH);
               cancelTimer();
             }
           }

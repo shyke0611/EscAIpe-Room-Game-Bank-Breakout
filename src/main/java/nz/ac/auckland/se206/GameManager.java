@@ -144,6 +144,7 @@ public class GameManager {
   }
 
   public static String getDifficultyString(Difficulties difficulty) {
+    // Return the difficulty as a string
     switch (difficulty) {
       case EASY:
         return "Easy";
@@ -265,6 +266,7 @@ public class GameManager {
   public static String getObjectiveString() {
     // Return the objective as a string
     switch (activeObjective) {
+        // Initial game objectives
       case START_GAME:
         return "Start Game";
       case GET_KEYS:
@@ -273,6 +275,8 @@ public class GameManager {
         return "Find Passcode";
       case DISABLE_FIREWALL:
         return "Disable Firewall";
+
+        // Door objectives and escape objectives
       case COMPLETE_MINIGAME:
         return "Complete Minigame";
       case SELECT_VAULT_DOOR:
@@ -287,6 +291,8 @@ public class GameManager {
         return "Disable Laser Trap";
       case FIND_ESCAPE:
         return "Find Escape";
+
+        // If game is over or objective not in list return null
       case GAME_OVER:
         return null;
       default:

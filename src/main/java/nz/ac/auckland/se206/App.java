@@ -48,7 +48,7 @@ public class App extends Application {
     return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
   }
 
-  public static void setUI(Scenes newUi) {
+  public static void setUi(Scenes newUi) {
     // Update stats if going to end screen
     if (newUi == Scenes.GAMEFINISH) {
       ((GameFinishController) SceneManager.getController(newUi)).setStatLabels();

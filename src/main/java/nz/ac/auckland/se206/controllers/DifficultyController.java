@@ -162,7 +162,7 @@ public class DifficultyController extends Controller {
   // toggling tts button
   @FXML
   private void onSoundOn() {
-    // if user wants the ai sound on 
+    // if user wants the ai sound on
     if (audiobtn.isSelected()) {
       App.setAudio(true);
       // update visual aspects
@@ -192,7 +192,7 @@ public class DifficultyController extends Controller {
     GameManager.setCurrentObjective(Objectives.GET_KEYS);
     GameManager.createGame(difficulty, timerValue);
     TimerControl.runTimer();
-    App.setUI(Scenes.LOBBY);
+    App.setUi(Scenes.LOBBY);
   }
 
   /**
