@@ -116,6 +116,10 @@ public class WalkieTalkieManager {
     walkieTalkieHints.clear();
   }
 
+  public static boolean getWalkieTalkieOpen() {
+    return walkieTalkieOpen;
+  }
+
   // Instance Fields
   private Timeline timeline;
   private ChatCompletionRequest chatCompletionRequest =
@@ -244,9 +248,5 @@ public class WalkieTalkieManager {
       }
     }
     return false;
-  }
-
-  public static boolean getWalkieTalkieOpen() {
-    return walkieTalkieOpen;
   }
 }

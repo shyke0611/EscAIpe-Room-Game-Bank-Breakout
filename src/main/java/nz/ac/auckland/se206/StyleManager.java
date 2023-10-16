@@ -28,8 +28,6 @@ public class StyleManager {
     return instance;
   }
 
-  private StyleManager() {}
-
   private static String getRgbaForHoverColour(HoverColour colour) {
     // return the rgba value for the given colour
     switch (colour) {
@@ -45,11 +43,6 @@ public class StyleManager {
       default:
         return null;
     }
-  }
-
-  // adds Items into arraylist
-  public void addHoverItems(Node... items) {
-    hoverItemsList.addAll(List.of(items));
   }
 
   // get specified node
@@ -213,5 +206,12 @@ public class StyleManager {
   public static void reset() {
     tooltipMap.clear();
     hoverItemsList.clear();
+  }
+
+  private StyleManager() {}
+
+  // adds Items into arraylist
+  public void addHoverItems(Node... items) {
+    hoverItemsList.addAll(List.of(items));
   }
 }
