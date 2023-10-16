@@ -34,14 +34,12 @@ import nz.ac.auckland.se206.WalkieTalkieManager;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
+/** Controller class for the Vault scene. */
 public class VaultController extends Controller {
 
   @FXML private Rectangle whiteBackground;
   @FXML private Rectangle laserCuttingScene;
   @FXML private ImageView vaultDoor;
-  @FXML private ImageView goldDoor;
-  @FXML private ImageView silverDoor;
-  @FXML private ImageView bronzeDoor;
   @FXML private ImageView realvaultbackground;
   @FXML private ImageView bomblogo;
   @FXML private TextArea vaultTextArea;
@@ -85,6 +83,10 @@ public class VaultController extends Controller {
   @FXML private HBox switchHolder;
   @FXML private HBox walkietalkieHolder;
   @FXML private ImageView vaultWalkieTalkie;
+  @FXML private ImageView escapeDoorImage;
+  @FXML private ImageView silverDoorImage;
+  @FXML private ImageView goldDoorImage;
+  @FXML private ImageView bronzeDoorImage;
 
   // initialising instances
   private StyleManager styleManager = StyleManager.getInstance();
@@ -92,6 +94,7 @@ public class VaultController extends Controller {
   private WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
   private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
 
+  /** Initialize the Vault controller. Sets up the initial state of the Vault scene. */
   public void initialize() {
     // setting up walkietalkie and controller
     SceneManager.setController(Scenes.VAULT, this);
@@ -107,9 +110,6 @@ public class VaultController extends Controller {
         bronzeDoorHolder,
         silverDoorHolder,
         goldDoorHolder,
-        bronzeDoor,
-        silverDoor,
-        goldDoor,
         lootBtnHolder,
         lootLbl,
         realvaultbackground,
@@ -119,7 +119,11 @@ public class VaultController extends Controller {
         walkietalkieText,
         bomblogo,
         exitDoor,
-        exitHolder);
+        exitHolder,
+        escapeDoorImage,
+        silverDoorImage,
+        goldDoorImage,
+        bronzeDoorImage,escapeDoor);
 
     // adding relevant items to the stylemanager list
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
@@ -137,19 +141,31 @@ public class VaultController extends Controller {
         "goldDoorHolder");
   }
 
+
+  /** Shows the money collected when loot is opened. */
   public void showMoneyCollected() {
     setInfoText("Money: " + GameManager.getMoneyToGain(), null);
   }
 
-  //   handling mouse events on walkie talkie
-  //   open and closes when walkie talkie is clicked
+  /**
+   * Handles the mouse click event on the Walkie-Talkie icon. Opens and closes the Walkie-Talkie.
+   *
+   * @param event The mouse click event.
+   */
   @FXML
   private void onWalkieTalkie(MouseEvent event) {
     WalkieTalkieManager.toggleWalkieTalkie();
   }
 
+  /**
+   * Handles the mouse click event when the bomb is pressed. Sets the current objective to GAME_OVER
+   * and shows the bomb puzzle.
+   *
+   * @param event The mouse click event.
+   */
   @FXML
   private void onBombPressed(MouseEvent event) {
+    // set current onjective
     GameManager.setCurrentObjective(Objectives.GAME_OVER);
     // setting style for relevant items
     bombPuzzle.setVisible(true);
@@ -161,19 +177,30 @@ public class VaultController extends Controller {
     lootLbl.setText("Code: " + RandomnessGenerate.getPasscode());
   }
 
+  /**
+   * Handles the event when exiting the bomb puzzle. Sets the current objective to GAME_OVER and
+   * toggles animations for relevant items.
+   */
   @FXML
   private void onExitBomb() {
+    // set current objective
     GameManager.setCurrentObjective(Objectives.GAME_OVER);
-    exitHolder.setVisible(true);
-    bombPuzzle.setVisible(false);
+    // toggling animations for relevant items
     AnimationManager.toggleAlarmAnimation(exitHolder, true, 0.5);
     AnimationManager.delayAnimation(exitHolder, escapeDoor);
+    // setting styles for relevant items
+    exitHolder.setVisible(true);
+    bombPuzzle.setVisible(false);
     lootBtnHolder.setVisible(false);
     exitHolder.setDisable(true);
     bombHolder.setVisible(false);
     vaultwalkietalkie.setVisible(false);
   }
 
+  /**
+   * Handles the event when switching to the HackerVan scene. Loads relevant information for the
+   * HackerVan scene.
+   */
   @FXML
   private void onSwitchToHacker() {
     // setting relevant method for hacker scene
@@ -185,6 +212,10 @@ public class VaultController extends Controller {
     App.setUI(Scenes.HACKERVAN);
   }
 
+  /**
+   * Handles the event when switching to the Eye Scanner scene. Executes when the firewall is
+   * disabled.
+   */
   @FXML
   private void onSwitchToEyeScanner() {
     // when firewall is disabled execute
@@ -199,6 +230,10 @@ public class VaultController extends Controller {
     }
   }
 
+  /**
+   * Handles the event when switching to the Chemical Mixing scene. Executes when the firewall is
+   * disabled.
+   */
   @FXML
   private void onSwitchToChemicalMixing() {
     // when firewall is disabled execute
@@ -208,12 +243,17 @@ public class VaultController extends Controller {
     }
   }
 
+  /**
+   * Handles the event when loot is collected. Executes when the firewall is disabled and any vault
+   * is opened.
+   *
+   * @param event The action event.
+   */
   @FXML
   private void onLootCollected(ActionEvent event) {
     // execute when firewall is disabled and any vault is opened
-
     if (GameState.isFirewallDisabled && GameState.isAnyDoorOpen) {
-
+      // handle alarm if not tripped already
       if (!GameState.isAlarmTripped) {
         StyleManager.setAlarm(true);
         GameState.isAlarmTripped = true;
@@ -227,6 +267,10 @@ public class VaultController extends Controller {
     }
   }
 
+  /**
+   * Handles the event when entering the Laser Cutting scene. Executes when the firewall is
+   * disabled.
+   */
   @FXML
   private void onLaserCuttingScene() {
     // execute when firewall is disabled
@@ -236,6 +280,11 @@ public class VaultController extends Controller {
     }
   }
 
+  /**
+   * Handles the button click events and updates the bomb code input label.
+   *
+   * @param event The action event.
+   */
   @FXML
   private void onButtonClick(ActionEvent event) {
     Button button = (Button) event.getSource();
@@ -244,11 +293,17 @@ public class VaultController extends Controller {
     bombPuzzle.requestFocus();
   }
 
+  /**
+   * Updates the bomb code input label with the text of the clicked button.
+   *
+   * @param text The text of the clicked button.
+   */
   private void updateCode(String text) {
     labelText.append(text);
     inputLbl.setText(labelText.toString());
   }
 
+  /** Handles the event when the "Check" button is pressed to check the bomb code. */
   @FXML
   private void onCheckCode() {
     // check bomb code
@@ -274,6 +329,7 @@ public class VaultController extends Controller {
     labelText.setLength(0);
   }
 
+  /** Handles the event when escaping from the Vault scene. */
   @FXML
   private void onEscape() {
     TimerControl.cancelTimer();
@@ -281,6 +337,12 @@ public class VaultController extends Controller {
     ((GameFinishController) SceneManager.getController(Scenes.GAMEFINISH)).setGameWonPage();
   }
 
+  /**
+   * Shows information about the vault (money and difficulty) when the mouse hovers over a vault
+   * door.
+   *
+   * @param event The mouse event.
+   */
   @FXML
   private void showInfo(MouseEvent event) {
     String door = event.getSource().toString();
@@ -292,11 +354,11 @@ public class VaultController extends Controller {
       String difficultyText = "Difficulty: ";
 
       // setting style for relevant vaults
-      if (door.contains("goldDoor") && !GameState.isFirstRiddleSolved) {
+      if (door.contains("goldDoorImage") && !GameState.isFirstRiddleSolved) {
         setInfoText(moneyText + "20,000,000", difficultyText + "★★★★★");
-      } else if (door.contains("silverDoor")) {
+      } else if (door.contains("silverDoorImage")) {
         setInfoText(moneyText + "10,000,000", difficultyText + "★★★☆☆");
-      } else if (door.contains("bronzeDoor")) {
+      } else if (door.contains("bronzeDoorImage")) {
         setInfoText(moneyText + "5,000,000", difficultyText + "★☆☆☆☆");
       }
     } else {
@@ -304,6 +366,11 @@ public class VaultController extends Controller {
     }
   }
 
+  /**
+   * Clears the information display when the mouse is no longer hovering over a vault door.
+   *
+   * @param event The mouse event.
+   */
   @FXML
   private void clearInfo(MouseEvent event) {
     // clearing info by setting visibility to false
@@ -311,17 +378,29 @@ public class VaultController extends Controller {
     moneyValue.setText(null);
     difficultyValue.setText(null);
     // remove style
-    setDoorStyle(goldDoor, "");
-    setDoorStyle(bronzeDoor, "");
-    setDoorStyle(silverDoor, "");
+    setDoorStyle(goldDoorImage, "");
+    setDoorStyle(bronzeDoorImage, "");
+    setDoorStyle(silverDoorImage, "");
   }
 
+  /**
+   * Sets the style of a vault door with the given style.
+   *
+   * @param door The ImageView of the vault door.
+   * @param style The style to be set.
+   */
   private void setDoorStyle(ImageView door, String style) {
     if (door != null) {
       door.setStyle(style);
     }
   }
 
+  /**
+   * Sets the information text for the vault doors (money and difficulty).
+   *
+   * @param moneyText The money information.
+   * @param difficultyText The difficulty information.
+   */
   private void setInfoText(String moneyText, String difficultyText) {
     // setting visibility to true to set info
     dialogueBox.setVisible(true);
@@ -331,6 +410,13 @@ public class VaultController extends Controller {
     difficultyValue.setText(difficultyText);
   }
 
+  /**
+   * Handles the event when the Enter key is pressed in the Walkie-Talkie input field and the
+   * Walkie-Talkie is open. Initiates AI processing and communication.
+   *
+   * @param event The KeyEvent.
+   * @throws ApiProxyException If there is an issue with the API proxy.
+   */
   @FXML
   private void onInvokeHacker(KeyEvent event) throws ApiProxyException {
 
@@ -371,6 +457,12 @@ public class VaultController extends Controller {
     }
   }
 
+  /**
+   * Handles the event when the Quick Hint button is pressed to request a quick hint from the AI.
+   * Sets the Walkie-Talkie text to the hint.
+   *
+   * @param event The action event.
+   */
   @FXML
   private void onQuickHint(ActionEvent event) {
     // Get a quick hint from the hackerAiManager
@@ -380,6 +472,11 @@ public class VaultController extends Controller {
     walkieTalkieManager.setWalkieTalkieText(new ChatMessage("user", hint));
   }
 
+  /**
+   * Handles key events when typing the bomb code.
+   *
+   * @param event The KeyEvent.
+   */
   @FXML
   private void onBombTyped(KeyEvent event) {
     KeyCode code = event.getCode();

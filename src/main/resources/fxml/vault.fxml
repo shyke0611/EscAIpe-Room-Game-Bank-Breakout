@@ -29,7 +29,7 @@
       </ImageView>
       <HBox fx:id="exitDoor" layoutX="9.0" layoutY="268.0" prefHeight="254.0" prefWidth="128.0" styleClass="drawer" stylesheets="@../css/rooms.css">
          <children>
-            <ImageView fitHeight="254.0" fitWidth="152.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="escapeDoorImage" fitHeight="254.0" fitWidth="152.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/exitDoor.png" />
                </image>
@@ -112,7 +112,7 @@
                         </Lighting>
                      </effect>
                   </ImageView>
-                  <ImageView fx:id="silverDoor" fitHeight="221.0" fitWidth="222.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onLaserCuttingScene" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="silverDoorImage" fitHeight="221.0" fitWidth="222.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onLaserCuttingScene" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/silverDoor.png" />
                      </image>
@@ -150,7 +150,7 @@
                         </Lighting>
                      </effect>
                   </ImageView>
-                  <ImageView fx:id="bronzeDoor" fitHeight="329.0" fitWidth="327.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onSwitchToChemicalMixing" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="bronzeDoorImage" fitHeight="329.0" fitWidth="327.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onSwitchToChemicalMixing" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/bronzeDoor.png" />
                      </image>
@@ -188,7 +188,7 @@
                         </Lighting>
                      </effect>
                   </ImageView>
-                  <ImageView fx:id="goldDoor" fitHeight="288.0" fitWidth="280.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onSwitchToEyeScanner" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="goldDoorImage" fitHeight="288.0" fitWidth="280.0" onMouseEntered="#showInfo" onMouseExited="#clearInfo" onMousePressed="#onSwitchToEyeScanner" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/goldDoor.png" />
                      </image>
@@ -253,7 +253,7 @@
                         </DropShadow>
                      </effect>
                   </ImageView>
-                  <Button fx:id="lootBtn" mnemonicParsing="false" onAction="#onLootCollected" onMouseEntered="#showMoneyCollected" onMouseExited="#clearInfo" prefHeight="23.0" prefWidth="110.0" styleClass="tech1-button" stylesheets="@../css/rooms.css" text="Collect Loot">
+                  <Button fx:id="lootBtn" mnemonicParsing="false" onAction="#onLootCollected" prefHeight="23.0" prefWidth="110.0" styleClass="tech1-button" stylesheets="@../css/rooms.css" text="Collect Loot">
                      <font>
                         <Font size="12.0" />
                      </font>

@@ -18,6 +18,7 @@ import nz.ac.auckland.se206.WalkieTalkieManager;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
+/** Controller class for the HackerVan scene. */
 public class HackerVanController extends Controller {
 
   @FXML private Button goBackBtn;
@@ -34,6 +35,7 @@ public class HackerVanController extends Controller {
 
   private ChatMessage responce;
 
+  /** Initialize the HackerVan Controller. Sets up the initial state of the Security scene. */
   public void initialize() {
     SceneManager.setController(Scenes.HACKERVAN, this);
     super.setTimerLabel(timerLabel, 3);
@@ -41,11 +43,21 @@ public class HackerVanController extends Controller {
     loadQuickHints();
   }
 
+  /**
+   * Handle the event when the "Go Back" button is clicked. It navigates back to the previous room.
+   */
   @FXML
   private void onGoBack() {
     App.setUI(SceneManager.getLastRoom());
   }
 
+  /**
+   * Handle the event when the user presses Enter in the hackerVanInput text field. It processes the
+   * input and displays the response.
+   *
+   * @param event The KeyEvent triggered by pressing Enter in the text field.
+   * @throws ApiProxyException If an error occurs during API communication.
+   */
   @FXML
   private void onInvokeHacker(KeyEvent event) throws ApiProxyException {
 
@@ -55,6 +67,7 @@ public class HackerVanController extends Controller {
       hackerAiManager.addChatHistory(msg.getContent());
       printChatHistory();
 
+      // create a new task
       Task<Void> aiTask3 =
           new Task<Void>() {
             @Override
@@ -81,12 +94,16 @@ public class HackerVanController extends Controller {
     }
   }
 
+  /** Print the chat history onto the historyTextArea. */
   public void printChatHistory() {
+    // prints the chat history onto the textarea
     String formattedHistory = hackerAiManager.getFormattedChatHistory();
     historyTextArea.setText(formattedHistory);
   }
 
+  /** Load and print the quick hints history onto the hintTextArea. */
   public void loadQuickHints() {
+    // prints the hint history onto the textarea
     String formattedHints = hackerAiManager.getFormattedHintHistory();
     hintTextArea.setText(formattedHints);
   }

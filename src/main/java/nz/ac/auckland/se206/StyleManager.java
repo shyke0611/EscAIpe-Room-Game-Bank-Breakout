@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 import javafx.scene.Node;
 import javafx.scene.control.Tooltip;
+import javafx.scene.effect.Lighting;
 import javafx.util.Duration;
 
 public class StyleManager {
@@ -120,45 +121,40 @@ public class StyleManager {
     }
   }
 
+  public static void setClueHover(String item, boolean isOn) {
+    for (Node node : hoverItemsList) {
+      if (node.getId().equals(item)) {
+        AnimationManager.toggleHoverAnimation(node, isOn, 1);
+      }
+    }
+  }
+
   public static void setAlarm(boolean on) {
     if (on) {
       App.textToSpeech("Alarm Triggered");
       setAlarmStyle();
     }
     // Create a set of items to include
-    Set<String> includeIds =
-        new HashSet<>(
-            Arrays.asList(
-                "guard",
-                "drawerHolder",
-                "drawer",
-                "credentialsNote",
-                "computer",
-                "doorHolder",
-                "guardeyes",
-                "key1",
-                "key3",
-                "key4",
-                "ceoPainting",
-                "wallEmployee",
-                "silverDoorHolder",
-                "bronzeDoorHolder",
-                "goldDoorHolder"));
+    Set<String> disableIds = createdisableIdSet();
 
     // Go through all items
     for (Node item : hoverItemsList) {
       if (item == null) {
         continue; // Skip null items
       }
+      // Get the item id
       String itemId = item.getId();
-      System.out.println("Item ID: " + itemId);
 
       if (itemId != null) {
-        // If the item is in the set, disable it
-        if (includeIds.contains(itemId)) {
+         // If the item is in the set, disable it
+        if (disableIds.contains(itemId)) {
           item.setDisable(true);
-          item.setStyle(null);
           setClueHover(itemId.toString(), false);
+        }
+        // If the item is in the set, disable it
+        if (itemId.endsWith("Image")) {
+          item.setStyle(null);
+          applyLightingEffect(item,on);
         }
         // If the item is the background, animate it
         if (itemId.endsWith("background")) {
@@ -168,21 +164,39 @@ public class StyleManager {
     }
   }
 
-  public static void setClueHover(String item, boolean isOn) {
-    for (Node node : hoverItemsList) {
-      if (node.getId().equals(item)) {
-        AnimationManager.toggleHoverAnimation(node, isOn, 1);
-      }
-    }
-  }
-
-  private static void setAlarmStyle() {
+  // setting style for items when alarm is triggered
+   private static void setAlarmStyle() {
     setClueHover("guardpocket", true);
     setItemsMessage("something is inside", "guardpocket");
     setClueHover("electricityBox", true);
     setItemsMessage("wire cutting..?", "electricityBox");
     setItemsHoverColour(HoverColour.GREEN, "guardpocket", "electricityBox");
   }
+
+  // set of items to disable when alarm triggers
+  private static Set<String> createdisableIdSet() {
+    return new HashSet<>(
+        Arrays.asList(
+            "guard", "drawerHolder", "credentialsNote",
+            "computer", "doorHolder", "guardeyes", "key1", "key3",
+            "key4", "ceoPainting", "wallEmployeeImage", "silverDoorHolder",
+            "bronzeDoorHolder", "goldDoorHolder", "exitDoor"
+        )
+    );
+}
+
+// applying lighting effect to specified items
+private static void applyLightingEffect(Node item,Boolean on) {
+  if (on) {
+   Lighting lighting = new Lighting();
+      lighting.setDiffuseConstant(0.4);
+      lighting.setSpecularConstant(0.1);
+      lighting.setSpecularExponent(3.0);
+      item.setEffect(lighting);
+  } else {
+    item.setEffect(null);
+  }
+}
 
   public static void reset() {
     tooltipMap.clear();

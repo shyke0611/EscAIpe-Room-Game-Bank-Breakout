@@ -21,6 +21,7 @@ import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.Score;
 import nz.ac.auckland.se206.TimerControl;
 
+/** Controller class for the Game Finish scene. */
 public class GameFinishController extends Controller {
 
   @FXML private Button exitButton;
@@ -38,6 +39,7 @@ public class GameFinishController extends Controller {
   @FXML private TableColumn<Score, Number> timeTakenColumn;
   @FXML private TableColumn<Score, Number> moneyStolenColumn;
 
+  /** Initialize the GameFinish Controller. Sets up the initial state of the Security scene. */
   public void initialize() {
     // initialize the controller for the current scene
     SceneManager.setController(Scenes.GAMEFINISH, this);
@@ -75,7 +77,7 @@ public class GameFinishController extends Controller {
               if (item == null || empty) {
                 setText(null);
               } else {
-                setText(TimerControl.formatTimeTaken());
+                setText(TimerControl.formatTimeTaken(item.intValue()));
               }
             }
           };
@@ -113,6 +115,7 @@ public class GameFinishController extends Controller {
         });
   }
 
+  /** Reset the sort order of the table columns. */
   public void resetSortOrder() {
     // reset the sort order of the table
     scoreTable.getSortOrder().clear();
@@ -122,6 +125,7 @@ public class GameFinishController extends Controller {
     scoreTable.getSortOrder().add(timeTakenColumn);
   }
 
+  /** Set the labels with game statistics and add a new score to the score table. */
   public void setStatLabels() {
 
     // Retrieve the statistics from the game
@@ -133,7 +137,7 @@ public class GameFinishController extends Controller {
     // set the labels for the statistics
     difficultyLbl.setText(GameManager.getDifficultyString(difficulty));
     timeChosenLbl.setText(timeChosen);
-    timeLbl.setText(TimerControl.formatTimeTaken());
+    timeLbl.setText(TimerControl.formatTimeTaken(timeTaken));
     moneyLbl.setText(GameManager.formatMoney(moneyCollected));
 
     // add the new score to the table and sort table
@@ -144,24 +148,36 @@ public class GameFinishController extends Controller {
     scoreTable.getSelectionModel().select(newScore);
   }
 
+  /** Set the page to display the game as lost. */
   public void setGameLostPage() {
     // set the game lost page
     successPage.setVisible(false);
     failPage.setVisible(true);
   }
 
+  /** Set the page to display the game as won. */
   public void setGameWonPage() {
     // set the game won page
     failPage.setVisible(false);
     successPage.setVisible(true);
   }
 
+  /**
+   * Handle the "Exit" button click event to exit the application.
+   *
+   * @param event The action event triggered by the "Exit" button click.
+   */
   @FXML
   private void onExit(ActionEvent event) {
     // exit code here
     Platform.exit();
   }
 
+  /**
+   * Handle the "Main Menu" button click event to switch to the main menu scene.
+   *
+   * @param event The action event triggered by the "Main Menu" button click.
+   */
   @FXML
   private void onSwitchToMainMenu(ActionEvent event) {
     mainmenuBtn.setDisable(true);
