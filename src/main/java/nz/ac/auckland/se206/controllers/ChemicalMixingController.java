@@ -130,8 +130,8 @@ public class ChemicalMixingController extends Controller {
 
     // setting the style for each vial
     switch (id) {
-        // setting the style for yellow vial
       case "yellowVial":
+        // setting the style for yellow vial
         vialColour = "yellow";
         largeVialYellow.setVisible(true);
         largeVialBlue.setVisible(false);
@@ -139,8 +139,8 @@ public class ChemicalMixingController extends Controller {
         largeVialGreen.setVisible(false);
         setSliderGraident(Integer.parseInt(randomYellow));
         break;
-        // setting the style for red vial
       case "redVial":
+        // setting the style for red vial
         vialColour = "red";
         largeVialRed.setVisible(true);
         largeVialBlue.setVisible(false);
@@ -148,8 +148,8 @@ public class ChemicalMixingController extends Controller {
         largeVialGreen.setVisible(false);
         setSliderGraident(Integer.parseInt(randomRed));
         break;
-        // setting the style for blue vial
       case "blueVial":
+        // setting the style for blue vial
         vialColour = "blue";
         largeVialBlue.setVisible(true);
         largeVialGreen.setVisible(false);
@@ -157,8 +157,8 @@ public class ChemicalMixingController extends Controller {
         largeVialYellow.setVisible(false);
         setSliderGraident(Integer.parseInt(randomBlue));
         break;
-        // setting the style for green vial
       case "greenVial":
+        // setting the style for green vial
         vialColour = "green";
         largeVialGreen.setVisible(true);
         largeVialBlue.setVisible(false);
@@ -361,26 +361,26 @@ public class ChemicalMixingController extends Controller {
 
     // setting the style for the slider
     switch (partNumber) {
-        // if part number is 1
       case 1:
+        // if part number is 1
         style += "#15ed20 0%, #15ed20 20%, #f44c4c9d 33%, #f44c4c9d 100%)";
         break;
-        // if part number is 1
       case 2:
+        // if part number is 2
         style +=
             "#f44c4c9d 0%, #f44c4c9d 20%, #15ed20 30%, #15ed20 45%, #f44c4c9d 57%, #f44c4c9d 100%)";
         break;
-        // if part number is 3
       case 3:
+        // if part number is 3
         style +=
             "#f44c4c9d 0%, #f44c4c9d 40%, #15ed20 52%, #15ed20 70%, #f44c4c9d 83%, #f44c4c9d 100%)";
         break;
-        // if part number is 4
       case 4:
+        // if part number is 4
         style += "#f44c4c9d 0%, #f44c4c9d 67%, #15ed20 83%, #15ed20 100%)";
         break;
-        // for default case
       default:
+        // for default case
         style += "#f44c4c9d 0%, #f44c4c9d 100%)";
         break;
     }

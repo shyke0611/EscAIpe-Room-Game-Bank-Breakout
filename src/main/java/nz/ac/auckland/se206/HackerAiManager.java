@@ -13,6 +13,7 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
+/** Class to manage all the ai interactions. */
 public class HackerAiManager {
 
   private static HackerAiManager instance = new HackerAiManager();
@@ -42,7 +43,7 @@ public class HackerAiManager {
   private Difficulties currentDifficulty;
   private ChatMessage gptCall;
 
-  /** Constructor for HackerAiManager - also initialises the mappings */
+  /** Constructor for HackerAiManager - also initialises the mappings. */
   public HackerAiManager() {
     instance = this;
     // Initialize the hint mappings
@@ -98,7 +99,7 @@ public class HackerAiManager {
   }
 
   /**
-   * Set the hint limit.
+   * Set the hint limit for the game.
    *
    * @param limit - The hint limit.
    */
@@ -151,13 +152,13 @@ public class HackerAiManager {
     }
   }
 
-  /** Decrease the hint counter */
+  /** Decrease the hint counter by one. */
   public void decrementHintCounter() {
     hintCounter--;
   }
 
   /**
-   * Get the hint limit.
+   * Get the hint limit for the game.
    *
    * @return - The hint limit.
    */
@@ -246,7 +247,7 @@ public class HackerAiManager {
     return false;
   }
 
-  /** Store the quick hint in the hint history */
+  /** Store the quick hint in the hint history. */
   public void storeQuickHint() {
 
     String hint = getQuickHint();
@@ -273,7 +274,7 @@ public class HackerAiManager {
   }
 
   /**
-   * Get the chat history.
+   * Get the chat history with the ai.
    *
    * @return - The chat history.
    */
@@ -281,10 +282,9 @@ public class HackerAiManager {
     return chatHistory;
   }
 
-  //
   /**
    * Method gets the current stages hint and feeds that to the ai before feeding the ai the users
-   * message
+   * message.
    *
    * @param msg - The message to process
    * @return - The response from the ai

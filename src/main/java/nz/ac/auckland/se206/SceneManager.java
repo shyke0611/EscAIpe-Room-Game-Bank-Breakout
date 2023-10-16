@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import nz.ac.auckland.se206.controllers.Controller;
 
+/** Class to manage all the scenes and controllers. */
 public class SceneManager {
 
   // The different Scenes
@@ -31,7 +32,7 @@ public class SceneManager {
   private static Scenes lastRoom;
 
   /**
-   * Add a scene to the scene map
+   * Add a scene to the scene map.
    *
    * @param appUi - The scene to add
    * @param uiRoot - The loaded scene
@@ -41,7 +42,7 @@ public class SceneManager {
   }
 
   /**
-   * Replace a scene in the scene map
+   * Replace a scene in the scene map.
    *
    * @param appUi - The scene to change
    * @param uiRoot - The loaded scene
@@ -51,7 +52,7 @@ public class SceneManager {
   }
 
   /**
-   * Get a scene from the scene map and set the active controller
+   * Get a scene from the scene map and set the active controller.
    *
    * @param appUi - The scene to get
    * @return - The loaded scene
@@ -62,7 +63,7 @@ public class SceneManager {
   }
 
   /**
-   * Set a scene in the scene map
+   * Set a scene in the scene map.
    *
    * @param appUi - The scene to set
    * @param uiRoot - The loaded scene
@@ -72,7 +73,7 @@ public class SceneManager {
   }
 
   /**
-   * Set the active controller
+   * Set the currently active controller.
    *
    * @param controller - The controller to set as active
    */
@@ -81,7 +82,7 @@ public class SceneManager {
   }
 
   /**
-   * Get the active controller
+   * Get the currently active controller.
    *
    * @return - The active controller
    */
@@ -90,7 +91,7 @@ public class SceneManager {
   }
 
   /**
-   * Add a controller to the controller map
+   * Add a controller to the controller map.
    *
    * @param appUi - The scene of the controller
    * @param controller - The controller to add
@@ -100,7 +101,7 @@ public class SceneManager {
   }
 
   /**
-   * Get a controller from the controller map
+   * Get a controller from the controller map.
    *
    * @param appUi - The scene of the controller
    * @return - The controller
@@ -110,7 +111,7 @@ public class SceneManager {
   }
 
   /**
-   * Replace a controller in the controller map
+   * Replace a controller in the controller map.
    *
    * @param appUi - The scene of the controller
    * @param controller - The new controller
@@ -120,7 +121,7 @@ public class SceneManager {
   }
 
   /**
-   * Get the timer label from the active controller
+   * Get the timer label from the active controller.
    *
    * @return - The timer label
    */
@@ -129,7 +130,7 @@ public class SceneManager {
   }
 
   /**
-   * Set the last room the player was in
+   * Set the last room the player was in.
    *
    * @param appUi - The last room (Lobby, Security or Vault) the player was in
    */
@@ -138,7 +139,7 @@ public class SceneManager {
   }
 
   /**
-   * Get the last room the player was in
+   * Get the last room the player was in.
    *
    * @return - The last room (Lobby, Security or Vault) the player was in
    */

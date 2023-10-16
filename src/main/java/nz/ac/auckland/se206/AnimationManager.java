@@ -14,10 +14,11 @@ import javafx.scene.effect.Lighting;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
+/** A class to manage and create all animations. */
 public class AnimationManager {
 
   /**
-   * Apply a fade transition to a node
+   * Apply a fade transition to a node.
    *
    * @param node - the node to apply the transition to
    * @param seconds - the duration of the transition
@@ -32,7 +33,7 @@ public class AnimationManager {
   }
 
   /**
-   * Toggle the alarm animation on or off on a node
+   * Toggle the alarm animation on or off on a node.
    *
    * @param node - the node to apply the animation to
    * @param isOn - whether the animation should be on or off
@@ -53,7 +54,6 @@ public class AnimationManager {
     innerShadow.setInput(lighting);
     node.setEffect(innerShadow);
 
-
     // Create a Timeline animation
     Timeline animation =
         new Timeline(
@@ -70,7 +70,7 @@ public class AnimationManager {
   }
 
   /**
-   * Toggle the hover animation on or off on a node
+   * Toggle the hover animation on or off on a node.
    *
    * @param node - the node to apply the animation to
    * @param isOn - whether the animation should be on or off
@@ -101,7 +101,7 @@ public class AnimationManager {
   }
 
   /**
-   * Create a delay visiblity animation on 2 nodes
+   * Create a delay visiblity animation on two nodes.
    *
    * @param node - the node to hide
    * @param node1 - the node to show
@@ -122,7 +122,7 @@ public class AnimationManager {
   }
 
   /**
-   * Create a scale transition on a node
+   * Create a scale transition on a node.
    *
    * @param node - the node to apply the transition to
    * @return the scale transition
@@ -137,7 +137,7 @@ public class AnimationManager {
   }
 
   /**
-   * Play a scale transition forwards
+   * Play a scale transition forwards.
    *
    * @param scaleTransition - the scale transition to play
    */
@@ -147,7 +147,7 @@ public class AnimationManager {
   }
 
   /**
-   * Play a scale transition in reverse
+   * Play a scale transition in reverse.
    *
    * @param scaleTransition - the scale transition to play
    */
@@ -157,7 +157,7 @@ public class AnimationManager {
   }
 
   /**
-   * Create a room switch animation
+   * Create a room switch animation.
    *
    * @param duration - the duration of the animation
    * @param actions - the actions to run after the animation

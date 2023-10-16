@@ -30,7 +30,7 @@ public class GameState {
   public static boolean isCredentialsFound = false;
   public static boolean isWireCredentialsFound = false;
 
-  /** Reset All Game State variables to original state */
+  /** Reset All Game State variables to original state. */
   public static void resetGameState() {
     // Reset initial flow variables
     isRiddleResolved = false;

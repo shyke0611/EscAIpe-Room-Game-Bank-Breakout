@@ -23,6 +23,7 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
+/** Class to manage all walkie talkies. */
 public class WalkieTalkieManager {
 
   // Static Fields
@@ -38,7 +39,7 @@ public class WalkieTalkieManager {
   // Static Methods
 
   /**
-   * add a walkie talkie to the map
+   * add a walkie talkie to the map.
    *
    * @param controller - The controller associated
    * @param walkietalkie - The walkie talkie scene object to add
@@ -48,7 +49,7 @@ public class WalkieTalkieManager {
   }
 
   /**
-   * Add a walkie talkie notification to the map
+   * Add a walkie talkie notification to the map.
    *
    * @param controller - The controller associated
    * @param notification - The notification scene object to add
@@ -58,7 +59,7 @@ public class WalkieTalkieManager {
   }
 
   /**
-   * Add a walkie talkie text area to the map
+   * Add a walkie talkie text area to the map.
    *
    * @param controller - The controller associated
    * @param textArea - The text area scene object to add
@@ -68,7 +69,7 @@ public class WalkieTalkieManager {
   }
 
   /**
-   * Add a walkie talkie hint to the map
+   * Add a walkie talkie hint to the map.
    *
    * @param controller - The controller associated
    * @param hint - The hint scene object to add
@@ -78,7 +79,7 @@ public class WalkieTalkieManager {
   }
 
   /**
-   * Add a walkie talkie image to the map
+   * Add a walkie talkie image to the map.
    *
    * @param controller - The controller associated
    * @param walkietalkie - The walkie talkie image scene object to add
@@ -88,7 +89,7 @@ public class WalkieTalkieManager {
   }
 
   /**
-   * Add a quick hint button to the map
+   * Add a quick hint button to the map.
    *
    * @param controller - The controller associated
    * @param btn - The quick hint button scene object to add
@@ -98,7 +99,7 @@ public class WalkieTalkieManager {
   }
 
   /**
-   * Get the instance of the WalkieTalkieManager
+   * Get the instance of the WalkieTalkieManager.
    *
    * @return - The instance of the WalkieTalkieManager
    */
@@ -116,7 +117,7 @@ public class WalkieTalkieManager {
     }
   }
 
-  /** Toggle the walkie talkie to be open */
+  /** Toggle the walkie talkie to be open. */
   public static void setWalkieTalkieOpen() {
     Controller activeController = SceneManager.getActiveController();
     walkieTalkieOpen = true;
@@ -132,7 +133,7 @@ public class WalkieTalkieManager {
     }
   }
 
-  /** Toggle the walkie talkie to be closed and the notification to disappear */
+  /** Toggle the walkie talkie to be closed and the notification to disappear. */
   public static void toggleWalkieTalkie() {
     walkieTalkieOpen = !walkieTalkieOpen;
     Controller activeController = SceneManager.getActiveController();
@@ -155,7 +156,7 @@ public class WalkieTalkieManager {
     }
   }
 
-  /** Reset the lists of scene objects */
+  /** Reset the lists of scene objects. */
   public static void reset() {
     walkieTalkieOpen = false;
     walkieTalkieMap.clear();
@@ -164,7 +165,7 @@ public class WalkieTalkieManager {
   }
 
   /**
-   * Get the walkie talkie open status
+   * Get the walkie talkie open status.
    *
    * @return - The walkie talkie open status
    */
@@ -181,7 +182,7 @@ public class WalkieTalkieManager {
   // Instance Methods
 
   /**
-   * Get the walkie talkie open status
+   * Get the walkie talkie open status.
    *
    * @return - The walkie talkie open status
    */
@@ -190,7 +191,7 @@ public class WalkieTalkieManager {
   }
 
   /**
-   * Run the GPT chatbot
+   * Send a message to the GPT chatbot.
    *
    * @param msg - The message to send to the chatbot
    * @return - The response from the chatbot
@@ -212,7 +213,7 @@ public class WalkieTalkieManager {
     }
   }
 
-  /** Clear the text of all walkie-talkies */
+  /** Clear the text of all walkie-talkies. */
   public void clearWalkieTalkie() {
 
     for (VBox vertBox : walkieTalkieMap.values()) {
@@ -236,7 +237,7 @@ public class WalkieTalkieManager {
   }
 
   /**
-   * Set the text of all walkie-talkies
+   * Set the text of all walkie-talkies.
    *
    * @param msg - The message to set the text to
    */
@@ -248,7 +249,7 @@ public class WalkieTalkieManager {
   }
 
   /**
-   * Set the hint remaining text of all walkie-talkies
+   * Set the hint remaining text of all walkie-talkies.
    *
    * @param hintCount - The hint count to set the text to
    */
@@ -258,7 +259,7 @@ public class WalkieTalkieManager {
     }
   }
 
-  /** Start an image animation while waiting for response */
+  /** Start an image animation while waiting for response. */
   public void startAnimation() {
     // creating new timeline for animation
     timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> updateTypingLabel()));
@@ -277,7 +278,7 @@ public class WalkieTalkieManager {
     timeline.play();
   }
 
-  /** Start a dot animation while waiting for response */
+  /** Start a dot animation while waiting for response. */
   private void updateTypingLabel() {
     // creating dots for animation
     StringBuilder dots = new StringBuilder();
@@ -294,7 +295,7 @@ public class WalkieTalkieManager {
     }
   }
 
-  /** Stop the image animation */
+  /** Stop the current image animation. */
   public void stopAnimation() {
     if (timeline != null) {
       timeline.stop();
@@ -306,14 +307,14 @@ public class WalkieTalkieManager {
     }
   }
 
-  /** Disable the quick hint button */
+  /** Disable the quick hint button. */
   public void disableQuickHintBtns() {
     for (Button btn : quickHintBtns.values()) {
       btn.setDisable(true);
     }
   }
 
-  /** Enable the quick hint button */
+  /** Enable the quick hint button. */
   public void enableQuickHintBtns() {
     for (Button btn : quickHintBtns.values()) {
       btn.setDisable(false);
@@ -321,7 +322,7 @@ public class WalkieTalkieManager {
   }
 
   /**
-   * Check if the quick hint button is visible
+   * Check if the quick hint button is visible.
    *
    * @return - false if the quick hint button is disabled, true otherwise
    */

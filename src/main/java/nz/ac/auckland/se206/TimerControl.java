@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.controllers.GameFinishController;
 
+/** Class to manage all timer information. */
 public class TimerControl {
 
   private static int initialCount = 10;
@@ -16,7 +17,7 @@ public class TimerControl {
   private static TimerTask task;
 
   /**
-   * Get the time in the given format
+   * Get the time in the given format.
    *
    * @param format - An int representing the format to get the time in
    * @return - The time in the given format
@@ -26,7 +27,7 @@ public class TimerControl {
   }
 
   /**
-   * Format the time in different formats
+   * Format the time in different formats.
    *
    * @param time - The time to format
    * @param format - An int representing the format to get the time in
@@ -60,7 +61,7 @@ public class TimerControl {
   }
 
   /**
-   * Get the seconds in a string
+   * Get the seconds in a string.
    *
    * @param time - The time to get the seconds from
    * @return - The seconds as a string
@@ -72,7 +73,7 @@ public class TimerControl {
   }
 
   /**
-   * Get the timer count
+   * Get the timer count in seconds.
    *
    * @return - The timer count
    */
@@ -81,7 +82,7 @@ public class TimerControl {
   }
 
   /**
-   * Set the timer count in seconds
+   * Set the timer count in seconds.
    *
    * @param minutes - The number of minutes to set the timer to
    */
@@ -103,13 +104,13 @@ public class TimerControl {
     }
   }
 
-  /** Reset the count */
+  /** Reset the count of the timer. */
   public static void resetCount() {
     i = 0;
     count = initialCount;
   }
 
-  /** Create a timer task */
+  /** Create a new timer task. */
   private static void createTask() {
     // Create new timer task
     task =
@@ -147,7 +148,7 @@ public class TimerControl {
         };
   }
 
-  /** Create timer thread and run timer */
+  /** Create timer thread and run timer. */
   public static void runTimer() {
 
     // kill previous timer if it exists
@@ -161,7 +162,7 @@ public class TimerControl {
     timer.scheduleAtFixedRate(task, 0, 500);
   }
 
-  /** Cancel the timer task and timer */
+  /** Cancel the timer task and timer. */
   public static void cancelTimer() {
     task.cancel();
     timer.cancel();
@@ -169,7 +170,7 @@ public class TimerControl {
   }
 
   /**
-   * Get the time taken to complete the game
+   * Get the time taken to complete the game.
    *
    * @return - The time taken to complete the game
    */
@@ -179,7 +180,7 @@ public class TimerControl {
   }
 
   /**
-   * Format the time taken to complete the game
+   * Format the time taken to complete the game.
    *
    * @param timeTaken - The time taken to complete the game
    * @return - The formatted time taken to complete the game
@@ -193,7 +194,7 @@ public class TimerControl {
   }
 
   /**
-   * Get the initial time chosen by the user
+   * Get the initial time chosen by the user.
    *
    * @return - The initial time chosen by the user in minutes
    */
