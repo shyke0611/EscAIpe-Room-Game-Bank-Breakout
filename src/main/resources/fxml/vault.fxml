@@ -387,9 +387,9 @@
       </VBox>
       <HBox fx:id="switchHolder" layoutX="5.0" layoutY="12.0" prefHeight="122.0" prefWidth="318.0">
          <children>
-            <VBox fx:id="lobbyRoomSwitch" alignment="CENTER" prefHeight="129.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
+            <VBox fx:id="lobbyRoomSwitch" alignment="CENTER" onMouseClicked="#switchToLobby" prefHeight="129.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
                <children>
-                  <ImageView fitHeight="100.0" fitWidth="100.0" onMouseClicked="#switchToLobby" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/robber1.png" />
                      </image>
@@ -408,9 +408,9 @@
                   </DropShadow>
                </effect>
             </VBox>
-            <VBox fx:id="securityRoomSwitch" alignment="CENTER" prefHeight="126.0" prefWidth="115.0" styleClass="component" stylesheets="@../css/rooms.css">
+            <VBox fx:id="securityRoomSwitch" alignment="CENTER" onMouseClicked="#switchToSecurity" prefHeight="126.0" prefWidth="115.0" styleClass="component" stylesheets="@../css/rooms.css">
                <children>
-                  <ImageView fx:id="security" fitHeight="103.0" fitWidth="82.0" onMouseClicked="#switchToSecurity" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="security" fitHeight="103.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/robber3.png" />
                      </image>
@@ -429,9 +429,9 @@
                   </DropShadow>
                </effect>
             </VBox>
-            <VBox fx:id="vaultRoomSwitch" alignment="CENTER" prefHeight="110.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
+            <VBox fx:id="vaultRoomSwitch" alignment="CENTER" onMouseClicked="#switchToVault" prefHeight="110.0" prefWidth="100.0" styleClass="component" stylesheets="@../css/rooms.css">
                <children>
-                  <ImageView fx:id="Vault" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#switchToVault" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="Vault" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/robber2.png" />
                      </image>
