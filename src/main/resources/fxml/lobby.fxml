@@ -19,7 +19,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="LobbyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LobbyController">
+<AnchorPane fx:id="LobbyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LobbyController">
    <children>
       <ImageView fx:id="lobbybackground" fitHeight="715.0" fitWidth="1024.0" layoutX="-3.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -497,7 +497,7 @@
                         <Font size="19.0" />
                      </font>
                   </TextArea>
-                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="107.0" styleClass="component1" stylesheets="@../css/walkietalkie.css">
+                  <VBox alignment="CENTER" prefHeight="96.0" prefWidth="134.0" styleClass="component1" stylesheets="@../css/walkietalkie.css">
                      <children>
                         <Button fx:id="viewHistoryBtn" mnemonicParsing="false" onAction="#onSwitchToHacker" text="View History">
                            <VBox.margin>
@@ -514,7 +514,7 @@
             </HBox>
             <HBox prefHeight="51.0" prefWidth="512.0">
                <children>
-                  <TextField fx:id="lobbyTextInput" onKeyPressed="#onInvokeHacker" opacity="0.77" prefHeight="47.0" prefWidth="497.0" promptText="Bzzz..." stylesheets="@../css/walkietalkie.css">
+                  <TextField fx:id="lobbyTextInput" onKeyPressed="#onInvokeHacker" opacity="0.77" prefHeight="47.0" prefWidth="476.0" promptText="Bzzz... Type Here" stylesheets="@../css/walkietalkie.css">
                      <font>
                         <Font name="Courier New Bold" size="22.0" />
                      </font>
@@ -530,7 +530,7 @@
                               <Insets top="15.0" />
                            </StackPane.margin>
                         </Label>
-                        <Label alignment="TOP_CENTER" prefHeight="26.0" prefWidth="102.0" text="Hints Left:" textFill="#1bcd2a" wrapText="true">
+                        <Label alignment="TOP_CENTER" prefHeight="22.0" prefWidth="134.0" text="Hints Left:" textFill="#1bcd2a">
                            <font>
                               <Font name="Tahoma" size="16.0" />
                            </font>
