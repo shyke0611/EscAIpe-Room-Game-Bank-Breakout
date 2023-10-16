@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#draw" onMousePressed="#mousePressed" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../css/laserCutting.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LaserCuttingController">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#draw" onMousePressed="#mousePressed" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../css/laserCutting.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LaserCuttingController">
    <children>
       <ImageView fitHeight="704.0" fitWidth="1008.0" onMouseClicked="#setVault" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -166,8 +166,14 @@
          </effect>
       </ImageView>
       <Circle fx:id="redHaze" centerX="503.0" centerY="375.0" fill="#1f93ff00" layoutX="5.0" layoutY="7.0" opacity="0.57" radius="104.0" stroke="#0000007d" strokeDashOffset="10.0" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="30.0" />
-      <Circle fx:id="outerCircle" centerX="503.0" centerY="375.0" fill="#1f93ff00" layoutX="5.0" layoutY="6.0" radius="117.0" stroke="#170000" strokeDashOffset="10.0" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="4.0" style="-fx-stroke-dash-array: 5;" />
-      <Circle fx:id="innerCircle" centerX="503.0" centerY="375.0" fill="#1f93ff00" layoutX="4.0" layoutY="7.0" radius="90.0" stroke="BLACK" strokeDashOffset="10.0" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="4.0" style="-fx-stroke-dash-array: 5;" />
+      <Circle fx:id="outerCircle" centerX="503.0" centerY="375.0" fill="#1f93ff00" layoutX="5.0" layoutY="6.0" radius="117.0" stroke="BLACK" strokeDashOffset="10.0" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="4.0" style="-fx-stroke-dash-array: 5;">
+         <effect>
+            <DropShadow spread="0.52" />
+         </effect></Circle>
+      <Circle fx:id="innerCircle" centerX="503.0" centerY="375.0" fill="#1f93ff00" layoutX="4.0" layoutY="7.0" radius="90.0" stroke="BLACK" strokeDashOffset="10.0" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="4.0" style="-fx-stroke-dash-array: 5;">
+         <effect>
+            <DropShadow spread="0.51" />
+         </effect></Circle>
       <Canvas fx:id="canvas" height="700.0" onMouseDragged="#draw" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" visible="false" width="1000.0" />
       <StackPane layoutX="560.0" layoutY="8.0" prefHeight="101.0" prefWidth="265.0">
          <children>
@@ -224,6 +230,9 @@
                <font>
                   <Font name="Copperplate" size="36.0" />
                </font>
+               <StackPane.margin>
+                  <Insets left="20.0" />
+               </StackPane.margin>
             </Label>
          </children>
       </StackPane>
@@ -239,6 +248,20 @@
          <image>
             <Image url="@../images/minigamebackground.png" />
          </image>
+         <effect>
+            <Lighting diffuseConstant="2.0" specularConstant="0.51" specularExponent="0.0" surfaceScale="0.0">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant>
+                     <color>
+                        <Color red="0.11574073880910873" green="0.8084104657173157" blue="1.0" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
         
       </ImageView>
       <ImageView fitHeight="93.0" fitWidth="170.0" layoutX="59.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true">
@@ -268,11 +291,11 @@
             </Label>
          </children>
       </StackPane>
-      <ImageView fx:id="insideVault" fitHeight="218.0" fitWidth="218.0" layoutX="399.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="insideVault" fitHeight="233.0" fitWidth="226.0" layoutX="395.0" layoutY="268.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../images/vecteezy_vector-bank-vault-with-open-safe-door_23869823-modified.png" />
+            <Image url="@../images/lasercuttingmoney.png" />
          </image>
       </ImageView>
-      <Circle fx:id="meltedEdge" fill="TRANSPARENT" layoutX="508.0" layoutY="381.0" onMouseClicked="#setVault" radius="114.0" stroke="#b22121" strokeType="INSIDE" strokeWidth="10.0" styleClass="red-circle" visible="false" />
+      <Circle fx:id="meltedEdge" fill="TRANSPARENT" layoutX="505.0" layoutY="384.0" onMouseClicked="#setVault" opacity="0.53" radius="114.0" stroke="#a81e1e" strokeType="INSIDE" strokeWidth="10.0" styleClass="red-circle" visible="false" />
    </children>
 </AnchorPane>
