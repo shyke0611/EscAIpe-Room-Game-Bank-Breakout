@@ -75,7 +75,7 @@ public class GameFinishController extends Controller {
               if (item == null || empty) {
                 setText(null);
               } else {
-                setText(TimerControl.formatTimeTaken());
+                setText(TimerControl.formatTimeTaken(item.intValue()));
               }
             }
           };
@@ -133,7 +133,7 @@ public class GameFinishController extends Controller {
     // set the labels for the statistics
     difficultyLbl.setText(GameManager.getDifficultyString(difficulty));
     timeChosenLbl.setText(timeChosen);
-    timeLbl.setText(TimerControl.formatTimeTaken());
+    timeLbl.setText(TimerControl.formatTimeTaken(timeTaken));
     moneyLbl.setText(GameManager.formatMoney(moneyCollected));
 
     // add the new score to the table and sort table
