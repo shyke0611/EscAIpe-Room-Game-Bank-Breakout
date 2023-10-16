@@ -19,7 +19,7 @@ public class GameState {
   public static boolean isFirstRiddleSolved = false;
   public static boolean isSecondRiddleSolved = false;
   public static boolean isThirdRiddleSolved = false;
-  public static boolean isConnectDotsSolved= false;
+  public static boolean isConnectDotsSolved = false;
   public static boolean isBombActivated = false;
   public static boolean isEyeScannerEntered = false;
   public static boolean isEyeScannerBypassed = false;
@@ -30,6 +30,7 @@ public class GameState {
   public static boolean isCredentialsFound = false;
   public static boolean isWireCredentialsFound = false;
 
+  /** Reset All Game State variables to original state */
   public static void resetGameState() {
     // Reset initial flow variables
     isRiddleResolved = false;
