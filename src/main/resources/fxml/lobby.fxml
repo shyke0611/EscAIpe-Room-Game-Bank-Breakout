@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -19,7 +18,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="LobbyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LobbyController">
+<AnchorPane fx:id="LobbyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LobbyController">
    <children>
       <ImageView fx:id="lobbybackground" fitHeight="715.0" fitWidth="1024.0" layoutX="-3.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -153,7 +152,7 @@
             </HBox>
          </children>
       </VBox>
-      <HBox fx:id="key1" alignment="BOTTOM_LEFT" layoutX="174.0" layoutY="313.0" onMousePressed="#onKeyLocationPressed" prefHeight="54.0" prefWidth="43.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
+      <HBox fx:id="key1" alignment="BOTTOM_LEFT" layoutX="174.0" layoutY="313.0" onMousePressed="#onKeyLocationPressed" prefHeight="54.0" prefWidth="43.0" styleClass="orange" stylesheets="@../css/gloweffect.css">
          <children>
             <ImageView fx:id="key1Image" fitHeight="55.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -162,7 +161,7 @@
             </ImageView>
          </children>
       </HBox>
-      <HBox fx:id="guardpocket" alignment="CENTER" layoutX="845.0" layoutY="362.0" onMousePressed="#onGuardPocket" prefHeight="42.0" prefWidth="38.0" styleClass="drawer" stylesheets="@../css/rooms.css">
+      <HBox fx:id="guardpocket" alignment="CENTER" layoutX="845.0" layoutY="362.0" onMousePressed="#onGuardPocket" prefHeight="42.0" prefWidth="38.0" styleClass="red" stylesheets="@../css/gloweffect.css">
          <children>
             <ImageView fx:id="guardpocket2" fitHeight="49.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -181,7 +180,7 @@
             </ImageView>
          </children>
       </HBox>
-      <HBox fx:id="key3" alignment="CENTER" layoutX="264.0" layoutY="272.0" onMousePressed="#onKeyLocationPressed" prefHeight="9.0" prefWidth="43.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
+      <HBox fx:id="key3" alignment="CENTER" layoutX="264.0" layoutY="272.0" onMousePressed="#onKeyLocationPressed" prefHeight="9.0" prefWidth="43.0" styleClass="orange" stylesheets="@../css/gloweffect.css">
          <children>
             <ImageView fx:id="key3Image" fitHeight="51.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -189,7 +188,7 @@
                </image>
             </ImageView>
          </children></HBox>
-      <HBox fx:id="drawerHolder" layoutX="569.0" layoutY="281.0" onMousePressed="#onDrawerPressed" prefHeight="113.0" prefWidth="102.0" styleClass="drawer" stylesheets="@../css/rooms.css">
+      <HBox fx:id="drawerHolder" layoutX="569.0" layoutY="281.0" onMousePressed="#onDrawerPressed" prefHeight="113.0" prefWidth="102.0" styleClass="red" stylesheets="@../css/gloweffect.css">
          <children>
             <StackPane prefHeight="150.0" prefWidth="150.0">
                <children>
@@ -246,7 +245,7 @@
             </ImageView>
          </children>
       </HBox>
-      <HBox fx:id="key4" layoutX="497.0" layoutY="307.0" onMousePressed="#onKeyLocationPressed" prefHeight="102.0" prefWidth="0.0" stylesheets="@../css/rooms.css">
+      <HBox fx:id="key4" layoutX="497.0" layoutY="307.0" onMousePressed="#onKeyLocationPressed" prefHeight="102.0" prefWidth="0.0" styleClass="orange" stylesheets="@../css/gloweffect.css">
          <children>
             <ImageView fx:id="key4Image" fitHeight="102.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -254,10 +253,6 @@
                </image>
             </ImageView>
          </children>
-         <styleClass>
-            <String fx:value="items" />
-            <String fx:value="keylocations" />
-         </styleClass>
          <effect>
             <Lighting diffuseConstant="1.02" specularConstant="0.6" specularExponent="40.0" surfaceScale="0.0">
                <bumpInput>
@@ -296,7 +291,7 @@
             </DropShadow>
          </effect>
       </HBox>
-      <HBox fx:id="guardeyes" layoutX="833.0" layoutY="290.0" onMousePressed="#onGuardEyes" prefHeight="39.0" prefWidth="41.0" styleClass="drawer" stylesheets="@../css/rooms.css">
+      <HBox fx:id="guardeyes" layoutX="833.0" layoutY="290.0" onMousePressed="#onGuardEyes" prefHeight="39.0" prefWidth="41.0" styleClass="red" stylesheets="@../css/gloweffect.css">
          <children>
             <ImageView fitHeight="39.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -567,7 +562,7 @@
             </StackPane>
          </children>
       </VBox>
-      <StackPane layoutX="-7.0" layoutY="254.0" opacity="0.88" prefHeight="150.0" prefWidth="129.0">
+      <StackPane layoutX="-7.0" layoutY="254.0" opacity="0.88" prefHeight="150.0" prefWidth="129.0" styleClass="item" stylesheets="@../css/gloweffect.css">
          <children>
             <ImageView fx:id="lobbypaintingImage" fitHeight="102.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true">
                <image>

@@ -1,0 +1,31 @@
+
+.red:hover {
+    -fx-effect: dropshadow(gaussian, rgba(255, 0, 0, 0.7), 5, 5, 0, 0);
+    -fx-cursor: hand;
+}
+
+.red:pressed {
+    -fx-effect: "";
+}
+
+.orange:hover {
+    -fx-effect: dropshadow(gaussian, rgba(255, 183, 0, 0.7), 5, 5, 0, 0);
+    -fx-cursor: hand;
+}
+
+.orange:pressed {
+    -fx-effect: "";
+}
+
+.green:hover {
+    -fx-effect: dropshadow(gaussian, rgba(34, 255, 0, 0.7), 5, 5, 0, 0);
+    -fx-cursor: hand;
+}
+
+.green:pressed {
+    -fx-effect: "";
+}
+
+.item:hover {
+    -fx-cursor: hand;
+}

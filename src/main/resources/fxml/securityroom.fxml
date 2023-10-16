@@ -30,7 +30,7 @@
             <Image url="@../images/securityroom.png" />
          </image>
       </ImageView>
-      <HBox fx:id="computer" alignment="CENTER" layoutX="525.0" layoutY="322.0" onMousePressed="#onClickComputer" prefHeight="140.0" prefWidth="115.0" styleClass="keylocations" stylesheets="@../css/rooms.css">
+      <HBox fx:id="computer" alignment="CENTER" layoutX="525.0" layoutY="322.0" onMousePressed="#onClickComputer" prefHeight="140.0" prefWidth="115.0" styleClass="orange" stylesheets="@../css/gloweffect.css">
          <children>
             <ImageView fx:id="computerImage" fitHeight="144.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -39,7 +39,7 @@
             </ImageView>
          </children>
       </HBox>
-      <StackPane fx:id="wallEmployeeImage" layoutX="388.0" layoutY="230.0" onMouseEntered="#onHoverEmployee" onMouseExited="#onHoverEmployeeExit" opacity="0.85" prefHeight="97.0" prefWidth="113.0">
+      <StackPane fx:id="wallEmployeeImage" layoutX="388.0" layoutY="230.0" onMouseEntered="#onHoverEmployee" onMouseExited="#onHoverEmployeeExit" opacity="0.85" prefHeight="97.0" prefWidth="113.0" styleClass="item" stylesheets="@../css/gloweffect.css">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="82.0" onMouseEntered="#onHoverEmployee" onMouseExited="#onHoverEmployeeExit" opacity="0.58" stroke="BLACK" strokeType="INSIDE" width="74.0">
                <effect>
@@ -94,7 +94,7 @@
             </Lighting>
          </effect>
       </StackPane>
-      <HBox fx:id="electricityBox" layoutX="272.0" layoutY="419.0" onMousePressed="#onWireCutting" prefHeight="114.0" prefWidth="56.0" styleClass="drawer" stylesheets="@../css/rooms.css">
+      <HBox fx:id="electricityBox" layoutX="272.0" layoutY="419.0" onMousePressed="#onWireCutting" prefHeight="114.0" prefWidth="56.0" styleClass="red" stylesheets="@../css/gloweffect.css">
          <children>
             <StackPane prefHeight="114.0" prefWidth="54.0">
                <children>
