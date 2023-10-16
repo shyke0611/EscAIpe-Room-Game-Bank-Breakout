@@ -16,6 +16,14 @@ import javafx.util.Duration;
 
 public class AnimationManager {
 
+  /**
+   * Apply a fade transition to a node
+   *
+   * @param node - the node to apply the transition to
+   * @param seconds - the duration of the transition
+   * @param from - the starting opacity
+   * @param to - the ending opacity
+   */
   public static void fadeTransition(Node node, double seconds, double from, double to) {
     FadeTransition fadeIn = new FadeTransition(Duration.seconds(seconds), node);
     fadeIn.setFromValue(from);
@@ -23,6 +31,13 @@ public class AnimationManager {
     fadeIn.play();
   }
 
+  /**
+   * Toggle the alarm animation on or off on a node
+   *
+   * @param node - the node to apply the animation to
+   * @param isOn - whether the animation should be on or off
+   * @param time - the duration of the animation
+   */
   public static void toggleAlarmAnimation(Node node, boolean isOn, double time) {
     Duration duration = Duration.seconds(time);
 
@@ -38,6 +53,7 @@ public class AnimationManager {
     innerShadow.setInput(lighting);
     node.setEffect(innerShadow);
 
+    // Create a Timeline animation
     Timeline animation =
         new Timeline(
             new KeyFrame(Duration.ZERO, new KeyValue(innerShadow.radiusProperty(), 0)),
@@ -52,6 +68,13 @@ public class AnimationManager {
     }
   }
 
+  /**
+   * Toggle the hover animation on or off on a node
+   *
+   * @param node - the node to apply the animation to
+   * @param isOn - whether the animation should be on or off
+   * @param time - the duration of the animation
+   */
   public static void toggleHoverAnimation(Node node, boolean isOn, double time) {
     Duration duration = Duration.seconds(time);
 
@@ -76,6 +99,12 @@ public class AnimationManager {
     }
   }
 
+  /**
+   * Create a delay visiblity animation on 2 nodes
+   *
+   * @param node - the node to hide
+   * @param node1 - the node to show
+   */
   public static void delayAnimation(Node node, Node node1) {
     // Delay the animation for 3 seconds
     Duration delay = Duration.seconds(3);
@@ -91,6 +120,12 @@ public class AnimationManager {
     timeline.play();
   }
 
+  /**
+   * Create a scale transition on a node
+   *
+   * @param node - the node to apply the transition to
+   * @return the scale transition
+   */
   public static ScaleTransition createScaleTransition(Node node) {
     ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), node);
     scaleTransition.setFromX(1.0); // Initial scale X
@@ -100,16 +135,32 @@ public class AnimationManager {
     return scaleTransition;
   }
 
+  /**
+   * Play a scale transition forwards
+   *
+   * @param scaleTransition - the scale transition to play
+   */
   public static void playAnimationForward(ScaleTransition scaleTransition) {
     scaleTransition.setRate(1); // Play forward
     scaleTransition.play();
   }
 
+  /**
+   * Play a scale transition in reverse
+   *
+   * @param scaleTransition - the scale transition to play
+   */
   public static void playAnimationReverse(ScaleTransition scaleTransition) {
     scaleTransition.setRate(-1); // Play in reverse
     scaleTransition.play();
   }
 
+  /**
+   * Create a room switch animation
+   *
+   * @param duration - the duration of the animation
+   * @param actions - the actions to run after the animation
+   */
   public static void roomSwitchAnimation(Duration duration, Runnable... actions) {
     PauseTransition pause = new PauseTransition(duration);
     // When the pause transition is finished, run the actions
