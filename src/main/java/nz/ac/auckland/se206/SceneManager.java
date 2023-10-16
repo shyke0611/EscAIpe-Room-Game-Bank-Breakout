@@ -8,7 +8,7 @@ import nz.ac.auckland.se206.controllers.Controller;
 /** Class to manage all the scenes and controllers. */
 public class SceneManager {
 
-  /* All the different Scenes in the game. */
+  /** All the different Scenes in the game. */
   public enum Scenes {
     VAULT,
     LOBBY,
