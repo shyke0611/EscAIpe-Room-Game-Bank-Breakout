@@ -49,6 +49,7 @@ public class ChemicalMixingController extends Controller {
   @FXML private Label currentVial;
   @FXML private Label winLabel;
   @FXML private Label selectVialLabel;
+  @FXML private Label moneyCount;
 
   @FXML private Region firstPour;
   @FXML private Rectangle secondPour;
@@ -69,7 +70,8 @@ public class ChemicalMixingController extends Controller {
   /** Initialize the Chemical Mixing Controller. Sets up the initial state of the scene. */
   public void initialize() {
     SceneManager.setController(Scenes.CHEMICALMIXING, this);
-    super.setTimerLabel(timerLabel, 3);
+    super.setTimerLabel(timerLabel, 1);
+    GameManager.addMoneyGainedLabel(this, moneyCount);
 
     // Setting up hover animations
     setUpHover();

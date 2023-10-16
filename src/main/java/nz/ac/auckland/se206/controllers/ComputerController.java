@@ -61,7 +61,7 @@ public class ComputerController extends Controller {
   private StyleManager styleManager = StyleManager.getInstance();
 
   private Timeline timeline;
-  private Boolean riddleStarted;
+  private Boolean riddleStarted = false;
   private Boolean authenticationStarted;
 
   private Boolean onQuestionThree = false;
@@ -183,7 +183,6 @@ public class ComputerController extends Controller {
                   "user", GptPromptEngineering.initiliseComputer(ceoName, employeeName, date)));
 
       messageQueue.add(response);
-      appendChatMessage();
       authenticationStarted = true;
 
       // return what computer ai says
@@ -261,10 +260,9 @@ public class ComputerController extends Controller {
                   new ChatMessage("user", "Please type yes to start the authentication process");
               messageQueue.add(msg);
               sendBtn.setDisable(false);
-              return null;
+
               // else
             }
-
             appendChatMessage();
 
             return null;
@@ -548,24 +546,6 @@ public class ComputerController extends Controller {
     } catch (ApiProxyException e) {
       e.printStackTrace();
       return null;
-    }
-  }
-
-
-  /**
-   * Handles the event when the Enter key is pressed in the input text field.
-   *
-   * @param event The KeyEvent triggered by pressing the Enter key.
-   */
-  @FXML
-  public void onEnterPressed(KeyEvent event) {
-    // if the enter key is pressed then send the message
-    if (event.getCode() == KeyCode.ENTER) {
-      try {
-        onSend(new ActionEvent());
-      } catch (ApiProxyException | IOException e) {
-        System.out.println("Failed to send");
-      }
     }
   }
 }
