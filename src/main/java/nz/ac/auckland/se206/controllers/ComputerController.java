@@ -14,7 +14,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -51,6 +50,7 @@ public class ComputerController extends Controller {
   @FXML private Label processingLabel;
   @FXML private HBox usbStick;
   @FXML private TextArea computerTextArea;
+  @FXML private TextField walkieTalkieTextField;
 
   private ChatCompletionRequest chatCompletionRequest;
   private ChatMessage lastMsg;
@@ -77,6 +77,7 @@ public class ComputerController extends Controller {
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     WalkieTalkieManager.addWalkieTalkieTextArea(this, computerTextArea);
     styleManager.addHoverItems(usbStick);
+
     // styleManager.addItems(usbStick);
     // creating new timeline
     timeline = new Timeline(new KeyFrame(Duration.seconds(0.6), e -> updateLabel()));
@@ -98,6 +99,36 @@ public class ComputerController extends Controller {
       messageQueue.add(msg);
       appendChatMessage();
     }
+
+    inputTextField.setOnKeyPressed(
+        event -> {
+          if (event.getCode() == KeyCode.ENTER) {
+            try {
+              onSend(new ActionEvent());
+            } catch (ApiProxyException | IOException e) {
+              System.out.println("Failed to send");
+            }
+          }
+        });
+
+    // Create an event handler for text field 2
+    walkieTalkieTextField.setOnKeyPressed(
+        event -> {
+          if (event.getCode() == KeyCode.ENTER) {
+
+            askHacker(new ActionEvent());
+          }
+        });
+  }
+
+  private void askHacker(ActionEvent actionEvent) {
+    walkieTalkieTextField.clear();
+    ChatMessage msg =
+        new ChatMessage(
+            "user",
+            "I cant help you from here, look around for clues or just guess! Dont worry i have a"
+                + " plan b if you get them wrong");
+    walkieTalkieManager.setWalkieTalkieText(msg);
   }
 
   public void setFocus() {
@@ -467,17 +498,6 @@ public class ComputerController extends Controller {
     } catch (ApiProxyException e) {
       e.printStackTrace();
       return null;
-    }
-  }
-
-  @FXML
-  public void onEnterPressed(KeyEvent event) {
-    if (event.getCode() == KeyCode.ENTER) {
-      try {
-        onSend(new ActionEvent());
-      } catch (ApiProxyException | IOException e) {
-        System.out.println("Failed to send");
-      }
     }
   }
 }
