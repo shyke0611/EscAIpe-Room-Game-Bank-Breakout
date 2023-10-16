@@ -57,17 +57,17 @@ public abstract class Controller {
   protected void setVault(MouseEvent event) {
     // handle visibility if laser cutting is bypassed
     if (GameState.isLaserCuttingBypassed) {
-      StyleManager.getHoverItem("silverDoor").setVisible(false);
+      StyleManager.getHoverItem("silverDoorImage").setVisible(false);
       StyleManager.getHoverItem("silverDoorHolder").setDisable(true);
     }
     // handle visibility if chemical mixing is bypassed
     if (GameState.isChemicalMixingBypassed) {
-      StyleManager.getHoverItem("bronzeDoor").setVisible(false);
+      StyleManager.getHoverItem("bronzeDoorImage").setVisible(false);
       StyleManager.getHoverItem("bronzeDoorHolder").setDisable(true);
     }
     // handle visibility if eye scanner is bypassed
     if (GameState.isEyeScannerBypassed) {
-      StyleManager.getHoverItem("goldDoor").setVisible(false);
+      StyleManager.getHoverItem("goldDoorImage").setVisible(false);
       StyleManager.getHoverItem("goldDoorHolder").setDisable(true);
     }
     // handle visibility if any door is bypassed

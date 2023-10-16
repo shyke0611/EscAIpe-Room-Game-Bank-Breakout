@@ -407,13 +407,13 @@ public class ComputerController extends Controller {
   private void setConnectdotsStyle() {
     // setting the style for connect dots
     setVaultStyleLevelTwo();
-    StyleManager.setDisable(true, "ceoPainting", "wallEmployee");
+    StyleManager.setDisable(true, "ceoPainting", "wallEmployeeImage");
   }
 
   /** Sets the visual style for level 2 authentication. */
   private void setLevelTwoStyle() {
     // set disability
-    StyleManager.setDisable(true, "computer", "ceoPainting", "wallEmployee");
+    StyleManager.setDisable(true, "computer", "ceoPainting", "wallEmployeeImage");
     StyleManager.setClueHover("computer", false);
     // setting vault style by calling method
     setVaultStyleLevelTwo();
@@ -430,7 +430,7 @@ public class ComputerController extends Controller {
   /** Sets the visual style for level 3 vault authentication. */
   private void setLevelThreeStyle() {
     // disabling items
-    StyleManager.setDisable(true, "computer", "ceoPainting", "wallEmployee");
+    StyleManager.setDisable(true, "computer", "ceoPainting", "wallEmployeeImage");
     StyleManager.setClueHover("computer", false);
     // setting vault style
     StyleManager.setItemsHoverColour(

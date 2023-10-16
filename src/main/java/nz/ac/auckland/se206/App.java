@@ -158,7 +158,7 @@ public class App extends Application {
     // DONT DELETE, ensures object starts on find keys which is important for ai to work
     // GameManager.completeObjective();
 
-    Parent root = SceneManager.getUiRoot(Scenes.MAIN_MENU);
+    Parent root = SceneManager.getUiRoot(Scenes.LASERCUTTING);
 
     scene = new Scene(root, 1000, 700);
     stage.setScene(scene);
@@ -202,6 +202,6 @@ public class App extends Application {
     SceneManager.changeUi(SceneManager.Scenes.EYESCANNER, loadFxml("eyescanner"));
     SceneManager.changeUi(SceneManager.Scenes.CHEMICALMIXING, loadFxml("chemicalmixing"));
     SceneManager.changeUi(SceneManager.Scenes.CONNECTDOTS, loadFxml("connectdots"));
-    SceneManager.changeUi(SceneManager.Scenes.LASERCUTTING, loadFxml("laserCutting"));
+    SceneManager.changeUi(SceneManager.Scenes.LASERCUTTING, loadFxml("laserCut"));
   }
 }

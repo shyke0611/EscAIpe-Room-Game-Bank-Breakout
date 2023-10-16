@@ -40,9 +40,6 @@ public class VaultController extends Controller {
   @FXML private Rectangle whiteBackground;
   @FXML private Rectangle laserCuttingScene;
   @FXML private ImageView vaultDoor;
-  @FXML private ImageView goldDoor;
-  @FXML private ImageView silverDoor;
-  @FXML private ImageView bronzeDoor;
   @FXML private ImageView realvaultbackground;
   @FXML private ImageView bomblogo;
   @FXML private TextArea vaultTextArea;
@@ -86,6 +83,10 @@ public class VaultController extends Controller {
   @FXML private HBox switchHolder;
   @FXML private HBox walkietalkieHolder;
   @FXML private ImageView vaultWalkieTalkie;
+  @FXML private ImageView escapeDoorImage;
+  @FXML private ImageView silverDoorImage;
+  @FXML private ImageView goldDoorImage;
+  @FXML private ImageView bronzeDoorImage;
 
   // initialising instances
   private StyleManager styleManager = StyleManager.getInstance();
@@ -109,9 +110,6 @@ public class VaultController extends Controller {
         bronzeDoorHolder,
         silverDoorHolder,
         goldDoorHolder,
-        bronzeDoor,
-        silverDoor,
-        goldDoor,
         lootBtnHolder,
         lootLbl,
         realvaultbackground,
@@ -121,7 +119,11 @@ public class VaultController extends Controller {
         walkietalkieText,
         bomblogo,
         exitDoor,
-        exitHolder);
+        exitHolder,
+        escapeDoorImage,
+        silverDoorImage,
+        goldDoorImage,
+        bronzeDoorImage,escapeDoor);
 
     // adding relevant items to the stylemanager list
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
@@ -138,6 +140,7 @@ public class VaultController extends Controller {
         "silverDoorHolder",
         "goldDoorHolder");
   }
+
 
   /** Shows the money collected when loot is opened. */
   public void showMoneyCollected() {
@@ -351,11 +354,11 @@ public class VaultController extends Controller {
       String difficultyText = "Difficulty: ";
 
       // setting style for relevant vaults
-      if (door.contains("goldDoor") && !GameState.isFirstRiddleSolved) {
+      if (door.contains("goldDoorImage") && !GameState.isFirstRiddleSolved) {
         setInfoText(moneyText + "20,000,000", difficultyText + "★★★★★");
-      } else if (door.contains("silverDoor")) {
+      } else if (door.contains("silverDoorImage")) {
         setInfoText(moneyText + "10,000,000", difficultyText + "★★★☆☆");
-      } else if (door.contains("bronzeDoor")) {
+      } else if (door.contains("bronzeDoorImage")) {
         setInfoText(moneyText + "5,000,000", difficultyText + "★☆☆☆☆");
       }
     } else {
@@ -375,9 +378,9 @@ public class VaultController extends Controller {
     moneyValue.setText(null);
     difficultyValue.setText(null);
     // remove style
-    setDoorStyle(goldDoor, "");
-    setDoorStyle(bronzeDoor, "");
-    setDoorStyle(silverDoor, "");
+    setDoorStyle(goldDoorImage, "");
+    setDoorStyle(bronzeDoorImage, "");
+    setDoorStyle(silverDoorImage, "");
   }
 
   /**

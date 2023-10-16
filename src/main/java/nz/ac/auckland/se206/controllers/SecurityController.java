@@ -57,11 +57,12 @@ public class SecurityController extends Controller {
   @FXML private TextArea securityTextArea;
   @FXML private TextField securityInputField;
   @FXML private ImageView securityWalkieTalkie;
-  @FXML private StackPane wallEmployee;
+  @FXML private StackPane wallEmployeeImage;
   @FXML private StackPane hoverEmployee;
   @FXML private Label employeeName;
   @FXML private Label moneyCount;
   @FXML private ImageView securityNotification;
+  @FXML private ImageView computerImage;
 
   // Managers and controllers
   private StyleManager styleManager = StyleManager.getInstance();
@@ -86,10 +87,10 @@ public class SecurityController extends Controller {
     WalkieTalkieManager.addWalkieTalkieNotification(this, securityNotification);
     GameManager.addMoneyGainedLabel(this, moneyCount);
     // add styling
-    styleManager.addHoverItems(computer, electricityBox, wallEmployee, securitybackground);
+    styleManager.addHoverItems(computer, electricityBox, wallEmployeeImage, securitybackground,computerImage);
     StyleManager.setItemsMessage("A computer...?", "computer");
     StyleManager.setItemsMessage("no need to open this right now", "electricityBox");
-    StyleManager.setItemsMessage("Employee of the month..?", "wallEmployee");
+    StyleManager.setItemsMessage("Employee of the month..?", "wallEmployeeImage");
   }
 
   /**

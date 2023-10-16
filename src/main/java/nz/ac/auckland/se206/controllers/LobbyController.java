@@ -66,8 +66,8 @@ public class LobbyController extends Controller {
   @FXML private HBox guard;
   @FXML private ImageView zzz1;
   @FXML private ImageView zzz2;
-  @FXML private ImageView drawer;
-  @FXML private ImageView openDrawer;
+  @FXML private ImageView drawerImage;
+  @FXML private ImageView openDrawerImage;
   @FXML private ImageView largePlaque;
   @FXML private ImageView enlargedPainting;
   @FXML private ImageView ceoPainting;
@@ -81,6 +81,12 @@ public class LobbyController extends Controller {
   @FXML private Label orderLabel;
   @FXML private Label johnIpsumLbl;
   @FXML private Label foundingDate;
+
+  @FXML private ImageView key1Image;
+  @FXML private ImageView key3Image;
+  @FXML private ImageView key4Image;
+  @FXML private ImageView guardImage;
+  @FXML private ImageView lobbypaintingImage;
 
   // Other fields
   private String randomUsername;
@@ -119,8 +125,9 @@ public class LobbyController extends Controller {
         drawerHolder,
         credentialsBook,
         credentialsNote,
-        ceoPainting,
-        lobbybackground);
+        lobbypaintingImage,
+        lobbybackground,ceoPainting,key1Image,key3Image,key4Image,guardImage,openDrawerImage,drawerImage);
+
     // setting style to items
     StyleManager.setItemsMessage(
         "Guard is watching...", "key1", "key3", "key4", "guardpocket", "guardeyes");
@@ -185,8 +192,8 @@ public class LobbyController extends Controller {
     // Opens only when key is found to the drawer
     if (GameState.isKeyFound) {
       // setting visibility
-      drawer.setVisible(false);
-      openDrawer.setVisible(true);
+      drawerImage.setVisible(false);
+      openDrawerImage.setVisible(true);
       credentialsBook.setVisible(true);
       drawerHolder.setDisable(true);
     }
