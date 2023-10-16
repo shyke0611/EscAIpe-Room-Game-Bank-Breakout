@@ -55,7 +55,6 @@ public class ChemicalMixingController extends Controller {
   @FXML private Rectangle thirdPour;
   @FXML private Rectangle fourthPour;
   @FXML private Rectangle whiteRectangle;
-  @FXML private Region ChemicalLiquid;
 
   private String randomYellow;
   private String randomRed;
@@ -68,12 +67,10 @@ public class ChemicalMixingController extends Controller {
   private StyleManager styleManager = StyleManager.getInstance();
 
   private Timeline sliderAnimation;
-  private boolean sliderMoving = false;
 
-  /**
-   * Initializes the Chemical Mixing controller and sets up the initial state of the scene. It also
-   * sets up hover animations for vile images and initializes the chemical recipe.
-   */
+  // private boolean sliderMoving = false;
+
+  /** Initialize the Chemical Mixing Controller. Sets up the initial state of the Security scene. */
   public void initialize() {
     SceneManager.setController(Scenes.CHEMICALMIXING, this);
     super.setTimerLabel(timerLabel, 3);
@@ -101,6 +98,7 @@ public class ChemicalMixingController extends Controller {
     sliderAnimation.setCycleCount(Timeline.INDEFINITE); // Repeat indefinitely
   }
 
+  /** Set up hover animations for the chemical vial images. */
   private void setUpHover() {
     // Setting up hover animations
     styleManager.addHoverItems(yellowVial, redVial, blueVial, greenVial);
@@ -108,6 +106,11 @@ public class ChemicalMixingController extends Controller {
         StyleManager.HoverColour.GREEN, "yellowVial", "redVial", "blueVial", "greenVial");
   }
 
+  /**
+   * Handle the event when a chemical vial is clicked.
+   *
+   * @param event The MouseEvent triggered by clicking a vial.
+   */
   @FXML
   public void onVialClicked(MouseEvent event) {
     ImageView image = (ImageView) event.getSource();
@@ -282,11 +285,6 @@ public class ChemicalMixingController extends Controller {
     }
   }
 
-  // @FXML
-  // public void Pour(ActionEvent event) {
-  //   ChemicalLiquid.setPrefHeight(ChemicalLiquid.getPrefHeight() + 50);
-  // }
-
   /**
    * Checks if the player has successfully completed the chemical mixing challenge. If successful,
    * it reveals the "Continue" button and win message, and increases the money to gain.
@@ -350,13 +348,18 @@ public class ChemicalMixingController extends Controller {
     // stopping slider animation
     if (sliderAnimation != null && sliderAnimation.getStatus() == Timeline.Status.RUNNING) {
       sliderAnimation.pause();
-      sliderMoving = false;
+      // sliderMoving = false;
     } else {
       sliderAnimation.play();
-      sliderMoving = true;
+      // sliderMoving = true;
     }
   }
 
+  /**
+   * Set the gradient color for the slider based on the chemical's part number.
+   *
+   * @param partNumber The part number representing the chemical.
+   */
   @FXML
   public void setSliderGraident(int partNumber) {
     Node track = slider.lookup(".track");

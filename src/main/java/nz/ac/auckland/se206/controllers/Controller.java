@@ -13,24 +13,46 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
 
+/** Abstract Controller class. */
 public abstract class Controller {
   private Label timerLabel;
   private int format;
 
+  /**
+   * Set the timer label and time format for the controller.
+   *
+   * @param timerLabel The label to display the timer.
+   * @param format The format for the timer (e.g., minutes, seconds).
+   */
   public void setTimerLabel(Label timerLabel, int format) {
     // setting timer label
     this.timerLabel = timerLabel;
     this.format = format;
   }
 
+  /**
+   * Get the timer label for the controller.
+   *
+   * @return The timer label.
+   */
   public Label getTimerLabel() {
     return timerLabel;
   }
 
+  /**
+   * Get the time format for the timer.
+   *
+   * @return The time format (e.g., minutes, seconds).
+   */
   public int getFormat() {
     return format;
   }
 
+  /**
+   * Handle the "setVault" action when interacting with doors to access the vault.
+   *
+   * @param event The mouse event triggered by interacting with the door.
+   */
   @FXML
   protected void setVault(MouseEvent event) {
     // handle visibility if laser cutting is bypassed
@@ -65,7 +87,11 @@ public abstract class Controller {
     App.setUI(Scenes.VAULT);
   }
 
-
+  /**
+   * Set up hover animation listeners for the provided nodes.
+   *
+   * @param items The nodes to apply hover animations to.
+   */
   protected void setUpListener(Node... items) {
     for (Node node : items) {
       ScaleTransition scaleTransition = AnimationManager.createScaleTransition(node);
@@ -77,28 +103,30 @@ public abstract class Controller {
     }
   }
 
+  /** Switch to the Security scene. */
   @FXML
   protected void switchToSecurity() {
     App.setUI(Scenes.SECURITY);
   }
 
+  /** Switch to the Lobby scene. */
   @FXML
   protected void switchToLobby() {
     // Switch the scene to the Lobby
     App.setUI(Scenes.LOBBY);
   }
 
+  /** Switch to the Vault scene. */
   @FXML
   protected void switchToVault() {
     // Switch the scene to the Vault
     App.setUI(Scenes.VAULT);
     if (GameState.isAlarmDisabled) {
-      StyleManager.setVisible(true,"bombHolder");
-      StyleManager.setVisible(false, "switchHolder","walkietalkieText");
+      StyleManager.setVisible(true, "bombHolder");
+      StyleManager.setVisible(false, "switchHolder", "walkietalkieText");
       StyleManager.setDisable(true, "vaultwalkietalkie");
       ImageView bomblogo = (ImageView) StyleManager.getHoverItem("bomblogo");
-      AnimationManager.fadeTransition(bomblogo, 2,0.0,1.0);
+      AnimationManager.fadeTransition(bomblogo, 2, 0.0, 1.0);
     }
   }
-
 }
