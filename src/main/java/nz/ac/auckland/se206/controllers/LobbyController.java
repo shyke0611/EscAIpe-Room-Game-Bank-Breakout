@@ -96,7 +96,7 @@ public class LobbyController extends Controller {
   private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
   private boolean isZzz1Visible = false;
 
-  /** Initialize the Lobby Controller. Sets up the initial state of the Security scene. */
+  /** Initialize the Lobby Controller. Sets up the initial state of the scene. */
   public void initialize() {
     // set method on initialisation
     SceneManager.setController(Scenes.LOBBY, this);
@@ -126,7 +126,14 @@ public class LobbyController extends Controller {
         credentialsBook,
         credentialsNote,
         lobbypaintingImage,
-        lobbybackground,ceoPainting,key1Image,key3Image,key4Image,guardImage,openDrawerImage,drawerImage);
+        lobbybackground,
+        ceoPainting,
+        key1Image,
+        key3Image,
+        key4Image,
+        guardImage,
+        openDrawerImage,
+        drawerImage);
 
     // setting style to items
     StyleManager.setItemsMessage(

@@ -94,7 +94,7 @@ public class VaultController extends Controller {
   private WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
   private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
 
-  /** Initialize the Vault controller. Sets up the initial state of the Vault scene. */
+  /** Initialize the Vault controller. Sets up the initial state of the scene. */
   public void initialize() {
     // setting up walkietalkie and controller
     SceneManager.setController(Scenes.VAULT, this);
@@ -123,7 +123,8 @@ public class VaultController extends Controller {
         escapeDoorImage,
         silverDoorImage,
         goldDoorImage,
-        bronzeDoorImage,escapeDoor);
+        bronzeDoorImage,
+        escapeDoor);
 
     // adding relevant items to the stylemanager list
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
@@ -140,7 +141,6 @@ public class VaultController extends Controller {
         "silverDoorHolder",
         "goldDoorHolder");
   }
-
 
   /** Shows the money collected when loot is opened. */
   public void showMoneyCollected() {

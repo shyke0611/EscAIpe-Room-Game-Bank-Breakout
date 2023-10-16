@@ -38,9 +38,7 @@ public class WireCuttingController extends Controller {
   private List<HBox> wiresCut;
   private WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
 
-  /**
-   * Initialize the Wire Cutting controller. It sets up the initial state of the Wire Cutting scene.
-   */
+  /** Initialize the Wire Cutting controller. It sets up the initial state of the scene. */
   public void initialize() {
     SceneManager.setController(Scenes.WIRECUTTING, this);
     GameManager.addMoneyGainedLabel(this, moneyCount);

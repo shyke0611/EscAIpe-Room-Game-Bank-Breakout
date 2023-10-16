@@ -54,7 +54,7 @@ public class DifficultyController extends Controller {
   private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
   private StyleManager styleManager = StyleManager.getInstance();
 
-  /** Initialize the Difficulty Controller. Sets up the initial state of the Security scene. */
+  /** Initialize the Difficulty Controller. Sets up the initial state of the scene. */
   public void initialize() {
     SceneManager.setController(Scenes.DIFFICULTYPAGE, this);
     styleManager.addHoverItems(itemContainer);
@@ -130,6 +130,11 @@ public class DifficultyController extends Controller {
     }
   }
 
+  /**
+   * Initializes the hacker AI with the specified difficulties.
+   *
+   * @param difficulties The difficulties to set for the hacker AI.
+   */
   public void initialiseHacker(Difficulties difficulties) {
     // set relevant methods to initialise hacker
     Task<Void> aiTask3 =
@@ -162,7 +167,7 @@ public class DifficultyController extends Controller {
   // toggling tts button
   @FXML
   private void onSoundOn() {
-    // if user wants the ai sound on 
+    // if user wants the ai sound on
     if (audiobtn.isSelected()) {
       App.setAudio(true);
       // update visual aspects

@@ -22,7 +22,7 @@ public class MainMenuController extends Controller {
   @FXML private Button instructionsBtn;
   @FXML private ImageView title;
 
-  /** Initialize the Main Menu Controller. Sets up the initial state of the Security scene. */
+  /** Initialize the Main Menu Controller. Sets up the initial state of the scene. */
   public void initialize() {
     SceneManager.setController(Scenes.MAIN_MENU, this);
   }
