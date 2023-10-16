@@ -107,7 +107,7 @@ public class WalkieTalkieManager {
     return instance;
   }
 
-  /** Toggle the Walkie Talkie Notification on */
+  /** Toggle the Walkie Talkie Notification on. */
   public static void setWalkieTalkieNotifcationOn() {
 
     for (ImageView image : walkieTalkieNotifications.values()) {

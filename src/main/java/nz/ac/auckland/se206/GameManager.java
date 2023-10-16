@@ -8,7 +8,7 @@ import nz.ac.auckland.se206.controllers.Controller;
 /** Class to manage all the game related information. */
 public class GameManager {
 
-  // The different objectives
+  /* The different objectives of the game. */
   public enum Objectives {
     START_GAME,
     GET_KEYS,
@@ -28,7 +28,7 @@ public class GameManager {
     EYE_SCANNER,
   }
 
-  // The different objectives for the doors
+  /* The different objectives for the doors. */
   public enum DoorObjectives {
     FIND_EXTRA_PASSCODE,
     CHEMICAL_MIXING,
@@ -36,14 +36,14 @@ public class GameManager {
     EYE_SCANNER,
   }
 
-  // The different doors
+  /* The different doors players can select. */
   public enum Doors {
     EASY,
     MEDIUM,
     HARD
   }
 
-  // The different difficulties
+  /* The different difficulties the player can select.*/
   public enum Difficulties {
     HARD,
     MEDIUM,
