@@ -10,21 +10,16 @@
     -fx-effect: innershadow(gaussian, rgb(255, 255, 255), 10, 0.5, 0, 0);
 }
 
+.component:pressed {
+    -fx-effect: "";
+}
+
 .roomswitchback {
     -fx-background-color: #9fd7ff;
     -fx-background-radius: 10;
     -fx-border-color: #328add;
     -fx-border-radius: 10;
 
-}
-
-.keylocations:hover {
-    -fx-effect: dropshadow(gaussian, rgba(255, 183, 0, 0.7), 5, 5, 0, 0);
-    -fx-cursor: hand;
-}
-
-.keylocations:pressed {
-    -fx-effect: null;
 }
 
 

@@ -19,7 +19,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1000.0" prefHeight="400.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.DifficultyController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1000.0" prefHeight="400.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.DifficultyController">
    <children>
       <ImageView fitHeight="759.0" fitWidth="1003.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -33,11 +33,11 @@
             </InnerShadow>
          </effect>
       </ImageView>
-      <AnchorPane fx:id="itemContainer" prefHeight="700.0" prefWidth="1000.0">
+      <AnchorPane fx:id="itemContainer" opacity="0.0" prefHeight="700.0" prefWidth="1000.0">
          <children>
-            <StackPane fx:id="audioholder" layoutX="214.0" layoutY="517.0" prefHeight="99.0" prefWidth="486.0">
+            <StackPane fx:id="audioholder" layoutX="214.0" layoutY="517.0" opacity="0.0" prefHeight="99.0" prefWidth="486.0">
                <children>
-                  <RadioButton fx:id="audiobtn" mnemonicParsing="false" onAction="#onSoundOn" prefHeight="31.0" prefWidth="171.0" text="Sound Off" textFill="WHITE">
+                  <RadioButton fx:id="audiobtn" mnemonicParsing="false" onAction="#onSoundOn" prefHeight="31.0" prefWidth="171.0" styleClass="item" stylesheets="@../css/gloweffect.css" text="Sound Off" textFill="WHITE">
                      <font>
                         <Font name="Copperplate Light" size="23.0" />
                      </font>
@@ -317,7 +317,7 @@
                   </Label>
                </children>
             </HBox>
-            <Button fx:id="playBtn" layoutX="302.0" layoutY="600.0" mnemonicParsing="false" onAction="#onStartHeist" prefHeight="76.0" prefWidth="414.0" stylesheets="@../css/mainmenu.css">
+            <Button fx:id="playBtn" layoutX="302.0" layoutY="600.0" mnemonicParsing="false" onAction="#onStartHeist" opacity="0.0" prefHeight="76.0" prefWidth="414.0" stylesheets="@../css/mainmenu.css">
                <font>
                   <Font name="BM KIRANGHAERANG OTF" size="30.0" />
                </font>

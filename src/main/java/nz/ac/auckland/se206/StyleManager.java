@@ -36,29 +36,6 @@ public class StyleManager {
   }
 
   /**
-   * Get the rgba value for the given hover colour.
-   *
-   * @param colour - The colour to get the rgba value for
-   * @return - The rgba value for the given colour
-   */
-  private static String getRgbaForHoverColour(HoverColour colour) {
-    // return the rgba value for the given colour
-    switch (colour) {
-      case RED:
-        // Red hover colour
-        return "rgba(255, 0, 0, 0.7)";
-      case GREEN:
-        // Green hover colour
-        return "rgba(34, 255, 0, 0.7)";
-      case ORANGE:
-        // Orange hover colour
-        return "rgba(255, 183, 0, 0.7)";
-      default:
-        return null;
-    }
-  }
-
-  /**
    * Get the node with the given id.
    *
    * @param node - The id of the node to get
@@ -74,23 +51,42 @@ public class StyleManager {
   }
 
   /**
+   * Gets the corresponding CSS class for a given HoverColour enum value.
+   *
+   * @param colour The HoverColour enum value for which to determine the CSS class.
+   * @return The CSS class name associated with the provided HoverColour, or an empty string for
+   *     unknown or default cases.
+   */
+  private static String getColourClassForHoverColour(HoverColour colour) {
+    switch (colour) {
+        // for red hover colour
+      case RED:
+        return "red";
+        // for green hover colour
+      case GREEN:
+        return "green";
+        // for orange hover colour
+      case ORANGE:
+        return "orange";
+      default:
+        return ""; // Handle default or unknown cases as needed
+    }
+  }
+
+  /**
    * Set the hover colour for multiple items.
    *
    * @param colour - The colour to set the hover effect to
    * @param items - The item ids for the items to set the hover effect to
    */
   public static void setItemsHoverColour(HoverColour colour, String... items) {
-    // Get the rgba value for the given colour
-    String rgba = getRgbaForHoverColour(colour);
+    String colourClass = getColourClassForHoverColour(colour);
     // For each item add a hover glow effect
     for (String item : items) {
       Node node = getHoverItem(item);
-      node.setOnMouseEntered(
-          event ->
-              node.setStyle(
-                  "-fx-effect: dropshadow(gaussian, " + rgba + ", 5, 5, 0, 0); -fx-cursor: hand;"));
-
-      node.setOnMouseExited(event -> node.setStyle(""));
+      // setting new style class
+      node.getStyleClass().clear();
+      node.getStyleClass().add(colourClass);
     }
   }
 
