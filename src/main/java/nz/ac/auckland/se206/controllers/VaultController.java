@@ -134,6 +134,7 @@ public class VaultController extends Controller {
         goldMoneyImage,
         bronzeMoneyImage);
 
+
     // adding relevant items to the stylemanager list
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     GameManager.addMoneyGainedLabel(this, moneyCount);
@@ -217,7 +218,7 @@ public class VaultController extends Controller {
     // loading relevant information
     vanController.printChatHistory();
     vanController.loadQuickHints();
-    App.setUI(Scenes.HACKERVAN);
+    App.setUi(Scenes.HACKERVAN);
   }
 
   /**
@@ -229,7 +230,7 @@ public class VaultController extends Controller {
     // when firewall is disabled execute
     if (GameState.isFirewallDisabled && GameState.isSecondRiddleSolved) {
       GameManager.setCurrentObjective(Objectives.EYE_SCANNER);
-      App.setUI(Scenes.EYESCANNER);
+      App.setUi(Scenes.EYESCANNER);
       GameState.isEyeScannerEntered = true;
       // setting style
       StyleManager.setItemsMessage("Collect guard eye sample", "guardeyes");
@@ -247,7 +248,7 @@ public class VaultController extends Controller {
     // when firewall is disabled execute
     if (GameState.isFirewallDisabled) {
       GameManager.setCurrentObjective(Objectives.CHEMICAL_MIXING);
-      App.setUI(Scenes.CHEMICALMIXING);
+      App.setUi(Scenes.CHEMICALMIXING);
     }
   }
 
@@ -285,7 +286,7 @@ public class VaultController extends Controller {
     // execute when firewall is disabled
     if (GameState.isFirewallDisabled) {
       GameManager.setCurrentObjective(Objectives.LAZER_CUTTING);
-      App.setUI(Scenes.LASERCUTTING);
+      App.setUi(Scenes.LASERCUTTING);
     }
   }
 
@@ -342,7 +343,7 @@ public class VaultController extends Controller {
   @FXML
   private void onEscape() {
     TimerControl.cancelTimer();
-    App.setUI(Scenes.GAMEFINISH);
+    App.setUi(Scenes.GAMEFINISH);
     ((GameFinishController) SceneManager.getController(Scenes.GAMEFINISH)).setGameWonPage();
   }
 

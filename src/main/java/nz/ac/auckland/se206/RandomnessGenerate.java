@@ -38,7 +38,7 @@ public class RandomnessGenerate {
     foundingDatesList = Arrays.asList("1967", "1862", "1813", "1932", "1902", "1888", "1756");
   }
 
-  // generating random login credentials for security computer log in
+  /** generate random login credentials for security computer log in */
   public static void generateRandomCredentials() {
     int randomPasswordIndex = random.nextInt(passcodeList.size());
     int randomUsernameIndex = random.nextInt(usernameList.size());
@@ -46,17 +46,26 @@ public class RandomnessGenerate {
     randomPassword = passcodeList.get(randomPasswordIndex);
   }
 
-  // generating random HBox (key location)
+  /*  generating random key location */
   public static void generateRandomKeyLocation() {
     int randomKeyLocationIndex = random.nextInt(keyLocationList.size());
     randomKeyLocation = keyLocationList.get(randomKeyLocationIndex);
   }
 
-  // method to get random wires list
+  /**
+   * method to get randomised list of wires
+   *
+   * @return - list of wires
+   */
   public static List<HBox> getRandomWires() {
     return wiresList;
   }
 
+  /**
+   * randomise the CEO's name
+   *
+   * @return - randomised CEO name
+   */
   public static String getRandomCeoName() {
     int randomCeoNameIndex = random.nextInt(CeoNames.size());
     ceoName = CeoNames.get(randomCeoNameIndex);
@@ -64,10 +73,20 @@ public class RandomnessGenerate {
     return ceoName;
   }
 
+  /**
+   * get the current CEO name
+   *
+   * @return - current CEO name
+   */
   public static String getCurrentCeoName() {
     return ceoName;
   }
 
+  /**
+   * Randomise the founding date
+   *
+   * @return - randomised founding date
+   */
   public static String getRandomFoundingDate() {
     int randomFoundingDateIndex = random.nextInt(foundingDatesList.size());
     foundingDate = foundingDatesList.get(randomFoundingDateIndex);
@@ -75,10 +94,20 @@ public class RandomnessGenerate {
     return foundingDate;
   }
 
+  /**
+   * get the current founding date
+   *
+   * @return - current founding date
+   */
   public static String getCurrentDate() {
     return foundingDate;
   }
 
+  /**
+   * Randomise the employee name
+   *
+   * @return - randomised employee name
+   */
   public static String getRandomEmployeeName() {
     int randomEmployeeNameIndex = random.nextInt(employeeNames.size());
     employeeName = employeeNames.get(randomEmployeeNameIndex);
@@ -86,47 +115,83 @@ public class RandomnessGenerate {
     return employeeName;
   }
 
+  /**
+   * get the current employee name
+   *
+   * @return - current employee name
+   */
   public static String getCurrentEmployeeName() {
     return employeeName;
   }
 
-  // Method to add HBox elements to the keyLocationList
+  /**
+   * add key location to the list
+   *
+   * @param hboxes - HBox elements storing possible objects with key
+   */
   public static void addKeyLocation(HBox... hboxes) {
     keyLocationList.addAll(Arrays.asList(hboxes));
   }
 
-  // Method to add wires to wireslist
+  /**
+   * Add wires to the list and shuffle them
+   *
+   * @param wires - HBox elements storing wires
+   */
   public static void addWires(HBox... wires) {
     List<HBox> shuffledWires = Arrays.asList(wires);
     Collections.shuffle(shuffledWires);
     wiresList.addAll(shuffledWires);
   }
 
-  // getter for passcode
+  /**
+   * get the passcode
+   *
+   * @return - passcode
+   */
   public static String getPasscode() {
     return randomPassword;
   }
 
-  // getter for username
+  /**
+   * get the username
+   *
+   * @return - username
+   */
   public static String getUsername() {
     return randomUsername;
   }
 
-  // getter for key location
+  /**
+   * get the key location
+   *
+   * @return - key location
+   */
   public static HBox getkeyLocation() {
     return randomKeyLocation;
   }
 
+  /**
+   * get a random colour value between 0 and 255 for r g b values
+   *
+   * @return - random colour value
+   */
   public static int getRandomColourValue() {
     return random.nextInt(255);
   }
 
+  /**
+   * get a random chemical amount to be used in the chemical puzzle
+   *
+   * @return - random chemical amount
+   */
   public static String getRandomChemicalAmount() {
     int randomChemialAmountIndex = random.nextInt(partsAmount.size());
     randomChemialAmount = partsAmount.get(randomChemialAmountIndex);
     return randomChemialAmount;
   }
 
+  /** Clear the lists storing objects for this round */
   public static void reset() {
     keyLocationList.clear();
     wiresList.clear();

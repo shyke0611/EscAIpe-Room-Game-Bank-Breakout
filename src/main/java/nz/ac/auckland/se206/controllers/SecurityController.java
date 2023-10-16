@@ -116,7 +116,7 @@ public class SecurityController extends Controller {
     // loading relevant information
     vanController.printChatHistory();
     vanController.loadQuickHints();
-    App.setUI(Scenes.HACKERVAN);
+    App.setUi(Scenes.HACKERVAN);
   }
 
   /**
@@ -131,7 +131,7 @@ public class SecurityController extends Controller {
     if (!GameState.isWiresCut && GameState.isAlarmTripped) {
       StyleManager.setClueHover("electricityBox", false);
       StyleManager.removeItemsMessage("electricityBox");
-      App.setUI(Scenes.WIRECUTTING);
+      App.setUi(Scenes.WIRECUTTING);
       // when wire is cut
     } else if (GameState.isWiresCut) {
       electricityBox.setDisable(true);
@@ -170,12 +170,12 @@ public class SecurityController extends Controller {
       logInScreen.setVisible(true);
       // if connect the dot puzzle is reached
     } else if (GameState.isConnectDotreached) {
-      App.setUI(Scenes.CONNECTDOTS);
+      App.setUi(Scenes.CONNECTDOTS);
     } else {
       // go straight to computer scene
       logInScreen.setVisible(false);
       GameManager.setCurrentObjective(GameManager.Objectives.DISABLE_FIREWALL);
-      App.setUI(Scenes.COMPUTER);
+      App.setUi(Scenes.COMPUTER);
       StyleManager.removeItemsMessage("computer");
     }
     StyleManager.setClueHover("computer", false);
@@ -233,7 +233,7 @@ public class SecurityController extends Controller {
     // sets relevant method for when credentials are correct
     loginMsgLbl.setText("Success");
     GameState.isSecurityComputerLoggedIn = true;
-    App.setUI(Scenes.COMPUTER);
+    App.setUi(Scenes.COMPUTER);
     // setting style
     StyleManager.setItemsHoverColour(HoverColour.GREEN, "computer");
     StyleManager.removeItemsMessage("computer");

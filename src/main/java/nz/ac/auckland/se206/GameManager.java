@@ -53,7 +53,6 @@ public class GameManager {
 
   private static int questionsCorrect = 0;
   private static Doors selectedDoor;
-  private static GameManager instance = new GameManager();
 
   private static Objectives activeObjective = Objectives.START_GAME;
   private static DoorObjectives activeDoorObjective = null;
@@ -63,6 +62,12 @@ public class GameManager {
   private static int moneyGained = 0;
   private static int moneyToGain = 0;
 
+  /**
+   * Set variables for a new game
+   *
+   * @param difficulty - The difficulty of the game
+   * @param minutes - The amount of minutes the game will last
+   */
   public static void createGame(Difficulties difficulty, int minutes) {
     // Create the difficulty
     switch (difficulty) {
@@ -89,14 +94,17 @@ public class GameManager {
     TimerControl.setTimer(minutes);
   }
 
+  /**
+   * Add a label to the money gained labels
+   *
+   * @param controller - The controller the label is in
+   * @param label - The label to add
+   */
   public static void addMoneyGainedLabel(Controller controller, Label label) {
     moneyGainedLabels.put(controller, label);
   }
 
-  public static GameManager getInstance() {
-    return instance;
-  }
-
+  /** Reset the game and everthing related to that round */
   public static void resetGame() {
     // Reset the game and all variables/classes
     resetGameManager();
@@ -114,6 +122,7 @@ public class GameManager {
     }
   }
 
+  /** Reset the game manager */
   public static void resetGameManager() {
     questionsCorrect = 0;
     selectedDoor = null;
@@ -123,27 +132,59 @@ public class GameManager {
     moneyToGain = 0;
   }
 
+  /**
+   * Get the number of questions correct
+   *
+   * @return - The number of questions correct
+   */
   public static int getQuestionsCorrect() {
     return questionsCorrect;
   }
 
+  /**
+   * Set the number of questions correct
+   *
+   * @param questionsCorrect - The number of questions correct
+   */
   public static void setQuestionsCorrect(int questionsCorrect) {
     GameManager.questionsCorrect = questionsCorrect;
   }
 
+  /**
+   * Get the selected door
+   *
+   * @return - The selected door
+   */
   public static Doors getSelectedDoor() {
     return selectedDoor;
   }
 
+  /**
+   * Set the selected door
+   *
+   * @param selectedDoor - The selected door
+   */
   public static void setSelectedDoor(Doors selectedDoor) {
     GameManager.selectedDoor = selectedDoor;
   }
 
+  /**
+   * Get the current difficulty
+   *
+   * @return - The current difficulty
+   */
   public static Difficulties getDifficulty() {
     return difficulty;
   }
 
+  /**
+   * Get the difficulty as a string
+   *
+   * @param difficulty - The difficulty to get as a string
+   * @return - The difficulty as a string
+   */
   public static String getDifficultyString(Difficulties difficulty) {
+    // Return the difficulty as a string
     switch (difficulty) {
       case EASY:
         return "Easy";
@@ -156,11 +197,17 @@ public class GameManager {
     }
   }
 
+  /**
+   * Set the current objective
+   *
+   * @param objective - The objective to set
+   */
   public static void setCurrentObjective(Objectives objective) {
     walkieTalkieManager.enableQuickHintBtns();
     activeObjective = objective;
   }
 
+  /** Progress to the next objective depending on what the current objective is */
   public static void completeObjective() {
 
     switch (activeObjective) {
@@ -258,13 +305,24 @@ public class GameManager {
     }
   }
 
+  /**
+   * Get the current objective
+   *
+   * @return - The current objective
+   */
   public static Objectives getCurrentObjective() {
     return activeObjective;
   }
 
+  /**
+   * Get the current objective as a string
+   *
+   * @return - A String of the current objective
+   */
   public static String getObjectiveString() {
     // Return the objective as a string
     switch (activeObjective) {
+        // Initial game objectives
       case START_GAME:
         return "Start Game";
       case GET_KEYS:
@@ -273,6 +331,8 @@ public class GameManager {
         return "Find Passcode";
       case DISABLE_FIREWALL:
         return "Disable Firewall";
+
+        // Door objectives and escape objectives
       case COMPLETE_MINIGAME:
         return "Complete Minigame";
       case SELECT_VAULT_DOOR:
@@ -287,6 +347,8 @@ public class GameManager {
         return "Disable Laser Trap";
       case FIND_ESCAPE:
         return "Find Escape";
+
+        // If game is over or objective not in list return null
       case GAME_OVER:
         return null;
       default:
@@ -294,33 +356,57 @@ public class GameManager {
     }
   }
 
+  /**
+   * Increase the money to gain
+   *
+   * @param amount - The amount to increase the money to gain by
+   */
   public static void increaseMoneyToGain(int amount) {
     moneyToGain += amount;
   }
 
+  /** Collect all money to gain and reset money to gain */
   public static void collectMoney() {
     moneyGained = moneyToGain;
     moneyToGain = 0;
   }
 
+  /** Lose all money gained */
   public static void loseMoney() {
     moneyGained = 0;
   }
 
+  /**
+   * Get the money gained
+   *
+   * @return - The money gained
+   */
   public static int getMoneyGained() {
     return moneyGained;
   }
 
+  /**
+   * Get the money to gain
+   *
+   * @return - The money to gain formatted as a String
+   */
   public static String getMoneyToGain() {
     return formatMoney(moneyToGain);
   }
 
+  /** Set the labels for the money Gained so far */
   public static void setMoneyGained() {
     for (Label label : moneyGainedLabels.values()) {
       label.setText(moneyToGain / 1000000 + "M");
     }
   }
 
+  /**
+   * Format money as a string
+   *
+   * @param money - The money to format
+   * @return - The money formatted as a string
+   */
   public static String formatMoney(int money) {
     if (money == 0) {
       return "$0";
@@ -328,9 +414,5 @@ public class GameManager {
 
     int millions = money / 1000000;
     return "$" + millions + ",000,000";
-  }
-
-  public void setDifficulty(Difficulties d) {
-    difficulty = d;
   }
 }

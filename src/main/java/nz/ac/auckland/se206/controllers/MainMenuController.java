@@ -38,7 +38,7 @@ public class MainMenuController extends Controller {
     // animation settings for smooth play
     AnimationManager.roomSwitchAnimation(
         Duration.seconds(1),
-        () -> App.setUI(Scenes.DIFFICULTYPAGE),
+        () -> App.setUi(Scenes.DIFFICULTYPAGE),
         () -> AnimationManager.fadeTransition(StyleManager.getHoverItem("itemContainer"), 2, 0, 1));
     buttonsContainer.setDisable(true);
     mainMenuAnimationPlay();
@@ -57,7 +57,7 @@ public class MainMenuController extends Controller {
   /** Navigate to the Instructions scene when the "Instructions" button is clicked. */
   @FXML
   private void onGoToInstructions() {
-    App.setUI(Scenes.INSTRUCTIONS);
+    App.setUi(Scenes.INSTRUCTIONS);
   }
 
   /** Play the main menu animation by fading out the title and buttons container. */

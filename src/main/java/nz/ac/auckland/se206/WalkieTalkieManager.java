@@ -36,34 +36,77 @@ public class WalkieTalkieManager {
   private static HashMap<Controller, Button> quickHintBtns = new HashMap<>();
 
   // Static Methods
+
+  /**
+   * add a walkie talkie to the map
+   *
+   * @param controller - The controller associated
+   * @param walkietalkie - The walkie talkie scene object to add
+   */
   public static void addWalkieTalkie(Controller controller, VBox walkietalkie) {
     walkieTalkieMap.put(controller, walkietalkie);
   }
 
+  /**
+   * Add a walkie talkie notification to the map
+   *
+   * @param controller - The controller associated
+   * @param notification - The notification scene object to add
+   */
   public static void addWalkieTalkieNotification(Controller controller, ImageView notification) {
     walkieTalkieNotifications.put(controller, notification);
   }
 
+  /**
+   * Add a walkie talkie text area to the map
+   *
+   * @param controller - The controller associated
+   * @param textArea - The text area scene object to add
+   */
   public static void addWalkieTalkieTextArea(Controller controller, TextArea textArea) {
     walkieTalkieTextAreas.put(controller, textArea);
   }
 
+  /**
+   * Add a walkie talkie hint to the map
+   *
+   * @param controller - The controller associated
+   * @param hint - The hint scene object to add
+   */
   public static void addWalkieTalkieHint(Controller controller, Label hint) {
     walkieTalkieHints.put(controller, hint);
   }
 
+  /**
+   * Add a walkie talkie image to the map
+   *
+   * @param controller - The controller associated
+   * @param walkietalkie - The walkie talkie image scene object to add
+   */
   public static void addWalkieTalkieImage(Controller controller, ImageView walkietalkie) {
     walkieTalkieImageMap.put(controller, walkietalkie);
   }
 
+  /**
+   * Add a quick hint button to the map
+   *
+   * @param controller - The controller associated
+   * @param btn - The quick hint button scene object to add
+   */
   public static void addQuickHintBtn(Controller controller, Button btn) {
     quickHintBtns.put(controller, btn);
   }
 
+  /**
+   * Get the instance of the WalkieTalkieManager
+   *
+   * @return - The instance of the WalkieTalkieManager
+   */
   public static WalkieTalkieManager getInstance() {
     return instance;
   }
 
+  /** Toggle the Walkie Talkie Notification on */
   public static void setWalkieTalkieNotifcationOn() {
 
     for (ImageView image : walkieTalkieNotifications.values()) {
@@ -73,6 +116,7 @@ public class WalkieTalkieManager {
     }
   }
 
+  /** Toggle the walkie talkie to be open */
   public static void setWalkieTalkieOpen() {
     Controller activeController = SceneManager.getActiveController();
     walkieTalkieOpen = true;
@@ -88,10 +132,12 @@ public class WalkieTalkieManager {
     }
   }
 
+  /** Toggle the walkie talkie to be closed and the notification to disappear */
   public static void toggleWalkieTalkie() {
     walkieTalkieOpen = !walkieTalkieOpen;
     Controller activeController = SceneManager.getActiveController();
 
+    // Toggle the visibility of the notification
     for (ImageView image : walkieTalkieNotifications.values()) {
       if (image != null) {
         image.setVisible(false);
@@ -109,11 +155,21 @@ public class WalkieTalkieManager {
     }
   }
 
+  /** Reset the lists of scene objects */
   public static void reset() {
     walkieTalkieOpen = false;
     walkieTalkieMap.clear();
     walkieTalkieImageMap.clear();
     walkieTalkieHints.clear();
+  }
+
+  /**
+   * Get the walkie talkie open status
+   *
+   * @return - The walkie talkie open status
+   */
+  public static boolean getWalkieTalkieOpen() {
+    return walkieTalkieOpen;
   }
 
   // Instance Fields
@@ -123,10 +179,23 @@ public class WalkieTalkieManager {
   private int dotCount = 1;
 
   // Instance Methods
+
+  /**
+   * Get the walkie talkie open status
+   *
+   * @return - The walkie talkie open status
+   */
   public boolean isWalkieTalkieOpen() {
     return walkieTalkieOpen;
   }
 
+  /**
+   * Run the GPT chatbot
+   *
+   * @param msg - The message to send to the chatbot
+   * @return - The response from the chatbot
+   * @throws ApiProxyException - If there is an error connecting with the API
+   */
   public ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
     // Add the message to the request
     chatCompletionRequest.addMessage(msg);
@@ -143,6 +212,7 @@ public class WalkieTalkieManager {
     }
   }
 
+  /** Clear the text of all walkie-talkies */
   public void clearWalkieTalkie() {
 
     for (VBox vertBox : walkieTalkieMap.values()) {
@@ -165,6 +235,11 @@ public class WalkieTalkieManager {
     }
   }
 
+  /**
+   * Set the text of all walkie-talkies
+   *
+   * @param msg - The message to set the text to
+   */
   public void setWalkieTalkieText(ChatMessage msg) {
 
     for (TextArea textArea : walkieTalkieTextAreas.values()) {
@@ -172,12 +247,18 @@ public class WalkieTalkieManager {
     }
   }
 
+  /**
+   * Set the hint remaining text of all walkie-talkies
+   *
+   * @param hintCount - The hint count to set the text to
+   */
   public void setHintText(String hintCount) {
     for (Label label : walkieTalkieHints.values()) {
       label.setText(hintCount);
     }
   }
 
+  /** Start an image animation while waiting for response */
   public void startAnimation() {
     // creating new timeline for animation
     timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> updateTypingLabel()));
@@ -196,6 +277,7 @@ public class WalkieTalkieManager {
     timeline.play();
   }
 
+  /** Start a dot animation while waiting for response */
   private void updateTypingLabel() {
     // creating dots for animation
     StringBuilder dots = new StringBuilder();
@@ -212,6 +294,7 @@ public class WalkieTalkieManager {
     }
   }
 
+  /** Stop the image animation */
   public void stopAnimation() {
     if (timeline != null) {
       timeline.stop();
@@ -223,18 +306,25 @@ public class WalkieTalkieManager {
     }
   }
 
+  /** Disable the quick hint button */
   public void disableQuickHintBtns() {
     for (Button btn : quickHintBtns.values()) {
       btn.setDisable(true);
     }
   }
 
+  /** Enable the quick hint button */
   public void enableQuickHintBtns() {
     for (Button btn : quickHintBtns.values()) {
       btn.setDisable(false);
     }
   }
 
+  /**
+   * Check if the quick hint button is visible
+   *
+   * @return - false if the quick hint button is disabled, true otherwise
+   */
   public Boolean isQuickHintBtnsVisible() {
     for (Button btn : quickHintBtns.values()) {
       if (btn.isDisable()) {
@@ -244,9 +334,5 @@ public class WalkieTalkieManager {
       }
     }
     return false;
-  }
-
-  public static boolean getWalkieTalkieOpen() {
-    return walkieTalkieOpen;
   }
 }

@@ -145,7 +145,7 @@ public class ComputerController extends Controller {
    */
   @FXML
   private void onGoBack(ActionEvent event) {
-    App.setUI(Scenes.SECURITY);
+    App.setUi(Scenes.SECURITY);
   }
 
   /**
@@ -398,7 +398,7 @@ public class ComputerController extends Controller {
   @FXML
   private void onSwitchToHacker() {
     // switch to hacker van
-    App.setUI(Scenes.HACKERVAN);
+    App.setUi(Scenes.HACKERVAN);
   }
 
   /** Updates the "Processing" label with animation dots. */
@@ -474,7 +474,7 @@ public class ComputerController extends Controller {
   @FXML
   private void connectDots() {
     GameState.isConnectDotreached = true;
-    App.setUI(Scenes.CONNECTDOTS);
+    App.setUi(Scenes.CONNECTDOTS);
   }
 
   /** Appends chat messages to the computer's security text area with typing effect. */

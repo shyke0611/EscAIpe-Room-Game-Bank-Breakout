@@ -24,12 +24,21 @@ public class StyleManager {
   private static Map<Node, Tooltip> tooltipMap = new HashMap<>();
   private static List<Node> hoverItemsList = new ArrayList<>();
 
+  /**
+   * Get the instance of the StyleManager
+   *
+   * @return
+   */
   public static StyleManager getInstance() {
     return instance;
   }
 
-  private StyleManager() {}
-
+  /**
+   * Get the rgba value for the given hover colour
+   *
+   * @param colour - The colour to get the rgba value for
+   * @return - The rgba value for the given colour
+   */
   private static String getRgbaForHoverColour(HoverColour colour) {
     // return the rgba value for the given colour
     switch (colour) {
@@ -47,12 +56,12 @@ public class StyleManager {
     }
   }
 
-  // adds Items into arraylist
-  public void addHoverItems(Node... items) {
-    hoverItemsList.addAll(List.of(items));
-  }
-
-  // get specified node
+  /**
+   * Get the node with the given id
+   *
+   * @param node - The id of the node to get
+   * @return - The node with the given id
+   */
   public static Node getHoverItem(String node) {
     for (Node item : hoverItemsList) {
       if (item.getId().toString().equals(node)) {
@@ -62,7 +71,12 @@ public class StyleManager {
     return null;
   }
 
-  // set hover items for multiple items
+  /**
+   * Set the hover colour for multiple items
+   *
+   * @param colour - The colour to set the hover effect to
+   * @param items - The item ids for the items to set the hover effect to
+   */
   public static void setItemsHoverColour(HoverColour colour, String... items) {
     // Get the rgba value for the given colour
     String rgba = getRgbaForHoverColour(colour);
@@ -78,20 +92,36 @@ public class StyleManager {
     }
   }
 
-  // toggles disability of specified items
+  /**
+   * Set the disable value for multiple items
+   *
+   * @param value - The value to set the disable property to
+   * @param items - The item ids for the items to set the disable property to
+   */
   public static void setDisable(boolean value, String... items) {
     for (String item : items) {
       getHoverItem(item).setDisable(value);
     }
   }
 
-  // toggles visibility of specified items
+  /**
+   * Set the visible value for multiple items
+   *
+   * @param value - The value to set the visible property to
+   * @param items - The item ids for the items to set the visible property to
+   */
   public static void setVisible(boolean value, String... items) {
     for (String item : items) {
       getHoverItem(item).setVisible(value);
     }
   }
 
+  /**
+   * Set the tooltip message for multiple items
+   *
+   * @param message - The message to set
+   * @param items - The item ids for the items to set the message to
+   */
   public static void setItemsMessage(String message, String... items) {
     // Go through each item
     for (String item : items) {
@@ -109,7 +139,11 @@ public class StyleManager {
     }
   }
 
-  // Remove tooltips for multiple items
+  /**
+   * Remove tooltip messages for multiple items
+   *
+   * @param items - The item ids for the items to remove the tooltips from
+   */
   public static void removeItemsMessage(String... items) {
     for (String item : items) {
       Node node = getHoverItem(item);
@@ -121,6 +155,12 @@ public class StyleManager {
     }
   }
 
+  /**
+   * Toggle the hover animation for an item
+   *
+   * @param item - The item to set the hover animation for
+   * @param isOn - Whether the hover animation should be on or off
+   */
   public static void setClueHover(String item, boolean isOn) {
     for (Node node : hoverItemsList) {
       if (node.getId().equals(item)) {
@@ -129,6 +169,11 @@ public class StyleManager {
     }
   }
 
+  /**
+   * Toggle the alarm for the game
+   *
+   * @param on - Whether the alarm should be on or off
+   */
   public static void setAlarm(boolean on) {
     if (on) {
       App.textToSpeech("Alarm Triggered");
@@ -164,7 +209,8 @@ public class StyleManager {
     }
   }
 
-  // setting style for items when alarm is triggered
+
+  /** Set the styling for everything needed when the alarm goes off */
   private static void setAlarmStyle() {
     setClueHover("guardpocket", true);
     setItemsMessage("something is inside", "guardpocket");
@@ -173,8 +219,13 @@ public class StyleManager {
     setItemsHoverColour(HoverColour.GREEN, "guardpocket", "electricityBox");
   }
 
-  // set of items to disable when alarm triggers
+  /**
+   * Create a set of items to disable when alarm is triggered
+   *
+   * @return - The set of items to disable when alarm is triggered
+   */
   private static Set<String> createdisableIdSet() {
+    // Create a set of items to disable when alarm is triggered
     return new HashSet<>(
         Arrays.asList(
             "guard",
@@ -194,8 +245,15 @@ public class StyleManager {
             "exitDoor"));
   }
 
-  // applying lighting effect to specified items
+
+  /**
+   * Apply or remove a lighting effect to the given item
+   *
+   * @param item - The item to apply the lighting effect to
+   * @param on - Whether the lighting effect should be on or off
+   */
   private static void applyLightingEffect(Node item, Boolean on) {
+    // Create a lighting effect when on
     if (on) {
       Lighting lighting = new Lighting();
       lighting.setDiffuseConstant(0.4);
@@ -203,12 +261,25 @@ public class StyleManager {
       lighting.setSpecularExponent(3.0);
       item.setEffect(lighting);
     } else {
+      // Remove the effect when off
       item.setEffect(null);
     }
   }
 
+  /** Reset the lists relating to one round */
   public static void reset() {
     tooltipMap.clear();
     hoverItemsList.clear();
+  }
+
+  private StyleManager() {}
+
+  /**
+   * Add items to the hover items list
+   *
+   * @param items - The items to add
+   */
+  public void addHoverItems(Node... items) {
+    hoverItemsList.addAll(List.of(items));
   }
 }

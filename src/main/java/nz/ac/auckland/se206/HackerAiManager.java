@@ -36,13 +36,13 @@ public class HackerAiManager {
   private ChatMessage tellAiHint;
   private String currentStage;
   private String hint;
-  private ChatMessage tellAiContext;
   private boolean userNeedsHelp;
 
   private ChatCompletionRequest chatCompletionRequest;
   private Difficulties currentDifficulty;
   private ChatMessage gptCall;
 
+  /** Constructor for HackerAiManager - also initialises the mappings */
   public HackerAiManager() {
     instance = this;
     // Initialize the hint mappings
@@ -97,11 +97,21 @@ public class HackerAiManager {
     contextMappsing.put("Find Escape", "The player placed the bomb in the vault and armed it");
   }
 
-  // Method to set hint limits for different game stages
+  /**
+   * Set the hint limit.
+   *
+   * @param limit - The hint limit.
+   */
   public void setHintLimit(int limit) {
     hintLimit = limit;
   }
 
+  /**
+   * Initialise the ai based on the difficulty.
+   *
+   * @param difficulty - The difficulty to initialise the ai for.
+   * @throws ApiProxyException - If the ai fails to connect.
+   */
   public void initialiseHacker(Difficulties difficulty) throws ApiProxyException {
 
     // Initialise the ai based on the difficulty
@@ -141,19 +151,35 @@ public class HackerAiManager {
     }
   }
 
+  /** Decrease the hint counter */
   public void decrementHintCounter() {
     hintCounter--;
   }
 
+  /**
+   * Get the hint limit.
+   *
+   * @return - The hint limit.
+   */
   public int getHintLimit() {
     return hintLimit;
   }
 
-  // Method to get a hint for the current game stage
+  /**
+   * Get the hint for the current game stage.
+   *
+   * @param currentStage - The current game stage.
+   * @return - The corresponding hint for the current game stage.
+   */
   public String getHintForCurrentStage(String currentStage) {
     return hintMappings.getOrDefault(currentStage, "No hint available for this stage.");
   }
 
+  /**
+   * Get a quick hint through button for the current game stage if allowed.
+   *
+   * @return - The quick hint for the current game stage or the text when not allowed.
+   */
   public String getQuickHint() {
     currentStage = GameManager.getObjectiveString();
 
@@ -190,6 +216,11 @@ public class HackerAiManager {
     return hint;
   }
 
+  /**
+   * Store the ai hint in the hint history.
+   *
+   * @param msg - The ai hint to store.
+   */
   public void storeAiHint(ChatMessage msg) {
     String hint = msg.getContent();
     // Check if the hint is unique
@@ -200,6 +231,12 @@ public class HackerAiManager {
     }
   }
 
+  /**
+   * Check if the hint already exists in the hint history.
+   *
+   * @param existingHint - The hint to check.
+   * @return - True if the hint exists in the hint history, false otherwise.
+   */
   public boolean stringExists(String existingHint) {
     for (String hint : hintHistory) {
       if (hint.equals(existingHint)) {
@@ -209,6 +246,7 @@ public class HackerAiManager {
     return false;
   }
 
+  /** Store the quick hint in the hint history */
   public void storeQuickHint() {
 
     String hint = getQuickHint();
@@ -225,21 +263,39 @@ public class HackerAiManager {
     }
   }
 
+  /**
+   * Add a chat to the chat history.
+   *
+   * @param chat - The chat to add.
+   */
   public void addChatHistory(String chat) {
     chatHistory.add(chat);
   }
 
+  /**
+   * Get the chat history.
+   *
+   * @return - The chat history.
+   */
   public List<String> getChatHistory() {
     return chatHistory;
   }
 
-  // Method gets gets the current stages hint and feeds that to the ai before feeding the ai the
-  // users message
+  //
+  /**
+   * Method gets the current stages hint and feeds that to the ai before feeding the ai the users
+   * message
+   *
+   * @param msg - The message to process
+   * @return - The response from the ai
+   * @throws ApiProxyException - If the ai fails to connect
+   */
   public ChatMessage processInput(ChatMessage msg) throws ApiProxyException {
     currentStage = GameManager.getObjectiveString();
     System.out.println(currentStage);
     userNeedsHelp = false;
 
+    // Check if the hint limit has been reached for medium difficulty
     if (hintCounter <= 0 && currentDifficulty == Difficulties.MEDIUM) {
       tellAiHint =
           new ChatMessage(
@@ -268,6 +324,7 @@ public class HackerAiManager {
       decrementHintCounter();
     }
 
+    // Check if the user is asking for help in easy mode
     if (currentDifficulty == Difficulties.EASY) {
       // System.out.println("typing");
       if (userNeedsHelp) {
@@ -321,6 +378,12 @@ public class HackerAiManager {
     return response;
   }
 
+  /**
+   * Check if the user is asking for help.
+   *
+   * @param msg - The message to check.
+   * @return - True if the user is asking for help, false otherwise.
+   */
   public boolean userIsAiAskingForHelp(String msg) {
     // Convert the message to lowercase for case-insensitive matching
     String lowercaseMsg = msg.toLowerCase();
@@ -350,6 +413,11 @@ public class HackerAiManager {
     return false; // No help-related keywords found in the message
   }
 
+  /**
+   * Get the chat history after formatting it.
+   *
+   * @return - The formatted chat history.
+   */
   public String getFormattedChatHistory() {
     // Initialize chat history text area
     StringBuilder chatHistoryText = new StringBuilder();
@@ -360,6 +428,11 @@ public class HackerAiManager {
     return chatHistoryText.toString();
   }
 
+  /**
+   * Get the hint history after formatting it.
+   *
+   * @return - The formatted hint history.
+   */
   public String getFormattedHintHistory() {
     // Initialize chat history text area
     StringBuilder hintHistoryText = new StringBuilder();
@@ -370,6 +443,13 @@ public class HackerAiManager {
     return hintHistoryText.toString();
   }
 
+  /**
+   * Send a message to the ai and return the response.
+   *
+   * @param msg - The message to send to the ai.
+   * @return - The response from the ai.
+   * @throws ApiProxyException - If the request to the ai fails.
+   */
   public ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
 
     chatCompletionRequest.addMessage(msg);

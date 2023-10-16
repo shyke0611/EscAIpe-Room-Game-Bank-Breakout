@@ -15,10 +15,23 @@ public class TimerControl {
   private static Timer timer;
   private static TimerTask task;
 
+  /**
+   * Get the time in the given format
+   *
+   * @param format - An int representing the format to get the time in
+   * @return - The time in the given format
+   */
   public static String getTime(int format) {
     return formatTime(count, format);
   }
 
+  /**
+   * Format the time in different formats
+   *
+   * @param time - The time to format
+   * @param format - An int representing the format to get the time in
+   * @return - The formatted time
+   */
   public static String formatTime(int time, int format) {
     int minutes = time / 60;
     String minutesSuffix = minutes == 1 ? " Minute " : " Minutes ";
@@ -46,17 +59,32 @@ public class TimerControl {
     }
   }
 
+  /**
+   * Get the seconds in a string
+   *
+   * @param time - The time to get the seconds from
+   * @return - The seconds as a string
+   */
   private static String getSecondsString(int time) {
     int seconds = time % 60;
     String secondString = seconds < 10 ? "0" + seconds : "" + seconds;
     return secondString;
   }
 
+  /**
+   * Get the timer count
+   *
+   * @return - The timer count
+   */
   public static int getCount() {
     return count;
   }
 
-  // method to set timer count
+  /**
+   * Set the timer count in seconds
+   *
+   * @param minutes - The number of minutes to set the timer to
+   */
   public static void setTimer(int minutes) {
     // set initial count(seconds) based on minutes
     switch (minutes) {
@@ -75,11 +103,13 @@ public class TimerControl {
     }
   }
 
+  /** Reset the count */
   public static void resetCount() {
     i = 0;
     count = initialCount;
   }
 
+  /** Create a timer task */
   private static void createTask() {
     // Create new timer task
     task =
@@ -110,14 +140,14 @@ public class TimerControl {
               ((GameFinishController) SceneManager.getController(Scenes.GAMEFINISH))
                   .setGameLostPage();
               GameManager.loseMoney();
-              App.setUI(Scenes.GAMEFINISH);
+              App.setUi(Scenes.GAMEFINISH);
               cancelTimer();
             }
           }
         };
   }
 
-  // method to create timer thread and run timer
+  /** Create timer thread and run timer */
   public static void runTimer() {
 
     // kill previous timer if it exists
@@ -131,18 +161,29 @@ public class TimerControl {
     timer.scheduleAtFixedRate(task, 0, 500);
   }
 
-  // method to cancel timer
+  /** Cancel the timer task and timer */
   public static void cancelTimer() {
     task.cancel();
     timer.cancel();
     timer.purge();
   }
 
+  /**
+   * Get the time taken to complete the game
+   *
+   * @return - The time taken to complete the game
+   */
   public static int getTimeTaken() {
     // if fail to escape return 600 - a number that will be at the bottom of the leaderboard
     return initialCount - count == initialCount ? 600 : initialCount - count;
   }
 
+  /**
+   * Format the time taken to complete the game
+   *
+   * @param timeTaken - The time taken to complete the game
+   * @return - The formatted time taken to complete the game
+   */
   public static String formatTimeTaken(int timeTaken) {
     if (timeTaken == initialCount) {
       return "Failed to Escape";
@@ -151,6 +192,11 @@ public class TimerControl {
     return time;
   }
 
+  /**
+   * Get the initial time chosen by the user
+   *
+   * @return - The initial time chosen by the user in minutes
+   */
   public static String getInitialTime() {
     return "" + (initialCount / 60);
   }

@@ -197,7 +197,7 @@ public class DifficultyController extends Controller {
     GameManager.setCurrentObjective(Objectives.GET_KEYS);
     GameManager.createGame(difficulty, timerValue);
     TimerControl.runTimer();
-    App.setUI(Scenes.LOBBY);
+    App.setUi(Scenes.LOBBY);
   }
 
   /**

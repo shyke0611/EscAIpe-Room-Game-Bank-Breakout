@@ -28,12 +28,13 @@ public class App extends Application {
   private static App instance;
   private static boolean isAudioOn = false;
 
+  /**
+   * This method is invoked when the application starts. It launches the JavaFX application.
+   *
+   * @param args - The command line arguments.
+   */
   public static void main(final String[] args) {
     launch();
-  }
-
-  public static void setRoot(String fxml) throws IOException {
-    scene.setRoot(loadFxml(fxml));
   }
 
   /**
@@ -48,7 +49,12 @@ public class App extends Application {
     return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
   }
 
-  public static void setUI(Scenes newUi) {
+  /**
+   * Change the scene to the input scene using the scenemanager map of scenes.
+   *
+   * @param newUi - The scene to change to.
+   */
+  public static void setUi(Scenes newUi) {
     // Update stats if going to end screen
     if (newUi == Scenes.GAMEFINISH) {
       ((GameFinishController) SceneManager.getController(newUi)).setStatLabels();
@@ -68,10 +74,20 @@ public class App extends Application {
     }
   }
 
+  /**
+   * Get the ChatMessage that is used to start the conversation with the GPT-3 chatbot.
+   *
+   * @return The ChatMessage that is used to start the conversation with the GPT-3 chatbot.
+   */
   public static ChatMessage getStartMessage() {
     return message;
   }
 
+  /**
+   * Start a text-to-speech task that speaks the input string.
+   *
+   * @param string - The string to be spoken.
+   */
   public static void textToSpeech(String string) {
 
     if (!isAudioOn) {
@@ -108,7 +124,8 @@ public class App extends Application {
   private ChatCompletionRequest chatCompletionRequest;
 
   /**
-   * This method is invoked when the application starts. It loads and shows the "Canvas" scene.
+   * This method is invoked when the application starts. It loads and shows the "Canvas" scene. It
+   * also initialises the hashmaps for controllers and scenes in SceneManager.
    *
    * @param stage The primary stage of the application.
    * @throws IOException If "src/main/resources/fxml/canvas.fxml" is not found.
@@ -166,6 +183,13 @@ public class App extends Application {
     root.requestFocus();
   }
 
+  /**
+   * Send a message to the GPT-3 chatbot and return the response.
+   *
+   * @param msg - The message to send to the chatbot.
+   * @return - The response from the chatbot.
+   * @throws ApiProxyException - If the request to the chatbot fails.
+   */
   public ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
     chatCompletionRequest.addMessage(msg);
     try {
@@ -180,6 +204,11 @@ public class App extends Application {
     }
   }
 
+  /**
+   * Load all the fxml scenes and store them in SceneManager.
+   *
+   * @throws IOException - If the fxml file is not found.
+   */
   private void loadAllScenes() throws IOException {
     // Add scenes that don't need reloading to SceneManager
     SceneManager.changeUi(SceneManager.Scenes.INSTRUCTIONS, loadFxml("instructions"));
@@ -187,6 +216,11 @@ public class App extends Application {
     loadReloadScenes();
   }
 
+  /**
+   * Load all the fxml scenes that need reloading and store them in SceneManager.
+   *
+   * @throws IOException - If the fxml file is not found.
+   */
   private void loadReloadScenes() throws IOException {
     // Add main menu scenes to SceneManager
     SceneManager.changeUi(SceneManager.Scenes.MAIN_MENU, loadFxml("mainmenu"));

@@ -180,7 +180,7 @@ public class LobbyController extends Controller {
     // loading relevant information
     vanController.printChatHistory();
     vanController.loadQuickHints();
-    App.setUI(Scenes.HACKERVAN);
+    App.setUi(Scenes.HACKERVAN);
   }
 
   /** Closes the credential notes by setting visibility. */

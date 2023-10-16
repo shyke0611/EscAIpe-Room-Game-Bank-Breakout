@@ -412,7 +412,7 @@ public class ConnectDotsController extends Controller {
 
   /** Switch to the Security scene. */
   public void switchToSecurity() {
-    App.setUI(Scenes.SECURITY);
+    App.setUi(Scenes.SECURITY);
   }
 
   /** Grant access and disable the firewall if the game is completed. */
@@ -423,6 +423,6 @@ public class ConnectDotsController extends Controller {
     }
     // setting style for when access is granted by disabling firewall
     GameState.isFirewallDisabled = true;
-    App.setUI(Scenes.SECURITY);
+    App.setUi(Scenes.SECURITY);
   }
 }
