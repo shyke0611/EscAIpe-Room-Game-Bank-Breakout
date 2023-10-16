@@ -36,7 +36,6 @@ public class HackerAiManager {
   private ChatMessage tellAiHint;
   private String currentStage;
   private String hint;
-  private ChatMessage tellAiContext;
   private boolean userNeedsHelp;
 
   private ChatCompletionRequest chatCompletionRequest;
