@@ -63,14 +63,10 @@ public class ChemicalMixingController extends Controller {
   private String vialColour;
 
   private int pourCount;
-
   private StyleManager styleManager = StyleManager.getInstance();
-
   private Timeline sliderAnimation;
 
-  // private boolean sliderMoving = false;
-
-  /** Initialize the Chemical Mixing Controller. Sets up the initial state of the Security scene. */
+  /** Initialize the Chemical Mixing Controller. Sets up the initial state of the scene. */
   public void initialize() {
     SceneManager.setController(Scenes.CHEMICALMIXING, this);
     super.setTimerLabel(timerLabel, 3);
@@ -113,6 +109,7 @@ public class ChemicalMixingController extends Controller {
    */
   @FXML
   public void onVialClicked(MouseEvent event) {
+    // setting visibility and disbabiulity to nodes
     ImageView image = (ImageView) event.getSource();
     String id = image.getId();
     sliderAnimation.play();
@@ -125,10 +122,13 @@ public class ChemicalMixingController extends Controller {
     retryButton.setOpacity(1);
     selectVialLabel.setVisible(false);
 
+    // setting style for the slider
     Node track = slider.lookup(".thumb");
     track.setStyle("-fx-background-color: white");
 
+    // setting the style for each vial
     switch (id) {
+        // setting the style for yellow vial
       case "yellowVial":
         vialColour = "yellow";
         largeVialYellow.setVisible(true);
@@ -136,8 +136,8 @@ public class ChemicalMixingController extends Controller {
         largeVialRed.setVisible(false);
         largeVialGreen.setVisible(false);
         setSliderGraident(Integer.parseInt(randomYellow));
-
         break;
+        // setting the style for red vial
       case "redVial":
         vialColour = "red";
         largeVialRed.setVisible(true);
@@ -145,8 +145,8 @@ public class ChemicalMixingController extends Controller {
         largeVialYellow.setVisible(false);
         largeVialGreen.setVisible(false);
         setSliderGraident(Integer.parseInt(randomRed));
-
         break;
+        // setting the style for blue vial
       case "blueVial":
         vialColour = "blue";
         largeVialBlue.setVisible(true);
@@ -154,8 +154,8 @@ public class ChemicalMixingController extends Controller {
         largeVialRed.setVisible(false);
         largeVialYellow.setVisible(false);
         setSliderGraident(Integer.parseInt(randomBlue));
-
         break;
+        // setting the style for green vial
       case "greenVial":
         vialColour = "green";
         largeVialGreen.setVisible(true);
@@ -163,7 +163,6 @@ public class ChemicalMixingController extends Controller {
         largeVialRed.setVisible(false);
         largeVialYellow.setVisible(false);
         setSliderGraident(Integer.parseInt(randomGreen));
-
         break;
     }
   }
@@ -190,9 +189,6 @@ public class ChemicalMixingController extends Controller {
     pourBtn.setOpacity(0.5);
 
     int value = (int) Math.floor(slider.getValue());
-
-    // Ugly code to determine if user was correct, please help refactor if you know a better
-    // wayy
     // filling beaker for yellow
     if (vialColour.equals("yellow") && value == Integer.parseInt(randomYellow)) {
       value = 1;
@@ -290,7 +286,7 @@ public class ChemicalMixingController extends Controller {
    * it reveals the "Continue" button and win message, and increases the money to gain.
    */
   private void checkWin() {
-    // set visibility
+    // set visibility of nodes
     largeVialPane.setVisible(false);
     emptyVial.setVisible(false);
     largeVialBlue.setVisible(false);
@@ -299,12 +295,10 @@ public class ChemicalMixingController extends Controller {
     largeVialYellow.setVisible(false);
     retryButton.setVisible(false);
     pourBtn.setVisible(false);
-
     continueBtn.setVisible(true);
     winLabel.setVisible(true);
+    // setting game states
     GameManager.setCurrentObjective(Objectives.SELECT_VAULT_DOOR);
-
-    // $5 Million
     GameManager.increaseMoneyToGain(5000000);
     GameManager.setMoneyGained();
   }
@@ -336,7 +330,6 @@ public class ChemicalMixingController extends Controller {
     redVial.setVisible(true);
     blueVial.setVisible(true);
     greenVial.setVisible(true);
-
     // Clear the vialColour
     vialColour = null;
     retryButton.setDisable(true);
@@ -348,10 +341,8 @@ public class ChemicalMixingController extends Controller {
     // stopping slider animation
     if (sliderAnimation != null && sliderAnimation.getStatus() == Timeline.Status.RUNNING) {
       sliderAnimation.pause();
-      // sliderMoving = false;
     } else {
       sliderAnimation.play();
-      // sliderMoving = true;
     }
   }
 
@@ -362,24 +353,31 @@ public class ChemicalMixingController extends Controller {
    */
   @FXML
   public void setSliderGraident(int partNumber) {
+    // setting the style for the slider
     Node track = slider.lookup(".track");
     String style = "-fx-background-color: linear-gradient(to right, ";
 
+    // setting the style for the slider
     switch (partNumber) {
+        // if part number is 1
       case 1:
         style += "#15ed20 0%, #15ed20 20%, #f44c4c9d 33%, #f44c4c9d 100%)";
         break;
+        // if part number is 1
       case 2:
         style +=
             "#f44c4c9d 0%, #f44c4c9d 20%, #15ed20 30%, #15ed20 45%, #f44c4c9d 57%, #f44c4c9d 100%)";
         break;
+        // if part number is 3
       case 3:
         style +=
             "#f44c4c9d 0%, #f44c4c9d 40%, #15ed20 52%, #15ed20 70%, #f44c4c9d 83%, #f44c4c9d 100%)";
         break;
+        // if part number is 4
       case 4:
         style += "#f44c4c9d 0%, #f44c4c9d 67%, #15ed20 83%, #15ed20 100%)";
         break;
+        // for default case
       default:
         style += "#f44c4c9d 0%, #f44c4c9d 100%)";
         break;

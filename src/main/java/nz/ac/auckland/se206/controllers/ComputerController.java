@@ -70,7 +70,7 @@ public class ComputerController extends Controller {
   private Boolean questionsComplete = false;
   private int questionsCorrect = 0;
 
-  /** Initialize the Computer Controller. Sets up the initial state of the Security scene. */
+  /** Initialize the Computer Controller. Sets up the initial state of the scene. */
   public void initialize() throws ApiProxyException {
     // initialising all the relevant methods
     SceneManager.setController(Scenes.COMPUTER, this);
