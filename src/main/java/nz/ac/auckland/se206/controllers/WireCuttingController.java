@@ -60,7 +60,6 @@ public class WireCuttingController extends Controller {
   @FXML
   private void onGoBack(MouseEvent event) {
     App.setUI(Scenes.SECURITY);
-    // styleManager.setClueHover("electricityBox", false);
   }
 
   /**
@@ -135,9 +134,6 @@ public class WireCuttingController extends Controller {
     StyleManager.setDisable(true, "guardpocket");
     StyleManager.setVisible(false, "credentialsNote");
     retryBtn.setDisable(true);
-    // styleManager.setClueHover("bomblayer", true);
-    // styleManager.setClueHover("lobbyRoomSwitch", false);
-    // styleManager.setClueHover("electricityBox", false);
     GameManager.setCurrentObjective(Objectives.FIND_ESCAPE);
     App.textToSpeech("Alarm Disabled");
     WalkieTalkieManager.setWalkieTalkieNotifcationOn();

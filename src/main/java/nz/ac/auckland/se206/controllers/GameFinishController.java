@@ -21,6 +21,7 @@ import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.Score;
 import nz.ac.auckland.se206.TimerControl;
 
+/** Controller class for the Game Finish scene. */
 public class GameFinishController extends Controller {
 
   @FXML private Button exitButton;

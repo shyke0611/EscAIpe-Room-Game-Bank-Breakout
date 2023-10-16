@@ -18,6 +18,7 @@ import nz.ac.auckland.se206.WalkieTalkieManager;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
+/** Controller class for the HackerVan scene. */
 public class HackerVanController extends Controller {
 
   @FXML private Button goBackBtn;
@@ -55,6 +56,7 @@ public class HackerVanController extends Controller {
       hackerAiManager.addChatHistory(msg.getContent());
       printChatHistory();
 
+      // create a new task
       Task<Void> aiTask3 =
           new Task<Void>() {
             @Override
@@ -82,11 +84,13 @@ public class HackerVanController extends Controller {
   }
 
   public void printChatHistory() {
+    // prints the chat history onto the textarea
     String formattedHistory = hackerAiManager.getFormattedChatHistory();
     historyTextArea.setText(formattedHistory);
   }
 
   public void loadQuickHints() {
+    // prints the hint history onto the textarea
     String formattedHints = hackerAiManager.getFormattedHintHistory();
     hintTextArea.setText(formattedHints);
   }

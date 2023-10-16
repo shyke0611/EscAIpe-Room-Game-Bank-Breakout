@@ -13,6 +13,7 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 import nz.ac.auckland.se206.StyleManager;
 
+/** Abstract Controller class. */
 public abstract class Controller {
   private Label timerLabel;
   private int format;
@@ -65,7 +66,6 @@ public abstract class Controller {
     App.setUI(Scenes.VAULT);
   }
 
-
   protected void setUpListener(Node... items) {
     for (Node node : items) {
       ScaleTransition scaleTransition = AnimationManager.createScaleTransition(node);
@@ -93,12 +93,11 @@ public abstract class Controller {
     // Switch the scene to the Vault
     App.setUI(Scenes.VAULT);
     if (GameState.isAlarmDisabled) {
-      StyleManager.setVisible(true,"bombHolder");
-      StyleManager.setVisible(false, "switchHolder","walkietalkieText");
+      StyleManager.setVisible(true, "bombHolder");
+      StyleManager.setVisible(false, "switchHolder", "walkietalkieText");
       StyleManager.setDisable(true, "vaultwalkietalkie");
       ImageView bomblogo = (ImageView) StyleManager.getHoverItem("bomblogo");
-      AnimationManager.fadeTransition(bomblogo, 2,0.0,1.0);
+      AnimationManager.fadeTransition(bomblogo, 2, 0.0, 1.0);
     }
   }
-
 }

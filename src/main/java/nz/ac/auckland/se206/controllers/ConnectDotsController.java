@@ -23,6 +23,7 @@ import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 
+/** Controller class for the Connect Dots scene. */
 public class ConnectDotsController extends Controller {
 
   @FXML private GridPane gridPane;

@@ -26,6 +26,7 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
+/** Controller class for the Laser Cutting scene. */
 public class LaserCuttingController extends Controller {
 
   @FXML private AnchorPane root;

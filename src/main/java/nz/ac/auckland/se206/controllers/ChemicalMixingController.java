@@ -55,7 +55,6 @@ public class ChemicalMixingController extends Controller {
   @FXML private Rectangle thirdPour;
   @FXML private Rectangle fourthPour;
   @FXML private Rectangle whiteRectangle;
-  @FXML private Region ChemicalLiquid;
 
   private String randomYellow;
   private String randomRed;
@@ -68,7 +67,7 @@ public class ChemicalMixingController extends Controller {
   private StyleManager styleManager = StyleManager.getInstance();
 
   private Timeline sliderAnimation;
-  private boolean sliderMoving = false;
+  // private boolean sliderMoving = false;
 
   /**
    * Initializes the Chemical Mixing controller and sets up the initial state of the scene. It also
@@ -282,11 +281,6 @@ public class ChemicalMixingController extends Controller {
     }
   }
 
-  // @FXML
-  // public void Pour(ActionEvent event) {
-  //   ChemicalLiquid.setPrefHeight(ChemicalLiquid.getPrefHeight() + 50);
-  // }
-
   /**
    * Checks if the player has successfully completed the chemical mixing challenge. If successful,
    * it reveals the "Continue" button and win message, and increases the money to gain.
@@ -350,10 +344,10 @@ public class ChemicalMixingController extends Controller {
     // stopping slider animation
     if (sliderAnimation != null && sliderAnimation.getStatus() == Timeline.Status.RUNNING) {
       sliderAnimation.pause();
-      sliderMoving = false;
+      // sliderMoving = false;
     } else {
       sliderAnimation.play();
-      sliderMoving = true;
+      // sliderMoving = true;
     }
   }
 

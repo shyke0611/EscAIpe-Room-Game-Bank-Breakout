@@ -61,7 +61,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="instructionsBtn" minWidth="100.0" mnemonicParsing="false" onMouseClicked="#onInstructions" prefHeight="69.0" prefWidth="386.0" stylesheets="@../css/mainmenu.css" textFill="#b59e1d">
+                  <Button fx:id="instructionsBtn" minWidth="100.0" mnemonicParsing="false" onMouseClicked="#onGoToInstructions" prefHeight="69.0" prefWidth="386.0" stylesheets="@../css/mainmenu.css" textFill="#b59e1d">
                      <font>
                         <Font name="Kannada MN" size="45.0" />
                      </font>

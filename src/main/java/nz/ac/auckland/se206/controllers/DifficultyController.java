@@ -165,13 +165,17 @@ public class DifficultyController extends Controller {
   // toggling tts button
   @FXML
   private void onSoundOn() {
+    // if user wants the ai sound on 
     if (audiobtn.isSelected()) {
       App.setAudio(true);
+      // update visual aspects
       audiobtn.setText("Sound On");
       unmutebtn.setVisible(true);
       mutebtn.setVisible(false);
+      // if user wants the ai sound off
     } else {
       App.setAudio(false);
+      // update visual aspects
       audiobtn.setText("Sound Off");
       unmutebtn.setVisible(false);
       mutebtn.setVisible(true);

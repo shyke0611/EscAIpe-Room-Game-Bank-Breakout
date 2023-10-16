@@ -36,6 +36,7 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
+/** Controller class for the Computer scene. */
 public class ComputerController extends Controller {
 
   @FXML private Button goBackBtn;
@@ -77,11 +78,9 @@ public class ComputerController extends Controller {
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     WalkieTalkieManager.addWalkieTalkieTextArea(this, computerTextArea);
     styleManager.addHoverItems(usbStick);
-    // styleManager.addItems(usbStick);
     // creating new timeline
     timeline = new Timeline(new KeyFrame(Duration.seconds(0.6), e -> updateLabel()));
     timeline.setCycleCount(Timeline.INDEFINITE);
-
     chatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.4).setTopP(1).setMaxTokens(256);
     riddleStarted = false;
@@ -156,6 +155,7 @@ public class ComputerController extends Controller {
     if (sendBtn.isDisable()) {
       return;
     }
+    // creating new task
     Task<Void> task =
         new Task<Void>() {
           @Override
@@ -172,11 +172,11 @@ public class ComputerController extends Controller {
                 });
 
             messageQueue.add(new ChatMessage("user", message));
-
+            // if the user types yes then start the authentication process
             if (authenticationStarted) {
               performAuthentication(message);
             }
-
+            // when riddle has started
             if (riddleStarted) {
               lastMsg = runGpt(new ChatMessage("user", message));
               if (checkRiddle(lastMsg.getContent())) {
@@ -205,6 +205,7 @@ public class ComputerController extends Controller {
               if (lastMsg == null) {
                 startConnectDots();
               }
+              // if the riddle has not yet started by typing yes
             } else if (!riddleStarted) {
               ChatMessage msg =
                   new ChatMessage("user", "Please type yes to start the authentication process");
@@ -227,7 +228,7 @@ public class ComputerController extends Controller {
 
   @FXML
   public void performAuthentication(String msg) {
-
+    // handling authentication result message if they get three questions correct
     if (onQuestionThree) {
       if (msg.equalsIgnoreCase(RandomnessGenerate.getCurrentCeoName())) {
         messageQueue.add(new ChatMessage("assistant", "Correct"));
@@ -237,7 +238,7 @@ public class ComputerController extends Controller {
       }
       questionsComplete = true;
       authenticationResult();
-
+      // handling authentication result message if they get two questions correct
     } else if (onQuestionTwo) {
 
       if (msg.equalsIgnoreCase(RandomnessGenerate.getCurrentEmployeeName())) {
@@ -248,7 +249,7 @@ public class ComputerController extends Controller {
       }
       onQuestionThree = true;
       messageQueue.add(new ChatMessage("assistant", "What is the ceos first name?"));
-
+      // handling authentication result message if they get one question correct
     } else if (onQuestionOne) {
       if (msg.equalsIgnoreCase(RandomnessGenerate.getCurrentDate())) {
         messageQueue.add(new ChatMessage("assistant", "Correct"));
@@ -262,13 +263,16 @@ public class ComputerController extends Controller {
   }
 
   private void authenticationResult() {
-
+    // handling authentication complete messages based on number of questions correct
     if (questionsComplete) {
+      // handling complete message for three questions correct
       if (questionsCorrect == 3) {
         messageQueue.add(
             new ChatMessage("assistant", "Authentication complete, Level 3 vault access granted"));
+        // setting game state and objective
         GameState.isFirewallDisabled = true;
         GameState.isSecondRiddleSolved = true;
+        GameManager.setCurrentObjective(Objectives.SELECT_VAULT_DOOR);
         App.textToSpeech("Security Disabled, Level 3 Vault Access Granted");
 
         Platform.runLater(
@@ -278,13 +282,13 @@ public class ComputerController extends Controller {
                   new ChatMessage("assistant", "Nice work! Now you have access to all 3 vaults"));
             });
 
-        GameManager.setCurrentObjective(Objectives.SELECT_VAULT_DOOR);
         setLevelThreeStyle();
-
+        // handling complete message for 1 or more questions correct
       } else if (questionsCorrect >= 1) {
         messageQueue.add(
             new ChatMessage("assistant", "Authentication Complete, Level 2 Vault Access Granted"));
         App.textToSpeech("Security Disabled, Level 2 Vault Access Granted");
+        // setting game state and objective
         GameState.isFirewallDisabled = true;
         GameState.isFirstRiddleSolved = true;
         GameManager.setCurrentObjective(Objectives.SELECT_VAULT_DOOR);
@@ -298,7 +302,7 @@ public class ComputerController extends Controller {
             });
 
         setLevelTwoStyle();
-
+        // handling complete message for no questions correct
       } else if (questionsCorrect == 0) {
         messageQueue.add(
             new ChatMessage("assistant", "Authentication failed, no vault access granted"));
@@ -311,13 +315,14 @@ public class ComputerController extends Controller {
                       "Unfortuantly you failed authentication, but dont worry there is a plan B,"
                           + " plug in the USB i gave you"));
             });
-
+        // begin the connect dots authentication˝
         startConnectDots();
       }
     }
   }
 
   private Boolean checkRiddle(String message) {
+    // checking if the riddle is correct
     if (lastMsg.getRole().equals("assistant") && lastMsg.getContent().startsWith("Correct")
         || lastMsg.getContent().startsWith("correct")) {
       return true;
@@ -344,6 +349,7 @@ public class ComputerController extends Controller {
   // Opens and closes when walkie talkie is clicked
   @FXML
   private void onWalkieTalkie(MouseEvent event) {
+    // update walkie talkie
     WalkieTalkieManager.toggleWalkieTalkie();
     if (!WalkieTalkieManager.getWalkieTalkieOpen()) {
       inputTextField.requestFocus();
@@ -352,7 +358,6 @@ public class ComputerController extends Controller {
 
   @FXML
   private void startConnectDots() {
-
     // set the second authentication method to visible
     usbStick.setVisible(true);
     StyleManager.setClueHover("usbStick", true);
@@ -362,6 +367,7 @@ public class ComputerController extends Controller {
   }
 
   private void setConnectdotsStyle() {
+    // setting the style for connect dots
     setVaultStyleLevelTwo();
     StyleManager.setDisable(true, "ceoPainting", "wallEmployee");
   }
@@ -370,11 +376,12 @@ public class ComputerController extends Controller {
     // set disability
     StyleManager.setDisable(true, "computer", "ceoPainting", "wallEmployee");
     StyleManager.setClueHover("computer", false);
-    // setting vault style
+    // setting vault style by calling method
     setVaultStyleLevelTwo();
   }
 
   private void setVaultStyleLevelTwo() {
+    // setting vault style for level 2 vault authentication
     StyleManager.setItemsHoverColour(HoverColour.GREEN, "silverDoorHolder", "bronzeDoorHolder");
     StyleManager.setItemsMessage("Access granted", "bronzeDoorHolder", "silverDoorHolder");
     StyleManager.setItemsMessage("No access", "goldDoorHolder");
@@ -472,6 +479,7 @@ public class ComputerController extends Controller {
 
   @FXML
   public void onEnterPressed(KeyEvent event) {
+    // if the enter key is pressed then send the message
     if (event.getCode() == KeyCode.ENTER) {
       try {
         onSend(new ActionEvent());

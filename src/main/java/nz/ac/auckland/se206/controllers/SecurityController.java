@@ -31,6 +31,7 @@ import nz.ac.auckland.se206.WalkieTalkieManager;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
+/** Controller class for the Security Controller scene. */
 public class SecurityController extends Controller {
 
   // FXML elements

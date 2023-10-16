@@ -54,7 +54,7 @@ public class MainMenuController extends Controller {
   }
 
   @FXML
-  private void onInstructions() {
+  private void onGoToInstructions() {
     App.setUI(Scenes.INSTRUCTIONS);
   }
 

@@ -13,6 +13,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
 
+/** Controller class for the Intructions scene. */
 public class InstructionsController extends Controller {
 
   // Tab Headers
@@ -70,6 +71,7 @@ public class InstructionsController extends Controller {
   }
 
   private void setGeneralInformation() {
+    // Set general information message
     String context =
         "The adventure begins within the confines of a bustling, heavily guarded bank, the"
             + " objective is to steal a substantial sum of money and make a daring escape"
@@ -79,32 +81,40 @@ public class InstructionsController extends Controller {
             + " heist. As the tension rises and the stakes get higher, the bank becomes a"
             + " labyrinth of secrets and surprises, making every decision crucial and every"
             + " moment heart-pounding.";
+    // setting the text to the required node
     contextParagraph.setText(context);
 
+    // Set the story line message
     String storyline =
         "There are 3 phases to the game; players must first disable the bank's formidable security"
             + " systems, then execute a daring money heist, and finally, navigate the"
             + " tense escape.";
+    // setting the text to the required node
     storylineParagraph.setText(storyline);
 
+    // set how to disable security message
     String disableSecurity =
         "In the initial phase of the game, the player must discretely gather information,"
             + " infiltrate the bank's computer systems, and secure authorized access, with their"
             + " performance directly influencing the potential haul in the subsequent heist.";
+    // setting the text to the required node
     disableSecurityParagraph.setText(disableSecurity);
-
+    // set the how the execute heist works message
     String executeHeist =
         "During the second phase, players will select and unlock vaults, solving intricate puzzles"
             + " to acquire the loot. They can then choose to continue raiding additional vaults or"
             + " secure the collected loot, which will initiate the third phase. Players must get"
             + " level 3 vault access from the computer to access all 3 vaults.";
+    // setting the text to the required node
     executingHeistParagraph.setText(executeHeist);
 
+    // set the escape sequence message
     String escaping =
         "In the final phase, players must navigate the intense escape scenario triggered either by"
             + " collecting the loot or when only 30 seconds remain on the timer. Their mission: to"
             + " disable the alarm and set off a bomb for a daring getaway. Failing to do so within"
             + " the time limit results in capture and no stolen money.";
+    // setting the text to the required node
     escapingParagraph.setText(escaping);
   }
 

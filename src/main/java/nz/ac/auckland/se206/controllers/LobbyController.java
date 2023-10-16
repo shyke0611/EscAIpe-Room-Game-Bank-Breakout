@@ -35,6 +35,7 @@ import nz.ac.auckland.se206.WalkieTalkieManager;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
+/** Controller class for the Lobby scene. */
 public class LobbyController extends Controller {
 
   // FXML elements
