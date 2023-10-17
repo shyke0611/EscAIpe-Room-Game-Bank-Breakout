@@ -266,8 +266,17 @@ public class StyleManager {
 
   /** Reset the lists relating to one round. */
   public static void reset() {
+    for (Node node : hoverItemsList) {
+      // remove animations
+      String itemId = node.getId();
+       setClueHover(itemId.toString(), false);
+       setAlarm(false);
+    }
+    // clear the lists
     tooltipMap.clear();
     hoverItemsList.clear();
+
+    
   }
 
   /**
