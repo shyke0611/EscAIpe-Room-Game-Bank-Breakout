@@ -81,6 +81,8 @@ public class ComputerController extends Controller {
     walkieTalkieManager = WalkieTalkieManager.getInstance();
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     WalkieTalkieManager.addWalkieTalkieTextArea(this, computerTextArea);
+    WalkieTalkieManager.addQuickHintBtn(null, quickHintBtn);
+
     StyleManager.addHoverItems(usbStick, background);
 
     // creating new timeline
