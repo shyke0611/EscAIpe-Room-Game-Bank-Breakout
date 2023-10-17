@@ -11,7 +11,7 @@
 }
 
 .component:pressed {
-    -fx-effect: "";
+    -fx-effect: null;
 }
 
 .roomswitchback {

@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.control.Tooltip;
 import javafx.scene.effect.Lighting;
@@ -177,11 +178,13 @@ public class StyleManager {
     if (on) {
       App.textToSpeech("Alarm Triggered");
       setAlarmStyle();
-      WalkieTalkieManager.setWalkieTalkieOpen();
-      WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
-      walkieTalkieManager.setWalkieTalkieText(
-          new ChatMessage("user", "Uh Oh! You better find a way to turn that off quick"));
-      StyleManager.setVisible(false, "goldMoneyImage", "silverMoneyImage", "bronzeMoneyImage");
+      Platform.runLater(
+          () -> {
+            WalkieTalkieManager.setWalkieTalkieOpen();
+            WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
+            walkieTalkieManager.setWalkieTalkieText(
+                new ChatMessage("user", "Uh Oh! You better find a way to turn that off quick"));
+          });
     }
     // Create a set of items to include
     Set<String> disableIds = createdisableIdSet();

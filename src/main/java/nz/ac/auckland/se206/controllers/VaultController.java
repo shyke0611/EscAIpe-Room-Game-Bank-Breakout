@@ -266,6 +266,7 @@ public class VaultController extends Controller {
         StyleManager.setAlarm(true);
         GameState.isAlarmTripped = true;
       }
+      StyleManager.setVisible(false, "goldMoneyImage", "silverMoneyImage", "bronzeMoneyImage");
       GameManager.setCurrentObjective(Objectives.DISABLE_LASERTRAP);
       lootBtnHolder.setVisible(false);
       GameManager.collectMoney();
