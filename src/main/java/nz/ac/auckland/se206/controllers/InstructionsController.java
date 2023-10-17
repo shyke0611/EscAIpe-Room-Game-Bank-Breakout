@@ -63,7 +63,7 @@ public class InstructionsController extends Controller {
               double vertValue = newValue.doubleValue();
               if (vertValue < gameMechanicsVertValue - 0.03) {
                 setActiveTab(generalInfoTab);
-              } else if (vertValue > 0.93) {
+              } else if (vertValue > 0.96) {
                 setActiveTab(puzzlesTab);
               } else {
                 setActiveTab(gameMechanicsTab);

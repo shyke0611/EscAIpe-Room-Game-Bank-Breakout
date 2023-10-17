@@ -98,3 +98,11 @@
     -fx-text-fill: black;
 }
 
+.pointer{
+    -fx-text-fill: white;
+}
+
+.circle{
+    -fx-fill: black;
+    -fx-stroke-width: 0;
+}
