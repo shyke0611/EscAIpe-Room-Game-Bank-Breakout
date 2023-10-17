@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="VaultPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.VaultController">
+<AnchorPane fx:id="VaultPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.VaultController">
    <children>
       <ImageView fx:id="realvaultbackground" fitHeight="704.0" fitWidth="1008.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -314,7 +314,7 @@
          <children>
             <HBox prefHeight="100.0" prefWidth="512.0">
                <children>
-                  <TextArea fx:id="vaultTextArea" editable="false" prefHeight="126.0" prefWidth="408.0" stylesheets="@../css/walkietalkie.css" wrapText="true">
+                  <TextArea fx:id="vaultTextArea" editable="false" maxWidth="388.0" minWidth="388.0" prefHeight="126.0" prefWidth="408.0" stylesheets="@../css/walkietalkie.css" wrapText="true">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -333,14 +333,14 @@
             </HBox>
             <HBox prefHeight="51.0" prefWidth="512.0" stylesheets="@../css/rooms.css">
                <children>
-                  <TextField fx:id="vaultTextField" onKeyPressed="#onInvokeHacker" prefHeight="47.0" prefWidth="400.0" promptText="Bzzz... type here" stylesheets="@../css/walkietalkie.css">
+                  <TextField fx:id="vaultTextField" maxWidth="390.0" minWidth="390.0" onKeyPressed="#onInvokeHacker" prefHeight="47.0" prefWidth="400.0" promptText="Bzzz... Type Here" stylesheets="@../css/walkietalkie.css">
                      <font>
                         <Font name="Courier New Bold" size="22.0" />
                      </font>
                   </TextField>
                   <VBox fx:id="myVBox" prefHeight="51.0" prefWidth="116.0" stylesheets="@../css/rooms.css">
                      <children>
-                        <StackPane prefHeight="51.0" prefWidth="164.0">
+                        <StackPane maxWidth="114.0" prefHeight="51.0" prefWidth="164.0">
                            <children>
                               <HBox prefHeight="51.0" prefWidth="62.0" styleClass="component2" stylesheets="@../css/walkietalkie.css" />
                               <Label fx:id="numberOfHints" alignment="TOP_CENTER" prefHeight="0.0" prefWidth="432.0" text="Unlimited" textFill="#1bcd2a" wrapText="true">
@@ -367,18 +367,23 @@
             </HBox>
          </children>
       </VBox>
-      <VBox fx:id="vaultwalkietalkie" alignment="CENTER" layoutX="10.0" layoutY="490.0" onMousePressed="#onWalkieTalkie" prefHeight="144.0" prefWidth="208.0" styleClass="walkietalkie" stylesheets="@../css/walkietalkie.css">
+      <VBox fx:id="vaultwalkietalkie" alignment="CENTER" layoutX="7.0" layoutY="479.0" onMousePressed="#onWalkieTalkie" prefHeight="144.0" prefWidth="208.0" styleClass="walkietalkie" stylesheets="@../css/walkietalkie.css">
          <children>
-            <StackPane prefHeight="214.0" prefWidth="218.0">
+            <StackPane prefHeight="259.0" prefWidth="254.0">
                <children>
-                  <ImageView fitHeight="214.0" fitWidth="211.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="225.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/walkietalkiepad.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="lobbyWalkieTalkie" fitHeight="121.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="vaultWalkieTalkie" fitHeight="121.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/walkietalkie.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="vaultNotification" fitHeight="70.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" translateX="-30.0" translateY="-30.0" visible="false">
+                     <image>
+                        <Image url="@../images/notificationIcon.png" />
                      </image>
                   </ImageView>
                </children>

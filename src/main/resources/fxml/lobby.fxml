@@ -18,7 +18,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="LobbyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LobbyController">
+<AnchorPane fx:id="LobbyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LobbyController">
    <children>
       <ImageView fx:id="lobbybackground" fitHeight="715.0" fitWidth="1024.0" layoutX="-3.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -517,7 +517,7 @@
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
                         <HBox prefHeight="47.0" prefWidth="62.0" styleClass="component2" stylesheets="@../css/walkietalkie.css" />
-                        <Label fx:id="numberOfHints" alignment="TOP_CENTER" text="Unlimited" textFill="#1bcd2a" wrapText="true">
+                        <Label fx:id="numberOfHints" alignment="TOP_CENTER" prefHeight="20.0" prefWidth="115.0" text="Unlimited" textFill="#1bcd2a" wrapText="true">
                            <font>
                               <Font size="16.0" />
                            </font>
