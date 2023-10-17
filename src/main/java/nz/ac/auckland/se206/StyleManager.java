@@ -269,14 +269,12 @@ public class StyleManager {
     for (Node node : hoverItemsList) {
       // remove animations
       String itemId = node.getId();
-       setClueHover(itemId.toString(), false);
-       setAlarm(false);
+      setClueHover(itemId.toString(), false);
+      setAlarm(false);
     }
     // clear the lists
     tooltipMap.clear();
     hoverItemsList.clear();
-
-    
   }
 
   /**
