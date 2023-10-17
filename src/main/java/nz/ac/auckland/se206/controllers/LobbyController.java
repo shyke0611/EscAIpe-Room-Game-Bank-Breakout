@@ -417,6 +417,9 @@ public class LobbyController extends Controller {
                     lobbyTextInput.setDisable(false);
                     walkieTalkieManager.stopAnimation();
                     lobbyTextInput.requestFocus();
+                    if (!walkieTalkieManager.isWalkieTalkieOpen()) {
+                      WalkieTalkieManager.setWalkieTalkieNotifcationOn();
+                    }
                   });
               return null;
             }

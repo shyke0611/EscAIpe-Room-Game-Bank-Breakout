@@ -448,9 +448,13 @@ public class VaultController extends Controller {
               Platform.runLater(
                   () -> {
                     walkieTalkieManager.setWalkieTalkieText(response);
+
                     vaultTextField.setDisable(false);
                     walkieTalkieManager.stopAnimation();
                     vaultTextField.requestFocus();
+                    if (!walkieTalkieManager.isWalkieTalkieOpen()) {
+                      WalkieTalkieManager.setWalkieTalkieNotifcationOn();
+                    }
                   });
               return null;
             }
