@@ -14,7 +14,7 @@
 }
 
 .orange:pressed {
-    -fx-effect: "";
+    -fx-effect: null;
 }
 
 .green:hover {
