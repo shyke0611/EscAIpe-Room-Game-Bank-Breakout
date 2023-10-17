@@ -56,6 +56,7 @@ public class ChemicalMixingController extends Controller {
   @FXML private Rectangle thirdPour;
   @FXML private Rectangle fourthPour;
   @FXML private Rectangle whiteRectangle;
+  @FXML private ImageView background;
 
   private String randomYellow;
   private String randomRed;
@@ -75,6 +76,7 @@ public class ChemicalMixingController extends Controller {
 
     // Setting up hover animations
     setUpHover();
+    styleManager.addHoverItems(background);
 
     // Intialsing recipe and saving for later reference
     initializeRecipe();

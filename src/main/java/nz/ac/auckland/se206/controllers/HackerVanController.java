@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Rectangle;
@@ -14,6 +15,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.HackerAiManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.StyleManager;
 import nz.ac.auckland.se206.WalkieTalkieManager;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -29,6 +31,7 @@ public class HackerVanController extends Controller {
 
   @FXML private TextArea historyTextArea;
   @FXML private Label timerLabel;
+  @FXML private ImageView background;
 
   private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
   private WalkieTalkieManager walkieTalkieManage = WalkieTalkieManager.getInstance();
@@ -41,6 +44,7 @@ public class HackerVanController extends Controller {
     super.setTimerLabel(timerLabel, 3);
     printChatHistory();
     loadQuickHints();
+    StyleManager.getInstance().addHoverItems(background);
   }
 
   /**

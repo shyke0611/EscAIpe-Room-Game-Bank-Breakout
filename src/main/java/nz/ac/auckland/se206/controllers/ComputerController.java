@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -52,6 +53,7 @@ public class ComputerController extends Controller {
   @FXML private HBox usbStick;
   @FXML private TextArea computerTextArea;
   @FXML private TextField walkieTalkieTextField;
+  @FXML private ImageView background;
 
   private ChatCompletionRequest chatCompletionRequest;
   private ChatMessage lastMsg;
@@ -78,7 +80,7 @@ public class ComputerController extends Controller {
     walkieTalkieManager = WalkieTalkieManager.getInstance();
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     WalkieTalkieManager.addWalkieTalkieTextArea(this, computerTextArea);
-    styleManager.addHoverItems(usbStick);
+    styleManager.addHoverItems(usbStick, background);
 
     // creating new timeline
     timeline = new Timeline(new KeyFrame(Duration.seconds(0.6), e -> updateLabel()));

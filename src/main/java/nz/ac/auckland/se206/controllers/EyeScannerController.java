@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
@@ -41,6 +42,8 @@ public class EyeScannerController extends Controller {
 
   @FXML private Button compareBtn;
 
+  @FXML private ImageView background;
+
   private int red;
   private int green;
   private int blue;
@@ -55,7 +58,7 @@ public class EyeScannerController extends Controller {
   public void initialize() {
 
     // set relevant method on initialisation
-    styleManager.addHoverItems(compareBtn);
+    styleManager.addHoverItems(compareBtn, background);
     SceneManager.setController(Scenes.EYESCANNER, this);
     GameManager.addMoneyGainedLabel(null, moneyCount);
     super.setTimerLabel(timerLabel, 1);

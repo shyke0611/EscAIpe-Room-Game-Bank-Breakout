@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -31,6 +32,7 @@ public class ConnectDotsController extends Controller {
   @FXML private Label timerLabel;
   @FXML private Button resetButton;
   @FXML private Label closebtn;
+  @FXML private ImageView background;
 
   // 0 = empty, negative = node
   private int[][] grid = new int[6][6];
@@ -62,6 +64,7 @@ public class ConnectDotsController extends Controller {
     randomiseRotation();
     flipSolution();
     copyStartEndNodes();
+    StyleManager.getInstance().addHoverItems(background);
   }
 
   /** Start a drag operation when the mouse is pressed. */
