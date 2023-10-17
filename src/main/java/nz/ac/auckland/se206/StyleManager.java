@@ -268,8 +268,6 @@ public class StyleManager {
     hoverItemsList.clear();
   }
 
-  private StyleManager() {}
-
   /**
    * Add items to the hover items list.
    *
