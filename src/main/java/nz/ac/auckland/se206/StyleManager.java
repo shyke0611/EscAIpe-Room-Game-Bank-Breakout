@@ -61,17 +61,18 @@ public class StyleManager {
    */
   private static String getColourClassForHoverColour(HoverColour colour) {
     switch (colour) {
-        // for red hover colour
+      // for red hover colour
       case RED:
         return "red";
-        // for green hover colour
+      // for green hover colour
       case GREEN:
         return "green";
-        // for orange hover colour
+      // for orange hover colour
       case ORANGE:
         return "orange";
+      // Handle default or unknown cases as needed
       default:
-        return ""; // Handle default or unknown cases as needed
+        return "";
     }
   }
 
