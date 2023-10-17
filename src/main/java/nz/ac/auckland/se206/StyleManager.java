@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Tooltip;
 import javafx.scene.effect.Lighting;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.GameManager.Objectives;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 
 /** Class to manage the styling of all elements. */
@@ -178,6 +179,7 @@ public class StyleManager {
   public static void setAlarm(boolean on) {
     if (on) {
       App.textToSpeech("Alarm Triggered");
+      GameManager.setCurrentObjective(Objectives.ALARM_TRIPPED);
       setAlarmStyle();
       Platform.runLater(
           () -> {
