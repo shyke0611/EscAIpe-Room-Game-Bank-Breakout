@@ -214,11 +214,11 @@ public class LobbyController extends Controller {
    */
   @FXML
   private void onGuardPocket(MouseEvent event) {
-
     // executes when alarm is tripped
     if (GameState.isAlarmTripped) {
-      StyleManager.setClueHover("guardpocket", false);
       StyleManager.removeItemsMessage("guardpocket");
+      StyleManager.setClueHover("guardpocket", false);
+      guardpocket.setVisible(false);
       // opening credentials note
       credentialsNote.setVisible(true);
       credentialsNote.setDisable(false);
@@ -268,9 +268,10 @@ public class LobbyController extends Controller {
    */
   @FXML
   private void onGuardEyes(MouseEvent event) {
-    StyleManager.setClueHover("guardeyes", false);
     // execute only if eye scanner puzzle is pressed
     if (GameState.isEyeScannerEntered) {
+      StyleManager.setClueHover("guardeyes", false);
+      guardeyes.setVisible(false);
       guardeyes.setDisable(true);
       // updating items
       StyleManager.getHoverItem("compareBtn").setDisable(false);
