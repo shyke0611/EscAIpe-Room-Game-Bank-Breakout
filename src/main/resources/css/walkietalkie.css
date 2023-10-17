@@ -112,6 +112,11 @@
 
 }
 
+.button:disabled {
+    -fx-border-radius: 30;
+    -fx-text-fill: rgb(210, 230, 231);
+}
+
 
 .totalWalkieTalkie{
     

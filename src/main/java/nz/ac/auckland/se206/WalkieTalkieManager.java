@@ -158,6 +158,7 @@ public class WalkieTalkieManager {
 
   /** Reset the lists of scene objects. */
   public static void reset() {
+    // clearing all the lists
     walkieTalkieOpen = false;
     walkieTalkieMap.clear();
     walkieTalkieImageMap.clear();
