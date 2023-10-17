@@ -22,6 +22,7 @@ import nz.ac.auckland.se206.GameManager.Objectives;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
+import nz.ac.auckland.se206.StyleManager;
 
 /** Controller class for the Laser Cutting scene. */
 public class LaserCuttingController extends Controller {
@@ -41,6 +42,8 @@ public class LaserCuttingController extends Controller {
   @FXML private Canvas canvas;
   @FXML private GraphicsContext gc;
   @FXML private Label timerLabel;
+
+  @FXML private ImageView background;
 
   private double prevY;
   private double prevX;
@@ -68,6 +71,8 @@ public class LaserCuttingController extends Controller {
     // applying effects on the gun
     applyGlowEffect(cursorLine);
     canvas.setVisible(true);
+
+    StyleManager.getInstance().addHoverItems(background);
   }
 
   /**

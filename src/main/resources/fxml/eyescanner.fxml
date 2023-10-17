@@ -20,9 +20,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="VaultPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.EyeScannerController">
+<AnchorPane fx:id="VaultPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.EyeScannerController">
    <children>
-      <ImageView fitHeight="704.0" fitWidth="1008.0" onMouseClicked="#setVault" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="background" fitHeight="704.0" fitWidth="1008.0" onMouseClicked="#setVault" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/realvaultbackground.png" />
          </image>
