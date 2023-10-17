@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -12,6 +13,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -57,7 +59,7 @@
                   </StackPane>
                </children>
             </HBox>
-            <ScrollPane fx:id="instructionsScroll" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="562.0" prefWidth="950.0" styleClass="edge-to-edge" stylesheets="@../css/instructions.css" vbarPolicy="ALWAYS" vvalue="0.71">
+            <ScrollPane fx:id="instructionsScroll" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="562.0" prefWidth="950.0" styleClass="edge-to-edge" stylesheets="@../css/instructions.css" vbarPolicy="ALWAYS" vvalue="0.74">
                <content>
                   <AnchorPane prefHeight="1120.0" prefWidth="900.0">
                      <children>
@@ -420,20 +422,97 @@
                                              </font>
                                           </Label>
                                           <Label alignment="TOP_LEFT" prefWidth="918.0" styleClass="Text" text="The game includes a walkie-talkie for player-hacker communication, allowing technical assistance and information exchange within the game." wrapText="true" />
+                                          <StackPane prefHeight="150.0" prefWidth="200.0">
+                                             <children>
+                                                <ImageView fitHeight="180.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/Instructions/walkietalkie.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Group translateX="550.0" translateY="120.0" StackPane.alignment="TOP_LEFT">
+                                                   <children>
+                                                      <StackPane prefHeight="41.0" prefWidth="39.0">
+                                                         <children>
+                                                            <Circle radius="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" />
+                                                            <Label alignment="CENTER" prefHeight="30.0" prefWidth="54.0" styleClass="pointer" text="1" />
+                                                         </children>
+                                                      </StackPane>
+                                                   </children>
+                                                </Group>
+                                                <Group translateX="635.0" translateY="25.0" StackPane.alignment="TOP_LEFT">
+                                                   <children>
+                                                      <StackPane prefHeight="41.0" prefWidth="39.0">
+                                                         <children>
+                                                            <Circle radius="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" />
+                                                            <Label alignment="CENTER" prefHeight="30.0" prefWidth="54.0" styleClass="pointer" text="4" />
+                                                         </children>
+                                                      </StackPane>
+                                                   </children>
+                                                </Group>
+                                                <Group translateX="635.0" translateY="60.0" StackPane.alignment="TOP_LEFT">
+                                                   <children>
+                                                      <StackPane prefHeight="41.0" prefWidth="39.0">
+                                                         <children>
+                                                            <Circle radius="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" />
+                                                            <Label alignment="CENTER" prefHeight="30.0" prefWidth="54.0" styleClass="pointer" text="3" />
+                                                         </children>
+                                                      </StackPane>
+                                                   </children>
+                                                </Group>
+                                                <Group translateX="290.0" translateY="60.0" StackPane.alignment="TOP_LEFT">
+                                                   <children>
+                                                      <StackPane prefHeight="41.0" prefWidth="39.0">
+                                                         <children>
+                                                            <Circle radius="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" />
+                                                            <Label alignment="CENTER" prefHeight="30.0" prefWidth="54.0" styleClass="pointer" text="2" />
+                                                         </children>
+                                                      </StackPane>
+                                                   </children>
+                                                </Group>
+                                                <Group translateX="130.0" translateY="20.0" StackPane.alignment="TOP_LEFT">
+                                                   <children>
+                                                      <StackPane prefHeight="41.0" prefWidth="39.0">
+                                                         <children>
+                                                            <Circle radius="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" />
+                                                            <Label alignment="CENTER" prefHeight="30.0" prefWidth="54.0" styleClass="pointer" text="6" />
+                                                         </children>
+                                                      </StackPane>
+                                                   </children>
+                                                </Group>
+                                                <Group translateX="725.0" translateY="125.0" StackPane.alignment="TOP_LEFT">
+                                                   <children>
+                                                      <StackPane prefHeight="41.0" prefWidth="39.0">
+                                                         <children>
+                                                            <Circle radius="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" />
+                                                            <Label alignment="CENTER" prefHeight="30.0" prefWidth="54.0" styleClass="pointer" text="5" />
+                                                         </children>
+                                                      </StackPane>
+                                                   </children>
+                                                </Group>
+                                             </children>
+                                             <padding>
+                                                <Insets top="5.0" />
+                                             </padding>
+                                          </StackPane>
                                           <VBox prefWidth="918.0">
                                              <children>
                                                 <HBox prefWidth="200.0">
                                                    <children>
-                                                      <HBox prefWidth="220.0">
+                                                      <HBox alignment="CENTER" prefHeight="75.0" prefWidth="75.0">
                                                          <children>
-                                                            <ImageView fitHeight="113.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@../images/Instructions/playerTalk.png" />
-                                                               </image>
-                                                            </ImageView>
+                                                            <Group>
+                                                               <children>
+                                                                  <StackPane prefHeight="41.0" prefWidth="39.0">
+                                                                     <children>
+                                                                        <Circle fill="WHITE" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                                                                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="54.0" style="-fx-text-fill: black;" text="1" />
+                                                                     </children>
+                                                                  </StackPane>
+                                                               </children>
+                                                            </Group>
                                                          </children>
                                                       </HBox>
-                                                      <VBox prefWidth="195.0">
+                                                      <VBox prefWidth="350.0">
                                                          <children>
                                                             <Label styleClass="h3" text="Player Communication">
                                                                <font>
@@ -449,23 +528,28 @@
                                                             <Insets left="10.0" />
                                                          </padding>
                                                       </VBox>
-                                                      <HBox prefWidth="250.0">
+                                                      <HBox alignment="CENTER" prefHeight="75.0" prefWidth="75.0">
                                                          <children>
-                                                            <ImageView fitHeight="113.0" fitWidth="250.0" pickOnBounds="true">
-                                                               <image>
-                                                                  <Image url="@../images/Instructions/hackerTalk.png" />
-                                                               </image>
-                                                            </ImageView>
+                                                            <Group>
+                                                               <children>
+                                                                  <StackPane prefHeight="41.0" prefWidth="39.0">
+                                                                     <children>
+                                                                        <Circle fill="WHITE" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                                                                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="54.0" style="-fx-text-fill: black;" text="2" />
+                                                                     </children>
+                                                                  </StackPane>
+                                                               </children>
+                                                            </Group>
                                                          </children>
                                                       </HBox>
-                                                      <VBox prefWidth="195.0">
+                                                      <VBox prefWidth="350.0">
                                                          <children>
                                                             <Label styleClass="h3" text="Hacker Communication">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
                                                             </Label>
-                                                            <Label alignment="TOP_LEFT" prefWidth="200.0" styleClass="Text" text="The hacker communicates game-related information through the walkie-talkie as the game progresses." wrapText="true" />
+                                                            <Label alignment="TOP_LEFT" styleClass="Text" text="The hacker communicates game-related information through the walkie-talkie as the game progresses." wrapText="true" />
                                                          </children>
                                                          <HBox.margin>
                                                             <Insets />
@@ -481,16 +565,21 @@
                                                 </HBox>
                                                 <HBox prefWidth="200.0">
                                                    <children>
-                                                      <HBox prefHeight="113.0" prefWidth="250.0">
+                                                      <HBox alignment="CENTER" prefHeight="75.0" prefWidth="75.0">
                                                          <children>
-                                                            <ImageView fitHeight="113.0" fitWidth="250.0" pickOnBounds="true">
-                                                               <image>
-                                                                  <Image url="@../images/Instructions/quickhint.png" />
-                                                               </image>
-                                                            </ImageView>
+                                                            <Group>
+                                                               <children>
+                                                                  <StackPane prefHeight="41.0" prefWidth="39.0">
+                                                                     <children>
+                                                                        <Circle fill="WHITE" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                                                                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="54.0" style="-fx-text-fill: black;" text="3" />
+                                                                     </children>
+                                                                  </StackPane>
+                                                               </children>
+                                                            </Group>
                                                          </children>
                                                       </HBox>
-                                                      <VBox prefWidth="195.0">
+                                                      <VBox prefWidth="350.0">
                                                          <children>
                                                             <Label styleClass="h3" text="Quick Hint">
                                                                <font>
@@ -503,16 +592,21 @@
                                                             <Insets left="10.0" />
                                                          </padding>
                                                       </VBox>
-                                                      <HBox prefHeight="100.0" prefWidth="250.0">
+                                                      <HBox alignment="CENTER" prefHeight="75.0" prefWidth="75.0">
                                                          <children>
-                                                            <ImageView fitHeight="113.0" fitWidth="250.0" pickOnBounds="true">
-                                                               <image>
-                                                                  <Image url="@../images/Instructions/history2.png" />
-                                                               </image>
-                                                            </ImageView>
+                                                            <Group>
+                                                               <children>
+                                                                  <StackPane prefHeight="41.0" prefWidth="39.0">
+                                                                     <children>
+                                                                        <Circle fill="WHITE" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                                                                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="54.0" style="-fx-text-fill: black;" text="4" />
+                                                                     </children>
+                                                                  </StackPane>
+                                                               </children>
+                                                            </Group>
                                                          </children>
                                                       </HBox>
-                                                      <VBox prefWidth="195.0">
+                                                      <VBox prefWidth="350.0">
                                                          <children>
                                                             <Label styleClass="h3" text="Chat History">
                                                                <font>
@@ -529,6 +623,64 @@
                                                    <VBox.margin>
                                                       <Insets bottom="10.0" top="10.0" />
                                                    </VBox.margin>
+                                                </HBox>
+                                                <HBox prefWidth="200.0">
+                                                   <children>
+                                                      <HBox alignment="CENTER" prefHeight="75.0" prefWidth="75.0">
+                                                         <children>
+                                                            <Group>
+                                                               <children>
+                                                                  <StackPane prefHeight="41.0" prefWidth="39.0">
+                                                                     <children>
+                                                                        <Circle fill="WHITE" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                                                                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="54.0" style="-fx-text-fill: black;" text="5" />
+                                                                     </children>
+                                                                  </StackPane>
+                                                               </children>
+                                                            </Group>
+                                                         </children>
+                                                      </HBox>
+                                                      <VBox prefWidth="350.0">
+                                                         <children>
+                                                            <Label styleClass="h3" text="Hints Remaining">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label alignment="TOP_LEFT" styleClass="Text" text="Players can readily check their remaining hint count." wrapText="true" />
+                                                         </children>
+                                                         <padding>
+                                                            <Insets left="10.0" />
+                                                         </padding>
+                                                      </VBox>
+                                                      <HBox alignment="CENTER" prefHeight="75.0" prefWidth="75.0">
+                                                         <children>
+                                                            <Group>
+                                                               <children>
+                                                                  <StackPane prefHeight="41.0" prefWidth="39.0">
+                                                                     <children>
+                                                                        <Circle fill="WHITE" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                                                                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="54.0" style="-fx-text-fill: black;" text="6" />
+                                                                     </children>
+                                                                  </StackPane>
+                                                               </children>
+                                                            </Group>
+                                                         </children>
+                                                      </HBox>
+                                                      <VBox prefWidth="350.0">
+                                                         <children>
+                                                            <Label styleClass="h3" text="Walkie-talkie Toggle">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label alignment="TOP_LEFT" styleClass="Text" text="Players can effortlessly toggle the textbox on or off using the icon." wrapText="true" />
+                                                         </children>
+                                                         <padding>
+                                                            <Insets left="10.0" />
+                                                         </padding>
+                                                      </VBox>
+                                                   </children>
                                                 </HBox>
                                              </children>
                                           </VBox>
@@ -586,6 +738,9 @@
                                                          </image>
                                                       </ImageView>
                                                    </children>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
                                                 </HBox>
                                                 <VBox prefWidth="195.0">
                                                    <children>
@@ -640,6 +795,9 @@
                                                          </image>
                                                       </ImageView>
                                                    </children>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
                                                 </HBox>
                                                 <VBox prefWidth="195.0">
                                                    <children>
@@ -649,6 +807,11 @@
                                                          </font>
                                                       </Label>
                                                       <Label alignment="TOP_LEFT" styleClass="Text" text="The player must try and match the artificial eye colour to the guards eye colour to pass the biometrics on vault." wrapText="true" />
+                                                      <Label alignment="BOTTOM_LEFT" prefHeight="22.0" prefWidth="175.0" text="*Requires Level 3 Vault Access*">
+                                                         <font>
+                                                            <Font name="Tahoma" size="11.0" />
+                                                         </font>
+                                                      </Label>
                                                    </children>
                                                    <padding>
                                                       <Insets left="10.0" />
@@ -677,7 +840,7 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label alignment="TOP_LEFT" styleClass="Text" text="The player must cut the wires in the correct order." wrapText="true" />
+                                                      <Label alignment="TOP_LEFT" prefHeight="40.0" styleClass="Text" text="The player must cut the wires in the correct order." wrapText="true" />
                                                    </children>
                                                    <padding>
                                                       <Insets left="10.0" />
@@ -691,6 +854,9 @@
                                                          </image>
                                                       </ImageView>
                                                    </children>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
                                                 </HBox>
                                                 <VBox prefWidth="195.0">
                                                    <children>
