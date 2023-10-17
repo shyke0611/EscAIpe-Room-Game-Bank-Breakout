@@ -16,7 +16,10 @@
     -fx-background-color: transparent;
     -fx-text-fill: rgb(255, 255, 255);
     -fx-font-family: "Courier New Bold";
+    -fx-font-size: 15px;
 }
+
+
 
 .text-area .scroll-pane {
     -fx-background-color: transparent;
@@ -30,6 +33,33 @@
 .text-area .scroll-pane .content{
     -fx-background-color: transparent;
 }
+
+.text-area .scroll-bar {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-border-width: 0;
+}
+
+.text-area .scroll-bar:vertical {
+    -fx-pref-width: 8px;
+}
+
+.text-area .scroll-bar:horizontal {
+    -fx-pref-height: 8px;
+}
+
+.text-area .scroll-bar:thumb {
+    -fx-background-color: rgba(24, 176, 237, 0.5);
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+
+.text-area .scroll-bar:thumb:hover {
+    -fx-background-color: rgba(24, 176, 237, 0.8);
+}
+
+
 
 .text-field {
     -fx-background-color: transparent;
@@ -77,7 +107,7 @@
 
 .button:hover {
     -fx-border-radius: 30;
-    -fx-text-fill: rgb(0, 255, 42);
+    -fx-text-fill: rgb(0, 247, 255);
     -fx-cursor: hand;
 
 }
