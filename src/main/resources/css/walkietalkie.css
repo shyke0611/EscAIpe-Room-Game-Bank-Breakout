@@ -4,7 +4,7 @@
 }
 
 .walkietalkie:pressed {
-    -fx-effect: "";
+    -fx-effect: null;
 }
 
 .text-area {

@@ -120,7 +120,6 @@ public class ChemicalMixingController extends Controller {
     emptyVial.setVisible(false);
 
     redArrow.setVisible(false);
-    retryButton.setDisable(false);
     retryButton.setOpacity(1);
     selectVialLabel.setVisible(false);
 
@@ -177,7 +176,6 @@ public class ChemicalMixingController extends Controller {
   @FXML
   private void onPourChemical(MouseEvent event) {
 
-    // sliderAnimation.play();
     selectVialLabel.setVisible(true);
     // Pour button was clicked
     if (vialColour == null) {
@@ -222,9 +220,13 @@ public class ChemicalMixingController extends Controller {
       emptyVial.setVisible(true);
     } else {
       // setting properties to the viles and buttons
-
+      selectVialLabel.setVisible(false);
       emptyVial.setVisible(false);
-      onRetryButtonClicked(event);
+      retryButton.setDisable(false);
+      yellowVial.setDisable(true);
+      redVial.setDisable(true);
+      blueVial.setDisable(true);
+      greenVial.setDisable(true);
     }
   }
 
@@ -332,6 +334,11 @@ public class ChemicalMixingController extends Controller {
     redVial.setVisible(true);
     blueVial.setVisible(true);
     greenVial.setVisible(true);
+    // reset disability
+    yellowVial.setDisable(false);
+    redVial.setDisable(false);
+    blueVial.setDisable(false);
+    greenVial.setDisable(false);
     // Clear the vialColour
     vialColour = null;
     retryButton.setDisable(true);

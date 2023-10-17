@@ -1,8 +1,7 @@
-
-.bottom-rectangle{
+.bottom-rectangle {
     -fx-background-color: radial-gradient(focus-angle 0deg, focus-distance 50%, center 50% 50%, radius 100%, reflect, #1619de, derive(#2247fe, 30%));
     -fx-background-radius: 0 0 35 35;
-    
+
 }
 
 .slider .thumb {
@@ -12,6 +11,7 @@
 .slider .track {
     -fx-background-color: black;
 }
+
 .slider .axis .axis-tick-mark {
     -fx-fill: null;
     -fx-stroke: rgb(255, 255, 255);
@@ -20,14 +20,14 @@
 /* Base Button Style */
 .button {
     -fx-padding: 8 15 15 15;
-    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-insets: 0, 0 0 5 0, 0 0 6 0, 0 0 7 0;
     -fx-background-radius: 8;
-    -fx-background-color: 
+    -fx-background-color:
         linear-gradient(from 0% 93% to 0% 100%, #25b708 0%, #057e19 100%),
         #87df1a,
         #045e0f,
         radial-gradient(center 50% 50%, radius 100%, #48dc23, #00910a);
-    -fx-effect: dropshadow( gaussian , rgba(17, 210, 36, 0.75) , 4,0,0,1 );
+    -fx-effect: dropshadow(gaussian, rgba(17, 210, 36, 0.75), 4, 0, 0, 1);
     -fx-font-weight: bold;
     -fx-font-size: 1.1em;
     -fx-font-family: "Courier New";
@@ -39,6 +39,6 @@
     -fx-background-color: linear-gradient(to bottom, #006805, #004a16);
 }
 
-
-
-
+.button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #50e957, #004a16);
+}

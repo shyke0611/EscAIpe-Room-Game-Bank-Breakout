@@ -11,7 +11,7 @@
 }
 
 .component:pressed {
-    -fx-effect: "";
+    -fx-effect: run;
 }
 
 .roomswitchback {
@@ -164,32 +164,6 @@
     -fx-text-fill: white;
 
 }
-
-/* .goldDoor:hover {
-    -fx-effect: dropshadow(gaussian, rgba(255, 50, 0, 0.7), 5, 5, 0, 0);
-    -fx-cursor: hand;
-} */
-
-/* 
-.button {
-    -fx-background-color: black;
-    -fx-text-fill: green;
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-padding: 5px 10px;  //Adjust padding as needed 
-    -fx-background-radius: //5px;  Rounded corners 
-}
-
- //Hover effect 
-.button:hover {
-    -fx-background-color: darkgreen;  //Change color on hover 
-}
-
- //Pressed effect 
-.button:pressed {
-    -fx-background-color: forestgreen;  //Change color when pressed 
-}
-*/
 
 .pourBtn {
     -fx-background-color:

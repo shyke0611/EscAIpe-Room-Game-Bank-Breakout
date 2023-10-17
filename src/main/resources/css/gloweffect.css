@@ -5,7 +5,7 @@
 }
 
 .red:pressed {
-    -fx-effect: "";
+    -fx-effect: null;
 }
 
 .orange:hover {
@@ -14,7 +14,7 @@
 }
 
 .orange:pressed {
-    -fx-effect: "";
+    -fx-effect: null;
 }
 
 .green:hover {
@@ -23,7 +23,7 @@
 }
 
 .green:pressed {
-    -fx-effect: "";
+    -fx-effect: null;
 }
 
 .item:hover {
