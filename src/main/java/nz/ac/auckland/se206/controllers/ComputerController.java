@@ -23,6 +23,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameManager;
 import nz.ac.auckland.se206.GameManager.Objectives;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.HackerAiManager;
 import nz.ac.auckland.se206.RandomnessGenerate;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.Scenes;
@@ -60,6 +61,7 @@ public class ComputerController extends Controller {
   private int dotCount = 0;
   private Queue<ChatMessage> messageQueue = new LinkedList<>();
   private WalkieTalkieManager walkieTalkieManager;
+  private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
 
   private Timeline timeline;
   private Boolean riddleStarted = false;
@@ -528,6 +530,20 @@ public class ComputerController extends Controller {
       typingThread.setDaemon(true);
       typingThread.start();
     }
+  }
+
+  /**
+   * Retrieves and displays a quick hint from the hacker AI manager.
+   *
+   * @param event The ActionEvent triggered by clicking the quick hint button.
+   */
+  @FXML
+  private void onQuickHint(ActionEvent event) {
+    // Get a quick hint from the hackerAiManager
+    String hint = hackerAiManager.getQuickHint();
+    hackerAiManager.storeQuickHint();
+    // Set the Walkie-Talkie text to the hint
+    walkieTalkieManager.setWalkieTalkieText(new ChatMessage("user", hint));
   }
 
   /**

@@ -108,7 +108,7 @@
                               <Insets bottom="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button fx:id="quickHintBtn" mnemonicParsing="false" stylesheets="@../css/walkietalkie.css" text="Quick Hint" />
+                        <Button fx:id="quickHintBtn" mnemonicParsing="false" onAction="#onQuickHint" stylesheets="@../css/walkietalkie.css" text="Quick Hint" />
                      </children>
                   </VBox>
                </children>
