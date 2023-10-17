@@ -18,7 +18,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="LobbyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LobbyController">
+<AnchorPane fx:id="LobbyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LobbyController">
    <children>
       <ImageView fx:id="lobbybackground" fitHeight="715.0" fitWidth="1024.0" layoutX="-3.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -580,6 +580,13 @@
                      <image>
                         <Image url="@../images/walkietalkie.png" />
                      </image>
+                     <effect>
+                        <DropShadow spread="0.3">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </DropShadow>
+                     </effect>
                   </ImageView>
                   <ImageView fx:id="lobbyNotification" fitHeight="70.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" translateX="-30.0" translateY="-30.0" visible="false">
                      <image>

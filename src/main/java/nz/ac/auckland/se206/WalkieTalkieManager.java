@@ -268,7 +268,7 @@ public class WalkieTalkieManager {
         () -> {
           // switching imageviews
           for (ImageView image : walkieTalkieImageMap.values()) {
-            if (image.getId().endsWith("WalkieTalkie")) {
+            if (image.getId().toLowerCase().endsWith("walkietalkie")) {
               image.setImage(new Image("images/hacker.png"));
             }
           }
