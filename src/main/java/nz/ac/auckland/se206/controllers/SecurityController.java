@@ -276,6 +276,9 @@ public class SecurityController extends Controller {
                     securityInputField.setDisable(false);
                     walkieTalkieManager.stopAnimation();
                     securityInputField.requestFocus();
+                    if (!walkieTalkieManager.isWalkieTalkieOpen()) {
+                      WalkieTalkieManager.setWalkieTalkieNotifcationOn();
+                    }
                   });
               return null;
             }
