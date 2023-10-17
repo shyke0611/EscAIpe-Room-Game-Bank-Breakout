@@ -134,7 +134,6 @@ public class VaultController extends Controller {
         goldMoneyImage,
         bronzeMoneyImage);
 
-
     // adding relevant items to the stylemanager list
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     GameManager.addMoneyGainedLabel(this, moneyCount);
@@ -266,10 +265,6 @@ public class VaultController extends Controller {
       if (!GameState.isAlarmTripped) {
         StyleManager.setAlarm(true);
         GameState.isAlarmTripped = true;
-        WalkieTalkieManager.setWalkieTalkieOpen();
-        walkieTalkieManager.setWalkieTalkieText(
-            new ChatMessage("user", "Uh Oh! You better find a way to turn that off quick"));
-        StyleManager.setVisible(false, "goldMoneyImage", "silverMoneyImage", "bronzeMoneyImage");
       }
       GameManager.setCurrentObjective(Objectives.DISABLE_LASERTRAP);
       lootBtnHolder.setVisible(false);

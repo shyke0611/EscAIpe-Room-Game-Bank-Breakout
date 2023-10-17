@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Tooltip;
 import javafx.scene.effect.Lighting;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.gpt.ChatMessage;
 
 /** Class to manage the styling of all elements. */
 public class StyleManager {
@@ -176,6 +177,11 @@ public class StyleManager {
     if (on) {
       App.textToSpeech("Alarm Triggered");
       setAlarmStyle();
+      WalkieTalkieManager.setWalkieTalkieOpen();
+      WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
+      walkieTalkieManager.setWalkieTalkieText(
+          new ChatMessage("user", "Uh Oh! You better find a way to turn that off quick"));
+      StyleManager.setVisible(false, "goldMoneyImage", "silverMoneyImage", "bronzeMoneyImage");
     }
     // Create a set of items to include
     Set<String> disableIds = createdisableIdSet();
