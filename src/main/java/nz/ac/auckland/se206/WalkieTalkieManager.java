@@ -162,6 +162,10 @@ public class WalkieTalkieManager {
     walkieTalkieMap.clear();
     walkieTalkieImageMap.clear();
     walkieTalkieHints.clear();
+    walkieTalkieNotifications.clear();
+    walkieTalkieTextAreas.clear();
+    quickHintBtns.clear();
+    instance = new WalkieTalkieManager();
   }
 
   /**

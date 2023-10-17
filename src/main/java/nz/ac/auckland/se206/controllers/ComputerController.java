@@ -433,6 +433,7 @@ public class ComputerController extends Controller {
     GameState.isFirstRiddleSolved = true;
     StyleManager.setClueHover("computer", false);
     setConnectdotsStyle();
+    GameManager.setCurrentObjective(Objectives.COMPLETE_MINIGAME);
   }
 
   /** Sets the visual style for the second authentication method (connect the dots). */
