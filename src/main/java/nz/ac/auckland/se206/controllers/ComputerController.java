@@ -215,7 +215,8 @@ public class ComputerController extends Controller {
             securityTextArea.appendText("\n");
             sendBtn.setDisable(true);
             // getting the message the user inputs
-            String message = inputTextField.getText();
+            String message = inputTextField.getText().trim();
+            securityTextArea.appendText(message + "\n");
             inputTextField.clear();
 
             Platform.runLater(
@@ -223,7 +224,6 @@ public class ComputerController extends Controller {
                   timeline.play();
                 });
 
-            messageQueue.add(new ChatMessage("user", message));
             // if the user types yes then start the authentication process
             if (authenticationStarted) {
               performAuthentication(message);

@@ -67,3 +67,30 @@
     -fx-font-family: "Courier New", monospace;
     -fx-font-size: 24px;
 }
+
+
+.text-area .scroll-bar {
+    -fx-background-color: black;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-border-width: 0;
+}
+
+.text-area .scroll-bar:vertical {
+    -fx-pref-width: 8px;
+}
+
+.text-area .scroll-bar:horizontal {
+    -fx-pref-height: 8px;
+}
+
+.text-area .scroll-bar:thumb {
+    -fx-background-color: limegreen;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+
+.text-area .scroll-bar:thumb:hover {
+    -fx-background-color: limegreen;
+}
+
