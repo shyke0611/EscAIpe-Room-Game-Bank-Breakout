@@ -115,14 +115,14 @@
                   <Image url="@../images/minigamebackground.png" />
                </image>
                <effect>
-                  <Lighting diffuseConstant="2.0" specularConstant="2.0" specularExponent="18.15" surfaceScale="1.38">
+                  <Lighting diffuseConstant="2.0" specularExponent="0.0" surfaceScale="0.0">
                      <bumpInput>
-                        <Shadow height="255.0" radius="127.0" width="255.0" />
+                        <Shadow />
                      </bumpInput>
                      <light>
                         <Light.Distant>
                            <color>
-                              <Color red="0.2916666567325592" green="0.8111110925674438" blue="1.0" />
+                              <Color red="0.2217348963022232" green="0.7928443551063538" blue="0.9210526347160339" />
                            </color>
                         </Light.Distant>
                      </light>
@@ -223,23 +223,11 @@
                               <Line endX="-114.91265106201172" endY="-89.31040954589844" rotate="110.0" startX="-100.0" />
                            </children>
                         </StackPane>
-                        <ImageView fitHeight="48.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/eyescanneryes.png" />
-                           </image>
-                           <effect>
-                              <DropShadow spread="0.38">
-                                 <color>
-                                    <Color red="1.0" green="1.0" blue="1.0" />
-                                 </color>
-                              </DropShadow>
-                           </effect>
-                        </ImageView>
                      </children>
                   </StackPane>
-                  <VBox prefHeight="283.0" prefWidth="372.0" stylesheets="@../css/eyescanner.css" translateX="10.0">
+                  <VBox prefHeight="283.0" prefWidth="372.0" styleClass="slider" stylesheets="@../css/eyescanner.css" translateX="10.0">
                      <children>
-                        <HBox prefHeight="1.0" prefWidth="372.0">
+                        <HBox prefHeight="1.0" prefWidth="372.0" style="-fx-background-color: transparent;">
                            <children>
                               <Label prefHeight="17.0" prefWidth="50.0" text="Red:" textFill="RED">
                                  <font>
@@ -290,13 +278,6 @@
                      <padding>
                         <Insets top="6.0" />
                      </padding>
-                     <effect>
-                        <DropShadow spread="0.26">
-                           <color>
-                              <Color red="1.0" green="1.0" blue="1.0" />
-                           </color>
-                        </DropShadow>
-                     </effect>
                   </VBox>
                </children>
             </VBox>

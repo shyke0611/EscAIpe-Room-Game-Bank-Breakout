@@ -13,21 +13,25 @@
 /*Code from Stack Overflow: https://stackoverflow.com/questions/51343759/how-to-change-fill-color-of-slider-in-javafx*/
 .slider {
     -default-track-color: -fx-control-inner-background;
-    -track-color: -default-track-color ;
+    -track-color: -default-track-color;
+    -fx-cursor: hand;
 }
 
 .slider .track {
     -fx-background-color: -fx-shadow-highlight-color,
-          linear-gradient(to bottom, derive(-fx-text-box-border, -10%), -fx-text-box-border),
-          -track-color;
+        linear-gradient(to bottom, derive(-fx-text-box-border, -10%), -fx-text-box-border),
+        -track-color;
 }
 
-.sliders{
-    -fx-background-color: radial-gradient( center 50% 50%, radius 100%,rgba(43, 30, 84,0.9) 20%,rgba(255,0,0,0) 60% );
-    
+.sliders {
+    -fx-background-color: radial-gradient(center 50% 50%, radius 100%, rgba(43, 30, 84, 0.9) 20%, rgba(255, 0, 0, 0) 60%);
+
 }
 
-.eyes{
-    -fx-background-color: radial-gradient( center 50% 50%, radius 100%,rgba(43, 30, 84,0.9) 30%,rgba(255,0,0,0) 50% );
+.eyes {
+    -fx-background-color: radial-gradient(center 50% 50%, radius 100%, rgba(43, 30, 84, 0.9) 30%, rgba(255, 0, 0, 0) 50%);
 }
 
+.slider .axis {
+    -fx-tick-label-fill: #90f6ff;
+}

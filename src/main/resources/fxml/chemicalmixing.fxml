@@ -30,7 +30,7 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000c9" height="525.0" layoutX="46.0" layoutY="117.0" stroke="#ffffff00" strokeType="INSIDE" translateX="28.0" translateY="23.0" width="869.0" />
-      <Button fx:id="continueBtn" layoutX="423.0" layoutY="571.0" mnemonicParsing="false" onMouseClicked="#setVault" text="Melt Door" visible="false">
+      <Button fx:id="continueBtn" layoutX="423.0" layoutY="571.0" mnemonicParsing="false" onMouseClicked="#setVault" styleClass="item" stylesheets="@../css/gloweffect.css" text="Melt Door" visible="false">
          <font>
             <Font size="23.0" />
          </font>

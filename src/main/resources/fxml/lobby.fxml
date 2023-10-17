@@ -161,6 +161,25 @@
             </ImageView>
          </children>
       </HBox>
+      <HBox fx:id="guardpocket1" alignment="CENTER" layoutX="845.0" layoutY="362.0" onMousePressed="#onGuardPocket" prefHeight="42.0" prefWidth="38.0" styleClass="green" stylesheets="@../css/gloweffect.css">
+         <children>
+            <ImageView fx:id="guardpocket21" fitHeight="49.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/guardpocket.png" />
+               </image>
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </ImageView>
+         </children>
+      </HBox>
       <HBox fx:id="guardpocket" alignment="CENTER" layoutX="845.0" layoutY="362.0" onMousePressed="#onGuardPocket" prefHeight="42.0" prefWidth="38.0" styleClass="red" stylesheets="@../css/gloweffect.css">
          <children>
             <ImageView fx:id="guardpocket2" fitHeight="49.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
@@ -290,6 +309,15 @@
                </color>
             </DropShadow>
          </effect>
+      </HBox>
+      <HBox fx:id="guardeyesback" layoutX="833.0" layoutY="290.0" prefHeight="39.0" prefWidth="41.0" stylesheets="@../css/gloweffect.css">
+         <children>
+            <ImageView fitHeight="39.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/sunglasses.png" />
+               </image>
+            </ImageView>
+         </children>
       </HBox>
       <HBox fx:id="guardeyes" layoutX="833.0" layoutY="290.0" onMousePressed="#onGuardEyes" prefHeight="39.0" prefWidth="41.0" styleClass="red" stylesheets="@../css/gloweffect.css">
          <children>

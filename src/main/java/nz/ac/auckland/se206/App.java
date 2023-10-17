@@ -189,6 +189,7 @@ public class App extends Application {
 
     scene = new Scene(root, 1000, 700);
     stage.setScene(scene);
+    stage.setResizable(false);
     stage.show();
     root.requestFocus();
   }
