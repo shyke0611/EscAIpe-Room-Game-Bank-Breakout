@@ -286,7 +286,7 @@ public class WalkieTalkieManager {
       dots.append(".");
     }
     // creating new message and setting it to walkietalkie
-    ChatMessage msg = new ChatMessage("user", "Typing" + dots.toString());
+    ChatMessage msg = new ChatMessage("user", "Bzzzzz" + dots.toString());
     setWalkieTalkieText(msg);
     if (dotCount < 3) {
       dotCount++;

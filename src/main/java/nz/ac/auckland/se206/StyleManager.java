@@ -24,18 +24,8 @@ public class StyleManager {
     ORANGE,
   }
 
-  private static StyleManager instance = new StyleManager();
   private static Map<Node, Tooltip> tooltipMap = new HashMap<>();
   private static List<Node> hoverItemsList = new ArrayList<>();
-
-  /**
-   * Get the instance of the StyleManager.
-   *
-   * @return - The instance of the StyleManager
-   */
-  public static StyleManager getInstance() {
-    return instance;
-  }
 
   /**
    * Get the node with the given id.
@@ -285,7 +275,7 @@ public class StyleManager {
    *
    * @param items - The items to add
    */
-  public void addHoverItems(Node... items) {
+  public static void addHoverItems(Node... items) {
     hoverItemsList.addAll(List.of(items));
   }
 }

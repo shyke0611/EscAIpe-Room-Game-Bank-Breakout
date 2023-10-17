@@ -64,7 +64,7 @@ public class ConnectDotsController extends Controller {
     randomiseRotation();
     flipSolution();
     copyStartEndNodes();
-    StyleManager.getInstance().addHoverItems(background);
+    StyleManager.addHoverItems(background);
   }
 
   /** Start a drag operation when the mouse is pressed. */

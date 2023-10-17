@@ -34,7 +34,6 @@ public class WireCuttingController extends Controller {
   @FXML private Label wirecutterLbl;
   @FXML private ImageView wirecuttingbackground;
 
-  private StyleManager styleManager = StyleManager.getInstance();
   private List<HBox> wiresCut;
   private WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
 
@@ -46,7 +45,7 @@ public class WireCuttingController extends Controller {
     super.setTimerLabel(timerLabel, 1);
     wiresCut = new ArrayList<>();
     // generating relevant methods on initialise
-    styleManager.addHoverItems(wirecuttingbackground, bluewire, redwire, yellowwire, greenwire);
+    StyleManager.addHoverItems(wirecuttingbackground, bluewire, redwire, yellowwire, greenwire);
     RandomnessGenerate.addWires(bluewire, yellowwire, greenwire, redwire);
   }
 

@@ -65,7 +65,6 @@ public class ChemicalMixingController extends Controller {
   private String vialColour;
 
   private int pourCount;
-  private StyleManager styleManager = StyleManager.getInstance();
   private Timeline sliderAnimation;
 
   /** Initialize the Chemical Mixing Controller. Sets up the initial state of the scene. */
@@ -76,7 +75,7 @@ public class ChemicalMixingController extends Controller {
 
     // Setting up hover animations
     setUpHover();
-    styleManager.addHoverItems(background);
+    StyleManager.addHoverItems(background);
 
     // Intialsing recipe and saving for later reference
     initializeRecipe();
@@ -101,7 +100,7 @@ public class ChemicalMixingController extends Controller {
   /** Set up hover animations for the chemical vial images. */
   private void setUpHover() {
     // Setting up hover animations
-    styleManager.addHoverItems(yellowVial, redVial, blueVial, greenVial);
+    StyleManager.addHoverItems(yellowVial, redVial, blueVial, greenVial);
     StyleManager.setItemsHoverColour(
         StyleManager.HoverColour.GREEN, "yellowVial", "redVial", "blueVial", "greenVial");
   }

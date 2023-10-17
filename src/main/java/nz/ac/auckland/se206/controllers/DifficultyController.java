@@ -52,12 +52,11 @@ public class DifficultyController extends Controller {
   private Difficulties difficulty;
   private boolean difficultySelected = false;
   private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
-  private StyleManager styleManager = StyleManager.getInstance();
 
   /** Initialize the Difficulty Controller. Sets up the initial state of the scene. */
   public void initialize() {
     SceneManager.setController(Scenes.DIFFICULTYPAGE, this);
-    styleManager.addHoverItems(itemContainer);
+    StyleManager.addHoverItems(itemContainer);
   }
 
   /**

@@ -91,7 +91,6 @@ public class LobbyController extends Controller {
   // Other fields
   private String randomUsername;
   private String randomPassword;
-  private StyleManager styleManager = StyleManager.getInstance();
   private WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
   private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
   private boolean isZzz1Visible = false;
@@ -115,7 +114,7 @@ public class LobbyController extends Controller {
     randomPassword = RandomnessGenerate.getPasscode();
     RandomnessGenerate.addKeyLocation(key1, key3, key4);
     RandomnessGenerate.generateRandomKeyLocation();
-    styleManager.addHoverItems(
+    StyleManager.addHoverItems(
         key1,
         key3,
         key4,

@@ -44,7 +44,7 @@ public class HackerVanController extends Controller {
     super.setTimerLabel(timerLabel, 3);
     printChatHistory();
     loadQuickHints();
-    StyleManager.getInstance().addHoverItems(background);
+    StyleManager.addHoverItems(background);
   }
 
   /**
