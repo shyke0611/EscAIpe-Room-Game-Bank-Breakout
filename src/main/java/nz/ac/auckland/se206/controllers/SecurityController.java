@@ -65,7 +65,6 @@ public class SecurityController extends Controller {
   @FXML private ImageView computerImage;
 
   // Managers and controllers
-  private StyleManager styleManager = StyleManager.getInstance();
   private WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
   private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
 
@@ -87,7 +86,7 @@ public class SecurityController extends Controller {
     WalkieTalkieManager.addWalkieTalkieNotification(this, securityNotification);
     GameManager.addMoneyGainedLabel(this, moneyCount);
     // add styling
-    styleManager.addHoverItems(
+    StyleManager.addHoverItems(
         computer, electricityBox, wallEmployeeImage, securitybackground, computerImage);
     StyleManager.setItemsMessage("A computer...?", "computer");
     StyleManager.setItemsMessage("no need to open this right now", "electricityBox");

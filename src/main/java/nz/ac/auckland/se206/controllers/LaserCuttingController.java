@@ -72,7 +72,7 @@ public class LaserCuttingController extends Controller {
     applyGlowEffect(cursorLine);
     canvas.setVisible(true);
 
-    StyleManager.getInstance().addHoverItems(background);
+    StyleManager.addHoverItems(background);
   }
 
   /**

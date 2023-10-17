@@ -52,13 +52,11 @@ public class EyeScannerController extends Controller {
   private int guardGreen;
   private int guardBlue;
 
-  private StyleManager styleManager = StyleManager.getInstance();
-
   /** Initialize the Eye Scanner Controller. Sets up the initial state of the scene. */
   public void initialize() {
 
     // set relevant method on initialisation
-    styleManager.addHoverItems(compareBtn, background);
+    StyleManager.addHoverItems(compareBtn, background);
     SceneManager.setController(Scenes.EYESCANNER, this);
     GameManager.addMoneyGainedLabel(null, moneyCount);
     super.setTimerLabel(timerLabel, 1);

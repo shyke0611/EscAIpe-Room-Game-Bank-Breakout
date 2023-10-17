@@ -60,7 +60,6 @@ public class ComputerController extends Controller {
   private int dotCount = 0;
   private Queue<ChatMessage> messageQueue = new LinkedList<>();
   private WalkieTalkieManager walkieTalkieManager;
-  private StyleManager styleManager = StyleManager.getInstance();
 
   private Timeline timeline;
   private Boolean riddleStarted = false;
@@ -80,7 +79,7 @@ public class ComputerController extends Controller {
     walkieTalkieManager = WalkieTalkieManager.getInstance();
     WalkieTalkieManager.addWalkieTalkie(this, walkietalkieText);
     WalkieTalkieManager.addWalkieTalkieTextArea(this, computerTextArea);
-    styleManager.addHoverItems(usbStick, background);
+    StyleManager.addHoverItems(usbStick, background);
 
     // creating new timeline
     timeline = new Timeline(new KeyFrame(Duration.seconds(0.6), e -> updateLabel()));

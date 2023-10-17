@@ -94,7 +94,6 @@ public class VaultController extends Controller {
   @FXML private ImageView bronzeMoneyImage;
 
   // initialising instances
-  private StyleManager styleManager = StyleManager.getInstance();
   private StringBuilder labelText = new StringBuilder();
   private WalkieTalkieManager walkieTalkieManager = WalkieTalkieManager.getInstance();
   private HackerAiManager hackerAiManager = HackerAiManager.getInstance();
@@ -111,7 +110,7 @@ public class VaultController extends Controller {
 
     super.setTimerLabel(timerLabel, 1);
 
-    styleManager.addHoverItems(
+    StyleManager.addHoverItems(
         bronzeDoorHolder,
         silverDoorHolder,
         goldDoorHolder,
