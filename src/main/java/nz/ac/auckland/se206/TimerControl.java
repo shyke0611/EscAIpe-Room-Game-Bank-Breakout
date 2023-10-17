@@ -186,7 +186,7 @@ public class TimerControl {
    * @return - The formatted time taken to complete the game
    */
   public static String formatTimeTaken(int timeTaken) {
-    if (timeTaken == initialCount) {
+    if (timeTaken == 600) {
       return "Failed to Escape";
     }
     String time = formatTime(timeTaken, 4);
