@@ -169,7 +169,7 @@ public class StyleManager {
   public static void setAlarm(boolean on) {
     if (on) {
       App.textToSpeech("Alarm Triggered");
-      GameManager.setCurrentObjective(Objectives.ALARM_TRIPPED);
+      GameManager.setCurrentObjective(Objectives.DISABLE_LASERTRAP);
       setAlarmStyle();
       Platform.runLater(
           () -> {
