@@ -241,11 +241,10 @@ public class SecurityController extends Controller {
   }
 
   /**
-   * Handles the event when the Enter key is pressed in the Walkie-Talkie input field and the
-   * Walkie-Talkie is open. Initiates AI processing and communication.
+   * Handles the Enter key event for invoking the hacker AI when the Walkie-Talkie is open.
    *
-   * @param event The KeyEvent.
-   * @throws ApiProxyException If there is an issue with the API proxy.
+   * @param event The KeyEvent triggered by pressing the Enter key.
+   * @throws ApiProxyException If there's an issue with the AI proxy.
    */
   @FXML
   private void onInvokeHacker(KeyEvent event) throws ApiProxyException {
@@ -253,6 +252,9 @@ public class SecurityController extends Controller {
     if (event.getCode() == KeyCode.ENTER && walkieTalkieManager.isWalkieTalkieOpen()) {
       // Start the typing animation
       walkieTalkieManager.startAnimation();
+      ChatMessage msg = new ChatMessage("user", securityInputField.getText());
+      securityInputField.clear();
+      securityInputField.setDisable(true);
       // Create a background task for AI processing
       Task<Void> aiTask3 =
           new Task<Void>() {
@@ -260,7 +262,7 @@ public class SecurityController extends Controller {
             protected Void call() throws Exception {
               // Perform AI-related operations here
               // Create a ChatMessage from the user's input
-              ChatMessage msg = new ChatMessage("user", securityInputField.getText());
+
               // Add the user's input to the chat history managed by the hackerAiManager
               hackerAiManager.addChatHistory("User: " + msg.getContent());
               walkieTalkieManager.clearWalkieTalkie();
@@ -271,8 +273,9 @@ public class SecurityController extends Controller {
               Platform.runLater(
                   () -> {
                     walkieTalkieManager.setWalkieTalkieText(response);
-                    securityInputField.clear();
+                    securityInputField.setDisable(false);
                     walkieTalkieManager.stopAnimation();
+                    securityInputField.requestFocus();
                   });
               return null;
             }

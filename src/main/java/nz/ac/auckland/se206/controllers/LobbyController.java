@@ -393,6 +393,9 @@ public class LobbyController extends Controller {
     if (event.getCode() == KeyCode.ENTER && walkieTalkieManager.isWalkieTalkieOpen()) {
       // Start the typing animation
       walkieTalkieManager.startAnimation();
+      ChatMessage msg = new ChatMessage("user", lobbyTextInput.getText());
+      lobbyTextInput.clear();
+      lobbyTextInput.setDisable(true);
       // Create a background task for AI processing
       Task<Void> aiTask3 =
           new Task<Void>() {
@@ -400,7 +403,7 @@ public class LobbyController extends Controller {
             protected Void call() throws Exception {
               // Perform AI-related operations here
               // Create a ChatMessage from the user's input
-              ChatMessage msg = new ChatMessage("user", lobbyTextInput.getText());
+
               // Add the user's input to the chat history managed by the hackerAiManager
               hackerAiManager.addChatHistory("User: " + msg.getContent());
               walkieTalkieManager.clearWalkieTalkie();
@@ -411,8 +414,9 @@ public class LobbyController extends Controller {
               Platform.runLater(
                   () -> {
                     walkieTalkieManager.setWalkieTalkieText(response);
-                    lobbyTextInput.clear();
+                    lobbyTextInput.setDisable(false);
                     walkieTalkieManager.stopAnimation();
+                    lobbyTextInput.requestFocus();
                   });
               return null;
             }
