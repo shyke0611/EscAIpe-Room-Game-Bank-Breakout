@@ -408,7 +408,7 @@ public class ChemicalMixingController extends Controller {
     // setting the text for the viles
     labelOne.setText("Yellow: " + randomYellow);
     labelTwo.setText("Red: " + randomRed);
-    labelThree.setText("Blue: " + randomBlue);
-    labelFour.setText("Green: " + randomGreen);
+    labelThree.setText("Green: " + randomGreen);
+    labelFour.setText("Blue: " + randomBlue);
   }
 }

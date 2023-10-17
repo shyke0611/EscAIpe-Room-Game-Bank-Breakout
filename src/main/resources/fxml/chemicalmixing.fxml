@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
@@ -21,7 +22,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../css/chemicals.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChemicalMixingController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../css/chemicals.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChemicalMixingController">
    <children>
       <ImageView fitHeight="704.0" fitWidth="1008.0" onMouseClicked="#setVault" pickOnBounds="true" preserveRatio="true" style="-fx-effect: black;">
          <image>
@@ -117,31 +118,41 @@
                   <Point3D y="32.0" z="60.0" />
                </rotationAxis>
             </ImageView>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="28.0" prefWidth="254.0" text="Chemical Recipe" textAlignment="CENTER" translateX="10.0" translateY="-60.0">
-               <font>
-                  <Font name="Chalkduster" size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="labelOne" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="250.0" text="Label" translateX="10.0" translateY="-30.0">
-               <font>
-                  <Font name="Chalkduster" size="18.0" />
-               </font>
-            </Label>
-            <Label fx:id="labelFour" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="253.0" text="Label" translateX="10.0" translateY="45.0">
-               <font>
-                  <Font name="Chalkduster" size="18.0" />
-               </font>
-            </Label>
-            <Label fx:id="labelThree" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="250.0" text="Label" translateX="10.0" translateY="20.0">
-               <font>
-                  <Font name="Chalkduster" size="18.0" />
-               </font>
-            </Label>
-            <Label fx:id="labelTwo" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="250.0" text="Label" translateX="10.0" translateY="-5.0">
-               <font>
-                  <Font name="Chalkduster" size="18.0" />
-               </font>
-            </Label>
+            <VBox alignment="TOP_CENTER" prefHeight="174.0" prefWidth="280.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="28.0" prefWidth="254.0" text="Chemical Recipe" textAlignment="CENTER">
+                     <font>
+                        <Font name="Chalkduster" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets top="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="labelOne" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="250.0" text="Yellow Label">
+                     <font>
+                        <Font name="Chalkduster" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelTwo" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="253.0" text="Red Label">
+                     <font>
+                        <Font name="Chalkduster" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelThree" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="250.0" text="Green Label">
+                     <font>
+                        <Font name="Chalkduster" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelFour" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="250.0" text="Blue Label">
+                     <font>
+                        <Font name="Chalkduster" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
          </children>
       </StackPane>
       <Label layoutX="90.0" layoutY="153.0" prefHeight="38.0" prefWidth="211.0" text="Mix The" textFill="WHITE">
