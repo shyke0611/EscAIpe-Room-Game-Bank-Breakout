@@ -157,8 +157,8 @@ public class LobbyController extends Controller {
     walkieTalkieManager.setWalkieTalkieText(
         new ChatMessage(
             "user",
-            "Nice work, you made it inside! First things first, we need to find a way to access the"
-                + " computer in security"));
+            "Nice work, you made it inside! First things first, we need to find the login"
+                + " credentials hidden in the lobby."));
   }
 
   /**
