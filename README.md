@@ -87,15 +87,22 @@ The AI Text Box Integrated Escape Room Game is designed to provide an immersive 
 
 <!-- REFLECTION -->
 ## Reflection
+[Full report.pdf](https://github.com/user-attachments/files/16173822/SOFTENG206-Final-Report-Team-25.pdf)
 
 #### Context and Motivation
 
+In the development of our AI Text Box Integrated Escape Room Game, our primary challenge was defining a distinct persona for the AI. This involved creating an AI character that would be unique, intuitive, and enhance the gaming experience. Through numerous discussions and iterations, we crafted an AI persona that aligned with the game’s context and resonated with our target audience. Another major challenge was ensuring seamless interaction between the players and the AI, which we addressed by designing a small, unobtrusive user interface and implementing a "quick hint" feature to keep the gameplay engaging.
 
 #### Project Goals
 
+Our goals for this project were to create an immersive escape room game leveraging AI for interactive gameplay. The AI was intended to provide intelligent, context-aware responses to player inputs, enhancing the gaming experience. We aimed to use technologies such as Java, JavaFX, CSS, and the OpenAI API to develop a visually appealing and functionally robust game. Additionally, we sought to incorporate different difficulty levels and timer options to cater to varying player preferences and to ensure a smooth, engaging user experience.
 
 #### Challenges and Learning Experience
 
+We faced several challenges during the development process. One of the largest was managing the intricacies of prompt engineering to ensure the AI provided relevant and consistent responses. This involved extensive testing and tweaking of prompts to balance specificity and flexibility. Another challenge was the technical implementation of AI within the game, including managing response times and minimizing unnecessary API calls to reduce costs. Through these challenges, we learned the importance of concise prompt design, efficient API usage, and the value of iterative testing. These experiences have enhanced our understanding of integrating AI into interactive applications and highlighted the potential for AI to revolutionize user experiences.
+
+### GPT API Diagram
+![API Diagram](https://github.com/shyke0611/EscAIpe-Room-Game-Bank-Breakout/assets/126353075/f8345fef-ffee-4cd1-add6-4609a31f9b33)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
