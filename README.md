@@ -27,6 +27,8 @@ Welcome to the AI Text Box Integrated Escape Room Game! This project is a thrill
 
 ## Project Demo
 
+https://github.com/shyke0611/EscAIpe-Room-Game-Bank-Breakout/assets/126353075/60250d84-5b6b-4adc-9240-5a6e4906af67
+
 
 ## Introduction
 
@@ -94,14 +96,6 @@ The AI Text Box Integrated Escape Room Game is designed to provide an immersive 
 
 #### Challenges and Learning Experience
 
-
-
-<!-- CONTACT -->
-## Contact
-
-Email - hyungkenine2003@gmail.com
-
-Project Link - [https://github.com/shyke0611/Car_Rental_Project.git](https://github.com/shyke0611/Car_Rental_Project.git)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
