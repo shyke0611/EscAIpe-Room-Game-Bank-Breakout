@@ -105,9 +105,9 @@ Project Link - [https://github.com/shyke0611/Car_Rental_Project.git](https://git
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/shyke0611/EscAIpe-Room-Game-Bank-Breakout.svg?style=for-the-badge
+[contributors-url]: https://github.com/shyke0611/EscAIpe-Room-Game-Bank-Breakout/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/shyke0611/EscAIpe-Room-Game-Bank-Breakout.svg?style=for-the-badge
 [forks-url]: https://github.com/github_username/repo_name/network/members
 [stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
 [stars-url]: https://github.com/github_username/repo_name/stargazers
