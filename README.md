@@ -38,6 +38,7 @@ The AI Text Box Integrated Escape Room Game is designed to provide an immersive 
 
 - **Interactive Gameplay**: Players interact with the game through an AI text box, finding clues and solving puzzles to escape rooms.
 - **AI-Powered Responses**: The game uses the OpenAI API to generate intelligent and context-aware responses to player inputs.
+- **Cognitive Novelty**: Each gameplay session introduces unique and varying elements, keeping the experience fresh and increasing replay value by stimulating player curiosity and engagement.
 - **Engaging UI**: The game is developed with JavaFX, providing a rich and engaging user interface.
 - **Stylish Design**: Custom CSS is used to enhance the visual appeal of the game.
 - **Difficulty Levels**: Choose from Easy, Medium, and Hard levels to match your skill and challenge preference.
